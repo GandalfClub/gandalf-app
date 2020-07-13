@@ -11,11 +11,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {CodejarComponent} from './libs/code-editors/codejar-editor/codejar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		CodejarComponent
+		CodejarComponent,
+		LoginComponent
 	],
 	imports: [
 		BrowserModule,
