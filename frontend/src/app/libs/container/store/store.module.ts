@@ -11,7 +11,7 @@ import { StoreModule } from '@ngrx/store';
 		StoreModule.forFeature(sampleFeatureKey, {
 			sample: reducer
 		}),
-		StoreModule.forFeature(authFeatureKey, {auth: authReducer}),
+		StoreModule.forFeature(authFeatureKey, authReducer),
 	]
 })
 export class ContainerStoreModule { }
