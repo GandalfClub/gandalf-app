@@ -15,11 +15,8 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "outputPath": "dist/gandalf",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -32,13 +29,9 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "node_modules/prismjs/themes/prism.css",
-              "src/styles.scss",
-              "node_modules/monaco-editor/min/vs/editor/editor.main.css"
+              "src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/prismjs/prism.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -72,7 +65,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "gandalf:build"
           },
@@ -101,13 +94,9 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "node_modules/prismjs/themes/prism.css",
-              "src/styles.scss",
-              "node_modules/monaco-editor/min/vs/editor/editor.main.css"
+              "src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/prismjs/prism.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -140,7 +129,6 @@
   },
   "defaultProject": "gandalf",
   "cli": {
-    "defaultCollection": "@ngrx/schematics",
-    "analytics": false
+    "defaultCollection": "@ngrx/schematics"
   }
 }
