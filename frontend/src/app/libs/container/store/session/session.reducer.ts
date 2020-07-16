@@ -5,14 +5,12 @@ import { SessionActionTypes, SigninSucces } from './session.actions';
 
 export interface ISessionState {
 	user: IUser;
-	isLogged: boolean;
 }
 
 export const sessionFeatureKey: 'session' = 'session';
 
 const initialState: ISessionState = {
 	user: null,
-	isLogged: false,
 };
 
 export const reducer: ActionReducer<ISessionState | undefined, Action> = (
