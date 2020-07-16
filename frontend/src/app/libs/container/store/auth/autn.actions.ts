@@ -3,12 +3,19 @@ import { Action } from '@ngrx/store';
 export enum AuthActionTypes {
   LoadAutns = '[Autn] Load Autns',
   Login = '[Auth] Login',  
+  LoginByGithub = '[Auth] Login by Github',
   LoginSuccess = '[Auth] Login Success',
   LoginFailure = '[Auth] Login Failure',
 }
 
+
+
 export class LoadAutns implements Action {
   readonly type = AuthActionTypes.LoadAutns;
+}
+
+export class LogInByGithub implements Action{
+  readonly type = AuthActionTypes.LoginByGithub;
 }
 
 export class LogIn implements Action {

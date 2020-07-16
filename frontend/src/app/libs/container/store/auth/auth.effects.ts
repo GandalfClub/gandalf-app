@@ -6,6 +6,7 @@ import { AuthActionTypes, LogIn, LogInSuccess, LogInFailure, AuthActions, } from
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { auth } from 'firebase';
 
 
 @Injectable()
@@ -14,11 +15,31 @@ export class AuthEffects {
   @Effect()
   LogIn: Observable<any> = this.actions
     .pipe(ofType(AuthActionTypes.Login),
-      exhaustMap(( login: any ) => {
+      exhaustMap((login: any) => {
         return from(this.fireAuthService.auth.signInWithEmailAndPassword(login.payload.email, login.payload.password));
       }),
       map((userModel: any) => userModel.user),
-      switchMap((user:any) => {
+      switchMap((user: any) => {
+        return this.authService.logIn(user.email, user.password)
+          .pipe(map((user) => {
+            console.log(user);
+            return new LogInSuccess({ token: user.token, email: user.email });
+          }),
+            catchError((error) => {
+              console.log(error);
+              return of(new LogInFailure({ error: error }));
+            })
+          );
+      }));
+
+  @Effect()
+  LogInByGithub: Observable<any> = this.actions
+    .pipe(ofType(AuthActionTypes.LoginByGithub),
+      exhaustMap((login: any) => {
+        return from(this.fireAuthService.auth.signInWithPopup(new auth.GithubAuthProvider()));
+      }),
+      map((userModel: any) => userModel.user),
+      switchMap((user: any) => {
         return this.authService.logIn(user.email, user.password)
           .pipe(map((user) => {
             console.log(user);
@@ -51,5 +72,4 @@ export class AuthEffects {
     private router: Router,
     private fireAuthService: AngularFireAuth,
   ) { }
-
 }

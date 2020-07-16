@@ -19,6 +19,7 @@ export const initialState: State = {
 
 export function authReducer(state = initialState, action: AuthActions): State {
   switch (action.type) {
+
     case AuthActionTypes.LoginSuccess: {
       return {
         ...state,
