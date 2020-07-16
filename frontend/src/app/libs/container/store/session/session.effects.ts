@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, Effect } from '@ngrx/effects';
-import { map, tap, exhaustMap } from 'rxjs/operators';
+import { map, tap, exhaustMap, catchError } from 'rxjs/operators';
 import { MockSigninService } from '../../../sign-in/mock-signin.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ActionType, Signin, SigninSucces } from './session.actions';
-import { IUser, IIsLogged } from '../../models/user';
+import { Observable, of } from 'rxjs';
+import { ActionType, Signin, SigninFailure, SigninSucces } from './session.actions';
+import { IUser, IRegisteredUser } from '../../models/user';
 
 @Injectable()
 export class SessionEffects {
 	@Effect()
-	public signIn$: Observable<SigninSucces> = this.actions$.pipe(
-		ofType(ActionType.SIGN_IN),
+	public signIn$: Observable<SigninSucces | SigninFailure> = this.actions$.pipe(
+		ofType(ActionType.Signin),
 		map((action: Signin) => action.payload),
-		exhaustMap((signinUser: IUser) => this.api.signIn(signinUser).pipe(map((user: IIsLogged) => new SigninSucces(user))))
-	);
-
-	@Effect({ dispatch: false })
-	public SigninSucces$: Observable<never> = this.actions$.pipe(
-		ofType(ActionType.SIGNIN_SUCCES),
-		tap(() => this.router.navigate(['/']))
+		exhaustMap((signinUser: IUser) =>
+			this.api.signIn(signinUser).pipe(
+				map((user: IRegisteredUser) => new SigninSucces(user)),
+				tap(() => this.router.navigate(['/'])),
+				catchError((error: any) => of(new SigninFailure(error)))
+			)
+		)
 	);
 
 	constructor(private actions$: Actions, private api: MockSigninService, private router: Router) {}

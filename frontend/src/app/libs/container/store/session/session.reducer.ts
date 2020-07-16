@@ -1,6 +1,6 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { IUser } from '../../models/user';
-import { ActionType } from './session.actions';
+import { ActionType, Signin } from './session.actions';
 import { SessionActionTypes, SigninSucces } from './session.actions';
 
 export interface ISessionState {
@@ -20,16 +20,19 @@ export const reducer: ActionReducer<ISessionState | undefined, Action> = (
 	action: SessionActionTypes
 ) => {
 	switch (action.type) {
-		case ActionType.SIGN_IN:
+		case ActionType.Signin:
 			return {
 				...state,
-				authenticationError: null,
+				user: (action as Signin).payload,
 			};
-		case ActionType.SIGNIN_SUCCES:
+		case ActionType.SigninSucces:
 			return {
 				...state,
-				user: (action as SigninSucces).payload.user,
-				isLogged: (action as SigninSucces).payload.isLogged,
+				user: (action as SigninSucces).payload,
+			};
+		case ActionType.SigninFailure:
+			return {
+				...state,
 			};
 		default:
 			return state;

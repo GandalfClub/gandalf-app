@@ -16,10 +16,10 @@ export class SignInComponent {
 		password: new FormControl('', [Validators.required]),
 	});
 
-	constructor(private sessionService: SessionFacadeService) {}
+	constructor(private sessionFacadeService: SessionFacadeService) {}
 
 	public submit(): void {
 		this.user = this.signIn.value;
-		this.sessionService.signIn(this.user);
+		this.sessionFacadeService.signIn(this.user);
 	}
 }
