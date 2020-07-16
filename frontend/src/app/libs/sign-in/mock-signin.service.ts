@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { IUser, IIsLogged } from '../container/store';
 
 const delay100: number = 100;
 
@@ -13,12 +14,10 @@ export class MockSigninService {
 		email: 'test@mail.com',
 	};
 
-	constructor() {}
-
-	public signIn(email: string, password: string): Observable<{ user: any; logged: boolean }> {
-		const response: { user: any; logged: boolean } = {
+	public signIn(user: IUser): Observable<IIsLogged> {
+		const response: IIsLogged = {
 			user: this.user,
-			logged: true,
+			isLogged: true,
 		};
 		return of(response).pipe(delay(delay100));
 	}

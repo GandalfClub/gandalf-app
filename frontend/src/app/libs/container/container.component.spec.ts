@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerComponent } from './container.component';
 import { ContainerStoreModule } from './store/store.module';
+
+import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsRootModule, EffectsModule } from '@ngrx/effects';
 import { StoreRootModule, StoreModule } from '@ngrx/store';
 
@@ -12,13 +14,8 @@ describe('ContainerComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [ContainerComponent],
-			imports: [
-				EffectsModule.forRoot([]),
-				StoreModule.forRoot({}),
-				ContainerStoreModule
-			]
-		})
-			.compileComponents();
+			imports: [EffectsModule.forRoot([]), StoreModule.forRoot({}), ContainerStoreModule, RouterTestingModule],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {

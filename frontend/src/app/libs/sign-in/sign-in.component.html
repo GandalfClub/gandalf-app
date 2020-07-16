@@ -4,13 +4,11 @@
     Email
     <input type="email" formControlName="email" required autofocus>
   </label>
-  <br>
 
   <label>
     Password
     <input type="password" formControlName="password" required>
   </label>
-  <br>
 
   <button [disabled]="!signIn.valid" (click)="submit()">Sign in</button>
 

@@ -1,29 +1,19 @@
 import { Action } from '@ngrx/store';
-import { IUser } from '../../models/user';
+import { IUser, IIsLogged } from '../../models/user';
 
 export enum ActionType {
 	SIGN_IN = '[Session/API] Sign in',
-	USER_LOGGED = '[Session/API] User logged',
+	SIGNIN_SUCCES = '[Session/API] Login Succes',
 }
 
-export class SignInAction implements Action {
+export class Signin implements Action {
 	public readonly type: ActionType = ActionType.SIGN_IN;
-	constructor(
-		public payload: {
-			email: string;
-			password: string;
-		}
-	) {}
+	constructor(public payload: IUser) {}
 }
 
-export class UserLoggedAction implements Action {
-	public readonly type: ActionType = ActionType.USER_LOGGED;
-	constructor(
-		public payload: {
-			user: IUser;
-			isLogged: boolean;
-		}
-	) {}
+export class SigninSucces implements Action {
+	public readonly type: ActionType = ActionType.SIGNIN_SUCCES;
+	constructor(public payload: IIsLogged) {}
 }
 
-export type SessionActionTypes = SignInAction | UserLoggedAction;
+export type SessionActionTypes = Signin | SigninSucces;

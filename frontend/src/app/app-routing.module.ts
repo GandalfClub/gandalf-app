@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
 	{
 		path: 'signin',
-		loadChildren: () => import('./libs/sign-in/sign-in.module').then((m) => m.SignInModule),
+		loadChildren: () => import('./libs/sign-in/sign-in.module').then((m: typeof import('./libs/sign-in/sign-in.module')) => m.SignInModule),
 	},
 ];
 

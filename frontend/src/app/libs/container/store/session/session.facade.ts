@@ -4,7 +4,7 @@ import { ISessionState } from '..';
 import { Observable } from 'rxjs';
 import { selectIsUserLogged, selectUser } from './session.selectors';
 import { IUser } from '../../models/user';
-import { SignInAction } from './session.actions';
+import { Signin } from './session.actions';
 
 @Injectable({
 	providedIn: 'root',
@@ -20,7 +20,7 @@ export class SessionFacadeService {
 		return this.store.pipe(select(selectIsUserLogged));
 	}
 
-	public signIn(email: string, password: string): void {
-		this.store.dispatch(new SignInAction({ email, password }));
+	public signIn(user: IUser): void {
+		this.store.dispatch(new Signin(user));
 	}
 }

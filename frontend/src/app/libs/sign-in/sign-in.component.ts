@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from '../container/models/user';
 import { SessionFacadeService } from '../container/store/session/session.facade';
@@ -8,7 +8,7 @@ import { SessionFacadeService } from '../container/store/session/session.facade'
 	templateUrl: './sign-in.component.html',
 	styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
 	public user: IUser;
 
 	public signIn: FormGroup = new FormGroup({
@@ -18,10 +18,8 @@ export class SignInComponent implements OnInit {
 
 	constructor(private sessionService: SessionFacadeService) {}
 
-	public ngOnInit(): void {}
-
 	public submit(): void {
 		this.user = this.signIn.value;
-		this.sessionService.signIn(this.user.email, this.user.password);
+		this.sessionService.signIn(this.user);
 	}
 }
