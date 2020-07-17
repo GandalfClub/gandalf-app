@@ -24,10 +24,7 @@ export function authReducer(state = initialState, action: AuthActions): State {
       return {
         ...state,
         isAuthenticated: true,
-        user: {
-          token: action.payload.token,
-          email: action.payload.email,
-        },
+        user: action.payload,
         errorMessage: null
       };
     }
