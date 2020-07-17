@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from '../container/store/auth/auth.reducer';
+import { State } from '../auth/store/auth/auth.reducer';
 import { Observable, from } from 'rxjs';
-import { selectAuthState } from '../container/store/auth/auth.selectors';
-import { LogIn, LogInByGithub } from '../container/store/auth/autn.actions';
-import { UserCredentials } from '../models/userCredentials';
+import { selectAuthState } from '../auth/store/auth/auth.selectors';
+import { LogIn, LogInByGithub } from '../auth/store/auth/autn.actions';
+import { UserCredentials } from '../auth/models/userCredentials';
 
 @Component({
 	templateUrl: './login.component.html',

@@ -1,4 +1,4 @@
-import { User } from 'src/app/libs/models/user';
+import { User } from '../../models/user';
 import { AuthActionTypes, AuthActions } from './autn.actions';
 
 export const authFeatureKey: string = 'auth';

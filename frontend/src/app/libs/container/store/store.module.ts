@@ -1,6 +1,5 @@
 import { sampleFeatureKey, reducer } from './sample/sample.reducer';
 import { SampleEffects } from './sample/sample.effects';
-import { authFeatureKey, authReducer } from './auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
@@ -11,7 +10,6 @@ import { StoreModule } from '@ngrx/store';
 		StoreModule.forFeature(sampleFeatureKey, {
 			sample: reducer
 		}),
-		StoreModule.forFeature(authFeatureKey, authReducer),
 	]
 })
 export class ContainerStoreModule { }

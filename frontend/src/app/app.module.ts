@@ -16,7 +16,8 @@ import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.com
 import { LoginComponent } from './libs/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthEffects } from './libs/container/store/auth/auth.effects';
+import { AuthEffects } from './libs/auth/store/auth/auth.effects';
+import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
 	declarations: [
@@ -38,6 +39,7 @@ import { AuthEffects } from './libs/container/store/auth/auth.effects';
 		EffectsModule.forFeature([AuthEffects]),
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule,
+		AuthModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
