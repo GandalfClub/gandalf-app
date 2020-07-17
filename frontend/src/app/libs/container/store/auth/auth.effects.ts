@@ -44,7 +44,7 @@ export class AuthEffects {
       }),
       map((userModel: auth.UserCredential) => userModel.user),
       switchMap((user: firebase.User) => {
-        return this.authService.logInWithGithub(user.email, user.uid)
+        return this.authService.logInByGithub(user.email, user.uid)
           .pipe(
             map((user: any) => {
               console.log(user);
