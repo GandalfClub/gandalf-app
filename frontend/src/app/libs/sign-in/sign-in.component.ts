@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { IUser } from '../container/models/user';
 import { SessionFacadeService } from '../container/store/session/session.facade';
 
@@ -10,16 +10,26 @@ import { SessionFacadeService } from '../container/store/session/session.facade'
 })
 export class SignInComponent {
 	public user: IUser;
+	public hide: boolean = true;
 
-	public signIn: FormGroup = new FormGroup({
+	public signinForm: FormGroup = new FormGroup({
 		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', [Validators.required]),
 	});
 
 	constructor(private sessionFacadeService: SessionFacadeService) {}
 
+	public getErrorMessage(): string {
+		if (this.signinForm.get('email').hasError('required')) {
+			return 'You must enter a value';
+		}
+		return this.signinForm.get('email').hasError('email')
+			? 'Not a valid email'
+			: '';
+	}
+
 	public submit(): void {
-		this.user = this.signIn.value;
+		this.user = this.signinForm.value;
 		this.sessionFacadeService.signIn(this.user);
 	}
 }
