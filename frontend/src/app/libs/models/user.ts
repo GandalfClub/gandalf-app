@@ -1,8 +1,7 @@
 export class User {
-    _id: string;
-    email: string;
-    isAdmin: boolean;
-    displayName?: string;
-    photoUrl?: string
+	public _id: string;
+	public email: string;
+	public isAdmin: boolean;
+	public displayName?: string;
+	public photoUrl?: string;
 }
-

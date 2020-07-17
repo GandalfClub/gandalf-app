@@ -1,13 +1,13 @@
-import { reducer, initialState } from './auth.reducer';
+import { authReducer, initialState } from './auth.reducer';
 
 describe('Auth Reducer', () => {
-  describe('an unknown action', () => {
-    it('should return the previous state', () => {
-      const action = {} as any;
+	describe('an unknown action', () => {
+		it('should return the previous state', () => {
+			const action: any = {} as any;
 
-      const result = reducer(initialState, action);
+			const result: any = authReducer(initialState, action);
 
-      expect(result).toBe(initialState);
-    });
-  });
+			expect(result).toBe(initialState);
+		});
+	});
 });

@@ -1,38 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/libs/models/user'
 import { Store } from '@ngrx/store';
-import { State } from '../container/store/auth/auth.reducer'
+import { State } from '../container/store/auth/auth.reducer';
 import { Observable, from } from 'rxjs';
 import { selectAuthState } from '../container/store/auth/auth.selectors';
 import { LogIn, LogInByGithub } from '../container/store/auth/autn.actions';
 import { UserCredentials } from '../models/userCredentials';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
+	public credentials: UserCredentials = new UserCredentials();
+	public getState: Observable<any>;
+	public errorMessage: string | null;
 
-  credentials: UserCredentials = new UserCredentials();
-  getState: Observable<any>;
-  errorMessage: string | null;
+	constructor(
+		private store: Store<State>
+	) { this.getState = this.store.select(selectAuthState); }
 
-  constructor(
-    private store: Store<State>
-  ) { this.getState = this.store.select(selectAuthState); }
+	public ngOnInit(): void {
+		this.getState.subscribe((state: State) => {
+			this.errorMessage = state.errorMessage;
+		});
+	}
 
-  ngOnInit() {
-    this.getState.subscribe((state) => {
-      this.errorMessage = state.errorMessage;
-    });
-  };
+	public onSubmit(): void {
+		this.store.dispatch(new LogIn(this.credentials));
+	}
 
-  onSubmit(): void {
-    this.store.dispatch(new LogIn(this.credentials));
-  }
-
-  loginByGithub(): void {
-    this.store.dispatch(new LogInByGithub());
-  }
+	public loginByGithub(): void {
+		this.store.dispatch(new LogInByGithub());
+	}
 }

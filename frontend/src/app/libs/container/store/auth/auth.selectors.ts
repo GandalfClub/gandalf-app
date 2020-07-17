@@ -2,5 +2,5 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 import * as fromAuth from './auth.reducer';
 
 export const selectAuthState: MemoizedSelector<{}, fromAuth.State> = createFeatureSelector<fromAuth.State>(
-    fromAuth.authFeatureKey
+	fromAuth.authFeatureKey
 );

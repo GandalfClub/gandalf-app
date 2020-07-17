@@ -37,7 +37,7 @@ import { AuthEffects } from './libs/container/store/auth/auth.effects';
 		FormsModule,
 		EffectsModule.forFeature([AuthEffects]),
 		AngularFireModule.initializeApp(environment.firebase),
-		AngularFireAuthModule, 
+		AngularFireAuthModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
