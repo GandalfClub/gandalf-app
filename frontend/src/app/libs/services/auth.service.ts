@@ -22,13 +22,9 @@ export interface IAuthResponse {
 })
 export class AuthService {
 
-  private API_URL = 'https://gandalf-backend.herokuapp.com';
+  private API_URL = '/api';
 
   constructor(private http: HttpClient) { }
-
-  getToken(): string {
-    return localStorage.getItem('token');
-  }
 
   logIn(email: string, password: string): Observable<any> {
     const url = `${this.API_URL}/auth/signin`;
