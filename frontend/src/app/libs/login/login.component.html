@@ -1,40 +1,35 @@
-<div class="row">
-  <div class="col-md-4">
+<div>
+  <div>
     <h1>Log in</h1>
     <hr><br>
     <div *ngIf="errorMessage">
-      <div class="alert alert-danger" role="alert">
+      <div role="alert">
         {{errorMessage}}
       </div>
     </div>
     <form (ngSubmit)="onSubmit()" ngNativeValidate>
-      <div class="form-group">
+      <div>
         <label for="email">Email</label>
         <input
-          [(ngModel)]="user.email"
+          [(ngModel)]="credentials.email"
           name="email"
           type="email"
           required
-          class="form-control"
           id="email"
           placeholder="enter your email">
       </div>
-      <div class="form-group">
+      <div>
         <label for="password">Password</label>
         <input
-          [(ngModel)]="user.password"
+          [(ngModel)]="credentials.password"
           name="password"
           type="password"
           required
-          class="form-control"
           id="password"
           placeholder="enter a password">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit">Login</button>
     </form>
-    <p>
-      <span>Don't have an account?&nbsp;</span>
-      <a [routerLink]="['/sign-up']">Sign up!</a>
-    </p>
+    <button (click)="loginByGithub">Login by Github</button>
   </div>
 </div>

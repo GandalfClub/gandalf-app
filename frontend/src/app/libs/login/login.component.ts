@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { State } from '../container/store/auth/auth.reducer'
 import { Observable, from } from 'rxjs';
 import { selectAuthState } from '../container/store/auth/auth.selectors';
-import { LogIn } from '../container/store/auth/autn.actions';
+import { LogIn, LogInByGithub } from '../container/store/auth/autn.actions';
+import { UserCredentials } from '../models/userCredentials';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ import { LogIn } from '../container/store/auth/autn.actions';
 export class LoginComponent implements OnInit {
 
 
-  user: User = new User();
+  credentials: UserCredentials = new UserCredentials();
   getState: Observable<any>;
   errorMessage: string | null;
 
@@ -28,10 +29,10 @@ export class LoginComponent implements OnInit {
   };
 
   onSubmit(): void {
-    const payload = {
-      email: this.user.email,
-      password: this.user.password
-    };
-    this.store.dispatch(new LogIn(payload));
+    this.store.dispatch(new LogIn(this.credentials));
+  }
+
+  loginByGithub(): void {
+    this.store.dispatch(new LogInByGithub());
   }
 }
