@@ -17,7 +17,7 @@ export class AuthEffects {
 	.pipe(
 	  ofType<LogIn>(AuthActionTypes.Login),
 	  exhaustMap((action: LogIn) => {
-		return from(this.fireAuthService.auth.signInWithEmailAndPassword(action.credentials.email, action.credentials.password));
+		return from(this.fireAuthService.auth.signInWithEmailAndPassword(action.payload.email, action.payload.password));
 	  }),
 	  map((userModel: auth.UserCredential) => userModel.user),
 	  switchMap((user: firebase.User) => {

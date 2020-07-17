@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { User } from 'src/app/libs/models/user';
 import { AuthActionTypes, AuthActions } from './autn.actions';
 
@@ -16,14 +15,14 @@ export const initialState: State = {
 	errorMessage: null
 };
 
-export function authReducer(state: State = initialState, action: any): State {
+export function authReducer(state: State = initialState, action: AuthActions): State {
 	switch (action.type) {
 
 		case AuthActionTypes.LoginSuccess: {
 			return {
 				...state,
 				isAuthenticated: true,
-				user: action.user,
+				user: action.payload,
 				errorMessage: null
 			};
 		}
