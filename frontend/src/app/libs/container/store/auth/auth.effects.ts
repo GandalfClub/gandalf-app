@@ -69,7 +69,7 @@ export class AuthEffects {
   LogInFailure: Observable<any> = this.actions.pipe(
     ofType<LogInFailure>(AuthActionTypes.LoginFailure),
     tap((error: LogInFailure) => {
-      alert(error);
+      alert('${error}');
     })
   );
 

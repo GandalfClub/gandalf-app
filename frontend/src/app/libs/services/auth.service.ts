@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   logIn(email: string, password: string): Observable<any> {
-    const url = `${this.API_URL}/auth/signup`;
+    const url = `${this.API_URL}/auth/signin`;
     return this.http.post<IAuthResponse>(url, { email, password }, httpOptions);
   }
 
