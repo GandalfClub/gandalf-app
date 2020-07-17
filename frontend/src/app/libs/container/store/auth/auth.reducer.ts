@@ -16,7 +16,7 @@ export const initialState: State = {
 	errorMessage: null
 };
 
-export function authReducer(state: State = initialState, action: AuthActions): State {
+export function authReducer(state: State = initialState, action: any): State {
 	switch (action.type) {
 
 		case AuthActionTypes.LoginSuccess: {
