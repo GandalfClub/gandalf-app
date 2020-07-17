@@ -31,7 +31,15 @@ export class AuthService {
   }
 
   logIn(email: string, password: string): Observable<any> {
+    const url = `${this.API_URL}/auth/signup`;
+    return this.http.post<IAuthResponse>(url, { email, password }, httpOptions);
+  }
+
+  logInWithGithub(email: string, password: string): Observable<any> {
     const url = `${this.API_URL}/auth/login`;
     return this.http.post<IAuthResponse>(url, { email, password }, httpOptions);
   }
+
+
+
 }
