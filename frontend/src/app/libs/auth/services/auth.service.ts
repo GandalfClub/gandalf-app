@@ -35,4 +35,9 @@ export class AuthService {
 		const url: string = `${this.API_URL}/auth/login`;
 		return this.http.post<IAuthResponse>(url, { email, password }, httpOptions);
 	}
+
+	public signUp(email: string, password: string): Observable<any> {
+		const url: string = `${this.API_URL}/auth/signup`;
+		return this.http.post<IAuthResponse>(url, { email, password }, httpOptions);
+	}
 }
