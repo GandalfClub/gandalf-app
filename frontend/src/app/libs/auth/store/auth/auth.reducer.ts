@@ -30,8 +30,24 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 		case AuthActionTypes.LoginFailure: {
 			return {
 				...state,
-				errorMessage: 'Incorrect email and/or password.'
+				errorMessage: action.payload
 			};
+		}
+
+		case AuthActionTypes.SignupSuccess: {
+			return{
+				...state,
+				isAuthenticated: true,
+				user: action.payload,
+				errorMessage: null
+			}
+		}
+
+		case AuthActionTypes.SignupFailure: {
+			return{
+				...state,
+				errorMessage: action.payload
+			}
 		}
 
 		default:
