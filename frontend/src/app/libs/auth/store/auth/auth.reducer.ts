@@ -40,14 +40,14 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 				isAuthenticated: true,
 				user: action.payload,
 				errorMessage: null
-			}
+			};
 		}
 
 		case AuthActionTypes.SignupFailure: {
 			return{
 				...state,
 				errorMessage: action.payload
-			}
+			};
 		}
 
 		default:
