@@ -7,4 +7,4 @@ import { StoreModule } from '@ngrx/store';
 		StoreModule.forFeature(authFeatureKey, authReducer),
 	]
 })
-export class ContainerStoreModule { }
+export class AuthStoreModule { }
