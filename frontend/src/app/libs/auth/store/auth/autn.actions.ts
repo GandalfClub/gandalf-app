@@ -13,36 +13,36 @@ export enum AuthActionTypes {
 }
 
 export class LogIn implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.Login;
+	public readonly type: AuthActionTypes.Login = AuthActionTypes.Login;
 	constructor(public payload: UserCredentials) { }
 }
 
 export class LogInByGithub implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.LoginByGithub;
+	public readonly type: AuthActionTypes.LoginByGithub = AuthActionTypes.LoginByGithub;
 }
 
 export class LogInSuccess implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.LoginSuccess;
+	public readonly type: AuthActionTypes.LoginSuccess = AuthActionTypes.LoginSuccess;
 	constructor(public payload: User) { }
 }
 
 export class LogInFailure implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.LoginFailure;
+	public readonly type: AuthActionTypes.LoginFailure = AuthActionTypes.LoginFailure;
 	constructor(public payload: any) { }
 }
 
 export class SignUp implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.Signup;
-	constructor(public payload: UserCredentials) {}
+	public readonly type: AuthActionTypes.Signup = AuthActionTypes.Signup;
+	constructor(public payload: UserCredentials) { }
 }
 
 export class SignUpSuccess implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.SignupSuccess;
+	public readonly type: AuthActionTypes.SignupSuccess = AuthActionTypes.SignupSuccess;
 	constructor(public payload: User) { }
 }
 
 export class SignUpFailure implements Action {
-	public readonly type: AuthActionTypes = AuthActionTypes.SignupFailure;
+	public readonly type: AuthActionTypes.SignupFailure = AuthActionTypes.SignupFailure;
 	constructor(public payload: any) { }
 }
 
