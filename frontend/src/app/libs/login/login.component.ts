@@ -10,12 +10,15 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 export class LoginComponent implements OnInit {
 
 	public credentials: UserCredentials = new UserCredentials();
-	public getState: Observable<any>;
-	public errorMessage: string | null;
+	public errorMessage: Observable<string> | null;
+	public isAuthenticated: Observable<boolean>;
 
 	constructor(private authFacadeService: AuthFacadeService) { }
 
-	public ngOnInit(): void { }
+	public ngOnInit(): void {
+		this.errorMessage = this.authFacadeService.errorMessage$;
+		this.isAuthenticated = this.authFacadeService.isAuthenticated$;
+	}
 
 	public onSubmit(): void {
 		this.authFacadeService.logIn(this.credentials.email, this.credentials.password);

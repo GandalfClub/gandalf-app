@@ -7,6 +7,11 @@
 				{{errorMessage}}
 			</div>
 		</div>
+		<div *ngIf="isAuthenticated">
+			<div role="alert">
+				Authenitcated
+			</div>
+		</div>
 		<form (ngSubmit)="onSubmit()" ngNativeValidate>
 			<div>
 				<label for="email">Email</label>
