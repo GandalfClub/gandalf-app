@@ -35,7 +35,7 @@ export class AuthFacadeService {
 		return this.store.pipe(select(selectIsAdmin));
 	}
 
-	get isAuthenticated(): Observable<boolean> {
+	get isAuthenticated$(): Observable<boolean> {
 		return this.store.pipe(select(selectIsAuthenticated));
 	}
 
