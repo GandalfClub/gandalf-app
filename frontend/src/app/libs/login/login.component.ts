@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { State } from '../auth/store/auth/auth.reducer';
 import { Observable, from } from 'rxjs';
-import { selectAuthState } from '../auth/store/auth/auth.selectors';
-import { LogIn, LogInByGithub } from '../auth/store/auth/autn.actions';
 import { UserCredentials } from '../auth/models/userCredentials';
+import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 
 @Component({
 	templateUrl: './login.component.html',
@@ -16,21 +13,15 @@ export class LoginComponent implements OnInit {
 	public getState: Observable<any>;
 	public errorMessage: string | null;
 
-	constructor(
-		private store: Store<State>
-	) { this.getState = this.store.select(selectAuthState); }
+	constructor(private authFacadeService: AuthFacadeService) { }
 
-	public ngOnInit(): void {
-		this.getState.subscribe((state: State) => {
-			this.errorMessage = state.errorMessage;
-		});
-	}
+	public ngOnInit(): void { }
 
 	public onSubmit(): void {
-		this.store.dispatch(new LogIn(this.credentials));
+		this.authFacadeService.logIn(this.credentials.email, this.credentials.password);
 	}
 
 	public loginByGithub(): void {
-		this.store.dispatch(new LogInByGithub());
+		this.authFacadeService.loginByGithub();
 	}
 }
