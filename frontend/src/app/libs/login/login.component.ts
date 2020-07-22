@@ -19,10 +19,10 @@ export class LoginComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.errorMessageSub = this.authFacadeService.errorMessage$.subscribe(
-			(error:string) => this.errorMessage = error,
+			(error: string) => this.errorMessage = error,
 		);
 		this.isAuthenticatedSub = this.authFacadeService.isAuthenticated$.subscribe(
-			(status:boolean) => this.isAuthenticated = status,
+			(status: boolean) => this.isAuthenticated = status,
 		);
 		console.log(this.errorMessage, this.isAuthenticated);
 	}
