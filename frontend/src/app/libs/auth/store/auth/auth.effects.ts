@@ -23,11 +23,9 @@ export class AuthEffects {
 				return this.authService.logIn(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
-							console.log(user);
 							return new LogInSuccess(res);
 						}),
 						catchError((error: string) => {
-							console.log(error);
 							return of(new LogInFailure(error));
 						})
 					);
@@ -45,11 +43,9 @@ export class AuthEffects {
 				return this.authService.logInByGithub(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
-							console.log(user);
 							return new LogInSuccess(res);
 						}),
 						catchError((error: string) => {
-							console.log(error);
 							return of(new LogInFailure(error));
 						})
 					);
@@ -58,17 +54,11 @@ export class AuthEffects {
 	@Effect({ dispatch: false })
 	public LogInSuccess: Observable<Action> = this.actions.pipe(
 		ofType<LogInSuccess>(AuthActionTypes.LoginSuccess),
-		tap((action: LogInSuccess) => {
-			alert('Logined wtih ${action}');
-		})
 	);
 
 	@Effect({ dispatch: false })
 	public LogInFailure: Observable<any> = this.actions.pipe(
 		ofType<LogInFailure>(AuthActionTypes.LoginFailure),
-		tap((error: LogInFailure) => {
-			alert('${error}');
-		})
 	);
 
 	@Effect()
@@ -83,11 +73,9 @@ export class AuthEffects {
 				return this.authService.signUp(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
-							console.log(user);
 							return new SignUpSuccess(res);
 						}),
 						catchError((error: string) => {
-							console.log(error);
 							return of(new SignUpFailure(error));
 						})
 					);
@@ -95,18 +83,12 @@ export class AuthEffects {
 
 	@Effect({ dispatch: false })
 	public SignUpSuccess: Observable<Action> = this.actions.pipe(
-		ofType<LogInSuccess>(AuthActionTypes.SignupSuccess),
-		tap((action: SignUpSuccess) => {
-			alert('Signed up wtih ${action}');
-		})
+		ofType<SignUpSuccess>(AuthActionTypes.SignupSuccess),
 	);
 
 	@Effect({ dispatch: false })
 	public SignUpFailure: Observable<any> = this.actions.pipe(
 		ofType<SignUpFailure>(AuthActionTypes.SignupFailure),
-		tap((error: SignUpFailure) => {
-			alert('${error}');
-		})
 	);
 
 	constructor(
