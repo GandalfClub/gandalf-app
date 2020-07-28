@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AuthRepository } from '../../services/auth.service';
-import { AuthActionTypes, SignIn, SignInSuccess, SignInFailure, SignInByGithub, SignUp, SignUpFailure, SignUpSuccess, } from './autn.actions';
+import { AuthActionTypes, SignIn, SignInSuccess, SignInFailure, SignInByGithub, SignUp, SignUpFailure, SignUpSuccess, } from './auth.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AuthState } from '../../models/auth-state';
-import { SignIn, SignInByGithub, SignUp } from './autn.actions';
+import { SignIn, SignInByGithub, SignUp } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { selectUser, selectIsAdmin, selectIsAuthenticated, selectErrorMessage } from './auth.selectors';

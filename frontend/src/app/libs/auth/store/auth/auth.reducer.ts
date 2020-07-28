@@ -1,4 +1,4 @@
-import { AuthActionTypes, AuthActions } from './autn.actions';
+import { AuthActionTypes, AuthActions } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 
 export const authFeatureKey: string = 'auth';
