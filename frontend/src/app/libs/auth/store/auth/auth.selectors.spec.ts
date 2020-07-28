@@ -12,9 +12,7 @@ describe('Auth Selectors', () => {
 		});
 
 		expect(result).toEqual({
-			isAuthenticated: false,
-			user: null,
-			errorMessage: null
+			status: EntityStatus.Init,
 		});
 	});
 });

@@ -5,7 +5,7 @@ import { User } from '../../models/user';
 export const authFeatureKey: string = 'auth';
 
 export const initialState: EntityWrapper<User> = {
-    status: EntityStatus.Init,
+	status: EntityStatus.Init,
 };
 
 export function authReducer(state: EntityWrapper<User>  = initialState, action: AuthActions): EntityWrapper<User>  {
