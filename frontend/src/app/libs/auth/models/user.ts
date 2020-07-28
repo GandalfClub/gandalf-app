@@ -1,7 +1,7 @@
-export class User {
-	public _id: string;
-	public email: string;
-	public isAdmin: boolean;
-	public displayName?: string;
-	public photoUrl?: string;
+export interface User {
+	id: string;
+	email: string;
+	isAdmin: boolean;
+	displayName?: string;
+	photoUrl?: string;
 }
