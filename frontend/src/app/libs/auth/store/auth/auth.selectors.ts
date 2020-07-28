@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { User } from '../../models/user';
-import { AuthState } from '../../models/auth-state'
+import { AuthState } from '../../models/auth-state';
 import { authFeatureKey } from './auth.reducer';
 
 export const selectAuthState: MemoizedSelector<{}, AuthState> = createFeatureSelector<AuthState>(

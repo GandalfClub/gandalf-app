@@ -29,7 +29,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 		}
 
 		case AuthActionTypes.SignUpSuccess: {
-			return { 
+			return {
 				...state,
 				isAuthenticated: true,
 				user: action.payload,

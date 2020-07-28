@@ -20,8 +20,8 @@ export class AuthEffects {
 				return from(this.fireAuthService.auth.signInWithEmailAndPassword(action.payload.email, action.payload.password));
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
-			switchMap((user: firebase.User) => {
-				return this.AuthRepository.signIn(user.email, user.uid)
+			switchMap((firebaseUser: firebase.User) => {
+				return this.authRepository.signIn(firebaseUser.email, firebaseUser.uid)
 					.pipe(
 						map((user: User) => {
 							return new SignInSuccess(user);
@@ -40,8 +40,8 @@ export class AuthEffects {
 				return from(this.fireAuthService.auth.signInWithPopup(new auth.GithubAuthProvider()));
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
-			switchMap((user: firebase.User) => {
-				return this.AuthRepository.signInByGithub(user.email, user.uid)
+			switchMap((firebaseUser: firebase.User) => {
+				return this.authRepository.signInByGithub(firebaseUser.email, firebaseUser.uid)
 					.pipe(
 						map((user: User) => {
 							return new SignInSuccess(user);
@@ -60,8 +60,8 @@ export class AuthEffects {
 				return from(this.fireAuthService.auth.createUserWithEmailAndPassword(action.payload.email, action.payload.password));
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
-			switchMap((user: firebase.User) => {
-				return this.AuthRepository.signUp(user.email, user.uid)
+			switchMap((firebaseUser: firebase.User) => {
+				return this.authRepository.signUp(firebaseUser.email, firebaseUser.uid)
 					.pipe(
 						map((user: User) => {
 							return new SignUpSuccess(user);
@@ -74,7 +74,7 @@ export class AuthEffects {
 
 	constructor(
 		private actions: Actions,
-		private AuthRepository: AuthRepository,
+		private authRepository: AuthRepository,
 		private fireAuthService: AngularFireAuth,
 	) { }
 }
