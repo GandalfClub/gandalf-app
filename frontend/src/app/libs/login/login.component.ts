@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UserCredentials } from '../auth/models/userCredentials';
+import { UserCredentials } from '../auth/models/user-credentials';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 })
 export class LoginComponent implements OnInit {
 
-	public credentials: UserCredentials = new UserCredentials();
+	public credentials: UserCredentials;
 	public errorMessageSub: Subscription;
 	public isAuthenticatedSub: Subscription;
 	public errorMessage: string;

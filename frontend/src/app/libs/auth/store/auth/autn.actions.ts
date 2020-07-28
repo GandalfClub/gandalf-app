@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UserCredentials } from '../../models/userCredentials';
+import { UserCredentials } from '../../models/user-credentials';
 import { User } from '../../models/user';
 
 export enum AuthActionTypes {
