@@ -2,14 +2,9 @@
 	<div>
 		<h1>Log in</h1>
 		<hr><br>
-		<div *ngIf="errorMessage">
+		<div>
 			<div role="alert">
-				{{errorMessage}}
-			</div>
-		</div>
-		<div *ngIf="isAuthenticated">
-			<div role="alert">
-				Authenitcated
+				{{status}}
 			</div>
 		</div>
 		<form (ngSubmit)="onSubmit()" ngNativeValidate>

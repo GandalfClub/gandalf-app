@@ -1,28 +1,18 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { User } from '../../models/user';
-import { AuthState } from '../../models/auth-state';
 import { authFeatureKey } from './auth.reducer';
+import { EntityWrapper } from '../../models/entity-wraper';
 
-export const selectAuthState: MemoizedSelector<{}, AuthState> = createFeatureSelector<AuthState>(
+export const selectAuthState: MemoizedSelector<{}, EntityWrapper<User>> = createFeatureSelector<EntityWrapper<User>>(
 	authFeatureKey
 );
 
-export const selectIsAuthenticated: MemoizedSelector<AuthState, boolean> = createSelector(
+export const selectUser: MemoizedSelector<EntityWrapper<User>, User> = createSelector(
 	selectAuthState,
-	(state: AuthState) => state.isAuthenticated
+	(state: EntityWrapper<User>) => state.value
 );
 
-export const selectUser: MemoizedSelector<AuthState, User> = createSelector(
+export const selectStatus: MemoizedSelector<EntityWrapper<User>, string> = createSelector(
 	selectAuthState,
-	(state: AuthState) => state.user
-);
-
-export const selectErrorMessage: MemoizedSelector<AuthState, string> = createSelector(
-	selectAuthState,
-	(state: AuthState) => state.errorMessage
-);
-
-export const selectIsAdmin: MemoizedSelector<AuthState, boolean> = createSelector(
-	selectUser,
-	(user: User) => user ? user.isAdmin : null
+	(state: EntityWrapper<User>) => state.status
 );

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AuthState } from '../../models/auth-state';
 import { SignIn, SignInByGithub, SignUp } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
-import { selectUser, selectIsAdmin, selectIsAuthenticated, selectErrorMessage } from './auth.selectors';
+import { selectUser, selectStatus } from './auth.selectors';
+import { EntityWrapper } from '../../models/entity-wraper';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,14 +12,14 @@ import { selectUser, selectIsAdmin, selectIsAuthenticated, selectErrorMessage } 
 export class AuthFacadeService {
 
 	constructor(
-		private store: Store<AuthState>
+		private store: Store<EntityWrapper<User>>
 	) { }
 
-	public logIn(email: string, password: string): void {
+	public signIn(email: string, password: string): void {
 		this.store.dispatch(new SignIn({ email, password }));
 	}
 
-	public loginByGithub(): void {
+	public signInByGithub(): void {
 		this.store.dispatch(new SignInByGithub());
 	}
 
@@ -31,15 +31,7 @@ export class AuthFacadeService {
 		return this.store.pipe(select(selectUser));
 	}
 
-	get isAdmin$(): Observable<boolean> {
-		return this.store.pipe(select(selectIsAdmin));
-	}
-
-	get isAuthenticated$(): Observable<boolean> {
-		return this.store.pipe(select(selectIsAuthenticated));
-	}
-
-	get errorMessage$(): Observable<string> {
-		return this.store.pipe(select(selectErrorMessage));
+	get status$(): Observable<string> {
+		return this.store.pipe(select(selectStatus));
 	}
 }

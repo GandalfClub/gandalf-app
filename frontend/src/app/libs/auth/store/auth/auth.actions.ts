@@ -46,4 +46,4 @@ export class SignUpFailure implements Action {
 	constructor(public payload: any) { }
 }
 
-export type AuthActions = SignIn | SignInSuccess | SignInFailure | SignUp | SignUpSuccess | SignUpFailure;
+export type AuthActions = SignIn | SignInByGithub | SignInSuccess | SignInFailure | SignUp | SignUpSuccess | SignUpFailure;

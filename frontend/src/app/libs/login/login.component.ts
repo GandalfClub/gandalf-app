@@ -10,27 +10,22 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 export class LoginComponent implements OnInit {
 
 	public credentials: UserCredentials;
-	public errorMessageSub: Subscription;
-	public isAuthenticatedSub: Subscription;
-	public errorMessage: string;
-	public isAuthenticated: boolean;
+	public statusSub: Subscription;
+	public status: string;
 
 	constructor(private authFacadeService: AuthFacadeService) { }
 
 	public ngOnInit(): void {
-		this.errorMessageSub = this.authFacadeService.errorMessage$.subscribe(
-			(error: string) => this.errorMessage = error,
-		);
-		this.isAuthenticatedSub = this.authFacadeService.isAuthenticated$.subscribe(
-			(status: boolean) => this.isAuthenticated = status,
+		this.statusSub = this.authFacadeService.status$.subscribe(
+			(status: string) => this.status = status,
 		);
 	}
 
 	public onSubmit(): void {
-		this.authFacadeService.logIn(this.credentials.email, this.credentials.password);
+		this.authFacadeService.signIn(this.credentials.email, this.credentials.password);
 	}
 
 	public loginByGithub(): void {
-		this.authFacadeService.loginByGithub();
+		this.authFacadeService.signInByGithub();
 	}
 }
