@@ -12,7 +12,7 @@ export const httpOptions: {} = {
 @Injectable({
 	providedIn: 'root'
 })
-export class AuthService {
+export class AuthRepository {
 
 	private API_URL: string = '/api';
 

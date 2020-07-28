@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AuthService } from '../../services/auth.service';
+import { AuthRepository } from '../../services/auth.service';
 import { AuthActionTypes, LogIn, LogInSuccess, LogInFailure, LogInByGithub, SignUp, SignUpFailure, SignUpSuccess, } from './autn.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class AuthEffects {
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
 			switchMap((user: firebase.User) => {
-				return this.authService.logIn(user.email, user.uid)
+				return this.AuthRepository.logIn(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
 							return new LogInSuccess(res);
@@ -40,7 +40,7 @@ export class AuthEffects {
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
 			switchMap((user: firebase.User) => {
-				return this.authService.logInByGithub(user.email, user.uid)
+				return this.AuthRepository.logInByGithub(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
 							return new LogInSuccess(res);
@@ -70,7 +70,7 @@ export class AuthEffects {
 			}),
 			map((userModel: auth.UserCredential) => userModel.user),
 			switchMap((user: firebase.User) => {
-				return this.authService.signUp(user.email, user.uid)
+				return this.AuthRepository.signUp(user.email, user.uid)
 					.pipe(
 						map((res: any) => {
 							return new SignUpSuccess(res);
@@ -93,7 +93,7 @@ export class AuthEffects {
 
 	constructor(
 		private actions: Actions,
-		private authService: AuthService,
+		private AuthRepository: AuthRepository,
 		private fireAuthService: AngularFireAuth,
 	) { }
 }
