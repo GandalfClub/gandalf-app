@@ -5,12 +5,16 @@ describe('Auth Selectors', () => {
 	it('should select the feature state', () => {
 		const result: fromAuth.State = selectAuthState({
 			[fromAuth.authFeatureKey]: {
-				auth: 'auth'
+				isAuthenticated: false,
+				user: null,
+				errorMessage: null
 			}
 		});
 
 		expect(result).toEqual({
-			auth: 'auth'
+			isAuthenticated: false,
+			user: null,
+			errorMessage: null
 		});
 	});
 });
