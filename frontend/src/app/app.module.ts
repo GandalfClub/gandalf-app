@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,8 +13,6 @@ import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
 import { LoginComponent } from './libs/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthEffects } from './libs/auth/store/auth/auth.effects';
 import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
@@ -34,11 +30,7 @@ import { AuthModule } from './libs/auth/auth.module';
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-		HttpClientModule,
 		FormsModule,
-		EffectsModule.forFeature([AuthEffects]),
-		AngularFireModule.initializeApp(environment.firebase),
-		AngularFireAuthModule,
 		AuthModule,
 	],
 	providers: [],
