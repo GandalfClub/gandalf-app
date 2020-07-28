@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, from, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UserCredentials } from '../auth/models/userCredentials';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 		this.isAuthenticatedSub = this.authFacadeService.isAuthenticated$.subscribe(
 			(status: boolean) => this.isAuthenticated = status,
 		);
-		console.log(this.errorMessage, this.isAuthenticated);
 	}
 
 	public onSubmit(): void {
