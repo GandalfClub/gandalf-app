@@ -1,4 +1,4 @@
-export declare enum EntityStatus {
+export enum EntityStatus {
     Init = "Init",
     Pending = "Pending",
     Success = "Success",
