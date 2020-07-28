@@ -1,27 +1,28 @@
-import { createFeatureSelector, createSelector, MemoizedSelector, Selector, State } from '@ngrx/store';
-import * as fromAuth from './auth.reducer';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { User } from '../../models/user';
+import { AuthState } from '../../models/auth-state'
+import { authFeatureKey } from './auth.reducer';
 
-export const selectAuthState: MemoizedSelector<{}, fromAuth.State> = createFeatureSelector<fromAuth.State>(
-	fromAuth.authFeatureKey
+export const selectAuthState: MemoizedSelector<{}, AuthState> = createFeatureSelector<AuthState>(
+	authFeatureKey
 );
 
-export const selectIsAuthenticated: MemoizedSelector<fromAuth.State, boolean> = createSelector(
+export const selectIsAuthenticated: MemoizedSelector<AuthState, boolean> = createSelector(
 	selectAuthState,
-	(state: fromAuth.State) => state.isAuthenticated
+	(state: AuthState) => state.isAuthenticated
 );
 
-export const selectUser: MemoizedSelector<fromAuth.State, User> = createSelector(
+export const selectUser: MemoizedSelector<AuthState, User> = createSelector(
 	selectAuthState,
-	(state: fromAuth.State) => state.user
+	(state: AuthState) => state.user
 );
 
-export const selectErrorMessage: MemoizedSelector<fromAuth.State, string> = createSelector(
+export const selectErrorMessage: MemoizedSelector<AuthState, string> = createSelector(
 	selectAuthState,
-	(state: fromAuth.State) => state.errorMessage
+	(state: AuthState) => state.errorMessage
 );
 
-export const selectIsAdmin: MemoizedSelector<fromAuth.State, boolean> = createSelector(
+export const selectIsAdmin: MemoizedSelector<AuthState, boolean> = createSelector(
 	selectUser,
 	(user: User) => user ? user.isAdmin : null
 );

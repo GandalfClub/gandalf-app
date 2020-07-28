@@ -1,21 +1,15 @@
-import { User } from '../../models/user';
 import { AuthActionTypes, AuthActions } from './autn.actions';
+import { AuthState } from '../../models/auth-state';
 
 export const authFeatureKey: string = 'auth';
 
-export interface State {
-	isAuthenticated: boolean;
-	user: User | null;
-	errorMessage: string | null;
-}
-
-export const initialState: State = {
+export const initialState: AuthState = {
 	isAuthenticated: false,
 	user: null,
 	errorMessage: null
 };
 
-export function authReducer(state: State = initialState, action: AuthActions): State {
+export function authReducer(state: AuthState = initialState, action: AuthActions): AuthState {
 	switch (action.type) {
 
 		case AuthActionTypes.SignInSuccess: {
@@ -35,7 +29,7 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 		}
 
 		case AuthActionTypes.SignUpSuccess: {
-			return{
+			return { 
 				...state,
 				isAuthenticated: true,
 				user: action.payload,
@@ -44,7 +38,7 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 		}
 
 		case AuthActionTypes.SignUpFailure: {
-			return{
+			return {
 				...state,
 				errorMessage: action.payload
 			};

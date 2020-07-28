@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from './auth.reducer';
+import { AuthState } from '../../models/auth-state';
 import { SignIn, SignInByGithub, SignUp } from './autn.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
@@ -12,7 +12,7 @@ import { selectUser, selectIsAdmin, selectIsAuthenticated, selectErrorMessage } 
 export class AuthFacadeService {
 
 	constructor(
-		private store: Store<State>
+		private store: Store<AuthState>
 	) { }
 
 	public logIn(email: string, password: string): void {
