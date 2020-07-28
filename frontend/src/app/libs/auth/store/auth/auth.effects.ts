@@ -7,6 +7,7 @@ import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Action } from '@ngrx/store';
+import { User } from '../../models/user';
 
 @Injectable()
 export class AuthEffects {
@@ -22,8 +23,8 @@ export class AuthEffects {
 			switchMap((user: firebase.User) => {
 				return this.AuthRepository.logIn(user.email, user.uid)
 					.pipe(
-						map((res: any) => {
-							return new LogInSuccess(res);
+						map((user: User) => {
+							return new LogInSuccess(user);
 						}),
 						catchError((error: string) => {
 							return of(new LogInFailure(error));
@@ -42,8 +43,8 @@ export class AuthEffects {
 			switchMap((user: firebase.User) => {
 				return this.AuthRepository.logInByGithub(user.email, user.uid)
 					.pipe(
-						map((res: any) => {
-							return new LogInSuccess(res);
+						map((user: User) => {
+							return new LogInSuccess(user);
 						}),
 						catchError((error: string) => {
 							return of(new LogInFailure(error));
@@ -51,18 +52,8 @@ export class AuthEffects {
 					);
 			}));
 
-	@Effect({ dispatch: false })
-	public LogInSuccess: Observable<Action> = this.actions.pipe(
-		ofType<LogInSuccess>(AuthActionTypes.LoginSuccess),
-	);
-
-	@Effect({ dispatch: false })
-	public LogInFailure: Observable<any> = this.actions.pipe(
-		ofType<LogInFailure>(AuthActionTypes.LoginFailure),
-	);
-
 	@Effect()
-	public SignUpIn: Observable<Action> = this.actions
+	public SignUp: Observable<Action> = this.actions
 		.pipe(
 			ofType<SignUp>(AuthActionTypes.Signup),
 			exhaustMap((action: SignUp) => {
@@ -72,24 +63,14 @@ export class AuthEffects {
 			switchMap((user: firebase.User) => {
 				return this.AuthRepository.signUp(user.email, user.uid)
 					.pipe(
-						map((res: any) => {
-							return new SignUpSuccess(res);
+						map((user: User) => {
+							return new SignUpSuccess(user);
 						}),
 						catchError((error: string) => {
 							return of(new SignUpFailure(error));
 						})
 					);
 			}));
-
-	@Effect({ dispatch: false })
-	public SignUpSuccess: Observable<Action> = this.actions.pipe(
-		ofType<SignUpSuccess>(AuthActionTypes.SignupSuccess),
-	);
-
-	@Effect({ dispatch: false })
-	public SignUpFailure: Observable<any> = this.actions.pipe(
-		ofType<SignUpFailure>(AuthActionTypes.SignupFailure),
-	);
 
 	constructor(
 		private actions: Actions,
