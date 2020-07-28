@@ -18,7 +18,7 @@ export const initialState: State = {
 export function authReducer(state: State = initialState, action: AuthActions): State {
 	switch (action.type) {
 
-		case AuthActionTypes.LoginSuccess: {
+		case AuthActionTypes.SignInSuccess: {
 			return {
 				...state,
 				isAuthenticated: true,
@@ -27,14 +27,14 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 			};
 		}
 
-		case AuthActionTypes.LoginFailure: {
+		case AuthActionTypes.SignInFailure: {
 			return {
 				...state,
 				errorMessage: action.payload
 			};
 		}
 
-		case AuthActionTypes.SignupSuccess: {
+		case AuthActionTypes.SignUpSuccess: {
 			return{
 				...state,
 				isAuthenticated: true,
@@ -43,7 +43,7 @@ export function authReducer(state: State = initialState, action: AuthActions): S
 			};
 		}
 
-		case AuthActionTypes.SignupFailure: {
+		case AuthActionTypes.SignUpFailure: {
 			return{
 				...state,
 				errorMessage: action.payload

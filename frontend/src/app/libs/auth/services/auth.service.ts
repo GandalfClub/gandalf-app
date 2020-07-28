@@ -18,12 +18,12 @@ export class AuthRepository {
 
 	constructor(private http: HttpClient) { }
 
-	public logIn(email: string, password: string): Observable<any> {
+	public signIn(email: string, password: string): Observable<any> {
 		const url: string = `${this.API_URL}/auth/signin`;
 		return this.http.post<AuthResponse>(url, { email, password }, httpOptions);
 	}
 
-	public logInByGithub(email: string, password: string): Observable<any> {
+	public signInByGithub(email: string, password: string): Observable<any> {
 		const url: string = `${this.API_URL}/auth/login`;
 		return this.http.post<AuthResponse>(url, { email, password }, httpOptions);
 	}
