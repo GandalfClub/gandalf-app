@@ -4,7 +4,7 @@ import { SignIn, SignInByGithub, SignUp } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { selectUser, selectStatus } from './auth.selectors';
-import { EntityWrapper } from '../../models/entity-wraper';
+import { AuthState } from '../../models/auth-state';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +12,7 @@ import { EntityWrapper } from '../../models/entity-wraper';
 export class AuthFacadeService {
 
 	constructor(
-		private store: Store<EntityWrapper<User>>
+		private store: Store<AuthState>
 	) { }
 
 	public signIn(email: string, password: string): void {

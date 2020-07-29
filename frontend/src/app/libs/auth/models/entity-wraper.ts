@@ -1,9 +1,4 @@
-export enum EntityStatus {
-	Init = 'Init',
-	Pending = 'Pending',
-	Success = 'Success',
-	Error = 'Error'
-}
+import { EntityStatus } from './entity-status';
 
 export interface EntityWrapper<T> {
 	status: EntityStatus;

@@ -1,18 +1,22 @@
 import { selectAuthState } from './auth.selectors';
 import * as fromAuth from './auth.reducer';
-import { EntityWrapper, EntityStatus } from '../../models/entity-wraper';
-import { User } from '../../models/user';
+import { AuthState } from '../../models/auth-state';
+import { EntityStatus } from '../../models/entity-status';
 
 describe('Auth Selectors', () => {
 	it('should select the feature state', () => {
-		const result: EntityWrapper<User> = selectAuthState({
+		const result: AuthState = selectAuthState({
 			[fromAuth.authFeatureKey]: {
-				status: EntityStatus.Init,
+				user: {
+					status: EntityStatus.Init,
+				}
 			}
 		});
 
 		expect(result).toEqual({
-			status: EntityStatus.Init,
+			user: {
+				status: EntityStatus.Init,
+			}
 		});
 	});
 });
