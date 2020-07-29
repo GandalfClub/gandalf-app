@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response';
-
-export const httpOptions: {} = {
-	headers: new HttpHeaders({
-		'Content-Type': 'application/json'
-	})
-};
 
 @Injectable({
 	providedIn: 'root'
@@ -20,16 +14,16 @@ export class AuthRepository {
 
 	public signIn(email: string, password: string): Observable<any> {
 		const url: string = `${this.API_URL}/auth/signin`;
-		return this.http.post<AuthResponse>(url, { email, password }, httpOptions);
+		return this.http.post<AuthResponse>(url, { email, password });
 	}
 
 	public signInByGithub(email: string, password: string): Observable<any> {
 		const url: string = `${this.API_URL}/auth/login`;
-		return this.http.post<AuthResponse>(url, { email, password }, httpOptions);
+		return this.http.post<AuthResponse>(url, { email, password });
 	}
 
 	public signUp(email: string, password: string): Observable<any> {
 		const url: string = `${this.API_URL}/auth/signup`;
-		return this.http.post<AuthResponse>(url, { email, password }, httpOptions);
+		return this.http.post<AuthResponse>(url, { email, password });
 	}
 }
