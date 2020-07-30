@@ -9,7 +9,10 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 })
 export class LoginComponent implements OnInit {
 
-	public credentials: UserCredentials;
+	public credentials: UserCredentials = {
+		email: null,
+		password: null,
+	};
 	public statusSub: Subscription;
 	public status: string;
 
@@ -21,7 +24,7 @@ export class LoginComponent implements OnInit {
 		);
 	}
 
-	public onSubmit(): void {
+	public login(): void {
 		this.authFacadeService.signIn(this.credentials.email, this.credentials.password);
 	}
 

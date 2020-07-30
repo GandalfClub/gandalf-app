@@ -7,7 +7,7 @@
 				{{status}}
 			</div>
 		</div>
-		<form (ngSubmit)="onSubmit()" ngNativeValidate>
+		<form>
 			<div>
 				<label for="email">Email</label>
 				<input
@@ -28,8 +28,8 @@
 					id="password"
 					placeholder="enter a password">
 			</div>
-			<button type="submit">Login</button>
 		</form>
+		<button (click)="login()">Login</button>
 		<button (click)="loginByGithub()">Login by Github</button>
 	</div>
 </div>
