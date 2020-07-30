@@ -3,11 +3,11 @@ import { UserCredentials } from '../../models/user-credentials';
 import { User } from '../../models/user';
 
 export enum AuthActionTypes {
-	SignIn = '[Auth] Sign In with credentials',
+	SignIn = '[Auth] Sign In',
 	SignInByGithub = '[Auth] Sign In by Github',
 	SignInSuccess = '[Auth] Sign In Success',
 	SignInFailure = '[Auth] Sign In Failure',
-	SignUp = '[Auth] Sign In',
+	SignUp = '[Auth] Sign Up',
 	SignUpSuccess = '[Auth] Sign Up Success',
 	SignUpFailure = '[Auth] Sign Up Failure',
 }
@@ -28,7 +28,6 @@ export class SignInSuccess implements Action {
 
 export class SignInFailure implements Action {
 	public readonly type: AuthActionTypes.SignInFailure = AuthActionTypes.SignInFailure;
-	constructor(public payload: any) { }
 }
 
 export class SignUp implements Action {
@@ -43,7 +42,6 @@ export class SignUpSuccess implements Action {
 
 export class SignUpFailure implements Action {
 	public readonly type: AuthActionTypes.SignUpFailure = AuthActionTypes.SignUpFailure;
-	constructor(public payload: any) { }
 }
 
 export type AuthActions = SignIn | SignInByGithub | SignInSuccess | SignInFailure | SignUp | SignUpSuccess | SignUpFailure;

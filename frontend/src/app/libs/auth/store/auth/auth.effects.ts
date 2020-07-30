@@ -26,8 +26,8 @@ export class AuthEffects {
 						map((user: User) => {
 							return new SignInSuccess(user);
 						}),
-						catchError((error: string) => {
-							return of(new SignInFailure(error));
+						catchError(() => {
+							return of(new SignInFailure());
 						})
 					);
 			}));
@@ -46,8 +46,8 @@ export class AuthEffects {
 						map((user: User) => {
 							return new SignInSuccess(user);
 						}),
-						catchError((error: string) => {
-							return of(new SignInFailure(error));
+						catchError(() => {
+							return of(new SignInFailure());
 						})
 					);
 			}));
@@ -66,8 +66,8 @@ export class AuthEffects {
 						map((user: User) => {
 							return new SignUpSuccess(user);
 						}),
-						catchError((error: string) => {
-							return of(new SignUpFailure(error));
+						catchError(() => {
+							return of(new SignUpFailure());
 						})
 					);
 			}));
