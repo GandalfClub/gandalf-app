@@ -25,12 +25,12 @@ export class AuthEffects {
 					.pipe(
 						map((user: User) => {
 							return new SignInSuccess(user);
-						}),
-						catchError((error: string) => {
-							return of(new SignInFailure(error));
-						})
-					);
-			}));
+						}));
+			}),
+			catchError((error: Error) => {
+				return of(new SignInFailure(error));
+			})
+		);
 
 	@Effect()
 	public SignInByGithub: Observable<Action> = this.actions
@@ -45,12 +45,12 @@ export class AuthEffects {
 					.pipe(
 						map((user: User) => {
 							return new SignInSuccess(user);
-						}),
-						catchError((error: string) => {
-							return of(new SignInFailure(error));
-						})
-					);
-			}));
+						}));
+			}),
+			catchError((error: Error) => {
+				return of(new SignInFailure(error));
+			})
+		);
 
 	@Effect()
 	public SignUp: Observable<Action> = this.actions
@@ -65,11 +65,10 @@ export class AuthEffects {
 					.pipe(
 						map((user: User) => {
 							return new SignUpSuccess(user);
-						}),
-						catchError((error: string) => {
-							return of(new SignUpFailure(error));
-						})
-					);
+						}));
+			}),
+			catchError((error: Error) => {
+				return of(new SignUpFailure(error));
 			}));
 
 	constructor(
