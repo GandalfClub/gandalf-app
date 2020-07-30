@@ -28,6 +28,7 @@ export class SignInSuccess implements Action {
 
 export class SignInFailure implements Action {
 	public readonly type: AuthActionTypes.SignInFailure = AuthActionTypes.SignInFailure;
+	constructor(public payload: string) { }
 }
 
 export class SignUp implements Action {
@@ -42,6 +43,7 @@ export class SignUpSuccess implements Action {
 
 export class SignUpFailure implements Action {
 	public readonly type: AuthActionTypes.SignUpFailure = AuthActionTypes.SignUpFailure;
+	constructor(public payload: string) { }
 }
 
 export type AuthActions = SignIn | SignInByGithub | SignInSuccess | SignInFailure | SignUp | SignUpSuccess | SignUpFailure;

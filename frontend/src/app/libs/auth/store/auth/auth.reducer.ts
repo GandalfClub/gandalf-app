@@ -46,6 +46,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
+					error: action.payload,
 				}
 			};
 		}
@@ -74,6 +75,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
+					error: action.payload,
 				}
 			};
 		}
