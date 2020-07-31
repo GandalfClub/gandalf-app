@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 		EffectsModule.forFeature([SampleEffects]),
 		StoreModule.forFeature(sampleFeatureKey, {
 			sample: reducer
-		})
+		}),
 	]
 })
 export class ContainerStoreModule { }

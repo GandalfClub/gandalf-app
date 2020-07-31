@@ -10,12 +10,16 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import {CodejarComponent} from './libs/code-editors/codejar-editor/codejar.component';
+import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
+import { LoginComponent } from './libs/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		CodejarComponent
+		CodejarComponent,
+		LoginComponent
 	],
 	imports: [
 		BrowserModule,
@@ -25,7 +29,9 @@ import {CodejarComponent} from './libs/code-editors/codejar-editor/codejar.compo
 		ContainerModule,
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),
-		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		FormsModule,
+		AuthModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
