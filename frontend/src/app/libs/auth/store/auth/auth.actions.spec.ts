@@ -10,7 +10,7 @@ describe('Sign In Success', () => {
 			isAdmin: true,
 		};
 		const action: AuthActions.SignInSuccess = new AuthActions.SignInSuccess(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignInSuccess,
 			payload,
 		});
@@ -24,7 +24,7 @@ describe('Sign In Failure', () => {
 			message: 'this is test error',
 		};
 		const action: AuthActions.SignInFailure = new AuthActions.SignInFailure(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignInFailure,
 			payload,
 		});
@@ -38,7 +38,7 @@ describe('Sign In', () => {
 			password: 'test',
 		};
 		const action: AuthActions.SignIn = new AuthActions.SignIn(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignIn,
 			payload,
 		});
@@ -48,8 +48,8 @@ describe('Sign In', () => {
 describe('Sign In By Github', () => {
 	it('should create SignInByGithub action', () => {
 		const action: AuthActions.SignInByGithub = new AuthActions.SignInByGithub();
-		expect({...action}).toEqual({
-			type: AuthActions.AuthActionTypes.SignInSuccess,
+		expect({ ...action }).toEqual({
+			type: AuthActions.AuthActionTypes.SignInByGithub,
 		});
 	});
 });
@@ -62,7 +62,7 @@ describe('Sign Up Success', () => {
 			isAdmin: true,
 		};
 		const action: AuthActions.SignUpSuccess = new AuthActions.SignUpSuccess(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignUpSuccess,
 			payload,
 		});
@@ -76,7 +76,7 @@ describe('Sign Up Failure', () => {
 			message: 'sign up failed',
 		};
 		const action: AuthActions.SignUpFailure = new AuthActions.SignUpFailure(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignUpFailure,
 			payload,
 		});
@@ -90,7 +90,7 @@ describe('Sign Up', () => {
 			password: 'test',
 		};
 		const action: AuthActions.SignUp = new AuthActions.SignUp(payload);
-		expect({...action}).toEqual({
+		expect({ ...action }).toEqual({
 			type: AuthActions.AuthActionTypes.SignUp,
 			payload,
 		});
