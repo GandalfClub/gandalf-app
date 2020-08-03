@@ -26,7 +26,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
 	public authState: Subscription;
 	public routePath: typeof RoutePath = RoutePath;
 	public currentPath: string;
-	public authError: Observable<string>;
+	public authError$: Observable<string>;
 	public isLoading: boolean = false;
 
 	constructor(
@@ -44,7 +44,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
 			}
 		});
 
-		this.authError = this.authFacadeService.error$;
+		this.authError$ = this.authFacadeService.error$;
 
 		this.currentPath = this.activatedRoute.snapshot.routeConfig.path;
 

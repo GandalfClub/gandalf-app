@@ -34,4 +34,4 @@
   <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
 </div>
 
-<mat-error>{{ authError | async }}</mat-error>
+<mat-error>{{ authError$ | async }}</mat-error>
