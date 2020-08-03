@@ -3,17 +3,14 @@ import { Store, select } from '@ngrx/store';
 import { SignIn, SignInByGithub, SignUp } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
-import { selectUser, selectStatus } from './auth.selectors';
+import { selectUser, selectStatus, selectError } from './auth.selectors';
 import { AuthState } from '../../models/auth-state';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AuthFacadeService {
-
-	constructor(
-		private store: Store<AuthState>
-	) { }
+	constructor(private store: Store<AuthState>) {}
 
 	public signIn(email: string, password: string): void {
 		this.store.dispatch(new SignIn({ email, password }));
@@ -33,5 +30,9 @@ export class AuthFacadeService {
 
 	get status$(): Observable<string> {
 		return this.store.pipe(select(selectStatus));
+	}
+
+	get error$(): Observable<string> {
+		return this.store.pipe(select(selectError));
 	}
 }

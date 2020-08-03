@@ -1,29 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { UserCredentials } from '../auth/models/user-credentials';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoutePath } from './models/route-path';
 import { ValidatorError } from './models/validator-errors';
+import { EntityStatus } from '../auth/models/entity-status';
+import { Observable, Subscription, ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-auth-page',
 	templateUrl: './auth-page.component.html',
 	styleUrls: ['./auth-page.component.scss'],
 })
-export class AuthPageComponent implements OnInit {
+export class AuthPageComponent implements OnInit, OnDestroy {
 	private passwordMinLenth: number = 6;
+	private destroySource: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
 	public registerForm: FormGroup;
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
 	public validatorError: typeof ValidatorError = ValidatorError;
+	public authStateEnum: typeof EntityStatus = EntityStatus;
+	public authState: Subscription;
 	public routePath: typeof RoutePath = RoutePath;
 	public currentPath: string;
+	public authError: Observable<string>;
 
-	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {}
+	constructor(
+		private authFacadeService: AuthFacadeService,
+		private formBuilder: FormBuilder,
+		private activatedRoute: ActivatedRoute,
+		private router: Router
+	) {}
 
 	public ngOnInit(): void {
+		this.authState = this.authFacadeService.status$.pipe(takeUntil(this.destroySource)).subscribe((authState: string) => {
+			if (authState === this.authStateEnum.Success) {
+				this.router.navigate(['/']);
+			}
+		});
+
+		this.authError = this.authFacadeService.error$;
+
 		this.currentPath = this.activatedRoute.snapshot.routeConfig.path;
 
 		this.registerForm = this.formBuilder.group({
@@ -69,5 +89,10 @@ export class AuthPageComponent implements OnInit {
 
 	public signInByGithub(): void {
 		this.authFacadeService.signInByGithub();
+	}
+
+	public ngOnDestroy(): void {
+		this.destroySource.next(true);
+		this.destroySource.complete();
 	}
 }
