@@ -27,6 +27,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
 	public routePath: typeof RoutePath = RoutePath;
 	public currentPath: string;
 	public authError: Observable<string>;
+	public isLoading: boolean = false;
 
 	constructor(
 		private authFacadeService: AuthFacadeService,
@@ -37,6 +38,7 @@ export class AuthPageComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.authState = this.authFacadeService.status$.pipe(takeUntil(this.destroySource)).subscribe((authState: string) => {
+			this.isLoading = authState === this.authStateEnum.Pending;
 			if (authState === this.authStateEnum.Success) {
 				this.router.navigate(['/']);
 			}

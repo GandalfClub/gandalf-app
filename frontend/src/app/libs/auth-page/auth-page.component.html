@@ -22,16 +22,16 @@
   </div>
 
   <div class="app--auth-page--auth-button" *ngIf="currentPath === routePath.signup">
-    <button mat-raised-button [disabled]="!registerForm.valid">Sign up</button>
+    <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign up</button>
   </div>
 
   <div class="app--auth-page--auth-button" *ngIf="currentPath === routePath.signin">
-    <button mat-raised-button [disabled]="!registerForm.valid">Sign in</button>
+    <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign in</button>
   </div>
 </form>
 
 <div class="app--auth-page--github-button" *ngIf="currentPath === routePath.signin">
-  <button mat-raised-button (click)="signInByGithub()">Sign in by GitHub</button>
+  <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
 </div>
 
 <mat-error>{{ authError | async }}</mat-error>
