@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-<<<<<<< HEAD
 	{
 		path: 'landing',
 		loadChildren: () =>
@@ -20,14 +19,13 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./libs/auth-pages/sign-up/sign-up.module').then(
 				(m: typeof import('./libs/auth-pages/sign-up/sign-up.module')) => m.SignUpModule
-=======
-	{ path: 'login', component: LoginComponent },
+			),
+	},
 	{
 		path: 'profile',
 		loadChildren: () =>
 			import('./libs/user-profile-page/user-profile-page.module').then(
 				(m: typeof import('./libs/user-profile-page/user-profile-page.module')) => m.UserProfilePageModule
->>>>>>> feat(gandalf/frontend): user profile page added
 			),
 	},
 ];
