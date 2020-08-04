@@ -1,18 +1,12 @@
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector, DefaultProjectorFn } from '@ngrx/store';
 import { User } from '../../models/user';
 import { authFeatureKey } from './auth.reducer';
 import { AuthState } from '../../models/auth-state';
+import { EntityWrapper } from '../../models/entity-wraper';
 
-export const selectAuthState: MemoizedSelector<{}, AuthState> = createFeatureSelector<AuthState>(
-	authFeatureKey
-);
+export const selectAuthState: MemoizedSelector<{}, AuthState> = createFeatureSelector<AuthState>(authFeatureKey);
 
-export const selectUser: MemoizedSelector<AuthState, User> = createSelector(
+export const selectUser: MemoizedSelector<AuthState, EntityWrapper<User>> = createSelector(
 	selectAuthState,
-	(state: AuthState) => state.user.value
-);
-
-export const selectStatus: MemoizedSelector<AuthState, string> = createSelector(
-	selectAuthState,
-	(state: AuthState) => state.user.status
+	(state: AuthState) => state.user
 );
