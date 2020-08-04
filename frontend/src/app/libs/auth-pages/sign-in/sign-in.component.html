@@ -1,5 +1,5 @@
-<form class="app--auth-page--form" [formGroup]="registerForm" (ngSubmit)="submit()">
-  <div class="app--auth-page--input-email">
+<form class="app--signin--form" [formGroup]="registerForm" (ngSubmit)="submit()">
+  <div class="app--signin--form--input-email">
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
       <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
@@ -14,24 +14,19 @@
       <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
       <mat-error *ngIf="(registerFormControl.password.touched || submitted) && !registerFormControl.password.valid">
         {{ passwordInputErrorMessage }}</mat-error>
-      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hidePassword">
-        <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+        <mat-icon>{{ passwordVisibilityIcon }}</mat-icon>
       </button>
     </mat-form-field>
   </div>
 
-  <div class="app--auth-page--auth-button" *ngIf="currentPath === routePath.signup">
-    <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign up</button>
-  </div>
-
-  <div class="app--auth-page--auth-button" *ngIf="currentPath === routePath.signin">
+  <div class="app--auth-page--auth-button">
     <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign in</button>
   </div>
 </form>
 
-<div class="app--auth-page--github-button" *ngIf="currentPath === routePath.signin">
+<div class="app--auth-page--github-button">
   <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
 </div>
 
-<mat-error>{{ authError$ | async }}</mat-error>
+<mat-error></mat-error>

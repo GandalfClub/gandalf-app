@@ -3,9 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: 'auth',
+		path: 'signin',
 		loadChildren: () =>
-			import('./libs/auth-page/auth-page.module').then((m: typeof import('./libs/auth-page/auth-page.module')) => m.AuthPageModule),
+			import('./libs/auth-pages/sign-in/sign-in.module').then(
+				(m: typeof import('./libs/auth-pages/sign-in/sign-in.module')) => m.SignInModule
+			),
+	},
+	{
+		path: 'signup',
+		loadChildren: () =>
+			import('./libs/auth-pages/sign-up/sign-up.module').then(
+				(m: typeof import('./libs/auth-pages/sign-up/sign-up.module')) => m.SignUpModule
+			),
 	},
 ];
 
