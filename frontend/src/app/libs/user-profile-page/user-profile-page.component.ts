@@ -2,10 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFacadeService } from './store/user/user.facade';
 import { IUser } from './model/user_';
 import { Wrapper } from './model/wraper';
+=======
+import { UserProfileService } from './service/user-profile-service';
+import { ImprovedUser } from './models/improved_user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+>>>>>>> e4f01b2... fix(gandalf/frontend): change type
 
 @Component({
 	selector: 'app-user-config',
@@ -52,10 +58,20 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public ngOnInit(): void {
 		this.authFacadeService.signInByGithub();
 
+<<<<<<< HEAD
 		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
 			if (user.status === true) {
 				this.userForm = user.value;
 				this.setValuesToForm();
+=======
+		this.authState = this.authFacadeService.status$.pipe(takeUntil(this.destroySource)).subscribe((authState: string) => {
+			if (authState === 'Success') {
+				this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((authUser: any) => {
+					this.userProfileService.getUser(authUser.user.email).subscribe((improvedUser: ImprovedUser) => {
+						this.profileForm.setValue(improvedUser);
+					});
+				});
+>>>>>>> e4f01b2... fix(gandalf/frontend): change type
 			}
 		});
 	}
