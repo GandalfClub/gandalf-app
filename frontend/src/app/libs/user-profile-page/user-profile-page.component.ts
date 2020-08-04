@@ -5,7 +5,6 @@ import { takeUntil } from 'rxjs/operators';
 import { UserProfileService } from './service/user-profile-service';
 import { ImprovedUser } from './models/improved_user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../auth/models/user';
 
 @Component({
 	selector: 'app-user-config',
@@ -37,13 +36,10 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 		this.authState = this.authFacadeService.status$.pipe(takeUntil(this.destroySource)).subscribe((authState: string) => {
 			if (authState === 'Success') {
-				this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((authUser: User) => {
-					this.userProfileService
-						.getUser(authUser.user.email)
-						.pipe()
-						.subscribe((improvedUser: ImprovedUser) => {
-							this.profileForm.setValue(improvedUser);
-						});
+				this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((authUser: any) => {
+					this.userProfileService.getUser(authUser.user.email).subscribe((improvedUser: ImprovedUser) => {
+						this.profileForm.setValue(improvedUser);
+					});
 				});
 			}
 		});
