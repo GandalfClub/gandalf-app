@@ -1,0 +1,35 @@
+<form class="user-profile" [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div class="user-profile-input">
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+    </div>
+
+    <div class="user-profile-input">
+        <label>Password</label>
+        <input type="password" formControlName="password" />
+    </div>
+
+    <div class="user-profile-input">
+        <label>Phone</label>
+        <input type="tel" formControlName="phone" />
+    </div>
+
+    <div class="user-profile-input">
+        <label>First name</label>
+        <input type="text" formControlName="firstName" />
+    </div>
+
+    <div class="user-profile-input">
+        <label>Last name</label>
+        <input type="text" formControlName="lastName" />
+    </div>
+
+    <div class="user-profile buttons">
+        <div class="user-profile button">
+            <button>Save changes</button>
+        </div>
+        <div class="user-profile button">
+            <button>Cancel</button>
+        </div>
+    </div>
+</form>
