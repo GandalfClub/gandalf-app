@@ -5,10 +5,11 @@ import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { ValidatorError } from '../models/validator-errors';
 import { EntityStatus } from '../../auth/models/entity-status';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
 import { VisibilityIcon } from '../models/visibility-icon';
+import { EntityWrapper } from '../../auth/models/entity-wraper';
 
 @Component({
 	selector: 'app-sign-up',
@@ -22,19 +23,19 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
-	public user$: Observable<User>;
+	public authError: string;
 	public isLoading: boolean = false;
 
 	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private router: Router) {}
 
 	public ngOnInit(): void {
-		this.authFacadeService.status$.pipe(takeUntil(this.destroy)).subscribe((authState: string) => {
-			this.isLoading = authState === EntityStatus.Pending;
-			if (authState === EntityStatus.Success) {
+		this.authFacadeService.user$.pipe(takeUntil(this.destroy)).subscribe((user: EntityWrapper<User>) => {
+			this.isLoading = user.status === EntityStatus.Pending;
+			if (user.status === EntityStatus.Success) {
 				this.router.navigate(['/']);
 			}
-			if (authState === EntityStatus.Error) {
-				this.user$ = this.authFacadeService.user$.pipe();
+			if (user.status === EntityStatus.Error) {
+				this.authError = user.error;
 			}
 		});
 
