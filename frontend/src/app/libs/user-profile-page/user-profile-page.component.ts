@@ -72,12 +72,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		this.userFacadeService.updateUser(formValue);
 	}
 
-	public submit(): void {
-		const formValue: any = this.createChangedUser(this.profileForm.value);
-		formValue._id = this.userForm._id;
-		this.userFacadeService.updateUser(formValue);
-	}
-
 	public ngOnDestroy(): void {
 		this.destroySource.next(true);
 		this.destroySource.complete();
