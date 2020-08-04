@@ -1,32 +1,34 @@
-<form class="app--signin--form" [formGroup]="registerForm" (ngSubmit)="submit()">
-  <div class="app--signin--form--input-email">
-    <mat-form-field appearance="fill">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
-      <mat-error *ngIf="(registerFormControl.email.touched || submitted) && !registerFormControl.email.valid">
-        {{ emailInputErrorMessage }}</mat-error>
-    </mat-form-field>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
+        <mat-error *ngIf="(registerFormControl.email.touched || submitted) && !registerFormControl.email.valid">
+          {{ emailInputErrorMessage }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
+        <mat-error *ngIf="(registerFormControl.password.touched || submitted) && !registerFormControl.password.valid">
+          {{ passwordInputErrorMessage }}</mat-error>
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+          <mat-icon>{{ passwordVisibilityIcon }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign in</button>
+    </div>
+  </form>
+
+  <div>
+    <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
   </div>
 
-  <div class="app--auth-page--input-password">
-    <mat-form-field appearance="fill">
-      <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
-      <mat-error *ngIf="(registerFormControl.password.touched || submitted) && !registerFormControl.password.valid">
-        {{ passwordInputErrorMessage }}</mat-error>
-      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-        <mat-icon>{{ passwordVisibilityIcon }}</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-
-  <div class="app--auth-page--auth-button">
-    <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign in</button>
-  </div>
-</form>
-
-<div class="app--auth-page--github-button">
-  <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
+  <mat-error>{{ authError }}</mat-error>
 </div>
-
-<mat-error>{{ authError }}</mat-error>
