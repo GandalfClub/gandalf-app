@@ -3,17 +3,15 @@ import { Store, select } from '@ngrx/store';
 import { SignIn, SignInByGithub, SignUp } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
-import { selectUser, selectStatus } from './auth.selectors';
+import { selectUser } from './auth.selectors';
 import { AuthState } from '../../models/auth-state';
+import { EntityWrapper } from '../../models/entity-wraper';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AuthFacadeService {
-
-	constructor(
-		private store: Store<AuthState>
-	) { }
+	constructor(private store: Store<AuthState>) {}
 
 	public signIn(email: string, password: string): void {
 		this.store.dispatch(new SignIn({ email, password }));
@@ -27,11 +25,7 @@ export class AuthFacadeService {
 		this.store.dispatch(new SignUp({ email, password }));
 	}
 
-	get user$(): Observable<User> {
+	get user$(): Observable<EntityWrapper<User>> {
 		return this.store.pipe(select(selectUser));
-	}
-
-	get status$(): Observable<string> {
-		return this.store.pipe(select(selectStatus));
 	}
 }
