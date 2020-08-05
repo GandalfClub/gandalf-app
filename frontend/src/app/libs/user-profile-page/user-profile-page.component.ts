@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
-import { ReplaySubject, Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { UserProfileService } from './service/user-profile-service';
 import { ImprovedUser } from './models/improved_user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EntityWrapper } from '../auth/models/entity-wraper';
+import { User } from '../auth/models/user';
 
 @Component({
 	selector: 'app-user-config',
@@ -12,8 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit, OnDestroy {
-	private destroySource: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
-	public authState: Subscription;
+	private destroySource: Subject<boolean> = new Subject<boolean>();
 	public profileForm: FormGroup;
 	public userForm: ImprovedUser;
 
@@ -34,12 +35,10 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public ngOnInit(): void {
 		this.authFacadeService.signInByGithub();
 
-		this.authState = this.authFacadeService.status$.pipe(takeUntil(this.destroySource)).subscribe((authState: string) => {
-			if (authState === 'Success') {
-				this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((authUser: any) => {
-					this.userProfileService.getUser(authUser.user.email).subscribe((improvedUser: ImprovedUser) => {
-						this.profileForm.setValue(improvedUser);
-					});
+		this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<User>) => {
+			if (user.status === 'Success') {
+				this.userProfileService.getUser(user.value['user'].email).subscribe((improvedUser: ImprovedUser) => {
+					this.profileForm.setValue(improvedUser);
 				});
 			}
 		});
