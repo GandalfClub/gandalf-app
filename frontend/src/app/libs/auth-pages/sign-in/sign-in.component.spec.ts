@@ -11,19 +11,20 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 
 describe('SignInComponent', () => {
-	const defaultUser: any = {
-		status: 'Success',
-	};
-	const user: Observable<unknown> = defaultUser;
-	// const user$: Observable<EntityWrapper<User>>;
+	const user: any = {};
 	let component: SignInComponent;
 	let fixture: ComponentFixture<SignInComponent>;
+	const mockAuthFacadeService: any = {
+		get user$(): any {
+			return of(user);
+		},
+	};
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignInComponent],
 			imports: [EffectsModule.forRoot([]), StoreModule.forRoot({}), RouterTestingModule],
-			providers: [{ provide: AuthFacadeService, useValue: { user$: () => user } }, { provide: FormBuilder }],
+			providers: [{ provide: AuthFacadeService, useValue: mockAuthFacadeService }, { provide: FormBuilder }],
 		}).compileComponents();
 	}));
 
@@ -35,11 +36,5 @@ describe('SignInComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
-	});
-
-	describe('should navigate at userprofile if sign in success', () => {
-		const facadeService: any = TestBed.inject(AuthFacadeService);
-		spyOn(facadeService, 'user$').and.returnValue(from(user));
-		expect(user).toBe(user);
 	});
 });
