@@ -1,11 +1,10 @@
 <div>
-  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
-        <mat-error *ngIf="(registerFormControl.email.touched || submitted) && !registerFormControl.email.valid">
-          {{ emailInputErrorMessage }}</mat-error>
+        <mat-error>{{ emailInputErrorMessage }}</mat-error>
       </mat-form-field>
     </div>
 
@@ -13,16 +12,15 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
         <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
-        <mat-error *ngIf="(registerFormControl.password.touched || submitted) && !registerFormControl.password.valid">
-          {{ passwordInputErrorMessage }}</mat-error>
+        <mat-error>{{ passwordInputErrorMessage }}</mat-error>
         <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-          <mat-icon>{{ passwordVisibilityIcon }}</mat-icon>
+          <mat-icon>{{ passwordIconVisibility }}</mat-icon>
         </button>
       </mat-form-field>
     </div>
 
     <div>
-      <button mat-raised-button [disabled]="!registerForm.valid || isLoading">Sign up</button>
+      <button mat-raised-button [disabled]="!signInFormGroup.valid || isLoading">Sign up</button>
     </div>
 
   </form>
