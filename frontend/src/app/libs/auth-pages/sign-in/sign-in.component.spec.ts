@@ -45,6 +45,7 @@ describe('SignInComponent', () => {
 
 	beforeEach(() => {
 		spyOn(mockAuthFacadeService, 'signIn').and.stub();
+		spyOn(mockAuthFacadeService, 'signInByGithub').and.stub();
 		fixture = TestBed.createComponent(SignInComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
@@ -56,7 +57,6 @@ describe('SignInComponent', () => {
 
 	describe('when signInByGitHub', () => {
 		it('signinByGitHub should call', () => {
-			spyOn(mockAuthFacadeService, 'signInByGithub').and.stub();
 			component.signInByGithub();
 			expect(mockAuthFacadeService.signInByGithub).toHaveBeenCalled();
 		});
