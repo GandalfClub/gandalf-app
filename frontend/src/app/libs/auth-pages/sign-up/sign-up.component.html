@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
+  <form [formGroup]="signUpFormGroup" (ngSubmit)="submit()">
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <button mat-raised-button [disabled]="!signInFormGroup.valid || isLoading">Sign up</button>
+      <button mat-raised-button [disabled]="!signUpFormGroup.valid || isLoading">Sign up</button>
     </div>
 
   </form>

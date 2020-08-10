@@ -18,7 +18,7 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 export class SignUpComponent implements OnInit, OnDestroy {
 	private passwordMinLenth: number = 6;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
-	public signInFormGroup: FormGroup;
+	public signUpFormGroup: FormGroup;
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
@@ -38,30 +38,30 @@ export class SignUpComponent implements OnInit, OnDestroy {
 			}
 		});
 
-		this.signInFormGroup = this.formBuilder.group({
+		this.signUpFormGroup = this.formBuilder.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(this.passwordMinLenth)]],
 		});
 	}
 
 	public get emailInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.email.touched || this.submitted) && !this.signInFormGroupControl.email.valid) {
-			for (const [key, _] of Object.entries(this.signInFormGroupControl.email.errors)) {
+		if ((this.signUpFormGroupControl.email.touched || this.submitted) && !this.signUpFormGroupControl.email.valid) {
+			for (const [key, _] of Object.entries(this.signUpFormGroupControl.email.errors)) {
 				return key;
 			}
 		}
 	}
 
 	public get passwordInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.password.touched || this.submitted) && !this.signInFormGroupControl.password.valid) {
-			for (const [key, _] of Object.entries(this.signInFormGroupControl.password.errors)) {
+		if ((this.signUpFormGroupControl.password.touched || this.submitted) && !this.signUpFormGroupControl.password.valid) {
+			for (const [key, _] of Object.entries(this.signUpFormGroupControl.password.errors)) {
 				return key;
 			}
 		}
 	}
 
-	public get signInFormGroupControl(): { [key: string]: AbstractControl } {
-		return this.signInFormGroup.controls;
+	public get signUpFormGroupControl(): { [key: string]: AbstractControl } {
+		return this.signUpFormGroup.controls;
 	}
 
 	public get passwordIconVisibility(): string {
@@ -70,9 +70,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 	public submit(): void {
 		this.submitted = true;
-		this.userCredential = this.signInFormGroup.value;
-		if (this.signInFormGroup.valid) {
-			this.authFacadeService.signIn(this.userCredential.email, this.userCredential.password);
+		this.userCredential = this.signUpFormGroup.value;
+		if (this.signUpFormGroup.valid) {
+			this.authFacadeService.signUp(this.userCredential.email, this.userCredential.password);
 		}
 	}
 
