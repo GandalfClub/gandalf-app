@@ -46,18 +46,18 @@ export class SignInComponent implements OnInit, OnDestroy {
 
 	public get emailInputErrorMessage(): string {
 		if ((this.signInFormGroupControl.email.touched || this.submitted) && !this.signInFormGroupControl.email.valid) {
-			for (const [key, _] of Object.entries(this.signInFormGroupControl.email.errors)) {
-				return key;
-			}
+			const emailInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.email.errors);
+			return emailInputErrorMessage[0];
 		}
+		return;
 	}
 
 	public get passwordInputErrorMessage(): string {
 		if ((this.signInFormGroupControl.password.touched || this.submitted) && !this.signInFormGroupControl.password.valid) {
-			for (const [key, _] of Object.entries(this.signInFormGroupControl.password.errors)) {
-				return key;
-			}
+			const passwordInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.password.errors);
+			return passwordInputErrorMessage[0];
 		}
+		return;
 	}
 
 	public get signInFormGroupControl(): { [key: string]: AbstractControl } {

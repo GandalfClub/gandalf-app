@@ -17,9 +17,11 @@ describe('SignInComponent', () => {
 	let passwordInput: AbstractControl;
 	let destroy$: Subject<boolean>;
 	let fixture: ComponentFixture<SignInComponent>;
+
 	const user: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 	};
+
 	const mockAuthFacadeService: any = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
@@ -73,22 +75,33 @@ describe('SignInComponent', () => {
 		beforeEach(() => {
 			destroy$ = new Subject<boolean>();
 		});
-		it('should redirect with valid credits', () => {
-			mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
-				user.status = EntityStatus.Success;
+
+		describe('with valid credentials', () => {
+			beforeEach(() => {
+				mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
+					user.status = EntityStatus.Success;
+				});
+				spyOn(component['router'], 'navigate');
+				component.ngOnInit();
 			});
-			spyOn(component['router'], 'navigate');
-			component.ngOnInit();
-			expect(component['router'].navigate).toHaveBeenCalledWith(['/']);
+
+			it('should redirect', () => {
+				expect(component['router'].navigate).toHaveBeenCalledWith(['/']);
+			});
 		});
 
-		it('should return error with invalid credits', () => {
-			user.status = EntityStatus.Error;
-			mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
-				user.error = 'error';
+		describe('with invalid credentials', () => {
+			beforeEach(() => {
+				user.status = EntityStatus.Error;
+				mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
+					user.error = 'error';
+				});
+				component.ngOnInit();
 			});
-			component.ngOnInit();
-			expect(component.authError).toEqual('error');
+
+			it('should return error', () => {
+				expect(component.authError).toEqual('error');
+			});
 		});
 	});
 
@@ -98,20 +111,31 @@ describe('SignInComponent', () => {
 			emailInput = form.controls.email;
 			passwordInput = form.controls.password;
 		});
-		it('should call signIn with valid signIn form group', () => {
-			emailInput.setValue('test@test.by');
-			passwordInput.setValue('123456');
-			component.submitted = true;
-			component.submit();
-			expect(mockAuthFacadeService.signIn).toHaveBeenCalledWith('test@test.by', '123456');
+
+		describe('with valid signIn form group', () => {
+			beforeEach(() => {
+				emailInput.setValue('test@test.by');
+				passwordInput.setValue('123456');
+				component.submitted = true;
+				component.submit();
+			});
+
+			it('should call signIn ', () => {
+				expect(mockAuthFacadeService.signIn).toHaveBeenCalledWith('test@test.by', '123456');
+			});
 		});
 
-		it('should not call signIn with invalid signIn form group', () => {
-			emailInput.setValue('test');
-			passwordInput.setValue('123');
-			component.submitted = true;
-			component.submit();
-			expect(form.controls.valid).toBeFalsy();
+		describe('with invalid signIn form group', () => {
+			beforeEach(() => {
+				emailInput.setValue('test');
+				passwordInput.setValue('123');
+				component.submitted = true;
+				component.submit();
+			});
+
+			it('should not call signIn', () => {
+				expect(form.controls.valid).toBeFalsy();
+			});
 		});
 	});
 
@@ -121,38 +145,69 @@ describe('SignInComponent', () => {
 			emailInput = form.controls.email;
 			passwordInput = form.controls.password;
 		});
-		it('the form should be valid with valid email input', () => {
-			emailInput.setValue('test@test.by');
-			expect(form.controls.email.valid).toBeTruthy();
+
+		describe('with valid email', () => {
+			beforeEach(() => {
+				emailInput.setValue('test@test.by');
+			});
+
+			it('the form should be valid', () => {
+				expect(form.controls.email.valid).toBeTruthy();
+			});
 		});
 
-		it('the form should be invalid with invalid email input', () => {
-			component.submitted = true;
-			emailInput.setValue('test');
-			expect(component.emailInputErrorMessage).toBe('email');
+		describe('with invalid email', () => {
+			beforeEach(() => {
+				component.submitted = true;
+				emailInput.setValue('test');
+			});
+
+			it('the form should be invalid', () => {
+				expect(component.emailInputErrorMessage).toBe('email');
+			});
 		});
 
-		it('the form should be invalid with empty email input', () => {
-			component.submitted = true;
-			emailInput.setValue('');
-			expect(component.emailInputErrorMessage).toBe('required');
+		describe('with empty email', () => {
+			beforeEach(() => {
+				component.submitted = true;
+				emailInput.setValue('');
+			});
+
+			it('the form should be invalid', () => {
+				expect(component.emailInputErrorMessage).toBe('required');
+			});
 		});
 
-		it('the form should be valid with valid password input', () => {
-			passwordInput.setValue('123456');
-			expect(form.controls.password.valid).toBeTruthy();
+		describe('with valid password', () => {
+			beforeEach(() => {
+				passwordInput.setValue('123456');
+			});
+
+			it('the form should be valid', () => {
+				expect(form.controls.password.valid).toBeTruthy();
+			});
 		});
 
-		it('the form should be invalid with invalid password input', () => {
-			component.submitted = true;
-			passwordInput.setValue('123');
-			expect(component.passwordInputErrorMessage).toBe('minlength');
+		describe('with invalid password', () => {
+			beforeEach(() => {
+				component.submitted = true;
+				passwordInput.setValue('123');
+			});
+
+			it('the form should be invalid', () => {
+				expect(component.passwordInputErrorMessage).toBe('minlength');
+			});
 		});
 
-		it('the form should be invalid with empty password', () => {
-			component.submitted = true;
-			passwordInput.setValue('');
-			expect(component.passwordInputErrorMessage).toBe('required');
+		describe('with empty password', () => {
+			beforeEach(() => {
+				component.submitted = true;
+				passwordInput.setValue('');
+			});
+
+			it('the form should be invalid', () => {
+				expect(component.passwordInputErrorMessage).toBe('required');
+			});
 		});
 	});
 
