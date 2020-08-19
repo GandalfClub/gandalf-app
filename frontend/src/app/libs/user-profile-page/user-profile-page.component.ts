@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserProfileService } from './service/user-profile-service';
-import { ImprovedUser } from './models/improved_user';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EntityWrapper } from '../auth/models/entity-wraper';
-import { User } from '../auth/models/user';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserFacadeService } from './store/user/user.facade';
+import { IUser } from './model/user_';
+import { Wrapper } from './model/wraper';
 
 @Component({
 	selector: 'app-user-config',
@@ -16,45 +15,59 @@ import { User } from '../auth/models/user';
 export class UserProfilePageComponent implements OnInit, OnDestroy {
 	private destroySource: Subject<boolean> = new Subject<boolean>();
 	public profileForm: FormGroup;
-	public userForm: ImprovedUser;
+	public userForm: IUser;
 
 	constructor(
 		private authFacadeService: AuthFacadeService,
-		private userProfileService: UserProfileService,
+		private userFacadeService: UserFacadeService,
 		private formBuilder: FormBuilder
 	) {
 		this.profileForm = formBuilder.group({
 			email: [''],
 			password: [''],
-			phone: [''],
+			mobilePhone: [''],
 			firstName: [''],
-			lastName: [''],
+			secondName: [''],
 		});
+	}
+
+	private setValuesToForm(): void {
+		this.profileForm.setValue({
+			email: this.userForm.email ? this.userForm.email : '',
+			password: this.userForm.password ? this.userForm.password : '',
+			firstName: this.userForm.firstName ? this.userForm.firstName : '',
+			secondName: this.userForm.secondName ? this.userForm.secondName : '',
+			mobilePhone: this.userForm.mobilePhone ? this.userForm.mobilePhone : '',
+		});
+	}
+
+	private createChangedUser(value: any): any {
+		return {
+			firstName: value.firstName,
+			secondName: value.secondName,
+			mobilePhone: value.mobilePhone,
+		};
 	}
 
 	public ngOnInit(): void {
 		this.authFacadeService.signInByGithub();
 
-		this.authFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<User>) => {
-			if (user.status === 'Success') {
-				this.userProfileService.getUser(user.value['user'].email).subscribe((improvedUser: ImprovedUser) => {
-					this.profileForm.setValue(improvedUser);
-				});
+		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
+			if (user.status === true) {
+				this.userForm = user.value;
+				this.setValuesToForm();
 			}
 		});
+	}
+
+	public submit(): void {
+		const formValue: any = this.createChangedUser(this.profileForm.value);
+		formValue._id = this.userForm._id;
+		this.userFacadeService.updateUser(formValue);
 	}
 
 	public ngOnDestroy(): void {
 		this.destroySource.next(true);
 		this.destroySource.complete();
-	}
-
-	public submit(): void {
-		this.userForm = this.profileForm.value;
-		this.userProfileService.setUser(this.userForm).subscribe((response: Boolean) => {
-			if (response) {
-				this.profileForm.setValue({ email: '', password: '', phone: '', firstName: '', lastName: '' });
-			}
-		});
 	}
 }

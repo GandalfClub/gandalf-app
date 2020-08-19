@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+
 import { UserProfilePageComponent } from './user-profile-page.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
-import { UserProfileService } from './service/user-profile-service';
+import { UserFacadeService } from './store/user/user.facade';
 
 describe('UserConfigComponent', () => {
 	const user: any = {};
@@ -16,17 +16,15 @@ describe('UserConfigComponent', () => {
 		get user$(): any {
 			return of(user);
 		},
-	  get signInByGithub(): any {return {}; },
+		get signInByGithub(): any {
+			return {};
+		},
 	};
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [UserProfilePageComponent],
 			imports: [EffectsModule.forRoot([]), StoreModule.forRoot({}), RouterTestingModule],
-			providers: [
-				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
-				{ provide: FormBuilder },
-				{ provide: UserProfileService },
-			],
+			providers: [{ provide: UserFacadeService, useValue: mockAuthFacadeService }, { provide: FormBuilder }],
 		}).compileComponents();
 	}));
 
