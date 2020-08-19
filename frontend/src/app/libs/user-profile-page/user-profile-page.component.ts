@@ -33,11 +33,11 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	private setValuesToForm(): void {
 		this.profileForm.setValue({
-			email: this.userForm.email ? this.userForm.email : '',
-			password: this.userForm.password ? this.userForm.password : '',
-			firstName: this.userForm.firstName ? this.userForm.firstName : '',
-			secondName: this.userForm.secondName ? this.userForm.secondName : '',
-			mobilePhone: this.userForm.mobilePhone ? this.userForm.mobilePhone : '',
+			email: this.userForm.email,
+			password: this.userForm.password,
+			firstName: this.userForm.firstName,
+			secondName: this.userForm.secondName,
+			mobilePhone: this.userForm.mobilePhone,
 		});
 	}
 
