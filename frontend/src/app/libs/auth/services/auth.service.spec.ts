@@ -1,22 +1,68 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthRepository } from './auth.service';
+import { AuthResponse } from '../models/auth-response';
 
 describe('AuthService', () => {
-	let service: AuthRepository;
+	let authRepository: AuthRepository;
+	let httpMock: HttpTestingController;
+	const validResponse: AuthResponse = {
+		status: 1,
+		user: {
+			id: '1',
+			email: 'test@test',
+			isAdmin: true,
+		},
+		logged: true,
+		message: 'test',
+		isCompetitionActive: false,
+	};
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [],
 			imports: [
-				HttpClientModule,
-			]
+				HttpClientTestingModule,
+			],
+			providers: [AuthRepository]
 		});
-		service = TestBed.inject(AuthRepository);
+		httpMock = TestBed.inject(HttpTestingController);
+		authRepository = TestBed.inject(AuthRepository);
+	});
+	afterEach(() => {
+		httpMock.verify();
 	});
 
 	it('should be created', () => {
-		expect(service).toBeTruthy();
+		expect(authRepository).toBeTruthy();
+	});
+
+	describe('signIn', () => {
+		it('should return an Observable<AuthResponse>', () => {
+			authRepository.signIn('test', 'test').subscribe((response: AuthResponse) => {
+				expect(response).toEqual(validResponse);
+			});
+			const req: any = httpMock.expectOne('/api/auth/signin');
+			req.flush(validResponse);
+		});
+	});
+
+	describe('signInWithGithub', () => {
+		it('should return an Observable<AuthResponse>', () => {
+			authRepository.signInByGithub('test', 'test').subscribe((response: AuthResponse) => {
+				expect(response).toEqual(validResponse);
+			});
+			const req: any = httpMock.expectOne('/api/auth/login');
+			req.flush(validResponse);
+		});
+	});
+
+	describe('signUp', () => {
+		it('should return an Observable<AuthResponse>', () => {
+			authRepository.signUp('test', 'test').subscribe((response: AuthResponse) => {
+				expect(response).toEqual(validResponse);
+			});
+			const req: any = httpMock.expectOne('/api/auth/signup');
+			req.flush(validResponse);
+		});
 	});
 });
