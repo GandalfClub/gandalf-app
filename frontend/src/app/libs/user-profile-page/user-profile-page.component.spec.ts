@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+
 import { UserProfilePageComponent } from './user-profile-page.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
