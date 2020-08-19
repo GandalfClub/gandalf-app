@@ -21,7 +21,7 @@ export class UserService {
 	private handleError(error: HttpErrorResponse): any {
 		console.dir(error);
 
-		if (error.message) {
+		if (error.message !== '') {
 			if (!error.error) {
 				return throwError(error);
 			}
