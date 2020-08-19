@@ -16,11 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		CodejarComponent,
-		LoginComponent
-	],
+	declarations: [AppComponent, CodejarComponent, LoginComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -34,6 +30,6 @@ import { AuthModule } from './libs/auth/auth.module';
 		AuthModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,17 +1,17 @@
 <form class="user-profile" [formGroup]="profileForm" (ngSubmit)="submit()">
     <div class="user-profile-input">
         <label>Email</label>
-        <input type="email" formControlName="email" />
+        <input type="email" formControlName="email" readonly/>
     </div>
 
     <div class="user-profile-input">
         <label>Password</label>
-        <input type="password" formControlName="password" />
+        <input type="password" formControlName="password" readonly/>
     </div>
 
     <div class="user-profile-input">
         <label>Phone</label>
-        <input type="tel" formControlName="phone" />
+        <input type="tel" formControlName="mobilePhone" />
     </div>
 
     <div class="user-profile-input">
@@ -21,7 +21,7 @@
 
     <div class="user-profile-input">
         <label>Last name</label>
-        <input type="text" formControlName="lastName" />
+        <input type="text" formControlName="secondName" />
     </div>
 
     <div class="user-profile buttons">
