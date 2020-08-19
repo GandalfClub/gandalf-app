@@ -4,12 +4,12 @@ export function createSpy<T>(prototypeOrMethods: T | Array<keyof T>, params?: { 
 			? createSpyObj(prototypeOrMethods)
 			: createSpyObj(Object.getOwnPropertyNames(prototypeOrMethods).filter((propName: string) => propName !== 'constructor'));
 
-	// tslint:disable-next-line:prefer-object-spread
+	// tslint:disable-next-line
 	return Object.assign({}, methodsSpy, params);
 }
 
 // TODO fix typing
 function createSpyObj<T>(propNames: any): jasmine.SpyObj<T> {
-		// tslint:disable-next-line:prefer-object-spread
+		// tslint:disable-next-line
 	return propNames.length > 0 ? jasmine.createSpyObj<T>(propNames) : <jasmine.SpyObj<T>>{};
 }

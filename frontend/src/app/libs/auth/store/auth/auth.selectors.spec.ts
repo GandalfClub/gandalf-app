@@ -17,7 +17,7 @@ describe('Auth Selectors', () => {
 		it('should return the feature state', () => {
 			expect(selectAuthState.projector(state)).toEqual(state);
 		});
-	})
+	});
 
 	describe('selectUser', () => {
 
@@ -36,5 +36,5 @@ describe('Auth Selectors', () => {
 		it('should return user', () => {
 			expect(selectUser.projector(state)).toEqual(user);
 		});
-	})
+	});
 });
