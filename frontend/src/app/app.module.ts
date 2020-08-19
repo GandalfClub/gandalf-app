@@ -14,7 +14,11 @@ import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.com
 import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
+<<<<<<< HEAD
 	declarations: [AppComponent, CodejarComponent],
+=======
+	declarations: [AppComponent, CodejarComponent, LoginComponent],
+>>>>>>> feat(gandalf/frontend): component user-profile, store added
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
