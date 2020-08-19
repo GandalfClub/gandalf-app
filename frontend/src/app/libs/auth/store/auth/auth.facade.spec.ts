@@ -1,21 +1,34 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule, Store } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AuthFacadeService } from './auth.facade';
-import { authFeatureKey, authReducer } from './auth.reducer';
+import { AuthState } from '../../models/auth-state';
+import { EntityWrapper } from '../../models/entity-wraper';
+import { User } from '../../models/user';
+import { EntityStatus } from '../../models/entity-status';
+import { first } from 'rxjs/operators';
 
 describe('Auth.FacadeService', () => {
-	let service: AuthFacadeService;
+	let mockStore: MockStore<AuthState>;
+	let authFacadeService: AuthFacadeService;
+	const user: EntityWrapper<User> = {
+		status: EntityStatus.Success,
+	};
+	const initialState: AuthState = { user };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				StoreModule.forRoot({}),
-				StoreModule.forFeature(authFeatureKey, authReducer),
-			]});
-		service = TestBed.inject(AuthFacadeService);
+			providers: [
+				AuthFacadeService,
+				provideMockStore({ initialState }),
+			],
+		});
+		authFacadeService = TestBed.inject(AuthFacadeService);
+		mockStore = TestBed.inject(MockStore);
 	});
 
-	it('should be created', () => {
-		expect(service).toBeTruthy();
+	it('should return user', () => {
+		authFacadeService.user$.pipe(first()).subscribe((result: EntityWrapper<User>) => {
+			expect(result).toEqual(user);
+		});
 	});
 });
