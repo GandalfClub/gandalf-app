@@ -1,5 +1,5 @@
-import { Document, Schema, Types } from "mongoose";
-import mainDBConnection from "../../config/connection/main-db";
+import { Document, Schema, Types } from 'mongoose';
+import mainDBConnection from '../../config/connection/main-db';
 
 export interface IPublicEventsModel extends Document {
 	_id: Types.ObjectId;
@@ -39,8 +39,8 @@ const publicEventsSchema: Schema = new Schema(
 		},
 	},
 	{
-		collection: "events",
+		collection: 'events',
 	}
 );
 
-export default mainDBConnection.model<IPublicEventsModel>("PublicEventsModel", publicEventsSchema);
+export default mainDBConnection.model<IPublicEventsModel>('PublicEventsModel', publicEventsSchema);

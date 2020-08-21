@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 
 interface IEnvConfig {
 	NODE_ENV?: string;
@@ -44,7 +44,7 @@ dotenv.config();
 
 const envConf: IEnvConfig = process.env;
 
-const NODE_ENV: string = envConf.NODE_ENV || "development";
+const NODE_ENV: string = envConf.NODE_ENV || 'development';
 
 let fromConfMaxOpenedProcessesOnSolutionCheck: number = Number(envConf.MAX_OPENED_PROCESSES_ON_SOLUTION_CHECK);
 
@@ -61,18 +61,18 @@ if (isNaN(fromConfMaxPendingSolutionsQueueLength) || fromConfMaxPendingSolutions
 const development: IAppConfig = {
 	port: envConf.PORT || 3000,
 	database: {
-		uri: envConf.MONGODB_URI || "mongodb://localhost:27017/",
+		uri: envConf.MONGODB_URI || 'mongodb://localhost:27017/',
 	},
-	secret: envConf.SECRET || "@QEGTUI",
+	secret: envConf.SECRET || '@QEGTUI',
 	api: {
-		authUri: envConf.AUTH_API || "/api/auth",
-		userUri: envConf.USER_API || "/api/users",
-		taskUri: envConf.TASK_API || "/api/tasks",
-		solutionUri: envConf.SOLUTION_API || "/api/solutions",
-		participationApi: envConf.PARTICIPATION_API || "/api/participations",
-		eventUri: envConf.EVENT_API || "/api/events",
-		publicEventsUri: envConf.PUBLIC_EVENTS_API || "/api/publicevents",
-		htmlTaskUri: envConf.HTML_TASK_API || "/api/html-tasks",
+		authUri: envConf.AUTH_API || '/api/auth',
+		userUri: envConf.USER_API || '/api/users',
+		taskUri: envConf.TASK_API || '/api/tasks',
+		solutionUri: envConf.SOLUTION_API || '/api/solutions',
+		participationApi: envConf.PARTICIPATION_API || '/api/participations',
+		eventUri: envConf.EVENT_API || '/api/events',
+		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
+		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength,
@@ -83,18 +83,18 @@ const development: IAppConfig = {
 const production: IAppConfig = {
 	port: envConf.PORT || 3000,
 	database: {
-		uri: envConf.MONGODB_URI || "mongodb://production_uri/",
+		uri: envConf.MONGODB_URI || 'mongodb://production_uri/',
 	},
-	secret: envConf.SECRET || "@QEGTUI",
+	secret: envConf.SECRET || '@QEGTUI',
 	api: {
-		authUri: envConf.AUTH_API || "/api/auth",
-		userUri: envConf.USER_API || "/api/users",
-		taskUri: envConf.TASK_API || "/api/tasks",
-		solutionUri: envConf.SOLUTION_API || "/api/solutions",
-		participationApi: envConf.PARTICIPATION_API || "/api/participations",
-		eventUri: envConf.EVENT_API || "/api/events",
-		publicEventsUri: envConf.PUBLIC_EVENTS_API || "/api/publicevents",
-		htmlTaskUri: envConf.HTML_TASK_API || "/api/html-tasks",
+		authUri: envConf.AUTH_API || '/api/auth',
+		userUri: envConf.USER_API || '/api/users',
+		taskUri: envConf.TASK_API || '/api/tasks',
+		solutionUri: envConf.SOLUTION_API || '/api/solutions',
+		participationApi: envConf.PARTICIPATION_API || '/api/participations',
+		eventUri: envConf.EVENT_API || '/api/events',
+		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
+		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck || 4,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength || 50,
@@ -105,18 +105,18 @@ const production: IAppConfig = {
 const test: IAppConfig = {
 	port: envConf.PORT || 3000,
 	database: {
-		uri: envConf.MONGODB_URI || "mongodb://localhost:27017",
+		uri: envConf.MONGODB_URI || 'mongodb://localhost:27017',
 	},
-	secret: envConf.SECRET || "@QEGTUI",
+	secret: envConf.SECRET || '@QEGTUI',
 	api: {
-		authUri: envConf.AUTH_API || "/api/auth",
-		userUri: envConf.USER_API || "/api/users",
-		taskUri: envConf.TASK_API || "/api/tasks",
-		solutionUri: envConf.SOLUTION_API || "/api/solutions",
-		participationApi: envConf.PARTICIPATION_API || "/api/participations",
-		eventUri: envConf.EVENT_API || "/api/events",
-		publicEventsUri: envConf.PUBLIC_EVENTS_API || "/api/publicevents",
-		htmlTaskUri: envConf.HTML_TASK_API || "/api/html-tasks",
+		authUri: envConf.AUTH_API || '/api/auth',
+		userUri: envConf.USER_API || '/api/users',
+		taskUri: envConf.TASK_API || '/api/tasks',
+		solutionUri: envConf.SOLUTION_API || '/api/solutions',
+		participationApi: envConf.PARTICIPATION_API || '/api/participations',
+		eventUri: envConf.EVENT_API || '/api/events',
+		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
+		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck || 4,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength || 50,

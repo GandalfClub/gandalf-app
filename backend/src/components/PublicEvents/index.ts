@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
-import HttpError from "../../config/error";
-import { IPublicEventsModel } from "./model";
-import PublicEventsService from "./service";
+import { NextFunction, Request, Response } from 'express';
+import HttpError from '../../config/error';
+import { IPublicEventsModel } from './model';
+import PublicEventsService from './service';
 
 export async function getAllEvents(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {

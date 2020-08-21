@@ -1,17 +1,17 @@
-import * as express from "express";
-import * as http from "http";
-import * as swaggerUi from "swagger-ui-express";
-import { checkAuthStatus } from "../components/Auth";
-import appConfig from "../config/env";
-import * as passportConfig from "../config/middleware/passport";
-import AuthRouter from "./AuthRouter";
-import EventsRouter from "./EventsRouter";
-import HtmlTaskRouter from "./HtmlTaskRouter";
-import ParticipationRouter from "./ParticipationRouter";
-import PublicEventsRouter from "./PublicEventsRouter";
-import SolutionRouter from "./SolutionRouter";
-import TaskRouter from "./TaskRouter";
-import UserRouter from "./UserRouter";
+import * as express from 'express';
+import * as http from 'http';
+import * as swaggerUi from 'swagger-ui-express';
+import { checkAuthStatus } from '../components/Auth';
+import appConfig from '../config/env';
+import * as passportConfig from '../config/middleware/passport';
+import AuthRouter from './AuthRouter';
+import EventsRouter from './EventsRouter';
+import HtmlTaskRouter from './HtmlTaskRouter';
+import ParticipationRouter from './ParticipationRouter';
+import PublicEventsRouter from './PublicEventsRouter';
+import SolutionRouter from './SolutionRouter';
+import TaskRouter from './TaskRouter';
+import UserRouter from './UserRouter';
 
 /**
  * @export
@@ -24,7 +24,7 @@ export function init(app: express.Application): void {
 
 	router.use(appConfig.api.authUri, AuthRouter);
 
-	router.use("/api/check", passportConfig.isAuthenticated, checkAuthStatus);
+	router.use('/api/check', passportConfig.isAuthenticated, checkAuthStatus);
 
 	router.use(appConfig.api.taskUri, passportConfig.isAuthenticated, TaskRouter);
 
@@ -58,17 +58,17 @@ function useSwaggerDocs(app: express.Application): void {
 	let swaggerDoc: any;
 
 	try {
-		swaggerDoc = require("../../swagger.json");
+		swaggerDoc = require('../../swagger.json');
 	} catch (error) {
-		console.log("***************************************************");
-		console.log("  Seems like you doesn`t have swagger.json file");
-		console.log("  Please, run: ");
-		console.log("  $ swagger-jsdoc -d swaggerDef.js -o swagger.json");
-		console.log("***************************************************");
+		console.log('***************************************************');
+		console.log('  Seems like you doesn`t have swagger.json file');
+		console.log('  Please, run: ');
+		console.log('  $ swagger-jsdoc -d swaggerDef.js -o swagger.json');
+		console.log('***************************************************');
 	}
 
 	if (swaggerDoc) {
-		app.use("/docs", swaggerUi.serve);
-		app.get("/docs", swaggerUi.setup(swaggerDoc));
+		app.use('/docs', swaggerUi.serve);
+		app.get('/docs', swaggerUi.setup(swaggerDoc));
 	}
 }

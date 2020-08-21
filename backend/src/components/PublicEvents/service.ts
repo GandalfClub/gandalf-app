@@ -1,5 +1,5 @@
-import { IPublicEventsService } from "./interface";
-import EventsModel, { IPublicEventsModel } from "./model";
+import { IPublicEventsService } from './interface';
+import EventsModel, { IPublicEventsModel } from './model';
 
 const PublicEventsService: IPublicEventsService = {
 	async getAllEvents(): Promise<IPublicEventsModel[]> {
