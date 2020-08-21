@@ -11,7 +11,7 @@
 		"lint": "ng lint",
 		"e2e": "ng e2e",
 		"pretty-quick": "pretty-quick --staged",
-		"heroku-postbuild": "ng build --prod"
+		"heroku-postbuild": "ng buildq"
 	},
 	"husky": {
 		"hooks": {
