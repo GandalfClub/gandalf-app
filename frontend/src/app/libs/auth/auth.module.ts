@@ -17,7 +17,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 		AngularFireAuthModule,
 	],
 	providers: [
-		{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi: true
+		}
 	]
 })
 export class AuthModule { }
