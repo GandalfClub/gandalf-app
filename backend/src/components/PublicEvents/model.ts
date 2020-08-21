@@ -11,7 +11,7 @@ export interface IPublicEventsModel extends Document {
 	endDate: Date;
 }
 
-const eventsSchema: Schema = new Schema(
+const publicEventsSchema: Schema = new Schema(
 	{
 		title: {
 			type: Schema.Types.String,
@@ -43,4 +43,4 @@ const eventsSchema: Schema = new Schema(
 	}
 );
 
-export default mainDBConnection.model<IPublicEventsModel>("PublicEventsModel", eventsSchema);
+export default mainDBConnection.model<IPublicEventsModel>("PublicEventsModel", publicEventsSchema);
