@@ -9,10 +9,6 @@ export interface IPublicEventsModel extends Document {
 	created: Date;
 	startDate: Date;
 	endDate: Date;
-	maxScore: number;
-	tasks: Types.ObjectId[];
-	users: Types.ObjectId[];
-	participations: Types.ObjectId[];
 }
 
 const eventsSchema: Schema = new Schema(
@@ -40,22 +36,6 @@ const eventsSchema: Schema = new Schema(
 		endDate: {
 			type: Schema.Types.Date,
 			default: null,
-		},
-		maxScore: {
-			type: Schema.Types.Number,
-			default: 0,
-		},
-		tasks: {
-			type: [Schema.Types.ObjectId],
-			ref: "TaskModel",
-		},
-		users: {
-			type: [Schema.Types.ObjectId],
-			ref: "UserModel",
-		},
-		participations: {
-			type: [Schema.Types.ObjectId],
-			ref: "ParticipationModel",
 		},
 	},
 	{
