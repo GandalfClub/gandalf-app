@@ -1,1 +1,11 @@
-<p>events works!</p>
+<div class="app--events">
+  <ng-container *ngFor="let event of currentEvents$ | async">
+    <ng-container *ngIf="event.isActive">
+      <div class="app--events--event">
+        <div class="app--events--event--title">
+          {{ event.title }}
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

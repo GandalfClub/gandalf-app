@@ -5,9 +5,7 @@ export const eventsFeatureKey: string = 'events';
 
 export const initialState: EventsState = {
 	events: null,
-	startDate: null,
-	endDate: null,
-	lodaingEvents: false,
+	loadingEvents: false,
 	getEventsError: null,
 };
 
@@ -16,7 +14,7 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
 		case ActionType.GetEvents: {
 			return {
 				...state,
-				lodaingEvents: true,
+				loadingEvents: true,
 				getEventsError: null,
 			};
 		}
@@ -24,14 +22,14 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
 			return {
 				...state,
 				events: action.payload,
-				lodaingEvents: false,
+				loadingEvents: false,
 				getEventsError: null,
 			};
 		}
 		case ActionType.GetEventsFailed: {
 			return {
 				...state,
-				lodaingEvents: false,
+				loadingEvents: false,
 				getEventsError: action.payload,
 			};
 		}

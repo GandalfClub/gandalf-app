@@ -6,8 +6,4 @@ export interface Event {
 	created: Date;
 	startDate: Date;
 	endDate: Date;
-	maxScore: number;
-	tasks: string[];
-	users: string[];
-	participations: string[];
 }
