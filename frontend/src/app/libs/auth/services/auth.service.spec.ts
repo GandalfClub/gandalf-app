@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { AuthRepository } from './auth.service';
 import { AuthResponse } from '../models/auth-response';
 
@@ -41,8 +41,8 @@ describe('AuthService', () => {
 			authRepository.signIn('test', 'test').subscribe((response: AuthResponse) => {
 				expect(response).toEqual(validResponse);
 			});
-			const req: any = httpMock.expectOne('/api/auth/signin');
-			req.flush(validResponse);
+			const httpRequest: TestRequest = httpMock.expectOne('/api/auth/signin');
+			httpRequest.flush(validResponse);
 		});
 	});
 
@@ -51,8 +51,8 @@ describe('AuthService', () => {
 			authRepository.signInByGithub('test', 'test').subscribe((response: AuthResponse) => {
 				expect(response).toEqual(validResponse);
 			});
-			const req: any = httpMock.expectOne('/api/auth/login');
-			req.flush(validResponse);
+			const httpRequest: TestRequest = httpMock.expectOne('/api/auth/login');
+			httpRequest.flush(validResponse);
 		});
 	});
 
@@ -61,8 +61,8 @@ describe('AuthService', () => {
 			authRepository.signUp('test', 'test').subscribe((response: AuthResponse) => {
 				expect(response).toEqual(validResponse);
 			});
-			const req: any = httpMock.expectOne('/api/auth/signup');
-			req.flush(validResponse);
+			const httpRequest: TestRequest = httpMock.expectOne('/api/auth/signup');
+			httpRequest.flush(validResponse);
 		});
 	});
 });
