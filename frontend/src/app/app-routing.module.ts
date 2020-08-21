@@ -3,6 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 	{
+		path: 'publicevents',
+		loadChildren: () =>
+			import('./libs/landing/landing.module').then((m: typeof import('./libs/landing/landing.module')) => m.LandingModule),
+	},
+	{
 		path: 'signin',
 		loadChildren: () =>
 			import('./libs/auth-pages/sign-in/sign-in.module').then(
