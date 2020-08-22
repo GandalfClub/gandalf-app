@@ -10,17 +10,23 @@ import {
 import { Observable, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { TypedAction } from '@ngrx/store/src/models';
-import { IUser } from '../../model/user_';
+import { IUser } from '../../model/user';
 import { UserService } from '../../service/user-service';
-import { AuthActionTypes } from '../../../auth/store/auth/auth.actions';
+import { AuthFacadeService } from '../../../auth/store/auth/auth.facade';
+import { EntityWrapper } from '../../../auth/models/entity-wraper';
+import { User } from '../../../auth/models/user';
 
 @Injectable()
 export class UserEffects {
 	public getUser$: Observable<{} & TypedAction<UserActionTypes>> = createEffect(() =>
 		this.actions$.pipe(
-			ofType(AuthActionTypes.SignInSuccess),
-			map((action: any) => action.payload.user),
-			map((user: IUser) => new GetUserFromAuthSuccessfullyAction({ user })),
+			ofType(UserActionTypes.GetUserFromAuth),
+			exhaustMap(() =>
+				this.authFacadeService.user$.pipe(
+					map((user: EntityWrapper<User>) => user.value['user']),
+					map((user: IUser) => new GetUserFromAuthSuccessfullyAction({ user }))
+				)
+			),
 			catchError((err: Error) => of(new GetUserFromAuthFailedAction({ message: err.message })))
 		)
 	);
@@ -38,5 +44,5 @@ export class UserEffects {
 		)
 	);
 
-	constructor(private actions$: Actions, private api: UserService) {}
+	constructor(private actions$: Actions, private api: UserService, private authFacadeService: AuthFacadeService) {}
 }

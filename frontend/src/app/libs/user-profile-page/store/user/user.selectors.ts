@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector, MemoizedSelector, DefaultProject
 import { userFeatureKey } from './user.reducer';
 import { UserState } from '../../model/userstate';
 import { Wrapper } from '../../model/wraper';
-import { IUser } from '../../model/user_';
+import { IUser } from '../../model/user';
 
 export const selectUserState: MemoizedSelector<{}, UserState> = createFeatureSelector<UserState>(userFeatureKey);
 
