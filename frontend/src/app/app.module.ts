@@ -11,16 +11,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
-import { LoginComponent } from './libs/login/login.component';
-import { FormsModule } from '@angular/forms';
 import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		CodejarComponent,
-		LoginComponent
-	],
+	declarations: [AppComponent, CodejarComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -30,10 +24,9 @@ import { AuthModule } from './libs/auth/auth.module';
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-		FormsModule,
 		AuthModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
