@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFacadeService } from './store/user/user.facade';
-import { IUser } from './model/user_';
+import { IUser } from './model/user';
 import { Wrapper } from './model/wraper';
 
 @Component({
@@ -17,11 +16,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public profileForm: FormGroup;
 	public userForm: IUser;
 
-	constructor(
-		private authFacadeService: AuthFacadeService,
-		private userFacadeService: UserFacadeService,
-		private formBuilder: FormBuilder
-	) {
+	constructor(private userFacadeService: UserFacadeService, private formBuilder: FormBuilder) {
 		this.profileForm = formBuilder.group({
 			email: [''],
 			password: [''],
@@ -50,8 +45,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
-		this.authFacadeService.signInByGithub();
-
+		this.userFacadeService.getUserFromAuth();
 		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
 			if (user.status === true) {
 				this.userForm = user.value;

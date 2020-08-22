@@ -1,6 +1,9 @@
 import {
+	GetUserFromAuthAction,
+	GetUserFromAuthFailedAction,
 	GetUserFromAuthSuccessfullyAction,
 	UpdateUserAction,
+	UpdateUserInfoFailedAction,
 	UpdateUserInfoSuccessfulyAction,
 	UserActionType,
 	UserActionTypes,
@@ -17,6 +20,15 @@ export const initialState: UserState = {
 
 export function userReducer(state: UserState = initialState, action: UserActionType): UserState {
 	switch (action.type) {
+		case UserActionTypes.GetUserFromAuth: {
+			return {
+				...state,
+				userData: {
+					status: true,
+				},
+			};
+		}
+
 		case UserActionTypes.GetUserFromAuthSuccessfuly: {
 			return {
 				...state,
@@ -33,7 +45,7 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 				userData: {
 					status: false,
 					value: null,
-					error: action.payload,
+					error: (action as GetUserFromAuthFailedAction).payload,
 				},
 			};
 		}
@@ -64,7 +76,7 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 				userData: {
 					status: false,
 					value: null,
-					error: action.payload,
+					error: (action as UpdateUserInfoFailedAction).payload,
 				},
 			};
 		}
