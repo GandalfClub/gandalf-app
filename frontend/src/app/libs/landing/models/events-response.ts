@@ -1,5 +1,6 @@
-import { Event } from './event';
+import { EntityWraper } from './events-wraper';
+import { EventDto } from './eventDto';
 
 export interface EventsResponse {
-	events: Event[];
+	events: EntityWraper<EventDto[]>;
 }

@@ -1,7 +1,6 @@
 import { Event } from '../models/event';
+import { EntityWraper } from './events-wraper';
 
 export interface EventsState {
-	events: Event[];
-	loadingEvents: boolean;
-	getEventsError: any;
+	events: EntityWraper<Event[]>;
 }

@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
-				this.router.navigate(['events']);
+				this.router.navigate(['/']);
 			}
 			if (user.status === EntityStatus.Error) {
 				this.authError = user.error;

@@ -7,5 +7,15 @@ export const selectEventsState: MemoizedSelector<{}, EventsState> = createFeatur
 
 export const selectEvents: MemoizedSelector<{}, Event[], DefaultProjectorFn<Event[]>> = createSelector(
 	selectEventsState,
-	(state: EventsState) => state.events
+	(state: EventsState) => state.events.value
+);
+
+export const selectEventsLoadingState: MemoizedSelector<{}, boolean, DefaultProjectorFn<boolean>> = createSelector(
+	selectEventsState,
+	(state: EventsState) => state.events.loadingEvents
+);
+
+export const selectEventsError: MemoizedSelector<{}, Error, DefaultProjectorFn<Error>> = createSelector(
+	selectEventsState,
+	(state: EventsState) => state.events.error
 );

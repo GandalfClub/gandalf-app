@@ -1,11 +1,18 @@
+<div *ngIf="currentEventsLoadingState$ | async">
+  <p>LOADING!</p>
+</div>
 <div class="app--events">
-  <ng-container *ngFor="let event of currentEvents$ | async">
-    <ng-container *ngIf="event.isActive">
-      <div class="app--events--event">
-        <div class="app--events--event--title">
-          {{ event.title }}
-        </div>
+  <ng-container *ngFor="let event of currentEvents$ | async ">
+    <div class="app--events--item">
+      <div class="app--events--item--text-title">
+        {{ event.title }}
       </div>
-    </ng-container>
+      <!-- <div class="app--events--item--text-date">
+        {{ event.createed }}
+      </div>
+      <div class="app--events--item--text-date">
+        {{ event.startDate }} - {{ event.startDate }}
+      </div> -->
+    </div>
   </ng-container>
 </div>

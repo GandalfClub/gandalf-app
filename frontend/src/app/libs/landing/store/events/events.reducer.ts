@@ -4,9 +4,11 @@ import { EventsState } from '../../models/events-state';
 export const eventsFeatureKey: string = 'events';
 
 export const initialState: EventsState = {
-	events: null,
-	loadingEvents: false,
-	getEventsError: null,
+	events: {
+		value: null,
+		loadingEvents: false,
+		error: null,
+	},
 };
 
 export function eventsReducer(state: EventsState = initialState, action: EventsAction): EventsState {
@@ -14,23 +16,29 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
 		case ActionType.GetEvents: {
 			return {
 				...state,
-				loadingEvents: true,
-				getEventsError: null,
+				events: {
+					loadingEvents: true,
+					error: null,
+				},
 			};
 		}
 		case ActionType.GetEventsSuccessfuly: {
 			return {
 				...state,
-				events: action.payload,
-				loadingEvents: false,
-				getEventsError: null,
+				events: {
+					value: action.payload,
+					loadingEvents: false,
+					error: null,
+				},
 			};
 		}
 		case ActionType.GetEventsFailed: {
 			return {
 				...state,
-				loadingEvents: false,
-				getEventsError: action.payload,
+				events: {
+					loadingEvents: false,
+					error: action.payload,
+				},
 			};
 		}
 		default:

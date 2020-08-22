@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { GetEvents } from './events.actions';
 import { EventsState } from '../../models/events-state';
 import { Observable } from 'rxjs';
-import { selectEvents } from './events.selectors';
+import { selectEvents, selectEventsLoadingState, selectEventsError } from './events.selectors';
 import { Event } from '../../models/event';
 
 @Injectable({
@@ -18,5 +18,13 @@ export class EventsFacadeService {
 
 	get events$(): Observable<Event[]> {
 		return this.store.pipe(select(selectEvents));
+	}
+
+	get eventsLoadingState$(): Observable<boolean> {
+		return this.store.pipe(select(selectEventsLoadingState));
+	}
+
+	get eventsError$(): Observable<Error> {
+		return this.store.pipe(select(selectEventsError));
 	}
 }

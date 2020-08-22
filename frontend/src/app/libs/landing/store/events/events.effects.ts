@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ActionType, GetEventsSuccessfuly, GetEventsFailed } from './events.actions';
-import { Event } from '../../models/event';
-import { EventsRepository } from '../../services/events.service';
+import { EventsRepository } from '../../services/events-repository.service';
+import { EventDto } from '../../models/eventDto';
+import { EventConverterService } from '../../services/event-converter.service';
 
 @Injectable()
 export class EventsEffects {
@@ -13,12 +13,16 @@ export class EventsEffects {
 	public GetEvents: Observable<GetEventsSuccessfuly | GetEventsFailed> = this.actions$.pipe(
 		ofType(ActionType.GetEvents),
 		exhaustMap(() =>
-			this.api.getEvents().pipe(
-				map((events: Event[]) => new GetEventsSuccessfuly(events)),
-				catchError((error: any) => of(new GetEventsFailed(error)))
+			this.eventsRepository.getEvents().pipe(
+				map((events: EventDto[]) => new GetEventsSuccessfuly(this.eventConverterService.convertFromDto(events))),
+				catchError((error: Error) => of(new GetEventsFailed(error)))
 			)
 		)
 	);
 
-	constructor(private actions$: Actions, private api: EventsRepository, private router: Router) {}
+	constructor(
+		private actions$: Actions,
+		private eventsRepository: EventsRepository,
+		private eventConverterService: EventConverterService
+	) {}
 }
