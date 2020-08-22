@@ -1,4 +1,4 @@
-import { IUser } from './user_';
+import { IUser } from './user';
 import { Wrapper } from './wraper';
 
 export interface UserState {
