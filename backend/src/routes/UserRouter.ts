@@ -15,6 +15,8 @@ router.post('/', AccessGuard.isAdmin, UserComponent.createUser);
 
 router.get('/:id', AccessGuard.isAdmin, UserComponent.findUser);
 
+router.post('/update-user', UserComponent.updateUser);
+
 router.delete('/:id', AccessGuard.isAdmin, UserComponent.removeUser);
 
 /**
