@@ -3,13 +3,20 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { EventsRepository } from './events-repository.service';
 import { EventsResponse } from '../models/events-response';
 import { EventDto } from '../models/eventDto';
+import { EntityWraper } from '../models/events-wraper';
 
 describe('EventsService', () => {
 	let httpMock: HttpTestingController;
 	let eventsRepository: EventsRepository;
+
 	const event: EventDto = {
 		_id: '',
 		title: '',
+		isActive: false,
+		maxScore: 0,
+		participations: null,
+		users: null,
+		tasks: null,
 		description: '',
 		created: null,
 		startDate: null,
@@ -17,8 +24,11 @@ describe('EventsService', () => {
 		endDate: null,
 		endTime: null,
 	};
+
 	const validResponse: EventsResponse = {
+		status: 200,
 		events: [event],
+		message: '',
 	};
 
 	beforeEach(() => {
