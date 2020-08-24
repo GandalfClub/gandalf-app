@@ -6,26 +6,11 @@ import { EventDto } from '../models/eventDto';
 	providedIn: 'root',
 })
 export class EventConverterService {
-	public event: Event = {
-		id: '',
-		title: '',
-		description: '',
-		created: null,
-		startDate: null,
-		startTime: null,
-		endDate: null,
-		endTime: null,
-	};
-	public events: Event[] = [];
-
 	public convertFromDto(eventsDto: EventDto[]): Event[] {
-		eventsDto.forEach((eventDto: EventDto) => {
-			Object.keys(this.event).forEach((key: string) => {
-				this.event[key] = eventDto[key];
-				this.event.id = eventDto._id;
-			});
-			this.events.push({ ...this.event, ...this.event });
+		return eventsDto.map((eventDto: EventDto) => {
+			const { tasks, participations, maxScore, isActive, users, ...event }: EventDto = eventDto;
+			const renamed: ({ _id, ...object }: typeof event) => Event = ({ _id, ...object }: EventDto) => ({ id: _id, ...object });
+			return renamed(event);
 		});
-		return this.events;
 	}
 }

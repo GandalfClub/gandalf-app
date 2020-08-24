@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { Event } from '../../models/event';
 
 @Component({
-	selector: 'app--events',
-	templateUrl: './events.component.html',
-	styleUrls: ['./events.component.scss'],
+	selector: 'app-public-events-list',
+	templateUrl: './public-events-list.component.html',
+	styleUrls: ['./public-events-list.component.scss'],
 })
-export class EventsComponent implements OnInit {
+export class PublicEventsListComponent implements OnInit {
 	public currentEvents$: Observable<Event[]>;
 	public currentEventsLoadingState$: Observable<boolean>;
 	public currentEventsError$: Observable<Error>;

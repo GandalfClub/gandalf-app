@@ -4,6 +4,9 @@ import { StoreModule } from '@ngrx/store';
 import { AuthEffects } from './auth/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
 @NgModule({
-	imports: [StoreModule.forFeature(authFeatureKey, authReducer), EffectsModule.forFeature([AuthEffects])],
+	imports: [
+		StoreModule.forFeature(authFeatureKey, authReducer),
+		EffectsModule.forFeature([AuthEffects]),
+	]
 })
-export class AuthStoreModule {}
+export class AuthStoreModule { }

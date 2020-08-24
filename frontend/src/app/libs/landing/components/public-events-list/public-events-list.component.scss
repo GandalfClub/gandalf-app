@@ -1,10 +1,10 @@
-.app--events {
+.app-public-events {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	margin: 5px 5px 5px 5px;
 
-	&--item {
+	&--event {
 		display: flex;
 		flex: 1 1 32%;
 		justify-content: center;
@@ -12,14 +12,5 @@
 		height: 300px;
 		margin: 5px 5px 5px 5px;
 		background-color: #c4c4c4;
-
-		&--text-title {
-			font-weight: 500;
-			font-size: 60px;
-			line-height: 120%;
-			letter-spacing: 1.25px;
-			text-transform: capitalize;
-			color: #000000;
-		}
 	}
 }

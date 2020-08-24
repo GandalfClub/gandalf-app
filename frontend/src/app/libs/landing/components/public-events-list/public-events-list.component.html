@@ -1,0 +1,8 @@
+<div *ngIf="currentEventsLoadingState$ | async">
+  <p>LOADING!</p>
+</div>
+<div class="app-public-events">
+  <ng-container *ngFor="let event of currentEvents$ | async ">
+    <app-event [event]="event" class="app-public-events--event"></app-event>
+  </ng-container>
+</div>
