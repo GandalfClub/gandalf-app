@@ -1,35 +1,45 @@
 <form class="user-profile" [formGroup]="profileForm" (ngSubmit)="submit()">
     <div class="user-profile-input">
-        <label>Email</label>
-        <input type="email" formControlName="email" readonly/>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email"/>
+      </mat-form-field>
     </div>
 
     <div class="user-profile-input">
-        <label>Password</label>
-        <input type="password" formControlName="password" readonly/>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password"/>
+      </mat-form-field>
     </div>
 
     <div class="user-profile-input">
-        <label>Phone</label>
-        <input type="tel" formControlName="mobilePhone" />
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput type="tel" formControlName="mobilePhone" />
+      </mat-form-field>
     </div>
 
     <div class="user-profile-input">
-        <label>First name</label>
-        <input type="text" formControlName="firstName" />
+      <mat-form-field appearance="fill">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" formControlName="firstName" />
+      </mat-form-field>
     </div>
 
     <div class="user-profile-input">
-        <label>Last name</label>
-        <input type="text" formControlName="secondName" />
+      <mat-form-field appearance="fill">
+        <mat-label>Last name</mat-label>
+        <input matInput type="text" formControlName="secondName" />
+      </mat-form-field>
     </div>
 
     <div class="user-profile buttons">
         <div class="user-profile button">
-            <button>Save changes</button>
+            <button mat-raised-button >Save changes</button>
         </div>
         <div class="user-profile button">
-            <button>Cancel</button>
+            <button mat-raised-button (click)="backFromUserProfilePage()">Cancel</button>
         </div>
     </div>
 </form>

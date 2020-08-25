@@ -18,7 +18,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public profileForm: FormGroup;
 	public userForm: IUser;
 
-	constructor(private userFacadeService: UserFacadeService, private formBuilder: FormBuilder) {
+	constructor(private userFacadeService: UserFacadeService, private router: Router, private formBuilder: FormBuilder) {
 		this.profileForm = formBuilder.group({
 			email: [''],
 			password: [''],
@@ -26,6 +26,10 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			firstName: [''],
 			secondName: [''],
 		});
+	}
+
+	private navigateFromUserProfile(): void {
+		this.router.navigate(['/']);
 	}
 
 	private setValuesToForm(): void {
@@ -39,10 +43,17 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	private createChangedUser(value: any): any {
-		return {
+		const valuesFromForm: any = {
+			email: value.email,
+			password: value.password,
 			firstName: value.firstName,
 			secondName: value.secondName,
 			mobilePhone: value.mobilePhone,
+		};
+		return {
+			firstName: valuesFromForm.firstName,
+			secondName: valuesFromForm.secondName,
+			mobilePhone: valuesFromForm.mobilePhone,
 		};
 	}
 
@@ -51,19 +62,27 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
 			if (user.status === true) {
 				this.userForm = user.value;
-				this.setValuesToForm();
 			}
 		});
+		if (this.userForm !== null) {
+			this.setValuesToForm();
+		}
 	}
 
 	public submit(): void {
 		const formValue: any = this.createChangedUser(this.profileForm.value);
 		formValue._id = this.userForm._id;
 		this.userFacadeService.updateUser(formValue);
+		this.userForm = null;
+		this.navigateFromUserProfile();
 	}
 
 	public ngOnDestroy(): void {
 		this.destroySource.next(true);
 		this.destroySource.complete();
+	}
+
+	public backFromUserProfilePage(): void {
+		this.navigateFromUserProfile();
 	}
 }
