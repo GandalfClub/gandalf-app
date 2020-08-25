@@ -1,12 +1,13 @@
 import { ActionType, EventsAction } from './events.actions';
-import { EventsState } from '../../models/events-state';
+import { EventsState } from './events-state';
+import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
 export const eventsFeatureKey: string = 'events';
 
 export const initialState: EventsState = {
 	events: {
+		status: EntityStatus.Init,
 		value: null,
-		loadingEvents: false,
 		error: null,
 	},
 };
@@ -17,26 +18,26 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
 			return {
 				...state,
 				events: {
-					loadingEvents: true,
+					status: EntityStatus.Pending,
 					error: null,
 				},
 			};
 		}
-		case ActionType.GetEventsSuccessfuly: {
+		case ActionType.GetEventsSuccess: {
 			return {
 				...state,
 				events: {
 					value: action.payload,
-					loadingEvents: false,
+					status: EntityStatus.Success,
 					error: null,
 				},
 			};
 		}
-		case ActionType.GetEventsFailed: {
+		case ActionType.GetEventsFail: {
 			return {
 				...state,
 				events: {
-					loadingEvents: false,
+					status: EntityStatus.Error,
 					error: action.payload,
 				},
 			};

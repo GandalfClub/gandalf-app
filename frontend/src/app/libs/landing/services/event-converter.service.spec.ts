@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventConverterService } from './event-converter.service';
+import { EventConverter } from './event-converter.service';
 
 describe('EventConverterService', () => {
-	let service: EventConverterService;
+	let service: EventConverter;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
-		service = TestBed.inject(EventConverterService);
+		service = TestBed.inject(EventConverter);
 	});
 
 	it('should be created', () => {

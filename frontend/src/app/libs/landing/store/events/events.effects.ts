@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { ActionType, GetEventsSuccessfuly, GetEventsFailed } from './events.actions';
 import { EventsRepository } from '../../services/events-repository.service';
 import { EventDto } from '../../models/eventDto';
-import { EventConverterService } from '../../services/event-converter.service';
+import { EventConverter } from '../../services/event-converter.service';
 
 @Injectable()
 export class EventsEffects {
@@ -14,15 +14,11 @@ export class EventsEffects {
 		ofType(ActionType.GetEvents),
 		exhaustMap(() =>
 			this.eventsRepository.getEvents().pipe(
-				map((events: EventDto[]) => new GetEventsSuccessfuly(this.eventConverterService.convertFromDto(events))),
+				map((events: EventDto[]) => new GetEventsSuccessfuly(this.eventConverter.convertFromDto(events))),
 				catchError((error: Error) => of(new GetEventsFailed(error)))
 			)
 		)
 	);
 
-	constructor(
-		private actions$: Actions,
-		private eventsRepository: EventsRepository,
-		private eventConverterService: EventConverterService
-	) {}
+	constructor(private actions$: Actions, private eventsRepository: EventsRepository, private eventConverter: EventConverter) {}
 }

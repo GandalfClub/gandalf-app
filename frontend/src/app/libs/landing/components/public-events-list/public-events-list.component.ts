@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsFacadeService } from '../../store/events';
 import { Observable } from 'rxjs';
 import { Event } from '../../models/event';
+import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 
 @Component({
 	selector: 'app-public-events-list',
@@ -9,15 +10,11 @@ import { Event } from '../../models/event';
 	styleUrls: ['./public-events-list.component.scss'],
 })
 export class PublicEventsListComponent implements OnInit {
-	public currentEvents$: Observable<Event[]>;
-	public currentEventsLoadingState$: Observable<boolean>;
-	public currentEventsError$: Observable<Error>;
+	public currentEvents$: Observable<EntityWrapper<Event[]>>;
 	constructor(private eventsFacadeService: EventsFacadeService) {}
 
 	public ngOnInit(): void {
 		this.eventsFacadeService.getEvents();
 		this.currentEvents$ = this.eventsFacadeService.events$;
-		this.currentEventsLoadingState$ = this.eventsFacadeService.eventsLoadingState$;
-		this.currentEventsError$ = this.eventsFacadeService.eventsError$;
 	}
 }

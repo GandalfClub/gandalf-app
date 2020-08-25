@@ -3,8 +3,8 @@ import { Event } from '../../models/event';
 
 export enum ActionType {
 	GetEvents = '[Events/API] Get events',
-	GetEventsSuccessfuly = '[Events/API] Get events successfuly',
-	GetEventsFailed = '[Events/API] Get events failed',
+	GetEventsSuccess = '[Events/API] Get events success',
+	GetEventsFail = '[Events/API] Get events fail',
 }
 
 export class GetEvents implements Action {
@@ -12,12 +12,12 @@ export class GetEvents implements Action {
 }
 
 export class GetEventsSuccessfuly implements Action {
-	public readonly type: ActionType.GetEventsSuccessfuly = ActionType.GetEventsSuccessfuly;
+	public readonly type: ActionType.GetEventsSuccess = ActionType.GetEventsSuccess;
 	constructor(public payload: Event[]) {}
 }
 
 export class GetEventsFailed implements Action {
-	public readonly type: ActionType.GetEventsFailed = ActionType.GetEventsFailed;
+	public readonly type: ActionType.GetEventsFail = ActionType.GetEventsFail;
 	constructor(public payload: Error) {}
 }
 

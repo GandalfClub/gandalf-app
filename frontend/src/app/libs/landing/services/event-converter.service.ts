@@ -5,12 +5,10 @@ import { EventDto } from '../models/eventDto';
 @Injectable({
 	providedIn: 'root',
 })
-export class EventConverterService {
+export class EventConverter {
 	public convertFromDto(eventsDto: EventDto[]): Event[] {
-		return eventsDto.map((eventDto: EventDto) => {
-			const { tasks, participations, maxScore, isActive, users, ...event }: EventDto = eventDto;
-			const renamed: ({ _id, ...object }: typeof event) => Event = ({ _id, ...object }: EventDto) => ({ id: _id, ...object });
-			return renamed(event);
+		return eventsDto.map((dto: EventDto) => {
+			return (({ _id, tasks, participations, maxScore, isActive, users, ...event }: EventDto) => ({ id: _id, ...event }))(dto);
 		});
 	}
 }
