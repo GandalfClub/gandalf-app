@@ -70,6 +70,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public updateUserInfo(): void {
 		const formValue: User = this.getChangesFromForm();
 		this.userFacadeService.updateUser(formValue);
+		this.userForm = null;
+		this.navigateFromUserProfile();
 	}
 
 	public ngOnDestroy(): void {
