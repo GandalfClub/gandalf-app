@@ -6,7 +6,7 @@ import { EntityWrapper } from '../../models/entity-wraper';
 import { User } from '../../models/user';
 import { EntityStatus } from '../../models/entity-status';
 import { first } from 'rxjs/operators';
-import { selectAuthState, selectUser } from './auth.selectors';
+import { selectUser } from './auth.selectors';
 import { MemoizedSelector } from '@ngrx/store';
 
 describe('Auth.FacadeService', () => {
