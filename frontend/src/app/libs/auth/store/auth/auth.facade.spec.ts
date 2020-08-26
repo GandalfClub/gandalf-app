@@ -6,9 +6,12 @@ import { EntityWrapper } from '../../models/entity-wraper';
 import { User } from '../../models/user';
 import { EntityStatus } from '../../models/entity-status';
 import { first } from 'rxjs/operators';
+import { selectAuthState, selectUser } from './auth.selectors';
+import { MemoizedSelector } from '@ngrx/store';
 
 describe('Auth.FacadeService', () => {
 	let mockStore: MockStore<AuthState>;
+	let mockUserSelector: MemoizedSelector<AuthState, EntityWrapper<User>>;
 	let authFacadeService: AuthFacadeService;
 	const user: EntityWrapper<User> = {
 		status: EntityStatus.Success,
@@ -24,11 +27,13 @@ describe('Auth.FacadeService', () => {
 		});
 		authFacadeService = TestBed.inject(AuthFacadeService);
 		mockStore = TestBed.inject(MockStore);
+		mockUserSelector = mockStore.overrideSelector(selectUser, user);
 	});
 
-	it('should return user', () => {
+	it('should return user', (done: Function) => {
 		authFacadeService.user$.pipe(first()).subscribe((result: EntityWrapper<User>) => {
 			expect(result).toEqual(user);
+			done();
 		});
 	});
 });
