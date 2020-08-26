@@ -1,7 +1,17 @@
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+const options = {
+	target: 'https://gandalf-backend.herokuapp.com/',
+	changeOrigin: true,
+};
+
+const apiProxy = createProxyMiddleware(options);
 
 const app = express();
+
+app.use('/api', apiProxy);
 
 app.use(express.static(__dirname + '/dist/gandalf'));
 
