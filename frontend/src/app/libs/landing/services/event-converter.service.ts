@@ -7,8 +7,6 @@ import { EventDto } from '../models/eventDto';
 })
 export class EventConverter {
 	public convertFromDto(eventsDto: EventDto[]): Event[] {
-		return eventsDto.map((dto: EventDto) => {
-			return (({ _id, tasks, participations, maxScore, isActive, users, ...event }: EventDto) => ({ id: _id, ...event }))(dto);
-		});
+		return eventsDto.map(({ _id, tasks, participations, maxScore, isActive, users, ...dto }: EventDto) => ({ id: _id, ...dto }));
 	}
 }

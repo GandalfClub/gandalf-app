@@ -11,14 +11,14 @@ export class GetEvents implements Action {
 	public readonly type: ActionType.GetEvents = ActionType.GetEvents;
 }
 
-export class GetEventsSuccessfuly implements Action {
+export class GetEventsSuccess implements Action {
 	public readonly type: ActionType.GetEventsSuccess = ActionType.GetEventsSuccess;
 	constructor(public payload: Event[]) {}
 }
 
-export class GetEventsFailed implements Action {
+export class GetEventsFail implements Action {
 	public readonly type: ActionType.GetEventsFail = ActionType.GetEventsFail;
 	constructor(public payload: Error) {}
 }
 
-export type EventsAction = GetEvents | GetEventsSuccessfuly | GetEventsFailed;
+export type EventsAction = GetEvents | GetEventsSuccess | GetEventsFail;

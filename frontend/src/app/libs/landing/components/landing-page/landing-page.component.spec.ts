@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PublicEventsListComponent } from './public-events-list.component';
+import { LandingPageComponent } from './landing-page.component';
 import { EventsFacadeService } from '../../store/events/events.facade';
 
-describe('PublicEventsListComponent', () => {
-	let component: PublicEventsListComponent;
-	let fixture: ComponentFixture<PublicEventsListComponent>;
+describe('LandingPageComponent', () => {
+	let component: LandingPageComponent;
+	let fixture: ComponentFixture<LandingPageComponent>;
 	const mockEventsFacadeService: any = {
-		eventsValue(): void {
+		getEvents(): void {
 			return;
 		},
 	};
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [PublicEventsListComponent],
+			declarations: [LandingPageComponent],
 			providers: [{ provide: EventsFacadeService, useValue: mockEventsFacadeService }],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(PublicEventsListComponent);
+		fixture = TestBed.createComponent(LandingPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

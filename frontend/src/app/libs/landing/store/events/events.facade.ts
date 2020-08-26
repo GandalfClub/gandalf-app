@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { GetEvents } from './events.actions';
 import { EventsState } from './events-state';
 import { Observable } from 'rxjs';
-import { selectEvents } from './events.selectors';
+import { selectEvents, selectEventsValue } from './events.selectors';
 import { Event } from '../../models/event';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 
@@ -15,6 +15,10 @@ export class EventsFacadeService {
 
 	public get events$(): Observable<EntityWrapper<Event[]>> {
 		return this.store.pipe(select(selectEvents));
+	}
+
+	public get eventsValue$(): Observable<Event[]> {
+		return this.store.pipe(select(selectEventsValue));
 	}
 
 	public getEvents(): void {

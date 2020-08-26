@@ -1,3 +1,21 @@
 <div class="app-event">
-  {{ event.title }}
+  <div class="app-event-title">
+    {{ event.title }}
+  </div>
+  <ng-container *ngIf="event.endDate===null else withEndDateTemplate">
+    <div class="app-event-date">
+      {{ event.startDate | date:'d MMM yy' }}
+    </div>
+    <div class="app-event-time">
+      <span>In Progress</span>
+    </div>
+  </ng-container>
+  <ng-template #withEndDateTemplate>
+    <div class="app-event-date">
+      {{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}
+    </div>
+    <div class="app-event-time">
+      {{ event.startTime | date:'h a' }} - {{ event.endTime | date:'h a' }}
+    </div>
+  </ng-template>
 </div>

@@ -1,10 +1,5 @@
 <div class="app-public-events">
-  <ng-container *ngIf="(currentEvents$ | async) as event">
-    <ng-container *ngIf="event.status === 'Pending'">
-      <p>LOADING!</p>
-    </ng-container>
-    <ng-container *ngFor="let item of event.value | keyvalue">
-      <app-event [event]="item.value" class="app-public-events--event"></app-event>
-    </ng-container>
+  <ng-container *ngFor="let item of eventsValue$ | async">
+    <app-event [event]="item" class="app-public-events--event"></app-event>
   </ng-container>
 </div>
