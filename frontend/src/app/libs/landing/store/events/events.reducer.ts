@@ -2,8 +2,6 @@ import { ActionType, EventsAction } from './events.actions';
 import { EventsState } from './events-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
-export const landingFeatureKey: string = 'events';
-
 export const initialState: EventsState = {
 	events: {
 		status: EntityStatus.Init,

@@ -1,4 +1,4 @@
-import { EventDto } from './eventDto';
+import { EventDto } from './event-dto';
 
 export interface EventsResponse {
 	status: number;

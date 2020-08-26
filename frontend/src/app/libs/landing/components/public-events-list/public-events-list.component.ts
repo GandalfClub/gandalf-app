@@ -11,7 +11,7 @@ import { EventsFacadeService } from '../../store/events/events.facade';
 export class PublicEventsListComponent {
 	constructor(private eventsFacadeService: EventsFacadeService) {}
 
-	public get eventsValue$(): Observable<Event[]> {
+	public get events$(): Observable<Event[]> {
 		return this.eventsFacadeService.eventsValue$;
 	}
 }

@@ -4,7 +4,7 @@ import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { ActionType, GetEventsSuccess, GetEventsFail } from './events.actions';
 import { EventsRepository } from '../../services/events-repository.service';
-import { EventDto } from '../../models/eventDto';
+import { EventDto } from '../../models/event-dto';
 import { EventConverter } from '../../services/event-converter.service';
 import { Action } from '@ngrx/store';
 
