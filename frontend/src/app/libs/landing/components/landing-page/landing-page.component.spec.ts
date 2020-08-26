@@ -12,14 +12,11 @@ describe('LandingPageComponent', () => {
 		},
 	};
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [LandingPageComponent],
 			providers: [{ provide: EventsFacadeService, useValue: mockEventsFacadeService }],
 		}).compileComponents();
-	}));
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(LandingPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();

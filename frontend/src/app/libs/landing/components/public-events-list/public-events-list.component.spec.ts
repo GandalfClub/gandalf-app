@@ -12,14 +12,11 @@ describe('PublicEventsListComponent', () => {
 		},
 	};
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [PublicEventsListComponent],
 			providers: [{ provide: EventsFacadeService, useValue: mockEventsFacadeService }],
 		}).compileComponents();
-	}));
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(PublicEventsListComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();

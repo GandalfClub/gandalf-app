@@ -17,13 +17,10 @@ describe('EventComponent', () => {
 	let component: EventComponent;
 	let fixture: ComponentFixture<EventComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [EventComponent],
 		}).compileComponents();
-	}));
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(EventComponent);
 		component = fixture.componentInstance;
 		component.event = event;

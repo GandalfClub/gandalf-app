@@ -14,11 +14,9 @@ export class EventsEffects {
 	public GetEvents: Observable<Action> = this.actions$.pipe(
 		ofType(ActionType.GetEvents),
 		exhaustMap(() =>
-			this.eventsRepository.getEvents().pipe(
-				map((events: EventDto[]) => new GetEventsSuccess(this.eventConverter.convertFromDto(events))),
-				catchError((error: Error) => of(new GetEventsFail(error)))
-			)
-		)
+			this.eventsRepository.getEvents().pipe(map((events: EventDto[]) => new GetEventsSuccess(this.eventConverter.convertFromDto(events))))
+		),
+		catchError((error: Error) => of(new GetEventsFail(error)))
 	);
 
 	constructor(private actions$: Actions, private eventsRepository: EventsRepository, private eventConverter: EventConverter) {}
