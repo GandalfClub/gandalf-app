@@ -27,10 +27,16 @@ describe('EventConverterService', () => {
 				endDate: null,
 				endTime: null,
 			};
+<<<<<<< HEAD
 			action = new EventsActions.GetEventsSuccess([payload]);
 		});
 
 		it('should create GetEventsSuccess action', () => {
+=======
+		});
+		it('should create GetEventsSuccess action', () => {
+			action = new EventsActions.GetEventsSuccess([payload]);
+>>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 			expect({ ...action }).toEqual({
 				type: EventsActions.ActionType.GetEventsSuccess,
 				payload: [payload],

@@ -3,6 +3,7 @@ import { EventsState } from './events-state';
 import { EntityStatus } from '../../../auth/models/entity-status';
 import { Event } from '../../models/event';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
+<<<<<<< HEAD
 import { async } from '@angular/core/testing';
 
 describe('Events Selectors', () => {
@@ -31,6 +32,29 @@ describe('Events Selectors', () => {
 			events,
 		};
 	}));
+=======
+
+describe('Events Selectors', () => {
+	const event: Event = {
+		id: 'test',
+		title: 'test',
+		description: 'test',
+		created: null,
+		startDate: null,
+		startTime: null,
+		endDate: null,
+		endTime: null,
+	};
+
+	const events: EntityWrapper<Event[]> = {
+		status: EntityStatus.Success,
+		value: [event],
+	};
+
+	const state: EventsState = {
+		events,
+	};
+>>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 
 	describe('selectAuthState', () => {
 		it('should return the feature state', () => {

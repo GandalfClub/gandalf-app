@@ -9,6 +9,7 @@ describe('Events Reducer', () => {
 	let result: EventsState;
 	let eventsEerror: Error;
 
+<<<<<<< HEAD
 	let event: Event;
 
 	beforeEach(() => {
@@ -23,6 +24,18 @@ describe('Events Reducer', () => {
 			endTime: null,
 		};
 	});
+=======
+	const event: Event = {
+		id: 'test',
+		title: 'test',
+		description: 'test',
+		created: null,
+		startDate: null,
+		startTime: null,
+		endDate: null,
+		endTime: null,
+	};
+>>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 
 	describe('Init', () => {
 		beforeEach(() => {
