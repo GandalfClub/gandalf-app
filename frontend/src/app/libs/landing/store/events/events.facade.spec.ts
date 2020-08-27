@@ -10,29 +10,9 @@ import { first } from 'rxjs/operators';
 describe('Events FacadeService', () => {
 	let mockStore: MockStore<EventsState>;
 	let eventsFacadeService: EventsFacadeService;
-<<<<<<< HEAD
 	let event: Event;
 	let events: EntityWrapper<Event[]>;
 	let initialState: EventsState = { events };
-=======
-
-	const event: Event = {
-		id: 'test',
-		title: 'test',
-		description: 'test',
-		created: null,
-		startDate: null,
-		startTime: null,
-		endDate: null,
-		endTime: null,
-	};
-
-	const events: EntityWrapper<Event[]> = {
-		status: EntityStatus.Success,
-		value: [event],
-	};
-	const initialState: EventsState = { events };
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -40,7 +20,6 @@ describe('Events FacadeService', () => {
 		});
 		eventsFacadeService = TestBed.inject(EventsFacadeService);
 		mockStore = TestBed.inject(MockStore);
-<<<<<<< HEAD
 		event = {
 			id: 'test',
 			title: 'test',
@@ -56,8 +35,6 @@ describe('Events FacadeService', () => {
 			value: [event],
 		};
 		initialState = { events };
-=======
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 		eventsFacadeService.getEvents();
 	});
 

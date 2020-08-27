@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { TestBed, async } from '@angular/core/testing';
-=======
-import { TestBed, ComponentFixture } from '@angular/core/testing';
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 import { Observable, of } from 'rxjs';
 import { EventsEffects } from './events.effects';
 import { EventsRepository } from '../../services/events-repository.service';
@@ -16,25 +12,16 @@ import { EventConverter } from '../../services/event-converter.service';
 
 describe('Events Effects', () => {
 	let mockEventsRepository: jasmine.SpyObj<EventsRepository>;
-<<<<<<< HEAD
 	let eventConverter: EventConverter;
 	let event: Event;
 	let error: Error;
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
-=======
-	let eventConverter: jasmine.SpyObj<EventConverter>;
-	let actions: Observable<Action>;
-	let expected: Observable<Action>;
-	// let error: Error;
-	let event: Event;
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 
 	function createEffects(source: Observable<Action>): EventsEffects {
 		return new EventsEffects(new Actions(source), mockEventsRepository, eventConverter);
 	}
 
-<<<<<<< HEAD
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			providers: [{ provide: EventsRepository, useValue: createSpy(EventsRepository.prototype) }],
@@ -42,18 +29,6 @@ describe('Events Effects', () => {
 		mockEventsRepository = TestBed.inject(EventsRepository) as jasmine.SpyObj<EventsRepository>;
 		eventConverter = TestBed.inject(EventConverter);
 	}));
-=======
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			providers: [
-				{ provide: EventsRepository, useValue: createSpy(EventsRepository.prototype) },
-				// { provide: EventConverter, useValue: createSpy(EventConverter.prototype) },
-			],
-		});
-		mockEventsRepository = TestBed.inject(EventsRepository) as jasmine.SpyObj<EventsRepository>;
-		eventConverter = TestBed.inject(EventConverter) as jasmine.SpyObj<EventConverter>;
-	});
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 
 	describe('getEvents', () => {
 		describe('when getEvents successful', () => {
@@ -68,16 +43,10 @@ describe('Events Effects', () => {
 					endDate: null,
 					endTime: null,
 				};
-<<<<<<< HEAD
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));
 				actions = hot('-----a-----|', { a: new GetEvents() });
 				expected = cold('-----s-----|', { s: new GetEventsSuccess([event]) });
-=======
-				mockEventsRepository.getEvents.and.returnValue(of([event]));
-				actions = hot('-a-|', { a: new GetEvents() });
-				expected = cold('-s-|', { s: new GetEventsSuccess([event]) });
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 			});
 
 			it('should emit getEvents action', () => {
@@ -85,7 +54,6 @@ describe('Events Effects', () => {
 			});
 		});
 
-<<<<<<< HEAD
 		describe('when getEvents failed', () => {
 			beforeEach(() => {
 				error = new Error('test');
@@ -98,19 +66,5 @@ describe('Events Effects', () => {
 				expect(createEffects(actions).GetEvents).toBeObservable(expected);
 			});
 		});
-=======
-		// 	describe('when getEvents failed', () => {
-		// 		beforeEach(() => {
-		// 			error = new Error('test');
-		// 			mockEventsRepository.getEvents.and.throwError(error);
-		// 			actions = hot('--a|', { a: new GetEvents() });
-		// 			expected = cold('--(f|)', { f: new GetEventsFail(error) });
-		// 		});
-
-		// 		it('should emit getEventsFail action', () => {
-		// 			expect(createEffects(actions).GetEvents).toBeObservable(expected);
-		// 		});
-		// 	});
->>>>>>> 47082d906db93e73fe7f6210925dfc041f8cfedc
 	});
 });
