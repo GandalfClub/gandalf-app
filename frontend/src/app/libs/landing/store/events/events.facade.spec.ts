@@ -6,6 +6,8 @@ import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
 import { Event } from '../../models/event';
 import { first } from 'rxjs/operators';
+import { MemoizedSelector } from '@ngrx/store';
+import { selectEvents, selectEventsValue } from './events.selectors';
 
 describe('Events FacadeService', () => {
 	let mockStore: MockStore<EventsState>;
@@ -13,6 +15,8 @@ describe('Events FacadeService', () => {
 	let event: Event;
 	let events: EntityWrapper<Event[]>;
 	let initialState: EventsState = { events };
+	let mockEventsSelectorSelectEvents: MemoizedSelector<EventsState, EntityWrapper<Event[]>>;
+	let mockEventsSelectorSelectEventValue: MemoizedSelector<EventsState, Event[]>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -35,11 +39,11 @@ describe('Events FacadeService', () => {
 			value: [event],
 		};
 		initialState = { events };
-		eventsFacadeService.getEvents();
 	});
 
 	describe('method events$', () => {
 		it('should return events', () => {
+			mockEventsSelectorSelectEvents = mockStore.overrideSelector(selectEvents, events);
 			eventsFacadeService.events$.pipe(first()).subscribe((result: EntityWrapper<Event[]>) => {
 				return expect(result).toEqual(events);
 			});
@@ -48,6 +52,7 @@ describe('Events FacadeService', () => {
 
 	describe('method eventsValue$', () => {
 		it('should return events value', () => {
+			mockEventsSelectorSelectEventValue = mockStore.overrideSelector(selectEventsValue, [event]);
 			eventsFacadeService.eventsValue$.pipe(first()).subscribe((result: Event[]) => {
 				expect(result).toEqual(events.value);
 			});

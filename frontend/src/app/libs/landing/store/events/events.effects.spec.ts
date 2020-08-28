@@ -16,6 +16,8 @@ describe('Events Effects', () => {
 	let eventConverter: EventConverter;
 	let event: Event;
 	let error: Error;
+	let actions: Observable<Action>;
+	let expected: Observable<Action>;
 
 	function createEffects(source: Observable<Action>): EventsEffects {
 		return new EventsEffects(new Actions(source), mockEventsRepository, eventConverter);
@@ -36,8 +38,6 @@ describe('Events Effects', () => {
 		eventConverter = TestBed.inject(EventConverter);
 	}));
 
-	afterAll(() => destroyPlatform());
-
 	describe('getEvents', () => {
 		describe('when getEvents successful', () => {
 			beforeEach(() => {
@@ -50,26 +50,27 @@ describe('Events Effects', () => {
 					startTime: null,
 					endDate: null,
 					endTime: null,
-				} as any;
+				};
+
+				mockEventsRepository.getEvents.and.returnValue(of([event]));
+				actions = hot('-a-|', { a: new GetEvents() });
+				expected = cold('-s-|', { s: new GetEventsSuccess([event]) });
 			});
 
 			it('should emit getEvents action', () => {
-				mockEventsRepository.getEvents.and.returnValue(of([event]));
-				const actions: Observable<Action> = hot('-a-|', { a: new GetEvents() });
-				const expected: Observable<Action> = cold('-s-|', { s: new GetEventsSuccess([event]) });
 				expect(createEffects(actions).GetEvents).toBeObservable(expected);
 			});
 		});
 
 		describe('when getEvents failed', () => {
 			beforeEach(() => {
-				error = new Error('test') as any;
+				error = new Error('test');
+				mockEventsRepository.getEvents.and.throwError(error);
+				actions = hot('-a|', { a: new GetEvents() });
+				expected = cold('-(s|)', { s: new GetEventsFail(error) });
 			});
 
 			it('should emit getEventsFail action', () => {
-				mockEventsRepository.getEvents.and.throwError(error);
-				const actions: Observable<Action> = hot('-a|', { a: new GetEvents() });
-				const expected: Observable<Action> = cold('-(s|)', { s: new GetEventsFail(error) });
 				expect(createEffects(actions).GetEvents).toBeObservable(expected);
 			});
 		});
