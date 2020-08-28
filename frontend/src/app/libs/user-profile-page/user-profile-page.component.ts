@@ -4,8 +4,9 @@ import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFacadeService } from './store/user/user.facade';
 import { IUser } from './model/user';
-import { Wrapper } from './model/wraper';
 import { Router } from '@angular/router';
+import { EntityWrapper } from '../auth/models/entity-wraper';
+import { EntityStatus } from '../auth/models/entity-status';
 
 @Component({
 	selector: 'app-user-config',
@@ -58,8 +59,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.userFacadeService.getUserFromAuth();
-		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
-			if (user.status === true) {
+		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<IUser>) => {
+			if (user.status === EntityStatus.Success) {
 				this.userForm = user.value;
 			}
 		});
@@ -68,7 +69,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	public submit(): void {
+	public updateUserInfo(): void {
 		const formValue: any = this.createChangedUser(this.profileForm.value);
 		formValue._id = this.userForm._id;
 		this.userFacadeService.updateUser(formValue);

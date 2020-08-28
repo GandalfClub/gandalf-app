@@ -1,44 +1,44 @@
-<form class="user-profile" [formGroup]="profileForm" (ngSubmit)="submit()">
-    <div class="user-profile-input">
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email"/>
-      </mat-form-field>
+<form [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+        </mat-form-field>
     </div>
 
-    <div class="user-profile-input">
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password"/>
-      </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+        </mat-form-field>
     </div>
 
-    <div class="user-profile-input">
-      <mat-form-field appearance="fill">
-        <mat-label>Phone</mat-label>
-        <input matInput type="tel" formControlName="mobilePhone" />
-      </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput type="tel" formControlName="mobilePhone" />
+        </mat-form-field>
     </div>
 
-    <div class="user-profile-input">
-      <mat-form-field appearance="fill">
-        <mat-label>First name</mat-label>
-        <input matInput type="text" formControlName="firstName" />
-      </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+        </mat-form-field>
     </div>
 
-    <div class="user-profile-input">
-      <mat-form-field appearance="fill">
-        <mat-label>Last name</mat-label>
-        <input matInput type="text" formControlName="secondName" />
-      </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input matInput type="text" formControlName="secondName" />
+        </mat-form-field>
     </div>
 
-    <div class="user-profile buttons">
-        <div class="user-profile button">
-            <button mat-raised-button >Save changes</button>
+    <div>
+        <div>
+            <button mat-raised-button (click)="updateUserInfo()">Save changes</button>
         </div>
-        <div class="user-profile button">
+        <div>
             <button mat-raised-button (click)="backFromUserProfilePage()">Cancel</button>
         </div>
     </div>
