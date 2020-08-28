@@ -23,6 +23,7 @@ export class UserEffects {
 	public getUser$: Observable<UserActionType> = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActionTypes.GetUserFromAuth),
+			// map((action: GetUserFromAuthAction) => action),
 			exhaustMap(() =>
 				this.authFacadeService.user$.pipe(
 					map((user: EntityWrapper<User>) => user.value['user']),
