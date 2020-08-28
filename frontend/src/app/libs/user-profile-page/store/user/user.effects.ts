@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+	GetUserFromAuthAction,
 	GetUserFromAuthFailedAction,
 	GetUserFromAuthSuccessfullyAction,
+	UpdateUserAction,
 	UpdateUserInfoFailedAction,
 	UpdateUserInfoSuccessfulyAction,
 	UserActionTypes,
@@ -21,6 +23,7 @@ export class UserEffects {
 	public getUser$: Observable<{} & TypedAction<UserActionTypes>> = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActionTypes.GetUserFromAuth),
+			// map((action: GetUserFromAuthAction) => action),
 			exhaustMap(() =>
 				this.authFacadeService.user$.pipe(
 					map((user: EntityWrapper<User>) => user.value['user']),
@@ -34,13 +37,11 @@ export class UserEffects {
 	public updateUser$: Observable<{} & TypedAction<UserActionTypes>> = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActionTypes.UpdateUser),
-			map((action: any) => action.payload.user),
+			map((action: UpdateUserAction) => action.payload.user),
 			exhaustMap((user: IUser) =>
-				this.api.updateUser(user).pipe(
-					map((updatedUser: IUser) => new UpdateUserInfoSuccessfulyAction({ user: updatedUser })),
-					catchError((err: Error) => of(new UpdateUserInfoFailedAction({ message: err.message })))
-				)
-			)
+				this.api.updateUser(user).pipe(map((updatedUser: IUser) => new UpdateUserInfoSuccessfulyAction({ user: updatedUser })))
+			),
+			catchError((err: Error) => of(new UpdateUserInfoFailedAction({ message: err.message })))
 		)
 	);
 
