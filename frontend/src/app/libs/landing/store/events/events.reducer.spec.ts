@@ -35,6 +35,17 @@ describe('Events Reducer', () => {
 		});
 	});
 
+	describe('Init with default state value', () => {
+		beforeEach(() => {
+			action = {} as EventsAction;
+			result = eventsReducer(undefined, action);
+		});
+
+		it('should return the initial state', () => {
+			expect(result).toBe(initialState);
+		});
+	});
+
 	describe('GetEvents', () => {
 		beforeEach(() => {
 			action = new GetEvents() as EventsAction;
