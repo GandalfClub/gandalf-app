@@ -9,6 +9,8 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
+import { CommonComponentsModule } from '../../common-components/common-components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignUpComponent', () => {
 	let component: SignUpComponent;
@@ -38,7 +40,7 @@ describe('SignUpComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignUpComponent],
-			imports: [RouterTestingModule, ReactiveFormsModule],
+			imports: [RouterTestingModule, ReactiveFormsModule, CommonComponentsModule, BrowserAnimationsModule],
 			providers: [{ provide: AuthFacadeService, useValue: mockAuthFacadeService }],
 		}).compileComponents();
 	}));
