@@ -9,6 +9,9 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
+import { CommonModule } from '@angular/common';
+import { CommonComponentsModule } from '../../common-components/common-components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignInComponent', () => {
 	let component: SignInComponent;
@@ -40,7 +43,7 @@ describe('SignInComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignInComponent],
-			imports: [RouterTestingModule, ReactiveFormsModule],
+			imports: [RouterTestingModule, ReactiveFormsModule, CommonComponentsModule, BrowserAnimationsModule],
 			providers: [{ provide: AuthFacadeService, useValue: mockAuthFacadeService }],
 		}).compileComponents();
 	}));
