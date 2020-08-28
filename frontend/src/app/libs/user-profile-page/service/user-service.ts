@@ -6,11 +6,6 @@ import { Observable, throwError } from 'rxjs';
 
 const URL_PREFIX: string = '/api';
 const ERROR_STATUS: number = 504;
-const httpOptions: any = {
-	headers: new HttpHeaders({
-		'Content-Type': 'application/json',
-	}),
-};
 
 @Injectable({
 	providedIn: 'root',
@@ -42,6 +37,6 @@ export class UserService {
 	}
 
 	public updateUser(user: Partial<IUser>): Observable<any> {
-		return this.http.post<IUser>(URL_PREFIX + '/users/update-user', user, httpOptions).pipe(catchError(this.handleError));
+		return this.http.post<IUser>(URL_PREFIX + '/users/update-user', user).pipe(catchError(this.handleError));
 	}
 }

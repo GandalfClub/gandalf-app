@@ -59,8 +59,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.userFacadeService.getUserFromAuth();
-		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: Wrapper<IUser>) => {
-			if (user.status === true) {
+		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<IUser>) => {
+			if (user.status === EntityStatus.Success) {
 				this.userForm = user.value;
 			}
 		});
@@ -69,7 +69,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	public submit(): void {
+	public updateUserInfo(): void {
 		const formValue: any = this.createChangedUser(this.profileForm.value);
 		formValue._id = this.userForm._id;
 		this.userFacadeService.updateUser(formValue);

@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { IUser } from '../../model/user';
 
 export enum UserActionTypes {
-  GetUserFromAuth = '[User] Get user from auth',
+	GetUserFromAuth = '[User] Get user from auth',
 	GetUserFromAuthSuccessfuly = '[User] Get user from auth success',
 	GetUserFromAuthFailed = '[User] Get user from auth failed',
 	UpdateUser = '[User] Update user',
@@ -11,7 +11,7 @@ export enum UserActionTypes {
 }
 
 export class GetUserFromAuthAction implements Action {
-  public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuth;
+	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuth;
 }
 
 export class GetUserFromAuthSuccessfullyAction implements Action {
@@ -60,7 +60,7 @@ export class UpdateUserInfoFailedAction implements Action {
 }
 
 export type UserActionType =
-  | GetUserFromAuthAction
+	| GetUserFromAuthAction
 	| GetUserFromAuthSuccessfullyAction
 	| GetUserFromAuthFailedAction
 	| UpdateUserAction
