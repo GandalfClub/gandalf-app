@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CodejarComponent } from './codejar.component';
 import { SimpleChanges, SimpleChange } from '@angular/core';
 import * as Prism from 'prismjs';
-import {Language} from '../shared/enum/languages.enum';
+import { Language } from '../shared/enum/languages.enum';
 
 describe('CodejarComponent', () => {
 	let component: CodejarComponent;
@@ -18,13 +18,10 @@ describe('CodejarComponent', () => {
 		toString: jasmine.createSpy('toString').and.returnValue('test'),
 	} as any;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [CodejarComponent],
 		}).compileComponents();
-	}));
-
-	beforeEach(() => {
 		spyOn(Prism, 'highlight');
 		fixture = TestBed.createComponent(CodejarComponent);
 		component = fixture.componentInstance;
@@ -60,9 +57,7 @@ describe('CodejarComponent', () => {
 		});
 
 		it('editor must be updated with code', () => {
-			expect(component.editor.updateCode).toHaveBeenCalledWith(
-				component.code
-			);
+			expect(component.editor.updateCode).toHaveBeenCalledWith(component.code);
 		});
 	});
 
@@ -70,11 +65,7 @@ describe('CodejarComponent', () => {
 		beforeEach(() => {
 			changes = {};
 			component.editor = mockCodeJar;
-			changes.language = new SimpleChange(
-				previousValue,
-				currentValue,
-				true
-			);
+			changes.language = new SimpleChange(previousValue, currentValue, true);
 			component.language = Language.JAVASCRIPT;
 			component.ngOnChanges(changes);
 		});
