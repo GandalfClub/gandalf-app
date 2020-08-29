@@ -18,10 +18,13 @@ describe('CodejarComponent', () => {
 		toString: jasmine.createSpy('toString').and.returnValue('test'),
 	} as any;
 
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [CodejarComponent],
 		}).compileComponents();
+	}));
+
+	beforeEach(() => {
 		spyOn(Prism, 'highlight');
 		fixture = TestBed.createComponent(CodejarComponent);
 		component = fixture.componentInstance;
