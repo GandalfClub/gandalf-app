@@ -32,12 +32,12 @@ describe('UserActions', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			action = new GetUserFromAuthSuccessfullyAction({ user });
 			expect({ ...action }).toEqual({
-				type: UserActionTypes.GetUserFromAuthSuccessfuly,
+				type: UserActionTypes.GetUserFromAuthSuccess,
 				payload: { user },
 			});
 		});
@@ -48,7 +48,7 @@ describe('UserActions', () => {
 			const message: string = 'testError';
 			action = new GetUserFromAuthFailedAction({ message });
 			expect({ ...action }).toEqual({
-				type: UserActionTypes.GetUserFromAuthFailed,
+				type: UserActionTypes.GetUserFromAuthFail,
 				payload: { message },
 			});
 		});
@@ -62,7 +62,7 @@ describe('UserActions', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			action = new UpdateUserAction({ user });
@@ -81,7 +81,7 @@ describe('UserActions', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			action = new UpdateUserInfoSuccessfulyAction({ user });

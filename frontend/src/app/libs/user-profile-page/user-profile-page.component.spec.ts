@@ -19,7 +19,7 @@ describe('UserProfileComponent', () => {
 			firstName: 'test',
 			secondName: 'test',
 			mobilePhone: 'test',
-			_id: 'test',
+			id: 'test',
 			isAdmin: false,
 		},
 	};

@@ -37,7 +37,7 @@ describe('UserReducers', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			const action: UserActionType = new GetUserFromAuthSuccessfullyAction({ user });
@@ -73,7 +73,7 @@ describe('UserReducers', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			const action: UserActionType = new UpdateUserAction({ user });
@@ -93,7 +93,7 @@ describe('UserReducers', () => {
 				mobilePhone: '1',
 				password: '1',
 				isAdmin: false,
-				_id: '0',
+				id: '0',
 				email: 'test@test.test',
 			};
 			const action: UserActionType = new UpdateUserInfoSuccessfulyAction({ user });

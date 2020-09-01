@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFacadeService } from './store/user/user.facade';
 import { IUser } from './model/user';
-import { Wrapper } from './model/wraper';
-import { UserProfileService } from './service/user-profile-service';
-import { ImprovedUser } from './models/improved_user';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EntityWrapper } from '../auth/models/entity-wraper';
+import { EntityStatus } from '../auth/models/entity-status';
 
 @Component({
 	selector: 'app-user-config',
@@ -71,10 +71,17 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	public updateUserInfo(): void {
 		const formValue: any = this.createChangedUser(this.profileForm.value);
-		formValue._id = this.userForm._id;
+		formValue.id = this.userForm.id;
 		this.userFacadeService.updateUser(formValue);
-		this.userForm = null;
-		this.navigateFromUserProfile();
+		this.userForm = {
+			id: '',
+			email: '',
+			firstName: '',
+			secondName: '',
+			isAdmin: false,
+			mobilePhone: '',
+			password: '',
+		};
 	}
 
 	public ngOnDestroy(): void {

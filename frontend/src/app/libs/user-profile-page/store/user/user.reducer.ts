@@ -10,7 +10,7 @@ import {
 import { UserState } from './user-state';
 import { EntityStatus } from '../../../auth/models/entity-status';
 
-export const userFeatureKey: string = 'user';
+export const userProfileFeatureKey: string = 'user';
 
 export const initialState: UserState = {
 	userData: {
@@ -28,7 +28,7 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 				},
 			};
 		}
-		case UserActionTypes.GetUserFromAuthSuccessfuly: {
+		case UserActionTypes.GetUserFromAuthSuccess: {
 			return {
 				...state,
 				userData: {
@@ -37,7 +37,7 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 				},
 			};
 		}
-		case UserActionTypes.GetUserFromAuthFailed: {
+		case UserActionTypes.GetUserFromAuthFail: {
 			return {
 				...state,
 				userData: {

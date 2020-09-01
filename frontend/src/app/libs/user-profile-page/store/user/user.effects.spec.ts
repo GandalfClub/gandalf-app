@@ -4,7 +4,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-import { UserService } from '../../service/user-service';
+import { UserRepository } from '../../service/user-repository.service';
 import { IUser } from '../../model/user';
 import { UserEffects } from './user.effects';
 import { AuthFacadeService } from '../../../auth/store/auth/auth.facade';
@@ -16,7 +16,7 @@ import { User } from 'src/app/libs/auth/models/user';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
 describe('User Effects', () => {
-	let mockUserService: jasmine.SpyObj<UserService>;
+	let mockUserService: jasmine.SpyObj<UserRepository>;
 	let mockAuthFacadeService: jasmine.SpyObj<AuthFacadeService>;
 	let userAuth: User;
 	let user: IUser;
@@ -36,7 +36,7 @@ describe('User Effects', () => {
 			mobilePhone: '1',
 			password: '1',
 			isAdmin: false,
-			_id: '0',
+			id: '0',
 			email: 'test@test.test',
 		};
 		userAuth = {
@@ -50,40 +50,16 @@ describe('User Effects', () => {
 		};
 		TestBed.configureTestingModule({
 			providers: [
-				{ provide: UserService, useValue: createSpy(UserService.prototype) },
+				{ provide: UserRepository, useValue: createSpy(UserRepository.prototype) },
 				{
 					provide: AuthFacadeService,
 					useValue: createSpy(AuthFacadeService.prototype),
 				},
 			],
 		});
-		mockUserService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
+		mockUserService = TestBed.inject(UserRepository) as jasmine.SpyObj<UserRepository>;
 		mockAuthFacadeService = TestBed.inject(AuthFacadeService) as jasmine.SpyObj<AuthFacadeService>;
 	});
-
-	// describe('getUser', () => {
-	// 	describe('when getUser successful', () => {
-	// 		beforeEach(() => {
-	// 			user = {
-	// 				firstName: '1',
-	// 				secondName: '1',
-	// 				mobilePhone: '1',
-	// 				password: '1',
-	// 				isAdmin: false,
-	// 				_id: '0',
-	// 				email: 'test@test.test',
-	// 			};
-	//
-	//       mockAuthFacadeService.user$.;
-	// 			actions = hot('-----a-----|', { a: new GetUserFromAuthAction() });
-	// 			expected = cold('-----s-----|', { s: new GetUserFromAuthSuccessfullyAction({ user }) });
-	// 		});
-	//
-	// 		it('should emit getEvents action', () => {
-	// 			expect(createEffects(actions).getUser$).toBeObservable(expected);
-	// 		});
-	// 	});
-	// });
 
 	describe('update user success', () => {
 		beforeEach(() => {

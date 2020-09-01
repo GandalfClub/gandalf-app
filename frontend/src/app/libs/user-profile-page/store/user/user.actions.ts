@@ -3,8 +3,8 @@ import { IUser } from '../../model/user';
 
 export enum UserActionTypes {
 	GetUserFromAuth = '[User] Get user from auth',
-	GetUserFromAuthSuccessfuly = '[User] Get user from auth success',
-	GetUserFromAuthFailed = '[User] Get user from auth failed',
+	GetUserFromAuthSuccess = '[User] Get user from auth success',
+	GetUserFromAuthFail = '[User] Get user from auth failed',
 	UpdateUser = '[User] Update user',
 	UpdateUserInfoSuccessfuly = '[User] Update user success',
 	UpdateUserInfoFailed = '[User] Update user failed',
@@ -15,7 +15,7 @@ export class GetUserFromAuthAction implements Action {
 }
 
 export class GetUserFromAuthSuccessfullyAction implements Action {
-	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthSuccessfuly;
+	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthSuccess;
 	constructor(
 		public payload: {
 			user: IUser;
@@ -24,7 +24,7 @@ export class GetUserFromAuthSuccessfullyAction implements Action {
 }
 
 export class GetUserFromAuthFailedAction implements Action {
-	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthFailed;
+	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthFail;
 	constructor(
 		public payload: {
 			message: string;
