@@ -8,17 +8,23 @@ import { UserChanges } from '../model/user-changes';
 })
 export class UserConverter {
 	public convertFromDto(userDto: UserDto): User {
-		const user: User = { id: userDto._id, ...userDto };
-		delete user['_id'];
-		return user;
+		return {
+			email: userDto.email,
+			firstName: userDto.firstName,
+			isAdmin: userDto.isAdmin,
+			mobilePhone: userDto.mobilePhone,
+			password: userDto.password,
+			secondName: userDto.secondName,
+			id: userDto._id,
+		};
 	}
 
 	public convertToDto(user: User): UserChanges {
-		const userDto: UserDto = { _id: user.id, ...user };
-		delete userDto['id'];
-		delete userDto.isAdmin;
-		delete userDto.email;
-		delete userDto.password;
-		return userDto;
+		return {
+			_id: user.id,
+			firstName: user.firstName,
+			secondName: user.secondName,
+			mobilePhone: user.mobilePhone,
+		};
 	}
 }

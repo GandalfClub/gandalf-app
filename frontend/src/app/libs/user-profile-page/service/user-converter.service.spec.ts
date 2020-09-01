@@ -14,16 +14,27 @@ describe('UserConverterService', () => {
 		email: '1@1.com',
 		isAdmin: false,
 		_id: 'test',
+		firstName: 'undefined',
+		mobilePhone: 'undefined',
+		secondName: 'undefined',
+		password: 'undefined',
 	};
 
 	const user: User = {
 		email: '1@1.com',
 		isAdmin: false,
 		id: 'test',
+		firstName: 'undefined',
+		mobilePhone: 'undefined',
+		secondName: 'undefined',
+		password: 'undefined',
 	};
 
 	const userChanges: UserChanges = {
 		_id: 'test',
+		firstName: 'undefined',
+		mobilePhone: 'undefined',
+		secondName: 'undefined',
 	};
 
 	beforeEach(() => {
