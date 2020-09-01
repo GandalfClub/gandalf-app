@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventDescriptionFacadeService } from '../../store/event-description/event-description.facade';
-import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { Observable } from 'rxjs';
 import { EventDescription } from '../../models/event-description';
 
