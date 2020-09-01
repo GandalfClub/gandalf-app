@@ -1,11 +1,11 @@
 import { UserState } from './user-state';
-import { IUser } from '../../model/user';
 import { selectUser, selectUserState } from './user.selectors';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
+import { User } from '../../../auth/models/user';
 
 describe('Auth Selectors', () => {
-	const user: EntityWrapper<IUser> = {
+	const user: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 		value: {
 			firstName: '1',

@@ -5,13 +5,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { of, Subject } from 'rxjs';
 import { UserFacadeService } from './store/user/user.facade';
-import { IUser } from './model/user';
 import { takeUntil } from 'rxjs/operators';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
+import { User } from '../auth/models/user';
 
 describe('UserProfileComponent', () => {
-	const user: EntityWrapper<IUser> = {
+	const user: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 		value: {
 			email: 'test@test.by',
@@ -33,7 +33,7 @@ describe('UserProfileComponent', () => {
 
 	let component: UserProfilePageComponent;
 	let destroy$: Subject<boolean>;
-	let userForm: IUser;
+	let userForm: User;
 	let fixture: ComponentFixture<UserProfilePageComponent>;
 	const mockUserFacadeService: any = {
 		get user$(): any {

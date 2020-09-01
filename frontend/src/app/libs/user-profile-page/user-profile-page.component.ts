@@ -3,10 +3,10 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFacadeService } from './store/user/user.facade';
-import { IUser } from './model/user';
 import { Router } from '@angular/router';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
+import { User } from '../auth/models/user';
 
 @Component({
 	selector: 'app-user-config',
@@ -16,7 +16,7 @@ import { EntityStatus } from '../auth/models/entity-status';
 export class UserProfilePageComponent implements OnInit, OnDestroy {
 	private destroySource: Subject<boolean> = new Subject<boolean>();
 	public profileForm: FormGroup;
-	public userForm: IUser;
+	public userForm: User;
 
 	constructor(private userFacadeService: UserFacadeService, private router: Router, private formBuilder: FormBuilder) {
 		this.profileForm = formBuilder.group({
@@ -42,24 +42,22 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	private createChangedUser(value: any): any {
-		const valuesFromForm: any = {
-			email: value.email,
-			password: value.password,
-			firstName: value.firstName,
-			secondName: value.secondName,
-			mobilePhone: value.mobilePhone,
+	private getChangesFromForm(): User {
+		const valuesFromForm: User = {
+			id: this.userForm['id'],
+			isAdmin: false,
+			email: this.profileForm.value.email,
+			password: this.profileForm.value.password,
+			firstName: this.profileForm.value.firstName,
+			secondName: this.profileForm.value.secondName,
+			mobilePhone: this.profileForm.value.mobilePhone,
 		};
-		return {
-			firstName: valuesFromForm.firstName,
-			secondName: valuesFromForm.secondName,
-			mobilePhone: valuesFromForm.mobilePhone,
-		};
+		return valuesFromForm;
 	}
 
 	public ngOnInit(): void {
 		this.userFacadeService.getUserFromAuth();
-		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<IUser>) => {
+		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<User>) => {
 			if (user.status === EntityStatus.Success) {
 				this.userForm = user.value;
 			}
@@ -70,18 +68,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public updateUserInfo(): void {
-		const formValue: any = this.createChangedUser(this.profileForm.value);
-		formValue.id = this.userForm.id;
+		const formValue: User = this.getChangesFromForm();
 		this.userFacadeService.updateUser(formValue);
-		this.userForm = {
-			id: '',
-			email: '',
-			firstName: '',
-			secondName: '',
-			isAdmin: false,
-			mobilePhone: '',
-			password: '',
-		};
 	}
 
 	public ngOnDestroy(): void {

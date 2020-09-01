@@ -1,5 +1,5 @@
-export interface User {
-	id: string;
+export interface UserDto {
+	_id: string;
 	email: string;
 	isAdmin: boolean;
 	displayName?: string;

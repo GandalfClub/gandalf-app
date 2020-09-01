@@ -11,11 +11,12 @@ import {
 } from './user.actions';
 import { Observable, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
-import { IUser } from '../../model/user';
 import { UserRepository } from '../../service/user-repository.service';
 import { AuthFacadeService } from '../../../auth/store/auth/auth.facade';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { User } from '../../../auth/models/user';
+import { UserConverter } from '../../service/user-converter.service';
+import { UserDto } from '../../model/user-dto';
 
 @Injectable()
 export class UserEffects {
@@ -25,7 +26,7 @@ export class UserEffects {
 			exhaustMap(() =>
 				this.authFacadeService.user$.pipe(
 					map((user: EntityWrapper<User>) => user.value['user']),
-					map((user: IUser) => new GetUserFromAuthSuccessfullyAction({ user }))
+					map((user: UserDto) => new GetUserFromAuthSuccessfullyAction({ user: this.userConverter.convertFromDto(user) }))
 				)
 			),
 			catchError((err: Error) => of(new GetUserFromAuthFailedAction({ message: err.message })))
@@ -36,11 +37,18 @@ export class UserEffects {
 		this.actions$.pipe(
 			ofType(UserActionTypes.UpdateUser),
 			map((action: UpdateUserAction) => action.payload.user),
-			exhaustMap((user: IUser) =>
-				this.api.updateUser(user).pipe(map((updatedUser: IUser) => new UpdateUserInfoSuccessfulyAction({ user: updatedUser })))
+			exhaustMap((user: User) =>
+				this.api
+					.updateUser(this.userConverter.convertToDto(user))
+					.pipe(map((updatedUser: User) => new UpdateUserInfoSuccessfulyAction({ user: updatedUser })))
 			)
 		)
 	);
 
-	constructor(private actions$: Actions, private api: UserRepository, private authFacadeService: AuthFacadeService) {}
+	constructor(
+		private actions$: Actions,
+		private api: UserRepository,
+		private authFacadeService: AuthFacadeService,
+		private userConverter: UserConverter
+	) {}
 }

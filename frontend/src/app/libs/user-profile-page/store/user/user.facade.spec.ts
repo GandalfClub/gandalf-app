@@ -3,23 +3,23 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { first } from 'rxjs/operators';
 import { MemoizedSelector } from '@ngrx/store';
 import { UserState } from './user-state';
-import { IUser } from '../../model/user';
 import { UserFacadeService } from './user.facade';
 import { selectUser } from './user.selectors';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
+import { User } from '../../../auth/models/user';
 
 describe('User Facade Service', () => {
 	let mockStore: MockStore<UserState>;
-	let mockUserSelector: MemoizedSelector<UserState, EntityWrapper<IUser>>;
+	let mockUserSelector: MemoizedSelector<UserState, EntityWrapper<User>>;
 	let userFacadeService: UserFacadeService;
-	const user: EntityWrapper<IUser> = {
+	const user: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 	};
 	const initialState: UserState = {
 		userData: user,
 	};
-	const userUpdate: IUser = {
+	const userUpdate: User = {
 		firstName: '1',
 		secondName: '1',
 		mobilePhone: '1',
@@ -41,7 +41,7 @@ describe('User Facade Service', () => {
 	});
 
 	it('should return user', (done: Function) => {
-		userFacadeService.user$.pipe(first()).subscribe((result: EntityWrapper<IUser>) => {
+		userFacadeService.user$.pipe(first()).subscribe((result: EntityWrapper<User>) => {
 			expect(result).toEqual(user);
 			done();
 		});

@@ -1,4 +1,3 @@
-import { IUser } from '../../model/user';
 import {
 	GetUserFromAuthAction,
 	GetUserFromAuthFailedAction,
@@ -9,6 +8,7 @@ import {
 	UserActionType,
 	UserActionTypes,
 } from './user.actions';
+import { User } from '../../../auth/models/user';
 
 describe('UserActions', () => {
 	let action: UserActionType;
@@ -26,7 +26,7 @@ describe('UserActions', () => {
 
 	describe('Get User From Auth Successfully', () => {
 		it('should create GetUserSuccess action', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',
@@ -56,7 +56,7 @@ describe('UserActions', () => {
 
 	describe('Update', () => {
 		it('should create UpdateUser action', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',
@@ -75,7 +75,7 @@ describe('UserActions', () => {
 
 	describe('update User Successfully', () => {
 		it('should create UpdateUserInfoSuccessfulyAction action', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',

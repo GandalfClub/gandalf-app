@@ -3,9 +3,9 @@ import { Store, select } from '@ngrx/store';
 import { GetUserFromAuthAction, UpdateUserAction } from './user.actions';
 import { Observable } from 'rxjs';
 import { selectUser } from './user.selectors';
-import { IUser } from '../../model/user';
 import { UserState } from './user-state';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
+import { User } from '../../../auth/models/user';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,7 +13,7 @@ import { EntityWrapper } from '../../../auth/models/entity-wraper';
 export class UserFacadeService {
 	constructor(private store: Store<UserState>) {}
 
-	public updateUser(user: IUser): void {
+	public updateUser(user: User): void {
 		this.store.dispatch(new UpdateUserAction({ user }));
 	}
 
@@ -21,7 +21,7 @@ export class UserFacadeService {
 		this.store.dispatch(new GetUserFromAuthAction());
 	}
 
-	get user$(): Observable<EntityWrapper<IUser>> {
+	get user$(): Observable<EntityWrapper<User>> {
 		return this.store.pipe(select(selectUser));
 	}
 }

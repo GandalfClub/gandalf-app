@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { IUser } from '../../model/user';
+import { User } from '../../../auth/models/user';
+import { UserChanges } from '../../model/user-changes';
 
 export enum UserActionTypes {
 	GetUserFromAuth = '[User] Get user from auth',
@@ -18,7 +19,7 @@ export class GetUserFromAuthSuccessfullyAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthSuccess;
 	constructor(
 		public payload: {
-			user: IUser;
+			user: User;
 		}
 	) {}
 }
@@ -36,7 +37,7 @@ export class UpdateUserAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.UpdateUser;
 	constructor(
 		public payload: {
-			user: IUser;
+			user: User;
 		}
 	) {}
 }
@@ -45,7 +46,7 @@ export class UpdateUserInfoSuccessfulyAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.UpdateUserInfoSuccessfuly;
 	constructor(
 		public payload: {
-			user: IUser;
+			user: User;
 		}
 	) {}
 }

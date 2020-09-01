@@ -9,8 +9,8 @@ import {
 	UserActionType,
 } from './user.actions';
 import { UserState } from './user-state';
-import { IUser } from '../../model/user';
 import { EntityStatus } from '../../../auth/models/entity-status';
+import { User } from '../../../auth/models/user';
 
 describe('UserReducers', () => {
 	describe('Init', () => {
@@ -31,7 +31,7 @@ describe('UserReducers', () => {
 
 	describe('GetUserFromAuthSuccessfuly', () => {
 		it('should return the user.status - true and user', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',
@@ -51,7 +51,6 @@ describe('UserReducers', () => {
 
 	describe('GetUserFromAuthFailed', () => {
 		it('should return the user.status - true', () => {
-			//  const  message: string = 'testError';
 			const err: any = {
 				message: 'testError',
 			};
@@ -67,7 +66,7 @@ describe('UserReducers', () => {
 
 	describe('UpdateUser', () => {
 		it('should return user', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',
@@ -87,7 +86,7 @@ describe('UserReducers', () => {
 
 	describe('UpdateUserInfoSuccessfuly', () => {
 		it('should return user', () => {
-			const user: IUser = {
+			const user: User = {
 				firstName: '1',
 				secondName: '1',
 				mobilePhone: '1',

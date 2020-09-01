@@ -1,6 +1,6 @@
-import { IUser } from '../../model/user';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
+import { User } from '../../../auth/models/user';
 
 export interface UserState {
-	userData: EntityWrapper<IUser>;
+	userData: EntityWrapper<User>;
 }

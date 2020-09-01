@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IUser } from '../model/user';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../../auth/models/user';
 
 const URL_PREFIX: string = '/api';
-const ERROR_STATUS: number = 504;
 
 @Injectable({
 	providedIn: 'root',
@@ -13,7 +11,7 @@ const ERROR_STATUS: number = 504;
 export class UserRepository {
 	constructor(private http: HttpClient) {}
 
-	public updateUser(user: Partial<IUser>): Observable<any> {
-		return this.http.post<IUser>(URL_PREFIX + '/users/update-user', user);
+	public updateUser(user: Partial<User>): Observable<any> {
+		return this.http.post<User>(URL_PREFIX + '/users/update-user', user);
 	}
 }
