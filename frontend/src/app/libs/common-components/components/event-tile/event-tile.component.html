@@ -1,1 +1,41 @@
-<p>event-tile works!</p>
+<section class="app-event-tile" 
+		[class.app-event-title__draft]="isDraft">
+	<h3 class="app-event-tile--title"> {{ name }} </h3>
+
+	<ng-container *ngIf="endDate else inProgressTime">
+		<time class="app-event-tile--datetime">
+			<div class="app-event-tile--date">
+				<span>{{ startDate | date:'d MMM yy' }}</span>
+				<span> - </span>
+				<span>{{ endDate | date:'d MMM yy' }}</span>
+			</div>
+			<div class="app-event-tile--time">
+				<span>{{ startDate | date:'h a' }}</span>
+				<span> - </span>
+				<span>{{ endDate | date:'h a' }}</span>
+			</div>
+		</time>
+	</ng-container>
+
+	<ng-template #inProgressTime>
+		<time class="app-event-tile--datetime">
+			<div class="app-event-tile--date">
+				<span>{{ startDate | date:'d MMM yy' }}</span>
+			</div>
+			<div class="app-event-tile--time app-event-tile--time__in-progress">
+				<span>In Progress</span>
+			</div>
+		</time>
+	</ng-template>
+	
+	<section class="app-event-tile--status">
+		<h4>Status:</h4>
+		<ul class="app-event-tile--status-list">
+			<li *ngFor="let status of statusList">
+				{{ status }}
+			</li>
+		</ul>
+	</section>
+
+	<button mat-icon-button aria-label="Event tile menu" title="Menu">more_vert</button>
+</section>
