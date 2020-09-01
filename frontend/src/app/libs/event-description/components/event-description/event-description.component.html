@@ -1,0 +1,26 @@
+<div class="app-event-description">
+  <ng-container *ngIf="(event$ | async) as item">
+    <div>{{item.event.title}}</div>
+    <ng-container *ngIf="item.event.endDate else withoutEndDateTemplate">
+      <div class="app-event-description-date">
+        {{ item.event.startDate | date:'d MMM yy' }} - {{ item.event.endDate | date:'d MMM yy' }}
+      </div>
+      <div class="app-event-description-time">
+        {{ item.event.startTime | date:'h a' }} - {{ item.event.endTime | date:'h a' }}
+      </div>
+    </ng-container>
+    <ng-template #withoutEndDateTemplate>
+      <div class="app-event-description-date">
+        {{ item.event.startDate | date:'d MMM yy' }}
+      </div>
+      <div class="app-event-description-time">
+        <span>In Progress</span>
+      </div>
+    </ng-template>
+    <div class="app-event-description-description" [innerHTML]="item.event.description"></div>
+    <div class="app-event-description-button" matTooltip="You must be logged in to participate in this round"
+      [matTooltipDisabled]="item.userLoginStatus">
+      <button mat-raised-button [disabled]="!item.userLoginStatus">TAKE PART</button>
+    </div>
+  </ng-container>
+</div>
