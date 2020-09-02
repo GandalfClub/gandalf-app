@@ -369,29 +369,7 @@
   </div>
   <button mat-button>Magic Button Here</button>
  
-	<!--Element for testing-->
-	<div class="app-components-test-container" style="width: 400px;">
-		<app-event-tile
-			[isDraft]="true"
-			[name]="'Super classic training'"
-			[statusList]="['Admin', 'Manager', 'Eve.manager']"
-		></app-event-tile>
-		<app-event-tile
-			[isDraft]="false"
-			[name]="'Educational Codeforces Round'"
-			[statusList]="['Admin', 'Mentor', 'Eve.manager', 'HR', 'Participant']"
-		></app-event-tile>
-		<app-event-tile
-			[isDraft]="true"
-			[name]="'EDU: Segment tree'"
-			[statusList]="['Admin', 'Manager', 'Eve.manager']"
-		></app-event-tile>
-		<app-event-tile
-			[isDraft]="false"
-			[name]="'Super mega ultra training with the huge title OMG'"
-			[statusList]="['Admin', 'Manager', 'Eve.manager']"
-		></app-event-tile>
-	</div>
+	<app-container></app-container>
 
   <input type="hidden" #selection>
 
