@@ -5,7 +5,7 @@ import { EntityStatus } from '../../../auth/models/entity-status';
 import { User } from '../../../auth/models/user';
 
 describe('Auth Selectors', () => {
-	const user: EntityWrapper<User> = {
+	const userTest: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 		value: {
 			firstName: '1',
@@ -18,7 +18,7 @@ describe('Auth Selectors', () => {
 		},
 	};
 	const state: UserState = {
-		user: user,
+		user: userTest,
 	};
 
 	describe('selectAuthState', () => {
@@ -29,7 +29,7 @@ describe('Auth Selectors', () => {
 
 	describe('selectUser', () => {
 		it('should return user', () => {
-			expect(selectUser.projector(state)).toEqual(user);
+			expect(selectUser.projector(state)).toEqual(userTest);
 		});
 	});
 });

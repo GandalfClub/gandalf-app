@@ -9,9 +9,6 @@ import { takeUntil } from 'rxjs/operators';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
-import { Store } from '@ngrx/store';
-import { UserState } from './store/user/user-state';
-import any = jasmine.any;
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -45,7 +42,9 @@ describe('UserProfileComponent', () => {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
 		},
-		getUserFromAuth(): void {},
+		getUserFromAuth(): void {
+			return null;
+		},
 		updateUser: jasmine.createSpy('updateUser'),
 	};
 

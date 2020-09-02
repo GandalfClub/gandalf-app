@@ -13,11 +13,11 @@ describe('User Facade Service', () => {
 	let mockStore: MockStore<UserState>;
 	let mockUserSelector: MemoizedSelector<UserState, EntityWrapper<User>>;
 	let userFacadeService: UserFacadeService;
-	const user: EntityWrapper<User> = {
+	const userTest: EntityWrapper<User> = {
 		status: EntityStatus.Success,
 	};
 	const initialState: UserState = {
-		user: user,
+		user: userTest,
 	};
 	const userUpdate: User = {
 		firstName: '1',
@@ -35,14 +35,14 @@ describe('User Facade Service', () => {
 		});
 		userFacadeService = TestBed.inject(UserFacadeService);
 		mockStore = TestBed.inject(MockStore);
-		mockUserSelector = mockStore.overrideSelector(selectUser, user);
+		mockUserSelector = mockStore.overrideSelector(selectUser, userTest);
 		userFacadeService.getUserFromAuth();
 		userFacadeService.updateUser(userUpdate);
 	});
 
 	it('should return user', (done: Function) => {
 		userFacadeService.user$.pipe(first()).subscribe((result: EntityWrapper<User>) => {
-			expect(result).toEqual(user);
+			expect(result).toEqual(userTest);
 			done();
 		});
 	});

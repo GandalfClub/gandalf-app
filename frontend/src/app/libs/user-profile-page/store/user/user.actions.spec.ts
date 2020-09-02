@@ -12,7 +12,6 @@ import { User } from '../../../auth/models/user';
 
 describe('UserActions', () => {
 	let action: UserActionType;
-	let error: Error;
 	describe('Get User', () => {
 		beforeEach(() => {
 			action = new GetUserFromAuthAction();

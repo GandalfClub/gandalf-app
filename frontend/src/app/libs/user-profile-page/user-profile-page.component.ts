@@ -73,5 +73,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	public backFromUserProfilePage(): void {}
+	public backFromUserProfilePage(): void {
+		return null;
+	}
 }
