@@ -1,41 +1,44 @@
 <section class="app-event-tile" 
 		[class.app-event-tile__draft]="isDraft">
-	<h3 class="app-event-tile--title"> {{ name }} </h3>
+		
+	<div class="app-event-tile--container">
+		<h3 class="app-event-tile--title" [attr.title]="name"> {{ name }} </h3>
 
-	<ng-container *ngIf="endDate else inProgressTime">
-		<time class="app-event-tile--datetime">
-			<div class="app-event-tile--date">
-				<span>{{ startDate | date:'d MMM yy' }}</span>
-				<span> - </span>
-				<span>{{ endDate | date:'d MMM yy' }}</span>
+		<ng-container *ngIf="endDate else inProgressTime">
+			<div class="app-event-tile--date-time">
+				<time class="app-event-tile--date">
+					<span>{{ startDate | date:'d MMM yy' }}</span>
+					<span> - </span>
+					<span>{{ endDate | date:'d MMM yy' }}</span>
+				</time>
+				<time class="app-event-tile--time" *ngIf="startTime && endTime">
+					<span>{{ startTime | date:'h a' }}</span>
+					<span> - </span>
+					<span>{{ endTime | date:'h a' }}</span>
+				</time>
 			</div>
-			<div class="app-event-tile--time" *ngIf="startTime && endTime">
-				<span>{{ startTime | date:'h a' }}</span>
-				<span> - </span>
-				<span>{{ endTime | date:'h a' }}</span>
-			</div>
-		</time>
-	</ng-container>
-
-	<ng-template #inProgressTime>
-		<time class="app-event-tile--datetime">
-			<div class="app-event-tile--date">
-				<span>{{ startDate | date:'d MMM yy' }}</span>
-			</div>
-			<div class="app-event-tile--time app-event-tile--time__in-progress">
-				<span>In Progress</span>
-			</div>
-		</time>
-	</ng-template>
+		</ng-container>
 	
-	<button mat-icon-button class="app-event-tile--tile-menu" aria-label="Event tile menu" title="Menu">more_vert</button>
-
-	<section class="app-event-tile--status">
-		<h4 class="app-event-tile--status-title">Status:</h4>
+		<ng-template #inProgressTime>
+			<div class="app-event-tile--date-time">
+				<time class="app-event-tile--date">
+					<span>{{ startDate | date:'d MMM yy' }}</span>
+				</time>
+				<div class="app-event-tile--time app-event-tile--time__in-progress">
+					<span>In Progress</span>
+				</div>
+			</div>
+		</ng-template>
+		
+		<button mat-icon-button [disableRipple]="true" class="app-event-tile--menu-button" aria-label="Event tile menu" title="Menu">
+			<mat-icon>more_vert</mat-icon>
+		</button>
+	
 		<ul class="app-event-tile--status-list">
+			<h4 class="app-event-tile--status-title">Status:</h4>
 			<li *ngFor="let status of statusList" class="app-event-tile--status-item"> 
 				<span>{{ status }}</span>
 			</li>
 		</ul>
-	</section>
+	</div>
 </section>

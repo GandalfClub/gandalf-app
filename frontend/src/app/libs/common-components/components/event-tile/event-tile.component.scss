@@ -1,25 +1,81 @@
 .app-event-tile {
+  width: 100%;
+  padding: 16px 18px;
 
-	&--title { 
+  font-size: 14px;
 
-	}
+  background-color: #c4c4c4;
 
-	&--datetime {
+  &__draft {
+    background-color: #e7e7e7;
+  }
 
-	}
+  &--container {
+    position: relative;
+  }
 
-	&--date {
+  &--title {
+    max-width: 90%;
+    margin-bottom: 2px;
+    overflow: hidden;
 
-	}
+    font-weight: 500;
+    font-size: 1.2em;
+    line-height: 20px;
+    color: black;
+    letter-spacing: 1.25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
-	&--time {
-		&__in-progress {
+  &--date-time {
+    text-transform: lowercase;
+  }
 
-		}
-	}
+  &--date {
+    display: block;
+  }
 
-	&__draft {
-		
-	}
+  &--time {
+    display: block;
 
+    font-size: 1.15em;
+
+    &__in-progress {
+      text-transform: none;
+    }
+  }
+
+  &--menu-button {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
+
+  &--status-title {
+    margin-right: 18px;
+    margin-bottom: 0;
+
+    font-weight: 500;
+  }
+
+  &--status-list {
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    margin: 0;
+    margin-top: 18px;
+    padding: 0;
+  }
+
+  &--status-item {
+    display: inline;
+    margin-right: 18px;
+
+    list-style-type: none;
+
+    &:last-child {
+      margin-right: 5px;
+    }
+  }
 }

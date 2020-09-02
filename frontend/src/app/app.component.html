@@ -369,10 +369,10 @@
   </div>
   <button mat-button>Magic Button Here</button>
  
-	<div class="app-components-test-container">
+	<div class="app-components-test-container" style="width: 380px;">
 		<app-event-tile
 			[isDraft]="true"
-			[name]="'Codeforces Round'"
+			[name]="'Educational Codeforces Round'"
 			[startDate]="2016-04-24"
 			[endDate]="2020-04-24"
 			[statusList]="['Admin', 'Mentor', 'Eve.manager', 'HR', 'Participant']"
@@ -385,8 +385,14 @@
 			[statusList]="['Admin', 'Manager', 'Eve.manager']"
 		></app-event-tile>
 		<app-event-tile
-			[isDraft]="false"
+			[isDraft]="true"
 			[name]="'EDU: Segment tree'"
+			[startDate]="2016-04-24"
+			[statusList]="['Admin', 'Manager', 'Eve.manager']"
+		></app-event-tile>
+		<app-event-tile
+			[isDraft]="false"
+			[name]="'Super mega ultra training with the huge title OMG'"
 			[startDate]="2016-04-24"
 			[statusList]="['Admin', 'Manager', 'Eve.manager']"
 		></app-event-tile>
