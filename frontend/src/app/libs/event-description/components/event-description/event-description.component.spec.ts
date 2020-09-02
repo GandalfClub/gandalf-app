@@ -2,7 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventDescriptionComponent } from './event-description.component';
 import { ActivatedRoute } from '@angular/router';
-import { EventDescriptionFacadeService } from '../../store/event-description/event-description.facade';
+import { EventFacadeService } from '../../store/event-description/event-description.facade';
+import { Observable } from 'rxjs';
+import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
+import { User } from 'src/app/libs/auth/models/user';
+import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 
 describe('EventDescriptionComponent', () => {
 	let component: EventDescriptionComponent;
@@ -10,7 +14,13 @@ describe('EventDescriptionComponent', () => {
 	let eventId: string;
 
 	const mockEventDescriptionFacadeService: any = {
-		getEventDescription(id: string): void {
+		getEvent(id: string): void {
+			return;
+		},
+	};
+
+	const mockAuthFacadeService: any = {
+		get user$(): Observable<EntityWrapper<User>> {
 			return;
 		},
 	};
@@ -19,6 +29,7 @@ describe('EventDescriptionComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [EventDescriptionComponent],
 			providers: [
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{
 					provide: ActivatedRoute,
 					useValue: {
@@ -29,7 +40,7 @@ describe('EventDescriptionComponent', () => {
 						},
 					},
 				},
-				{ provide: EventDescriptionFacadeService, useValue: mockEventDescriptionFacadeService },
+				{ provide: EventFacadeService, useValue: mockEventDescriptionFacadeService },
 			],
 		}).compileComponents();
 	}));
@@ -38,7 +49,7 @@ describe('EventDescriptionComponent', () => {
 		fixture = TestBed.createComponent(EventDescriptionComponent);
 		component = fixture.componentInstance;
 		eventId = '1';
-		mockEventDescriptionFacadeService.getEventDescription(eventId);
+		mockEventDescriptionFacadeService.getEvent(eventId);
 		fixture.detectChanges();
 	});
 

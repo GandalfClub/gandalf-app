@@ -1,4 +1,4 @@
-import { EventDescriptionTypes, EventDescriptionActionTypes } from './event-description.actions';
+import { EventTypes, EventActionTypes } from './event-description.actions';
 import { EventDescriptionState } from './event-description-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
@@ -10,9 +10,9 @@ export const initialState: EventDescriptionState = {
 	},
 };
 
-export function eventDescriptionReducer(state: EventDescriptionState = initialState, action: EventDescriptionTypes): EventDescriptionState {
+export function eventReducer(state: EventDescriptionState = initialState, action: EventTypes): EventDescriptionState {
 	switch (action.type) {
-		case EventDescriptionActionTypes.LoadEventDescription: {
+		case EventActionTypes.LoadEvent: {
 			return {
 				...state,
 				event: {
@@ -21,20 +21,17 @@ export function eventDescriptionReducer(state: EventDescriptionState = initialSt
 				},
 			};
 		}
-		case EventDescriptionActionTypes.LoadEventDescriptionsSuccess: {
+		case EventActionTypes.LoadEventSuccess: {
 			return {
 				...state,
 				event: {
-					value: {
-						event: action.payload.event,
-						userLoginStatus: action.payload.userLoginStatus,
-					},
+					value: action.payload,
 					status: EntityStatus.Success,
 					error: null,
 				},
 			};
 		}
-		case EventDescriptionActionTypes.LoadEventDescriptionsFailure: {
+		case EventActionTypes.LoadEventFail: {
 			return {
 				...state,
 				event: {

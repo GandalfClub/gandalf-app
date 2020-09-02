@@ -1,12 +1,52 @@
-// import * as fromEventDescription from './event-description.reducer';
-// import { s } from './event-description.selectors';
+import { selectEventState, selectEvent, selectEventValue } from './event-description.selectors';
+import { EventDescriptionState } from './event-description-state';
+import { EntityStatus } from '../../../auth/models/entity-status';
+import { Event } from '../../../landing/models/event';
+import { EntityWrapper } from '../../../auth/models/entity-wraper';
+import { async } from '@angular/core/testing';
 
-// describe('EventDescription Selectors', () => {
-// 	it('should select the feature state', () => {
-// 		const result: fromEventDescription.State = selectEventDescriptionState({
-// 			[fromEventDescription.eventDescriptionFeatureKey]: {},
-// 		});
+describe('Events Selectors', () => {
+	let eventValue: Event;
+	let event: EntityWrapper<Event>;
+	let state: EventDescriptionState;
 
-// 		expect(result).toEqual({});
-// 	});
-// });
+	beforeEach(async(() => {
+		eventValue = {
+			id: 'test',
+			title: 'test',
+			description: 'test',
+			created: null,
+			startDate: null,
+			startTime: null,
+			endDate: null,
+			endTime: null,
+		};
+
+		event = {
+			status: EntityStatus.Success,
+			value: eventValue,
+		};
+
+		state = {
+			event,
+		};
+	}));
+
+	describe('selectAuthState', () => {
+		it('should return the feature state', () => {
+			expect(selectEventState.projector(state)).toEqual(state);
+		});
+	});
+
+	describe('selectEvents', () => {
+		it('should return events', () => {
+			expect(selectEvent.projector(state)).toEqual(event);
+		});
+	});
+
+	describe('selectEventsValue', () => {
+		it('should return events value', () => {
+			expect(selectEventValue.projector(state)).toEqual(event.value);
+		});
+	});
+});

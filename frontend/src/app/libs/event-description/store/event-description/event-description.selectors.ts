@@ -1,19 +1,18 @@
 import { createFeatureSelector, MemoizedSelector, createSelector } from '@ngrx/store';
-import { eventDescriptionFeatureKey } from '../store.module';
+import { eventFeatureKey } from '../store.module';
 import { EventDescriptionState } from './event-description-state';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
-import { EventDescription } from '../../models/event-description';
+import { Event } from '../../../landing/models/event';
+import { selectEventsState } from 'src/app/libs/landing/store/events/events.selectors';
 
-export const selectEventDescriptionState: MemoizedSelector<{}, EventDescriptionState> = createFeatureSelector<EventDescriptionState>(
-	eventDescriptionFeatureKey
-);
+export const selectEventState: MemoizedSelector<{}, EventDescriptionState> = createFeatureSelector<EventDescriptionState>(eventFeatureKey);
 
-export const selectEventDescription: MemoizedSelector<{}, EntityWrapper<EventDescription>> = createSelector(
-	selectEventDescriptionState,
+export const selectEvent: MemoizedSelector<{}, EntityWrapper<Event>> = createSelector(
+	selectEventState,
 	(state: EventDescriptionState) => state.event
 );
 
-export const selectEventDescriptionValue: MemoizedSelector<{}, EventDescription> = createSelector(
-	selectEventDescriptionState,
+export const selectEventValue: MemoizedSelector<{}, Event> = createSelector(
+	selectEventState,
 	(state: EventDescriptionState) => state.event.value
 );

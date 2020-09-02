@@ -1,23 +1,23 @@
 import { Action } from '@ngrx/store';
-import { EventDescription } from '../../models/event-description';
+import { Event } from '../../../landing/models/event';
 
-export enum EventDescriptionActionTypes {
-	LoadEventDescription = '[EventDescription] Load Event',
-	LoadEventDescriptionsSuccess = '[EventDescription] Load Event Success',
-	LoadEventDescriptionsFailure = '[EventDescription] Load Event Failure',
+export enum EventActionTypes {
+	LoadEvent = '[EventDescription] Load Event',
+	LoadEventSuccess = '[EventDescription] Load Event Success',
+	LoadEventFail = '[EventDescription] Load Event Failure',
 }
 
-export class LoadEventDescription implements Action {
-	public readonly type: EventDescriptionActionTypes.LoadEventDescription = EventDescriptionActionTypes.LoadEventDescription;
+export class LoadEvent implements Action {
+	public readonly type: EventActionTypes.LoadEvent = EventActionTypes.LoadEvent;
 	constructor(public payload: string) {}
 }
-export class LoadEventDescriptionsSuccess implements Action {
-	public readonly type: EventDescriptionActionTypes.LoadEventDescriptionsSuccess = EventDescriptionActionTypes.LoadEventDescriptionsSuccess;
-	constructor(public payload: EventDescription) {}
+export class LoadEventSuccess implements Action {
+	public readonly type: EventActionTypes.LoadEventSuccess = EventActionTypes.LoadEventSuccess;
+	constructor(public payload: Event) {}
 }
-export class LoadEventDescriptionsFailure implements Action {
-	public readonly type: EventDescriptionActionTypes.LoadEventDescriptionsFailure = EventDescriptionActionTypes.LoadEventDescriptionsFailure;
+export class LoadEventFail implements Action {
+	public readonly type: EventActionTypes.LoadEventFail = EventActionTypes.LoadEventFail;
 	constructor(public payload: Error) {}
 }
 
-export type EventDescriptionTypes = LoadEventDescription | LoadEventDescriptionsSuccess | LoadEventDescriptionsFailure;
+export type EventTypes = LoadEvent | LoadEventSuccess | LoadEventFail;
