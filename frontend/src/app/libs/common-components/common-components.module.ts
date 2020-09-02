@@ -8,6 +8,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { CommonModule } from '@angular/common';
 
 @NgModule({
+	declarations: [ EventTileComponent ],
 	exports: [MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, ReactiveFormsModule, EventTileComponent],
 	imports: [ CommonModule ]
 })

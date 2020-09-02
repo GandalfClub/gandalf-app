@@ -369,7 +369,28 @@
   </div>
   <button mat-button>Magic Button Here</button>
  
-  <app-container></app-container>
+	<div class="app-components-test-container">
+		<app-event-tile
+			[isDraft]="true"
+			[name]="'Codeforces Round'"
+			[startDate]="2016-04-24"
+			[endDate]="2020-04-24"
+			[statusList]="['Admin', 'Mentor', 'Eve.manager', 'HR', 'Participant']"
+		></app-event-tile>
+		<app-event-tile
+			[isDraft]="false"
+			[name]="'Super classic training'"
+			[startDate]="2016-04-24"
+			[endDate]="2020-04-24"
+			[statusList]="['Admin', 'Manager', 'Eve.manager']"
+		></app-event-tile>
+		<app-event-tile
+			[isDraft]="false"
+			[name]="'EDU: Segment tree'"
+			[startDate]="2016-04-24"
+			[statusList]="['Admin', 'Manager', 'Eve.manager']"
+		></app-event-tile>
+	</div>
 
   <input type="hidden" #selection>
 

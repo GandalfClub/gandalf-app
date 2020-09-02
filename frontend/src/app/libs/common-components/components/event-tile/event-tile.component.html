@@ -1,5 +1,5 @@
 <section class="app-event-tile" 
-		[class.app-event-title__draft]="isDraft">
+		[class.app-event-tile__draft]="isDraft">
 	<h3 class="app-event-tile--title"> {{ name }} </h3>
 
 	<ng-container *ngIf="endDate else inProgressTime">
@@ -9,10 +9,10 @@
 				<span> - </span>
 				<span>{{ endDate | date:'d MMM yy' }}</span>
 			</div>
-			<div class="app-event-tile--time">
-				<span>{{ startDate | date:'h a' }}</span>
+			<div class="app-event-tile--time" *ngIf="startTime && endTime">
+				<span>{{ startTime | date:'h a' }}</span>
 				<span> - </span>
-				<span>{{ endDate | date:'h a' }}</span>
+				<span>{{ endTime | date:'h a' }}</span>
 			</div>
 		</time>
 	</ng-container>
@@ -28,14 +28,14 @@
 		</time>
 	</ng-template>
 	
+	<button mat-icon-button class="app-event-tile--tile-menu" aria-label="Event tile menu" title="Menu">more_vert</button>
+
 	<section class="app-event-tile--status">
-		<h4>Status:</h4>
+		<h4 class="app-event-tile--status-title">Status:</h4>
 		<ul class="app-event-tile--status-list">
-			<li *ngFor="let status of statusList">
-				{{ status }}
+			<li *ngFor="let status of statusList" class="app-event-tile--status-item"> 
+				<span>{{ status }}</span>
 			</li>
 		</ul>
 	</section>
-
-	<button mat-icon-button aria-label="Event tile menu" title="Menu">more_vert</button>
 </section>
