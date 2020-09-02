@@ -1,42 +1,49 @@
 <section class="app-event-tile" 
-		[class.app-event-tile__draft]="isDraft">
+		[class.app-event-tile--draft]="isDraft">
 		
-	<div class="app-event-tile--container">
-		<h3 class="app-event-tile--title" [attr.title]="name"> {{ name }} </h3>
+	<div class="app-event-tile__container">
+		<h3 class="app-event-tile__title" [attr.title]="name"> {{ name }} </h3>
 
 		<ng-container *ngIf="endDate else inProgressTime">
-			<div class="app-event-tile--date-time">
-				<time class="app-event-tile--date">
+			<div class="app-event-tile__date-time">
+				<time class="app-event-tile__date">
 					<span>{{ startDate | date:'d MMM yy' }}</span>
 					<span> - </span>
 					<span>{{ endDate | date:'d MMM yy' }}</span>
 				</time>
-				<time class="app-event-tile--time" *ngIf="startTime && endTime">
-					<span>{{ startTime | date:'h a' }}</span>
+				<time class="app-event-tile__time" *ngIf="startTime && endTime">
+					<span>{{ startTime | date:'h:mm a' }}</span>
 					<span> - </span>
-					<span>{{ endTime | date:'h a' }}</span>
+					<span>{{ endTime | date:'h:mm a' }}</span>
 				</time>
 			</div>
 		</ng-container>
 	
 		<ng-template #inProgressTime>
-			<div class="app-event-tile--date-time">
-				<time class="app-event-tile--date">
+			<div class="app-event-tile__date-time">
+				<time class="app-event-tile__date">
 					<span>{{ startDate | date:'d MMM yy' }}</span>
 				</time>
-				<div class="app-event-tile--time app-event-tile--time__in-progress">
+				<div class="app-event-tile__time app-event-tile__time--in-progress">
 					<span>In Progress</span>
 				</div>
 			</div>
 		</ng-template>
 		
-		<button mat-icon-button [disableRipple]="true" class="app-event-tile--menu-button" aria-label="Event tile menu" title="Menu">
-			<mat-icon>more_vert</mat-icon>
-		</button>
+		<ng-container *ngIf="menuItems.length >= 1">
+			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="menu">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #menu>
+				<ng-container *ngFor="let menuItem of menuItems" >
+					<button mat-menu-item (click)="menuItem.action()">{{ menuItem.name }}</button>
+				</ng-container>
+			</mat-menu>
+		</ng-container>
 	
-		<ul class="app-event-tile--status-list">
-			<h4 class="app-event-tile--status-title">Status:</h4>
-			<li *ngFor="let status of statusList" class="app-event-tile--status-item"> 
+		<ul class="app-event-tile__status-list">
+			<h4 class="app-event-tile__status-title">Status:</h4>
+			<li *ngFor="let status of statusList" class="app-event-tile__status-item"> 
 				<span>{{ status }}</span>
 			</li>
 		</ul>

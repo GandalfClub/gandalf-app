@@ -5,18 +5,19 @@
   font-size: 14px;
 
   background-color: #c4c4c4;
+  cursor: default;
 
-  &__draft {
+  &--draft {
     background-color: #e7e7e7;
   }
 
-  &--container {
+  &__container {
     position: relative;
   }
 
-  &--title {
+  &__title {
     max-width: 90%;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     overflow: hidden;
 
     font-weight: 500;
@@ -28,47 +29,48 @@
     text-overflow: ellipsis;
   }
 
-  &--date-time {
+  &__date-time {
     text-transform: lowercase;
   }
 
-  &--date {
+  &__date {
     display: block;
   }
 
-  &--time {
+  &__time {
     display: block;
 
     font-size: 1.15em;
+    line-height: 1.8em;
 
-    &__in-progress {
+    &--in-progress {
       text-transform: none;
     }
   }
 
-  &--menu-button {
+  &__menu-button {
     position: absolute;
     top: -8px;
     right: -8px;
   }
 
-  &--status-title {
+  &__status-title {
     margin-right: 18px;
     margin-bottom: 0;
 
     font-weight: 500;
   }
 
-  &--status-list {
+  &__status-list {
     display: inline-flex;
     flex-flow: row wrap;
     align-items: baseline;
     margin: 0;
-    margin-top: 18px;
+    margin-top: 24px;
     padding: 0;
   }
 
-  &--status-item {
+  &__status-item {
     display: inline;
     margin-right: 18px;
 

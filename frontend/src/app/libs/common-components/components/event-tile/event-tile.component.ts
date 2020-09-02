@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { HintMenuItem } from '../../models/hint-menu-item';
 
 @Component({
   selector: 'app-event-tile',
@@ -29,16 +30,27 @@ export class EventTileComponent {
 	public statusList: string[];
 
 	@Input()
-	public menuActions: Map<string, () => void>;
+	public menuItems: HintMenuItem[];
 
   constructor() {
-		//TODO:	remove after tests
-		this.startTime = new Date(12, 3, 2020, 13, 30);
-		this.endTime = new Date(12, 3, 2020, 16, 30);
-		//TODO: remove after menu test
-		this.menuActions = new Map([
-			['Action1', () => { alert('action1 emitted'); }],
-			['Action2', () => { alert('action2 emitted'); }]
-		]);
+		// TODO:	remove after component tested manually
+		this.startDate = new Date('2020-03-04');
+		this.endDate = new Date('2020-04-05');
+		this.startTime = new Date('2020-03-04T13:30');
+		this.endTime = new Date('2020-03-04T16:30');
+		this.menuItems = [
+			{
+				name: 'Action1',
+				action(): any {
+					alert(this.name);
+				}
+			},
+			{
+				name: 'Action2',
+				action(): any {
+					alert(this.name);
+				}
+			},
+		];
 	}
 }
