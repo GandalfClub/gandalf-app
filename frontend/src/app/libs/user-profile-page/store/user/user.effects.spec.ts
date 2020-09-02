@@ -7,7 +7,7 @@ import { UserRepository } from '../../service/user-repository.service';
 import { UserEffects } from './user.effects';
 import { AuthFacadeService } from '../../../auth/store/auth/auth.facade';
 import { createSpy } from '../../helpers/createSpy';
-import { UpdateUserAction, UpdateUserInfoSuccessfulyAction, UpdateUserInfoFailedAction } from './user.actions';
+import { UpdateUserAction, UpdateUserInfoSuccessAction, UpdateUserInfoFailAction } from './user.actions';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
@@ -20,7 +20,6 @@ describe('User Effects', () => {
 	let userAuth: User;
 	let user: User;
 	let users: EntityWrapper<User>;
-	let error: Error;
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
 
@@ -63,31 +62,12 @@ describe('User Effects', () => {
 
 	describe('update user success', () => {
 		beforeEach(() => {
-			const payload: any = {
-				user,
-			};
 			mockUserService.updateUser.and.returnValue(of(user));
-			actions = hot('-a-', { a: new UpdateUserAction(payload) });
-			expected = cold('-s-', { s: new UpdateUserInfoSuccessfulyAction(payload) });
+			actions = hot('-a-', { a: new UpdateUserAction({ user }) });
+			expected = cold('-s-', { s: new UpdateUserInfoSuccessAction({ user }) });
 		});
 
 		it('should success', () => {
-			expect(createEffects(actions).updateUser$).toBeObservable(expected);
-		});
-	});
-
-	describe('update user error', () => {
-		beforeEach(() => {
-			const payload: any = {
-				user,
-			};
-			error = new Error('test');
-			mockUserService.updateUser.and.throwError(error);
-			actions = hot('-a-', { a: new UpdateUserAction(payload) });
-			expected = cold('-(s|)', { s: new UpdateUserInfoFailedAction({ message: error.message }) });
-		});
-
-		it('should error', () => {
 			expect(createEffects(actions).updateUser$).toBeObservable(expected);
 		});
 	});

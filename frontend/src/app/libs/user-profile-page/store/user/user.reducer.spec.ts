@@ -1,11 +1,11 @@
 import { initialState, userReducer } from './user.reducer';
 import {
 	GetUserFromAuthAction,
-	GetUserFromAuthFailedAction,
-	GetUserFromAuthSuccessfullyAction,
+	GetUserFromAuthFailAction,
+	GetUserFromAuthSuccessAction,
 	UpdateUserAction,
-	UpdateUserInfoFailedAction,
-	UpdateUserInfoSuccessfulyAction,
+	UpdateUserInfoFailAction,
+	UpdateUserInfoSuccessAction,
 	UserActionType,
 } from './user.actions';
 import { UserState } from './user-state';
@@ -15,8 +15,8 @@ import { User } from '../../../auth/models/user';
 describe('UserReducers', () => {
 	describe('Init', () => {
 		it('should return the initial state', () => {
-			const action: any = {} as any;
-			const result: any = userReducer(initialState, action);
+			const action: UserActionType = {} as UserActionType;
+			const result: UserState = userReducer(initialState, action);
 			expect(result).toBe(initialState);
 		});
 	});
@@ -25,7 +25,7 @@ describe('UserReducers', () => {
 		it('should return the user.status - true', () => {
 			const action: UserActionType = new GetUserFromAuthAction();
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData.status).toBe(EntityStatus.Success);
+			expect(newState.user.status).toBe(EntityStatus.Success);
 		});
 	});
 
@@ -40,9 +40,9 @@ describe('UserReducers', () => {
 				id: '0',
 				email: 'test@test.test',
 			};
-			const action: UserActionType = new GetUserFromAuthSuccessfullyAction({ user });
+			const action: UserActionType = new GetUserFromAuthSuccessAction({ user });
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData).toEqual({
+			expect(newState.user).toEqual({
 				status: EntityStatus.Success,
 				value: user,
 			});
@@ -51,15 +51,13 @@ describe('UserReducers', () => {
 
 	describe('GetUserFromAuthFailed', () => {
 		it('should return the user.status - true', () => {
-			const err: any = {
-				message: 'testError',
-			};
-			const action: UserActionType = new GetUserFromAuthFailedAction(err);
+			const message: string = 'testError';
+			const action: UserActionType = new GetUserFromAuthFailAction({ message });
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData).toEqual({
+			expect(newState.user).toEqual({
 				status: EntityStatus.Error,
 				value: null,
-				error: err,
+				error: { message },
 			});
 		});
 	});
@@ -77,7 +75,7 @@ describe('UserReducers', () => {
 			};
 			const action: UserActionType = new UpdateUserAction({ user });
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData).toEqual({
+			expect(newState.user).toEqual({
 				status: EntityStatus.Success,
 				value: user,
 			});
@@ -95,9 +93,9 @@ describe('UserReducers', () => {
 				id: '0',
 				email: 'test@test.test',
 			};
-			const action: UserActionType = new UpdateUserInfoSuccessfulyAction({ user });
+			const action: UserActionType = new UpdateUserInfoSuccessAction({ user });
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData).toEqual({
+			expect(newState.user).toEqual({
 				status: EntityStatus.Success,
 				value: user,
 			});
@@ -106,15 +104,13 @@ describe('UserReducers', () => {
 
 	describe('UpdateUserInfoFailed', () => {
 		it('should return error', () => {
-			const err: any = {
-				message: 'testError',
-			};
-			const action: UserActionType = new UpdateUserInfoFailedAction(err);
+			const message: string = 'testError';
+			const action: UserActionType = new UpdateUserInfoFailAction({ message });
 			const newState: UserState = userReducer(initialState, action);
-			expect(newState.userData).toEqual({
+			expect(newState.user).toEqual({
 				status: EntityStatus.Error,
 				value: null,
-				error: err,
+				error: { message },
 			});
 		});
 	});

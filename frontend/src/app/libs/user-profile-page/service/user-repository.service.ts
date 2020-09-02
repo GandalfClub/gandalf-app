@@ -11,7 +11,7 @@ const URL_PREFIX: string = '/api';
 export class UserRepository {
 	constructor(private http: HttpClient) {}
 
-	public updateUser(user: Partial<User>): Observable<any> {
+	public updateUser(user: Partial<User>): Observable<User> {
 		return this.http.post<User>(URL_PREFIX + '/users/update-user', user);
 	}
 }

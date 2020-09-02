@@ -1,9 +1,9 @@
 import {
-	GetUserFromAuthFailedAction,
-	GetUserFromAuthSuccessfullyAction,
+	GetUserFromAuthFailAction,
+	GetUserFromAuthSuccessAction,
 	UpdateUserAction,
-	UpdateUserInfoFailedAction,
-	UpdateUserInfoSuccessfulyAction,
+	UpdateUserInfoFailAction,
+	UpdateUserInfoSuccessAction,
 	UserActionType,
 	UserActionTypes,
 } from './user.actions';
@@ -13,7 +13,7 @@ import { EntityStatus } from '../../../auth/models/entity-status';
 export const userProfileFeatureKey: string = 'user';
 
 export const initialState: UserState = {
-	userData: {
+	user: {
 		status: EntityStatus.Init,
 	},
 };
@@ -23,7 +23,7 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 		case UserActionTypes.GetUserFromAuth: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Success,
 				},
 			};
@@ -31,47 +31,47 @@ export function userReducer(state: UserState = initialState, action: UserActionT
 		case UserActionTypes.GetUserFromAuthSuccess: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Success,
-					value: (action as GetUserFromAuthSuccessfullyAction).payload.user,
+					value: (action as GetUserFromAuthSuccessAction).payload.user,
 				},
 			};
 		}
 		case UserActionTypes.GetUserFromAuthFail: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: (action as GetUserFromAuthFailedAction).payload,
+					error: (action as GetUserFromAuthFailAction).payload,
 				},
 			};
 		}
 		case UserActionTypes.UpdateUser: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Success,
 					value: (action as UpdateUserAction).payload.user,
 				},
 			};
 		}
-		case UserActionTypes.UpdateUserInfoSuccessfuly: {
+		case UserActionTypes.UpdateUserInfoSuccess: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Success,
-					value: (action as UpdateUserInfoSuccessfulyAction).payload.user,
+					value: (action as UpdateUserInfoSuccessAction).payload.user,
 				},
 			};
 		}
-		case UserActionTypes.UpdateUserInfoFailed: {
+		case UserActionTypes.UpdateUserInfoFail: {
 			return {
 				...state,
-				userData: {
+				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: (action as UpdateUserInfoFailedAction).payload,
+					error: (action as UpdateUserInfoFailAction).payload,
 				},
 			};
 		}

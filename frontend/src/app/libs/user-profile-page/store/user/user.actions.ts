@@ -1,21 +1,20 @@
 import { Action } from '@ngrx/store';
 import { User } from '../../../auth/models/user';
-import { UserChanges } from '../../model/user-changes';
 
 export enum UserActionTypes {
 	GetUserFromAuth = '[User] Get user from auth',
 	GetUserFromAuthSuccess = '[User] Get user from auth success',
 	GetUserFromAuthFail = '[User] Get user from auth failed',
 	UpdateUser = '[User] Update user',
-	UpdateUserInfoSuccessfuly = '[User] Update user success',
-	UpdateUserInfoFailed = '[User] Update user failed',
+	UpdateUserInfoSuccess = '[User] Update user success',
+	UpdateUserInfoFail = '[User] Update user failed',
 }
 
 export class GetUserFromAuthAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuth;
 }
 
-export class GetUserFromAuthSuccessfullyAction implements Action {
+export class GetUserFromAuthSuccessAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthSuccess;
 	constructor(
 		public payload: {
@@ -24,7 +23,7 @@ export class GetUserFromAuthSuccessfullyAction implements Action {
 	) {}
 }
 
-export class GetUserFromAuthFailedAction implements Action {
+export class GetUserFromAuthFailAction implements Action {
 	public readonly type: UserActionTypes = UserActionTypes.GetUserFromAuthFail;
 	constructor(
 		public payload: {
@@ -42,8 +41,8 @@ export class UpdateUserAction implements Action {
 	) {}
 }
 
-export class UpdateUserInfoSuccessfulyAction implements Action {
-	public readonly type: UserActionTypes = UserActionTypes.UpdateUserInfoSuccessfuly;
+export class UpdateUserInfoSuccessAction implements Action {
+	public readonly type: UserActionTypes = UserActionTypes.UpdateUserInfoSuccess;
 	constructor(
 		public payload: {
 			user: User;
@@ -51,8 +50,8 @@ export class UpdateUserInfoSuccessfulyAction implements Action {
 	) {}
 }
 
-export class UpdateUserInfoFailedAction implements Action {
-	public readonly type: UserActionTypes = UserActionTypes.UpdateUserInfoFailed;
+export class UpdateUserInfoFailAction implements Action {
+	public readonly type: UserActionTypes = UserActionTypes.UpdateUserInfoFail;
 	constructor(
 		public payload: {
 			message: string;
@@ -62,8 +61,8 @@ export class UpdateUserInfoFailedAction implements Action {
 
 export type UserActionType =
 	| GetUserFromAuthAction
-	| GetUserFromAuthSuccessfullyAction
-	| GetUserFromAuthFailedAction
+	| GetUserFromAuthSuccessAction
+	| GetUserFromAuthFailAction
 	| UpdateUserAction
-	| UpdateUserInfoSuccessfulyAction
-	| UpdateUserInfoFailedAction;
+	| UpdateUserInfoSuccessAction
+	| UpdateUserInfoFailAction;

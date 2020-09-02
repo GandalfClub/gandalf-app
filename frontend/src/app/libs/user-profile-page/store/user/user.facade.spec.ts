@@ -17,7 +17,7 @@ describe('User Facade Service', () => {
 		status: EntityStatus.Success,
 	};
 	const initialState: UserState = {
-		userData: user,
+		user: user,
 	};
 	const userUpdate: User = {
 		firstName: '1',

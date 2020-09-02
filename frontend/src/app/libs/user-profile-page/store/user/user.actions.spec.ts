@@ -1,10 +1,10 @@
 import {
 	GetUserFromAuthAction,
-	GetUserFromAuthFailedAction,
-	GetUserFromAuthSuccessfullyAction,
+	GetUserFromAuthFailAction,
+	GetUserFromAuthSuccessAction,
 	UpdateUserAction,
-	UpdateUserInfoFailedAction,
-	UpdateUserInfoSuccessfulyAction,
+	UpdateUserInfoFailAction,
+	UpdateUserInfoSuccessAction,
 	UserActionType,
 	UserActionTypes,
 } from './user.actions';
@@ -12,7 +12,7 @@ import { User } from '../../../auth/models/user';
 
 describe('UserActions', () => {
 	let action: UserActionType;
-
+	let error: Error;
 	describe('Get User', () => {
 		beforeEach(() => {
 			action = new GetUserFromAuthAction();
@@ -35,7 +35,7 @@ describe('UserActions', () => {
 				id: '0',
 				email: 'test@test.test',
 			};
-			action = new GetUserFromAuthSuccessfullyAction({ user });
+			action = new GetUserFromAuthSuccessAction({ user });
 			expect({ ...action }).toEqual({
 				type: UserActionTypes.GetUserFromAuthSuccess,
 				payload: { user },
@@ -46,7 +46,7 @@ describe('UserActions', () => {
 	describe('Get User From Auth Failure', () => {
 		it('should create GetUserFailure action', () => {
 			const message: string = 'testError';
-			action = new GetUserFromAuthFailedAction({ message });
+			action = new GetUserFromAuthFailAction({ message });
 			expect({ ...action }).toEqual({
 				type: UserActionTypes.GetUserFromAuthFail,
 				payload: { message },
@@ -84,9 +84,9 @@ describe('UserActions', () => {
 				id: '0',
 				email: 'test@test.test',
 			};
-			action = new UpdateUserInfoSuccessfulyAction({ user });
+			action = new UpdateUserInfoSuccessAction({ user });
 			expect({ ...action }).toEqual({
-				type: UserActionTypes.UpdateUserInfoSuccessfuly,
+				type: UserActionTypes.UpdateUserInfoSuccess,
 				payload: { user },
 			});
 		});
@@ -95,12 +95,9 @@ describe('UserActions', () => {
 	describe('update User Failure', () => {
 		it('should create UpdateUserInfoFailedAction action', () => {
 			const message: string = 'testError';
-			const err: any = {
-				message: 'testError',
-			};
-			action = new UpdateUserInfoFailedAction({ message });
+			action = new UpdateUserInfoFailAction({ message });
 			expect({ ...action }).toEqual({
-				type: UserActionTypes.UpdateUserInfoFailed,
+				type: UserActionTypes.UpdateUserInfoFail,
 				payload: { message },
 			});
 		});

@@ -8,5 +8,5 @@ export const selectUserState: MemoizedSelector<{}, UserState> = createFeatureSel
 
 export const selectUser: MemoizedSelector<UserState, EntityWrapper<User>> = createSelector(
 	selectUserState,
-	(state: UserState) => state.userData
+	(state: UserState) => state.user
 );

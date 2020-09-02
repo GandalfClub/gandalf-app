@@ -18,7 +18,7 @@ describe('Auth Selectors', () => {
 		},
 	};
 	const state: UserState = {
-		userData: user,
+		user: user,
 	};
 
 	describe('selectAuthState', () => {

@@ -14,7 +14,7 @@ import { User } from '../auth/models/user';
 	styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit, OnDestroy {
-	private destroySource: Subject<boolean> = new Subject<boolean>();
+	private destroy$: Subject<boolean> = new Subject<boolean>();
 	public profileForm: FormGroup;
 	public userForm: User;
 
@@ -26,10 +26,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			firstName: [''],
 			secondName: [''],
 		});
-	}
-
-	private navigateFromUserProfile(): void {
-		this.router.navigate(['/']);
 	}
 
 	private setValuesToForm(): void {
@@ -57,7 +53,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.userFacadeService.getUserFromAuth();
-		this.userFacadeService.user$.pipe(takeUntil(this.destroySource)).subscribe((user: EntityWrapper<User>) => {
+		this.userFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			if (user.status === EntityStatus.Success) {
 				this.userForm = user.value;
 			}
@@ -70,16 +66,12 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public updateUserInfo(): void {
 		const formValue: User = this.getChangesFromForm();
 		this.userFacadeService.updateUser(formValue);
-		this.userForm = null;
-		this.navigateFromUserProfile();
 	}
 
 	public ngOnDestroy(): void {
-		this.destroySource.next(true);
-		this.destroySource.complete();
+		this.destroy$.next(true);
+		this.destroy$.complete();
 	}
 
-	public backFromUserProfilePage(): void {
-		this.navigateFromUserProfile();
-	}
+	public backFromUserProfilePage(): void {}
 }

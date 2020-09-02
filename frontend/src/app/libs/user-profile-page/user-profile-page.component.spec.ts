@@ -3,12 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserProfilePageComponent } from './user-profile-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { of, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { UserFacadeService } from './store/user/user.facade';
 import { takeUntil } from 'rxjs/operators';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
+import { Store } from '@ngrx/store';
+import { UserState } from './store/user/user-state';
+import any = jasmine.any;
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -24,24 +27,25 @@ describe('UserProfileComponent', () => {
 		},
 	};
 
-	const updateUser: any = {
+	const updateUser: User = {
 		firstName: 'test',
 		secondName: 'test',
 		mobilePhone: 'test',
-		_id: 'test',
+		id: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
 	};
 
 	let component: UserProfilePageComponent;
 	let destroy$: Subject<boolean>;
 	let userForm: User;
 	let fixture: ComponentFixture<UserProfilePageComponent>;
-	const mockUserFacadeService: any = {
-		get user$(): any {
+	const mockUserFacadeService: Partial<UserFacadeService> = {
+		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
 		},
-		getUserFromAuth(): any {
-			return {};
-		},
+		getUserFromAuth(): void {},
 		updateUser: jasmine.createSpy('updateUser'),
 	};
 
@@ -69,7 +73,7 @@ describe('UserProfileComponent', () => {
 		beforeEach(() => {
 			component.updateUserInfo();
 		});
-		it('should redirect', () => {
+		it('should called', () => {
 			expect(mockUserFacadeService.updateUser).toHaveBeenCalledWith(updateUser);
 		});
 	});
@@ -81,8 +85,8 @@ describe('UserProfileComponent', () => {
 
 		describe('get auth user', () => {
 			beforeEach(() => {
-				mockUserFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((users: any) => {
-					userForm = users.value;
+				mockUserFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((userAuth: EntityWrapper<User>) => {
+					userForm = userAuth.value;
 				});
 				spyOn<any>(component, 'setValuesToForm').and.stub();
 				component.ngOnInit();
@@ -107,34 +111,14 @@ describe('UserProfileComponent', () => {
 		});
 	});
 
-	describe('redirect', () => {
-		beforeEach(() => {
-			spyOn(component['router'], 'navigate');
-			component.backFromUserProfilePage();
-		});
-		it('should redirect', () => {
-			expect(component['router'].navigate).toHaveBeenCalledWith(['/']);
-		});
-	});
-
-	describe('backFromUserProfilePage', () => {
-		beforeEach(() => {
-			spyOn(component as any, 'navigateFromUserProfile').and.callThrough();
-			component.backFromUserProfilePage();
-		});
-		it('calls redirect', () => {
-			expect(component['navigateFromUserProfile']).toHaveBeenCalled();
-		});
-	});
-
 	beforeEach(() => {
-		spyOn(component['destroySource'], 'next');
-		spyOn(component['destroySource'], 'complete');
+		spyOn(component['destroy$'], 'next');
+		spyOn(component['destroy$'], 'complete');
 		component.ngOnDestroy();
 	});
 
-	it('calls next on destroySource', () => {
-		expect(component['destroySource'].next).toHaveBeenCalled();
-		expect(component['destroySource'].complete).toHaveBeenCalled();
+	it('calls next on destroy', () => {
+		expect(component['destroy$'].next).toHaveBeenCalled();
+		expect(component['destroy$'].complete).toHaveBeenCalled();
 	});
 });

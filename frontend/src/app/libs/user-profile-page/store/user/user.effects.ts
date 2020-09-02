@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
 	UserActionType,
-	GetUserFromAuthFailedAction,
-	GetUserFromAuthSuccessfullyAction,
+	GetUserFromAuthFailAction,
+	GetUserFromAuthSuccessAction,
 	UpdateUserAction,
-	UpdateUserInfoFailedAction,
-	UpdateUserInfoSuccessfulyAction,
+	UpdateUserInfoFailAction,
+	UpdateUserInfoSuccessAction,
 	UserActionTypes,
 } from './user.actions';
 import { Observable, of } from 'rxjs';
@@ -23,14 +23,13 @@ export class UserEffects {
 	public getUser$: Observable<UserActionType> = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActionTypes.GetUserFromAuth),
-			// map((action: GetUserFromAuthAction) => action),
 			exhaustMap(() =>
 				this.authFacadeService.user$.pipe(
 					map((user: EntityWrapper<User>) => user.value['user']),
-					map((user: UserDto) => new GetUserFromAuthSuccessfullyAction({ user: this.userConverter.convertFromDto(user) }))
+					map((user: UserDto) => new GetUserFromAuthSuccessAction({ user: this.userConverter.convertFromDto(user) }))
 				)
 			),
-			catchError((err: Error) => of(new GetUserFromAuthFailedAction({ message: err.message })))
+			catchError((err: Error) => of(new GetUserFromAuthFailAction({ message: err.message })))
 		)
 	);
 
@@ -41,7 +40,7 @@ export class UserEffects {
 			exhaustMap((user: User) =>
 				this.api
 					.updateUser(this.userConverter.convertToDto(user))
-					.pipe(map((updatedUser: User) => new UpdateUserInfoSuccessfulyAction({ user: updatedUser })))
+					.pipe(map((updatedUser: User) => new UpdateUserInfoSuccessAction({ user: updatedUser })))
 			)
 		)
 	);
