@@ -30,7 +30,7 @@
 			</div>
 		</ng-template>
 		
-		<ng-container *ngIf="menuItems.length >= 1">
+		<ng-container *ngIf="menuItems && menuItems.length >= 1">
 			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="menu">
 				<mat-icon>more_vert</mat-icon>
 			</button>
