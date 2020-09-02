@@ -15,6 +15,17 @@
     position: relative;
   }
 
+  &__draft-print {
+    position: absolute;
+    top: 28%;
+    right: 20%;
+
+    font-weight: 500;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+  }
+
   &__title {
     max-width: 90%;
     margin-bottom: 3px;
@@ -66,7 +77,7 @@
     flex-flow: row wrap;
     align-items: baseline;
     margin: 0;
-    margin-top: 24px;
+    margin-top: 22px;
     padding: 0;
   }
 

@@ -38,5 +38,19 @@ export class EventTileComponent {
 		this.endDate = new Date('2020-04-05');
 		this.startTime = new Date('2020-03-04T13:30');
 		this.endTime = new Date('2020-03-04T16:30');
+		this.menuItems = [
+			{
+				name: 'Action1',
+				action(): any {
+					alert(this.name);
+				}
+			},
+			{
+				name: 'Action2',
+				action(): any {
+					alert(this.name);
+				}
+			},
+		];
 	}
 }
