@@ -23,7 +23,7 @@
 			</button>
 			<mat-menu #menu>
 				<ng-container *ngFor="let menuItem of menuItems" >
-					<button mat-menu-item (click)="menuItem.action()">{{ menuItem.name }}</button>
+					<button mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
 				</ng-container>
 			</mat-menu>
 		</ng-container>

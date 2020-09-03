@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HintMenuItem } from '../../models/hint-menu-item';
+import { EventTileMenuItem } from '../../models/event-tile-menu-item';
 
 @Component({
   selector: 'app-event-tile',
@@ -30,7 +30,7 @@ export class EventTileComponent {
 	public statusList: string[];
 
 	@Input()
-	public menuItems: HintMenuItem[];
+	public menuItems: EventTileMenuItem[];
 
   constructor() {
 		// TODO:	remove after component tested manually
@@ -41,13 +41,13 @@ export class EventTileComponent {
 			{
 				name: 'Action1',
 				action(): any {
-					alert(this.name);
+					alert('fff');
 				}
 			},
 			{
 				name: 'Action2',
 				action(): any {
-					alert(this.name);
+					alert('vvv');
 				}
 			},
 		];
