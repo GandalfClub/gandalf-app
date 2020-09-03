@@ -28,27 +28,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public ngOnInit(): void {
-		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
-			if (user.status === EntityStatus.Success) {
-				this.user = user.value;
-			}
-			if (this.user !== null) {
-				this.setValuesToForm();
-			}
-		});
-	}
-
-	public updateUserInfo(): void {
-		const formValue: User = this.getChangesFromForm();
-		this.authFacadeService.updateUser(formValue);
-	}
-
-	public ngOnDestroy(): void {
-		this.destroy$.next(true);
-		this.destroy$.complete();
-	}
-
 	private setValuesToForm(): void {
 		this.profileForm.setValue({
 			email: this.user.email,
@@ -70,5 +49,26 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			mobilePhone: this.profileForm.value.mobilePhone,
 		};
 		return valuesFromForm;
+	}
+
+	public ngOnInit(): void {
+		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
+			if (user.status === EntityStatus.Success) {
+				this.user = user.value;
+			}
+			if (this.user !== null) {
+				this.setValuesToForm();
+			}
+		});
+	}
+
+	public updateUserInfo(): void {
+		const formValue: User = this.getChangesFromForm();
+		this.authFacadeService.updateUser(formValue);
+	}
+
+	public ngOnDestroy(): void {
+		this.destroy$.next(true);
+		this.destroy$.complete();
 	}
 }
