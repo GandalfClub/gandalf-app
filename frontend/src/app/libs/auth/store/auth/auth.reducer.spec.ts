@@ -1,5 +1,17 @@
 import { authReducer, initialState } from './auth.reducer';
-import { AuthActions, SignIn, SignInByGithub, SignUp, SignInSuccess, SignInFailure, SignUpFailure, SignUpSuccess } from './auth.actions';
+import {
+	AuthActions,
+	SignIn,
+	SignInByGithub,
+	SignUp,
+	SignInSuccess,
+	SignInFailure,
+	SignUpFailure,
+	SignUpSuccess,
+	UpdateUserInfo,
+	UpdateUserInfoSuccess,
+	UpdateUserInfoFail,
+} from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 import { User } from '../../models/user';
@@ -95,6 +107,61 @@ describe('AuthReducers', () => {
 			expect(newState.user).toEqual({
 				status: EntityStatus.Error,
 				error,
+			});
+		});
+	});
+
+	describe('UpdateUser', () => {
+		it('should return user', () => {
+			const user: User = {
+				firstName: '1',
+				secondName: '1',
+				mobilePhone: '1',
+				password: '1',
+				isAdmin: false,
+				id: '0',
+				email: 'test@test.test',
+			};
+			const action: AuthActions = new UpdateUserInfo({ user });
+			const newState: AuthState = authReducer(initialState, action);
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('UpdateUserInfoSuccessfuly', () => {
+		it('should return user', () => {
+			const user: User = {
+				firstName: '1',
+				secondName: '1',
+				mobilePhone: '1',
+				password: '1',
+				isAdmin: false,
+				id: '0',
+				email: 'test@test.test',
+			};
+			const action: AuthActions = new UpdateUserInfoSuccess({ user });
+			const newState: AuthState = authReducer(initialState, action);
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('UpdateUserInfoFailed', () => {
+		it('should return error', () => {
+			const err: any = {
+				message: 'testError',
+			};
+			const action: AuthActions = new UpdateUserInfoFail(err);
+			const newState: AuthState = authReducer(initialState, action);
+			expect(newState.user).toEqual({
+				status: EntityStatus.Error,
+				value: null,
+				error: err,
 			});
 		});
 	});

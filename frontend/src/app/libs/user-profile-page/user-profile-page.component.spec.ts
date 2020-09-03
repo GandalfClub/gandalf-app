@@ -4,11 +4,11 @@ import { UserProfilePageComponent } from './user-profile-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
-import { UserFacadeService } from './store/user/user.facade';
 import { takeUntil } from 'rxjs/operators';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
+import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -38,12 +38,9 @@ describe('UserProfileComponent', () => {
 	let destroy$: Subject<boolean>;
 	let userForm: User;
 	let fixture: ComponentFixture<UserProfilePageComponent>;
-	const mockUserFacadeService: Partial<UserFacadeService> = {
+	const mockUserFacadeService: Partial<AuthFacadeService> = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
-		},
-		getUserFromAuth(): void {
-			return null;
 		},
 		updateUser: jasmine.createSpy('updateUser'),
 	};
@@ -52,7 +49,7 @@ describe('UserProfileComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [UserProfilePageComponent],
 			imports: [ReactiveFormsModule, RouterTestingModule],
-			providers: [{ provide: UserFacadeService, useValue: mockUserFacadeService }, { provide: FormBuilder }],
+			providers: [{ provide: AuthFacadeService, useValue: mockUserFacadeService }, { provide: FormBuilder }],
 		}).compileComponents();
 	}));
 

@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserConverter } from './user-converter.service';
-import { UserDto } from '../model/user-dto';
-import { User } from '../../auth/models/user';
-import { UserChanges } from '../model/user-changes';
+import { AuthConverter } from './auth-converter.service';
+import { UserDto } from '../models/user-dto';
+import { User } from '../models/user';
+import { AuthResponse } from '../models/auth-response';
 
-describe('UserConverterService', () => {
-	let service: UserConverter;
+describe('AuthConverterService', () => {
+	let service: AuthConverter;
 	let createdUser: User;
-	let createdUserChanges: UserChanges;
+	let createdUserChanges: Partial<UserDto>;
 
 	const userDto: UserDto = {
 		email: '1@1.com',
@@ -30,23 +30,31 @@ describe('UserConverterService', () => {
 		password: 'undefined',
 	};
 
-	const userChanges: UserChanges = {
+	const userChanges: Partial<UserDto> = {
 		_id: 'test',
 		firstName: 'undefined',
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
 	};
 
+	const authResponse: AuthResponse = {
+		isCompetitionActive: false,
+		logged: true,
+		message: 'test',
+		status: 0,
+		user: userDto,
+	};
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
-		service = TestBed.inject(UserConverter);
+		service = TestBed.inject(AuthConverter);
 	});
 
 	it('should be created', () => {
 		expect(service).toBeTruthy();
 	});
 
-	describe('convertFromDto methodshould rename "_id" key', () => {
+	describe('convertFromDto method should rename "_id" key', () => {
 		beforeEach(() => {
 			createdUser = service.convertFromDto(userDto);
 		});
@@ -56,13 +64,23 @@ describe('UserConverterService', () => {
 		});
 	});
 
-	describe('convertToDto  methodshould rename "id" key', () => {
+	describe('convertToDto  method should rename "id" key', () => {
 		beforeEach(() => {
 			createdUserChanges = service.convertToDto(user);
 		});
 
 		it('should rename "id" key', () => {
 			expect(createdUserChanges).toEqual(userChanges);
+		});
+	});
+
+	describe('  method should refactor from AuthResponse to User', () => {
+		beforeEach(() => {
+			createdUser = service.convertFromAuthResponse(authResponse);
+		});
+
+		it('should rename "id" key', () => {
+			expect(createdUser).toEqual(user);
 		});
 	});
 });
