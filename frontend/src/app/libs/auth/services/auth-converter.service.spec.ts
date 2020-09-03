@@ -73,14 +73,4 @@ describe('AuthConverterService', () => {
 			expect(createdUserChanges).toEqual(userChanges);
 		});
 	});
-
-	describe('  method should refactor from AuthResponse to User', () => {
-		beforeEach(() => {
-			createdUser = service.convertFromAuthResponse(authResponse);
-		});
-
-		it('should rename "id" key', () => {
-			expect(createdUser).toEqual(user);
-		});
-	});
 });

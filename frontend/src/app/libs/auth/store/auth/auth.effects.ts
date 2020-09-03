@@ -35,7 +35,7 @@ export class AuthEffects {
 		switchMap((firebaseUser: firebase.User) => {
 			return this.authRepository.signIn(firebaseUser.email, firebaseUser.uid).pipe(
 				map((authResponse: AuthResponse) => {
-					return new SignInSuccess(this.authConverter.convertFromAuthResponse(authResponse));
+					return new SignInSuccess(this.authConverter.convertFromDto(authResponse.user));
 				})
 			);
 		}),
@@ -54,7 +54,7 @@ export class AuthEffects {
 		switchMap((firebaseUser: firebase.User) => {
 			return this.authRepository.signInByGithub(firebaseUser.email, firebaseUser.uid).pipe(
 				map((authResponse: AuthResponse) => {
-					return new SignInSuccess(this.authConverter.convertFromAuthResponse(authResponse));
+					return new SignInSuccess(this.authConverter.convertFromDto(authResponse.user));
 				})
 			);
 		}),
@@ -73,7 +73,7 @@ export class AuthEffects {
 		switchMap((firebaseUser: firebase.User) => {
 			return this.authRepository.signUp(firebaseUser.email, firebaseUser.uid).pipe(
 				map((authResponse: AuthResponse) => {
-					return new SignUpSuccess(this.authConverter.convertFromAuthResponse(authResponse));
+					return new SignUpSuccess(this.authConverter.convertFromDto(authResponse.user));
 				})
 			);
 		}),

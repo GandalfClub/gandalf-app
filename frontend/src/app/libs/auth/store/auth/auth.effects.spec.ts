@@ -105,7 +105,7 @@ describe('Auth Effects', () => {
 				mockAuthRepository.signIn.and.returnValue(of(authResponse));
 				const actions: Observable<Action> = hot('-a-|', { a: new SignIn(credentials) });
 				const expected: Observable<Action> = cold('-s-|', {
-					s: new SignInSuccess(mockAuthConverter.convertFromAuthResponse(authResponse)),
+					s: new SignInSuccess(mockAuthConverter.convertFromDto(authResponse.user)),
 				});
 				expect(createEffects(actions).SignIn).toBeObservable(expected);
 			});
@@ -149,7 +149,7 @@ describe('Auth Effects', () => {
 				mockAuthRepository.signInByGithub.and.returnValue(of(authResponse));
 				const actions: Observable<Action> = hot('-a-|', { a: new SignInByGithub() });
 				const expected: Observable<Action> = cold('-s-|', {
-					s: new SignInSuccess(mockAuthConverter.convertFromAuthResponse(authResponse)),
+					s: new SignInSuccess(mockAuthConverter.convertFromDto(authResponse.user)),
 				});
 				expect(createEffects(actions).SignInByGithub).toBeObservable(expected);
 			});
@@ -198,7 +198,7 @@ describe('Auth Effects', () => {
 				mockAuthRepository.signUp.and.returnValue(of(authResponse));
 				const actions: Observable<Action> = hot('-a-|', { a: new SignUp(credentials) });
 				const expected: Observable<Action> = cold('-s-|', {
-					s: new SignUpSuccess(mockAuthConverter.convertFromAuthResponse(authResponse)),
+					s: new SignUpSuccess(mockAuthConverter.convertFromDto(authResponse.user)),
 				});
 				expect(createEffects(actions).SignUp).toBeObservable(expected);
 			});

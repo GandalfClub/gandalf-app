@@ -41,7 +41,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	private getChangesFromForm(): User {
 		const valuesFromForm: User = {
 			id: this.user.id,
-			isAdmin: false,
+			isAdmin: this.user.isAdmin,
 			email: this.profileForm.value.email,
 			password: this.profileForm.value.password,
 			firstName: this.profileForm.value.firstName,
@@ -63,8 +63,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public updateUserInfo(): void {
-		const formValue: User = this.getChangesFromForm();
-		this.authFacadeService.updateUser(formValue);
+		const updatedUser: User = this.getChangesFromForm();
+		this.authFacadeService.updateUser(updatedUser);
 	}
 
 	public ngOnDestroy(): void {

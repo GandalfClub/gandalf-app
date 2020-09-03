@@ -28,7 +28,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignInByGithub: {
 			return {
 				...state,
@@ -37,7 +36,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignInSuccess: {
 			return {
 				...state,
@@ -47,7 +45,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignInFailure: {
 			return {
 				...state,
@@ -57,7 +54,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignUp: {
 			return {
 				...state,
@@ -66,7 +62,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignUpSuccess: {
 			return {
 				...state,
@@ -76,7 +71,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.SignUpFailure: {
 			return {
 				...state,
@@ -86,7 +80,6 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
-
 		case AuthActionTypes.UpdateUserInfo: {
 			return {
 				...state,
@@ -111,11 +104,10 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: (action as UpdateUserInfoFail).payload,
+					error: action.payload,
 				},
 			};
 		}
-
 		default:
 			return state;
 	}
