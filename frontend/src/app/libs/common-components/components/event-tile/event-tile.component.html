@@ -1,42 +1,20 @@
-<section class="app-event-tile" 
-		[class.app-event-tile--draft]="isDraft">
-		
+<section class="app-event-tile" [class.app-event-tile--draft]="isDraft">
 	<div class="app-event-tile__container">
-		<h3 class="app-event-tile__title" [attr.title]="name"> {{ name }} </h3>
 
-		<ng-container *ngIf="endDate else inProgressTime">
-			<div class="app-event-tile__date-time">
-				<time class="app-event-tile__date">
-					<span>{{ startDate | date:'d MMM yy' }}</span>
-					<span> - </span>
-					<span>{{ endDate | date:'d MMM yy' }}</span>
-				</time>
-				<time class="app-event-tile__time" *ngIf="startTime && endTime">
-					<span>{{ startTime | date:'h:mm a' }}</span>
-					<span> - </span>
-					<span>{{ endTime | date:'h:mm a' }}</span>
-				</time>
-			</div>
-		</ng-container>
-	
-		<ng-template #inProgressTime>
-			<div class="app-event-tile__date-time">
-				<time class="app-event-tile__date">
-					<span>{{ startDate | date:'d MMM yy' }}</span>
-				</time>
-				<div class="app-event-tile__time app-event-tile__time--in-progress">
-					<span>In Progress</span>
-				</div>
-			</div>
-		</ng-template>
+		<h3 class="app-event-tile__title" [title]="name"> {{ name }} </h3>
+
+		<div class="app-event-tile__date-time">
+			<app-event-date class="app-event-tile__date" [startDate]="startDateTime" [endDate]="endDateTime"></app-event-date>
+			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="endDateTime"></app-event-time>
+		</div>
 		
 		<ng-container *ngIf="menuItems && menuItems.length >= 1">
-			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="menu">
+			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="tileMenu">
 				<mat-icon>more_vert</mat-icon>
 			</button>
-			<mat-menu #menu>
+			<mat-menu #tileMenu>
 				<ng-container *ngFor="let menuItem of menuItems" >
-					<button mat-menu-item (click)="menuItem.action()">{{ menuItem.name }}</button>
+					<button mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
 				</ng-container>
 			</mat-menu>
 		</ng-container>
@@ -51,5 +29,6 @@
 				<span>{{ status }}</span>
 			</li>
 		</ul>
+		
 	</div>
 </section>

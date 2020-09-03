@@ -1,0 +1,11 @@
+<time class="app-event-time" *ngIf="isEventInProgress else inProgressTime">
+	<span>{{ startTime | date: timeFormat }}</span>
+	<span> - </span>
+	<span>{{ endTime | date: timeFormat }}</span>
+</time>
+
+<ng-template #inProgressTime>
+	<time class="app-event-time app-event-time--in-progress">
+		<span>In Progress</span>
+	</time>
+</ng-template>

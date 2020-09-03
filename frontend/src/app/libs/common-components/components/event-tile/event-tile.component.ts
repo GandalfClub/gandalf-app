@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HintMenuItem } from '../../models/hint-menu-item';
+import { EventTileMenuItem } from '../../models/event-tile-menu-item';
 
 @Component({
   selector: 'app-event-tile',
@@ -15,20 +15,14 @@ export class EventTileComponent {
 	public name: string;
 
 	@Input()
-	public startDate: Date;
+	public startDateTime: Date;
 
 	@Input()
-	public endDate: Date;
-
-	@Input()
-	public startTime: Date;
-
-	@Input()
-	public endTime: Date;
+	public endDateTime: Date;
 
 	@Input()
 	public statusList: string[];
 
 	@Input()
-	public menuItems: HintMenuItem[];
+	public menuItems: EventTileMenuItem[];
 }
