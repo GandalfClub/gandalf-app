@@ -1,8 +1,8 @@
-import { EventTypes, EventActionTypes } from './event-description.actions';
-import { EventDescriptionState } from './event-description-state';
+import { EventActions, EventActionTypes } from './event.actions';
+import { EventState } from './event-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
-export const initialState: EventDescriptionState = {
+export const initialState: EventState = {
 	event: {
 		status: EntityStatus.Init,
 		value: null,
@@ -10,7 +10,7 @@ export const initialState: EventDescriptionState = {
 	},
 };
 
-export function eventReducer(state: EventDescriptionState = initialState, action: EventTypes): EventDescriptionState {
+export function eventReducer(state: EventState = initialState, action: EventActions): EventState {
 	switch (action.type) {
 		case EventActionTypes.LoadEvent: {
 			return {

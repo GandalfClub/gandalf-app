@@ -8,22 +8,22 @@
 	letter-spacing: 1.25px;
 	color: #000000;
 
-	&-title {
+	&__title {
 		font-weight: 500;
 		font-size: 60px;
 		line-height: 120%;
 		text-transform: capitalize;
 	}
 
-	&-date,
-	&-time {
+	&__date,
+	&__time {
 		font-style: normal;
 		font-weight: normal;
 		font-size: 16px;
 		line-height: 16px;
 	}
 
-	&-button {
+	&__take-part-button {
 		align-self: flex-end;
 	}
 }

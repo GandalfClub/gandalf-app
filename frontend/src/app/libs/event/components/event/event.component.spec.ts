@@ -1,16 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventDescriptionComponent } from './event-description.component';
 import { ActivatedRoute } from '@angular/router';
-import { EventFacadeService } from '../../store/event-description/event-description.facade';
+import { EventFacadeService } from '../../store/event/event.facade';
 import { Observable } from 'rxjs';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 
-describe('EventDescriptionComponent', () => {
-	let component: EventDescriptionComponent;
-	let fixture: ComponentFixture<EventDescriptionComponent>;
+import { EventComponent } from './event.component';
+
+describe('EventComponent', () => {
+	let component: EventComponent;
+	let fixture: ComponentFixture<EventComponent>;
+
 	let eventId: string;
 
 	const mockEventDescriptionFacadeService: any = {
@@ -27,7 +29,7 @@ describe('EventDescriptionComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventDescriptionComponent],
+			declarations: [EventComponent],
 			providers: [
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{
@@ -46,7 +48,7 @@ describe('EventDescriptionComponent', () => {
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(EventDescriptionComponent);
+		fixture = TestBed.createComponent(EventComponent);
 		component = fixture.componentInstance;
 		eventId = '1';
 		mockEventDescriptionFacadeService.getEvent(eventId);

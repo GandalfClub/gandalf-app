@@ -1,4 +1,4 @@
-import * as EventActions from './event-description.actions';
+import * as EventActions from './event.actions';
 
 describe('EventConverterService', () => {
 	let action: EventActions.LoadEvent | EventActions.LoadEventFail | EventActions.LoadEventSuccess;

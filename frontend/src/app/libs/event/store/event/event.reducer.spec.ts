@@ -1,12 +1,12 @@
-import { EventTypes, LoadEvent, LoadEventSuccess, LoadEventFail } from './event-description.actions';
-import { EventDescriptionState } from './event-description-state';
+import { EventActions, LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
+import { EventState } from './event-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { Event } from '../../../landing/models/event';
-import { eventReducer, initialState } from './event-description.reducer';
+import { eventReducer, initialState } from './event.reducer';
 
 describe('Events Reducer', () => {
-	let action: EventTypes;
-	let result: EventDescriptionState;
+	let action: EventActions;
+	let result: EventState;
 	let eventEerror: Error;
 	let id: string;
 
@@ -27,7 +27,7 @@ describe('Events Reducer', () => {
 
 	describe('Init', () => {
 		beforeEach(() => {
-			action = {} as EventTypes;
+			action = {} as EventActions;
 			result = eventReducer(initialState, action);
 		});
 
@@ -38,7 +38,7 @@ describe('Events Reducer', () => {
 
 	describe('Init with default state value', () => {
 		beforeEach(() => {
-			action = {} as EventTypes;
+			action = {} as EventActions;
 			result = eventReducer(undefined, action);
 		});
 
@@ -50,7 +50,7 @@ describe('Events Reducer', () => {
 	describe('LoadEvent', () => {
 		beforeEach(() => {
 			id = '1';
-			action = new LoadEvent(id) as EventTypes;
+			action = new LoadEvent(id) as EventActions;
 			result = eventReducer(initialState, action);
 		});
 
@@ -61,7 +61,7 @@ describe('Events Reducer', () => {
 
 	describe('LoadEventSuccess', () => {
 		beforeEach(() => {
-			action = new LoadEventSuccess(event) as EventTypes;
+			action = new LoadEventSuccess(event) as EventActions;
 			result = eventReducer(initialState, action);
 		});
 
@@ -77,7 +77,7 @@ describe('Events Reducer', () => {
 	describe('LoadEventFail', () => {
 		beforeEach(() => {
 			eventEerror = new Error('error');
-			action = new LoadEventFail(eventEerror) as EventTypes;
+			action = new LoadEventFail(eventEerror) as EventActions;
 			result = eventReducer(initialState, action);
 		});
 

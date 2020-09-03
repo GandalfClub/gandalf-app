@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventFacadeService } from '../../store/event-description/event-description.facade';
+import { EventFacadeService } from '../../store/event/event.facade';
 import { Observable } from 'rxjs';
-import { Event } from '../../../landing/models/event';
-import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
-import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
+import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
+import { Event } from '../../../landing/models/event';
 
 @Component({
-	selector: 'app-event-description',
-	templateUrl: './event-description.component.html',
-	styleUrls: ['./event-description.component.scss'],
+	selector: 'app-event',
+	templateUrl: './event.component.html',
+	styleUrls: ['./event.component.scss'],
 })
-export class EventDescriptionComponent implements OnInit {
+export class EventComponent implements OnInit {
 	public eventId: string;
 	public user$: Observable<EntityWrapper<User>>;
-
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private eventFacadeService: EventFacadeService,

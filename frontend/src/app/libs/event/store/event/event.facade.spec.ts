@@ -1,22 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { EventFacadeService } from './event-description.facade';
-import { EventDescriptionState } from './event-description-state';
+import { EventFacadeService } from './event.facade';
+import { EventState } from './event-state';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
 import { Event } from '../../../landing/models/event';
 import { first } from 'rxjs/operators';
 import { MemoizedSelector } from '@ngrx/store';
-import { selectEvent, selectEventValue } from './event-description.selectors';
+import { selectEvent, selectEventValue } from './event.selectors';
 
 describe('Events FacadeService', () => {
-	let mockStore: MockStore<EventDescriptionState>;
+	let mockStore: MockStore<EventState>;
 	let eventFacadeService: EventFacadeService;
 	let event: Event;
 	let eventState: EntityWrapper<Event>;
-	let initialState: EventDescriptionState = { event: eventState };
-	let mockEventSelectorSelectEvent: MemoizedSelector<EventDescriptionState, EntityWrapper<Event>>;
-	let mockEventSelectorSelectEventValue: MemoizedSelector<EventDescriptionState, Event>;
+	let initialState: EventState = { event: eventState };
+	let mockEventSelectorSelectEvent: MemoizedSelector<EventState, EntityWrapper<Event>>;
+	let mockEventSelectorSelectEventValue: MemoizedSelector<EventState, Event>;
 	let id: string;
 
 	beforeEach(() => {

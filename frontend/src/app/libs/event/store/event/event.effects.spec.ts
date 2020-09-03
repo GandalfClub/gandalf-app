@@ -1,9 +1,9 @@
 import { TestBed, async } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
-import { EventEffects } from './event-description.effects';
+import { EventEffects } from './event.effects';
 import { EventRepository } from '../../services/event-repository.service';
 import { Event } from '../../../landing/models/event';
-import { LoadEvent, LoadEventSuccess, LoadEventFail } from './event-description.actions';
+import { LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';

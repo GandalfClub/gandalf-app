@@ -1,5 +1,5 @@
-import { selectEventState, selectEvent, selectEventValue } from './event-description.selectors';
-import { EventDescriptionState } from './event-description-state';
+import { selectEventState, selectEvent, selectEventValue } from './event.selectors';
+import { EventState } from './event-state';
 import { EntityStatus } from '../../../auth/models/entity-status';
 import { Event } from '../../../landing/models/event';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
@@ -8,7 +8,7 @@ import { async } from '@angular/core/testing';
 describe('Events Selectors', () => {
 	let eventValue: Event;
 	let event: EntityWrapper<Event>;
-	let state: EventDescriptionState;
+	let state: EventState;
 
 	beforeEach(async(() => {
 		eventValue = {

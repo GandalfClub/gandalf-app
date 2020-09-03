@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { LoadEvent } from './event-description.actions';
-import { EventDescriptionState } from './event-description-state';
+import { LoadEvent } from './event.actions';
+import { EventState } from './event-state';
 import { Observable } from 'rxjs';
-import { selectEvent, selectEventValue } from './event-description.selectors';
+import { selectEvent, selectEventValue } from './event.selectors';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { Event } from '../../../landing/models/event';
 
@@ -11,7 +11,7 @@ import { Event } from '../../../landing/models/event';
 	providedIn: 'root',
 })
 export class EventFacadeService {
-	constructor(private store: Store<EventDescriptionState>) {}
+	constructor(private store: Store<EventState>) {}
 
 	public get event$(): Observable<EntityWrapper<Event>> {
 		return this.store.pipe(select(selectEvent));

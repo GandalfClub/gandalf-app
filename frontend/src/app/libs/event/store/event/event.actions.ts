@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 import { Event } from '../../../landing/models/event';
 
 export enum EventActionTypes {
-	LoadEvent = '[EventDescription] Load Event',
-	LoadEventSuccess = '[EventDescription] Load Event Success',
-	LoadEventFail = '[EventDescription] Load Event Failure',
+	LoadEvent = '[Event] Load Event',
+	LoadEventSuccess = '[Event] Load Event Success',
+	LoadEventFail = '[Event] Load Event Failure',
 }
 
 export class LoadEvent implements Action {
@@ -20,4 +20,4 @@ export class LoadEventFail implements Action {
 	constructor(public payload: Error) {}
 }
 
-export type EventTypes = LoadEvent | LoadEventSuccess | LoadEventFail;
+export type EventActions = LoadEvent | LoadEventSuccess | LoadEventFail;

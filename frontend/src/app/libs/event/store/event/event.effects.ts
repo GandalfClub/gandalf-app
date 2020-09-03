@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import { catchError, map, exhaustMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-import { EventActionTypes, LoadEvent, LoadEventSuccess, LoadEventFail } from './event-description.actions';
+import { EventActionTypes, LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
 import { Action } from '@ngrx/store';
 import { EventRepository } from '../../services/event-repository.service';
 import { EventDto } from 'src/app/libs/landing/models/event-dto';
