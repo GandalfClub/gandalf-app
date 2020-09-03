@@ -1,5 +1,7 @@
 <div class="app-event-description-panel">
-  <div>{{event.title}}</div>
+  <div class="app-event-description-panel__title">
+    <div>{{event.title}}</div>
+  </div>
   <ng-container *ngIf="event.endDate else withoutEndDateTemplate">
     <div class="app-event-description-panel__date">
       {{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}

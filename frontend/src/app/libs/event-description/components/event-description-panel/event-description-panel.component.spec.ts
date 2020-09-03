@@ -43,7 +43,7 @@ describe('EventComponent', () => {
 
 	describe('when @Input get event value', () => {
 		it('should correctly render the passed @Input event value', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel').textContent).toContain('test');
+			expect(compiledElement.querySelector('.app-event-description-panel__title').textContent).toContain('test');
 		});
 	});
 
