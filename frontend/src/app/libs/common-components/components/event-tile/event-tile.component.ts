@@ -25,24 +25,4 @@ export class EventTileComponent {
 
 	@Input()
 	public menuItems: EventTileMenuItem[];
-
-  constructor() {
-		// TODO:	remove after component tested manually
-		this.startDateTime = new Date('2020-03-04T13:30');
-		this.endDateTime = new Date('2020-03-04T18:30');
-		this.menuItems = [
-			{
-				name: 'Action1',
-				action(): any {
-					alert('fff');
-				}
-			},
-			{
-				name: 'Action2',
-				action(): any {
-					alert('vvv');
-				}
-			},
-		];
-	}
 }
