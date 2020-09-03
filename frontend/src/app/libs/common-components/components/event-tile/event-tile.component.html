@@ -1,27 +1,18 @@
-<section class="app-event-tile" 
-		[class.app-event-tile--draft]="isDraft">
-		
+<section class="app-event-tile" [class.app-event-tile--draft]="isDraft">
 	<div class="app-event-tile__container">
+
 		<h3 class="app-event-tile__title" [title]="name"> {{ name }} </h3>
 
 		<div class="app-event-tile__date-time">
-			<app-event-date class="app-event-tile__date"
-					[startDate]="startDate" 
-					[endDate]="endDate">
-			</app-event-date>
-			<app-event-time class="app-event-tile__time" 
-					*ngIf="startTime && endTime" 
-					[startTime]="startTime" 
-					[endTime]="endTime"
-					[isEventInProgress]="endDate">
-			</app-event-time>
+			<app-event-date class="app-event-tile__date" [startDate]="startDateTime" [endDate]="endDateTime"></app-event-date>
+			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="endDateTime"></app-event-time>
 		</div>
 		
 		<ng-container *ngIf="menuItems && menuItems.length >= 1">
-			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="menu">
+			<button mat-icon-button class="app-event-tile__menu-button" aria-label="Event tile menu" title="Menu" [matMenuTriggerFor]="tileMenu">
 				<mat-icon>more_vert</mat-icon>
 			</button>
-			<mat-menu #menu>
+			<mat-menu #tileMenu>
 				<ng-container *ngFor="let menuItem of menuItems" >
 					<button mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
 				</ng-container>
@@ -38,5 +29,6 @@
 				<span>{{ status }}</span>
 			</li>
 		</ul>
+		
 	</div>
 </section>

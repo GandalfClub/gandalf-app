@@ -15,16 +15,10 @@ export class EventTileComponent {
 	public name: string;
 
 	@Input()
-	public startDate: Date;
+	public startDateTime: Date;
 
 	@Input()
-	public endDate: Date;
-
-	@Input()
-	public startTime: Date;
-
-	@Input()
-	public endTime: Date;
+	public endDateTime: Date;
 
 	@Input()
 	public statusList: string[];
@@ -34,9 +28,8 @@ export class EventTileComponent {
 
   constructor() {
 		// TODO:	remove after component tested manually
-		this.startDate = new Date('2020-03-04');
-		this.startTime = new Date('2020-03-04T13:30');
-		this.endTime = new Date('2020-03-04T16:30');
+		this.startDateTime = new Date('2020-03-04T13:30');
+		this.endDateTime = new Date('2020-03-04T18:30');
 		this.menuItems = [
 			{
 				name: 'Action1',
