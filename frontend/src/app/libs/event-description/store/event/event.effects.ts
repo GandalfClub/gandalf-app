@@ -6,7 +6,7 @@ import { EventActionTypes, LoadEvent, LoadEventSuccess, LoadEventFail } from './
 import { Action } from '@ngrx/store';
 import { EventRepository } from '../../services/event-repository.service';
 import { EventDto } from 'src/app/libs/landing/models/event-dto';
-import { EventConverter } from 'src/app/libs/landing/services/event-converter.service';
+import { EventConverter } from '../../services/event-converter.service';
 
 @Injectable()
 export class EventEffects {
@@ -15,7 +15,7 @@ export class EventEffects {
 		ofType(EventActionTypes.LoadEvent),
 		map((action: LoadEvent) => action.payload),
 		exhaustMap((id: string) =>
-			this.eventRepository.getEvent(id).pipe(map((event: EventDto) => new LoadEventSuccess(this.eventConverter.convertFromDto([event])[0])))
+			this.eventRepository.getEvent(id).pipe(map((event: EventDto) => new LoadEventSuccess(this.eventConverter.convertFromDto(event))))
 		),
 		catchError((error: Error) => of(new LoadEventFail(error)))
 	);

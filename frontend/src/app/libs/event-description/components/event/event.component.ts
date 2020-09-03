@@ -23,7 +23,7 @@ export class EventComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.eventId = this.activatedRoute.snapshot.params.id;
-		this.eventFacadeService.getEvent(this.eventId);
+		this.eventFacadeService.loadEvent(this.eventId);
 		this.user$ = this.authFacadeService.user$;
 	}
 

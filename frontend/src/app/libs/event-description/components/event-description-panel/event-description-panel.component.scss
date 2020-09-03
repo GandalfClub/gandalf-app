@@ -1,4 +1,4 @@
-.app-event-description {
+.app-event-description-panel {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -23,7 +23,7 @@
 		line-height: 16px;
 	}
 
-	&__take-part-button {
+	&__tool-tip {
 		align-self: flex-end;
 	}
 }

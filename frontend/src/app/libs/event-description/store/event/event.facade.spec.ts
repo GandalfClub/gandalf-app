@@ -41,7 +41,7 @@ describe('Events FacadeService', () => {
 		};
 		initialState = { event: eventState };
 		id = '1';
-		eventFacadeService.getEvent(id);
+		eventFacadeService.loadEvent(id);
 	});
 
 	describe('method events$', () => {

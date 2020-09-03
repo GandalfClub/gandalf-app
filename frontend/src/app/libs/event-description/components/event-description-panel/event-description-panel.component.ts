@@ -5,11 +5,11 @@ import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 
 @Component({
-	selector: 'app-event-description',
-	templateUrl: './event-description.component.html',
-	styleUrls: ['./event-description.component.scss'],
+	selector: 'app-event-description-panel',
+	templateUrl: './event-description-panel.component.html',
+	styleUrls: ['./event-description-panel.component.scss'],
 })
-export class EventDescriptionComponent {
+export class EventDescriptionPanelComponent {
 	@Input() public event: Event;
 
 	@Input() public user: EntityWrapper<User>;

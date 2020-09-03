@@ -8,7 +8,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
-import { EventConverter } from '../../../landing/services/event-converter.service';
+import { EventConverter } from '../../services/event-converter.service';
 
 describe('Events Effects', () => {
 	let mockEventRepository: jasmine.SpyObj<EventRepository>;

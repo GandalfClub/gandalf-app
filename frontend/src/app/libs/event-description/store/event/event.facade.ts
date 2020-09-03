@@ -21,7 +21,7 @@ export class EventFacadeService {
 		return this.store.pipe(select(selectEventValue));
 	}
 
-	public getEvent(id: string): void {
+	public loadEvent(id: string): void {
 		this.store.dispatch(new LoadEvent(id));
 	}
 }

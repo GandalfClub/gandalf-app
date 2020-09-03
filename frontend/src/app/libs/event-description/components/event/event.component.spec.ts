@@ -12,11 +12,12 @@ import { EventComponent } from './event.component';
 describe('EventComponent', () => {
 	let component: EventComponent;
 	let fixture: ComponentFixture<EventComponent>;
+	let activatedRoute: ActivatedRoute;
 
 	let eventId: string;
 
 	const mockEventDescriptionFacadeService: any = {
-		getEvent(id: string): void {
+		loadEvent(id: string): void {
 			return;
 		},
 	};
@@ -51,11 +52,18 @@ describe('EventComponent', () => {
 		fixture = TestBed.createComponent(EventComponent);
 		component = fixture.componentInstance;
 		eventId = '1';
-		mockEventDescriptionFacadeService.getEvent(eventId);
+		activatedRoute = TestBed.inject(ActivatedRoute);
+		mockEventDescriptionFacadeService.loadEvent(eventId);
 		fixture.detectChanges();
 	});
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	describe('when activated route', () => {
+		it('should return id from URL', async () => {
+			expect(activatedRoute.snapshot.params.id).toEqual(eventId);
+		});
 	});
 });

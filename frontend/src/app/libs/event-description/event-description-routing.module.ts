@@ -8,4 +8,4 @@ const routes: Routes = [{ path: ':id', component: EventComponent }];
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class EventRoutingModule {}
+export class EventDescriptionRoutingModule {}
