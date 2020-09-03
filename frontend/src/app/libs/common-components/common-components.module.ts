@@ -8,9 +8,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { CommonModule } from '@angular/common';
+import { EventDateComponent } from './components/event-date/event-date.component';
+import { EventTimeComponent } from './components/event-time/event-time.component';
 
 @NgModule({
-	declarations: [ EventTileComponent ],
+	declarations: [ EventTileComponent, EventDateComponent, EventTimeComponent ],
 	exports: [ MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, ReactiveFormsModule, EventTileComponent ],
 	imports: [ CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatMenuModule ]
 })

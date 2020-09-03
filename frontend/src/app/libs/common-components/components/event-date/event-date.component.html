@@ -1,0 +1,7 @@
+<time class="app-event-date">
+	<span>{{ startDate | date: dateFormat }}</span>
+	<ng-container *ngIf="startDate && endDate">
+		<span> - </span>
+		<span>{{ endDate | date: dateFormat }}</span>
+	</ng-container>
+</time>
