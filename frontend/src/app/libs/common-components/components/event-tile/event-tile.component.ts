@@ -25,4 +25,9 @@ export class EventTileComponent {
 
 	@Input()
 	public menuItems: EventTileMenuItem[];
+
+	get isMenuShown(): boolean {
+		return this.menuItems && this.menuItems.length >= 1;
+	}
 }
+

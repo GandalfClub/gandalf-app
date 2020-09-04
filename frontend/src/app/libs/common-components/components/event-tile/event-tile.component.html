@@ -8,7 +8,7 @@
 			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="endDateTime"></app-event-time>
 		</div>
 		
-		<ng-container *ngIf="menuItems && menuItems.length >= 1">
+		<ng-container *ngIf="isMenuShown">
 			<button mat-icon-button class="app-event-tile__menu-button" [matMenuTriggerFor]="tileMenu">
 				<mat-icon>more_vert</mat-icon>
 			</button>
