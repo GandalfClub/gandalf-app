@@ -28,6 +28,13 @@ const routes: Routes = [
 				(m: typeof import('./libs/auth-pages/sign-up/sign-up.module')) => m.SignUpModule
 			),
 	},
+	{
+		path: 'profile',
+		loadChildren: () =>
+			import('./libs/user-profile-page/user-profile-page.module').then(
+				(m: typeof import('./libs/user-profile-page/user-profile-page.module')) => m.UserProfilePageModule
+			),
+	},
 ];
 
 @NgModule({
