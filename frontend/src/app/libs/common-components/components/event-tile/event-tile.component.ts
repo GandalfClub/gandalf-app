@@ -30,4 +30,3 @@ export class EventTileComponent {
 		return this.menuItems && this.menuItems.length >= 1;
 	}
 }
-
