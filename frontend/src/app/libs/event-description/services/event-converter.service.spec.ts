@@ -1,21 +1,27 @@
 import { TestBed } from '@angular/core/testing';
-
 import { EventConverter } from './event-converter.service';
-
 import { Event } from '../../landing/models/event';
+import { EventDto } from '../../landing/models/event-dto';
 
 describe('EventConverterService', () => {
 	let service: EventConverter;
 	let event: Event;
 
-	const eventDto: any = {
+	const eventDto: EventDto = {
 		_id: 'test',
+		title: 'test',
+		description: 'test',
+		created: null,
+		startDate: null,
+		startTime: null,
+		endDate: null,
+		endTime: null,
+		participations: null,
+		users: null,
+		tasks: null,
+		isActive: null,
+		maxScore: null,
 	};
-
-	const eventResult: any = {
-		id: 'test',
-	};
-
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
 		service = TestBed.inject(EventConverter);
@@ -31,7 +37,7 @@ describe('EventConverterService', () => {
 		});
 
 		it('should rename "_id" key', () => {
-			expect(event).toEqual(eventResult);
+			expect(event.id).toEqual('test');
 		});
 	});
 });

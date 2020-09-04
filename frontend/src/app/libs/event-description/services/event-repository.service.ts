@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EventResponse } from '../models/event-response';
+import { EventDto } from '../../landing/models/event-dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,8 +11,8 @@ export class EventRepository {
 
 	constructor(private http: HttpClient) {}
 
-	public getEvent(id: string): Observable<any> {
+	public getEvent(id: string): Observable<EventDto> {
 		const url: string = `${this.API_URL}/publicevents/${id}`;
-		return this.http.get<EventResponse>(url);
+		return this.http.get<EventDto>(url);
 	}
 }

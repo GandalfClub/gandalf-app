@@ -16,13 +16,13 @@ describe('EventComponent', () => {
 
 	let eventId: string;
 
-	const mockEventDescriptionFacadeService: any = {
+	const mockEventDescriptionFacadeService: Partial<EventFacadeService> = {
 		loadEvent(id: string): void {
 			return;
 		},
 	};
 
-	const mockAuthFacadeService: any = {
+	const mockAuthFacadeService: Partial<AuthFacadeService> = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return;
 		},

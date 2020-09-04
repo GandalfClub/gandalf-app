@@ -9,11 +9,13 @@ import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
+import { EventDto } from 'src/app/libs/landing/models/event-dto';
 
 describe('Events Effects', () => {
 	let mockEventRepository: jasmine.SpyObj<EventRepository>;
 	let eventConverter: EventConverter;
 	let event: Event;
+	let eventDto: EventDto;
 	let error: Error;
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
@@ -35,7 +37,7 @@ describe('Events Effects', () => {
 			],
 		});
 		mockEventRepository = TestBed.inject(EventRepository) as jasmine.SpyObj<EventRepository>;
-		eventConverter = TestBed.inject(EventConverter);
+		eventConverter = TestBed.inject(EventConverter) as jasmine.SpyObj<EventConverter>;
 	}));
 
 	describe('getEvent', () => {
@@ -51,10 +53,25 @@ describe('Events Effects', () => {
 					endDate: null,
 					endTime: null,
 				};
+				eventDto = {
+					_id: 'test',
+					title: 'test',
+					description: 'test',
+					created: null,
+					startDate: null,
+					startTime: null,
+					endDate: null,
+					endTime: null,
+					participations: null,
+					users: null,
+					tasks: null,
+					isActive: null,
+					maxScore: null,
+				};
 				id = '1';
-				mockEventRepository.getEvent.and.returnValue(of(event));
+				mockEventRepository.getEvent.and.returnValue(of(eventDto));
 				actions = hot('-a-|', { a: new LoadEvent(id) });
-				expected = cold('-s-|', { s: new LoadEventSuccess(event) });
+				expected = cold('-s-|', { s: new LoadEventSuccess(eventConverter.convertFromDto(eventDto)) });
 			});
 
 			it('should emit getEvents action', () => {

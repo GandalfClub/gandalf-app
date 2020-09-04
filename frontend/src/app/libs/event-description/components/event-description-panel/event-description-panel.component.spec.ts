@@ -23,7 +23,7 @@ const user: EntityWrapper<User> = {
 describe('EventComponent', () => {
 	let component: EventDescriptionPanelComponent;
 	let fixture: ComponentFixture<EventDescriptionPanelComponent>;
-	let compiledElement: any;
+	let compiledElement: typeof fixture.nativeElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({

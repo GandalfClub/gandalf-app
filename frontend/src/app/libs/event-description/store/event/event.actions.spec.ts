@@ -1,12 +1,12 @@
 import * as EventActions from './event.actions';
+import { Event } from '../../../landing/models/event';
 
 describe('EventConverterService', () => {
 	let action: EventActions.LoadEvent | EventActions.LoadEventFail | EventActions.LoadEventSuccess;
-	let payload: any;
 
 	describe('LoadEvent', () => {
+		const payload: string = '1';
 		beforeEach(() => {
-			payload = '1';
 			action = new EventActions.LoadEvent(payload);
 		});
 		it('should create LoadEvent action', () => {
@@ -18,17 +18,17 @@ describe('EventConverterService', () => {
 	});
 
 	describe('LoadEventSuccess', () => {
+		const payload: Event = {
+			id: 'test',
+			title: 'test',
+			description: 'test',
+			created: null,
+			startDate: null,
+			startTime: null,
+			endDate: null,
+			endTime: null,
+		};
 		beforeEach(() => {
-			payload = {
-				id: 'test',
-				title: 'test',
-				description: 'test',
-				created: null,
-				startDate: null,
-				startTime: null,
-				endDate: null,
-				endTime: null,
-			};
 			action = new EventActions.LoadEventSuccess(payload);
 		});
 
@@ -41,11 +41,11 @@ describe('EventConverterService', () => {
 	});
 
 	describe('LoadEventFail', () => {
+		const payload: Error = {
+			name: 'test error',
+			message: 'get events fail',
+		};
 		beforeEach(() => {
-			payload = {
-				name: 'test error',
-				message: 'get events fail',
-			};
 			action = new EventActions.LoadEventFail(payload);
 		});
 
