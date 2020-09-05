@@ -29,18 +29,24 @@ describe('EventDateComponent', () => {
 
 	describe('when @Input gets start/end Date', () => {
 		describe('endDate was provided', () => {
-			it('should show start/end Date', () => {
+			beforeEach(() => {
 				component.startDate = startDate;
 				component.endDate = endDate;
 				fixture.detectChanges();
+			});
+
+			it('should show start/end Date', () => {
 				expect(htmlElement.querySelector('time.app-event-date').textContent).toContain('2 Feb 20 - 4 Feb 20');
 			});
 		});
 
 		describe('endDate was not provided', () => {
-			it('should show only start Date', () => {
+			beforeEach(() => {
 				component.startDate = startDate;
 				fixture.detectChanges();
+			});
+
+			it('should show only start Date', () => {
 				expect(htmlElement.children.length).toBe(1);
 				expect(htmlElement.querySelector('time.app-event-date > span').textContent).toContain('2 Feb 20');
 			});

@@ -46,26 +46,35 @@ describe('EventTileComponent', () => {
 
 	describe('when @Input gets isDraft', () => {
 		describe('isDraft is false', () => {
-			it(`should not show Draft print`, () => {
+			beforeEach(() => {
 				component.isDraft = false;
 				fixture.detectChanges();
+			});
+
+			it(`should not show Draft print`, () => {
 				expect(htmlElement.querySelector('.app-event-tile__draft-print')).toBeNull();
 			});
 		});
 
 		describe('isDraft is true', () => {
-			it('should show Draft print', () => {
+			beforeEach(() => {
 				component.isDraft = true;
 				fixture.detectChanges();
+			});
+
+			it('should show Draft print', () => {
 				expect(htmlElement.querySelector('.app-event-tile__draft-print').textContent).toBeTruthy();
 			});
 		});
 	});
 
 	describe('when @Input gets name', () => {
-		it('should display name', () => {
+		beforeEach(() => {
 			component.name = name;
 			fixture.detectChanges();
+		});
+
+		it('should display name', () => {
 			expect(htmlElement.querySelector('.app-event-tile__title').textContent).toContain(name);
 		});
 	});
@@ -131,17 +140,23 @@ describe('EventTileComponent', () => {
 
 	describe('when call isMenuShown', () => {
 		describe('if menuItems length >= 1', () => {
-			it('should return true', () => {
+			beforeEach(() => {
 				component.menuItems = menuItems;
 				fixture.detectChanges();
+			});
+
+			it('should return true', () => {
 				expect(component.isMenuShown).toBeTrue();
 			});
 		});
 
 		describe('if menuItems length < 1', () => {
-			it('should return false', () => {
+			beforeEach(() => {
 				component.menuItems = [];
 				fixture.detectChanges();
+			});
+
+			it('should return false', () => {
 				expect(component.isMenuShown).toBeFalse();
 			});
 		});
