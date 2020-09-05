@@ -11,18 +11,14 @@ describe('EventTimeComponent', () => {
 	let fixture: ComponentFixture<EventTimeComponent>;
 	let htmlElement: HTMLElement;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ EventTimeComponent ]
 		})
 		.compileComponents();
-
-		htmlElement = fixture.nativeElement;
-	}));
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(EventTimeComponent);
 		component = fixture.componentInstance;
+		htmlElement = fixture.nativeElement;
 		fixture.detectChanges();
 	});
 
@@ -46,8 +42,8 @@ describe('EventTimeComponent', () => {
 		it('should display formatted time', () => {
 			component.isEventInProgress = false;
 			fixture.detectChanges();
-			expect(htmlElement.querySelector('time.app-event-time span').textContent).toContain('8 pm');
-			expect(htmlElement.querySelector('time.app-event-time span:last-child').textContent).toContain('9:30 pm');
+			expect(htmlElement.querySelector('time.app-event-time > span').textContent).toContain('8:00 PM');
+			expect(htmlElement.querySelector('time.app-event-time > span:last-child').textContent).toContain('9:30 PM');
 		});
 	});
 });
