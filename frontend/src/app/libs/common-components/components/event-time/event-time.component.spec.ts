@@ -17,8 +17,9 @@ describe('EventTimeComponent', () => {
 		.compileComponents();
 		fixture = TestBed.createComponent(EventTimeComponent);
 		component = fixture.componentInstance;
-		htmlElement = fixture.nativeElement;
 		fixture.detectChanges();
+
+		htmlElement = fixture.nativeElement;
 	});
 
 	it('should create', () => {
@@ -32,17 +33,21 @@ describe('EventTimeComponent', () => {
 			fixture.detectChanges();
 		});
 
-		it('should display InProgress text', () => {
-			component.isEventInProgress = true;
-			fixture.detectChanges();
-			expect(htmlElement.querySelector('time.app-event-time--in-progress').textContent).toContain('In Progress');
+		describe('isEventInProgress is true', () => {
+			it('should show InProgress text', () => {
+				component.isEventInProgress = true;
+				fixture.detectChanges();
+				expect(htmlElement.querySelector('time.app-event-time--in-progress').textContent).toContain('In Progress');
+			});
 		});
 
-		it('should display formatted time', () => {
-			component.isEventInProgress = false;
-			fixture.detectChanges();
-			expect(htmlElement.querySelector('time.app-event-time > span').textContent).toContain('8:00 PM');
-			expect(htmlElement.querySelector('time.app-event-time > span:last-child').textContent).toContain('9:30 PM');
+		describe('isEventInProgress is false', () => {
+			it('should show formatted time', () => {
+				component.isEventInProgress = false;
+				fixture.detectChanges();
+				expect(htmlElement.querySelector('time.app-event-time > span').textContent).toContain('8:00 PM');
+				expect(htmlElement.querySelector('time.app-event-time > span:last-child').textContent).toContain('9:30 PM');
+			});
 		});
 	});
 });

@@ -14,7 +14,7 @@
 			</button>
 			<mat-menu #tileMenu>
 				<ng-container *ngFor="let menuItem of menuItems" >
-					<button mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
+					<button class="app-event-tile__menu-item" mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
 				</ng-container>
 			</mat-menu>
 		</ng-container>
