@@ -1,7 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventTimeComponent } from './event-time.component';
-import { start } from 'repl';
 
 const startTime: Date = new Date('2020-02-02T20:00');
 const endTime: Date = new Date('2020-02-04T21:30');
