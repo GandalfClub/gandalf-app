@@ -35,6 +35,13 @@ const routes: Routes = [
 				(m: typeof import('./libs/user-profile-page/user-profile-page.module')) => m.UserProfilePageModule
 			),
 	},
+	{
+		path: 'adminrolemanagement',
+		loadChildren: () =>
+			import('./libs/admin-role-management/admin-role-management.module').then(
+				(m: typeof import('./libs/admin-role-management/admin-role-management.module')) => m.AdminRoleManagementModule
+			),
+	},
 ];
 
 @NgModule({

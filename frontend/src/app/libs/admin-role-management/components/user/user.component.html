@@ -1,0 +1,20 @@
+<section class="app-user">
+  <div class="app-user__container">
+    <div class="app-user__photo">
+      {{user.photoUrl}}
+    </div>
+    <div class="app-user__data">
+      <div class="app-user__name">
+        <span>{{user.firstName}} </span>
+        <span>{{user.secondName}}</span>
+        <div class="app-user__email">
+          <span>{{user.email}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="app-user__slide-toggle">
+      <span>Event Manager </span>
+      <mat-slide-toggle [(ngModel)]="isEventManager"></mat-slide-toggle>
+    </div>
+  </div>
+</section>
