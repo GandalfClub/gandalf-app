@@ -2,14 +2,14 @@
 	<table>
 		<thead>
 			<td></td>
-			<th *ngFor="let state of componentStateNames">{{state}}</th>
+			<th *ngFor="let state of states">{{state.name}}</th>
 		</thead>
 		<tbody>
-			<tr [style.height]="containerHeight ? containerHeight : '100%'">
-				<td>{{componentName}}</td>
-				<td *ngFor="let componentTemplate of componentTemplates"
-						[style.width]="containerWidth ? containerWidth : '100%'">
-					<ng-container *ngTemplateOutlet="componentTemplate"></ng-container>
+			<tr [style.height]="container ? container.height + 'px' : 'auto'">
+				<td>{{name}}</td>
+				<td *ngFor="let state of states"
+						[style.width]="container ? container.width + 'px' : 'auto'">
+					<ng-container *ngTemplateOutlet="state.template"></ng-container>
 				</td>
 			</tr>
 		</tbody>

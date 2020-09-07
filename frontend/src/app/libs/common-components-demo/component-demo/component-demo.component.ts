@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { StateTemplateOfDemoComponent } from '../models/state-template-of-demo-component';
+import { BoxSize } from '../models/box-size';
 
 @Component({
   selector: 'app-component-demo',
@@ -8,17 +10,14 @@ import { Component, Input } from '@angular/core';
 export class ComponentDemoComponent {
 
 	@Input()
-	public containerWidth: string;
+	public container: BoxSize;
 
 	@Input()
-	public containerHeight: string;
+	public name: string;
 
 	@Input()
-	public componentName: string;
+	public states: StateTemplateOfDemoComponent[];
 
 	@Input()
-	public componentStateNames: string[];
-
-	@Input()
-	public componentTemplates: string[];
+	public componentTemplates: Array<TemplateRef<any>>;
 }
