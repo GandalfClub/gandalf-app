@@ -4,9 +4,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { eventReducer } from './event/event.reducer';
 import { EventEffects } from './event/event.effects';
 
-export const eventFeatureKey: string = 'event description';
+export const eventDescriptionFeatureKey: string = 'event description';
 
 @NgModule({
-	imports: [StoreModule.forFeature(eventFeatureKey, eventReducer), EffectsModule.forFeature([EventEffects])],
+	imports: [StoreModule.forFeature(eventDescriptionFeatureKey, eventReducer), EffectsModule.forFeature([EventEffects])],
 })
 export class EventStoreModule {}
