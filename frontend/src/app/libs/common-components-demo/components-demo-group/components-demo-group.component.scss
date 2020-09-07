@@ -1,0 +1,15 @@
+.components-demo-group {
+	&--dark {
+		background-color: #212121;
+	}
+
+	&__title {
+		color: #367FF6;
+		text-transform: uppercase;
+	}
+
+	&__container {
+		width: 90%;
+		margin: 0 auto;
+	}
+}

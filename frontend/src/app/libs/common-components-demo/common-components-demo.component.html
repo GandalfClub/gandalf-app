@@ -1,0 +1,30 @@
+<div class="common-components-demo">
+	<app-components-demo-group groupName="Event Tile">
+		<app-component-demo 
+				[containerWidth]="'300px'" 
+				[containerHeight]="'117px'"
+				[componentName]="'event-tile'"
+				[componentStateNames]="['default', 'draft']"
+				[componentTemplates]="[eventTileDefault, eventTileDraft]">
+		</app-component-demo>
+	</app-components-demo-group>
+
+	<app-components-demo-group [isDark]="true" [groupName]="'Event Tile'">
+		<app-component-demo 
+				[containerWidth]="'300px'" 
+				[containerHeight]="'117px'"
+				[componentName]="'event-tile'"
+				[componentStateNames]="['default', 'draft']"
+				[componentTemplates]="[eventTileDefault, eventTileDraft]">
+		</app-component-demo>
+	</app-components-demo-group>
+</div>
+
+
+<ng-template #eventTileDefault>
+	<app-event-tile></app-event-tile>
+</ng-template>
+
+<ng-template #eventTileDraft>
+	<app-event-tile [isDraft]="true"></app-event-tile>
+</ng-template>

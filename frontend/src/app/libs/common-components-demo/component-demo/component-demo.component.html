@@ -1,0 +1,17 @@
+<div class="component-demo" >
+	<table>
+		<thead>
+			<td></td>
+			<th *ngFor="let state of componentStateNames">{{state}}</th>
+		</thead>
+		<tbody>
+			<tr [style.height]="containerHeight ? containerHeight : '100%'">
+				<td>{{componentName}}</td>
+				<td *ngFor="let componentTemplate of componentTemplates"
+						[style.width]="containerWidth ? containerWidth : '100%'">
+					<ng-container *ngTemplateOutlet="componentTemplate"></ng-container>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
