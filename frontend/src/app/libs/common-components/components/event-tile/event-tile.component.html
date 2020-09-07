@@ -5,7 +5,7 @@
 
 		<div class="app-event-tile__date-time">
 			<app-event-date class="app-event-tile__date" [startDate]="startDateTime" [endDate]="endDateTime"></app-event-date>
-			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="endDateTime"></app-event-time>
+			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="!endDateTime"></app-event-time>
 		</div>
 		
 		<ng-container *ngIf="isMenuShown">
