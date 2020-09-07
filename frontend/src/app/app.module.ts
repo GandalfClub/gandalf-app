@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
 import { AuthModule } from './libs/auth/auth.module';
-// import { EventPooverComponent } from './libs/common-components/event-poover/event-poover.component';
 
 @NgModule({
 	declarations: [AppComponent, CodejarComponent],

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventPooverComponent } from './event-poover.component';
 import { ImportState } from '@ngrx/store-devtools/src/actions';
-import { ReactiveFormsModule, FormsModule, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -11,14 +11,13 @@ describe('EventPooverComponent', () => {
 	let fixture: ComponentFixture<EventPooverComponent>;
 	let testValue: string;
 	let submitBtnEl: DebugElement;
-	let titleEl: DebugElement;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-		declarations: [ EventPooverComponent ],
-		imports: [ReactiveFormsModule, FormsModule]
+			declarations: [EventPooverComponent],
+			imports: [ReactiveFormsModule, FormsModule]
 		})
-		.compileComponents();
+			.compileComponents();
 	}));
 
 	beforeEach(() => {
@@ -28,7 +27,6 @@ describe('EventPooverComponent', () => {
 		fixture.detectChanges();
 		testValue = 'test';
 		submitBtnEl = fixture.debugElement.query(By.css('button'));
-		titleEl = fixture.debugElement.query(By.css('input[type=text]'))
 	});
 
 	it('should create', () => {
@@ -40,10 +38,10 @@ describe('EventPooverComponent', () => {
 	});
 
 	it('title validity', () => {
-		let title: AbstractControl = component.eventPopoverForm.controls['title']
+		const title: AbstractControl = component.eventPopoverForm.controls['title'];
 		expect(title.valid).toBeFalsy();
 
-		let errors = title.errors || {};
+		const errors: ValidationErrors = title.errors || {};
 		expect(errors['required']).toBeTruthy();
 
 		title.setValue('test');
@@ -54,12 +52,10 @@ describe('EventPooverComponent', () => {
 		expect(submitBtnEl.nativeElement.disabled).toBeTruthy();
 	});
 
-	// it('submit should give value', () => {
-	//   let title = component.eventPopoverForm.value.title;
-	//   titleEl.nativeElement.value = testValue;      don't get this data??
-	//   submitBtnEl.triggerEventHandler('click', null)
-	//   fixture.detectChanges();
-	//   expect(title).toEqual(testValue);
-	// });
+	it('submit button should call method submitEventPopover', () => {
+		submitBtnEl.triggerEventHandler('click', null);
+		component.eventPopoverForm.value.title = testValue;
+		expect(component.submitEventPopover()).toEqual(testValue);
+	});
 
 });

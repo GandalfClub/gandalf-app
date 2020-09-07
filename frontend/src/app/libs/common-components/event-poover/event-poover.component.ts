@@ -13,14 +13,13 @@ export class EventPooverComponent implements OnInit {
 		private fb: FormBuilder,
 	) { }
 
-	public  ngOnInit(): void {
+	public ngOnInit(): void {
 		this.eventPopoverForm = this.fb.group({
 			title: ['', [Validators.required]]
 		});
 	}
 
 	public submitEventPopover(): string {
-		console.log(this.eventPopoverForm.value.title);
 		return this.eventPopoverForm.value.title;
 	}
 }
