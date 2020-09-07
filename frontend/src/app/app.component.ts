@@ -10,7 +10,7 @@ import { EventPooverComponent } from './libs/common-components/event-poover/even
 export class AppComponent {
 	public title: string = 'gandalf';
 	constructor(public dialog: MatDialog) {}
-	openDialog() {
+	public openDialog(): void {
 		this.dialog.open(EventPooverComponent);
 	  }
 }
