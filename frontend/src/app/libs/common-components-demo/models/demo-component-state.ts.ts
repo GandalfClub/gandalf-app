@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 
-export interface StateTemplateOfDemoComponent {
+export interface DemoComponentState {
 	name: string;
 	template: TemplateRef<any>;
 }

@@ -1,12 +1,16 @@
-<div class="component-demo" >
+<div class="component-demo-row" >
 	<table>
-		<thead>
+		<thead *ngIf="isHeaderShown">
 			<td></td>
-			<th *ngFor="let state of states">{{state.name}}</th>
+			<th *ngFor="let state of states" class="component-demo-row__state-name">
+				<span>{{state.name}}</span>
+			</th>
 		</thead>
 		<tbody>
 			<tr [style.height]="container ? container.height + 'px' : 'auto'">
-				<td>{{name}}</td>
+				<td class="component-demo-row__name">
+					<span>{{name}}</span>
+				</td>
 				<td *ngFor="let state of states"
 						[style.width]="container ? container.width + 'px' : 'auto'">
 					<ng-container *ngTemplateOutlet="state.template"></ng-container>

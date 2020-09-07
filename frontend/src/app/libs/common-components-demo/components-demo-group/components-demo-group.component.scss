@@ -1,15 +1,30 @@
 .components-demo-group {
-	&--dark {
+	padding: 72px 0;
+
+  &--dark {
 		background-color: #212121;
-	}
 
-	&__title {
-		color: #367FF6;
-		text-transform: uppercase;
-	}
+		&::ng-deep .component-demo-row__name {
+			color: rgba(255, 255, 255, 0.5);
+		}
 
-	&__container {
-		width: 90%;
-		margin: 0 auto;
+		&::ng-deep .component-demo-row__state-name {
+			color: rgba(255, 255, 255, 0.5);
+		}
+  }
+
+  &__container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__title {
+		color: #367ff6;
+		font-weight: bold;
+    text-transform: uppercase;
+	}
+	
+	&__line {
+		margin-bottom: 20px;
 	}
 }

@@ -1,0 +1,67 @@
+<div class="event-tile-demo">
+	<app-components-demo-group groupName="Event Tile">
+		<app-component-demo-row
+				[name]="'event-tile'"
+				[states]="[{name: 'default', template: eventTileDefault}, {name: 'draft', template: eventTileDraft}]"
+				[container]="eventTileData.container">
+		</app-component-demo-row>
+		<app-component-demo-row
+				[name]="'event-tile-menu'"
+				[states]="[{name: '', template: eventTileMenuDefault}, {name: '', template: eventTileMenuDraft}]"
+				[container]="eventTileData.container">
+		</app-component-demo-row>
+	</app-components-demo-group>
+
+	<app-components-demo-group groupName="Event Tile" [isDark]="true">
+		<app-component-demo-row
+				[name]="'event-tile'"
+				[states]="[{name: 'default', template: eventTileDefault}, {name: 'draft', template: eventTileDraft}]"
+				[container]="eventTileData.container">
+		</app-component-demo-row>
+		<app-component-demo-row
+				[name]="'event-tile-menu'"
+				[states]="[{name: '', template: eventTileMenuDefault}, {name: '', template: eventTileMenuDraft}]"
+				[container]="eventTileData.container">
+		</app-component-demo-row>
+	</app-components-demo-group>
+</div>
+
+<ng-template #eventTileDefault>
+	<app-event-tile 
+			name="EDU: Segment Tree"
+			[startDateTime]="eventTileData.startDateTime" 
+			[endDateTime]="eventTileData.endDateTime"
+			[statusList]="eventTileData.statusList">
+	</app-event-tile>
+</ng-template>
+
+<ng-template #eventTileDraft>
+	<app-event-tile 
+			[isDraft]="true"
+			name="EDU: Segment Tree"
+			[startDateTime]="eventTileData.startDateTime" 
+			[endDateTime]="eventTileData.endDateTime"
+			[statusList]="eventTileData.statusList">
+	</app-event-tile>
+</ng-template>
+
+<ng-template #eventTileMenuDefault>
+	<app-event-tile 
+			[menuItems]="eventTileData.menuItems"
+			name="EDU: Segment Tree"
+			[startDateTime]="eventTileData.startDateTime" 
+			[endDateTime]="eventTileData.endDateTime"
+			[statusList]="eventTileData.statusList">
+	</app-event-tile>
+</ng-template>
+
+<ng-template #eventTileMenuDraft>
+	<app-event-tile 
+			[menuItems]="eventTileData.menuItems"
+			[isDraft]="true"
+			name="EDU: Segment Tree"
+			[startDateTime]="eventTileData.startDateTime" 
+			[endDateTime]="eventTileData.endDateTime"
+			[statusList]="eventTileData.statusList">
+	</app-event-tile>
+</ng-template>
