@@ -1,0 +1,34 @@
+<section class="app-event-tile" [class.app-event-tile--draft]="isDraft">
+	<div class="app-event-tile__container">
+
+		<h3 class="app-event-tile__title"> {{ name }} </h3>
+
+		<div class="app-event-tile__date-time">
+			<app-event-date class="app-event-tile__date" [startDate]="startDateTime" [endDate]="endDateTime"></app-event-date>
+			<app-event-time class="app-event-tile__time" [startTime]="startDateTime" [endTime]="endDateTime" [isEventInProgress]="endDateTime"></app-event-time>
+		</div>
+		
+		<ng-container *ngIf="isMenuShown">
+			<button mat-icon-button class="app-event-tile__menu-button" [matMenuTriggerFor]="tileMenu">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #tileMenu>
+				<ng-container *ngFor="let menuItem of menuItems" >
+					<button class="app-event-tile__menu-item" mat-menu-item (click)="menuItem.action.call()">{{ menuItem.name }}</button>
+				</ng-container>
+			</mat-menu>
+		</ng-container>
+
+		<div class="app-event-tile__draft-print" *ngIf="isDraft">
+			<span>DRAFT</span>
+		</div>
+	
+		<ul class="app-event-tile__status-list">
+			<h4 class="app-event-tile__status-title">Status:</h4>
+			<li *ngFor="let status of statusList" class="app-event-tile__status-item"> 
+				<span>{{ status }}</span>
+			</li>
+		</ul>
+		
+	</div>
+</section>
