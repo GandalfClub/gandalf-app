@@ -1,10 +1,11 @@
 .component-demo-row {
-	&__name {
-		width: 180px;
-	}
+  &__name {
+    width: 180px;
+  }
 
-	&__state-name {
-		padding: 10px 0;
-		font-weight: normal;
-	}
+  &__state-name {
+    padding: 10px 0;
+
+    font-weight: normal;
+  }
 }
