@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ContainerModule } from './libs/container/container.module';
@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule
@@ -16,7 +16,7 @@ describe('AppComponent', () => {
 				AppComponent
 			],
 		}).compileComponents();
-	}));
+	});
 
 	it('should create the app', () => {
 		const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);

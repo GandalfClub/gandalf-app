@@ -19,8 +19,6 @@ export class ComponentDemoRowComponent {
 	public states: DemoComponentState[];
 
 	get isHeaderShown(): boolean {
-		return this.states.some((state: DemoComponentState) =>
-			state.name.length !== 0
-		);
+		return this.states.some((state: DemoComponentState) => Boolean(state.name));
 	}
 }
