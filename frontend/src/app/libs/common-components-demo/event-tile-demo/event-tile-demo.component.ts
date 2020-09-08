@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventTileDataDemo } from '../models/event-tile-data-demo';
 
 @Component({
@@ -7,6 +7,10 @@ import { EventTileDataDemo } from '../models/event-tile-data-demo';
   styleUrls: ['./event-tile-demo.component.scss']
 })
 export class EventTileDemoComponent {
+
+	@Input()
+	public isDark: boolean = false;
+
 	public eventTileData: EventTileDataDemo = {
 		container: {
 			width: 400,

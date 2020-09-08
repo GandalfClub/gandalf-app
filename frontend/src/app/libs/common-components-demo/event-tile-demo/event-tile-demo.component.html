@@ -1,18 +1,5 @@
 <div class="event-tile-demo">
-	<app-components-demo-group groupName="Event Tile">
-		<app-component-demo-row
-				[name]="'event-tile'"
-				[states]="[{name: 'default', template: eventTileDefault}, {name: 'draft', template: eventTileDraft}]"
-				[container]="eventTileData.container">
-		</app-component-demo-row>
-		<app-component-demo-row
-				[name]="'event-tile-menu'"
-				[states]="[{name: '', template: eventTileMenuDefault}, {name: '', template: eventTileMenuDraft}]"
-				[container]="eventTileData.container">
-		</app-component-demo-row>
-	</app-components-demo-group>
-
-	<app-components-demo-group groupName="Event Tile" [isDark]="true">
+	<app-components-demo-group [isDark]="isDark" groupName="Event Tile">
 		<app-component-demo-row
 				[name]="'event-tile'"
 				[states]="[{name: 'default', template: eventTileDefault}, {name: 'draft', template: eventTileDraft}]"
