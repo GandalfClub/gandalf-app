@@ -8,9 +8,10 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 import { UsersStoreModule } from './store/store.module';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
-	declarations: [AdminRoleManagementComponent, UserComponent, UserListComponent],
+	declarations: [AdminRoleManagementComponent, UserComponent, UserListComponent, FilterPipe],
 	imports: [CommonModule, AdminRoleManagementRoutingModule, CommonComponentsModule, UsersStoreModule],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })
