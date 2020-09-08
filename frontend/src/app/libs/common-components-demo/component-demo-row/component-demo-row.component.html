@@ -7,11 +7,11 @@
 			</th>
 		</thead>
 		<tbody>
-			<tr [style.height]="container ? container.height + 'px' : 'auto'">
+			<tr [style.height]="container.height ? container.height + 'px' : 'auto'">
 				<td class="component-demo-row__name">
 					<span>{{name}}</span>
 				</td>
-				<td *ngFor="let state of states" [style.width]="container ? container.width + 'px' : 'auto'">
+				<td *ngFor="let state of states" [style.width]="container.width ? container.width + 'px' : 'auto'">
 					<ng-container *ngTemplateOutlet="state.template"></ng-container>
 				</td>
 			</tr>
