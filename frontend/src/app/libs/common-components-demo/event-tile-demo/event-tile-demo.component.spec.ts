@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventTileDemoComponent } from './event-tile-demo.component';
-import { ComponentsDemoGroupComponent } from '../components-demo-group/components-demo-group.component';
 
 describe('EventTileDemoComponent', () => {
 	let component: EventTileDemoComponent;
@@ -22,22 +21,5 @@ describe('EventTileDemoComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
-	});
-
-	describe('when @Input gets isDark', () => {
-		beforeEach(() => {
-			component.isDark = true;
-			fixture.detectChanges();
-		});
-
-		it('should define isDark', () => {
-			expect(component.isDark).toBeTrue();
-		});
-	});
-
-	describe('when @Input does not get isDark', () => {
-		it('should be false by default', () => {
-			expect(component.isDark).toBeFalse();
-		});
 	});
 });

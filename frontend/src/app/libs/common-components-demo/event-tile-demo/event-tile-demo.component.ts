@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { EventTileDataDemo } from '../models/event-tile-data-demo';
 
 @Component({
@@ -8,14 +8,7 @@ import { EventTileDataDemo } from '../models/event-tile-data-demo';
 })
 export class EventTileDemoComponent {
 
-	@Input()
-	public isDark: boolean = false;
-
 	public eventTileData: EventTileDataDemo = {
-		container: {
-			width: 400,
-			height: 117
-		},
 		startDateTime: new Date('2020-01-01T12:00'),
 		endDateTime: new Date('2020-01-05T14:00'),
 		statusList: ['HR', 'Mentor', 'Administrator'],

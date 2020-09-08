@@ -1,53 +1,58 @@
-<div class="event-tile-demo">
-	<app-components-demo-group [isDark]="isDark" groupName="Event Tile">
-		<app-component-demo-row
-				[name]="'event-tile'"
-				[states]="[{name: 'default', template: eventTileDefault}, {name: 'draft', template: eventTileDraft}]"
-				[container]="eventTileData.container">
-		</app-component-demo-row>
-		<app-component-demo-row
-				[name]="'event-tile-menu'"
-				[states]="[{name: '', template: eventTileMenuDefault}, {name: '', template: eventTileMenuDraft}]"
-				[container]="eventTileData.container">
-		</app-component-demo-row>
-	</app-components-demo-group>
-</div>
+<app-demo-group class="event-tile-demo" [title]="'Event Tile'">
+	<div class="light-theme event-tile-demo__states">
+		<app-demo-state [title]="'default'">
+			<app-event-tile class="event-tile-demo__container"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[endDateTime]="eventTileData.endDateTime"
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+		<app-demo-state [title]="'draft'">
+			<app-event-tile class="event-tile-demo__container"
+					[isDraft]="true"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[endDateTime]="eventTileData.endDateTime"
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+		<app-demo-state [title]="'menu'">
+			<app-event-tile class="event-tile-demo__container"
+					[menuItems]="eventTileData.menuItems"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+	</div>
+	<div class="dark-theme event-tile-demo__states">
+		<app-demo-state [title]="'default'">
+			<app-event-tile class="event-tile-demo__container"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[endDateTime]="eventTileData.endDateTime"
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+		<app-demo-state [title]="'draft'">
+			<app-event-tile class="event-tile-demo__container"
+					[isDraft]="true"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[endDateTime]="eventTileData.endDateTime"
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+		<app-demo-state [title]="'menu'">
+			<app-event-tile class="event-tile-demo__container"
+					[menuItems]="eventTileData.menuItems"
+					name="EDU: Segment Tree"
+					[startDateTime]="eventTileData.startDateTime" 
+					[statusList]="eventTileData.statusList">
+			</app-event-tile>
+		</app-demo-state>
+	</div>
+</app-demo-group>
 
-<ng-template #eventTileDefault>
-	<app-event-tile 
-			name="EDU: Segment Tree"
-			[startDateTime]="eventTileData.startDateTime" 
-			[endDateTime]="eventTileData.endDateTime"
-			[statusList]="eventTileData.statusList">
-	</app-event-tile>
-</ng-template>
 
-<ng-template #eventTileDraft>
-	<app-event-tile 
-			[isDraft]="true"
-			name="EDU: Segment Tree"
-			[startDateTime]="eventTileData.startDateTime" 
-			[endDateTime]="eventTileData.endDateTime"
-			[statusList]="eventTileData.statusList">
-	</app-event-tile>
-</ng-template>
-
-<ng-template #eventTileMenuDefault>
-	<app-event-tile 
-			[menuItems]="eventTileData.menuItems"
-			name="EDU: Segment Tree"
-			[startDateTime]="eventTileData.startDateTime" 
-			[statusList]="eventTileData.statusList">
-	</app-event-tile>
-</ng-template>
-
-<ng-template #eventTileMenuDraft>
-	<app-event-tile 
-			[menuItems]="eventTileData.menuItems"
-			[isDraft]="true"
-			name="EDU: Segment Tree"
-			[startDateTime]="eventTileData.startDateTime" 
-			[endDateTime]="eventTileData.endDateTime"
-			[statusList]="eventTileData.statusList">
-	</app-event-tile>
-</ng-template>
