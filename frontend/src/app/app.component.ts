@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EventPooverComponent } from './libs/common-components/event-poover/event-poover.component';
 
 @Component({
 	selector: 'app-root',
@@ -9,8 +7,7 @@ import { EventPooverComponent } from './libs/common-components/event-poover/even
 })
 export class AppComponent {
 	public title: string = 'gandalf';
-	constructor(public dialog: MatDialog) { }
-	public openDialog(): void {
-		this.dialog.open(EventPooverComponent);
-	}
+
+	constructor() {}
+
 }

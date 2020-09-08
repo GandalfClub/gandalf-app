@@ -1,27 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EventPooverComponent } from './event-poover.component';
+import { CreateDraftEventPopoverComponent } from './create-draft-event-popover.component';
 import { ImportState } from '@ngrx/store-devtools/src/actions';
 import { ReactiveFormsModule, FormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
-describe('EventPooverComponent', () => {
-	let component: EventPooverComponent;
-	let fixture: ComponentFixture<EventPooverComponent>;
+describe('CreateDraftEventPopoverComponent', () => {
+	let component: CreateDraftEventPopoverComponent;
+	let fixture: ComponentFixture<CreateDraftEventPopoverComponent>;
 	let testValue: string;
 	let submitBtnEl: DebugElement;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventPooverComponent],
-			imports: [ReactiveFormsModule, FormsModule]
+			declarations: [CreateDraftEventPopoverComponent],
+			imports: [ReactiveFormsModule, FormsModule, MatDialogModule],
+			providers: [
+				{
+				provide: MatDialogRef,
+				useValue: {}
+				}
+			]
 		})
 			.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(EventPooverComponent);
+		fixture = TestBed.createComponent(CreateDraftEventPopoverComponent);
 		component = fixture.componentInstance;
 		component.ngOnInit();
 		fixture.detectChanges();
@@ -29,7 +35,7 @@ describe('EventPooverComponent', () => {
 		submitBtnEl = fixture.debugElement.query(By.css('button'));
 	});
 
-	it('should create', () => {
+	it('should create component', () => {
 		expect(component).toBeTruthy();
 	});
 
@@ -52,10 +58,9 @@ describe('EventPooverComponent', () => {
 		expect(submitBtnEl.nativeElement.disabled).toBeTruthy();
 	});
 
-	it('submit button should call method submitEventPopover', () => {
+	it('submit button should close event popover', () => {
 		submitBtnEl.triggerEventHandler('click', null);
-		component.eventPopoverForm.value.title = testValue;
-		expect(component.submitEventPopover()).toEqual(testValue);
+		expect(document.documentElement.textContent.includes('app-create-draft-event-popover')).toBeFalsy();
 	});
 
 });
