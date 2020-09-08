@@ -8,6 +8,13 @@ const routes: Routes = [
 			import('./libs/landing/landing.module').then((m: typeof import('./libs/landing/landing.module')) => m.LandingModule),
 	},
 	{
+		path: 'eventdescription',
+		loadChildren: () =>
+			import('./libs/event-description/event-description.module').then(
+				(m: typeof import('./libs/event-description/event-description.module')) => m.EventDescriptionModule
+			),
+	},
+	{
 		path: 'signin',
 		loadChildren: () =>
 			import('./libs/auth-pages/sign-in/sign-in.module').then(
@@ -19,6 +26,13 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./libs/auth-pages/sign-up/sign-up.module').then(
 				(m: typeof import('./libs/auth-pages/sign-up/sign-up.module')) => m.SignUpModule
+			),
+	},
+	{
+		path: 'profile',
+		loadChildren: () =>
+			import('./libs/user-profile-page/user-profile-page.module').then(
+				(m: typeof import('./libs/user-profile-page/user-profile-page.module')) => m.UserProfilePageModule
 			),
 	},
 ];

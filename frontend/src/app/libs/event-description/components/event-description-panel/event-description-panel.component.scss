@@ -1,0 +1,29 @@
+.app-event-description-panel {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	letter-spacing: 1.25px;
+	color: #000000;
+
+	&__title {
+		font-weight: 500;
+		font-size: 60px;
+		line-height: 120%;
+		text-transform: capitalize;
+	}
+
+	&__date,
+	&__time {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 16px;
+	}
+
+	&__tool-tip {
+		align-self: flex-end;
+	}
+}

@@ -3,17 +3,27 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
+import { EventTileComponent } from './components/event-tile/event-tile.component';
+import { CommonModule } from '@angular/common';
+import { EventDateComponent } from './components/event-date/event-date.component';
+import { EventTimeComponent } from './components/event-time/event-time.component';
 
 @NgModule({
-	declarations: [CreateDraftEventPopoverComponent],
+	declarations: [CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
 		MatButtonModule,
-		MatFormFieldModule],
+		MatFormFieldModule,
+		CommonModule,
+		MatIconModule,
+		MatTooltipModule,
+		MatMenuModule],
 	exports: [
 		MatInputModule,
 		MatButtonModule,
@@ -21,6 +31,8 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 		MatIconModule,
 		ReactiveFormsModule,
 		MatDialogModule,
+		MatTooltipModule,
+		EventTileComponent,
 		CreateDraftEventPopoverComponent],
 	providers: [
 		{
@@ -29,4 +41,5 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 		},
 	]
 })
+
 export class CommonComponentsModule {}
