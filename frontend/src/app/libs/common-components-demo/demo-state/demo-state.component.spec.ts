@@ -23,16 +23,16 @@ describe('ComponentDemoComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('when @Input gets name', () => {
-		const name: string = 'Contest';
+	describe('when @Input gets title', () => {
+		const title: string = 'Contest';
 
 		beforeEach(() => {
-			component.title = name;
+			component.title = title;
 			fixture.detectChanges();
 		});
 
-		it('should show demo component name', () => {
-			expect(htmlElement.querySelector('.demo-state__title').outerHTML).toContain(name);
+		it('should show title', () => {
+			expect(htmlElement.querySelector('.demo-state__title').outerHTML).toContain(title);
 		});
 	});
 });
