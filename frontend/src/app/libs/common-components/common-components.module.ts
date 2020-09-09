@@ -1,19 +1,45 @@
 import { NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { CommonModule } from '@angular/common';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 
 @NgModule({
-	declarations: [EventTileComponent, EventDateComponent, EventTimeComponent],
-	exports: [MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, ReactiveFormsModule, MatTooltipModule, EventTileComponent],
-	imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatMenuModule],
+	declarations: [CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
+	imports: [
+		ReactiveFormsModule,
+		MatInputModule,
+		MatButtonModule,
+		MatFormFieldModule,
+		CommonModule,
+		MatIconModule,
+		MatTooltipModule,
+		MatMenuModule],
+	exports: [
+		MatInputModule,
+		MatButtonModule,
+		MatFormFieldModule,
+		MatIconModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatTooltipModule,
+		EventTileComponent,
+		CreateDraftEventPopoverComponent],
+	providers: [
+		{
+			provide: MatDialogRef,
+			useValue: {}
+		},
+	]
 })
+
 export class CommonComponentsModule {}
