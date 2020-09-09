@@ -84,7 +84,7 @@ describe('UserProfileComponent', () => {
 			beforeEach(() => {
 				mockUserFacadeService.user$
 					.pipe(
-						filter((user: EntityWrapper<User>) => user.status === EntityStatus.Success),
+						filter((userWrapper: EntityWrapper<User>) => userWrapper.status === EntityStatus.Success),
 						takeUntil(destroy$)
 					)
 					.subscribe((userAuth: EntityWrapper<User>) => {
@@ -107,7 +107,7 @@ describe('UserProfileComponent', () => {
 			beforeEach(() => {
 				mockUserFacadeService.user$
 					.pipe(
-						filter((user: EntityWrapper<User>) => user.status === EntityStatus.Success),
+						filter((userWrapper: EntityWrapper<User>) => userWrapper.status === EntityStatus.Success),
 						takeUntil(destroy$)
 					)
 					.subscribe();
