@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { AuthRepository } from './auth-repository.service';
 import { AuthResponse } from '../models/auth-response';
+import {UserDto} from '../models/user-dto';
 
 describe('AuthService', () => {
 	let authRepository: AuthRepository;
@@ -17,6 +18,12 @@ describe('AuthService', () => {
 		message: 'test',
 		isCompetitionActive: false,
 	};
+
+  const userDto: UserDto = {
+    _id: 'test',
+    email: 'test@test',
+    isAdmin: false,
+  };
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -63,4 +70,14 @@ describe('AuthService', () => {
 			httpRequest.flush(validResponse);
 		});
 	});
+
+  describe('LoadUser', () => {
+	it('should return an Observable<UserDto>', () => {
+		authRepository.loadUser().subscribe((userDtoResponse: UserDto) => {
+		expect(userDtoResponse).toEqual(userDto);
+		});
+		const httpRequest: TestRequest = httpMock.expectOne('/api/users/self');
+		httpRequest.flush(userDto);
+	});
+  });
 });
