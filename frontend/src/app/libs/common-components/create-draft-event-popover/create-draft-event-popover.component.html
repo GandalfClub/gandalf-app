@@ -18,9 +18,8 @@
             mat-button 
             class="event-popover__btn"
             type="submit"
-            (click)=submitEventPopover()
-            [disabled]="eventPopoverForm.controls['title'].invalid"
-            [class.disabed]="eventPopoverForm.controls['title'].invalid">
+            (click)="submitEventPopover()"
+            [disabled]="eventPopoverForm.controls['title'].invalid">
             create event
         </button>
     </div>

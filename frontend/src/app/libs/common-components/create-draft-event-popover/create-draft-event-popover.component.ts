@@ -26,7 +26,7 @@ export class CreateDraftEventPopoverComponent implements OnInit {
 		});
 	}
 
-	public openDialog(): void {
+	public open(): void {
 		this.dialog.open(CreateDraftEventPopoverComponent)
 		.afterClosed().pipe(take(1)).subscribe((title: string) => this.creating.emit(title));
 	}
