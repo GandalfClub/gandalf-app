@@ -1,0 +1,13 @@
+<mat-card
+    [class.dark]="isDark">
+    <mat-card-content>
+        <section class="example-section">
+            <mat-checkbox class="example-margin" color="primary" [(ngModel)]="isDisabled">Disabled</mat-checkbox>
+        </section>
+        <section class="example-section">
+            <mat-checkbox class="example-margin" color="primary" [(ngModel)]="isDark">dark</mat-checkbox>
+        </section>
+
+        <app-slide-toggle [isDisabled]="isDisabled" [isDarkTheme]="isDark" (onToggle)="onToggle($event)"></app-slide-toggle>
+    </mat-card-content>
+</mat-card>

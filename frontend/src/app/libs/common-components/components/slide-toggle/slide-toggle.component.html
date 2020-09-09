@@ -1,0 +1,8 @@
+<mat-slide-toggle
+    [(ngModel)]="isActive"
+    (ngModelChange)="toggle()"
+    color="primary"
+    [class.slide-toggle--dark]="isDarkTheme"
+    [disabled]="isDisabled">
+        Slide me!
+</mat-slide-toggle>
