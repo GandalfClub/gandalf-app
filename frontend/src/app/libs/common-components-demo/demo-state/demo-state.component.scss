@@ -1,0 +1,13 @@
+.demo-state {
+  padding: 10px;
+
+  &__title {
+    margin-bottom: 5px;
+
+    font-weight: normal;
+
+    &--dark-theme {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

@@ -47,6 +47,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			firstName: this.profileForm.value.firstName,
 			secondName: this.profileForm.value.secondName,
 			mobilePhone: this.profileForm.value.mobilePhone,
+			...this.user,
 		};
 		return valuesFromForm;
 	}

@@ -1,0 +1,26 @@
+<div class="event-popover">
+    <form mat-dialog-content  [formGroup]="eventPopoverForm">
+        <mat-form-field class="event-popover__title-field">
+            <mat-label>Title</mat-label>
+            <input matInput
+                type="text"
+                placeholder="My title" 
+                formControlName="title">
+            <mat-error>
+                Please enter some title
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+    
+    <div mat-dialog-action class="event-popover__btn-wrap">
+        <button 
+            mat-button 
+            class="event-popover__btn"
+            type="submit"
+            (click)="submitEventPopover()"
+            [disabled]="eventPopoverForm.controls['title'].invalid">
+            create event
+        </button>
+    </div>
+</div>

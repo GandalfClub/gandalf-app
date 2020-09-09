@@ -42,6 +42,13 @@ const routes: Routes = [
 				(m: typeof import('./libs/admin-role-management/admin-role-management.module')) => m.AdminRoleManagementModule
 			),
 	},
+	{
+		path: 'demo',
+		loadChildren: () =>
+			import('./libs/common-components-demo/common-components-demo.module').then(
+				(m: typeof import('./libs/common-components-demo/common-components-demo.module')) => m.CommonComponentsDemoModule
+			),
+	},
 ];
 
 @NgModule({

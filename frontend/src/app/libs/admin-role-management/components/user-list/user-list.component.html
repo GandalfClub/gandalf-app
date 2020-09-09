@@ -4,14 +4,13 @@
   </div>
   <ng-container *ngFor="let item of users$ | async">
     <ng-container *ngIf="item | filter:searchText">
-      <app-user [user]="item" class="app-user-list__user"></app-user>
+      <app-user (userIdTochangeEventManagerStatus)="changeUserState($event)" [user]="item" class="app-user-list__user">
+      </app-user>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="(userTemplatesChanges$ | async) as templateCount">
     <ng-container *ngIf="!templateCount.length">
       <div>Not Found</div>
     </ng-container>
-  </ng-container>
-  <ng-container (userIdTochangeEventManagerStatus)="id">
   </ng-container>
 </div>

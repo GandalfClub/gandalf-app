@@ -1,18 +1,8 @@
-import {
-	Component,
-	QueryList,
-	ChangeDetectorRef,
-	ViewChildren,
-	AfterViewChecked,
-	SimpleChanges,
-	OnDestroy,
-	SimpleChange,
-} from '@angular/core';
+import { Component, QueryList, ChangeDetectorRef, ViewChildren, AfterViewChecked, SimpleChanges } from '@angular/core';
 import { UsersFacadeService } from '../../store/users/users.facade';
-import { Observable, Subject } from 'rxjs';
-import { User } from '../../models/user';
+import { Observable } from 'rxjs';
 import { UserComponent } from '../user/user.component';
-import { takeUntil } from 'rxjs/operators';
+import { User } from 'src/app/libs/auth/models/user';
 
 @Component({
 	selector: 'app-user-list',
@@ -35,5 +25,9 @@ export class UserListComponent implements AfterViewChecked {
 	public ngAfterViewChecked(): void {
 		this.userTemplatesChanges$ = this.userTemplates.changes;
 		this.changeDetectorRef.detectChanges();
+	}
+
+	public changeUserState(user: User): void {
+		this.usersFacadeService.updateUser(user);
 	}
 }

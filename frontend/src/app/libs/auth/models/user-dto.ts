@@ -8,4 +8,5 @@ export interface UserDto {
 	secondName?: string;
 	mobilePhone?: string;
 	password?: string;
+	claims: string[];
 }
