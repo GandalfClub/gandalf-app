@@ -1,0 +1,12 @@
+.event-tile-demo {
+  &__states {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__container {
+    display: block;
+    width: 420px;
+    height: 155px;
+  }
+}

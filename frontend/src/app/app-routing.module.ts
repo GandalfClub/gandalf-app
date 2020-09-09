@@ -35,6 +35,13 @@ const routes: Routes = [
 				(m: typeof import('./libs/user-profile-page/user-profile-page.module')) => m.UserProfilePageModule
 			),
 	},
+	{
+		path: 'demo',
+		loadChildren: () =>
+			import('./libs/common-components-demo/common-components-demo.module').then(
+				(m: typeof import('./libs/common-components-demo/common-components-demo.module')) => m.CommonComponentsDemoModule
+			),
+	},
 ];
 
 @NgModule({
