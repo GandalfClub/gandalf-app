@@ -1,0 +1,21 @@
+.button {
+  padding: 3px 16px 0 16px;
+
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(33, 33, 33, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  border-radius: 20px;
+
+  &--outlined {
+    border: 1px solid rgba(33, 33, 33, 0.1);
+  }
+
+  &--flat {
+    color: white;
+
+    background-color: #367ff6;
+  }
+}

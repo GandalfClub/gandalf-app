@@ -1,0 +1,28 @@
+<app-demo-group class="button-demo" [title]="'Buttons'">
+	<div class="light-theme button-demo__states">
+		<div class="button-demo__active">
+			<app-demo-state [title]="'basic'" class="button-demo__container">
+				<app-button>Button</app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'outlined'" class="button-demo__container">
+				<app-button type="outlined">Button</app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'flat'" class="button-demo__container">
+				<app-button type="flat">Button</app-button>
+			</app-demo-state>
+		</div>
+		<div class="button-demo__disabled">
+			<app-demo-state class="button-demo__container">
+				<app-button [isDisabled]="true">Button</app-button>
+			</app-demo-state>
+			<app-demo-state class="button-demo__container">
+				<app-button type="outlined" [isDisabled]="true">Button</app-button>
+			</app-demo-state>
+			<app-demo-state class="button-demo__container">
+				<app-button type="flat" [isDisabled]="true">Button</app-button>
+			</app-demo-state>
+		</div>
+	</div>
+	<div class="dark-theme button-demo__states">
+	</div>
+</app-demo-group>
