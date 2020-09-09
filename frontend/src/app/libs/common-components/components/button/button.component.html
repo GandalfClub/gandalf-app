@@ -2,24 +2,24 @@
 	<button 
 			*ngSwitchCase="'basic'" 
 			mat-button 
-			class="button button--basic" 
-			[class.button--dark-theme]="isDark"
+			class="button-basic" 
+			[class.button-basic--dark-theme]="isDark"
 			[disabled]="isDisabled">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button 
 			*ngSwitchCase="'outlined'" 
 			mat-stroked-button 
-			class="button button--outlined" 
-			[class.button--dark-theme]='isDark'
+			class="button-outlined" 
+			[class.button-outlined--dark-theme]='isDark'
 			[disabled]="isDisabled">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
 			*ngSwitchCase="'flat'"  
 			mat-flat-button 
-			class="button button--flat" 
-			[class.button--dark-theme]='isDark'
+			class="button-flat" 
+			[class.button-flat--dark-theme]='isDark'
 			[disabled]="isDisabled"
 			color="primary">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
