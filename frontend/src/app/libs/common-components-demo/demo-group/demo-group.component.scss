@@ -3,21 +3,17 @@
   flex-flow: row nowrap;
 
   &__container {
-		padding: 72px 2%;
-		
-		&--light-theme {
-			& .demo-group__title {
-				background-color: white;
-			}
-		}
-	
-		&--dark-theme {
-			background-color: #212121;
-	
-			&::ng-deep .demo-state__title {
-				color: rgba(255, 255, 255, 0.5);
-			}
-		}
+    padding: 72px 2%;
+
+    &--light-theme {
+      & .demo-group__title {
+        background-color: white;
+      }
+    }
+
+    &--dark-theme {
+      background-color: #212121;
+    }
   }
 
   &__title {

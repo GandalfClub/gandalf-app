@@ -9,4 +9,7 @@ export class DemoStateComponent {
 
 	@Input()
 	public title: string;
+
+	@Input()
+	public isDark: boolean;
 }

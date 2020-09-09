@@ -27,7 +27,7 @@
 		</app-demo-state>
 	</div>
 	<div class="dark-theme event-tile-demo__states">
-		<app-demo-state [title]="'default'">
+		<app-demo-state [title]="'default'" [isDark]="true">
 			<app-event-tile class="event-tile-demo__container"
 					name="EDU: Segment Tree"
 					[startDateTime]="eventTileData.startDateTime" 
@@ -35,7 +35,7 @@
 					[statusList]="eventTileData.statusList">
 			</app-event-tile>
 		</app-demo-state>
-		<app-demo-state [title]="'draft'">
+		<app-demo-state [title]="'draft'" [isDark]="true">
 			<app-event-tile class="event-tile-demo__container"
 					[isDraft]="true"
 					name="EDU: Segment Tree"
@@ -44,7 +44,7 @@
 					[statusList]="eventTileData.statusList">
 			</app-event-tile>
 		</app-demo-state>
-		<app-demo-state [title]="'menu'">
+		<app-demo-state [title]="'menu'" [isDark]="true">
 			<app-event-tile class="event-tile-demo__container"
 					[menuItems]="eventTileData.menuItems"
 					name="EDU: Segment Tree"

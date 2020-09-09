@@ -1,5 +1,5 @@
 <div class="demo-state">
-	<div class="demo-state__title">{{ title }}</div>
+	<div class="demo-state__title" [class.demo-state__title--dark-theme]="isDark">{{ title }}</div>
 	<ng-content></ng-content>
 </div>
 

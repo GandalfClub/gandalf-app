@@ -35,4 +35,15 @@ describe('ComponentDemoComponent', () => {
 			expect(htmlElement.querySelector('.demo-state__title').outerHTML).toContain(title);
 		});
 	});
+
+	describe('when @Input gets isDark', () => {
+		beforeEach(() => {
+			component.isDark = true;
+			fixture.detectChanges();
+		});
+
+		it('should show dark-theme title', () => {
+			expect(htmlElement.querySelector('.demo-state__title--dark-theme')).toBeTruthy();
+		});
+	});
 });
