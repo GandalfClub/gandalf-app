@@ -59,7 +59,6 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 			return {
 				...state,
 				user: {
-					value: action.payload,
 					status: EntityStatus.Success,
 					error: null,
 				},

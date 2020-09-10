@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserComponent } from '../user/user.component';
 import { User } from 'src/app/libs/auth/models/user';
 import { UserClaims } from '../../models/user-claims.enum';
+import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 
 @Component({
 	selector: 'app-users-list',
@@ -22,28 +23,24 @@ export class UsersListComponent implements AfterViewChecked {
 		return this.usersFacadeService.usersValue$;
 	}
 
+	public get userState$(): Observable<EntityWrapper<User>> {
+		return this.usersFacadeService.usersState$;
+	}
+
 	public ngAfterViewChecked(): void {
 		this.userTemplatesChanges$ = this.userTemplates.changes;
 		this.changeDetectorRef.detectChanges();
 	}
 
 	public changeUserState(event: boolean, user: User): void {
-		console.log(user);
-		const claim: string[] = [];
-		claim.push(UserClaims.eventManager);
-		const users: any = (({ claims, password, ...dto }: User) => ({ ...dto }))(user);
-		users.claims = claim;
-		console.log(users);
-		this.usersFacadeService.updateUser(users);
-		// if (event) {
-		// 	delete user.claims;
-		// 	claims.push(UserClaims.eventManager);
-		// }
-		// if (!event) {
-		// 	const claim: string[] = [...user.claims];
-		// 	const claims: string[] = claim.filter((item: string) => item !== UserClaims.eventManager);
-		// 	console.log(claims);
-		// 	this.usersFacadeService.updateUser({ ...user, claims });
-		// }
+		const currentClaims: string[] = [...user.claims];
+		if (event) {
+			currentClaims.push(UserClaims.eventManager);
+			this.usersFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: currentClaims }))(user));
+		}
+		if (!event) {
+			const claimsWithoutEventManager: string[] = currentClaims.filter((item: string) => item !== UserClaims.eventManager);
+			this.usersFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: claimsWithoutEventManager }))(user));
+		}
 	}
 }

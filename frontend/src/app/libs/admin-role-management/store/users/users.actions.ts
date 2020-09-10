@@ -28,7 +28,6 @@ export class UpdateUser implements Action {
 }
 export class UpdateUserSuccess implements Action {
 	public readonly type: UsersActionType.UpdateUserSuccess = UsersActionType.UpdateUserSuccess;
-	constructor(public payload: User) {}
 }
 export class UpdateUserFail implements Action {
 	public readonly type: UsersActionType.UpdateUserFail = UsersActionType.UpdateUserFail;

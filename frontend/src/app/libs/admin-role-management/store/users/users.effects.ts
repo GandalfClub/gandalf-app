@@ -9,7 +9,6 @@ import { Action } from '@ngrx/store';
 import { UserConverter } from '../../services/user-converter.service';
 import { UserDto } from 'src/app/libs/auth/models/user-dto';
 import { User } from 'src/app/libs/auth/models/user';
-import { AuthConverter } from 'src/app/libs/auth/services/auth-converter.service';
 import { AuthRepository } from 'src/app/libs/auth/services/auth-repository.service';
 
 @Injectable()
@@ -28,9 +27,7 @@ export class UsersEffects {
 		ofType(UsersActionType.UpdateUser),
 		map((action: UpdateUser) => action.payload),
 		exhaustMap((user: User) =>
-			this.authRepository
-				.updateUser(this.userConverter.convertUserToDto(user))
-				.pipe(map((userDto: UserDto) => new UpdateUserSuccess(this.userConverter.convertUserFromDto(userDto))))
+			this.authRepository.updateUser(this.userConverter.convertUserToDto(user)).pipe(map(() => new UpdateUserSuccess()))
 		),
 		catchError((error: Error) => of(new UpdateUserFail(error)))
 	);
@@ -39,7 +36,6 @@ export class UsersEffects {
 		private actions$: Actions,
 		private usersRepository: UsersRepositoryService,
 		private userConverter: UserConverter,
-		private authConverter: AuthConverter,
 		private authRepository: AuthRepository
 	) {}
 }

@@ -11,4 +11,6 @@ export const selectUsers: MemoizedSelector<{}, EntityWrapper<User[]>> = createSe
 	(state: UsersState) => state.users
 );
 
+export const selectUser: MemoizedSelector<{}, EntityWrapper<User>> = createSelector(selectUsersState, (state: UsersState) => state.user);
+
 export const selectUsersValue: MemoizedSelector<{}, User[]> = createSelector(selectUsersState, (state: UsersState) => state.users.value);

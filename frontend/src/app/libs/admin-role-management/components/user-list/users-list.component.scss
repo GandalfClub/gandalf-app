@@ -1,9 +1,30 @@
 .app-users-list {
 	display: flex;
 	flex-direction: column;
-	margin: 5px 5px 5px 5px;
+	justify-content: center;
+
+	&__header {
+		width: 70%;
+		margin: auto;
+		border-bottom: 2px solid black;
+		height: 30px;
+	}
 
 	&__user {
 		margin: 5px 0 5px 0;
+	}
+
+	&__notfound {
+		align-self: center;
+	}
+
+	&__input {
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+	}
+
+	&__input-header {
+		margin: 10px 10px 0 0;
 	}
 }

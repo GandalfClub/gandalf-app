@@ -14,7 +14,7 @@
     </div>
     <div class="app-user__slide-toggle">
       <span>Event Manager </span>
-      <mat-slide-toggle [ngModel]="userEventManagerState" (change)="setValue($event)">
+      <mat-slide-toggle [ngModel]="userEventManagerState" [disabled]="userUpdateState" (change)="setValue($event)">
       </mat-slide-toggle>
     </div>
   </div>
