@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter
   styleUrls: ['./slide-toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SlideToggleComponent implements OnInit {
+export class SlideToggleComponent {
 
   @Input()
   public isDisabled: boolean = true;
@@ -18,11 +18,6 @@ export class SlideToggleComponent implements OnInit {
   public onToggle: EventEmitter<any> = new EventEmitter();
 
 	public isActive: boolean = false;
-
-  constructor() { }
-
-  ngOnInit(): void {
-	}
 
   public toggle(): void {
 		this.isActive = !this.isActive;
