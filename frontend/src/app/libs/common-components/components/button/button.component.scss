@@ -36,9 +36,9 @@
     padding-top: 12px;
     padding-bottom: 10px;
 
-    border-color: rgba(33, 33, 33, 0.1);
+    border-color: white;
 
-    &.button--dark-theme {
+    &.button--dark-theme[disabled="true"] {
       border-color: transparentize($color: white, $amount: 0.7);
     }
   }
