@@ -9,7 +9,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
-import { SlideToggleDemoComponent } from './demo/lib/slide-toggle-demo/slide-toggle-demo.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -17,6 +16,7 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
+import { SlideToggleDemoComponent } from '../common-components-demo/slide-toggle-demo/slide-toggle-demo.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +31,6 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 		CommonModule,
 		MatIconModule,
 		MatTooltipModule,
-		MatMenuModule,
 		MatSlideToggleModule,
 		FormsModule,
 		MatCardModule,
@@ -42,6 +41,9 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 		MatButtonModule,
 		MatFormFieldModule,
 		MatIconModule,
+		CommonModule,
+		FormsModule,
+		MatCardModule,
 		ReactiveFormsModule,
 		MatDialogModule,
 		MatTooltipModule,
