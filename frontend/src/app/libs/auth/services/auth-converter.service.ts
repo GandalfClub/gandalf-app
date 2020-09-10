@@ -15,15 +15,8 @@ export class AuthConverter {
 
 	public convertToDto(user: User): UserDto {
 		return {
+			...user,
 			_id: user.id,
-			firstName: user.firstName,
-			secondName: user.secondName,
-			mobilePhone: user.mobilePhone,
-			claims: user.claims,
-			email: user.email,
-			isAdmin: user.isAdmin,
-			photoUrl: user.photoUrl,
-			displayName: user.displayName,
 		};
 	}
 }

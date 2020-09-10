@@ -77,12 +77,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -126,12 +128,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -170,6 +174,7 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const credentials: UserCredentials = {
@@ -181,6 +186,7 @@ describe('Auth Effects', () => {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -219,6 +225,7 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const credentials: UserCredentials = {
@@ -230,6 +237,7 @@ describe('Auth Effects', () => {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const error: Error = new Error('error') as any;

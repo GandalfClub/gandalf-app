@@ -8,7 +8,7 @@ import { AuthResponse } from '../models/auth-response';
 describe('AuthConverterService', () => {
 	let service: AuthConverter;
 	let createdUser: User;
-	let createdUserChanges: Partial<UserDto>;
+	let createdUserChanges: UserDto;
 
 	const userDto: UserDto = {
 		email: '1@1.com',
@@ -18,6 +18,7 @@ describe('AuthConverterService', () => {
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
 		password: 'undefined',
+		claims: [],
 	};
 
 	const user: User = {
@@ -28,13 +29,17 @@ describe('AuthConverterService', () => {
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
 		password: 'undefined',
+		claims: [],
 	};
 
-	const userChanges: Partial<UserDto> = {
+	const userUnchange: User = {
+		...userDto,
+		id: 'test',
+	};
+
+	const userChanges: UserDto = {
+		...user,
 		_id: 'test',
-		firstName: 'undefined',
-		mobilePhone: 'undefined',
-		secondName: 'undefined',
 	};
 
 	const authResponse: AuthResponse = {
@@ -60,7 +65,7 @@ describe('AuthConverterService', () => {
 		});
 
 		it('should rename "_id" key', () => {
-			expect(createdUser).toEqual(user);
+			expect(createdUser).toEqual(userUnchange);
 		});
 	});
 

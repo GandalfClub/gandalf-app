@@ -12,6 +12,7 @@ describe('AuthService', () => {
 			_id: '1',
 			email: 'test@test',
 			isAdmin: true,
+			claims: [],
 		},
 		logged: true,
 		message: 'test',
