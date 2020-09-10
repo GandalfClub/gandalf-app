@@ -9,7 +9,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 	styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-	@Output() public userIdTochangeEventManagerStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() public isUserEventManager: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	@Input() public user: User;
 
@@ -22,10 +22,10 @@ export class UserComponent {
 	}
 
 	public get userEventManagerState(): boolean {
-		return this.user.claims && this.user.claims.includes(UserClaims.eventManager);
+		return this.user.claims.includes(UserClaims.eventManager);
 	}
 
 	public setValue(event: any): void {
-		this.userIdTochangeEventManagerStatus.emit(event.checked);
+		this.isUserEventManager.emit(event.checked);
 	}
 }

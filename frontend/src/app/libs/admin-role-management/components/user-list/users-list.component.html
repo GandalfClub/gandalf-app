@@ -13,8 +13,8 @@
   <ng-container *ngIf="(userState$ | async) as userState">
     <ng-container *ngFor="let item of users$ | async">
       <ng-container *ngIf="item | filter:searchText">
-        <app-user (userIdTochangeEventManagerStatus)="changeUserState($event, item)"
-          [userUpdateCurrentState]="userState.status" [user]="item" class="app-users-list__user">
+        <app-user (isUserEventManager)="changeUserState($event, item)" [userUpdateCurrentState]="userState.status"
+          [user]="item" class="app-users-list__user">
         </app-user>
       </ng-container>
     </ng-container>
