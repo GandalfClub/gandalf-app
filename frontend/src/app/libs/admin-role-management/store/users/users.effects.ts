@@ -18,7 +18,7 @@ export class UsersEffects {
 	public GetUsers: Observable<Action> = this.actions$.pipe(
 		ofType(UsersActionType.LoadUsers),
 		exhaustMap(() =>
-			this.usersRepository.getUsers().pipe(map((users: UserDto[]) => new LoadUsersSuccess(this.userConverter.convertFromDto(users))))
+			this.usersRepository.getUsers().pipe(map((users: UserDto[]) => new LoadUsersSuccess(this.userConverter.convertUsersFromDto(users))))
 		),
 		catchError((error: Error) => of(new LoadUsersFail(error)))
 	);
@@ -29,8 +29,8 @@ export class UsersEffects {
 		map((action: UpdateUser) => action.payload),
 		exhaustMap((user: User) =>
 			this.authRepository
-				.updateUser(this.authConverter.convertToDto(user))
-				.pipe(map((userDto: UserDto) => new UpdateUserSuccess(this.authConverter.convertFromDto(userDto))))
+				.updateUser(this.userConverter.convertUserToDto(user))
+				.pipe(map((userDto: UserDto) => new UpdateUserSuccess(this.userConverter.convertUserFromDto(userDto))))
 		),
 		catchError((error: Error) => of(new UpdateUserFail(error)))
 	);

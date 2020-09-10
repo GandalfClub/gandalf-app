@@ -6,17 +6,15 @@ import { User } from '../../auth/models/user';
 	providedIn: 'root',
 })
 export class UserConverter {
-	public convertFromDto(userDto: UserDto[]): User[] {
+	public convertUsersFromDto(userDto: UserDto[]): User[] {
 		return userDto.map(({ _id, ...dto }: UserDto) => ({ id: _id, ...dto }));
 	}
-	// public convertToDto(user: User[]): UserDto[] {
-	// 	return user.map(({ id, ...dto }: User) => ({ _id: id, ...dto }));
-	// }
 
-	// public convertToDto(user: User): Partial<UserDto> {
-	// 	return {
-	// 		_id: user.id,
-	// 		claims: user.claims,
-	// 	};
-	// }
+	public convertUserFromDto(user: UserDto): User {
+		return (({ _id, ...dto }: UserDto) => ({ id: _id, ...dto }))(user);
+	}
+
+	public convertUserToDto(user: User): UserDto {
+		return (({ id, ...dto }: User) => ({ _id: id, ...dto }))(user);
+	}
 }

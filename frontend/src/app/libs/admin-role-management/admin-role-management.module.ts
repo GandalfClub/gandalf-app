@@ -4,14 +4,14 @@ import { AdminRoleManagementRoutingModule } from './admin-role-management-routin
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { AdminRoleManagementComponent } from './components/admin-role-management/admin-role-management.component';
 import { UserComponent } from './components/user/user.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { UsersListComponent } from './components/user-list/users-list.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 import { UsersStoreModule } from './store/store.module';
 import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
-	declarations: [AdminRoleManagementComponent, UserComponent, UserListComponent, FilterPipe],
+	declarations: [AdminRoleManagementComponent, UserComponent, UsersListComponent, FilterPipe],
 	imports: [CommonModule, AdminRoleManagementRoutingModule, CommonComponentsModule, UsersStoreModule],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })

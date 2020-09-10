@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { UserClaims } from '../../models/user-claims.enum';
 import { User } from 'src/app/libs/auth/models/user';
 
@@ -7,33 +7,18 @@ import { User } from 'src/app/libs/auth/models/user';
 	templateUrl: './user.component.html',
 	styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
-	@Output() public userIdTochangeEventManagerStatus: EventEmitter<User> = new EventEmitter<User>();
+export class UserComponent {
+	@Output() public userIdTochangeEventManagerStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	@Input() public user: User;
 
-	public userEventManagerState: boolean = false;
+	@Input() public userUpdateStatus: string;
 
-	public setValue(event: any): void {
-		if (event.checked) {
-			const users: User = {
-				...this.user,
-				claims: [UserClaims.eventManager],
-			};
-			this.userIdTochangeEventManagerStatus.emit(users);
-			this.userEventManagerState = true;
-		}
-		if (!event.checked) {
-			const users: User = {
-				...this.user,
-				claims: [],
-			};
-			this.userIdTochangeEventManagerStatus.emit(users);
-			this.userEventManagerState = false;
-		}
+	public get userEventManagerState(): boolean {
+		return this.user.claims && this.user.claims.includes(UserClaims.eventManager);
 	}
 
-	public ngOnInit(): void {
-		this.userEventManagerState = this.user.claims.length > 0 && this.user.claims[0].includes(UserClaims.eventManager);
+	public setValue(event: any): void {
+		this.userIdTochangeEventManagerStatus.emit(event.checked);
 	}
 }

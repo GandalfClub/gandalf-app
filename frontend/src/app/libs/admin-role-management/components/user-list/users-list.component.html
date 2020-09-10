@@ -1,10 +1,11 @@
-<div class="app-user-list">
+<div class="app-users-list">
   <div>
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off">
   </div>
   <ng-container *ngFor="let item of users$ | async">
     <ng-container *ngIf="item | filter:searchText">
-      <app-user (userIdTochangeEventManagerStatus)="changeUserState($event)" [user]="item" class="app-user-list__user">
+      <app-user (userIdTochangeEventManagerStatus)="changeUserState($event, item)" [user]="item"
+        class="app-users-list__user">
       </app-user>
     </ng-container>
   </ng-container>
