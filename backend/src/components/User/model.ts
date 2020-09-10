@@ -16,7 +16,7 @@ export interface IUserModel extends Document {
 	email: string;
 	password: string;
 	isAdmin: boolean;
-	claims: Types.Array<string>;
+	claims: any;
 	displayName?: string;
 	photoUrl?: string;
 	comparePassword: (password: string) => Promise<boolean>;
@@ -47,7 +47,7 @@ const UserSchema: Schema = new Schema(
 			default: false,
 		},
 		claims: {
-			type: Schema.Types.Array,
+			type: Schema.Types,
 			default: null,
 		},
 	},
