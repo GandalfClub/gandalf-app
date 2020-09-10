@@ -8,11 +8,11 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
 
 	@Input()
+	public type: string = 'basic';
+
+	@Input()
 	public isDark: boolean = false;
 
 	@Input()
 	public isDisabled: boolean = false;
-
-	@Input()
-	public type: string = 'basic';
 }

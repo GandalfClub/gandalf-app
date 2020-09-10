@@ -1,11 +1,11 @@
-@mixin dark-theme-hover() {
-  transition: background-color 0.3s;
+@mixin button-hover() {
+  transition: background-color 0.4s;
   &:hover:not([disabled="true"]) {
     background-color: transparentize($color: white, $amount: 0.92);
   }
 }
 
-@mixin button {
+.button {
   padding: 13px 16px 11px 16px;
 
   font-weight: 500;
@@ -26,37 +26,33 @@
       color: transparentize($color: white, $amount: 0.7);
     }
   }
-}
 
-.button-basic {
-  @include button();
-	@include dark-theme-hover();
-}
-
-.button-outlined {
-  @include button();
-	@include dark-theme-hover();
-	
-  padding-top: 12px;
-  padding-bottom: 10px;
-
-  border-color: rgba(33, 33, 33, 0.1);
-  &--dark-theme {
-    border-color: transparentize($color: white, $amount: 0.7);
+  &--basic {
+    @include button-hover();
   }
-}
 
-.button-flat {
-	@include button();
+  &--outlined {
+		@include button-hover();
+    padding-top: 12px;
+    padding-bottom: 10px;
 
-  color: white;
+    border-color: rgba(33, 33, 33, 0.1);
 
-  background-color: #367ff6;
-  border-color: #367ff6;
+    &.button--dark-theme {
+      border-color: transparentize($color: white, $amount: 0.7);
+    }
+  }
 
-  &--dark-theme[disabled="true"] {
-    color: transparentize($color: white, $amount: 0.6);
+  &--flat {
+    color: white;
 
-    background-color: transparentize($color: white, $amount: 0.8);
+    background-color: #367ff6;
+    border-color: #367ff6;
+
+    &.button--dark-theme[disabled="true"] {
+      color: transparentize($color: white, $amount: 0.6);
+
+      background-color: transparentize($color: white, $amount: 0.8);
+    }
   }
 }
