@@ -47,7 +47,7 @@ const UserSchema: Schema = new Schema(
 		},
 		claims: {
 			type: Schema.Types,
-			default: null,
+			default: [],
 		},
 	},
 	{
