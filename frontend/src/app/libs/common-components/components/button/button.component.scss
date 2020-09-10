@@ -36,10 +36,14 @@
     padding-top: 12px;
     padding-bottom: 10px;
 
-    border-color: white;
+    border-color: rgba(33, 33, 33, 0.1);
 
-    &.button--dark-theme[disabled="true"] {
-      border-color: transparentize($color: white, $amount: 0.7);
+    &.button--dark-theme {
+			border-color: white;
+
+			&[disabled="true"] {
+				border-color: transparentize($color: white, $amount: 0.7);
+			}
     }
   }
 
