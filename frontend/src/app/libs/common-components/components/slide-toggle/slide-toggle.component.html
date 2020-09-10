@@ -1,6 +1,5 @@
 <mat-slide-toggle
-    [(ngModel)]="isActive"
-    (ngModelChange)="toggle()"
+    (change)="toggle()"
     color="primary"
     [class.slide-toggle--dark]="isDarkTheme"
     [disabled]="isDisabled">

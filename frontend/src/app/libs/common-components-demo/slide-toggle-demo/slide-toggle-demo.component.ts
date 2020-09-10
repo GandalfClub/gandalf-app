@@ -17,7 +17,7 @@ export class SlideToggleDemoComponent implements OnInit {
   }
 
   public onToggle(state: string): void {
-    console.log(state, typeof(state));
+		console.log(state);
   }
 
 }

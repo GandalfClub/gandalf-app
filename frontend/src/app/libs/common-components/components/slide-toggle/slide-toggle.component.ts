@@ -25,11 +25,8 @@ export class SlideToggleComponent implements OnInit {
 	}
 
   public toggle(): void {
-		// this.isActive = !this.isActive;
-		console.log(this.isActive)
+		this.isActive = !this.isActive;
 		this.onToggle.emit(this.isActive);
-		console.log(this.isActive)
-
   }
 
 }
