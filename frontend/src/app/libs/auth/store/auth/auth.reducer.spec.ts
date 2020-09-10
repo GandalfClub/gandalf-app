@@ -1,43 +1,70 @@
 import { authReducer, initialState } from './auth.reducer';
-import { AuthActions, SignIn, SignInByGithub, SignUp, SignInSuccess, SignInFailure, SignUpFailure, SignUpSuccess } from './auth.actions';
+import {
+	AuthActions,
+	SignIn,
+	SignInByGithub,
+	SignUp,
+	SignInSuccess,
+	SignInFailure,
+	SignUpFailure,
+	SignUpSuccess,
+	UpdateUserInfo,
+	UpdateUserInfoSuccess,
+	UpdateUserInfoFail,
+} from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 import { User } from '../../models/user';
 
 describe('AuthReducers', () => {
 	describe('Init', () => {
+		const action: AuthActions = {} as AuthActions;
+		let result: AuthState;
+		beforeEach(() => {
+			result = authReducer(initialState, action);
+		});
 		it('should return the initial state', () => {
-			const action: any = {} as any;
-			const result: any = authReducer(initialState, action);
 			expect(result).toBe(initialState);
 		});
 	});
 
 	describe('SignIn', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		beforeEach(() => {
+			action = new SignIn({ email: '', password: '' });
+			newState = authReducer(initialState, action);
+		});
 		it('should return the user.status - Pending', () => {
-			const action: AuthActions = new SignIn({ email: '', password: '' });
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user.status).toBe(EntityStatus.Pending);
 		});
 	});
 
 	describe('SignInByGithub', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		beforeEach(() => {
+			action = new SignInByGithub();
+			newState = authReducer(initialState, action);
+		});
 		it('should return the user.status - Pending', () => {
-			const action: AuthActions = new SignInByGithub();
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user.status).toBe(EntityStatus.Pending);
 		});
 	});
 
 	describe('SignInSuccess', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			id: '0',
+			isAdmin: false,
+			email: 'test@mail.t',
+		};
+		beforeEach(() => {
+			action = new SignInSuccess(user);
+			newState = authReducer(initialState, action);
+		});
 		it('should return the user', () => {
-			const user: User = {
-				id: '0',
-				isAdmin: false,
-				email: 'test@mail.t',
-			};
-			const action: AuthActions = new SignInSuccess(user);
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user).toEqual({
 				status: EntityStatus.Success,
 				value: user,
@@ -46,13 +73,17 @@ describe('AuthReducers', () => {
 	});
 
 	describe('SignInFalure', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const error: Error = {
+			name: 'testError',
+			message: 'errors works fine',
+		};
+		beforeEach(() => {
+			action = new SignInFailure(error);
+			newState = authReducer(initialState, action);
+		});
 		it('should return the error', () => {
-			const error: Error = {
-				name: 'testError',
-				message: 'errors works fine',
-			};
-			const action: AuthActions = new SignInFailure(error);
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user).toEqual({
 				status: EntityStatus.Error,
 				error,
@@ -61,22 +92,30 @@ describe('AuthReducers', () => {
 	});
 
 	describe('SignUp', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		beforeEach(() => {
+			action = new SignUp({ email: '', password: '' });
+			newState = authReducer(initialState, action);
+		});
 		it('should return the user.status - Pending', () => {
-			const action: AuthActions = new SignUp({ email: '', password: '' });
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user.status).toBe(EntityStatus.Pending);
 		});
 	});
 
 	describe('SignUpSuccess', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			id: '0',
+			isAdmin: false,
+			email: 'test@mail.t',
+		};
+		beforeEach(() => {
+			action = new SignUpSuccess(user);
+			newState = authReducer(initialState, action);
+		});
 		it('should return user', () => {
-			const user: User = {
-				id: '0',
-				isAdmin: false,
-				email: 'test@mail.t',
-			};
-			const action: AuthActions = new SignUpSuccess(user);
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user).toEqual({
 				status: EntityStatus.Success,
 				value: user,
@@ -85,16 +124,87 @@ describe('AuthReducers', () => {
 	});
 
 	describe('SignUpFailure', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const error: Error = {
+			name: 'testError',
+			message: 'errors works fine',
+		};
+		beforeEach(() => {
+			action = new SignUpFailure(error);
+			newState = authReducer(initialState, action);
+		});
 		it('should return the error', () => {
-			const error: Error = {
-				name: 'testError',
-				message: 'errors works fine',
-			};
-			const action: AuthActions = new SignUpFailure(error);
-			const newState: AuthState = authReducer(initialState, action);
 			expect(newState.user).toEqual({
 				status: EntityStatus.Error,
 				error,
+			});
+		});
+	});
+
+	describe('UpdateUser', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			firstName: '1',
+			secondName: '1',
+			mobilePhone: '1',
+			password: '1',
+			isAdmin: false,
+			id: '0',
+			email: 'test@test.test',
+		};
+		beforeEach(() => {
+			action = new UpdateUserInfo({ user });
+			newState = authReducer(initialState, action);
+		});
+		it('should return user', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('UpdateUserInfoSuccessfuly', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			firstName: '1',
+			secondName: '1',
+			mobilePhone: '1',
+			password: '1',
+			isAdmin: false,
+			id: '0',
+			email: 'test@test.test',
+		};
+		beforeEach(() => {
+			action = new UpdateUserInfoSuccess({ user });
+			newState = authReducer(initialState, action);
+		});
+		it('should return user', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('UpdateUserInfoFailed', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const err: any = {
+			message: 'testError',
+		};
+		beforeEach(() => {
+			action = new UpdateUserInfoFail(err);
+			newState = authReducer(initialState, action);
+		});
+		it('should return error', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Error,
+				value: null,
+				error: err,
 			});
 		});
 	});

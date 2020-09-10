@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { AuthRepository } from './auth.service';
+import { AuthRepository } from './auth-repository.service';
 import { AuthResponse } from '../models/auth-response';
 
 describe('AuthService', () => {
@@ -9,7 +9,7 @@ describe('AuthService', () => {
 	const validResponse: AuthResponse = {
 		status: 1,
 		user: {
-			id: '1',
+			_id: '1',
 			email: 'test@test',
 			isAdmin: true,
 		},
@@ -20,10 +20,8 @@ describe('AuthService', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				HttpClientTestingModule,
-			],
-			providers: [AuthRepository]
+			imports: [HttpClientTestingModule],
+			providers: [AuthRepository],
 		});
 		httpMock = TestBed.inject(HttpTestingController);
 		authRepository = TestBed.inject(AuthRepository);

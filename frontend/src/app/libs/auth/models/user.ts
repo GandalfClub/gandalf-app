@@ -4,4 +4,8 @@ export interface User {
 	isAdmin: boolean;
 	displayName?: string;
 	photoUrl?: string;
+	firstName?: string;
+	secondName?: string;
+	mobilePhone?: string;
+	password?: string;
 }

@@ -7,19 +7,19 @@ describe('SlideToggleComponent', () => {
   let fixture: ComponentFixture<SlideToggleComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SlideToggleComponent ]
-    })
-    .compileComponents();
+		TestBed.configureTestingModule({
+			declarations: [ SlideToggleComponent ]
+		})
+	.compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SlideToggleComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+		fixture = TestBed.createComponent(SlideToggleComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+		expect(component).toBeTruthy();
   });
 });

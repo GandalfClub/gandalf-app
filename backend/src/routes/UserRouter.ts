@@ -9,7 +9,7 @@ const router: Router = Router();
 
 router.get('/self', UserComponent.findSelf);
 
-router.get('/', AccessGuard.isAdmin, UserComponent.findAllUsers);
+router.get('/', UserComponent.findAllUsers);
 
 router.post('/', AccessGuard.isAdmin, UserComponent.createUser);
 

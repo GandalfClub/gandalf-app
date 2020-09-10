@@ -13,11 +13,16 @@ import { SlideToggleDemoComponent } from './demo/lib/slide-toggle-demo/slide-tog
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
+import { EventTileComponent } from './components/event-tile/event-tile.component';
+import { EventDateComponent } from './components/event-date/event-date.component';
+import { EventTimeComponent } from './components/event-time/event-time.component';
 
 @NgModule({
 	declarations: [
 		SlideToggleComponent,
-		SlideToggleDemoComponent],
+		SlideToggleDemoComponent,
+		CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -30,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatSlideToggleModule,
 		FormsModule,
 		MatCardModule,
-		MatCheckboxModule],
+		MatCheckboxModule,
+		MatMenuModule],
 	exports: [
 		MatInputModule,
 		MatButtonModule,
@@ -41,7 +47,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatTooltipModule,
 		MatSlideToggleModule,
 		MatCheckboxModule,
-		SlideToggleDemoComponent],
+		SlideToggleDemoComponent,
+		EventTileComponent,
+		CreateDraftEventPopoverComponent],
 	providers: [
 		{
 			provide: MatDialogRef,
