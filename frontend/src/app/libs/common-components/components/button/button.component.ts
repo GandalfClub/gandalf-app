@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ButtonType } from '../../models/button-type.enum';
 
 @Component({
   selector: 'app-button',
@@ -7,8 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
 
+	public basicType: ButtonType = ButtonType.Basic;
+	public outlinedType: ButtonType = ButtonType.Outlined;
+	public flatType: ButtonType = ButtonType.Flat;
+
 	@Input()
-	public type: string = 'basic';
+	public type: ButtonType = ButtonType.Basic;
 
 	@Input()
 	public isDark: boolean = false;
