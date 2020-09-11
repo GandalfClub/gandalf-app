@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
 import { ButtonType } from '../../models/button-type.enum';
+import { ComponentTheme } from '../../shared/component-theme.enum';
 
 describe('ButtonComponent', () => {
 	let component: ButtonComponent;
@@ -59,10 +60,10 @@ describe('ButtonComponent', () => {
 		});
 	});
 
-	describe('when @Input gets isDark', () => {
-		describe('isDark is truthy', () => {
+	describe('when @Input gets theme', () => {
+		describe('theme is Dark', () => {
 			beforeEach(() => {
-				component.isDark = true;
+				component.theme = ComponentTheme.Dark;
 				fixture.detectChanges();
 			});
 
@@ -70,9 +71,9 @@ describe('ButtonComponent', () => {
 				expect(htmlElement.querySelector('.button.button--dark-theme')).toBeTruthy();
 			});
 		});
-		describe('isDark is falsy', () => {
+		describe('theme is Light', () => {
 			beforeEach(() => {
-				component.isDark = false;
+				component.theme = ComponentTheme.Light;
 				fixture.detectChanges();
 			});
 
@@ -82,8 +83,8 @@ describe('ButtonComponent', () => {
 		});
 	});
 
-	describe('when @Input gets isDisabled', () => {
-		describe('isDisabled truthy', () => {
+	describe('when @Input gets disabled', () => {
+		describe('disabled truthy', () => {
 			beforeEach(() => {
 				component.disabled = true;
 				fixture.detectChanges();
@@ -94,7 +95,7 @@ describe('ButtonComponent', () => {
 			});
 		});
 
-		describe('isDisabled falsy', () => {
+		describe('disabled falsy', () => {
 			beforeEach(() => {
 				component.disabled = false;
 				fixture.detectChanges();
@@ -112,13 +113,13 @@ describe('ButtonComponent', () => {
 		});
 	});
 
-	describe('when @Input does not get isDark', () => {
+	describe('when @Input does not get theme', () => {
 		it('should show light themed button', () => {
 			expect(htmlElement.querySelector('.button.button--dark-theme')).toBeNull();
 		});
 	});
 
-	describe('when @Input does not get isDisabled', () => {
+	describe('when @Input does not get disabled', () => {
 		it('should show enabled button', () => {
 			expect(htmlElement.querySelector('.button[disabled="true"]')).toBeNull();
 		});
