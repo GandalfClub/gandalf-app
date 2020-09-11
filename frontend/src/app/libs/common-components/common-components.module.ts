@@ -16,13 +16,15 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
-import { SlideToggleDemoComponent } from '../common-components-demo/slide-toggle-demo/slide-toggle-demo.component';
 
 @NgModule({
 	declarations: [
 		SlideToggleComponent,
-		SlideToggleDemoComponent,
-		CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
+		CreateDraftEventPopoverComponent,
+		EventTileComponent,
+		EventDateComponent,
+		EventTimeComponent
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -35,7 +37,8 @@ import { SlideToggleDemoComponent } from '../common-components-demo/slide-toggle
 		FormsModule,
 		MatCardModule,
 		MatCheckboxModule,
-		MatMenuModule],
+		MatMenuModule
+	],
 	exports: [
 		MatInputModule,
 		MatButtonModule,
@@ -49,9 +52,10 @@ import { SlideToggleDemoComponent } from '../common-components-demo/slide-toggle
 		MatTooltipModule,
 		MatSlideToggleModule,
 		MatCheckboxModule,
-		SlideToggleDemoComponent,
 		EventTileComponent,
-		CreateDraftEventPopoverComponent],
+		CreateDraftEventPopoverComponent,
+		SlideToggleComponent
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
