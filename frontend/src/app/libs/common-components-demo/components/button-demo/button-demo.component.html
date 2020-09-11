@@ -13,37 +13,37 @@
 		</div>
 		<div class="button-demo__disabled">
 			<app-demo-state class="button-demo__container">
-				<app-button [isDisabled]="true">Button</app-button>
+				<app-button [disabled]="true">Button</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container">
-				<app-button type="outlined" [isDisabled]="true">Button</app-button>
+				<app-button type="outlined" [disabled]="true">Button</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container">
-				<app-button type="flat" [isDisabled]="true">Button</app-button>
+				<app-button type="flat" [disabled]="true">Button</app-button>
 			</app-demo-state>
 		</div>
 	</div>
 	<div class="dark-theme button-demo__states">
 		<div class="button-demo__active">
 			<app-demo-state [title]="'basic'" class="button-demo__container" [isDark]="true">
-				<app-button [isDark]="true">Button</app-button>
+				<app-button [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'outlined'" class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [isDark]="true">Button</app-button>
+				<app-button type="outlined" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'flat'" class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [isDark]="true">Button</app-button>
+				<app-button type="flat" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 		</div>
 		<div class="button-demo__disabled">
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button [isDisabled]="true" [isDark]="true">Button</app-button>
+				<app-button [disabled]="true" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [isDisabled]="true" [isDark]="true">Button</app-button>
+				<app-button type="outlined" [disabled]="true" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [isDisabled]="true" [isDark]="true">Button</app-button>
+				<app-button type="flat" [disabled]="true" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 		</div>
 	</div>
