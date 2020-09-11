@@ -19,5 +19,5 @@ export class ButtonComponent {
 	public isDark: boolean = false;
 
 	@Input()
-	public isDisabled: boolean = false;
+	public disabled: boolean = false;
 }

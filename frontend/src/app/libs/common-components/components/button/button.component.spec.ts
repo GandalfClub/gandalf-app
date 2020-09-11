@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
+import { ButtonType } from '../../models/button-type.enum';
 
 describe('ButtonComponent', () => {
 	let component: ButtonComponent;
@@ -26,7 +27,7 @@ describe('ButtonComponent', () => {
 	describe('when @Input gets type', () => {
 		describe('type is basic', () => {
 			beforeEach(() => {
-				component.type = 'basic';
+				component.type = ButtonType.Basic;
 				fixture.detectChanges();
 			});
 
@@ -37,7 +38,7 @@ describe('ButtonComponent', () => {
 
 		describe('type is outlined', () => {
 			beforeEach(() => {
-				component.type = 'outlined';
+				component.type = ButtonType.Outlined;
 				fixture.detectChanges();
 			});
 
@@ -48,7 +49,7 @@ describe('ButtonComponent', () => {
 
 		describe('type is flat', () => {
 			beforeEach(() => {
-				component.type = 'flat';
+				component.type = ButtonType.Flat;
 				fixture.detectChanges();
 			});
 
@@ -84,7 +85,7 @@ describe('ButtonComponent', () => {
 	describe('when @Input gets isDisabled', () => {
 		describe('isDisabled truthy', () => {
 			beforeEach(() => {
-				component.isDisabled = true;
+				component.disabled = true;
 				fixture.detectChanges();
 			});
 
@@ -95,7 +96,7 @@ describe('ButtonComponent', () => {
 
 		describe('isDisabled falsy', () => {
 			beforeEach(() => {
-				component.isDisabled = false;
+				component.disabled = false;
 				fixture.detectChanges();
 			});
 

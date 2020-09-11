@@ -4,7 +4,7 @@
 			mat-button 
 			class="button button--basic" 
 			[class.button--dark-theme]="isDark"
-			[disabled]="isDisabled">
+			[disabled]="disabled">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button 
@@ -12,7 +12,7 @@
 			mat-stroked-button 
 			class="button button--outlined" 
 			[class.button--dark-theme]='isDark'
-			[disabled]="isDisabled">
+			[disabled]="disabled">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
@@ -20,7 +20,7 @@
 			mat-flat-button 
 			class="button button--flat"
 			[class.button--dark-theme]='isDark'
-			[disabled]="isDisabled">
+			[disabled]="disabled">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 </ng-container>
