@@ -1,76 +1,73 @@
-// import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-// import { AuthConverter } from './auth-converter.service';
-// import { UserDto } from '../models/user-dto';
-// import { User } from '../models/user';
-// import { AuthResponse } from '../models/auth-response';
+import { UserConverter } from './user-converter.service';
 
-// describe('AuthConverterService', () => {
-// 	let service: AuthConverter;
-// 	let createdUser: User;
-// 	let createdUserChanges: Partial<UserDto>;
+import { User } from '../../auth/models/user';
+import { UserDto } from '../../auth/models/user-dto';
 
-// 	const userDto: UserDto = {
-// 		email: '1@1.com',
-// 		isAdmin: false,
-// 		_id: 'test',
-// 		firstName: 'undefined',
-// 		mobilePhone: 'undefined',
-// 		secondName: 'undefined',
-// 		password: 'undefined',
-// 	};
+describe('EventConverterService', () => {
+	let service: UserConverter;
+	const user: User = {
+		id: 'test',
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 
-// 	const user: User = {
-// 		email: '1@1.com',
-// 		isAdmin: false,
-// 		id: 'test',
-// 		firstName: 'undefined',
-// 		mobilePhone: 'undefined',
-// 		secondName: 'undefined',
-// 		password: 'undefined',
-// 	};
+	const userDto: UserDto = {
+		_id: 'test',
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 
-// 	const userChanges: Partial<UserDto> = {
-// 		_id: 'test',
-// 		firstName: 'undefined',
-// 		mobilePhone: 'undefined',
-// 		secondName: 'undefined',
-// 	};
+	let convertedUser: User | UserDto;
+	let convertedUsers: User[];
 
-// 	const authResponse: AuthResponse = {
-// 		isCompetitionActive: false,
-// 		logged: true,
-// 		message: 'test',
-// 		status: 0,
-// 		user: userDto,
-// 	};
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		service = TestBed.inject(UserConverter);
+	});
 
-// 	beforeEach(() => {
-// 		TestBed.configureTestingModule({});
-// 		service = TestBed.inject(AuthConverter);
-// 	});
+	it('should be created', () => {
+		expect(service).toBeTruthy();
+	});
 
-// 	it('should be created', () => {
-// 		expect(service).toBeTruthy();
-// 	});
+	describe('convertUserFromDto method should rename "_id" key', () => {
+		beforeEach(() => {
+			convertedUser = service.convertUserFromDto(userDto);
+		});
 
-// 	describe('convertFromDto method should rename "_id" key', () => {
-// 		beforeEach(() => {
-// 			createdUser = service.convertFromDto(userDto);
-// 		});
+		it('should rename "_id" key', () => {
+			expect(convertedUser).toEqual(user);
+		});
+	});
 
-// 		it('should rename "_id" key', () => {
-// 			expect(createdUser).toEqual(user);
-// 		});
-// 	});
+	describe('convertUserToDto method should rename "id" key', () => {
+		beforeEach(() => {
+			convertedUser = service.convertUserToDto(user);
+		});
 
-// 	describe('convertToDto  method should rename "id" key', () => {
-// 		beforeEach(() => {
-// 			createdUserChanges = service.convertToDto(user);
-// 		});
+		it('should rename "id" key', () => {
+			expect(convertedUser).toEqual(userDto);
+		});
+	});
 
-// 		it('should rename "id" key', () => {
-// 			expect(createdUserChanges).toEqual(userChanges);
-// 		});
-// 	});
-// });
+	describe('convertUsersFromDto method should rename "_id" key', () => {
+		beforeEach(() => {
+			convertedUsers = service.convertUsersFromDto([userDto]);
+		});
+
+		it('should rename "_id" key', () => {
+			expect(convertedUsers).toEqual([user]);
+		});
+	});
+});
