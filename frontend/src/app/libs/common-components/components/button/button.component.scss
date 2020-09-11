@@ -6,11 +6,14 @@
 }
 
 .button {
-  padding: 13px 16px 11px 16px;
+  display: inline-flex;
+  align-items: center;
+  width: 92.5px;
+  height: 40px;
 
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 17px;
   color: rgba(33, 33, 33, 0.75);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -33,17 +36,15 @@
 
   &--outlined {
 		@include button-hover();
-    padding-top: 12px;
-    padding-bottom: 10px;
 
     border-color: rgba(33, 33, 33, 0.1);
 
     &.button--dark-theme {
-			border-color: white;
+      border-color: white;
 
-			&[disabled="true"] {
-				border-color: transparentize($color: white, $amount: 0.7);
-			}
+      &[disabled="true"] {
+        border-color: transparentize($color: white, $amount: 0.7);
+      }
     }
   }
 
