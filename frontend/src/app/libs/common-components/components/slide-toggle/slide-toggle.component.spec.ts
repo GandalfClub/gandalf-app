@@ -39,11 +39,7 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should support black theme', () => {
-		expect(toggleEl.className.includes('slide-toggle--dark')).toBeTruthy();
-  });
-
-  it('should support black theme', () => {
-		expect(toggleEl.className.includes('slide-toggle--dark')).toBeTruthy();
+		expect(toggleEl.className.includes('mat-slide-toggle-bar-dark')).toBeTruthy();
   });
 
   describe('toggle status', () => {
