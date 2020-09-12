@@ -1,4 +1,4 @@
 export enum UserClaims {
-	admin = 'Admin',
-	eventManager = 'EventManager',
+	Admin = 'Admin',
+	EventManager = 'EventManager',
 }

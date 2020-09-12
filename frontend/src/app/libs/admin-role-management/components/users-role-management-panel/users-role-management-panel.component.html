@@ -1,0 +1,30 @@
+<div class="app-users-role-management-panel">
+  <div class="app-users-role-management-panel__header">
+    <h1>Users</h1>
+  </div>
+  <div class="app-users-role-management-panel__input">
+    <div class="app-users-role-management-panel__input-header">
+      <h1>Search</h1>
+    </div>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="searchText" autocomplete="off">
+    </mat-form-field>
+  </div>
+  <ng-container *ngIf="(user$ | async) as user">
+    <ng-container *ngFor="let item of users$ | async">
+      <ng-container *ngIf="item | filter:searchText">
+        <app-user-role-tile (isEventManager)="changeUserState($event, item)"
+          [userUpdateIsDisabled]="userUpdateState(user.status)" [user]="item"
+          class="app-users-role-management-panel__user">
+        </app-user-role-tile>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="(userTemplatesChanges$ | async) as templateCount">
+    <ng-container *ngIf="!templateCount.length">
+      <div class="app-users-role-management-panel__notfound">
+        <h1>Not Found</h1>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

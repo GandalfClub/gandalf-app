@@ -163,7 +163,7 @@ describe('AuthReducers', () => {
 		});
 		it('should return user', () => {
 			expect(newState.user).toEqual({
-				status: EntityStatus.Success,
+				status: EntityStatus.Pending,
 				value: user,
 			});
 		});

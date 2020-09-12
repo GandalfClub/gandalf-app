@@ -1,5 +1,4 @@
 import * as Joi from 'joi';
-// import { builtinModules } from 'module';
 import { Types } from 'mongoose';
 import { IUserService } from './interface';
 import UserModel, { IUserModel } from './model';

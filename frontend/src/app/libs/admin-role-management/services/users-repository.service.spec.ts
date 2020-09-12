@@ -1,23 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { UsersRepositoryService } from './users-repository.service';
+import { UserDto } from '../../auth/models/user-dto';
+import { of } from 'rxjs';
 
 describe('EventsService', () => {
+	const userDto: UserDto = {
+		_id: 'test',
+		firstName: 'John',
+		secondName: 'Connor',
+		mobilePhone: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 	let eventsRepository: UsersRepositoryService;
-	let httpTestingController: HttpTestingController;
-	let req: TestRequest;
+
+	const httpSpy: any = jasmine.createSpyObj('http', ['get']);
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({
-			imports: [HttpClientTestingModule],
-			providers: [UsersRepositoryService],
-		});
-		eventsRepository = TestBed.inject(UsersRepositoryService);
-		httpTestingController = TestBed.inject(HttpTestingController);
-	});
-
-	afterEach(() => {
-		httpTestingController.verify();
+		eventsRepository = new UsersRepositoryService(httpSpy);
 	});
 
 	it('should be created', () => {
@@ -26,12 +27,14 @@ describe('EventsService', () => {
 
 	describe('when getUsers called', () => {
 		beforeEach(() => {
-			eventsRepository.getUsers().subscribe();
-			req = httpTestingController.expectOne('/api/users');
+			httpSpy.get.and.returnValue(of([userDto]));
 		});
 
-		it('should called with get method and publicevets path', () => {
-			expect(req.request.method).toEqual('GET');
+		it('should called with get method and users path and return array of users', () => {
+			eventsRepository.getUsers().subscribe((users: UserDto[]) => {
+				expect(httpSpy.get).toHaveBeenCalledWith('/api/users');
+				expect(users).toEqual([userDto]);
+			});
 		});
 	});
 });

@@ -40,6 +40,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	private getChangesFromForm(): User {
 		const valuesFromForm: User = {
+			...this.user,
 			id: this.user.id,
 			isAdmin: this.user.isAdmin,
 			email: this.profileForm.value.email,
@@ -47,7 +48,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			firstName: this.profileForm.value.firstName,
 			secondName: this.profileForm.value.secondName,
 			mobilePhone: this.profileForm.value.mobilePhone,
-			...this.user,
 		};
 		return valuesFromForm;
 	}
