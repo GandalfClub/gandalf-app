@@ -15,8 +15,9 @@ export class SlideToggleComponent {
   public isDarkTheme: boolean = false;
 
   @Output()
-  public onToggle: EventEmitter<any> = new EventEmitter();
+  public onToggle: EventEmitter<boolean> = new EventEmitter();
 
+  @Input()
 	public isActive: boolean = false;
 
   public toggle(): void {

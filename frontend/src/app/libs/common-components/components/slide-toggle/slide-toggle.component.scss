@@ -1,13 +1,1 @@
-.slide-toggle{
 
-    &--dark{
-        color: #fff;
-    }
-}
-::ng-deep .mat-slide-toggle-bar {
-    background-color: rgba(33, 33, 33, 0.5);
-}
-
-::ng-deep .slide-toggle--dark .mat-slide-toggle-bar {
-    background-color: rgba(255, 255, 255, 0.3);
-}

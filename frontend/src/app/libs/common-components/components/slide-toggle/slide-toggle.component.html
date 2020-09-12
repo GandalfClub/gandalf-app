@@ -1,7 +1,8 @@
 <mat-slide-toggle
+    [checked]="isActive"
     (change)="toggle()"
     color="primary"
-    [class.slide-toggle--dark]="isDarkTheme"
+    [class.mat-slide-toggle-bar-dark]="isDarkTheme"
     [disabled]="isDisabled">
         Slide me!
 </mat-slide-toggle>
