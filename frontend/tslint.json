@@ -106,7 +106,7 @@
 			"severity": "warning"
 		},
 		"no-output-on-prefix": false,
-		"member-access": true,
+		"member-access": [true, "check-accessor"],
 		"member-ordering": [
 			true,
 			{
@@ -118,16 +118,16 @@
 					"protected-instance-field",
 					"public-instance-field",
 
+					"public-constructor",
 					"private-constructor",
 					"protected-constructor",
-					"public-constructor",
 
+					"public-static-method",
 					"private-static-method",
 					"protected-static-method",
-					"public-static-method",
+					"public-instance-method",
 					"private-instance-method",
-					"protected-instance-method",
-					"public-instance-method"
+					"protected-instance-method"
 				]
 			}
 		],
