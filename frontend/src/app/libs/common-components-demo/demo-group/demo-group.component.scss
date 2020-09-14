@@ -3,10 +3,12 @@
   flex-flow: row nowrap;
 
   &__container {
+    padding: 72px 2%;
     box-sizing: border-box;
     width: 50%;
     min-width: 500px;
     padding: 55px 2%;
+
 
     &--light-theme {
       & .demo-group__title {
