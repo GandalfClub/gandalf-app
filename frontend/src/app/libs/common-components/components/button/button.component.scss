@@ -1,0 +1,63 @@
+@mixin button-hover() {
+  transition: background-color 0.4s;
+  &:hover:not([disabled="true"]) {
+    background-color: transparentize($color: white, $amount: 0.92);
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  width: 92.5px;
+  height: 40px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(33, 33, 33, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  border-radius: 20px;
+
+  &--dark-theme {
+    color: white;
+
+    border-color: white;
+
+    &[disabled="true"] {
+      color: transparentize($color: white, $amount: 0.7);
+    }
+  }
+
+  &--basic {
+    @include button-hover();
+  }
+
+  &--outlined {
+		@include button-hover();
+
+    border-color: rgba(33, 33, 33, 0.1);
+
+    &.button--dark-theme {
+      border-color: white;
+
+      &[disabled="true"] {
+        border-color: transparentize($color: white, $amount: 0.7);
+      }
+    }
+  }
+
+  &--flat {
+    color: white;
+
+    background-color: #367ff6;
+    border-color: #367ff6;
+
+    &.button--dark-theme[disabled="true"] {
+      color: transparentize($color: white, $amount: 0.6);
+
+      background-color: transparentize($color: white, $amount: 0.8);
+    }
+  }
+}

@@ -12,9 +12,10 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { CommonModule } from '@angular/common';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-	declarations: [CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
+	declarations: [CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent, ButtonComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -33,6 +34,7 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 		MatDialogModule,
 		MatTooltipModule,
 		EventTileComponent,
+		ButtonComponent,
 		CreateDraftEventPopoverComponent],
 	providers: [
 		{
