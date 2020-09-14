@@ -60,6 +60,30 @@ describe('ButtonComponent', () => {
 		});
 	});
 
+	describe('when call isDarkTheme', () => {
+		describe('theme is Dark', () => {
+			beforeEach(() => {
+				component.theme = ComponentTheme.Dark;
+				fixture.detectChanges();
+			});
+
+			it('should return true', () => {
+				expect(component.isDarkTheme).toBeTrue();
+			});
+		});
+
+		describe('theme is not Dark', () => {
+			beforeEach(() => {
+				component.theme = ComponentTheme.Light;
+				fixture.detectChanges();
+			});
+
+			it('should return false', () => {
+				expect(component.isDarkTheme).toBeFalse();
+			});
+		});
+	});
+
 	describe('when @Input gets theme', () => {
 		describe('theme is Dark', () => {
 			beforeEach(() => {

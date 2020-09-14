@@ -13,9 +13,6 @@ export class ButtonComponent {
 	public outlinedType: ButtonType = ButtonType.Outlined;
 	public flatType: ButtonType = ButtonType.Flat;
 
-	public lightTheme: ComponentTheme = ComponentTheme.Light;
-	public darkTheme: ComponentTheme = ComponentTheme.Dark;
-
 	@Input()
 	public type: ButtonType = ButtonType.Basic;
 
@@ -24,4 +21,8 @@ export class ButtonComponent {
 
 	@Input()
 	public disabled: boolean = false;
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
 }
