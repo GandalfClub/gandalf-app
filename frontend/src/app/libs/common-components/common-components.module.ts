@@ -16,6 +16,7 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
 	declarations: [
@@ -23,8 +24,8 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 		CreateDraftEventPopoverComponent,
 		EventTileComponent,
 		EventDateComponent,
-		EventTimeComponent
-	],
+		EventTimeComponent,
+		ButtonComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -54,8 +55,8 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 		MatCheckboxModule,
 		EventTileComponent,
 		CreateDraftEventPopoverComponent,
-		SlideToggleComponent
-	],
+		ButtonComponent,
+		SlideToggleComponent],
 	providers: [
 		{
 			provide: MatDialogRef,
