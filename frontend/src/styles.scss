@@ -5,14 +5,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /*scroll-bar*/
-* {
-	$scroll-bar-color: #909090;
+$scroll-bar-color: #909090;
 
-	 /* Firefox */
-	scrollbar-width: thin;
-	scrollbar-color: $scroll-bar-color rgba(0, 0, 0, 0);
-	
-	/* Webkit */
+/* Firefox */
+@supports (scrollbar-width: thin) { 
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: $scroll-bar-color rgba(0, 0, 0, 0);
+	}
+}
+
+/* Webkit */
+@supports (-webkit-appearance: auto) {
   ::-webkit-scrollbar-track {
     display: none;
 	}
