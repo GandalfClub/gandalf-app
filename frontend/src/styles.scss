@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/*scroll-bar*/
+* {
+	$scroll-bar-color: #909090;
+
+	 /* Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: $scroll-bar-color rgba(0, 0, 0, 0);
+	
+	/* Webkit */
+  ::-webkit-scrollbar-track {
+    display: none;
+	}
+  ::-webkit-scrollbar {
+    width: 4px;
+		height: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+		background: $scroll-bar-color;
+		border-radius: 2px;
+	}
+	::-webkit-scrollbar-corner {
+		display: none;
+	}
+}
