@@ -1,3 +1,10 @@
+@mixin text-view($font-family, $font-size, $letter-spacing, $line-height) {
+    font-family: $font-family;
+    font-size: $font-size;
+    letter-spacing: $letter-spacing;
+    line-height: $line-height;
+}
+
 // grid
 $main-grid-unit: 8px;
 $secondary-grid-unit: 4px;
@@ -18,7 +25,7 @@ $color-coral: #FF8A65;
 $color-black: #212121;
 $color-white: #FFFFFF;
 //blacks
-$color-black-100: rgba($color-black);
+$color-black-100: rgba($color-black, 100);
 $color-black-95: rgba($color-black, .95);
 $color-black-75: rgba($color-black, .75);
 $color-black-50: rgba($color-black, .50);
@@ -27,69 +34,45 @@ $color-black-10: rgba($color-black, .10);
 $color-black-5: rgba($color-black, .05);
 $color-black-3: rgba($color-black, .03);
 // whites
-$color-white-100: rgba($color-white);
+$color-white-100: rgba($color-white, 100);
 $color-white-75: rgba($color-white, .75);
 $color-white-50: rgba($color-white, .50);
 $color-white-30: rgba($color-white, .30);
 $color-white-10: rgba($color-white, .10);
 $color-white-5: rgba($color-white, .05);
 // typography
-$font-main: 'Roboto Bold';
-$font-main-regular:'Roboto Regular';
-$font-main-medium:'Roboto Medium';
+$font-main-bold: 'Roboto Bold';
+$font-main-regular: 'Roboto Regular';
+$font-main-medium: 'Roboto Medium';
 // typography styles
 .text-h1 {
-    font-family: $font-main;
-    font-size: 48px;
-    letter-spacing: 0;
-    line-height: 56px;
+    @include text-view($font-main-bold, 48px, 0, 56px);
 }
 
 .text-h2 {
-    font-family: $font-main;
-    font-size: 32px;
-    letter-spacing: 0;
-    line-height: 40px;
+    @include text-view($font-main-bold, 32px, 0, 40px);
 }
 
 .text-h3 {
-    font-family: $font-main;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: 28px;
+    @include text-view($font-main-bold, 24px, 0, 28px);
 }
 
 .text-h4 {
-    font-family: $font-main-medium;
-    font-size: 14px;
-    letter-spacing: 1px;
-    line-height: 16px;
+    @include text-view($font-main-medium, 14px, 1px, 16px);
 }
 
 .text-p {
-    font-family: $font-main;
-    font-size: 14px;
-    letter-spacing: 0;
-    line-height: 24px;
+    @include text-view($font-main-bold, 14px, 0, 24px);
 }
 
 .text-p-bold {
-    font-family: $font-main;
-    font-size: 14px;
-    letter-spacing: 0;
-    line-height: 24px;
+    @include text-view($font-main-bold, 14px, 0, 24px);
 }
 
 .text-small {
-    font-family: $font-main-regular;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: 16px;
+    @include text-view($font-main-regular, 12px, 0, 16px);
 }
 
 .text-small-bold {
-    font-family: $font-main;
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: 16px;
+    @include text-view($font-main-bold, 12px, 0, 16px);
 }
