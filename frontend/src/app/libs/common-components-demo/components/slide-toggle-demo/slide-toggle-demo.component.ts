@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
 @Component({
   selector: 'app-slide-toggle-demo',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlideToggleDemoComponent {
 
-  public isDisabled: boolean = true;
+  public disabled: boolean;
 
-  public isDark: boolean = false;
+	public lightTheme: ComponentTheme = ComponentTheme.Light;
+  public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
   public onToggle(state: string): void {
 		console.log(state);

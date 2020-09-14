@@ -10,7 +10,6 @@ $gendalf-app-theme: mat-light-theme($gendalf-app-primary, $gendalf-app-accent, $
 
 @include angular-material-theme($gendalf-app-theme);
 
-// slide toggle
 .mat-slide-toggle-bar {
     background-color: rgba(33, 33, 33, 0.5);
 }

@@ -2,36 +2,36 @@
     <div class="light-theme slide-toggle-demo__states">
         <app-demo-state [title]="'active'" [isDark]="false">
             <app-slide-toggle
-                [isActive]="false"
-                [isDisabled]="false" 
-                [isDarkTheme]="false" 
-                (onToggle)="onToggle($event)">
+                [value]="false"
+                [disabled]="false" 
+                [theme]=lightTheme
+                (toggled)="onToggle($event)">
             </app-slide-toggle>
         </app-demo-state>
         <app-demo-state [title]="'disabled'">
             <app-slide-toggle
-                [isActive]="false"
-                [isDisabled]="true" 
-                [isDarkTheme]="false" 
-                (onToggle)="onToggle($event)">
+                [value]="false"
+                [disabled]="true" 
+                [theme]=lightTheme
+                (toggled)="onToggle($event)">
             </app-slide-toggle>
         </app-demo-state>
     </div>
     <div class="dark-theme slide-toggle-demo__states">
         <app-demo-state [title]="'active'" [isDark]="true">
             <app-slide-toggle
-                [isActive]="true"
-                [isDisabled]="false" 
-                [isDarkTheme]="true" 
-                (onToggle)="onToggle($event)">
+                [value]="true"
+                [disabled]="false" 
+                [theme]=darkTheme
+                (toggled)="onToggle($event)">
             </app-slide-toggle>
         </app-demo-state>
         <app-demo-state [title]="'disabled'" [isDark]="true">
             <app-slide-toggle
-                [isActive]="true"
-                [isDisabled]="true" 
-                [isDarkTheme]="true" 
-                (onToggle)="onToggle($event)">
+                [value]="true"
+                [disabled]="true" 
+                [theme]=darkTheme
+                (toggled)="onToggle($event)">
             </app-slide-toggle>
         </app-demo-state>
     </div>

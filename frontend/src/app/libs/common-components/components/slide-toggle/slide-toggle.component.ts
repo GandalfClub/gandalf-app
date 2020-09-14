@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
   selector: 'app-slide-toggle',
@@ -9,20 +10,23 @@ import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter
 export class SlideToggleComponent {
 
   @Input()
-  public isDisabled: boolean = true;
+  public disabled: boolean = false;
 
   @Input()
-  public isDarkTheme: boolean = false;
+	public theme: ComponentTheme = ComponentTheme.Light;
 
   @Output()
-  public onToggle: EventEmitter<boolean> = new EventEmitter();
+  public toggled: EventEmitter<boolean> = new EventEmitter();
 
   @Input()
-	public isActive: boolean = false;
+	public value: boolean;
 
   public toggle(): void {
-		this.isActive = !this.isActive;
-		this.onToggle.emit(this.isActive);
+		this.value = !this.value;
+		this.toggled.emit(this.value);
   }
 
+  public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
 }
