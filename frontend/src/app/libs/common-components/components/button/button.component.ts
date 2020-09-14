@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ButtonType } from '../../models/button-type.enum';
+import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({

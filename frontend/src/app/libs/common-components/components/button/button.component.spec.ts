@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
-import { ButtonType } from '../../models/button-type.enum';
+import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 describe('ButtonComponent', () => {
