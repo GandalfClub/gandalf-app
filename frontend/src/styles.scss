@@ -1,33 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/*scroll-bar*/
-$scroll-bar-color: #909090;
-
-/* Firefox */
-@supports (scrollbar-width: thin) { 
+/* scrollbar Firefox */
+@supports (scrollbar-width: thin) {
 	* {
 		scrollbar-width: thin;
-		scrollbar-color: $scroll-bar-color rgba(0, 0, 0, 0);
+	}
+
+	.light-theme {
+		scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
+	}
+
+	.dark-theme {
+		scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
 	}
 }
 
-/* Webkit */
+/* scrollbar Webkit */
 @supports (-webkit-appearance: auto) {
   ::-webkit-scrollbar-track {
     display: none;
 	}
-  ::-webkit-scrollbar {
-    width: 4px;
-		height: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-		background: $scroll-bar-color;
-		border-radius: 2px;
-	}
 	::-webkit-scrollbar-corner {
 		display: none;
+	}
+  ::-webkit-scrollbar {
+    width: $secondary-grid-unit;
+		height: $secondary-grid-unit;
+  }
+	::-webkit-scrollbar-thumb { 
+		border-radius: $secondary-grid-unit / 2;
+	}
+	
+	.light-theme {
+		& ::-webkit-scrollbar-thumb {
+			background: $color-black-50;
+		}
+	}
+
+	.dark-theme {
+		& ::-webkit-scrollbar-thumb {
+			background: $color-white-50;
+		}
 	}
 }
