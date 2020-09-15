@@ -7,9 +7,17 @@ import { DemoStateComponent } from './demo-state/demo-state.component';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { EventTileDemoComponent } from './event-tile-demo/event-tile-demo.component';
 import { DemoGroupComponent } from './demo-group/demo-group.component';
+import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
+import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 
 @NgModule({
-	declarations: [CommonComponentsDemoComponent, DemoGroupComponent, DemoStateComponent, EventTileDemoComponent],
+	declarations: [
+		CommonComponentsDemoComponent,
+		DemoGroupComponent,
+		DemoStateComponent,
+		EventTileDemoComponent,
+		SlideToggleDemoComponent,
+		ButtonDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,

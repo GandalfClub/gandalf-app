@@ -7,15 +7,26 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
-import { CommonModule } from '@angular/common';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-	declarations: [CreateDraftEventPopoverComponent, EventTileComponent, EventDateComponent, EventTimeComponent],
+	declarations: [
+		SlideToggleComponent,
+		CreateDraftEventPopoverComponent,
+		EventTileComponent,
+		EventDateComponent,
+		EventTimeComponent,
+		ButtonComponent,
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -24,22 +35,30 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 		CommonModule,
 		MatIconModule,
 		MatTooltipModule,
-		MatMenuModule,
 		MatSlideToggleModule,
 		FormsModule,
+		MatCardModule,
+		MatCheckboxModule,
+		MatMenuModule,
 	],
 	exports: [
 		MatInputModule,
 		MatButtonModule,
 		MatFormFieldModule,
 		MatIconModule,
+		CommonModule,
+		FormsModule,
+		MatCardModule,
 		ReactiveFormsModule,
 		MatDialogModule,
 		MatTooltipModule,
+		MatSlideToggleModule,
+		MatCheckboxModule,
 		EventTileComponent,
 		CreateDraftEventPopoverComponent,
-		MatSlideToggleModule,
 		FormsModule,
+		ButtonComponent,
+		SlideToggleComponent,
 	],
 	providers: [
 		{
