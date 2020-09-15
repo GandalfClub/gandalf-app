@@ -1,0 +1,18 @@
+.scrollbar-demo {
+  &__container {
+    width: 400px;
+    height: 300px;
+    overflow: scroll;
+
+    border: 1px solid black;
+
+    &--dark-theme {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &__overflowing-content {
+    width: 600px;
+    height: 500px;
+  }
+}
