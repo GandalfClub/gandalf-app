@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "variables";
+@import "variables.scss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -10,11 +10,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 		scrollbar-width: thin;
 	}
 
-	html.light-theme, .light-theme * {
+	html.light-theme, .light-theme > * {
 		scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
 	}
 
-	html.dark-theme, .dark-theme * {
+	html.dark-theme, .dark-theme > * {
 		scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
 	}
 }
