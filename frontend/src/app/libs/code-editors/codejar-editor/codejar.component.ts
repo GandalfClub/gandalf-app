@@ -42,12 +42,6 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 
 	public editor: CodeJar;
 
-	private highlightChanges(editor: HTMLElement): void {
-		let code: string = editor.textContent;
-		code = Prism.highlight(code, this.languagePrism, this.languagePrismText);
-		editor.innerHTML = code;
-	}
-
 	public ngAfterViewInit(): void {
 		this.languagePrismText = this.language;
 		this.languagePrism = Prism.languages[this.languagePrismText];
@@ -81,5 +75,11 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 	public ngOnDestroy(): void {
 		this.destroy$.next(true);
 		this.editor.destroy();
+	}
+
+	private highlightChanges(editor: HTMLElement): void {
+		let code: string = editor.textContent;
+		code = Prism.highlight(code, this.languagePrism, this.languagePrismText);
+		editor.innerHTML = code;
 	}
 }
