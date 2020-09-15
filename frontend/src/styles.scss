@@ -10,11 +10,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 		scrollbar-width: thin;
 	}
 
-	.light-theme {
+	html.light-theme, .light-theme * {
 		scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
 	}
 
-	.dark-theme {
+	html.dark-theme, .dark-theme * {
 		scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
 	}
 }
