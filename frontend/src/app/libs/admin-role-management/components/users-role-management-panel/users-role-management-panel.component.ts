@@ -1,24 +1,27 @@
-import { Component, QueryList, ChangeDetectorRef, ViewChildren, AfterViewChecked, SimpleChanges } from '@angular/core';
+import { Component, QueryList, ChangeDetectorRef, ViewChildren, AfterViewChecked, SimpleChanges, OnDestroy, OnInit } from '@angular/core';
 import { UsersFacadeService } from '../../store/users/users.facade';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserRoleTileComponent } from '../user-role-tile/user-role-tile.component';
 import { User } from 'src/app/libs/auth/models/user';
-import { UserClaims } from '../../models/user-claims.enum';
+import { UserClaim } from '../../models/user-claims.enum';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-users-role-management-panel',
 	templateUrl: './users-role-management-panel.component.html',
 	styleUrls: ['./users-role-management-panel.component.scss'],
 })
-export class UsersRoleManagementPanelComponent implements AfterViewChecked {
+export class UsersRoleManagementPanelComponent implements OnInit, AfterViewChecked, OnDestroy {
 	@ViewChildren(UserRoleTileComponent) public userTemplates: QueryList<UserRoleTileComponent>;
 	public searchText: string = '';
 	public userNotFound: boolean = false;
 	public userTemplatesChanges$: Observable<SimpleChanges[]>;
-	public userUpdateCurrentState: string;
+	public destroy$: Subject<boolean> = new Subject();
+	public userUpdate: EntityWrapper<User>;
+	public users: User[];
 
 	constructor(
 		private changeDetectorRef: ChangeDetectorRef,
@@ -26,16 +29,18 @@ export class UsersRoleManagementPanelComponent implements AfterViewChecked {
 		private aurhFacadeService: AuthFacadeService
 	) {}
 
-	public get users$(): Observable<User[]> {
-		return this.usersFacadeService.usersValue$;
+	public get userUpdateState(): boolean {
+		return this.userUpdate.status === EntityStatus.Pending;
 	}
 
-	public get user$(): Observable<EntityWrapper<User>> {
-		return this.aurhFacadeService.user$;
-	}
+	public ngOnInit(): void {
+		this.usersFacadeService.users$.pipe(takeUntil(this.destroy$)).subscribe((users: EntityWrapper<User[]>) => {
+			this.users = users.value;
+		});
 
-	public userUpdateState(userUpdateCurrentState: string): boolean {
-		return userUpdateCurrentState === EntityStatus.Pending;
+		this.aurhFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
+			this.userUpdate = user;
+		});
 	}
 
 	public ngAfterViewChecked(): void {
@@ -44,14 +49,19 @@ export class UsersRoleManagementPanelComponent implements AfterViewChecked {
 	}
 
 	public changeUserState(event: boolean, user: User): void {
-		const currentClaims: string[] = [...user.claims];
+		const currentClaims: UserClaim[] = [...user.claims];
 		if (event) {
-			currentClaims.push(UserClaims.EventManager);
+			currentClaims.push(UserClaim.EventManager);
 			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: currentClaims }))(user));
 		}
 		if (!event) {
-			const claimsWithoutEventManager: string[] = currentClaims.filter((item: string) => item !== UserClaims.EventManager);
+			const claimsWithoutEventManager: UserClaim[] = currentClaims.filter((item: string) => item !== UserClaim.EventManager);
 			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: claimsWithoutEventManager }))(user));
 		}
+	}
+
+	public ngOnDestroy(): void {
+		this.destroy$.next(true);
+		this.destroy$.complete();
 	}
 }

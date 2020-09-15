@@ -1,25 +1,90 @@
-// import { TestBed } from '@angular/core/testing';
-// import { provideMockActions } from '@ngrx/effects/testing';
-// import { Observable } from 'rxjs';
+import { TestBed, async } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
+import { UsersEffects } from './users.effects';
+import { UsersRepositoryService } from '../../services/users-repository.service';
+import { User } from '../../../auth/models/user';
+import { LoadUsers, LoadUsersSuccess, LoadUsersFail } from './users.actions';
+import { cold, hot } from 'jasmine-marbles';
+import { Actions } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { createSpy } from '../../../auth/helpers/createSpy';
+import { AuthConverter } from '../../../auth/services/auth-converter.service';
+import { UserDto } from 'src/app/libs/auth/models/user-dto';
 
-// import { UsersEffects } from './users.effects';
+describe('Events Effects', () => {
+	let mockUsersRepository: jasmine.SpyObj<UsersRepositoryService>;
+	let authConverter: AuthConverter;
+	let user: User;
+	let userDto: UserDto;
+	let error: Error;
+	let actions: Observable<Action>;
+	let expected: Observable<Action>;
 
-// describe('UsersEffects', () => {
-//   let actions$: Observable<any>;
-//   let effects: UsersEffects;
+	function createEffects(source: Observable<Action>): UsersEffects {
+		return new UsersEffects(new Actions(source), mockUsersRepository, authConverter);
+	}
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       providers: [
-//         UsersEffects,
-//         provideMockActions(() => actions$)
-//       ]
-//     });
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			providers: [
+				{
+					provide: UsersRepositoryService,
+					useValue: createSpy(UsersRepositoryService.prototype, {
+						getUsers: jasmine.createSpy().and.returnValue(of([user])),
+					}),
+				},
+			],
+		});
+		mockUsersRepository = TestBed.inject(UsersRepositoryService) as jasmine.SpyObj<UsersRepositoryService>;
+		authConverter = TestBed.inject(AuthConverter);
+	}));
 
-//     effects = TestBed.inject(UsersEffects);
-//   });
+	describe('getUsers', () => {
+		describe('when LoadUsers success', () => {
+			beforeEach(() => {
+				user = {
+					firstName: 'test',
+					secondName: 'test',
+					mobilePhone: 'test',
+					id: 'test',
+					isAdmin: false,
+					email: 'test@test.by',
+					password: 'test',
+					claims: [],
+				};
 
-//   it('should be created', () => {
-//     expect(effects).toBeTruthy();
-//   });
-// });
+				userDto = {
+					firstName: 'test',
+					secondName: 'test',
+					mobilePhone: 'test',
+					_id: 'test',
+					isAdmin: false,
+					email: 'test@test.by',
+					password: 'test',
+					claims: [],
+				};
+
+				mockUsersRepository.getUsers.and.returnValue(of([userDto]));
+				actions = hot('-a-|', { a: new LoadUsers() });
+				expected = cold('-s-|', { s: new LoadUsersSuccess([user]) });
+			});
+
+			it('should emit LoadUsers action', () => {
+				expect(createEffects(actions).GetUsers).toBeObservable(expected);
+			});
+		});
+
+		describe('when Load Users fail', () => {
+			beforeEach(() => {
+				error = new Error('test');
+				mockUsersRepository.getUsers.and.throwError(error);
+				actions = hot('-a|', { a: new LoadUsers() });
+				expected = cold('-(s|)', { s: new LoadUsersFail(error) });
+			});
+
+			it('should emit LoadUsersFail action', () => {
+				expect(createEffects(actions).GetUsers).toBeObservable(expected);
+			});
+		});
+	});
+});

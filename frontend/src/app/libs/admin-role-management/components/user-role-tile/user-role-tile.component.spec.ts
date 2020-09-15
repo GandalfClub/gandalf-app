@@ -28,7 +28,7 @@ describe('UserComponent', () => {
 		fixture = TestBed.createComponent(UserRoleTileComponent);
 		component = fixture.componentInstance;
 		component.user = user;
-		component.userUpdateIsDisabled = false;
+		component.userUpdateIsDisable = false;
 		fixture.detectChanges();
 	});
 
@@ -41,7 +41,7 @@ describe('UserComponent', () => {
 			spyOn(component.isEventManager, 'emit');
 			const matTogle: MatSlideToggle = fixture.debugElement.nativeElement;
 			const event: MatSlideToggleChange = new MatSlideToggleChange(matTogle, true);
-			component.toggleIsAdminClaim(event);
+			component.toggleEventManagerClaim(event);
 		});
 
 		it('calls toggleIsAdminClaim', () => {

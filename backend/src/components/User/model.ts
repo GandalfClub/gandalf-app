@@ -3,6 +3,11 @@ import { NextFunction } from 'express';
 import { Document, Schema } from 'mongoose';
 import mainDbConnection from '../../config/connection/main-db';
 
+export enum UserClaim {
+	Admin = 'Admin',
+	EventManager = 'EventManager',
+}
+
 /**
  * @export
  * @interface IUserModel
@@ -15,7 +20,7 @@ export interface IUserModel extends Document {
 	email: string;
 	password: string;
 	isAdmin: boolean;
-	claims: string[];
+	claims: UserClaim[];
 	displayName?: string;
 	photoUrl?: string;
 	comparePassword: (password: string) => Promise<boolean>;

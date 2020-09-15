@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { UserClaims } from '../../models/user-claims.enum';
+import { UserClaim } from '../../models/user-claims.enum';
 import { User } from 'src/app/libs/auth/models/user';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
@@ -13,13 +13,13 @@ export class UserRoleTileComponent {
 
 	@Input() public user: User;
 
-	@Input() public userUpdateIsDisabled: boolean = false;
+	@Input() public userUpdateIsDisable: boolean = false;
 
 	public get userEventManagerState(): boolean {
-		return this.user.claims.includes(UserClaims.EventManager);
+		return this.user.claims.includes(UserClaim.EventManager);
 	}
 
-	public toggleIsAdminClaim(event: MatSlideToggleChange): void {
+	public toggleEventManagerClaim(event: MatSlideToggleChange): void {
 		this.isEventManager.emit(event.checked);
 	}
 }
