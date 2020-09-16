@@ -13,18 +13,18 @@ import { PopoverDemoComponent } from './components/popover-demo/popover-demo.com
 
 @NgModule({
   declarations: [
-    CommonComponentsDemoComponent,
-    DemoGroupComponent,
-    DemoStateComponent,
-    EventTileDemoComponent,
-    SlideToggleDemoComponent,
-    ButtonDemoComponent,
-    PopoverDemoComponent,
+	CommonComponentsDemoComponent,
+	DemoGroupComponent,
+	DemoStateComponent,
+	EventTileDemoComponent,
+	SlideToggleDemoComponent,
+	ButtonDemoComponent,
+	PopoverDemoComponent,
   ],
   imports: [
-    CommonModule,
-    CommonComponentsDemoRoutingModule,
-    CommonComponentsModule,
+	CommonModule,
+	CommonComponentsDemoRoutingModule,
+	CommonComponentsModule,
   ],
   exports: [CommonComponentsDemoRoutingModule],
 })

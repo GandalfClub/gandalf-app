@@ -7,18 +7,18 @@ describe('PopoverCommonDemoComponent', () => {
   let fixture: ComponentFixture<PopoverDemoComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PopoverDemoComponent],
-    }).compileComponents();
+		TestBed.configureTestingModule({
+		declarations: [PopoverDemoComponent],
+  }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopoverDemoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+		fixture = TestBed.createComponent(PopoverDemoComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+		expect(component).toBeTruthy();
   });
 });
