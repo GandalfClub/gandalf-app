@@ -1,5 +1,5 @@
-@import '~@angular/material/theming';
-@import './app/libs/common-components/shared/variables.scss';
+@import "~@angular/material/theming";
+@import "./app/libs/common-components/shared/variables.scss";
 
 $mat-gendalf: (
   50: #e3f2fd,
@@ -31,38 +31,33 @@ $mat-gendalf: (
     A200: $light-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
 @include mat-core();
-
 
 $gendalf-app-primary: mat-palette($mat-gendalf);
 $gendalf-app-accent: mat-palette($mat-pink, A200, A100, A400);
 $gendalf-app-warn: mat-palette($mat-red);
 
-$gendalf-app-theme: mat-light-theme($gendalf-app-primary, $gendalf-app-accent, $gendalf-app-warn);
+$gendalf-app-theme: mat-light-theme(
+  $gendalf-app-primary,
+  $gendalf-app-accent,
+  $gendalf-app-warn
+);
 
 @include angular-material-theme($gendalf-app-theme);
 
-
-
-
 .mat-slide-toggle-bar {
-    background-color: rgba(33, 33, 33, 0.5);
+  background-color: rgba(33, 33, 33, 0.5);
 }
 
 .mat-slide-toggle-bar-dark {
-    color: #fff;
-
-    @include mat-slide-toggle-theme ($gendalf-app-theme);
-
-    .mat-slide-toggle-bar {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-}
-
-.gendalf-dialog-dark .mat-dialog-container{
-  background:linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), $color-black; 
   color: #fff;
+
+  @include mat-slide-toggle-theme($gendalf-app-theme);
+
+  .mat-slide-toggle-bar {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 }

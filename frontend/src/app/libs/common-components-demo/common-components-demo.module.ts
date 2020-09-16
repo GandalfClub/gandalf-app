@@ -9,22 +9,23 @@ import { EventTileDemoComponent } from './event-tile-demo/event-tile-demo.compon
 import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
-import { PopoverCommonDemoComponent } from './components/popover-common-demo/popover-common-demo.component';
+import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 
 @NgModule({
-	declarations: [
-		CommonComponentsDemoComponent,
-		DemoGroupComponent,
-		DemoStateComponent,
-		EventTileDemoComponent,
-		SlideToggleDemoComponent,
-		ButtonDemoComponent,
-		PopoverCommonDemoComponent],
-	imports: [
-		CommonModule,
-		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule
-	],
-	exports: [CommonComponentsDemoRoutingModule]
+  declarations: [
+    CommonComponentsDemoComponent,
+    DemoGroupComponent,
+    DemoStateComponent,
+    EventTileDemoComponent,
+    SlideToggleDemoComponent,
+    ButtonDemoComponent,
+    PopoverDemoComponent,
+  ],
+  imports: [
+    CommonModule,
+    CommonComponentsDemoRoutingModule,
+    CommonComponentsModule,
+  ],
+  exports: [CommonComponentsDemoRoutingModule],
 })
-export class CommonComponentsDemoModule { }
+export class CommonComponentsDemoModule {}

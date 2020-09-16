@@ -9,63 +9,64 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
-import { PopoverCommonComponent } from './components/popover-common/popover-common.component';
+import { PopoverComponent } from './components/popover/popover.component';
 
 @NgModule({
-	declarations: [
-		SlideToggleComponent,
-		CreateDraftEventPopoverComponent,
-		EventTileComponent,
-		EventDateComponent,
-		EventTimeComponent,
-		ButtonComponent,
-		PopoverCommonComponent],
-	imports: [
-		ReactiveFormsModule,
-		MatInputModule,
-		MatButtonModule,
-		MatFormFieldModule,
-		CommonModule,
-		MatIconModule,
-		MatTooltipModule,
-		MatSlideToggleModule,
-		FormsModule,
-		MatCardModule,
-		MatCheckboxModule,
-		MatMenuModule
-	],
-	exports: [
-		MatInputModule,
-		MatButtonModule,
-		MatFormFieldModule,
-		MatIconModule,
-		CommonModule,
-		FormsModule,
-		MatCardModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatTooltipModule,
-		MatSlideToggleModule,
-		MatCheckboxModule,
-		EventTileComponent,
-		CreateDraftEventPopoverComponent,
-		ButtonComponent,
-		SlideToggleComponent,
-		PopoverCommonComponent],
-	providers: [
-		{
-			provide: MatDialogRef,
-			useValue: {}
-		},
-	]
+  declarations: [
+    SlideToggleComponent,
+    CreateDraftEventPopoverComponent,
+    EventTileComponent,
+    EventDateComponent,
+    EventTimeComponent,
+    ButtonComponent,
+    PopoverComponent,
+  ],
+  imports: [
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatMenuModule,
+  ],
+  exports: [
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    EventTileComponent,
+    CreateDraftEventPopoverComponent,
+    ButtonComponent,
+    SlideToggleComponent,
+    PopoverComponent,
+  ],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
 })
-
 export class CommonComponentsModule {}

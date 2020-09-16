@@ -1,0 +1,13 @@
+<ng-template #template>
+  <div class="popover-common">
+    <div class="popover-common__title" mat-dialog-title>
+      <ng-content select=".popover-title"></ng-content>
+    </div>
+    <div class="popover-common__content" mat-dialog-content>
+      <ng-content select=".popover-content"></ng-content>
+    </div>
+    <div class="popover-common__actions" mat-dialog-action>
+      <ng-content select=".popover-actions"></ng-content>
+    </div>
+  </div>
+</ng-template>

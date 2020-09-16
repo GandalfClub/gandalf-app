@@ -1,0 +1,11 @@
+@import "../../shared/variables.scss";
+
+.popover--dark .mat-dialog-container {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    ),
+    $color-black;
+  color: #fff;
+}
