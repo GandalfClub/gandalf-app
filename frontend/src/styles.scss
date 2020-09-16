@@ -1,49 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "variables";
+@import "scrollbar";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* scrollbar Firefox */
-@supports (scrollbar-width: thin) {
-	* {
-		scrollbar-width: thin;
-	}
-
-	html.light-theme, .light-theme > * {
-		scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
-	}
-
-	html.dark-theme, .dark-theme > * {
-		scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
-	}
-}
-
-/* scrollbar Webkit */
-@supports (-webkit-appearance: auto) {
-  ::-webkit-scrollbar-track {
-    display: none;
-	}
-	::-webkit-scrollbar-corner {
-		display: none;
-	}
-  ::-webkit-scrollbar {
-    width: $secondary-grid-unit;
-		height: $secondary-grid-unit;
-  }
-	::-webkit-scrollbar-thumb { 
-		border-radius: $secondary-grid-unit / 2;
-	}
-	
-	.light-theme {
-		& ::-webkit-scrollbar-thumb {
-			background: $color-black-50;
-		}
-	}
-
-	.dark-theme {
-		& ::-webkit-scrollbar-thumb {
-			background: $color-white-50;
-		}
-	}
-}

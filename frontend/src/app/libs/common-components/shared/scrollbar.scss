@@ -1,0 +1,39 @@
+@supports (scrollbar-width: thin) {
+  .scrollbar {
+    scrollbar-width: thin;
+
+    &--light {
+      scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
+    }
+
+    &--dark {
+      scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+@supports (-webkit-appearance: auto) {
+  .scrollbar {
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+    &::-webkit-scrollbar-corner {
+      display: none;
+    }
+    &::-webkit-scrollbar {
+      width: $secondary-grid-unit;
+      height: $secondary-grid-unit;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: $secondary-grid-unit / 2;
+    }
+
+    &--light-theme::-webkit-scrollbar-thumb {
+      background: $color-black-50;
+    }
+
+    &--dark-theme::-webkit-scrollbar-thumb {
+      background: $color-white-50;
+    }
+  }
+}
