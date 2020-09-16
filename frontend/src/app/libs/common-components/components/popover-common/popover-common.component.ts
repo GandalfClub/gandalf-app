@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
@@ -9,7 +9,7 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 	changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class PopoverCommonComponent implements OnInit {
+export class PopoverCommonComponent {
 
 	@Input()
 		public theme: ComponentTheme = ComponentTheme.Light;
@@ -23,18 +23,15 @@ export class PopoverCommonComponent implements OnInit {
 
 	) { }
 
-  public ngOnInit(): void {}
-
 	public open(): void {
 		if (this.isDarkTheme) {
 			this.dialogRef = this.dialog.open(this.tpl, {
 				minWidth: '480px',
 				panelClass: 'gendalf-dialog-dark'
 			});
-		}
-		else{
+		}	else {
 			this.dialogRef = this.dialog.open(this.tpl, {
-				minWidth: '480px',
+			minWidth: '480px',
 	});
 }
 	}
@@ -46,6 +43,5 @@ export class PopoverCommonComponent implements OnInit {
 	public close(): void {
 		this.dialogRef.close();
 	}
-
 
 }
