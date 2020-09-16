@@ -1,32 +1,32 @@
 .popover-common {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  max-width: 600px;
+	max-width: 600px;
 
-  font-family: Roboto;
+	font-family: Roboto;
 
-  &__title {
-    padding: 0 0 0.5rem;
+	&__title {
+		padding: 0 0 0.5rem;
 
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
-  }
-  &__content {
-    padding: 0.5rem 0;
-    min-height: 50px;
-    max-height: 300px;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 28px;
+	}
+	&__content {
+		padding: 0.5rem 0;
+		min-height: 50px;
+		max-height: 300px;
 
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
-  }
-  &__actions {
-    align-self: end;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 24px;
+	}
+	&__actions {
+		align-self: end;
 
-    padding: 0.5rem 0 0;
-  }
+		padding: 0.5rem 0 0;
+	}
 }

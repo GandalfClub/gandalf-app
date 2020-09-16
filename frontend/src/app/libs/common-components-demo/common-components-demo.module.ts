@@ -12,7 +12,7 @@ import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-t
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 
 @NgModule({
-  declarations: [
+	declarations: [
 	CommonComponentsDemoComponent,
 	DemoGroupComponent,
 	DemoStateComponent,
@@ -25,7 +25,7 @@ import { PopoverDemoComponent } from './components/popover-demo/popover-demo.com
 	CommonModule,
 	CommonComponentsDemoRoutingModule,
 	CommonComponentsModule,
-  ],
-  exports: [CommonComponentsDemoRoutingModule],
+	],
+	exports: [CommonComponentsDemoRoutingModule],
 })
 export class CommonComponentsDemoModule {}
