@@ -13,20 +13,20 @@ export class ScrollbarDirective implements OnInit {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
 	public ngOnInit(): void {
-		this.renderer.addClass(this.el.nativeElement, this.scrollbarClassName);
+		this.renderer.addClass(this.elementRef.nativeElement, this.scrollbarClassName);
 
 		switch (this.theme) {
 			case ComponentTheme.Light:
-				this.renderer.addClass(this.el.nativeElement, this.scrollbarLightClassName);
+				this.renderer.addClass(this.elementRef.nativeElement, this.scrollbarLightClassName);
 				break;
 			case ComponentTheme.Dark:
-				this.renderer.addClass(this.el.nativeElement, this.scrollbarDarkClassName);
+				this.renderer.addClass(this.elementRef.nativeElement, this.scrollbarDarkClassName);
 				break;
 			default:
-				this.renderer.addClass(this.el.nativeElement, this.scrollbarLightClassName);
+				this.renderer.addClass(this.elementRef.nativeElement, this.scrollbarLightClassName);
 		}
 	}
 }
