@@ -1,5 +1,6 @@
 @supports (scrollbar-width: thin) {
   .scrollbar {
+		overflow: auto;
     scrollbar-width: thin;
 
     &--light {
@@ -14,6 +15,8 @@
 
 @supports (-webkit-appearance: auto) {
   .scrollbar {
+		overflow: auto;
+
     &::-webkit-scrollbar-track {
       display: none;
     }
