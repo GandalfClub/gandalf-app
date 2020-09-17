@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'md-palette';
+@import 'variables';
 
 @include mat-core();
 
@@ -13,8 +14,24 @@ $gendalf-app-theme: mat-light-theme($gendalf-app-primary, $gendalf-app-accent, $
 
 $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accent, $gendalf-app-warn);
 
+.radio-button {
+	@include mat-radio-theme($gendalf-app-theme);
+	&.mat-radio-disabled {
+		&.mat-radio-checked .mat-radio-outer-circle,
+		.mat-radio-outer-circle {
+			border-color: $color-black-30;
+		}
+	}
+}
+
 .radio-button--dark-theme {
 	@include mat-radio-theme ($gendalf-app-theme-dark);
+	&.mat-radio-disabled {
+		&.mat-radio-checked .mat-radio-outer-circle,
+		.mat-radio-outer-circle {
+			border-color: $color-white-30;
+		}
+	}
 }
 
 .mat-slide-toggle-bar-dark {
