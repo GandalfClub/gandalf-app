@@ -10,6 +10,7 @@ import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
+import { RadioButtonDemoComponent } from './components/radio-button-demo/radio-button-demo.component';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-de
 		EventTileDemoComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
-		ScrollbarDemoComponent],
+		ScrollbarDemoComponent,
+		RadioButtonDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,

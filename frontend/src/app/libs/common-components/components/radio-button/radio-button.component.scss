@@ -1,0 +1,13 @@
+@import "variables";
+
+.radio-button {
+  &__label {
+		@include text-p;
+		
+		color: $color-black-100;
+		
+		&--dark-theme {
+			color: $color-white-100;
+		}
+  }
+}
