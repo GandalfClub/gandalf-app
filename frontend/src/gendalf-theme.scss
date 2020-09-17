@@ -34,6 +34,10 @@ $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accen
 	}
 }
 
+.mat-slide-toggle-bar {
+	background-color: rgba(33, 33, 33, 0.5);
+}
+
 .mat-slide-toggle-bar-dark {
 	color: #fff;
 
