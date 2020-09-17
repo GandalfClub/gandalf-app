@@ -1,3 +1,5 @@
+@import "variables";
+
 @supports (scrollbar-width: thin) {
   .scrollbar {
 		overflow: auto;
