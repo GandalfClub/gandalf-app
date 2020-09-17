@@ -53,6 +53,5 @@ describe('PopoverCommonComponent', () => {
 				});
 		});
 
-
 	});
 });
