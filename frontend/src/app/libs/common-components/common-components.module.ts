@@ -17,6 +17,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { ButtonComponent } from './components/button/button.component';
 		EventTileComponent,
 		EventDateComponent,
 		EventTimeComponent,
-		ButtonComponent],
+		ButtonComponent,
+		ScrollbarDirective],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -56,7 +58,8 @@ import { ButtonComponent } from './components/button/button.component';
 		EventTileComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
-		SlideToggleComponent],
+		SlideToggleComponent,
+		ScrollbarDirective],
 	providers: [
 		{
 			provide: MatDialogRef,

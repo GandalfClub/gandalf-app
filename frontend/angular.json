@@ -35,7 +35,12 @@
                             "node_modules/prismjs/themes/prism.css",
                             "src/styles.scss",
                             "node_modules/monaco-editor/min/vs/editor/editor.main.css"
-                        ],
+												],
+												"stylePreprocessorOptions": {
+													"includePaths": [
+														"src/app/libs/common-components/shared"
+													]
+												},
                         "scripts": [
                             "./node_modules/prismjs/prism.js"
                         ]
@@ -103,6 +108,11 @@
                             "src/styles.scss",
                             "node_modules/monaco-editor/min/vs/editor/editor.main.css"
                         ],
+												"stylePreprocessorOptions": {
+													"includePaths": [
+														"src/app/libs/common-components/shared"
+													]
+												},
                         "scripts": [
                             "./node_modules/prismjs/prism.js"
                         ]

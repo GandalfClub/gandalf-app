@@ -9,6 +9,7 @@ import { EventTileDemoComponent } from './event-tile-demo/event-tile-demo.compon
 import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
+import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +18,8 @@ import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-t
 		DemoStateComponent,
 		EventTileDemoComponent,
 		SlideToggleDemoComponent,
-		ButtonDemoComponent],
+		ButtonDemoComponent,
+		ScrollbarDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
