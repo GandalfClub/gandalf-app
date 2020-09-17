@@ -10,21 +10,23 @@ import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
+import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 
 @NgModule({
 	declarations: [
-	CommonComponentsDemoComponent,
-	DemoGroupComponent,
-	DemoStateComponent,
-	EventTileDemoComponent,
-	SlideToggleDemoComponent,
-	ButtonDemoComponent,
-	PopoverDemoComponent,
-  ],
-  imports: [
-	CommonModule,
-	CommonComponentsDemoRoutingModule,
-	CommonComponentsModule,
+		CommonComponentsDemoComponent,
+		DemoGroupComponent,
+		DemoStateComponent,
+		EventTileDemoComponent,
+		SlideToggleDemoComponent,
+		ButtonDemoComponent,
+		PopoverDemoComponent,
+		ScrollbarDemoComponent
+	],
+	imports: [
+		CommonModule,
+		CommonComponentsDemoRoutingModule,
+		CommonComponentsModule,
 	],
 	exports: [CommonComponentsDemoRoutingModule],
 })

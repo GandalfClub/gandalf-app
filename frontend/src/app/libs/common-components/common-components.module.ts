@@ -18,6 +18,7 @@ import { EventDateComponent } from './components/event-date/event-date.component
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
+import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { PopoverComponent } from './components/popover/popover.component';
 	EventTimeComponent,
 	ButtonComponent,
 	PopoverComponent,
+	ScrollbarDirective
 	],
 	imports: [
 	ReactiveFormsModule,
@@ -61,6 +63,7 @@ import { PopoverComponent } from './components/popover/popover.component';
 	ButtonComponent,
 	SlideToggleComponent,
 	PopoverComponent,
+	ScrollbarDirective
 	],
 	providers: [
 	{
