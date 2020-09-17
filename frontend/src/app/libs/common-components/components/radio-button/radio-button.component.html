@@ -1,12 +1,12 @@
 <mat-radio-button 
 		class="radio-button"
 		[class.radio-button--dark-theme]="isDarkTheme"
-		[checked]="checked"
 		[value]="value"
 		[disabled]="disabled"
 		[name]="name"
 		color="primary">
 	<span class="radio-button__label" 
+			[class.radio-button__label--disabled]="disabled" 
 			[class.radio-button__label--dark-theme]="isDarkTheme">
 		<ng-content></ng-content>
 	</span>

@@ -56,6 +56,7 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		MatCardModule,
 		ReactiveFormsModule,
 		MatDialogModule,
+		MatRadioModule,
 		MatTooltipModule,
 		MatSlideToggleModule,
 		MatCheckboxModule,

@@ -1,16 +1,20 @@
 <app-demo-group class="radio-button-demo" [title]="'RadioButtons'">
 	<div class="light-theme">
-		<app-demo-state [title]="'radio-group'" name="radioLight">
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="1" [checked]="true">Option 1</app-radio-button>
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="2">Option 2</app-radio-button>
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="3" [disabled]="true">Option 3</app-radio-button>
+		<app-demo-state [title]="'radio-group'">
+			<mat-radio-group [value]='2' name="radioLight">
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="1">Option 1</app-radio-button>
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="2">Option 2</app-radio-button>
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioLight'" [value]="3" [disabled]="true">Option 3</app-radio-button>
+			</mat-radio-group>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">
-		<app-demo-state [title]="'radio-group'" name="radioDark" [isDark]="true">
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="1" [checked]="true" [theme]="darkTheme">Option 1</app-radio-button>
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="2" [theme]="darkTheme">Option 2</app-radio-button>
-			<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="3" [disabled]="true" [theme]="darkTheme">Option 3</app-radio-button>
+		<app-demo-state [title]="'radio-group'" [isDark]="true">
+			<mat-radio-group [value]='2' name="radioDark" >
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="1" [theme]="darkTheme">Option 1</app-radio-button>
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="2" [theme]="darkTheme">Option 2</app-radio-button>
+				<app-radio-button class="radio-button-demo__radio-button" [name]="'radioDark'" [value]="3" [disabled]="true" [theme]="darkTheme">Option 3</app-radio-button>
+			</mat-radio-group>
 		</app-demo-state>
 	</div>
 </app-demo-group>

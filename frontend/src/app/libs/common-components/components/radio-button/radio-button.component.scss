@@ -6,6 +6,10 @@
 		
 		color: $color-black-100;
 		
+		&--disabled {
+			opacity: 0.8;
+		}
+
 		&--dark-theme {
 			color: $color-white-100;
 		}

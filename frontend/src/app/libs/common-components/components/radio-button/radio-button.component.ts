@@ -12,9 +12,6 @@ export class RadioButtonComponent {
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Input()
-	public checked: boolean = false;
-
-	@Input()
 	public value: number;
 
 	@Input()
