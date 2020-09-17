@@ -1,0 +1,16 @@
+<app-demo-group class="scrollbar-demo" [title]="'Scrollbar'">
+	<div class="light-theme">
+		<app-demo-state [title]="'scrollbar'">
+			<div class="scrollbar-demo__container" appScrollbar [theme]="lightTheme">
+				<div class="scrollbar-demo__overflowing-content"></div>
+			</div>
+		</app-demo-state>
+	</div>
+	<div class="dark-theme">
+		<app-demo-state [title]="'scrollbar'" [isDark]="true">
+			<div class="scrollbar-demo__container scrollbar-demo__container--dark-theme" appScrollbar [theme]="darkTheme">
+				<div class="scrollbar-demo__overflowing-content"></div>
+			</div>
+		</app-demo-state>
+	</div>
+</app-demo-group>

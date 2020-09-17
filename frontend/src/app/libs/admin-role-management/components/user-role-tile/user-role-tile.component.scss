@@ -1,6 +1,8 @@
+@import "variables";
+
 .app-user-role-tile {
 	&__container {
-		border: 1px solid black;
+		border: 1px solid $color-black-50;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -11,7 +13,7 @@
 		justify-content: space-between;
 	}
 	&__photo {
-		border: 1px solid black;
+		border: 1px solid $color-black-50;
 		border-radius: 100%;
 		width: 50px;
 		height: 50px;

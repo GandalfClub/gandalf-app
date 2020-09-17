@@ -17,6 +17,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { ButtonComponent } from './components/button/button.component';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
+		ScrollbarDirective,
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -59,6 +61,7 @@ import { ButtonComponent } from './components/button/button.component';
 		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
+		ScrollbarDirective,
 	],
 	providers: [
 		{

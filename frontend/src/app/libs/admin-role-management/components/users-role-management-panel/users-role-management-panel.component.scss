@@ -1,3 +1,5 @@
+@import "variables";
+
 .app-users-role-management-panel {
 	display: flex;
 	flex-direction: column;
@@ -6,7 +8,7 @@
 	&__header {
 		width: 70%;
 		margin: auto;
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid $color-black-50;
 		height: 30px;
 	}
 
