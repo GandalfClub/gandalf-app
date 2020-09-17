@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule, AbstractControl, ValidationErrors } f
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CreateDraftEventPopoverComponent', () => {
 	let component: CreateDraftEventPopoverComponent;
@@ -15,7 +16,7 @@ describe('CreateDraftEventPopoverComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [CreateDraftEventPopoverComponent],
-			imports: [ReactiveFormsModule, FormsModule, MatDialogModule],
+			imports: [ReactiveFormsModule, FormsModule, MatDialogModule, BrowserAnimationsModule],
 			providers: [
 				{
 				provide: MatDialogRef,
@@ -51,7 +52,7 @@ describe('CreateDraftEventPopoverComponent', () => {
 		expect(errors['required']).toBeTruthy();
 
 		title.setValue('test');
-		expect(errors['requiered']).toBeFalsy();
+		expect(title.errors).toEqual(null);
 	});
 
 	it('button should be disabled in begining', () => {

@@ -1,10 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	Input,
-	TemplateRef,
-	ViewChild,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 

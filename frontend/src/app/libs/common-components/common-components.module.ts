@@ -20,7 +20,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 
 @NgModule({
-  declarations: [
+	declarations: [
 	SlideToggleComponent,
 	CreateDraftEventPopoverComponent,
 	EventTileComponent,
@@ -28,8 +28,8 @@ import { PopoverComponent } from './components/popover/popover.component';
 	EventTimeComponent,
 	ButtonComponent,
 	PopoverComponent,
-  ],
-  imports: [
+	],
+	imports: [
 	ReactiveFormsModule,
 	MatInputModule,
 	MatButtonModule,
@@ -42,8 +42,8 @@ import { PopoverComponent } from './components/popover/popover.component';
 	MatCardModule,
 	MatCheckboxModule,
 	MatMenuModule,
-  ],
-  exports: [
+	],
+	exports: [
 	MatInputModule,
 	MatButtonModule,
 	MatFormFieldModule,
@@ -61,12 +61,12 @@ import { PopoverComponent } from './components/popover/popover.component';
 	ButtonComponent,
 	SlideToggleComponent,
 	PopoverComponent,
-  ],
-  providers: [
+	],
+	providers: [
 	{
 		provide: MatDialogRef,
 		useValue: {},
 	},
-  ],
+	],
 })
 export class CommonComponentsModule {}
