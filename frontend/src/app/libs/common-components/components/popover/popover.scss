@@ -1,11 +1,11 @@
 @import "variables";
 
 .popover--dark .mat-dialog-container {
-  background: linear-gradient(
-      0deg,
-      $color-white-10,
-      $color-white-10
-    ),
-    $color-black;
-  color: $color-white;
+	background: linear-gradient(
+			0deg,
+			$color-white-10,
+			$color-white-10
+		),
+		$color-black;
+	color: $color-white;
 }

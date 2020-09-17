@@ -18,8 +18,8 @@ describe('SlideToggleComponent', () => {
 		declarations: [ SlideToggleComponent ],
 		imports: [CommonComponentsModule]
 	})
-  .compileComponents();
-  }));
+	.compileComponents();
+	}));
 
 	beforeEach(() => {
 	fixture = TestBed.createComponent(SlideToggleComponent);
@@ -29,7 +29,7 @@ describe('SlideToggleComponent', () => {
 	component.disabled = false;
 	component.theme = ComponentTheme.Dark;
 	fixture.detectChanges();
-  });
+	});
 
 	it('should create', () => {
 	expect(component).toBeTruthy();
