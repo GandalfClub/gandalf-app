@@ -44,7 +44,7 @@ $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accen
 	@include mat-slide-toggle-theme ($gendalf-app-theme-dark);
 
 	.mat-slide-toggle-bar {
-			background-color: rgba(255, 255, 255, 0.3);
+		background-color: rgba(255, 255, 255, 0.3);
 	}
 }
 
