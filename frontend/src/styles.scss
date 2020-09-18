@@ -1,5 +1,13 @@
+@import "./app/libs/common-components/components/popover/popover.scss";
+
 /* You can add global styles to this file, and also import other style files */
 @import "scrollbar";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}

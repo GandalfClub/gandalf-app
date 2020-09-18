@@ -9,6 +9,7 @@ import { EventTileDemoComponent } from './event-tile-demo/event-tile-demo.compon
 import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
+import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 
 @NgModule({
@@ -19,12 +20,14 @@ import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-de
 		EventTileDemoComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
-		ScrollbarDemoComponent],
+		PopoverDemoComponent,
+		ScrollbarDemoComponent
+	],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule
+		CommonComponentsModule,
 	],
-	exports: [CommonComponentsDemoRoutingModule]
+	exports: [CommonComponentsDemoRoutingModule],
 })
-export class CommonComponentsDemoModule { }
+export class CommonComponentsDemoModule {}

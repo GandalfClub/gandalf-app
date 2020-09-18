@@ -9,14 +9,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 
 @NgModule({
@@ -27,7 +28,9 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
-		ScrollbarDirective],
+		PopoverComponent,
+		ScrollbarDirective
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -40,7 +43,7 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		FormsModule,
 		MatCardModule,
 		MatCheckboxModule,
-		MatMenuModule
+		MatMenuModule,
 	],
 	exports: [
 		MatInputModule,
@@ -59,13 +62,14 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
-		ScrollbarDirective],
+		PopoverComponent,
+		ScrollbarDirective
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
-			useValue: {}
+			useValue: {},
 		},
-	]
+	],
 })
-
 export class CommonComponentsModule {}
