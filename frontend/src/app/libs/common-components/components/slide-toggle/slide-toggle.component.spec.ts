@@ -7,11 +7,11 @@ import { DebugElement } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 describe('SlideToggleComponent', () => {
-  let component: SlideToggleComponent;
-  let fixture: ComponentFixture<SlideToggleComponent>;
-  let htmlElement: HTMLElement;
-  let toggleEl: HTMLElement;
-  let toggleDebug: DebugElement;
+	let component: SlideToggleComponent;
+	let fixture: ComponentFixture<SlideToggleComponent>;
+	let htmlElement: HTMLElement;
+	let toggleEl: HTMLElement;
+	let toggleDebug: DebugElement;
 
   beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -39,9 +39,9 @@ describe('SlideToggleComponent', () => {
 		expect(toggleEl.attributes['ng-reflect-disabled'].value).toBe('false');
   });
 
-  it('should support black theme', () => {
+	it('should support black theme', () => {
 		expect(toggleEl.className.includes('mat-slide-toggle-bar-dark')).toBeTruthy();
-  });
+	});
 
   describe('toggle status', () => {
 		beforeEach(() => {

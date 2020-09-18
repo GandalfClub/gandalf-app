@@ -18,6 +18,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
@@ -30,6 +31,7 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		EventTimeComponent,
 		ButtonComponent,
 		ScrollbarDirective,
+		PopoverComponent,
 		RadioButtonComponent],
 	imports: [
 		ReactiveFormsModule,
@@ -65,13 +67,13 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		ButtonComponent,
 		SlideToggleComponent,
 		RadioButtonComponent,
+		PopoverComponent,
 		ScrollbarDirective],
 	providers: [
 		{
 			provide: MatDialogRef,
-			useValue: {}
+			useValue: {},
 		},
-	]
+	],
 })
-
 export class CommonComponentsModule {}
