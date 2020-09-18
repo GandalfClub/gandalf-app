@@ -1,9 +1,7 @@
-import { isDefined } from '@angular/compiler/src/util';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatRadioButton, MatRadioChange, MatRadioModule } from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { By } from '@angular/platform-browser';
-import { take } from 'rxjs/internal/operators/take';
 import { RadioGroupDataDemo } from 'src/app/libs/common-components-demo/models/radio-group-data-demo';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
@@ -203,6 +201,28 @@ describe('RadioGroupComponent', () => {
 
 			it('should return false', () => {
 				expect(component.isDarkTheme).toBeFalse();
+			});
+		});
+	});
+
+	describe('when call isDefined', () => {
+		describe('when isDefined gets undefined type', () => {
+			it('should return false', () => {
+				expect(component.isDefined(undefined)).toBeFalse();
+			});
+		});
+
+		describe('when isDefined gets not undefined type', () => {
+			let testValues: any[];
+
+			beforeEach(() => {
+				testValues = [false, null, 0, 'disabled'];
+			});
+
+			it('should return true', () => {
+				testValues.forEach((testValue: any) => {
+					expect(component.isDefined(testValue));
+				});
 			});
 		});
 	});

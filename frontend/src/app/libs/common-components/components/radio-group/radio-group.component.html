@@ -8,7 +8,7 @@
 			*ngFor="let option of options; let index = index"
 			class="radio-group__radio-button"
 			[class.radio-group__radio-button--dark-theme]="isDarkTheme"
-			[value]="valueField === undefined ? (index + 1) : option[valueField]"
+			[value]="isDefined(valueField) ? option[valueField] : (index + 1)"
 			[disabled]="option[disabledField]"
 			color="primary">
 		<span class="radio-group__radio-label" 

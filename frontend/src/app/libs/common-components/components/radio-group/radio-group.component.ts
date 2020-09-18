@@ -44,4 +44,8 @@ export class RadioGroupComponent {
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
+
+	public isDefined(value: any): boolean {
+		return value !== undefined;
+	}
 }
