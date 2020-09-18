@@ -66,10 +66,10 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		ScrollbarDirective
 	],
 	providers: [
-	{
-		provide: MatDialogRef,
-		useValue: {},
-	},
+		{
+			provide: MatDialogRef,
+			useValue: {},
+		},
 	],
 })
 export class CommonComponentsModule {}
