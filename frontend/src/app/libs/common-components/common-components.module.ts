@@ -20,7 +20,7 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
-import { RadioButtonComponent } from './components/radio-button/radio-button.component';
+import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +32,7 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		ButtonComponent,
 		ScrollbarDirective,
 		PopoverComponent,
-		RadioButtonComponent],
+		RadioGroupComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -58,7 +58,6 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		MatCardModule,
 		ReactiveFormsModule,
 		MatDialogModule,
-		MatRadioModule,
 		MatTooltipModule,
 		MatSlideToggleModule,
 		MatCheckboxModule,
@@ -66,7 +65,7 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
-		RadioButtonComponent,
+		RadioGroupComponent,
 		PopoverComponent,
 		ScrollbarDirective],
 	providers: [

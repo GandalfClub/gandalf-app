@@ -1,0 +1,32 @@
+@import "variables";
+
+.radio-group {
+	@include text-p;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+
+	&--dark-theme {
+		color: $color-white-100;
+	}
+
+	&__title {
+		@include text-h4;
+		display: block;
+		flex-basis: 100%;
+		margin-bottom: 10px;
+	}
+
+	&__radio-label {
+		white-space: normal;
+		color: $color-black-100;
+
+		&--disabled {
+			opacity: 0.8;
+		}
+
+		&--dark-theme {
+			color: $color-white-100;
+		}
+	}
+}

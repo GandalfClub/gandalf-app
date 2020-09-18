@@ -13,24 +13,18 @@ $gendalf-app-theme: mat-light-theme(
 	$gendalf-app-accent,
 	$gendalf-app-warn
 );
-
+// DEFAULT LIGHT THEMING
 @include angular-material-theme($gendalf-app-theme);
 
+// DARK THEMING
 $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accent, $gendalf-app-warn);
 
-.radio-button {
-	@include mat-radio-theme($gendalf-app-theme);
-	&.mat-radio-disabled {
-		&.mat-radio-checked .mat-radio-outer-circle,
-		.mat-radio-outer-circle {
-			border-color: $color-black-30;
-		}
-	}
-}
-
-.radio-button--dark-theme {
+.radio-group__radio-button--dark-theme {
 	@include mat-radio-theme ($gendalf-app-theme-dark);
 	&.mat-radio-disabled {
+		& .mat-radio-inner-circle {
+			background-color: $color-white-30;
+		}
 		&.mat-radio-checked .mat-radio-outer-circle,
 		.mat-radio-outer-circle {
 			border-color: $color-white-30;
@@ -38,14 +32,8 @@ $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accen
 	}
 }
 
-.mat-slide-toggle-bar {
-	background-color: $color-black;
-}
-
 .mat-slide-toggle-bar-dark {
-	color: $color-white;
-
-	@include mat-slide-toggle-theme($gendalf-app-theme);
+	@include mat-slide-toggle-theme($gendalf-app-theme-dark);
 
 	.mat-slide-toggle-bar {
 		background-color: $color-white-30;

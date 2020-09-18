@@ -1,0 +1,21 @@
+<mat-radio-group class="radio-group"
+		[class.radio-group--dark-theme]="isDarkTheme"
+		[value]="value"
+		[disabled]="disabled"
+		(change)="onValueChange($event)">
+	<label class="radio-group__title">{{title}}</label>
+	<mat-radio-button 
+			*ngFor="let option of options; let index = index"
+			class="radio-group__radio-button"
+			[class.radio-group__radio-button--dark-theme]="isDarkTheme"
+			[value]="isDefined(option[valueField]) ? option[valueField] : (index + 1)"
+			[disabled]="option[disabledField]"
+			color="primary">
+		<span class="radio-group__radio-label" 
+				[class.radio-group__radio-label--disabled]="option[disabledField] || disabled" 
+				[class.radio-group__radio-label--dark-theme]="isDarkTheme">
+			{{option[labelField]}}
+		</span>
+	</mat-radio-button>
+</mat-radio-group>
+

@@ -11,7 +11,7 @@ import { ButtonDemoComponent } from './components/button-demo/button-demo.compon
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
-import { RadioButtonDemoComponent } from './components/radio-button-demo/radio-button-demo.component';
+import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +23,8 @@ import { RadioButtonDemoComponent } from './components/radio-button-demo/radio-b
 		ButtonDemoComponent,
 		ScrollbarDemoComponent,
 		PopoverDemoComponent,
-		RadioButtonDemoComponent],
+		RadioGroupDemoComponent
+	],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
