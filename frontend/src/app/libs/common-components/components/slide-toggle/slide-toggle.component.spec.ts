@@ -13,15 +13,15 @@ describe('SlideToggleComponent', () => {
 	let toggleEl: HTMLElement;
 	let toggleDebug: DebugElement;
 
-  beforeEach(async(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [ SlideToggleComponent ],
 			imports: [CommonComponentsModule]
 		})
 		.compileComponents();
-  }));
+	}));
 
-  beforeEach(() => {
+	beforeEach(() => {
 		fixture = TestBed.createComponent(SlideToggleComponent);
 		component = fixture.componentInstance;
 		htmlElement = fixture.nativeElement;
@@ -29,21 +29,21 @@ describe('SlideToggleComponent', () => {
 		component.disabled = false;
 		component.theme = ComponentTheme.Dark;
 		fixture.detectChanges();
-  });
+	});
 
-  it('should create', () => {
+	it('should create', () => {
 		expect(component).toBeTruthy();
-  });
+	});
 
-  it('should become non disabled when @Input isDisabled===false', () => {
+	it('should become non disabled when @Input isDisabled===false', () => {
 		expect(toggleEl.attributes['ng-reflect-disabled'].value).toBe('false');
-  });
+	});
 
 	it('should support black theme', () => {
 		expect(toggleEl.className.includes('mat-slide-toggle-bar-dark')).toBeTruthy();
 	});
 
-  describe('toggle status', () => {
+	describe('toggle status', () => {
 		beforeEach(() => {
 			toggleDebug = fixture.debugElement.query(By.css('mat-slide-toggle'));
 			toggleDebug.triggerEventHandler('change', null);
@@ -53,5 +53,5 @@ describe('SlideToggleComponent', () => {
 		it('should send proper Output', () => {
 			expect(component.value).toBe(true);
 		});
-  });
+	});
 });
