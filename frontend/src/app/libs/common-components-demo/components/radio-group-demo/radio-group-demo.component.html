@@ -3,7 +3,7 @@
 		<app-demo-state [title]="'radio-group'">
 			<app-radio-group class="radio-group-demo__container"
 					[title]="radioGroupData.title"
-					[value]="2"
+					[value]="radioGroupData.value"
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
@@ -14,7 +14,7 @@
 		<app-demo-state [title]="'disabled radio-group'">
 			<app-radio-group class="radio-group-demo__container"
 					[title]="radioGroupData.title"
-					[value]="2"
+					[value]="radioGroupData.value"
 					[disabled]="true"
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
@@ -29,7 +29,7 @@
 			<app-radio-group class="radio-group-demo__container"
 					[theme]="darkTheme"
 					[title]="radioGroupData.title"
-					[value]="2"
+					[value]="radioGroupData.value"
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
@@ -51,3 +51,4 @@
 		</app-demo-state>
 	</div>
 </app-demo-group>
+

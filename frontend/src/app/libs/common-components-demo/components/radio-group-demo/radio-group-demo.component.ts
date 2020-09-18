@@ -13,6 +13,7 @@ export class RadioGroupDemoComponent {
 
 	public radioGroupData: RadioGroupDataDemo = {
 		title: 'Radio group Title',
+		value: 2,
 		options: [
 			{
 				title: 'Option 1',
@@ -34,6 +35,6 @@ export class RadioGroupDemoComponent {
 	};
 
 	public onChange(event: MatRadioChange): void {
-		alert(event.value);
+		console.log(event.value);
 	}
 }

@@ -1,32 +1,36 @@
 @import "variables";
 
 .radio-group {
-	@include text-p;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 
-	&--dark-theme {
-		color: $color-white-100;
-	}
+  @include text-p;
 
-	&__title {
-		@include text-h4;
-		display: block;
-		flex-basis: 100%;
-		margin-bottom: 10px;
-	}
+  &--dark-theme {
+    color: $color-white-100;
+  }
 
-	&__radio-label {
-		white-space: normal;
-		color: $color-black-100;
+  &__title {
+    display: block;
+    flex-basis: 100%;
+    margin-bottom: 10px;
 
-		&--disabled {
-			opacity: 0.8;
-		}
+    @include text-h4;
+  }
 
-		&--dark-theme {
-			color: $color-white-100;
-		}
-	}
+  &__radio-label {
+    color: $color-black-100;
+    white-space: normal;
+
+    &--disabled {
+      opacity: 0.8;
+    }
+
+    &--dark-theme {
+      color: $color-white-100;
+    }
+  }
 }
+
+

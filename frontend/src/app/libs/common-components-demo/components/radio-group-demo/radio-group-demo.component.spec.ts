@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RadioGroupDemoComponent } from './radio-group-demo.component';
 
-describe('RadioButtonDemoComponent', () => {
+describe('RadioGroupDemoComponent', () => {
 	let component: RadioGroupDemoComponent;
 	let fixture: ComponentFixture<RadioGroupDemoComponent>;
 
