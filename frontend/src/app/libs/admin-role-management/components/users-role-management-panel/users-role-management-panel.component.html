@@ -10,18 +10,14 @@
       <input matInput type="text" [(ngModel)]="searchText" autocomplete="off">
     </mat-form-field>
   </div>
-  <ng-container *ngFor="let item of users">
-    <ng-container *ngIf="item | filter:searchText">
-      <app-user-role-tile (isEventManager)="changeUserState($event, item)" [userUpdateIsDisable]="userUpdateState"
-        [user]="item" class="app-users-role-management-panel__user">
-      </app-user-role-tile>
-    </ng-container>
+  <ng-container *ngFor="let item of filteredUsers">
+    <app-user-role-tile (isEventManager)="changeUserState($event, item)" [userUpdateIsDisabled]="userUpdateState"
+      [user]="item" class="app-users-role-management-panel__user">
+    </app-user-role-tile>
   </ng-container>
-  <ng-container *ngIf="(userTemplatesChanges$ | async) as templateCount">
-    <ng-container *ngIf="!templateCount.length">
-      <div class="app-users-role-management-panel__notfound">
-        <h1>Not Found</h1>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="userNotFound">
+    <div class="app-users-role-management-panel__notfound">
+      <h1>Not Found</h1>
+    </div>
   </ng-container>
 </div>

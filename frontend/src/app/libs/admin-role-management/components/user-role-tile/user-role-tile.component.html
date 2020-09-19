@@ -14,9 +14,9 @@
     </div>
     <div class="app-user-role-tile__slide-toggle">
       <span>Event Manager </span>
-      <mat-slide-toggle [ngModel]="userEventManagerState" [disabled]="userUpdateIsDisable"
-        (change)="toggleEventManagerClaim($event)">
-      </mat-slide-toggle>
+      <app-slide-toggle [value]="userEventManagerState" [disabled]="userUpdateIsDisabled"
+        (toggled)="toggleEventManagerClaim($event)">
+      </app-slide-toggle>
     </div>
   </div>
 </section>

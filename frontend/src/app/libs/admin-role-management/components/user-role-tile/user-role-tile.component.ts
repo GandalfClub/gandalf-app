@@ -13,13 +13,13 @@ export class UserRoleTileComponent {
 
 	@Input() public user: User;
 
-	@Input() public userUpdateIsDisable: boolean = false;
+	@Input() public userUpdateIsDisabled: boolean = false;
 
 	public get userEventManagerState(): boolean {
 		return this.user.claims.includes(UserClaim.EventManager);
 	}
 
-	public toggleEventManagerClaim(event: MatSlideToggleChange): void {
-		this.isEventManager.emit(event.checked);
+	public toggleEventManagerClaim(event: boolean): void {
+		this.isEventManager.emit(event);
 	}
 }

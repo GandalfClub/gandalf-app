@@ -1,4 +1,3 @@
-import { ChangeDetectorRef } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
@@ -6,7 +5,7 @@ import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { UserClaim } from '../../models/user-claims.enum';
-import { FilterPipe } from '../../pipes/filter.pipe';
+import { UserSearchService } from '../../services/user-search.service';
 import { UsersFacadeService } from '../../store/users/users.facade';
 
 import { UsersRoleManagementPanelComponent } from './users-role-management-panel.component';
@@ -71,12 +70,11 @@ describe('UserListComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [UsersRoleManagementPanelComponent, FilterPipe],
+			declarations: [UsersRoleManagementPanelComponent],
 			providers: [
 				{ provide: UsersFacadeService, useValue: mockUsersFacadeService },
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
-				ChangeDetectorRef,
-				FilterPipe,
+				UserSearchService,
 			],
 		}).compileComponents();
 	}));
