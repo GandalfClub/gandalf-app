@@ -17,6 +17,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
+		PopoverComponent,
 		ScrollbarDirective,
 	],
 	imports: [
@@ -61,6 +63,7 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
+		PopoverComponent,
 		ScrollbarDirective,
 	],
 	providers: [

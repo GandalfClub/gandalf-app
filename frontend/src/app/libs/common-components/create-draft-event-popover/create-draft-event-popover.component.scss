@@ -1,17 +1,19 @@
-.event-popover {
-    
-    background-color: white;
+@import "variables";
 
-    &__title-field {
-        width: 25rem;
-    }
-    &__btn-wrap {
-        display: flex;
-        justify-content: flex-end;
-    }
-    &__btn {
-        border: none;
-        color: grey;
-        text-transform: uppercase;
-    }
+.event-popover {
+	
+	background-color:$color-white;
+
+	&__title-field {
+		width: 25rem;
+	}
+	&__btn-wrap {
+		display: flex;
+		justify-content: flex-end;
+	}
+	&__btn {
+		border: none;
+		color: $color-black-50;
+		text-transform: uppercase;
+	}
 }
