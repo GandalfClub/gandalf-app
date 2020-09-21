@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SlideToggleDemoComponent } from './slide-toggle-demo.component';
+import { ScrollbarDemoComponent } from './scrollbar-demo.component';
 
-describe('SlideToggleDemoComponent', () => {
-	let component: SlideToggleDemoComponent;
-	let fixture: ComponentFixture<SlideToggleDemoComponent>;
+describe('ScrollbarDemoComponent', () => {
+	let component: ScrollbarDemoComponent;
+	let fixture: ComponentFixture<ScrollbarDemoComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ SlideToggleDemoComponent ]
+			declarations: [ ScrollbarDemoComponent ]
 		})
 		.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(SlideToggleDemoComponent);
+		fixture = TestBed.createComponent(ScrollbarDemoComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

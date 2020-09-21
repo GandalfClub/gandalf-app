@@ -29,7 +29,7 @@ export class AuthFacadeService {
 		this.store.dispatch(new UpdateUserInfo({ user }));
 	}
 
-	get user$(): Observable<EntityWrapper<User>> {
+	public get user$(): Observable<EntityWrapper<User>> {
 		return this.store.pipe(select(selectUser));
 	}
 }

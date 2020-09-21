@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventTileComponent } from './event-tile.component';
 import { EventTileMenuItem } from '../../models/event-tile-menu-item';
 
-// 	FAKE DATA
 const name: string = 'Event name';
 const startDateTime: Date = new Date('2020-02-03T14:00');
 const endDateTime: Date = new Date('2020-02-04T18:30');

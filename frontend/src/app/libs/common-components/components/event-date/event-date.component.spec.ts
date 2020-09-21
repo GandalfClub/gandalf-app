@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventDateComponent } from './event-date.component';
 
-// 	FAKE DATA
 const startDate: Date = new Date('2020-02-02T20:00');
 const endDate: Date = new Date('2020-02-04T21:30');
 

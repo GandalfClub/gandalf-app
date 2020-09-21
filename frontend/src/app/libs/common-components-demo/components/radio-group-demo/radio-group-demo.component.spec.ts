@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SlideToggleDemoComponent } from './slide-toggle-demo.component';
+import { RadioGroupDemoComponent } from './radio-group-demo.component';
 
-describe('SlideToggleDemoComponent', () => {
-	let component: SlideToggleDemoComponent;
-	let fixture: ComponentFixture<SlideToggleDemoComponent>;
+describe('RadioGroupDemoComponent', () => {
+	let component: RadioGroupDemoComponent;
+	let fixture: ComponentFixture<RadioGroupDemoComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ SlideToggleDemoComponent ]
+			declarations: [ RadioGroupDemoComponent ]
 		})
 		.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(SlideToggleDemoComponent);
+		fixture = TestBed.createComponent(RadioGroupDemoComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

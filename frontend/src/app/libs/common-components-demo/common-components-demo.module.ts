@@ -10,6 +10,10 @@ import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 import { InputDemoComponent } from './components/input-demo/input-demo.component';
+import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
+import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
+import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component'
+
 
 @NgModule({
 	declarations: [
@@ -19,12 +23,16 @@ import { InputDemoComponent } from './components/input-demo/input-demo.component
 		EventTileDemoComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
-		InputDemoComponent],
+		InputDemoComponent,
+		ScrollbarDemoComponent,
+		PopoverDemoComponent,
+		RadioGroupDemoComponent
+	],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule
+		CommonComponentsModule,
 	],
-	exports: [CommonComponentsDemoRoutingModule]
+	exports: [CommonComponentsDemoRoutingModule],
 })
-export class CommonComponentsDemoModule { }
+export class CommonComponentsDemoModule {}

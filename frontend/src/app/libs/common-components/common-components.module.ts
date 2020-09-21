@@ -12,12 +12,16 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
+import { PopoverComponent } from './components/popover/popover.component';
+import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
+import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +31,10 @@ import { InputComponent } from './components/input/input.component';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
-		InputComponent],
+		InputComponent,
+		ScrollbarDirective,
+		PopoverComponent,
+		RadioGroupComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -40,7 +47,8 @@ import { InputComponent } from './components/input/input.component';
 		FormsModule,
 		MatCardModule,
 		MatCheckboxModule,
-		MatMenuModule
+		MatMenuModule,
+		MatRadioModule
 	],
 	exports: [
 		MatInputModule,
@@ -59,14 +67,16 @@ import { InputComponent } from './components/input/input.component';
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
-		InputComponent
+		InputComponent,
+		RadioGroupComponent,
+		PopoverComponent,
+		ScrollbarDirective
 	],
 	providers: [
 		{
 			provide: MatDialogRef,
-			useValue: {}
+			useValue: {},
 		},
-	]
+	],
 })
-
 export class CommonComponentsModule {}

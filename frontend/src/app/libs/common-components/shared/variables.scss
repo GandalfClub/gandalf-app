@@ -1,0 +1,95 @@
+// grid
+$main-grid-unit: 8px;
+$secondary-grid-unit: 4px;
+//layout
+$layout-outer-margin: 9 * $main-grid-unit;
+$layout-gutter: 3 * $main-grid-unit;
+$layout-columns-quantity: 12;
+$layout-column-width: 10 * $main-grid-unit;
+$layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
+// colors
+//main
+$color-primary: #367FF6;
+$color-error: #EF5350;
+//additional
+$color-mint: #EF5350;
+$color-purple: #7457E6;
+$color-coral: #FF8A65;
+$color-black: #212121;
+$color-white: #FFFFFF;
+//blacks
+$color-black-100: rgba($color-black, 100);
+$color-black-95: rgba($color-black, .95);
+$color-black-75: rgba($color-black, .75);
+$color-black-50: rgba($color-black, .50);
+$color-black-30: rgba($color-black, .30);
+$color-black-10: rgba($color-black, .10);
+$color-black-5: rgba($color-black, .05);
+$color-black-3: rgba($color-black, .03);
+// whites
+$color-white-100: rgba($color-white, 100);
+$color-white-75: rgba($color-white, .75);
+$color-white-50: rgba($color-white, .50);
+$color-white-30: rgba($color-white, .30);
+$color-white-10: rgba($color-white, .10);
+$color-white-5: rgba($color-white, .05);
+// typography
+$font-main-bold: 'Roboto Bold', sans-serif;
+$font-main-regular: 'Roboto Regular', sans-serif;
+$font-main-medium: 'Roboto Medium', sans-serif;
+// typography styles
+@mixin text-h1() {
+    font-family: $font-main-bold;
+    font-size: 48px;
+    letter-spacing: 0;
+    line-height: 56px;
+}
+
+@mixin text-h2() {
+    font-family: $font-main-bold;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: 40px;
+}
+
+@mixin text-h3() {
+    font-family: $font-main-bold;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 28px;
+}
+
+@mixin text-h4() {
+    font-family: $font-main-medium;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 16px;
+}
+
+@mixin text-p() {
+    font-family: $font-main-regular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+@mixin text-p-bold() {
+    font-family: $font-main-bold;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+@mixin text-small() {
+    font-family: $font-main-regular;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+
+@mixin text-small-bold() {
+    font-family: $font-main-bold;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 16px;
+}

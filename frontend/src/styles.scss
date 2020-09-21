@@ -1,4 +1,26 @@
+@import "./app/libs/common-components/components/popover/popover.scss";
+
 /* You can add global styles to this file, and also import other style files */
+@import "scrollbar";
+
+@font-face {
+  font-family: 'Roboto Bold';
+  src: url('./assets/fonts/Roboto-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Roboto Regular';
+  src: url('./assets/fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Medium';
+  src: url('./assets/fonts/Roboto-Medium.ttf');
+  font-weight: 500;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: $font-main-regular; }
+
