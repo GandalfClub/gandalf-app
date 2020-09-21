@@ -12,6 +12,7 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
@@ -19,6 +20,7 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
+import { RadioGroupComponent } from './components/radio-group/radio-group.component';
 
 @NgModule({
 	declarations: [
@@ -28,9 +30,9 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
+		ScrollbarDirective,
 		PopoverComponent,
-		ScrollbarDirective
-	],
+		RadioGroupComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -44,6 +46,7 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		MatCardModule,
 		MatCheckboxModule,
 		MatMenuModule,
+		MatRadioModule
 	],
 	exports: [
 		MatInputModule,
@@ -62,9 +65,9 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
+		RadioGroupComponent,
 		PopoverComponent,
-		ScrollbarDirective
-	],
+		ScrollbarDirective],
 	providers: [
 		{
 			provide: MatDialogRef,

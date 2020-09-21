@@ -14,29 +14,29 @@ describe('SlideToggleComponent', () => {
 	let toggleDebug: DebugElement;
 
 	beforeEach(async(() => {
-	TestBed.configureTestingModule({
-		declarations: [ SlideToggleComponent ],
-		imports: [CommonComponentsModule]
-	})
-	.compileComponents();
+		TestBed.configureTestingModule({
+			declarations: [ SlideToggleComponent ],
+			imports: [CommonComponentsModule]
+		})
+		.compileComponents();
 	}));
 
 	beforeEach(() => {
-	fixture = TestBed.createComponent(SlideToggleComponent);
-	component = fixture.componentInstance;
-	htmlElement = fixture.nativeElement;
-	toggleEl = fixture.debugElement.query(By.css('mat-slide-toggle')).nativeElement;
-	component.disabled = false;
-	component.theme = ComponentTheme.Dark;
-	fixture.detectChanges();
+		fixture = TestBed.createComponent(SlideToggleComponent);
+		component = fixture.componentInstance;
+		htmlElement = fixture.nativeElement;
+		toggleEl = fixture.debugElement.query(By.css('mat-slide-toggle')).nativeElement;
+		component.disabled = false;
+		component.theme = ComponentTheme.Dark;
+		fixture.detectChanges();
 	});
 
 	it('should create', () => {
-	expect(component).toBeTruthy();
+		expect(component).toBeTruthy();
 	});
 
 	it('should become non disabled when @Input isDisabled===false', () => {
-	expect(toggleEl.attributes['ng-reflect-disabled'].value).toBe('false');
+		expect(toggleEl.attributes['ng-reflect-disabled'].value).toBe('false');
 	});
 
 	it('should support black theme', () => {
@@ -44,16 +44,14 @@ describe('SlideToggleComponent', () => {
 	});
 
 	describe('toggle status', () => {
-	beforeEach(() => {
-		toggleDebug = fixture.debugElement.query(By.css('mat-slide-toggle'));
-		toggleDebug.triggerEventHandler('change', null);
-		fixture.detectChanges();
-	});
+		beforeEach(() => {
+			toggleDebug = fixture.debugElement.query(By.css('mat-slide-toggle'));
+			toggleDebug.triggerEventHandler('change', null);
+			fixture.detectChanges();
+		});
 
-	it('should send proper Output', () => {
-		expect(component.value).toBe(true);
+		it('should send proper Output', () => {
+			expect(component.value).toBe(true);
+		});
 	});
-
-	});
-
 });
