@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatRadioChange } from '@angular/material/radio';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { RadioGroupDataDemo } from '../../models/radio-group-data-demo';
 
@@ -31,10 +30,9 @@ export class RadioGroupDemoComponent {
 		],
 		labelField: 'title',
 		valueField: 'value',
-		disabledField: 'disabled'
 	};
 
-	public onChange(event: MatRadioChange): void {
-		console.log(event.value);
+	public onChange(value: any): void {
+		console.log(value);
 	}
 }

@@ -6,5 +6,4 @@ export interface RadioGroupDataDemo {
 	options: RadioGroupOptionDemo[];
 	valueField: string;
 	labelField: string;
-	disabledField: string;
 }

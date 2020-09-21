@@ -7,7 +7,6 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 
 import { RadioGroupComponent } from './radio-group.component';
 
-// FAKE DATA
 const testData: RadioGroupDataDemo = {
 	title: 'Radio group Title',
 	value: 2,
@@ -23,12 +22,10 @@ const testData: RadioGroupDataDemo = {
 		{
 			title: 'Option 3',
 			value: 3,
-			disabled: true
 		}
 	],
 	labelField: 'title',
 	valueField: 'value',
-	disabledField: 'disabled'
 };
 
 describe('RadioGroupComponent', () => {
@@ -128,17 +125,6 @@ describe('RadioGroupComponent', () => {
 
 		it('should define valueField', () => {
 			expect(component.valueField).toBe(testData.valueField);
-		});
-	});
-
-	describe('when @Input gets disabledField', () => {
-		beforeEach(() => {
-			component.disabledField = testData.disabledField;
-			fixture.detectChanges();
-		});
-
-		it('should define disabledField', () => {
-			expect(component.disabledField).toBe(testData.disabledField);
 		});
 	});
 

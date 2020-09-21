@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatRadioChange } from '@angular/material/radio';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
@@ -16,13 +15,13 @@ export class RadioGroupComponent {
 	public title: string = '';
 
 	@Input()
-	public value: string | number;
+	public value: any;
 
 	@Input()
 	public disabled: boolean;
 
 	@Input()
-	public options: object[];
+	public options: any[];
 
 	@Input()
 	public labelField: string;
@@ -30,22 +29,19 @@ export class RadioGroupComponent {
 	@Input()
 	public valueField: string;
 
-	@Input()
-	public disabledField: string;
-
 	@Output()
-	public onChange: EventEmitter<MatRadioChange> = new EventEmitter<MatRadioChange>();
+	public onChange: EventEmitter<any> = new EventEmitter<any>();
 
-	public onValueChange(event: MatRadioChange): void {
-		this.value = event.value;
-		this.onChange.emit(event);
-	}
-
-	public get isDarkTheme(): boolean {
-		return this.theme === ComponentTheme.Dark;
+	public onValueChange(value: any): void {
+		this.value = value;
+		this.onChange.emit(value);
 	}
 
 	public isDefined(value: any): boolean {
 		return value !== undefined;
+	}
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
 	}
 }
