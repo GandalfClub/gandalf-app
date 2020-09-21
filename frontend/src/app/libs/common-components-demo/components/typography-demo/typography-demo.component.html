@@ -1,4 +1,4 @@
-<app-demo-group [title]="'Typography'">
+<app-demo-group class="typography-demo" [title]="'Typography'">
 	<div class="light-theme">
 		<app-demo-state [title]="'text-h1'">
 			<h1>H1 / Roboto Bold</h1>
@@ -10,23 +10,19 @@
 			<h3>H3 / Roboto Bold </h3>
 		</app-demo-state>
 		<app-demo-state [title]="'text-h4'">
-			<h4>h4 / Roboto Medium</h4>
+			<h4 class="typography-demo__text-h4">h4 / Roboto Medium</h4>
 		</app-demo-state>
 		<app-demo-state [title]="'text-p'">
 			<p>Paragraph / Roboto Regular</p>
 		</app-demo-state>
 		<app-demo-state [title]="'text-p-bold'">
-			<strong>
-				<p>Paragraph / Roboto Bold</p>
-			</strong>
+			<p class="typography-demo__text-p-bold">Paragraph / Roboto Bold</p>
 		</app-demo-state>
 		<app-demo-state [title]="'text-small'">
-			<small>Small / Roboto Regular</small>
+			<span class="typography-demo__text-small">Small / Roboto Regular</span>
 		</app-demo-state>
 		<app-demo-state [title]="'text-small-bold'">
-			<strong>
-				<small>Small / Roboto Bold</small>
-			</strong>
+			<span class="typography-demo__text-small-bold">Small / Roboto Bold</span>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">
@@ -40,23 +36,19 @@
 			<h3>H3 / Roboto Bold </h3>
 		</app-demo-state>
 		<app-demo-state [title]="'text-h4'" [isDark]="true">
-			<h4>h4 / Roboto Medium</h4>
+			<h4 class="typography-demo__text-h4">h4 / Roboto Medium</h4>
 		</app-demo-state>
 		<app-demo-state [title]="'text-p'" [isDark]="true">
 			<p>Paragraph / Roboto Regular</p>
 		</app-demo-state>
 		<app-demo-state [title]="'text-p-bold'" [isDark]="true">
-			<strong>
-				<p>Paragraph / Roboto Bold</p>
-			</strong>
+			<p class="typography-demo__text-p-bold">Paragraph / Roboto Bold</p>
 		</app-demo-state>
 		<app-demo-state [title]="'text-small'" [isDark]="true">
-			<small>Small / Roboto Regular</small>
+			<span class="typography-demo__text-small">Small / Roboto Regular</span>
 		</app-demo-state>
 		<app-demo-state [title]="'text-small-bold'" [isDark]="true">
-			<strong>
-				<small>Small / Roboto Bold</small>
-			</strong>
+			<span class="typography-demo__text-small-bold">Small / Roboto Bold</span>
 		</app-demo-state>
 	</div>
 </app-demo-group>

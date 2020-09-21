@@ -1,5 +1,22 @@
 @import "variables";
 
 .dark-theme {
-	color: $color-white;
+  color: $color-white;
+}
+
+.typography-demo {
+  &__text-h4 {
+    text-transform: uppercase;
+  }
+  &__text-p-bold {
+    @include text-p-bold;
+  }
+
+  &__text-small {
+    @include text-small;
+  }
+
+  &__text-small-bold {
+    @include text-small-bold;
+  }
 }
