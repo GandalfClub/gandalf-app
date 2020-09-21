@@ -17,6 +17,7 @@ import { EventTileComponent } from './components/event-tile/event-tile.component
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { ButtonComponent } from './components/button/button.component';
 		EventTileComponent,
 		EventDateComponent,
 		EventTimeComponent,
-		ButtonComponent],
+		ButtonComponent,
+		InputComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
