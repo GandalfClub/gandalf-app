@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+@import 'md-palette';
+@import 'variables';
+
+$app-theme: mat-light-theme(
+	mat-palette($md-primary-palette),
+	mat-palette($md-yellow-palette),
+	mat-palette($md-error-palette)
+);
+
+$app-theme-dark: mat-dark-theme(
+	mat-palette($md-primary-palette),
+	mat-palette($md-yellow-palette),
+	mat-palette($md-error-palette)
+);
+
+$app-typography: mat-typography-config(
+	$font-family:		"Roboto Regular",
+	$display-4: 		mat-typography-level(112px, 112px, bold, "Roboto Regular", $letter-spacing: -0.05em),
+  $display-3:     mat-typography-level(56px, 56px, normal, "Roboto Regular", $letter-spacing: -0.02em),
+  $display-2:     mat-typography-level(45px, 48px, normal, "Roboto Regular", $letter-spacing: -0.005em),
+	$display-1:     mat-typography-level(34px, 40px, normal, "Roboto Regular"),
+	$headline: 			mat-typography-level(48px, 56px, bold, "Roboto Bold", 0),
+	$title:					mat-typography-level(32px, 40px, bold, "Roboto Bold", 0),
+	$subheading-2: 	mat-typography-level(24px, 28px, bold, "Roboto Bold", 0),
+	$subheading-1: 	mat-typography-level(14px, 16px, 500, "Roboto Medium", 1px),
+	$body-2:        mat-typography-level(14px, 24px, bold, "Roboto Bold", 0),
+	$body-1:        mat-typography-level(14px, 24px, normal, "Roboto Regular", 0),
+	$caption:				mat-typography-level(12px, 16px, normal, "Roboto Regular", 0),
+	$button:       	mat-typography-level(14px, 17px, 500, "Roboto Medium", 1px),
+  $input:         mat-typography-level(inherit, 1.125, normal, "Roboto Regular")
+);
+
+@include mat-core($app-typography);
+@include angular-material-theme($app-theme);
+
+// OVERRIDING TO DARK THEME
+.radio-group__radio-button--dark-theme {
+	@include mat-radio-theme ($app-theme-dark);
+	&.mat-radio-disabled {
+		& .mat-radio-inner-circle {
+			background-color: $color-white-30;
+		}
+		&.mat-radio-checked .mat-radio-outer-circle,
+		.mat-radio-outer-circle {
+			border-color: $color-white-30;
+		}
+	}
+}
+
+.mat-slide-toggle-bar-dark {
+	color: $color-white;
+
+	@include mat-slide-toggle-theme($app-theme-dark);
+
+	.mat-slide-toggle-bar {
+		background-color: $color-white-30;
+	}
+}
+
