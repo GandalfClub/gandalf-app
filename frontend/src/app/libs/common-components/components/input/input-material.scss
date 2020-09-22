@@ -1,13 +1,13 @@
 @import "variables";
 
-.input-component .mat-form-field-flex{
+.input-component .mat-form-field-flex {
 	align-items: center;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-infix{
+.mat-form-field-appearance-outline .mat-form-field-infix {
 	padding: .7rem 0;
 }
-.input-component .mat-form-field-appearance-outline .mat-form-field-suffix{
+.input-component .mat-form-field-appearance-outline .mat-form-field-suffix {
 	top: 0;
 }
 
@@ -16,14 +16,14 @@
 	}
 
 
-.input-component--dark{
+.input-component--dark {
 .mat-input-element {
 	color: $color-white-100;
 	}
 	.mat-icon {
 	color: $color-white-75;
 	}
-.mat-form-field-label{
+.mat-form-field-label {
 	color: $color-white-75;
 	}
 } 

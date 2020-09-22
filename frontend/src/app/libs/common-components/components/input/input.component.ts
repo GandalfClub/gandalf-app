@@ -41,15 +41,17 @@ export class InputComponent {
 
 	public textFormControl: FormControl = new FormControl('', [
 		this.isRequired ? Validators.required : null,
-  ]);
+  	]);
+
 	public emailFormControl: FormControl = new FormControl('', [
 		this.isRequired ? Validators.required : null,
 		Validators.email,
 	]);
+
 	public passwordFormControl: FormControl = new FormControl('', [
 		this.isRequired ? Validators.required : null,
 		Validators.pattern('^[A-Za-z0-9!@#$%^&*]{6,}$')
-  ]);
+  	]);
 
 	public get isText(): boolean {
 		return this.inputType === InputType.Text ? true : false;
@@ -62,6 +64,7 @@ export class InputComponent {
 	public get isPassword(): boolean {
 		return this.inputType === InputType.Password ? true : false;
 	}
+
 	public get formControlName(): FormControl {
 		if (this.inputType === InputType.Text) {
 			return this.textFormControl;
