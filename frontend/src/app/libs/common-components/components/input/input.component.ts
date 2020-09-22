@@ -10,7 +10,7 @@ import { InputType } from '../../shared/input-type.enum';
 	styleUrls: ['./input.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
 
 	@Input()
 	public hide: boolean = true;
@@ -50,12 +50,6 @@ export class InputComponent implements OnInit {
 		this.isRequired ? Validators.required : null,
 		Validators.pattern('^[A-Za-z0-9!@#$%^&*]{6,}$')
   ]);
-
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
 
 	public get isText(): boolean {
 		return this.inputType === InputType.Text ? true : false;
