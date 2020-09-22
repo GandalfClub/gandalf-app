@@ -13,6 +13,8 @@ import { PopoverDemoComponent } from './components/popover-demo/popover-demo.com
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
 import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
+import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
 	declarations: [
@@ -25,12 +27,13 @@ import { TypographyDemoComponent } from './components/typography-demo/typography
 		ScrollbarDemoComponent,
 		PopoverDemoComponent,
 		RadioGroupDemoComponent,
-		TypographyDemoComponent
+		TypographyDemoComponent,
+		TabsDemoComponent
 	],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule,
+		CommonComponentsModule
 	],
 	exports: [CommonComponentsDemoRoutingModule],
 })

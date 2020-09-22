@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-@import 'md-palette';
 @import 'variables';
+@import 'md-palette';
 
 $app-theme: mat-light-theme(
 	mat-palette($md-primary-palette),
@@ -37,3 +37,4 @@ $app-typography: mat-typography-config(
 @import "./app/libs/common-components/components/radio-group/radio-group.theme.scss";
 @import "./app/libs/common-components/components/slide-toggle/slide-toggle.theme.scss";
 @import "./app/libs/common-components/components/popover/popover.theme.scss";
+@import "./app/libs/common-components/components/tabs/tabs.theme.scss";

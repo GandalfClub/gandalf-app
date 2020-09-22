@@ -1,0 +1,32 @@
+<app-demo-group class="tabs-demo" [title]="'Tabs'">
+	<div class="light-theme">
+		<app-demo-state [title]="'tabs'">
+			<app-tabs class="tabs-demo__container">
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 1</span>
+				</app-tabs-panel>
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 2</span>
+				</app-tabs-panel>
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 3</span>
+				</app-tabs-panel>
+			</app-tabs>
+		</app-demo-state>
+	</div>
+	<div class="dark-theme">
+		<app-demo-state [title]="'tabs'" [isDark]="true">
+			<app-tabs class="tabs-demo__container" [theme]="darkTheme">
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 1</span>
+				</app-tabs-panel>
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 2</span>
+				</app-tabs-panel>
+				<app-tabs-panel [label]="'TAB'">
+					<span>Content 3</span>
+				</app-tabs-panel>
+			</app-tabs>
+		</app-demo-state>
+	</div>
+</app-demo-group>
