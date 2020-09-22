@@ -1,6 +1,40 @@
-<mat-form-field class="1">
-	<mat-label>bind1</mat-label>
-	<input matInput type="text" formControlName="bind2" placeholder="bind3">
+<mat-form-field 
+	appearance="outline" 
+	class="input-component"
+	[class.input-component--dark]="isDarkTheme">
 
+	<mat-label>{{label}}</mat-label>
+	<input
+		matInput 
+		class="ng-touched"
+		[formControl]="formControlName"
+		[type]="type"
+		placeholder={{placeholder}}>
+	<mat-error *ngIf="isText && textFormControl.hasError('required')">
+		Please enter a {{inputType}} 
+	</mat-error>
+
+	<mat-error *ngIf=" isEmail && emailFormControl.hasError('required')">
+		Please enter a {{inputType}} 
+	</mat-error>
+	<mat-error *ngIf="isEmail && emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+		Please enter a valid email address 
+	</mat-error>
+
+	<mat-error *ngIf="isPassword && passwordFormControl.hasError('required')">
+		Please enter a {{inputType}} 
+	</mat-error>
+	<mat-error *ngIf="isPassword && !passwordFormControl.hasError('required') && passwordFormControl.hasError('pattern')">
+		Password should contain at least 6 characters
+	</mat-error>
+
+	<button 
+		*ngIf = "isPassword"
+		mat-icon-button matSuffix 
+		(click)="hide = !hide" 
+		[attr.aria-label]="'Hide password'" 
+		[attr.aria-pressed]="hide">
+		<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+	</button>
 </mat-form-field>
   
