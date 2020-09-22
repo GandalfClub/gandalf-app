@@ -1,23 +1,23 @@
 // grid
 $main-grid-unit: 8px;
 $secondary-grid-unit: 4px;
-//layout
+// layout
 $layout-outer-margin: 9 * $main-grid-unit;
 $layout-gutter: 3 * $main-grid-unit;
 $layout-columns-quantity: 12;
 $layout-column-width: 10 * $main-grid-unit;
 $layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
 // colors
-//main
+// main
 $color-primary: #367FF6;
 $color-error: #EF5350;
-//additional
+// additional
 $color-mint: #EF5350;
 $color-purple: #7457E6;
 $color-coral: #FF8A65;
 $color-black: #212121;
 $color-white: #FFFFFF;
-//blacks
+// blacks
 $color-black-100: rgba($color-black, 100);
 $color-black-95: rgba($color-black, .95);
 $color-black-75: rgba($color-black, .75);
@@ -41,55 +41,55 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 @mixin text-h1() {
     font-family: $font-main-bold;
     font-size: 48px;
-    letter-spacing: 0;
     line-height: 56px;
+    letter-spacing: 0;
 }
 
 @mixin text-h2() {
     font-family: $font-main-bold;
     font-size: 32px;
-    letter-spacing: 0;
     line-height: 40px;
+    letter-spacing: 0;
 }
 
 @mixin text-h3() {
     font-family: $font-main-bold;
     font-size: 24px;
-    letter-spacing: 0;
     line-height: 28px;
+    letter-spacing: 0;
 }
 
 @mixin text-h4() {
     font-family: $font-main-medium;
     font-size: 14px;
-    letter-spacing: 1px;
     line-height: 16px;
+		letter-spacing: 1px;
 }
 
 @mixin text-p() {
     font-family: $font-main-regular;
     font-size: 14px;
-    letter-spacing: 0;
     line-height: 24px;
+    letter-spacing: 0;
 }
 
 @mixin text-p-bold() {
     font-family: $font-main-bold;
     font-size: 14px;
-    letter-spacing: 0;
     line-height: 24px;
+    letter-spacing: 0;
 }
 
 @mixin text-small() {
     font-family: $font-main-regular;
     font-size: 12px;
-    letter-spacing: 0;
     line-height: 16px;
+    letter-spacing: 0;
 }
 
 @mixin text-small-bold() {
     font-family: $font-main-bold;
     font-size: 12px;
-    letter-spacing: 0;
     line-height: 16px;
+    letter-spacing: 0;
 }

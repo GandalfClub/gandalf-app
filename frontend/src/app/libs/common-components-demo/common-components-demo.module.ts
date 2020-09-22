@@ -13,6 +13,7 @@ import { InputDemoComponent } from './components/input-demo/input-demo.component
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
+import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-gro
 		InputDemoComponent,
 		ScrollbarDemoComponent,
 		PopoverDemoComponent,
-		RadioGroupDemoComponent
+		RadioGroupDemoComponent,
+		TypographyDemoComponent
 	],
 	imports: [
 		CommonModule,
