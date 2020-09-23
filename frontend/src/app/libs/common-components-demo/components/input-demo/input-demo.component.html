@@ -1,46 +1,46 @@
 <app-demo-group class="input-demo" [title]="'Input'">
 	
     <div class="light-theme input-demo__states">
-		<div class="input-demo__row">
+		<form class="input-demo__row" [formGroup]="inputDemoForm">
 			<app-demo-state [title]="'Text'" [isDark]="false">
-				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'"></app-input>
-				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" [defaultValue]="'some text'"></app-input>
-				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" ></app-input>
+				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="title"></app-input>
+				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="title1"></app-input>
+				<app-input [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="title2"></app-input>
 			</app-demo-state>
 
-			<app-demo-state [title]="'Email'" [isDark]="false">
+			<!-- <app-demo-state [title]="'Email'" [isDark]="false">
 				<app-input [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'"></app-input>
-				<app-input [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" [defaultValue]="'some email'"></app-input>
-				<app-input [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" [defaultValue]="'some@email.ru'"></app-input>
+				<app-input [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" ></app-input>
+				<app-input [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" ></app-input>
 			</app-demo-state>
 
 			<app-demo-state [title]="'Password'" [isDark]="false">
 				<app-input [inputType]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" ></app-input>
-				<app-input [inputType]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [defaultValue]="'somepassword'"></app-input>
-				<app-input [inputType]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" [defaultValue]="'somepassword'"></app-input>
-			</app-demo-state>
-		</div>
+				<app-input [inputType]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" ></app-input>
+				<app-input [inputType]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false"></app-input>
+			</app-demo-state> -->
+		</form>
 
 	</div>
 	<div class="dark-theme input-demo__states">
 		<div class="input-demo__row">
-			<app-demo-state [title]="'Text'" [isDark]="true">
+			<!-- <app-demo-state [title]="'Text'" [isDark]="true">
 				<app-input [inputType]="'text'" [theme]="darkTheme" [label]="'Your text'" [placeholder]="'Your placeholder'"></app-input>
-				<app-input [inputType]="'text'" [theme]="darkTheme" [label]="'Your text'" [placeholder]="'Your placeholder'" [defaultValue]="'some text'"></app-input>
+				<app-input [inputType]="'text'" [theme]="darkTheme" [label]="'Your text'" [placeholder]="'Your placeholder'" ></app-input>
 				<app-input [inputType]="'text'" [theme]="darkTheme" [label]="'Your text'" [placeholder]="'Your placeholder'" ></app-input>
 			</app-demo-state>
 
 			<app-demo-state [title]="'Email'" [isDark]="true">
 				<app-input [inputType]="'email'" [theme]="darkTheme" [label]="'Your email'" [placeholder]="'Your placeholder'"></app-input>
-				<app-input [inputType]="'email'" [theme]="darkTheme" [label]="'Your email'" [placeholder]="'Your placeholder'" [defaultValue]="'some email'"></app-input>
-				<app-input [inputType]="'email'" [theme]="darkTheme" [label]="'Your email'" [placeholder]="'Your placeholder'" [defaultValue]="'some@email.ru'"></app-input>
+				<app-input [inputType]="'email'" [theme]="darkTheme" [label]="'Your email'" [placeholder]="'Your placeholder'" ></app-input>
+				<app-input [inputType]="'email'" [theme]="darkTheme" [label]="'Your email'" [placeholder]="'Your placeholder'" ></app-input>
 			</app-demo-state>
 
 			<app-demo-state [title]="'Password'" [isDark]="true">
 				<app-input [inputType]="'password'" [theme]="darkTheme" [label]="'Your password'" [placeholder]="'Your placeholder'" ></app-input>
-				<app-input [inputType]="'password'" [theme]="darkTheme" [label]="'Your password'" [placeholder]="'Your placeholder'" [defaultValue]="'somepassword'"></app-input>
-				<app-input [inputType]="'password'" [theme]="darkTheme" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" [defaultValue]="'somepassword'"></app-input>
-			</app-demo-state>
+				<app-input [inputType]="'password'" [theme]="darkTheme" [label]="'Your password'" [placeholder]="'Your placeholder'" ></app-input>
+				<app-input [inputType]="'password'" [theme]="darkTheme" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false"></app-input>
+			</app-demo-state> -->
 		</div>
 
 	</div>

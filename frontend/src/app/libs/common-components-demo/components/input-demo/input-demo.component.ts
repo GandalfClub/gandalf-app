@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
 @Component({
@@ -8,7 +9,22 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 })
 export class InputDemoComponent {
 
+  public inputDemoForm: FormGroup;
+
   public lightTheme: ComponentTheme = ComponentTheme.Light;
-	public darkTheme: ComponentTheme = ComponentTheme.Dark;
+  public darkTheme: ComponentTheme = ComponentTheme.Dark;
+  
+  constructor(
+    private fb: FormBuilder
+  ) { }
+  
+
+	public ngOnInit(): void {
+		this.inputDemoForm = this.fb.group({
+      title: '',
+      title1: '',
+      title2: '',
+		});
+	}
 
 }

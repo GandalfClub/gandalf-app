@@ -1,6 +1,5 @@
-import { ThrowStmt } from '@angular/compiler';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { InputType } from '../../shared/input-type.enum';
 
@@ -8,15 +7,32 @@ import { InputType } from '../../shared/input-type.enum';
 	selector: 'app-input',
 	templateUrl: './input.component.html',
 	styleUrls: ['./input.component.scss'],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => InputComponent),
+			multi: true
+		}
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
+
+	private pattern: string = '^[A-Za-z0-9!@#$%^&*]{6,}$';
+
+
+
+	@Input()
+	public value: string = '';
+
+	// @Input()
+	// public formControlName: string;
 
 	@Input()
 	public hide: boolean = true;
 
 	@Input()
-	public inputType: string;
+	public inputType: InputType = InputType.Text;
 
 	@Input()
 	public label: string = 'label';
@@ -30,28 +46,37 @@ export class InputComponent {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
-	@Input()
-	public set defaultValue(value: string) {
-		this.formControlName.setValue(value);
-	}
+	// @Input()
+	// public set defaultValue(value: string) {
+	// 	this.formControlName.setValue(value);
+	// }
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
 
-	public textFormControl: FormControl = new FormControl('', [
+	public formControl: FormControl = new FormControl('', [
 		this.isRequired ? Validators.required : null,
-  	]);
+		this.inputType === InputType.Email ? Validators.email : Validators.nullValidator,
+		this.inputType === InputType.Password ? Validators.pattern(this.pattern) : Validators.nullValidator
+		  ]);
 
-	public emailFormControl: FormControl = new FormControl('', [
-		this.isRequired ? Validators.required : null,
-		Validators.email,
-	]);
 
-	public passwordFormControl: FormControl = new FormControl('', [
-		this.isRequired ? Validators.required : null,
-		Validators.pattern('^[A-Za-z0-9!@#$%^&*]{6,}$')
-  	]);
+	public onTouched: any = () => {};
+
+	private onChange: any = (value: any) => {};
+
+
+
+	// public emailFormControl: FormControl = new FormControl('', [
+	// 	this.isRequired ? Validators.required : null,
+	// 	Validators.email,
+	// ]);
+
+	// public passwordFormControl: FormControl = new FormControl('', [
+	// 	this.isRequired ? Validators.required : null,
+	// 	Validators.pattern('^[A-Za-z0-9!@#$%^&*]{6,}$')
+  	// ]);
 
 	public get isText(): boolean {
 		return this.inputType === InputType.Text ? true : false;
@@ -65,15 +90,15 @@ export class InputComponent {
 		return this.inputType === InputType.Password ? true : false;
 	}
 
-	public get formControlName(): FormControl {
-		if (this.inputType === InputType.Text) {
-			return this.textFormControl;
-		}	else if (this.inputType === InputType.Email) {
-			return this.emailFormControl;
-		} else if (this.inputType === InputType.Password) {
-			return this.passwordFormControl;
-		}
-	}
+	// public get formControlName1(): FormControl {
+	// 	if (this.inputType === InputType.Text) {
+	// 		return this.textFormControl;
+	// 	}	else if (this.inputType === InputType.Email) {
+	// 		return this.emailFormControl;
+	// 	} else if (this.inputType === InputType.Password) {
+	// 		return this.passwordFormControl;
+	// 	}
+	// }
 
 	public get type(): string {
 		if (this.inputType !== 'password') {
@@ -84,5 +109,25 @@ export class InputComponent {
 			return 'text';
 		}
 	}
+	constructor(private renderer: Renderer2, private element: ElementRef){}
+
+	public writeValue(value: string): void {
+		console.log(value);
+		if (!Boolean(value) || typeof(value) !== 'string') {
+			return;
+		}
+		this.value = value;
+		// this.renderer.setProperty(this.element.nativeElement, 'value', value);
+	  }
+
+
+	public registerOnChange(fn: any): void {
+		this.onChange = fn;
+	}
+
+	public registerOnTouched(fn: any): void {
+		this.onTouched = fn;
+	}
+	
 
 }

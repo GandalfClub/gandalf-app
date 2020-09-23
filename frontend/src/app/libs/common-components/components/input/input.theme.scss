@@ -1,22 +1,22 @@
 @import "variables";
 
-.input-component .mat-form-field-flex {
+.input .mat-form-field-flex {
 	align-items: center;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-infix {
 	padding: .7rem 0;
 }
-.input-component .mat-form-field-appearance-outline .mat-form-field-suffix {
+.input .mat-form-field-appearance-outline .mat-form-field-suffix {
 	top: 0;
 }
 
-.mat-form-field-appearance-outline.input-component--dark .mat-form-field-outline {
+.mat-form-field-appearance-outline.input--dark .mat-form-field-outline {
 	color: $color-white-30;
 	}
 
 
-.input-component--dark {
+.input--dark {
 .mat-input-element {
 	color: $color-white-100;
 	}

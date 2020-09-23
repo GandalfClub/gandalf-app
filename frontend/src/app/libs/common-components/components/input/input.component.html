@@ -1,30 +1,33 @@
 <mat-form-field 
 	appearance="outline" 
-	class="input-component"
-	[class.input-component--dark]="isDarkTheme">
+	class="input"
+	[class.input--dark]="isDarkTheme">
 
 	<mat-label>{{label}}</mat-label>
 	<input
 		matInput 
 		class="ng-touched"
-		[formControl]="formControlName"
+		(input)="writeValue($event.target.value)"
 		[type]="type"
+		[value]="value"
+		[formControlName]="formControl"
+		(blur)="onTouched()"
 		placeholder={{placeholder}}>
-	<mat-error *ngIf="isText && textFormControl.hasError('required')">
+	<mat-error *ngIf="isText && formControl.hasError('required')">
 		Please enter a {{inputType}} 
 	</mat-error>
 
-	<mat-error *ngIf=" isEmail && emailFormControl.hasError('required')">
+	<mat-error *ngIf=" isEmail && formControl.hasError('required')">
 		Please enter a {{inputType}} 
 	</mat-error>
-	<mat-error *ngIf="isEmail && emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+	<mat-error *ngIf="isEmail && formControl.hasError('email') && !formControl.hasError('required')">
 		Please enter a valid email address 
 	</mat-error>
 
-	<mat-error *ngIf="isPassword && passwordFormControl.hasError('required')">
+	<mat-error *ngIf="isPassword && formControl.hasError('required')">
 		Please enter a {{inputType}} 
 	</mat-error>
-	<mat-error *ngIf="isPassword && !passwordFormControl.hasError('required') && passwordFormControl.hasError('pattern')">
+	<mat-error *ngIf="isPassword && !formControl.hasError('required') && formControl.hasError('pattern')">
 		Password should contain at least 6 characters
 	</mat-error>
 
