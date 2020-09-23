@@ -1,0 +1,33 @@
+<app-demo-group class="tag-demo" [title]="'Tags'">
+	<div class="light-theme">
+		<app-demo-state [title]="'default'">
+			<app-tag-list [tags]="tags"></app-tag-list>
+		</app-demo-state>
+		<app-demo-state [title]="'selectable'">
+			<app-tag-list [tags]="tagsSelectable" [selectable]="true"></app-tag-list>
+		</app-demo-state>
+		<app-demo-state [title]="'removable-selectable'">
+			<app-tag-list 
+					[tags]="tagsSelectable" 
+					[removable]="true" 
+					[selectable]="true" 
+					(onRemove)="onRemove($event)"></app-tag-list>
+		</app-demo-state>
+	</div>
+	<div class="dark-theme">
+		<app-demo-state [title]="'default'" [isDark]="true">
+			<app-tag-list [tags]="tags" [theme]="darkTheme"></app-tag-list>
+		</app-demo-state>
+		<app-demo-state [title]="'selectable'" [isDark]="true">
+			<app-tag-list [tags]="tagsSelectable" [selectable]="true" [theme]="darkTheme"></app-tag-list>
+		</app-demo-state>
+		<app-demo-state [title]="'removable-selectable'" [isDark]="true">
+			<app-tag-list 
+					[tags]="tagsSelectable" 
+					[removable]="true" 
+					[selectable]="true" 
+					(onRemove)="onRemove($event)" 
+					[theme]="darkTheme"></app-tag-list>
+		</app-demo-state>
+	</div>
+</app-demo-group>
