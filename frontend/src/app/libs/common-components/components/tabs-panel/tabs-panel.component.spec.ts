@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { TabsPanelComponent } from './tabs-panel.component';
 
@@ -6,14 +7,12 @@ describe('TabsPanelComponent', () => {
 	let component: TabsPanelComponent;
 	let fixture: ComponentFixture<TabsPanelComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ TabsPanelComponent ]
+			declarations: [ TabsPanelComponent ],
+			imports: [ MatTabsModule ]
 		})
 		.compileComponents();
-	}));
-
-	beforeEach(() => {
 		fixture = TestBed.createComponent(TabsPanelComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
@@ -21,5 +20,18 @@ describe('TabsPanelComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	describe('when @Input gets label', () => {
+		const label: string = 'TAB';
+
+		beforeEach(() => {
+			component.label = label;
+			fixture.detectChanges();
+		});
+
+		it('should define label', () => {
+			expect(component.label).toBe(label);
+		});
 	});
 });
