@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -21,6 +22,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +35,10 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 		ButtonComponent,
 		ScrollbarDirective,
 		PopoverComponent,
-		RadioGroupComponent],
+		RadioGroupComponent,
+		TabsComponent,
+		TabsPanelComponent
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -46,7 +52,8 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 		MatCardModule,
 		MatCheckboxModule,
 		MatMenuModule,
-		MatRadioModule
+		MatRadioModule,
+		MatTabsModule
 	],
 	exports: [
 		MatInputModule,
@@ -67,7 +74,10 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 		SlideToggleComponent,
 		RadioGroupComponent,
 		PopoverComponent,
-		ScrollbarDirective],
+		ScrollbarDirective,
+		TabsComponent,
+		TabsPanelComponent
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
