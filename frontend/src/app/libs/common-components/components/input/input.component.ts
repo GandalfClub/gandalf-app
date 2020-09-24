@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { InputType } from '../../shared/input-type.enum';
 
@@ -16,17 +16,13 @@ import { InputType } from '../../shared/input-type.enum';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, OnInit {
 
-	private pattern: string = '^[A-Za-z0-9!@#$%^&*]{6,}$';
-
-
+	@Input()
+	public formControl: FormControl;
 
 	@Input()
 	public value: string = '';
-
-	// @Input()
-	// public formControlName: string;
 
 	@Input()
 	public hide: boolean = true;
@@ -46,37 +42,13 @@ export class InputComponent implements ControlValueAccessor {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
-	// @Input()
-	// public set defaultValue(value: string) {
-	// 	this.formControlName.setValue(value);
-	// }
-
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
 
-	public formControl: FormControl = new FormControl('', [
-		this.isRequired ? Validators.required : null,
-		this.inputType === InputType.Email ? Validators.email : Validators.nullValidator,
-		this.inputType === InputType.Password ? Validators.pattern(this.pattern) : Validators.nullValidator
-		  ]);
-
-
-	public onTouched: any = () => {};
-
-	private onChange: any = (value: any) => {};
-
-
-
-	// public emailFormControl: FormControl = new FormControl('', [
-	// 	this.isRequired ? Validators.required : null,
-	// 	Validators.email,
-	// ]);
-
-	// public passwordFormControl: FormControl = new FormControl('', [
-	// 	this.isRequired ? Validators.required : null,
-	// 	Validators.pattern('^[A-Za-z0-9!@#$%^&*]{6,}$')
-  	// ]);
+	public inputFormGroup: FormGroup = new FormGroup({
+	formControl : new FormControl ('')
+		});
 
 	public get isText(): boolean {
 		return this.inputType === InputType.Text ? true : false;
@@ -90,16 +62,6 @@ export class InputComponent implements ControlValueAccessor {
 		return this.inputType === InputType.Password ? true : false;
 	}
 
-	// public get formControlName1(): FormControl {
-	// 	if (this.inputType === InputType.Text) {
-	// 		return this.textFormControl;
-	// 	}	else if (this.inputType === InputType.Email) {
-	// 		return this.emailFormControl;
-	// 	} else if (this.inputType === InputType.Password) {
-	// 		return this.passwordFormControl;
-	// 	}
-	// }
-
 	public get type(): string {
 		if (this.inputType !== 'password') {
 			return this.inputType;
@@ -109,17 +71,24 @@ export class InputComponent implements ControlValueAccessor {
 			return 'text';
 		}
 	}
-	constructor(private renderer: Renderer2, private element: ElementRef){}
+
+	public ngOnInit(): void {
+		if (this.formControl) {
+			this.inputFormGroup.controls['formControl'] = this.formControl;
+		}
+	}
+
+	public onTouched: any = () => {console.log('onTouched'); };
+
+	public onChange: any = (value: any) => {console.log('onChange'); };
 
 	public writeValue(value: string): void {
-		console.log(value);
-		if (!Boolean(value) || typeof(value) !== 'string') {
-			return;
-		}
 		this.value = value;
-		// this.renderer.setProperty(this.element.nativeElement, 'value', value);
+		this.onChange(value);
+		if (this.formControl && this.formControl.value) {
+			this.onTouched();
+		}
 	  }
-
 
 	public registerOnChange(fn: any): void {
 		this.onChange = fn;
@@ -128,6 +97,5 @@ export class InputComponent implements ControlValueAccessor {
 	public registerOnTouched(fn: any): void {
 		this.onTouched = fn;
 	}
-	
 
 }
