@@ -103,7 +103,7 @@ describe('TagListComponent', () => {
 
 		describe('when remove button clicked', () => {
 			it('should emit onRemove @Event', () => {
-				const onRemoveSpy: jasmine.Spy = spyOn(component.onRemove, 'emit');
+				const onRemoveSpy: jasmine.Spy = spyOn(component.removed, 'emit');
 				const closeIconElement: HTMLElement = htmlElement.querySelector('mat-chip > mat-icon');
 				closeIconElement.click();
 				expect(onRemoveSpy).toHaveBeenCalledWith(tags[0]);
@@ -172,7 +172,7 @@ describe('TagListComponent', () => {
 
 	describe('when user clicks tag', () => {
 		it('should emit onClick @Event', () => {
-			const onClickSpy: jasmine.Spy = spyOn(component.onClick, 'emit');
+			const onClickSpy: jasmine.Spy = spyOn(component.clicked, 'emit');
 			const tagElement: HTMLElement = htmlElement.querySelector('mat-chip');
 			tagElement.click();
 			expect(onClickSpy).toHaveBeenCalledWith({ tag: tags[0], selectable: false });
