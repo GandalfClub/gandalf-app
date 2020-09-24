@@ -6,7 +6,7 @@ $mat-light-theme-background: (
   hover:      rgba(black, .04),
   card:       white,
   dialog:     white,
-  disabled-button: rgba(black, .12),
+  disabled-button: $color-black-30,
   raised-button: white,
   focused-button: $dark-focused,
   selected-button: map_get($mat-grey, 300),
