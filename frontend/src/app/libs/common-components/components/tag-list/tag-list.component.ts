@@ -11,6 +11,9 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 export class TagListComponent {
 
 	@Input()
+	public theme: ComponentTheme = ComponentTheme.Light;
+
+	@Input()
 	public tags: Tag[];
 
 	@Input()
@@ -18,9 +21,6 @@ export class TagListComponent {
 
 	@Input()
 	public selectable: boolean = false;
-
-	@Input()
-	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Output()
 	public onRemove: EventEmitter<Tag> = new EventEmitter<Tag>();
