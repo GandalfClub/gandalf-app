@@ -3,8 +3,8 @@
 		<mat-chip
 				*ngIf="!tag.removed"
 				[value]="tag.value"
-				[selected]="tag.selected"
-				(click)="tag.onClick.call(); toggleSelectionOf(tag);"
+				[selected]="selectable ? tag.selected : false"
+				(click)="onTagClick(tag)"
 				[selectable]="selectable"
 				[removable]="removable"
 				color="primary">

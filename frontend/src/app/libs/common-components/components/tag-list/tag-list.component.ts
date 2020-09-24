@@ -1,6 +1,6 @@
-import { SimpleChanges } from '@angular/core';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Tag } from '../../models/tag';
+import { TagClickEvent } from '../../models/tag-click-event';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
@@ -8,7 +8,7 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
   templateUrl: './tag-list.component.html',
 	styleUrls: ['./tag-list.component.scss']
 })
-export class TagListComponent implements OnChanges {
+export class TagListComponent {
 
 	@Input()
 	public tags: Tag[];
@@ -25,26 +25,26 @@ export class TagListComponent implements OnChanges {
 	@Output()
 	public onRemove: EventEmitter<Tag> = new EventEmitter<Tag>();
 
+	@Output()
+	public onClick: EventEmitter<TagClickEvent> = new EventEmitter<TagClickEvent>();
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
 
-	public ngOnChanges(changes: SimpleChanges): void {
-		if (changes['tags'].isFirstChange) {
-			this.tags = this.tags.map((tag: Tag) => {
-				return new Tag(tag.label, tag.value, tag.selected, tag.onClick);
-			});
-		}
-	}
-
 	public onTagRemove(tag: Tag): void {
-		tag.removed = true;
 		this.onRemove.emit(tag);
 	}
 
-	public toggleSelectionOf(tag: Tag): void {
-		if (this.selectable) {
-			tag.selected = !tag.selected;
+	public onTagClick(tag: Tag): void {
+		if (tag.onClick) {
+			tag.onClick();
 		}
+
+		const tagClickEvent: TagClickEvent = {
+			tag,
+			selectable: this.selectable
+		};
+		this.onClick.emit(tagClickEvent);
 	}
 }
