@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Tag } from '../../models/tag';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
@@ -7,7 +8,7 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
   templateUrl: './tag-list.component.html',
 	styleUrls: ['./tag-list.component.scss']
 })
-export class TagListComponent implements OnInit {
+export class TagListComponent implements OnChanges {
 
 	@Input()
 	public tags: Tag[];
@@ -28,10 +29,12 @@ export class TagListComponent implements OnInit {
 		return this.theme === ComponentTheme.Dark;
 	}
 
-	public ngOnInit(): void {
-		this.tags = this.tags.map((tag: Tag) => {
-			return new Tag(tag.label, tag.value, tag.selected, tag.onClick);
-		});
+	public ngOnChanges(changes: SimpleChanges): void {
+		if (changes['tags'].isFirstChange) {
+			this.tags = this.tags.map((tag: Tag) => {
+				return new Tag(tag.label, tag.value, tag.selected, tag.onClick);
+			});
+		}
 	}
 
 	public onTagRemove(tag: Tag): void {
