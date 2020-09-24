@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -12,6 +13,7 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { EventTileComponent } from './components/event-tile/event-tile.component';
 import { EventDateComponent } from './components/event-date/event-date.component';
@@ -19,6 +21,9 @@ import { EventTimeComponent } from './components/event-time/event-time.component
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
+import { RadioGroupComponent } from './components/radio-group/radio-group.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component';
 
 @NgModule({
 	declarations: [
@@ -28,8 +33,11 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		EventDateComponent,
 		EventTimeComponent,
 		ButtonComponent,
-		PopoverComponent,
 		ScrollbarDirective,
+		PopoverComponent,
+		RadioGroupComponent,
+		TabsComponent,
+		TabsPanelComponent,
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -44,6 +52,8 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		MatCardModule,
 		MatCheckboxModule,
 		MatMenuModule,
+		MatRadioModule,
+		MatTabsModule,
 	],
 	exports: [
 		MatInputModule,
@@ -63,8 +73,11 @@ import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
+		RadioGroupComponent,
 		PopoverComponent,
 		ScrollbarDirective,
+		TabsComponent,
+		TabsPanelComponent,
 	],
 	providers: [
 		{

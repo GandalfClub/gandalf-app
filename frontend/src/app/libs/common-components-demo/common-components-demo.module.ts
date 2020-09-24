@@ -11,6 +11,10 @@ import { ButtonDemoComponent } from './components/button-demo/button-demo.compon
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
+import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
+import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
+import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
 	declarations: [
@@ -20,13 +24,16 @@ import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-de
 		EventTileDemoComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
+		ScrollbarDemoComponent,
 		PopoverDemoComponent,
-		ScrollbarDemoComponent
+		RadioGroupDemoComponent,
+		TypographyDemoComponent,
+		TabsDemoComponent
 	],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule,
+		CommonComponentsModule
 	],
 	exports: [CommonComponentsDemoRoutingModule],
 })
