@@ -9,17 +9,16 @@ import { TabsPanelComponent } from '../tabs-panel/tabs-panel.component';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterViewInit {
-
-	private defaultBodyAnimationDuration: string;
-
-	@ContentChildren(TabsPanelComponent)
-	private tabs: QueryList<TabsPanelComponent>;
-
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@ViewChild(MatTabGroup)
 	public tabGroup: MatTabGroup;
+
+	private defaultBodyAnimationDuration: string;
+
+	@ContentChildren(TabsPanelComponent)
+	private tabs: QueryList<TabsPanelComponent>;
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;

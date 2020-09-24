@@ -23,17 +23,17 @@ export class TagListComponent {
 	public selectable: boolean = false;
 
 	@Output()
-	public onRemove: EventEmitter<Tag> = new EventEmitter<Tag>();
+	public removed: EventEmitter<Tag> = new EventEmitter<Tag>();
 
 	@Output()
-	public onClick: EventEmitter<TagClickEvent> = new EventEmitter<TagClickEvent>();
+	public clicked: EventEmitter<TagClickEvent> = new EventEmitter<TagClickEvent>();
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
 
 	public onTagRemove(tag: Tag): void {
-		this.onRemove.emit(tag);
+		this.removed.emit(tag);
 	}
 
 	public onTagClick(tag: Tag): void {
@@ -45,6 +45,6 @@ export class TagListComponent {
 			tag,
 			selectable: this.selectable
 		};
-		this.onClick.emit(tagClickEvent);
+		this.clicked.emit(tagClickEvent);
 	}
 }

@@ -2,26 +2,26 @@
 	<div class="light-theme">
 		<app-demo-state [title]="'default'">
 			<app-tag-list [tags]="tags" [selectable]="true"
-					(onClick)="onClick($event)">
+					(clicked)="onClick($event)">
 			</app-tag-list>
 		</app-demo-state>
 		<app-demo-state [title]="'removable'">
 			<app-tag-list [tags]="tagsRemovable" [selectable]="true" [removable]="true"
-					(onClick)="onClick($event)"
-					(onRemove)="onRemove($event)">
+					(clicked)="onClick($event)"
+					(removed)="onRemove($event)">
 			</app-tag-list>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">
 		<app-demo-state [title]="'default'" [isDark]="true">
 			<app-tag-list [tags]="tagsDark" [selectable]="true" [theme]="darkTheme"
-					(onClick)="onClick($event)">
+					(clicked)="onClick($event)">
 			</app-tag-list>
 		</app-demo-state>
 		<app-demo-state [title]="'removable'" [isDark]="true">
 			<app-tag-list [tags]="tagsRemovableDark" [selectable]="true" [removable]="true" [theme]="darkTheme"
-					(onClick)="onClick($event)"
-					(onRemove)="onRemove($event)"
+					(clicked)="onClick($event)"
+					(removed)="onRemove($event)"
 					></app-tag-list>
 		</app-demo-state>
 	</div>
