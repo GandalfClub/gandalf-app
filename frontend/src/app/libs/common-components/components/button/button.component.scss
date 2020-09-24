@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin button-hover() {
   transition: background-color 0.4s;
   &:hover:not([disabled="true"]) {
@@ -26,7 +28,7 @@
     border-color: white;
 
     &[disabled="true"] {
-      color: transparentize($color: white, $amount: 0.7);
+      color: transparentize($color: white, $amount: 0.7); 
     }
   }
 
@@ -37,13 +39,14 @@
   &--outlined {
 		@include button-hover();
 
-    border-color: rgba(33, 33, 33, 0.1);
+    border-color: $color-black-10;
 
     &.button--dark-theme {
-      border-color: white;
+      border-color: $color-white-100;
 
       &[disabled="true"] {
-        border-color: transparentize($color: white, $amount: 0.7);
+				color: $color-white-30;
+        border-color: $color-white-30;
       }
     }
   }
@@ -54,10 +57,14 @@
     background-color: #367ff6;
     border-color: #367ff6;
 
-    &.button--dark-theme[disabled="true"] {
-      color: transparentize($color: white, $amount: 0.6);
+		&[disabled="true"] {
+			color: $color-white-100;
+		}
 
-      background-color: transparentize($color: white, $amount: 0.8);
+    &.button--dark-theme[disabled="true"] {
+      color: $color-white-75;
+
+      background-color: $color-white-30;
     }
   }
 }

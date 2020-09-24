@@ -14,7 +14,7 @@ import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-de
 import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
 import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
 import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
-import { MatTabsModule } from '@angular/material/tabs';
+import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 
 @NgModule({
 	declarations: [
@@ -28,7 +28,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 		PopoverDemoComponent,
 		RadioGroupDemoComponent,
 		TypographyDemoComponent,
-		TabsDemoComponent
+		TabsDemoComponent,
+		TagDemoComponent
 	],
 	imports: [
 		CommonModule,

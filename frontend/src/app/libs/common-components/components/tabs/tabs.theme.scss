@@ -2,10 +2,11 @@
   .mat-tab-label, .mat-tab-link {
     min-width: 120px;
 		height: 46px;
-
+	
     line-height: 17px;
 		text-transform: uppercase;
 
+		color: $color-black-medium-emphasis;
     opacity: 1;
 
     &.mat-tab-label-active {
@@ -14,6 +15,9 @@
   }
 
   &--dark-theme {
-    @include mat-tabs-theme($app-theme-dark);
+		@include mat-tabs-theme($app-theme-dark);
+		.mat-tab-label, .mat-tab-link {
+			color: $color-white-75;
+		}
   }
 }
