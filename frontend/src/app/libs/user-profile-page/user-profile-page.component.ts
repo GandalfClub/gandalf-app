@@ -14,9 +14,9 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 	styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit, OnDestroy {
-	private destroy$: Subject<boolean> = new Subject<boolean>();
 	public profileForm: FormGroup;
 	public user: User;
+	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private authFacadeService: AuthFacadeService, private router: Router, private formBuilder: FormBuilder) {
 		this.profileForm = formBuilder.group({
@@ -29,7 +29,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
-		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
+		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>): void => {
 			if (user.status === EntityStatus.Success) {
 				this.user = user.value;
 			}
