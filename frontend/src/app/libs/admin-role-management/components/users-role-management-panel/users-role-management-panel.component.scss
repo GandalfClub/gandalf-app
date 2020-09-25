@@ -1,6 +1,6 @@
 @import "variables";
 
-.app-users-role-management-panel {
+.users-role-management-panel {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -16,7 +16,7 @@
 		margin: 5px 0 5px 0;
 	}
 
-	&__notfound {
+	&__empty {
 		align-self: center;
 	}
 

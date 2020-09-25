@@ -1,7 +1,6 @@
 {
   "/api": {
-    "target": "https://gandalf-backend.herokuapp.com",
-    "secure": true,
-    "changeOrigin": true
+    "target": "http://localhost:3000",
+    "secure": false
   }
 }
