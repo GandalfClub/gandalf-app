@@ -5,7 +5,6 @@ import { CommonComponentsDemoRoutingModule } from './common-components-demo-rout
 import { CommonComponentsDemoComponent } from './common-components-demo.component';
 import { DemoStateComponent } from './demo-state/demo-state.component';
 import { CommonComponentsModule } from '../common-components/common-components.module';
-import { EventTileDemoComponent } from './event-tile-demo/event-tile-demo.component';
 import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
@@ -15,13 +14,13 @@ import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-gro
 import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
 import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
 import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
+import { EventCardDemoComponent } from './components/event-card-demo/event-card-demo.component';
 
 @NgModule({
 	declarations: [
 		CommonComponentsDemoComponent,
 		DemoGroupComponent,
 		DemoStateComponent,
-		EventTileDemoComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
 		ScrollbarDemoComponent,
@@ -29,7 +28,8 @@ import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 		RadioGroupDemoComponent,
 		TypographyDemoComponent,
 		TabsDemoComponent,
-		TagDemoComponent
+		TagDemoComponent,
+		EventCardDemoComponent
 	],
 	imports: [
 		CommonModule,

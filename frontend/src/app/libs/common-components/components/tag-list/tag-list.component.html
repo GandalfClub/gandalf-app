@@ -1,7 +1,7 @@
 <mat-chip-list class="tag-list" [class.tag-list--dark-theme]="isDarkTheme" multiple [selectable]="selectable">
 	<ng-container *ngFor="let tag of tags">
 		<mat-chip
-				*ngIf="!tag.removed"
+				*ngIf="removable ? !tag.removed : true"
 				[value]="tag.value"
 				[selected]="selectable ? tag.selected : false"
 				(click)="onTagClick(tag)"

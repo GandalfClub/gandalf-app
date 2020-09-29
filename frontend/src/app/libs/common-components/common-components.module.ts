@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule, MatError } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -16,9 +16,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
-import { EventTileComponent } from './components/event-tile/event-tile.component';
-import { EventDateComponent } from './components/event-date/event-date.component';
-import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
@@ -26,21 +23,22 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
+import { EventCardComponent } from './components/event-card/event-card.component';
+import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
 
 @NgModule({
 	declarations: [
 		SlideToggleComponent,
 		CreateDraftEventPopoverComponent,
-		EventTileComponent,
-		EventDateComponent,
-		EventTimeComponent,
 		ButtonComponent,
 		ScrollbarDirective,
 		PopoverComponent,
 		RadioGroupComponent,
 		TabsComponent,
 		TabsPanelComponent,
-		TagListComponent
+		TagListComponent,
+		EventCardComponent,
+		EventCardDateComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -72,7 +70,6 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 		MatTooltipModule,
 		MatSlideToggleModule,
 		MatCheckboxModule,
-		EventTileComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
@@ -81,7 +78,8 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 		ScrollbarDirective,
 		TabsComponent,
 		TabsPanelComponent,
-		TagListComponent
+		TagListComponent,
+		EventCardComponent
 	],
 	providers: [
 		{

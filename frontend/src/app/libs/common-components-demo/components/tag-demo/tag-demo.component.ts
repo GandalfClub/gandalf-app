@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Tag } from 'src/app/libs/common-components/models/tag';
-import { TagClickEvent } from 'src/app/libs/common-components/models/tag-click-event';
+import { Tag } from 'src/app/libs/common-components/components/tag-list/models/tag';
+import { TagClickEvent } from 'src/app/libs/common-components/components/tag-list/models/tag-click-event';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
 @Component({
@@ -38,11 +38,5 @@ export class TagDemoComponent {
 			createTag('Tag label', '1', false, false, () => { console.log('additional click action'); }),
 			createTag('Tag label', '2', true, false, null)
 		];
-	}
-
-	private get additionalClickAction(): Function {
-		return (): void => {
-			console.log(`Tag was clicked`);
-		};
 	}
 }
