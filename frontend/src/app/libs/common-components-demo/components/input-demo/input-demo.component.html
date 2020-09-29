@@ -4,9 +4,23 @@
 		<div class="input-demo__row">
 			<form [formGroup]="inputTextDemoForm">
 				<app-demo-state [title]="'Text'" [isDark]="false">
-					<app-input [formControl]="inputTextDemoForm.controls['text1']" [inputType]="'text'" [label]="'Your text without validate'" [placeholder]="'Your placeholder'" formControlName="text1"></app-input>
-					<app-input [formControl]="inputTextDemoForm.controls['text2']" [inputType]="'text'" [label]="'Your text with validate'" [placeholder]="'Your placeholder'" formControlName="text2"></app-input>
-					<app-input [formControl]="inputTextDemoForm.controls['text3']" [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text3"></app-input>
+					<app-input
+						[inputValidators]="inputSyncValidators"
+						[inputType]="'text'"
+						[label]="'With input validate > 6 char'"
+						[placeholder]="'Your placeholder'"
+						formControlName="text1">
+					</app-input>
+					<app-input
+						[formControl]="inputTextDemoForm.controls['text2']"
+						[inputValidatorsAsync]="inputAsyncValidators"
+						[inputType]="'text'"
+						[value]="'from input value'"
+						[label]="'Your text with validate'"
+						[placeholder]="'Your placeholder'"
+						formControlName="text2">
+					</app-input>
+					<app-input [formControl]="inputTextDemoForm.controls['text3']" [disabled]="true" [inputType]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text3"></app-input>
 					<app-button type="flat" (click)="submit()" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
@@ -14,7 +28,7 @@
 			<form class="input-demo__row" [formGroup]="inputEmailDemoForm">
 				<app-demo-state [title]="'Email'" [isDark]="false">
 					<app-input [formControl]="inputEmailDemoForm.controls['email1']" [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email1"></app-input>
-					<app-input [formControl]="inputEmailDemoForm.controls['email2']" [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email2"></app-input>
+					<app-input [formControl]="inputEmailDemoForm.controls['email2']" [value]="'email'" [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email2"></app-input>
 					<app-input [formControl]="inputEmailDemoForm.controls['email3']" [inputType]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email3"></app-input>
 					<app-button type="flat" (click)="submit()" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>

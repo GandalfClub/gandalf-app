@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
 @Component({
@@ -10,6 +10,9 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 export class InputDemoComponent implements OnInit {
 
 	private pattern: string = '^[A-Za-z0-9!@#$%^&*]{6,}$';
+
+	public 	inputSyncValidators: ValidatorFn[] = [this.userNameValidator];
+	public 	inputAsyncValidators: AsyncValidatorFn[] = [this.testAsyncValidator];
 
 	public inputTextDemoForm: FormGroup;
 	public inputEmailDemoForm: FormGroup;
@@ -24,13 +27,13 @@ export class InputDemoComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.inputTextDemoForm = this.fb.group({
-			text1: [''],
+			text1: ['', Validators.required],
 			text2: ['', Validators.required],
-			text3: ['My text', Validators.required],
+			text3: ['Disabled', Validators.required],
 		});
 		this.inputEmailDemoForm = this.fb.group({
-			email1: ['', [Validators.required, Validators.email]],
-			email2: ['email', [Validators.required, Validators.email]],
+			email1: ['',  [Validators.required, Validators.email]],
+			email2: ['', [Validators.required, Validators.email]],
 			email3: ['email@gmail.com', [Validators.required, Validators.email]],
 		});
 		this.inputPasswordDemoForm = this.fb.group({
@@ -38,6 +41,7 @@ export class InputDemoComponent implements OnInit {
 			password2: ['123', [Validators.required, Validators.pattern(this.pattern)]],
 			password3: ['123456', [Validators.required, Validators.pattern(this.pattern)]],
 		});
+
 	}
 	public submit(): void {
 		console.log(this.inputTextDemoForm);
@@ -45,4 +49,15 @@ export class InputDemoComponent implements OnInit {
 		console.log(this.inputPasswordDemoForm);
 	}
 
+	public userNameValidator(control: FormControl): ValidationErrors | null {
+		const minLength: number = 6;
+		if (control.value.length < minLength) {
+			return {valueLength: 'It should be at least 6 characters'};
+		}
+		return null;
+	}
+
+	public async testAsyncValidator(control: FormControl): Promise<ValidationErrors> {
+		return Promise.resolve({asyncError: 'its permanent testing async error'});
+	}
 }

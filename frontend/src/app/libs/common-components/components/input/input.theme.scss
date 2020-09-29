@@ -27,3 +27,15 @@
 	color: $color-white-75;
 	}
 } 
+
+.input--invalid {
+	.mat-input-element {
+		color: $color-white-100;
+		}
+		.mat-icon {
+		color: $color-white-75;
+		}
+	.mat-form-field-label {
+		color: $color-white-75;
+		}
+	} 

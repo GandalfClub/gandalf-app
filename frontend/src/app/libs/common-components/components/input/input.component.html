@@ -2,36 +2,34 @@
 <mat-form-field 
 	appearance="outline" 
 	class="input"
-	[class.input--dark]="isDarkTheme">
+	[class.input--dark]="isDarkTheme"	>
 
 	<mat-label>{{label}}</mat-label>
 	<input
 		matInput 
-		(input)="writeValue($event.target.value)"
+		(input)="onValueInput($event.target.value)"
+		[formControl]="formControl"
 		[type]="type"
-		value="value"
-		formControlName="formControl"
+		(change)="onValueChange($event.target.value)"
 		(blur)="onTouched()"
 		placeholder={{placeholder}}>
-	<mat-error *ngIf="isText && inputFormGroup.controls['formControl'].hasError('required')">
+
+	<mat-error *ngIf="errors?.required">
 		Please enter a {{inputType}} 
 	</mat-error>
 
-	<mat-error *ngIf=" isEmail && inputFormGroup.controls['formControl'].hasError('required')">
-		Please enter a {{inputType}} 
-	</mat-error>
-	<mat-error *ngIf="isEmail && !inputFormGroup.controls['formControl'].hasError('required') && inputFormGroup.controls['formControl'].hasError('email')">
+	<mat-error *ngIf="errors?.email && !errors.required">
 		Please enter a valid email address 
 	</mat-error>
 
-	<mat-error *ngIf="isPassword && inputFormGroup.controls['formControl'].hasError('required')">
-		Please enter a {{inputType}} 
-	</mat-error>
-	
-	<mat-error *ngIf="isPassword && !inputFormGroup.controls['formControl'].hasError('required') && inputFormGroup.controls['formControl'].hasError('pattern')">
+	<mat-error *ngIf="errors?.pattern && !errors.required">
 		Please enter at least 6 characters
 	</mat-error>
-
+	<mat-error *ngFor="let error of customValidatorsErrorsArray">
+		<ng-container *ngIf="!errors?.required">
+			{{error}}
+		</ng-container>
+	</mat-error>
 	<button 
 		*ngIf = "isPassword"
 		mat-icon-button matSuffix 
