@@ -8,12 +8,8 @@
 				<app-event-card-date *ngIf="!isProgressDefined" [startDate]="startDate" [endDate]="endDate"></app-event-card-date>
 			</span>
 		</div>
-		<div class="event-card__roles">
-			<app-tag-list [theme]="draft ? lightTheme : darkTheme" [tags]="tags"></app-tag-list>
-		</div>
-		<div class="event-card__not-started-label" *ngIf="isNotStartedLabelShown">
-			<span>Not started</span>
-		</div>
+		<app-tag-list class="event-card__tag-list" [theme]="draft ? lightTheme : darkTheme" [tags]="tags"></app-tag-list>
+		<span class="event-card__not-started-label" *ngIf="isNotStartedLabelShown">Not started</span>
 		<div class="event-card__participants-container" *ngIf="!draft">
 			<mat-icon class="event-card__icon">person</mat-icon>
 			<span class="event-card__participants">{{participants}}</span>
