@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { Tag } from '../../models/tag';
-import { TagClickEvent } from '../../models/tag-click-event';
+import { TagClickEvent } from './models/tag-click-event';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import { Tag } from './models/tag';
 
 @Component({
   selector: 'app-tag-list',

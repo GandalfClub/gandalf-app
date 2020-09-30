@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { Tag } from '../../models/tag';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import { Tag } from './models/tag';
 
 import { TagListComponent } from './tag-list.component';
 
@@ -74,6 +73,7 @@ describe('TagListComponent', () => {
 
 		describe('when tag have removed flag', () => {
 			beforeEach(() => {
+				component.removable = true;
 				component.tags.forEach((tag: Tag) => {
 					tag.removed = true;
 				});

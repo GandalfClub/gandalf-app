@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventDateComponent } from './event-date.component';
+import { EventCardDateComponent } from './event-card-date.component';
 
 const startDate: Date = new Date('2020-02-02T20:00');
 const endDate: Date = new Date('2020-02-04T21:30');
 
 describe('EventDateComponent', () => {
-	let component: EventDateComponent;
-	let fixture: ComponentFixture<EventDateComponent>;
+	let component: EventCardDateComponent;
+	let fixture: ComponentFixture<EventCardDateComponent>;
 	let htmlElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ EventDateComponent ]
+			declarations: [ EventCardDateComponent ]
 		})
 		.compileComponents();
-		fixture = TestBed.createComponent(EventDateComponent);
+		fixture = TestBed.createComponent(EventCardDateComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 
@@ -35,7 +35,7 @@ describe('EventDateComponent', () => {
 			});
 
 			it('should show start/end Date', () => {
-				expect(htmlElement.querySelector('time.app-event-date').textContent).toContain('2 Feb 20 - 4 Feb 20');
+				expect(htmlElement.querySelector('time.event-card-date').textContent).toContain('2 Feb 2020 - 4 Feb 2020');
 			});
 		});
 
@@ -47,7 +47,7 @@ describe('EventDateComponent', () => {
 
 			it('should show only start Date', () => {
 				expect(htmlElement.children.length).toBe(1);
-				expect(htmlElement.querySelector('time.app-event-date > span').textContent).toContain('2 Feb 20');
+				expect(htmlElement.querySelector('time.event-card-date > span').textContent).toContain('2 Feb 2020');
 			});
 		});
 	});

@@ -1,0 +1,135 @@
+@import "variables";
+$container-padding-top-bottom: 32px;
+$container-padding-left-right: 40px;
+
+.event-card {
+  color: $color-white-100;
+
+  &__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  &__icon {
+		$icon-size: 17px;
+
+    width: $icon-size;
+		height: $icon-size;
+		margin-top: -1px;
+
+    font-size: $icon-size;
+    line-height: $icon-size;
+
+    user-select: none;
+  }
+
+  &__time-container,
+  &__participants-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+	}
+
+  &__participants-container {
+    position: absolute;
+    right: $container-padding-left-right;
+    bottom: $container-padding-top-bottom;
+  }
+
+  &__participants {
+		@include text-p;
+    margin-left: 4px;
+  }
+
+  &__time {
+    margin-left: 8px;
+  }
+
+  &__tag-list {
+    position: absolute;
+    bottom: $container-padding-top-bottom;
+    left: $container-padding-left-right;
+	}
+	
+	&__not-started-label {
+		position: absolute;
+    bottom: $container-padding-top-bottom;
+    left: $container-padding-left-right;
+	}
+
+  &__container {
+    position: relative;
+
+    box-sizing: border-box;
+    padding: $container-padding-top-bottom $container-padding-left-right;
+
+    &--size {
+      &--small {
+        width: 392px;
+        height: 240px;
+
+        & .event-card__title {
+          @include text-h2();
+          -webkit-line-clamp: 2;
+        }
+      }
+
+      &--large {
+        width: 392px;
+        height: 540px;
+
+        & .event-card__title {
+          @include text-h1();
+          -webkit-line-clamp: 6;
+        }
+      }
+    }
+
+    &--color {
+      &--primary {
+        background: $gradient-primary;
+      }
+
+      &--secondary {
+        background: $gradient-secondary;
+      }
+
+      &--tertiary {
+        background: $gradient-tertiary;
+      }
+
+      &--important-role {
+        background: $gradient-important-role;
+      }
+
+      &--draft {
+        color: $color-black-100;
+
+        background: $color-white-100;
+        border: 1px solid $color-black-30;
+      }
+    }
+
+    &--rounded-corner {
+      $border-radius: 64px;
+
+      &--top-left {
+        border-top-left-radius: $border-radius;
+      }
+
+      &--top-right {
+        border-top-right-radius: $border-radius;
+      }
+
+      &--bottom-right {
+        border-bottom-right-radius: $border-radius;
+      }
+
+      &--bottom-left {
+        border-bottom-left-radius: $border-radius;
+      }
+    }
+  }
+}
