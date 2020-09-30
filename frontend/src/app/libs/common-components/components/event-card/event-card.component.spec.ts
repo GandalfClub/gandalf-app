@@ -116,6 +116,17 @@ describe('EventCardComponent', () => {
 		});
 	});
 
+	describe('when @Input gets roles', () => {
+		beforeEach(() => {
+			component.roles = roles;
+			fixture.detectChanges();
+		});
+
+		it('should define roles', () => {
+			expect(component.roles).toEqual(roles);
+		});
+	});
+
 	describe('when @Input gets roundedCorner', () => {
 		beforeEach(() => {
 			component.roundedCorner = EventCardRoundedCorner.TopRight;
@@ -139,6 +150,28 @@ describe('EventCardComponent', () => {
 			});
 		});
 
+		describe('when color is Secondary', () => {
+			beforeEach(() => {
+				component.color = EventCardColor.Secondary;
+				fixture.detectChanges();
+			});
+
+			it('should show secondary background', () => {
+				expect(htmlElement.querySelector('.event-card__container--color--secondary'));
+			});
+		});
+
+		describe('when color is Tertiary', () => {
+			beforeEach(() => {
+				component.color = EventCardColor.Tertiary;
+				fixture.detectChanges();
+			});
+
+			it('should show tertiary background', () => {
+				expect(htmlElement.querySelector('.event-card__container--color--tertiary'));
+			});
+		});
+
 		describe('when color is ImportantRole', () => {
 			beforeEach(() => {
 				component.color = EventCardColor.ImportantRole;
@@ -152,13 +185,26 @@ describe('EventCardComponent', () => {
 	});
 
 	describe('when @Input gets size', () => {
-		beforeEach(() => {
-			component.size = EventCardSize.Large;
-			fixture.detectChanges();
+		describe('when @Input gets large size', () => {
+			beforeEach(() => {
+				component.size = EventCardSize.Large;
+				fixture.detectChanges();
+			});
+
+			it('should show large card', () => {
+				expect(htmlElement.querySelector('.event-card__container--size--large'));
+			});
 		});
 
-		it('should show large card', () => {
-			expect(htmlElement.querySelector('.event-card__container--size--large'));
+		describe('when @Input gets small size', () => {
+			beforeEach(() => {
+				component.size = EventCardSize.Small;
+				fixture.detectChanges();
+			});
+
+			it('should show small card', () => {
+				expect(htmlElement.querySelector('.event-card__container--size--small'));
+			});
 		});
 	});
 
