@@ -1,5 +1,6 @@
 export enum EventCardColor {
 	Primary = 'primary',
 	Secondary = 'secondary',
-	Tertiary = 'tertiary'
+	Tertiary = 'tertiary',
+	ImportantRole = 'important-role'
 }

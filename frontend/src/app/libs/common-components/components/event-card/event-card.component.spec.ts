@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { Tag } from '../tag-list/models/tag';
 import { TagListComponent } from '../tag-list/tag-list.component';
 
 import { EventCardComponent } from './event-card.component';
 import { EventCardColor } from './models/event-card-color';
-import { EventCardRole } from './models/event-card-role';
 import { EventCardRoundedCorner } from './models/event-card-rounded-corner';
 import { EventCardSize } from './models/event-card-size';
 
@@ -16,17 +13,7 @@ const startDate: Date = new Date('2020-01-01');
 const endDate: Date = new Date('2020-01-05');
 const progress: number = 69;
 const participants: number = 13;
-const importantRoles: EventCardRole[] = [
-	EventCardRole.HR,
-	EventCardRole.Manager,
-	EventCardRole.Mentor
-];
-const expectedTags: Tag[] = importantRoles.map((role: EventCardRole) => {
-	return {
-		label: role,
-		value: role
-	};
-});
+const roles: string[] = ['Mentor', 'HR', 'Manger'];
 
 describe('EventCardComponent', () => {
 	let component: EventCardComponent;
@@ -129,21 +116,6 @@ describe('EventCardComponent', () => {
 		});
 	});
 
-	describe('when @Input gets one of important role', () => {
-		beforeEach(() => {
-			component.roles = importantRoles;
-			fixture.detectChanges();
-		});
-
-		it('should define roles', () => {
-			expect(component.roles).toEqual(importantRoles);
-		});
-
-		it('should show colored background', () => {
-			expect(htmlElement.querySelector('.event-card__container--color--important-role')).toBeTruthy();
-		});
-	});
-
 	describe('when @Input gets roundedCorner', () => {
 		beforeEach(() => {
 			component.roundedCorner = EventCardRoundedCorner.TopRight;
@@ -156,14 +128,25 @@ describe('EventCardComponent', () => {
 	});
 
 	describe('when @Input gets color', () => {
-		describe('when have not important roles', () => {
+		describe('when color is Primary', () => {
 			beforeEach(() => {
 				component.color = EventCardColor.Primary;
 				fixture.detectChanges();
 			});
 
-			it('should show colored background', () => {
+			it('should show primary background', () => {
 				expect(htmlElement.querySelector('.event-card__container--color--primary'));
+			});
+		});
+
+		describe('when color is ImportantRole', () => {
+			beforeEach(() => {
+				component.color = EventCardColor.ImportantRole;
+				fixture.detectChanges();
+			});
+
+			it('should show color for important roles', () => {
+				expect(htmlElement.querySelector('.event-card__container--color--important-role'));
 			});
 		});
 	});
@@ -247,17 +230,6 @@ describe('EventCardComponent', () => {
 			it('should return falsy value', () => {
 				expect(component.isNotStartedLabelShown).toBeFalsy();
 			});
-		});
-	});
-
-	describe('when call hasImportantRoles', () => {
-		beforeEach(() => {
-			component.roles = importantRoles;
-			fixture.detectChanges();
-		});
-
-		it('should return true', () => {
-			expect(component.hasImportantRoles).toBeTrue();
 		});
 	});
 

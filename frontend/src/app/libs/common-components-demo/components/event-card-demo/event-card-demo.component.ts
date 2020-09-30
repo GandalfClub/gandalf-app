@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { EventCardColor } from 'src/app/libs/common-components/components/event-card/models/event-card-color';
-import { EventCardRole } from 'src/app/libs/common-components/components/event-card/models/event-card-role';
 import { EventCardRoundedCorner } from 'src/app/libs/common-components/components/event-card/models/event-card-rounded-corner';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { EventCardDataDemo } from '../../models/event-card-data-demo';
@@ -17,13 +16,13 @@ export class EventCardDemoComponent {
 			title: 'Speed Coding Challenge',
 			startDate: new Date('2020-01-01'),
 			endDate: new Date('2020-01-05'),
-			roles: [ EventCardRole.Manager, EventCardRole.Mentor, EventCardRole.HR]
+			roles: [ 'Manager', 'Mentor', 'HR']
 		},
 		{
 			title: 'Goolang: Building components',
 			startDate: new Date('2020-01-01'),
 			endDate: new Date('2020-01-05'),
-			roles: [ EventCardRole.HR ]
+			roles: [ 'HR' ]
 		}
 	];
 
@@ -40,6 +39,7 @@ export class EventCardDemoComponent {
 	public colors: EventCardColor[] = [
 		EventCardColor.Primary,
 		EventCardColor.Secondary,
-		EventCardColor.Tertiary
+		EventCardColor.Tertiary,
+		EventCardColor.ImportantRole
 	];
 }

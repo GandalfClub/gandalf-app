@@ -3,7 +3,6 @@ import { EventCardSize as EventCardSize } from './models/event-card-size';
 import { NgClassInput } from '../../models/ng-class-input';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { EventCardColor } from './models/event-card-color';
-import { EventCardRole } from './models/event-card-role';
 import { EventCardRoundedCorner } from './models/event-card-rounded-corner';
 import { Tag } from '../tag-list/models/tag';
 
@@ -33,7 +32,7 @@ export class EventCardComponent implements OnChanges {
 	public participants: number;
 
 	@Input()
-	public roles: EventCardRole[] = [];
+	public roles: string[] = [];
 
 	@Input()
 	public roundedCorner: EventCardRoundedCorner;
@@ -58,7 +57,7 @@ export class EventCardComponent implements OnChanges {
 		}
 
 		if ('roles' in changes) {
-			this.tags = this.roles.map((role: EventCardRole) => {
+			this.tags = this.roles.map((role: string) => {
 				return {
 					label: role,
 					value: role
@@ -72,7 +71,7 @@ export class EventCardComponent implements OnChanges {
 			'event-card__container--color--primary': this.color === EventCardColor.Primary,
 			'event-card__container--color--secondary': this.color === EventCardColor.Secondary,
 			'event-card__container--color--tertiary': this.color === EventCardColor.Tertiary,
-			'event-card__container--color--important-role': this.hasImportantRoles,
+			'event-card__container--color--important-role': this.color === EventCardColor.ImportantRole,
 			'event-card__container--color--draft': this.draft,
 			'event-card__container--rounded-corner--top-left': this.roundedCorner === EventCardRoundedCorner.TopLeft,
 			'event-card__container--rounded-corner--top-right': this.roundedCorner === EventCardRoundedCorner.TopRight,
@@ -93,14 +92,6 @@ export class EventCardComponent implements OnChanges {
 
 	public get isNotStartedLabelShown(): boolean {
 		return !this.hideNotStartedLabel && this.endDate && !this.draft && this.roles.length === 0;
-	}
-
-	public get hasImportantRoles(): boolean {
-		const importantRoles: EventCardRole[] = this.roles.filter((role: EventCardRole) => {
-			return role === EventCardRole.HR || role === EventCardRole.Manager || role === EventCardRole.Mentor;
-		});
-
-		return importantRoles.length > 0;
 	}
 
 	public get isProgressDefined(): boolean {
