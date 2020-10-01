@@ -20,11 +20,6 @@ import { InputType } from '../../shared/input-type.enum';
 })
 export class InputComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
 
-	private syncValidators: ValidatorFn[] | null = null;
-	private asyncValidators: AsyncValidatorFn[] | null = null;
-	private defaultValue: number | string | boolean | null | undefined;
-	private ngUnsubscribe: Subject<any> = new Subject();
-
 	@Input() public inputValidators: ValidatorFn | ValidatorFn[] = null;
 
 	@Input() public inputValidatorsAsync: AsyncValidatorFn | AsyncValidatorFn[] = null;
@@ -55,14 +50,19 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 
 	@Output() public valueChange: EventEmitter<number | string | boolean | null | undefined> = new EventEmitter();
 
-	public get isDarkTheme(): boolean {
-		return this.theme === ComponentTheme.Dark;
-	}
-
 	public inlineSyncValidators: ValidatorFn[] = null;
 	public inlineAsyncValidators: AsyncValidatorFn[] = null;
 
 	public errorsArray: string[] = [];
+
+	private syncValidators: ValidatorFn[] | null = null;
+	private asyncValidators: AsyncValidatorFn[] | null = null;
+	private defaultValue: number | string | boolean | null | undefined;
+	private ngUnsubscribe: Subject<any> = new Subject();
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
 
 	public get isText(): boolean {
 		return this.type === InputType.Text ? true : false;

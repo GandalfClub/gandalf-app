@@ -9,8 +9,6 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 })
 export class InputDemoComponent implements OnInit {
 
-	private pattern: string = '^[A-Za-z0-9!@#$%^&*]{6,}$';
-
 	public 	inputSyncValidators: ValidatorFn | ValidatorFn[] = this.lengthValidator;
 	public 	inputAsyncValidators: AsyncValidatorFn | AsyncValidatorFn[] = [this.testAsyncValidator];
 
@@ -28,18 +26,18 @@ export class InputDemoComponent implements OnInit {
 	public ngOnInit(): void {
 		this.inputTextDemoForm = this.fb.group({
 			text1: ['', this.requiredValidator],
-			text2: ['', Validators.required],
-			text3: ['Disabled', Validators.required],
+			text2: ['', this.requiredValidator],
+			text3: ['Disabled', this.requiredValidator],
 		});
 		this.inputEmailDemoForm = this.fb.group({
-			email1: ['',  [Validators.required, Validators.email]],
-			email2: ['', [Validators.required, Validators.email]],
-			email3: ['email@gmail.com', [Validators.required, Validators.email]],
+			email1: ['', [this.emailValidator, this.requiredValidator]],
+			email2: ['', [this.emailValidator, this.requiredValidator]],
+			email3: ['email@gmail.com', [this.emailValidator, this.requiredValidator]],
 		});
 		this.inputPasswordDemoForm = this.fb.group({
-			password1: ['', [Validators.required, Validators.pattern(this.pattern)]],
-			password2: ['123', [Validators.required, Validators.pattern(this.pattern)]],
-			password3: ['123456', [Validators.required, Validators.pattern(this.pattern)]],
+			password1: ['', [this.requiredValidator, this.lengthValidator]],
+			password2: ['123', [this.requiredValidator, this.lengthValidator]],
+			password3: ['123456', [this.requiredValidator, this.lengthValidator]],
 		});
 
 	}
@@ -51,11 +49,21 @@ export class InputDemoComponent implements OnInit {
 
 	public lengthValidator(control: FormControl): ValidationErrors | null {
 		const minLength: number = 6;
-		if (control.value.length < minLength) {
+		if (control && Boolean(control.value) && control.value.length < minLength) {
 			return {valueLength: 'It should be at least 6 characters'};
 		}
 		return null;
 	}
+
+	public emailValidator(control: FormControl): ValidationErrors | null {
+		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (control && Boolean(control.value) && !emailPattern.test(control.value)) {
+			return {email: `its wrong email address`};
+		}
+		return null;
+	}
+
 	public requiredValidator(control: FormControl): ValidationErrors | null {
 		if (!Boolean(control.value)) {
 			return {required: `its required`};
