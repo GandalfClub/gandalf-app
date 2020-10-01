@@ -8,9 +8,10 @@
 						<app-input
 							[inputValidators]="inputSyncValidators"
 							[type]="'text'"
-							[label]="'With input validate > 6 char'"
+							[label]="'Your text'"
 							[placeholder]="'Your placeholder'"
-							formControlName="text1">
+							formControlName="text1"
+							[showRequiredSign]="true">
 						</app-input>
 					</div>
 					<div class="wrapper">
@@ -20,6 +21,7 @@
 							[value]="'from input value'"
 							[label]="'Your text with validate'"
 							[placeholder]="'Your placeholder'"
+							[showRequiredSign]="true"
 							formControlName="text2">
 						</app-input>
 					</div>
@@ -55,7 +57,7 @@
 						<app-input [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password2"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" formControlName="password3"></app-input>
+						<app-input [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [secured]="false" formControlName="password3"></app-input>
 					</div>
 					<app-button type="flat" (click)="submit(inputPasswordDemoForm.status)" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
@@ -103,7 +105,7 @@
 						<app-input [formControl]="inputPasswordDemoForm.controls['password2']" [theme]="darkTheme" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password2"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [formControl]="inputPasswordDemoForm.controls['password3']" [theme]="darkTheme" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" formControlName="password3"></app-input>
+						<app-input [formControl]="inputPasswordDemoForm.controls['password3']" [theme]="darkTheme" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [secured]="false" formControlName="password3"></app-input>
 					</div>
 					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputPasswordDemoForm.status)" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>

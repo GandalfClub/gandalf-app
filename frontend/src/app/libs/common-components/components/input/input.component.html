@@ -1,9 +1,9 @@
 <mat-form-field 
 	appearance="outline" 
 	class="input"
-	[class.input--dark]="isDarkTheme"   >
+	[class.input--dark]="isDarkTheme">
 
-	<mat-label>{{label}}</mat-label>
+	<mat-label>{{label}}<span *ngIf="showRequiredSign">*</span></mat-label>
 	<input
 		matInput 
 		(input)="onValueInput($event.target.value)"
@@ -17,11 +17,11 @@
 		{{error}}
 	</mat-error>
 	<button 
-		*ngIf = "isPassword"
+		*ngIf="isPassword"
 		mat-icon-button matSuffix 
-		(click)="hide = !hide" 
+		(click)="secured = !secured" 
 		[attr.aria-label]="'Hide password'" 
-		[attr.aria-pressed]="hide">
-		<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+		[attr.aria-pressed]="secured">
+		<mat-icon>{{icon}}</mat-icon>
 	</button>
 </mat-form-field>

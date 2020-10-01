@@ -7,13 +7,14 @@
 .mat-form-field-appearance-outline .mat-form-field-infix {
 	padding: .7rem 0;
 }
+
 .input .mat-form-field-appearance-outline .mat-form-field-suffix {
 	top: 0;
 }
 
 .mat-form-field-appearance-outline.input--dark .mat-form-field-outline {
 	color: $color-white-30;
-	}
+}
 
 .input--dark {
 	.mat-input-element {
@@ -29,9 +30,11 @@
 		color: $color-white-50;
 	}
 } 
+
 .input--dark.mat-form-field-disabled .mat-input-element {
 	color: $color-white-50;
 }
+
 .input--dark.mat-form-field-disabled .mat-form-field-label {
 	color: $color-white-50;
 }
@@ -39,11 +42,11 @@
 .input--invalid {
 	.mat-input-element {
 		color: $color-white-100;
-		}
-		.mat-icon {
+	}
+	.mat-icon {
 		color: $color-white-75;
-		}
+	}
 	.mat-form-field-label {
 		color: $color-white-75;
-		}
-	} 
+	}
+} 

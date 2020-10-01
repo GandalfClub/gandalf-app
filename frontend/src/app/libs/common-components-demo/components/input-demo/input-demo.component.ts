@@ -9,8 +9,8 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 })
 export class InputDemoComponent implements OnInit {
 
-	public 	inputSyncValidators: ValidatorFn | ValidatorFn[] = this.lengthValidator;
-	public 	inputAsyncValidators: AsyncValidatorFn | AsyncValidatorFn[] = [this.testAsyncValidator];
+	public inputSyncValidators: ValidatorFn[] = [this.lengthValidator];
+	public inputAsyncValidators: AsyncValidatorFn[] = [this.testAsyncValidator];
 
 	public inputTextDemoForm: FormGroup;
 	public inputEmailDemoForm: FormGroup;
@@ -33,7 +33,7 @@ export class InputDemoComponent implements OnInit {
 		});
 		this.inputEmailDemoForm = this.fb.group({
 			email1: ['', [this.emailValidator, this.requiredValidator]],
-			email2: ['', [this.emailValidator, this.requiredValidator]],
+			email2: ['', [this.emailValidator, this.requiredValidator, this.lengthValidator]],
 			email3: ['email@gmail.com', [this.emailValidator, this.requiredValidator]],
 		});
 		this.inputPasswordDemoForm = this.fb.group({
@@ -41,8 +41,8 @@ export class InputDemoComponent implements OnInit {
 			password2: ['123', [this.requiredValidator, this.lengthValidator]],
 			password3: ['123456', [this.requiredValidator, this.lengthValidator]],
 		});
-
 	}
+	
 	public submit(status: string): void {
 		if (status === 'VALID') {
 		this.buttonClick.emit('value');

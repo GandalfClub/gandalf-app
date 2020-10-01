@@ -15,7 +15,7 @@ describe('ParentControlComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				InputComponent,
-			  InputDemoComponent,
+				InputDemoComponent,
 			],
 			imports: [
 				BrowserAnimationsModule,

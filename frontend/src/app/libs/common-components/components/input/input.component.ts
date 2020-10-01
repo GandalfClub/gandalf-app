@@ -3,7 +3,7 @@ import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { InputType } from '../../shared/input-type.enum';
+import { InputType, passwordVisibility } from '../../shared/input-type.enum';
 
 @Component({
 	selector: 'app-input',
@@ -20,13 +20,13 @@ import { InputType } from '../../shared/input-type.enum';
 })
 export class InputComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
 
-	@Input() public inputValidators: ValidatorFn | ValidatorFn[] = null;
+	@Input() public inputValidators: ValidatorFn[] = null;
 
-	@Input() public inputValidatorsAsync: AsyncValidatorFn | AsyncValidatorFn[] = null;
+	@Input() public inputValidatorsAsync: AsyncValidatorFn[] = null;
 
-	@Input() public changeValidators: ValidatorFn | ValidatorFn[] = null;
+	@Input() public changeValidators: ValidatorFn[] = null;
 
-	@Input() public changeValidatorsAsync: AsyncValidatorFn | AsyncValidatorFn[] = null;
+	@Input() public changeValidatorsAsync: AsyncValidatorFn[] = null;
 
 	@Input() public formControlName: string;
 
@@ -36,7 +36,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 
 	@Input() public value: number | string | boolean | null | undefined;
 
-	@Input() public hide: boolean = true;
+	@Input() public secured: boolean = true;
 
 	@Input() public type: InputType = InputType.Text;
 
@@ -44,7 +44,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 
 	@Input() public placeholder: string;
 
-	@Input() public isRequired: boolean = true;
+	@Input() public showRequiredSign: boolean;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -59,6 +59,10 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	private asyncValidators: AsyncValidatorFn[] | null = null;
 	private defaultValue: number | string | boolean | null | undefined;
 	private ngUnsubscribe: Subject<any> = new Subject();
+
+	public get icon(): string {
+		return Boolean(this.secured) ? passwordVisibility.On : passwordVisibility.Off;
+	}
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
@@ -77,14 +81,15 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	}
 
 	public get inputType(): string {
-		if (this.type !== 'password') {
+		if (this.type !== InputType.Password) {
 			return this.type;
-		} else if (this.type === 'password' && this.hide) {
-			return 'password';
-		} else if (this.type === 'password' && !this.hide) {
-			return 'text';
+		} else if (this.type === InputType.Password && this.secured) {
+			return InputType.Password;
+		} else if (this.type === InputType.Password && !this.secured) {
+			return InputType.Text;
 		}
 	}
+
 	public constructor(
 		@Optional() @Host() @SkipSelf() protected parentFormContainer: ControlContainer,
 		public elementRef: ElementRef,
@@ -106,7 +111,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 		}
 
 		this.subscribeToChanges();
-
 		this.inlineSyncValidators = this.getInlineSyncValidatorsFromFormControl();
 		this.inlineAsyncValidators = this.getInlineAsyncValidatorsFromFormControl();
 		this.setSyncValidator();
@@ -134,11 +138,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 			this.formControl.disable();
 		}
 	}
-	public switchToEnable(): void {
-		if (Boolean(this.formControl) && this.disabled) {
-			this.formControl.enable();
-		}
-	}
 
 	public onTouched: any = () => undefined;
 
@@ -159,7 +158,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 			this.value = value;
 			this.onChange(value);
 			this.valueChange.emit(value);
-
 		}
 	}
 
