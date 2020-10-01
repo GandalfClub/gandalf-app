@@ -4,7 +4,7 @@ export enum InputType {
 	Email = 'email'
 }
 
-export enum passwordVisibility {
+export enum PasswordVisibility {
 	On = 'visibility',
 	Off = 'visibility_off'
 }

@@ -61,19 +61,19 @@ export class InputDemoComponent implements OnInit {
 		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 		if (control && Boolean(control.value) && !emailPattern.test(control.value)) {
-			return {email: `its wrong email address`};
+			return {email: `Wrong email address`};
 		}
 		return null;
 	}
 
 	public requiredValidator(control: FormControl): ValidationErrors | null {
 		if (!Boolean(control.value)) {
-			return {required: `its required`};
+			return {required: `Its required field`};
 		}
 		return null;
 	}
 
 	public async testAsyncValidator(control: FormControl): Promise<ValidationErrors> {
-		return Promise.resolve({asyncError: 'its permanent testing async error'});
+		return Promise.resolve({asyncError: 'Tts a permanent testing async error'});
 	}
 }

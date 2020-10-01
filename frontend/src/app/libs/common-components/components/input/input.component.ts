@@ -3,7 +3,7 @@ import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { InputType, passwordVisibility } from '../../shared/input-type.enum';
+import { InputType, PasswordVisibility } from '../../shared/input-type.enum';
 
 @Component({
 	selector: 'app-input',
@@ -61,7 +61,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	private ngUnsubscribe: Subject<any> = new Subject();
 
 	public get icon(): string {
-		return Boolean(this.secured) ? passwordVisibility.On : passwordVisibility.Off;
+		return Boolean(this.secured) ? PasswordVisibility.On : PasswordVisibility.Off;
 	}
 
 	public get isDarkTheme(): boolean {
@@ -117,13 +117,14 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 		this.setAsyncValidator();
 		this.setValidatorsToFormControl();
 		this.switchToDisable();
+		this.errorsFromFormControl();
+		this.getDefaultValue();
 	}
 
 	public ngAfterViewInit(): void {
 		if (Boolean(this.defaultValue)) {
 			setTimeout(() => {
 					this.formControl.setValue(this.defaultValue);
-					this.onTouched();
 			});
 		}
 	}
@@ -164,6 +165,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	public onValueInput(value: any): void {
 		this.value = value;
 		this.onChange(value);
+		console.log(this.onChange)
 	}
 
 	public registerOnChange(fn: any): void {
@@ -177,6 +179,12 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	public setValidatorsToFormControl(): void {
 		if (this.syncValidators.length > 0) {this.formControl.setValidators(this.syncValidators); }
 		if (this.asyncValidators.length > 0) {this.formControl.setAsyncValidators(this.asyncValidators); }
+	}
+
+	private getDefaultValue(): void {
+		if (this.formControl?.value && !Boolean(this.defaultValue)) {
+			this.defaultValue = this.formControl?.value;
+		}
 	}
 
 	private setSyncValidator(): void {
@@ -204,12 +212,16 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 
 	private subscribeToChanges(): void {
 		this.formControl.valueChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => {
-			setTimeout(() => {
-				this.errorsArray = [];
-				const errors: ValidationErrors = this.formControl.errors;
-				this.getCustomErrorsArray(errors);
-			}, 0);
+		this.errorsFromFormControl();
 		});
+	}
+
+	private errorsFromFormControl(): void {
+		setTimeout(() => {
+			this.errorsArray = [];
+			const errors: ValidationErrors = this.formControl.errors;
+			this.getCustomErrorsArray(errors);
+		}, 0);
 	}
 
 	private getCustomErrorsArray(errors: ValidationErrors): void {
