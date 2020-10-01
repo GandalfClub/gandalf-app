@@ -1,34 +1,23 @@
-<div [formGroup]="inputFormGroup">
 <mat-form-field 
 	appearance="outline" 
 	class="input"
-	[class.input--dark]="isDarkTheme"	>
+	[class.input--dark]="isDarkTheme"   >
 
 	<mat-label>{{label}}</mat-label>
 	<input
 		matInput 
 		(input)="onValueInput($event.target.value)"
 		[formControl]="formControl"
-		[type]="type"
+		[type]="inputType"
 		(change)="onValueChange($event.target.value)"
 		(blur)="onTouched()"
 		placeholder={{placeholder}}>
 
-	<mat-error *ngIf="errors?.required">
-		Please enter a {{inputType}} 
+	<mat-error *ngFor="let error of errorsArray">
+		{{error}}
 	</mat-error>
-
-	<mat-error *ngIf="errors?.email && !errors.required">
-		Please enter a valid email address 
-	</mat-error>
-
-	<mat-error *ngIf="errors?.pattern && !errors.required">
-		Please enter at least 6 characters
-	</mat-error>
-	<mat-error *ngFor="let error of customValidatorsErrorsArray">
-		<ng-container *ngIf="!errors?.required">
-			{{error}}
-		</ng-container>
+	<mat-error >
+		dfgdfgdfgdgf	
 	</mat-error>
 	<button 
 		*ngIf = "isPassword"
@@ -39,4 +28,3 @@
 		<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 	</button>
 </mat-form-field>
-</div>

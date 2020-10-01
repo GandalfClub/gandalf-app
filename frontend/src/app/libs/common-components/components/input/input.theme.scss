@@ -15,18 +15,26 @@
 	color: $color-white-30;
 	}
 
-
 .input--dark {
-.mat-input-element {
-	color: $color-white-100;
+	.mat-input-element {
+		color: $color-white-100;
 	}
 	.mat-icon {
-	color: $color-white-75;
+		color: $color-white-75;
 	}
-.mat-form-field-label {
-	color: $color-white-75;
+	.mat-form-field-label {
+		color: $color-white-75;
+	}
+	.mat-form-field-disabled .mat-input-element {
+		color: $color-white-50;
 	}
 } 
+.input--dark.mat-form-field-disabled .mat-input-element {
+	color: $color-white-50;
+}
+.input--dark.mat-form-field-disabled .mat-form-field-label {
+	color: $color-white-50;
+}
 
 .input--invalid {
 	.mat-input-element {

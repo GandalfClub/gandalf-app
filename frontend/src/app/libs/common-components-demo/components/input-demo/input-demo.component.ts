@@ -11,8 +11,8 @@ export class InputDemoComponent implements OnInit {
 
 	private pattern: string = '^[A-Za-z0-9!@#$%^&*]{6,}$';
 
-	public 	inputSyncValidators: ValidatorFn[] = [this.userNameValidator];
-	public 	inputAsyncValidators: AsyncValidatorFn[] = [this.testAsyncValidator];
+	public 	inputSyncValidators: ValidatorFn | ValidatorFn[] = this.lengthValidator;
+	public 	inputAsyncValidators: AsyncValidatorFn | AsyncValidatorFn[] = [this.testAsyncValidator];
 
 	public inputTextDemoForm: FormGroup;
 	public inputEmailDemoForm: FormGroup;
@@ -27,7 +27,7 @@ export class InputDemoComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.inputTextDemoForm = this.fb.group({
-			text1: ['', Validators.required],
+			text1: ['', this.requiredValidator],
 			text2: ['', Validators.required],
 			text3: ['Disabled', Validators.required],
 		});
@@ -49,10 +49,16 @@ export class InputDemoComponent implements OnInit {
 		console.log(this.inputPasswordDemoForm);
 	}
 
-	public userNameValidator(control: FormControl): ValidationErrors | null {
+	public lengthValidator(control: FormControl): ValidationErrors | null {
 		const minLength: number = 6;
 		if (control.value.length < minLength) {
 			return {valueLength: 'It should be at least 6 characters'};
+		}
+		return null;
+	}
+	public requiredValidator(control: FormControl): ValidationErrors | null {
+		if (!Boolean(control.value)) {
+			return {required: `its required`};
 		}
 		return null;
 	}
