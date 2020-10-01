@@ -42,7 +42,7 @@ export class InputDemoComponent implements OnInit {
 			password3: ['123456', [this.requiredValidator, this.lengthValidator]],
 		});
 	}
-	
+
 	public submit(status: string): void {
 		if (status === 'VALID') {
 		this.buttonClick.emit('value');
