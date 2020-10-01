@@ -165,7 +165,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	public onValueInput(value: any): void {
 		this.value = value;
 		this.onChange(value);
-		console.log(this.onChange)
 	}
 
 	public registerOnChange(fn: any): void {
