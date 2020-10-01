@@ -142,13 +142,13 @@ describe('RadioGroupComponent', () => {
 
 		describe('when click unchecked radio', () => {
 			beforeEach(() => {
-				spyOn(component.onChange, 'emit');
+				spyOn(component.valueChange, 'emit');
 				radioButtons[0].nativeElement.click();
 				fixture.detectChanges();
 			});
 
-			it('should emit onChange @Output', () => {
-				expect(component.onChange.emit).toHaveBeenCalled();
+			it('should emit valueChange @Output', () => {
+				expect(component.valueChange.emit).toHaveBeenCalled();
 			});
 
 			it('value should be changed', () => {

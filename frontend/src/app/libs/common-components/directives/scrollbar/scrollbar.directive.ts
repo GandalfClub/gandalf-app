@@ -5,15 +5,14 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 	selector: '[appScrollbar]'
 })
 export class ScrollbarDirective implements OnInit {
+	@Input()
+	public theme: ComponentTheme = ComponentTheme.Light;
 
 	private scrollbarClassName: string = 'scrollbar';
 	private scrollbarLightClassName: string = 'scrollbar--light-theme';
 	private scrollbarDarkClassName: string = 'scrollbar--dark-theme';
 
-	@Input()
-	public theme: ComponentTheme = ComponentTheme.Light;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+	constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
 	public ngOnInit(): void {
 		this.renderer.addClass(this.elementRef.nativeElement, this.scrollbarClassName);

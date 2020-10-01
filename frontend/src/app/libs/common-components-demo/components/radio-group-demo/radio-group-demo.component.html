@@ -7,7 +7,7 @@
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
-					(onChange)="onChange($event)">
+					(valueChange)="onChange($event)">
 			</app-radio-group>
 		</app-demo-state>
 		<app-demo-state [title]="'disabled radio-group'">
@@ -18,7 +18,7 @@
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
-					(onChange)="onChange($event)">
+					(valueChange)="onChange($event)">
 			</app-radio-group>
 		</app-demo-state>
 	</div>
@@ -31,7 +31,7 @@
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
-					(onChange)="onChange($event)"></app-radio-group>
+					(valueChange)="onChange($event)"></app-radio-group>
 		</app-demo-state>
 		<app-demo-state [title]="'disabled radio-group'" [isDark]="true">
 			<app-radio-group class="radio-group-demo__container"
@@ -42,7 +42,7 @@
 					[options]="radioGroupData.options"
 					[labelField]="radioGroupData.labelField" 
 					[valueField]="radioGroupData.valueField"
-					(onChange)="onChange($event)">
+					(valueChange)="onChange($event)">
 			</app-radio-group>
 		</app-demo-state>
 	</div>

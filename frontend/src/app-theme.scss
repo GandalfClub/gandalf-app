@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-@import 'md-palette';
 @import 'variables';
+@import 'md-palette';
 
 $app-theme: mat-light-theme(
 	mat-palette($md-primary-palette),
@@ -23,10 +23,10 @@ $app-typography: mat-typography-config(
 	$headline: 			mat-typography-level(48px, 56px, bold, $font-main-bold, 0),
 	$title:					mat-typography-level(32px, 40px, bold, $font-main-bold, 0),
 	$subheading-2: 	mat-typography-level(24px, 28px, bold, $font-main-bold, 0),
-	$subheading-1: 	mat-typography-level(14px, 16px, 500, $font-main-medium, 1px),
-	$body-2:        mat-typography-level(14px, 24px, bold, $font-main-bold, 0),
-	$body-1:        mat-typography-level(14px, 24px, normal, $font-main-regular, 0),
-	$caption:				mat-typography-level(12px, 16px, normal, $font-main-regular, 0),
+	$subheading-1: 	mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
+	$body-2:        mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$body-1:        mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$caption:				mat-typography-level(12px, 17px, normal, $font-main-regular, 0),
 	$button:       	mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
   $input:         mat-typography-level(inherit, 1.125, normal, $font-main-regular)
 );
@@ -38,3 +38,5 @@ $app-typography: mat-typography-config(
 @import "./app/libs/common-components/components/slide-toggle/slide-toggle.theme.scss";
 @import "./app/libs/common-components/components/popover/popover.theme.scss";
 @import "./app/libs/common-components/components/input/input.theme.scss";
+@import "./app/libs/common-components/components/tabs/tabs.theme.scss";
+@import "./app/libs/common-components/components/tag-list/tag-list.theme.scss"

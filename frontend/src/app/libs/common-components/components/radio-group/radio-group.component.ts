@@ -30,11 +30,11 @@ export class RadioGroupComponent {
 	public valueField: string;
 
 	@Output()
-	public onChange: EventEmitter<any> = new EventEmitter<any>();
+	public valueChange: EventEmitter<any> = new EventEmitter<any>();
 
 	public onValueChange(value: any): void {
 		this.value = value;
-		this.onChange.emit(value);
+		this.valueChange.emit(value);
 	}
 
 	public isDefined(value: any): boolean {
