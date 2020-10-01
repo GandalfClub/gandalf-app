@@ -120,7 +120,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 			setTimeout(() => {
 					this.formControl.setValue(this.defaultValue);
 					this.onTouched();
-
 			});
 		}
 	}

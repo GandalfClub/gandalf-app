@@ -26,7 +26,7 @@
 					<div class="wrapper">
 						<app-input [disabled]="true" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text3"></app-input>
 					</div>
-					<app-button type="flat" (click)="submit()" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" (click)="submit(inputTextDemoForm.status)" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 
@@ -42,7 +42,7 @@
 					<div class="wrapper">
 						<app-input [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email3"></app-input>
 					</div>
-					<app-button type="flat" (click)="submit()" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" (click)="submit(inputEmailDemoForm.status)" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 
@@ -57,7 +57,7 @@
 					<div class="wrapper">
 						<app-input [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" formControlName="password3"></app-input>
 					</div>
-					<app-button type="flat" (click)="submit()" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" (click)="submit(inputPasswordDemoForm.status)" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 		</div>
@@ -75,7 +75,7 @@
 					<div class="wrapper">
 						<app-input [formControl]="inputTextDemoForm.controls['text3']" [theme]="darkTheme" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text3"></app-input>
 					</div>
-					<app-button type="flat" [theme]="darkTheme" (click)="submit()" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputTextDemoForm.status)" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 
@@ -90,7 +90,7 @@
 					<div class="wrapper">
 						<app-input [formControl]="inputEmailDemoForm.controls['email3']" [theme]="darkTheme" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email3"></app-input>
 					</div>
-					<app-button type="flat" [theme]="darkTheme" (click)="submit()" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputEmailDemoForm.status)" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 
@@ -105,7 +105,7 @@
 					<div class="wrapper">
 						<app-input [formControl]="inputPasswordDemoForm.controls['password3']" [theme]="darkTheme" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [hide]="false" formControlName="password3"></app-input>
 					</div>
-					<app-button type="flat" [theme]="darkTheme" (click)="submit()" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
+					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputPasswordDemoForm.status)" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
 			</form>
 		</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
@@ -19,8 +19,10 @@ export class InputDemoComponent implements OnInit {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
+	@Output() public buttonClick: EventEmitter <any> = new EventEmitter();
+
 	constructor(
-		private fb: FormBuilder
+		private fb: FormBuilder,
 	) { }
 
 	public ngOnInit(): void {
@@ -41,10 +43,10 @@ export class InputDemoComponent implements OnInit {
 		});
 
 	}
-	public submit(): void {
-		console.log(this.inputTextDemoForm);
-		console.log(this.inputEmailDemoForm);
-		console.log(this.inputPasswordDemoForm);
+	public submit(status: string): void {
+		if (status === 'VALID') {
+		this.buttonClick.emit('value');
+		}
 	}
 
 	public lengthValidator(control: FormControl): ValidationErrors | null {
