@@ -12,6 +12,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
 import { AuthModule } from './libs/auth/auth.module';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
 	declarations: [AppComponent, CodejarComponent],
@@ -25,8 +31,14 @@ import { AuthModule } from './libs/auth/auth.module';
 		EffectsModule.forRoot([]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 		AuthModule,
+		LayoutModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatSidenavModule,
+		MatIconModule,
+		MatListModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

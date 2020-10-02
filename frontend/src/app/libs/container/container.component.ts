@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { State } from './store/sample/sample.reducer';
-import { selectSampleState } from './store/sample/sample.selectors';
+import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { EntityStatus } from '../auth/models/entity-status';
+import { User } from '../auth/models/user';
+import { EntityWrapper } from '../auth/models/entity-wraper';
 
 @Component({
 	selector: 'app-container',
@@ -9,12 +10,13 @@ import { selectSampleState } from './store/sample/sample.selectors';
 	styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
+	private isAuthenticated: boolean = false;
 
-	constructor(private store: Store<State>) { }
+	constructor(private authFacadeService: AuthFacadeService) { }
 
 	public ngOnInit(): void {
-		this.store.select(selectSampleState).subscribe((state: State) => {
-			console.log(state, 'store works');
-		});
+		this.authFacadeService.user$.subscribe((user: EntityWrapper<User>) => {
+			this.isAuthenticated = user.status === EntityStatus.Success;
+		})
 	}
 }

@@ -1,0 +1,43 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+	<ngx-avatar
+		name="{{fullname}}"
+		facebookId={{id.facebook}}
+		googleId={{id.google}}
+		githubId={{id.github}}>
+	</ngx-avatar>
+</button>
+
+<mat-menu #menu="matMenu">
+	<mat-card>
+		<mat-card-title>{{username}}</mat-card-title>
+		<mat-card-subtitle>{{fullname}}</mat-card-subtitle>
+	</mat-card>
+	<button mat-menu-item>
+		<mat-icon
+			matBadge='{{badge.account}}'
+			matBadgeColor="warn">account_circle</mat-icon>
+		<span>Account</span>
+	</button>
+	<button mat-menu-item>
+		<mat-icon
+			matBadge="{{badge.invintation}}"
+			matBadgeColor="warn">insert_invitation</mat-icon>
+		<span>Invitation</span>
+	</button>
+	<button mat-menu-item>
+		<mat-icon
+			matBadge="{{badge.notification}}"
+			matBadgeColor="warn">notifications</mat-icon>
+		<span>Notification</span>
+	</button>
+	<button mat-menu-item>
+		<mat-icon
+			matBadge="{{badge.settings}}"
+			matBadgeColor="warn">settings</mat-icon>
+		<span>Settings</span>
+	</button>
+	<button mat-menu-item>
+		<mat-icon>exit_to_app</mat-icon>
+		<span>Log out</span>
+	</button>
+</mat-menu>

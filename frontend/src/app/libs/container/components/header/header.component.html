@@ -1,0 +1,11 @@
+<mat-toolbar>
+	<app-logo></app-logo>
+	<div [ngSwitch]="user.role">
+		<app-participant *ngSwitchCase="'participant'"></app-participant >
+		<app-mentor *ngSwitchCase="'mentor'"></app-mentor>
+		<app-hr *ngSwitchCase="'hr'"></app-hr>
+		<app-event-manager *ngSwitchCase="'event-manager'"></app-event-manager>
+		<app-admin *ngSwitchCase="'admin'"></app-admin>
+		<app-non-auth *ngSwitchDefault></app-non-auth>
+	</div>
+</mat-toolbar>
