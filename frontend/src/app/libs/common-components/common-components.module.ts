@@ -10,6 +10,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
@@ -25,6 +26,7 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 @NgModule({
 	declarations: [
 		SlideToggleComponent,
+		CheckboxComponent,
 		CreateDraftEventPopoverComponent,
 		EventTileComponent,
 		EventDateComponent,
@@ -65,6 +67,7 @@ import { RadioGroupComponent } from './components/radio-group/radio-group.compon
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
+		CheckboxComponent,
 		RadioGroupComponent,
 		PopoverComponent,
 		ScrollbarDirective],

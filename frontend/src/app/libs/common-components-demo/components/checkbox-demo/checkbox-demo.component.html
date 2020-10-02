@@ -1,0 +1,25 @@
+<app-demo-group class="checkbox-demo" [title]="'Checkboxes'">
+		<div class="light-theme checkbox-demo__states">
+			<app-demo-state [isDark]="false">
+				<app-checkbox-group class="checkbox-group-demo__container"
+					[options]="checkboxGroupData.options"
+					[theme]=lightTheme
+					[labelField]="checkboxGroupData.labelField" 
+					[valueField]="checkboxGroupData.valueField"
+					(onChange)="onChange($event)">
+				</app-checkbox-group>
+			</app-demo-state>
+		</div>
+		<div class="dark-theme checkbox-demo__states">
+			<app-demo-state [isDark]="true">
+				<app-checkbox-group	class="checkbox-group-demo__container"				
+					[options]="checkboxGroupData.options" 
+					[theme]=darkTheme
+					[labelField]="checkboxGroupData.labelField" 
+					[valueField]="checkboxGroupData.valueField"
+					(onChange)="onChange($event)">
+				</app-checkbox-group>
+			</app-demo-state>
+		</div>
+	</app-demo-group>
+	

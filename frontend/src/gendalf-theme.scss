@@ -42,3 +42,14 @@ $gendalf-app-theme-dark: mat-dark-theme($gendalf-app-primary, $gendalf-app-accen
 	}
 }
 
+.mat-checkbox-dark {
+	color: $color-white;
+	@include mat-checkbox-theme ($gendalf-app-theme-dark);
+
+	&.mat-checkbox-disabled {
+		.mat-checkbox-label {
+			color: $color-white-50;
+		}
+	}
+}
+

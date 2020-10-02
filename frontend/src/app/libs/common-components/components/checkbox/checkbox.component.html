@@ -1,0 +1,13 @@
+<div class="checkbox-group">
+	<mat-checkbox
+		color="primary"
+		[disabled]="option.disabled"
+		[checked]="option.checked"
+		[class.mat-checkbox-disabled]="option.disabled"
+		[class.mat-checkbox-dark]="isDarkTheme"
+		[value]="isDefined(valueField) ? option[valueField] : (index + 1)"
+		*ngFor="let option of options; let index = index"
+		(change)="check($event)">
+			{{option[labelField]}}
+	</mat-checkbox>
+</div>
