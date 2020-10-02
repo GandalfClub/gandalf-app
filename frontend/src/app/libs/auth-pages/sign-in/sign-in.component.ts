@@ -16,14 +16,14 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 	styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit, OnDestroy {
-	private passwordMinLenth: number = 6;
-	private destroy$: Subject<boolean> = new Subject<boolean>();
 	public signInFormGroup: FormGroup;
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
 	public authError: string;
 	public isLoading: boolean = false;
+	private passwordMinLenth: number = 6;
+	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private router: Router) {}
 

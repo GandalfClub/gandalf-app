@@ -1,0 +1,33 @@
+.demo-group {
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__container {
+    padding: 72px 2%;
+    box-sizing: border-box;
+    width: 50%;
+    min-width: 500px;
+    padding: 55px 2%;
+
+
+    &--light-theme {
+      & .demo-group__title {
+        background-color: white;
+      }
+    }
+
+    &--dark-theme {
+      background-color: #212121;
+    }
+  }
+
+  &__title {
+    font-weight: bold;
+    color: #367ff6;
+    text-transform: uppercase;
+  }
+
+  &__line {
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,13 @@
+<section class="demo-group">
+	<div class="demo-group__container demo-group__container--light-theme">
+		<h3 class="demo-group__title">{{ title }}</h3>
+		<hr class="demo-group__line">
+		<ng-content select=".light-theme"></ng-content>
+	</div>
+	<div class="demo-group__container demo-group__container--dark-theme">
+		<h3 class="demo-group__title">{{ title }}</h3>
+		<hr class="demo-group__line">
+		<ng-content select=".dark-theme"></ng-content>
+	</div>
+</section>
+

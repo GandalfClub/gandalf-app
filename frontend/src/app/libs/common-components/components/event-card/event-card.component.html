@@ -1,0 +1,18 @@
+<section class="event-card">
+	<div class="event-card__container" [ngClass]="cardContainerModifiers">
+		<h2 class="event-card__title">{{title}}</h2>
+		<div class="event-card__time-container">
+			<mat-icon class="event-card__icon">calendar_today</mat-icon>
+			<span class="event-card__time" >
+				<span *ngIf="isProgressDefined">Ongoing</span>
+				<app-event-card-date *ngIf="!isProgressDefined" [startDate]="startDate" [endDate]="endDate"></app-event-card-date>
+			</span>
+		</div>
+		<app-tag-list class="event-card__tag-list" [theme]="draft ? lightTheme : darkTheme" [tags]="tags"></app-tag-list>
+		<span class="event-card__not-started-label" *ngIf="isNotStartedLabelShown">Not started</span>
+		<div class="event-card__participants-container" *ngIf="!draft">
+			<mat-icon class="event-card__icon">person</mat-icon>
+			<span class="event-card__participants">{{participants}}</span>
+		</div>
+	</div>
+</section>

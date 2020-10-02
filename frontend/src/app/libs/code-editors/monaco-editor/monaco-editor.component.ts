@@ -22,8 +22,6 @@ import { Theme } from '../shared/enum/themes.enum';
 	styleUrls: ['./monaco-editor.component.scss'],
 })
 export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestroy {
-	private destroy$: Subject<boolean> = new Subject<boolean>();
-
 	@ViewChild('editorContainer') public editorElementReference: ElementRef;
 
 	@Input() public code: string;
@@ -35,6 +33,8 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 	@Output() public codeChange: EventEmitter<string> = new EventEmitter<string>();
 
 	public codeEditor: editor.IStandaloneCodeEditor;
+
+	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (changes.code && this.codeEditor) {

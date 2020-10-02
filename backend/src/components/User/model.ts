@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcryptjs';
-import mainDbConnection from '../../config/connection/main-db';
 import * as crypto from 'crypto';
-import { Document, Schema, Types } from 'mongoose';
 import { NextFunction } from 'express';
+import { Document, Schema, Types } from 'mongoose';
+import mainDbConnection from '../../config/connection/main-db';
 
 /**
  * @export
@@ -16,6 +16,7 @@ export interface IUserModel extends Document {
 	email: string;
 	password: string;
 	isAdmin: boolean;
+	claims: string[];
 	comparePassword: (password: string) => Promise<boolean>;
 }
 
@@ -43,6 +44,10 @@ const UserSchema: Schema = new Schema(
 			type: Schema.Types.Boolean,
 			default: false,
 		},
+		claims: {
+			type: Schema.Types.Array,
+			default: [],
+		},
 	},
 	{
 		collection: 'usermodel',
@@ -56,7 +61,7 @@ const UserSchema: Schema = new Schema(
 	}
 
 	try {
-		const salt: string = await bcrypt.genSalt(10);
+		const salt: string = await bcrypt.genSalt(10); // tslint:disable-line
 
 		const hash: string = await bcrypt.hash(user.password, salt);
 
@@ -72,7 +77,7 @@ const UserSchema: Schema = new Schema(
  */
 UserSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
 	try {
-		const match: boolean = await bcrypt.compare(candidatePassword, this.password);
+		const match: boolean = await bcrypt.compare(candidatePassword, this.password); // tslint:disable-line
 
 		return match;
 	} catch (error) {

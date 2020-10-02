@@ -1,0 +1,18 @@
+@import "variables";
+
+.demo-state {
+	padding: 10px;
+	background: $color-white-100;
+
+  &__title {
+		margin-bottom: 5px;
+
+    &--dark-theme {
+      color: rgba(255, 255, 255, 0.5);
+    }
+	}
+	
+	&--dark-theme {
+		background: $color-black-100;
+	}
+}

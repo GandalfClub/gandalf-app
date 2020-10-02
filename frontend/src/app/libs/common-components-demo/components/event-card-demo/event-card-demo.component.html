@@ -1,0 +1,146 @@
+<app-demo-group class="event-card-demo" [title]="'Event card'">
+	<div class="light-theme">
+		<app-demo-state [title]="'SMALL CARD:'"></app-demo-state>
+		<div class="event-card-demo__states-group">
+			<app-demo-state [title]="'overflowed title'">
+				<app-event-card
+						[title]="eventCardData[0].title + ' and ' + eventCardData[1].title"
+						[startDate]="eventCardData[0].startDate"
+						[endDate]="eventCardData[0].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with no end date'">
+				<app-event-card 
+							[title]="eventCardData[0].title"
+							[startDate]="eventCardData[0].startDate"
+							[participants]="13"
+							[roundedCorner]="roundedCorners[1]"
+							[color]="colors[1]">
+					</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'in-progress [TODO: add progress bar]'">
+				<app-event-card
+						[title]="eventCardData[0].title"
+						[startDate]="eventCardData[0].startDate"
+						[participants]="13"
+						[progress]="69"
+						[roundedCorner]="roundedCorners[2]"
+						[color]="colors[2]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with role Manager, Mentor or HR'">
+				<app-event-card
+						[title]="eventCardData[0].title"
+						[startDate]="eventCardData[0].startDate"
+						[endDate]="eventCardData[0].endDate"
+						[participants]="69"
+						[roles]="eventCardData[0].roles"
+						[color]="colors[3]"
+						[roundedCorner]="roundedCorners[3]">
+				</app-event-card>	
+			</app-demo-state>
+		</div>
+		<app-demo-state [title]="'LARGE CARD:'"></app-demo-state>
+		<div class="event-card-demo__states-group">
+			<app-demo-state [title]="'draft'">
+				<app-event-card
+						[size]="cardSizeLarge"
+						[draft]="true"
+						[title]="eventCardData[1].title"
+						[startDate]="eventCardData[1].startDate"
+						[endDate]="eventCardData[1].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with overflowed title'">
+				<app-event-card
+						[size]="cardSizeLarge"
+						[title]="eventCardData[1].title + ' and ' + eventCardData[1].title + 'and Something else'"
+						[startDate]="eventCardData[1].startDate"
+						[endDate]="eventCardData[1].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+		</div>
+	</div>
+	<div class="dark-theme">
+		<app-demo-state [title]="'SMALL CARD:'" [isDark]="true"></app-demo-state>
+		<div class="event-card-demo__states-group">
+			<app-demo-state [title]="'overflowed title (+not-started label is hidden)'" [isDark]="true">
+				<app-event-card
+						[hideNotStartedLabel]="true"
+						[title]="eventCardData[0].title + ' and ' + eventCardData[1].title"
+						[startDate]="eventCardData[0].startDate"
+						[endDate]="eventCardData[0].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with no end date'" [isDark]="true">
+				<app-event-card 
+							[title]="eventCardData[0].title"
+							[startDate]="eventCardData[0].startDate"
+							[participants]="13"
+							[roundedCorner]="roundedCorners[1]"
+							[color]="colors[1]">
+					</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'in-progress [TODO: add progress bar]'" [isDark]="true">
+				<app-event-card
+						[title]="eventCardData[0].title"
+						[startDate]="eventCardData[0].startDate"
+						[participants]="13"
+						[progress]="69"
+						[roundedCorner]="roundedCorners[2]"
+						[color]="colors[2]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with role Manager, Mentor or HR (only for light-background)'">
+				<app-event-card
+						[title]="eventCardData[0].title"
+						[startDate]="eventCardData[0].startDate"
+						[endDate]="eventCardData[0].endDate"
+						[participants]="69"
+						[roles]="eventCardData[0].roles"
+						[color]="colors[3]"
+						[roundedCorner]="roundedCorners[3]">
+				</app-event-card>	
+			</app-demo-state>
+		</div>
+		<app-demo-state [title]="'LARGE CARD:'" [isDark]="true"></app-demo-state>
+		<div class="event-card-demo__states-group">
+			<app-demo-state [title]="'draft (only for light-background)'">
+				<app-event-card
+						[size]="cardSizeLarge"
+						[draft]="true"
+						[title]="eventCardData[1].title"
+						[startDate]="eventCardData[1].startDate"
+						[endDate]="eventCardData[1].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+			<app-demo-state [title]="'with overflowed title (+not-started label is hidden)'" [isDark]="true">
+				<app-event-card
+						[hideNotStartedLabel]="true"
+						[size]="cardSizeLarge"
+						[title]="eventCardData[1].title + ' and ' + eventCardData[1].title + 'and Something else'"
+						[startDate]="eventCardData[1].startDate"
+						[endDate]="eventCardData[1].endDate"
+						[participants]="13"
+						[roundedCorner]="roundedCorners[0]"
+						[color]="colors[0]">
+				</app-event-card>
+			</app-demo-state>
+		</div>
+	</div>
+</app-demo-group>

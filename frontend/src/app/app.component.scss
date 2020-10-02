@@ -1,0 +1,16 @@
+@import "variables";
+
+:host {
+  box-sizing: border-box;
+
+  color: #333333;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content {
+  text-align: center;
+
+  background-color: $color-black-30;
+}

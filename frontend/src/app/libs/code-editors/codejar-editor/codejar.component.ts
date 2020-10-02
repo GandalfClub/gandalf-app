@@ -23,11 +23,6 @@ import {Language} from '../shared/enum/languages.enum';
 	styleUrls: ['./codejar.component.scss'],
 })
 export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
-	private destroy$: Subject<boolean> = new Subject<boolean>();
-
-	private languagePrism: Prism.Grammar;
-	private languagePrismText: string;
-
 	@ViewChild('editor', { static: true })
 	public editorElementReference: ElementRef;
 
@@ -42,11 +37,10 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 
 	public editor: CodeJar;
 
-	private highlightChanges(editor: HTMLElement): void {
-		let code: string = editor.textContent;
-		code = Prism.highlight(code, this.languagePrism, this.languagePrismText);
-		editor.innerHTML = code;
-	}
+	private destroy$: Subject<boolean> = new Subject<boolean>();
+
+	private languagePrism: Prism.Grammar;
+	private languagePrismText: string;
 
 	public ngAfterViewInit(): void {
 		this.languagePrismText = this.language;
@@ -81,5 +75,11 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 	public ngOnDestroy(): void {
 		this.destroy$.next(true);
 		this.editor.destroy();
+	}
+
+	private highlightChanges(editor: HTMLElement): void {
+		let code: string = editor.textContent;
+		code = Prism.highlight(code, this.languagePrism, this.languagePrismText);
+		editor.innerHTML = code;
 	}
 }
