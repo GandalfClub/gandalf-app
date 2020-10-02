@@ -3,8 +3,3 @@ export enum InputType {
 	Password = 'password',
 	Email = 'email'
 }
-
-export enum PasswordVisibility {
-	On = 'visibility',
-	Off = 'visibility_off'
-}

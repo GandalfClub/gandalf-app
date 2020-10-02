@@ -3,7 +3,9 @@ import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { InputType, PasswordVisibility } from '../../shared/input-type.enum';
+import { PasswordVisibility } from '../../shared/password-visibility.enum';
+
+import { InputType } from '../../shared/input-type.enum';
 
 @Component({
 	selector: 'app-input',
@@ -58,7 +60,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	private syncValidators: ValidatorFn[] | null = null;
 	private asyncValidators: AsyncValidatorFn[] | null = null;
 	private defaultValue: number | string | boolean | null | undefined;
-	private ngUnsubscribe: Subject<any> = new Subject();
+	private destroy$: Subject<any> = new Subject();
 
 	public get icon(): string {
 		return Boolean(this.secured) ? PasswordVisibility.On : PasswordVisibility.Off;
@@ -130,8 +132,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	}
 
 	public ngOnDestroy(): void {
-		this.ngUnsubscribe.next();
-		this.ngUnsubscribe.complete();
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 	public switchToDisable(): void {
@@ -210,7 +212,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	}
 
 	private subscribeToChanges(): void {
-		this.formControl.valueChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => {
+		this.formControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
 		this.errorsFromFormControl();
 		});
 	}
@@ -219,13 +221,26 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 		setTimeout(() => {
 			this.errorsArray = [];
 			const errors: ValidationErrors = this.formControl.errors;
-			this.getCustomErrorsArray(errors);
+			if (errors) {
+				this.getCustomErrorsArray(errors);
+			}
 		}, 0);
 	}
 
+	// private isEmpty(obj: any): boolean {
+	// 	if (obj) {
+	// 		for (const key in obj) {
+	// 			if (Boolean(key) && ) {
+	// 				return false;
+	// 			}
+	// 		}
+	// 		return true;
+	// 	}
+	// }
+
 	private getCustomErrorsArray(errors: ValidationErrors): void {
 		const errorKeys: string[] = errors ? Object.keys(errors) : null;
-		if (errorKeys?.length > 0) {
+		if (errorKeys.length > 0) {
 			errorKeys.map((errorKey: string) => {
 				if (typeof(errors[errorKey]) === 'string') {
 					this.errorsArray.push(errors[errorKey]);
@@ -233,6 +248,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 			});
 		}
 		this.changeDetector.detectChanges();
+		console.log(this.formControlName, this.formControl)
 	}
 
 }
