@@ -32,7 +32,7 @@ describe('ComponentsDemoGroupComponent', () => {
 		});
 
 		it('should show title', () => {
-			expect(htmlElement.querySelector('h1.demo-group__title').textContent).toContain(title);
+			expect(htmlElement.querySelector('h3.demo-group__title').textContent).toContain(title);
 		});
 	});
 });

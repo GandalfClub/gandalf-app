@@ -1,0 +1,9 @@
+.mat-slide-toggle-bar-dark {
+	color: $color-white;
+
+	@include mat-slide-toggle-theme($app-theme-dark);
+
+	.mat-slide-toggle-bar {
+		background-color: $color-white-30;
+	}
+}
