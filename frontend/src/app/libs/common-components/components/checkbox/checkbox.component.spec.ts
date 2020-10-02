@@ -10,16 +10,26 @@ import { CheckboxComponent } from './checkbox.component';
 const testData: CheckboxGroupDataDemo = {
 	options: [
 		{
-			title: 'Option 1',
+			title: 'Active 1',
 			value: 1,
+			checked: true
 		},
 		{
-			title: 'Option 2',
+			title: 'Active 2',
 			value: 2,
+			checked: false
 		},
 		{
-			title: 'Option 3',
+			title: 'Disabled 1',
 			value: 3,
+			disabled: true,
+			checked: true
+		},
+		{
+			title: 'Disabled 2',
+			value: 4,
+			disabled: true,
+			checked: false
 		}
 	],
 	labelField: 'title',
@@ -66,9 +76,9 @@ describe('CheckboxComponent', () => {
 				fixture.detectChanges();
 			});
 
-			it('should show dark checkbox button', () => {
-				expect(htmlElement.querySelector('.mat-checkbox-dark')).toBeTruthy();
+			it('should show dark checkbox', () => {
 				expect(htmlElement.querySelector('.mat-checkbox')).toBeTruthy();
+				expect(htmlElement.querySelector('.mat-checkbox-dark')).toBeTruthy();
 			});
 		});
 	});
@@ -84,7 +94,8 @@ describe('CheckboxComponent', () => {
 		});
 
 		it('should show checkbox labels', () => {
-			htmlElement.querySelectorAll('.mat-checkbox').forEach((labelElement: HTMLElement, index: number) => {
+			htmlElement.querySelectorAll('.mat-checkbox-label').forEach((labelElement: HTMLElement, index: number) => {
+				console.log(labelElement.textContent);
 				expect(labelElement.textContent).toContain(testData.options[index].title);
 			});
 		});
@@ -109,22 +120,18 @@ describe('CheckboxComponent', () => {
 			component.labelField = testData.labelField;
 			fixture.detectChanges();
 
-			checkboxes = fixture.debugElement.queryAll(By.css('.mat-checkbox-container'));
+			checkboxes = fixture.debugElement.queryAll(By.css('.checkbox-group'));
 		});
 
-		describe('when click unchecked radio', () => {
+		describe('when click unchecked checkbox', () => {
 			beforeEach(() => {
-				spyOn(component.onChange, 'emit');
+				spyOn(component.change, 'emit');
 				checkboxes[0].nativeElement.click();
 				fixture.detectChanges();
 			});
 
-			it('should emit onChange @Output', () => {
-				expect(component.onChange.emit).toHaveBeenCalled();
-			});
-
-			it('value should be changed', () => {
-				expect(component.value).toBe(testData.options[0].value);
+			it('should emit change @Output', () => {
+				expect(component.change.emit).toHaveBeenCalled();
 			});
 		});
 

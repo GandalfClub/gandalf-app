@@ -8,6 +8,10 @@
 		[value]="isDefined(valueField) ? option[valueField] : (index + 1)"
 		*ngFor="let option of options; let index = index"
 		(change)="check($event)">
+		<span class="checkbox-group__checkbox-label" 
+				[class.checkbox-group__checkbox-label--disabled]="option.disabled" 
+				[class.checkbox-group__checkbox-label--dark-theme]="isDarkTheme">
 			{{option[labelField]}}
+		</span>
 	</mat-checkbox>
 </div>

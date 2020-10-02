@@ -18,7 +18,7 @@ export class CheckboxComponent {
 	@Input()
 	public options: any[];
 	@Output()
-	public onChange: EventEmitter<any> = new EventEmitter<any>();
+	public change: EventEmitter<any> = new EventEmitter<any>();
 	@Input()
 	public labelField: string;
 	@Input()
@@ -27,8 +27,7 @@ export class CheckboxComponent {
 	public value: any;
 
 	public check(event: any): void {
-		const checkboxValue: any = event.source.value;
-		this.onChange.emit(checkboxValue);
+		this.change.emit(event);
 	}
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
