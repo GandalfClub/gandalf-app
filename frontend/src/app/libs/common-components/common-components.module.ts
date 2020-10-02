@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,14 +25,10 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ReactiveFormsModule, NgModel } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { AvatarModule } from 'ngx-avatar';
-
 
 @NgModule({
 	declarations: [
@@ -88,7 +83,12 @@ import { AvatarModule } from 'ngx-avatar';
 		TabsComponent,
 		TabsPanelComponent,
 		TagListComponent,
-		EventCardComponent
+		EventCardComponent,
+		MatBadgeModule,
+		MatToolbarModule,
+		MatSelectModule,
+		MatMenuModule,
+		AvatarModule
 	],
 	providers: [
 		{
