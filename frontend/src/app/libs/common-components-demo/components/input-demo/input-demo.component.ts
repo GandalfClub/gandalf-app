@@ -15,7 +15,6 @@ export class InputDemoComponent implements OnInit {
 	public emailValidators: ValidatorFn[] = [this.emailValidator, this.requiredValidator, this.lengthValidator];
 	public passwordValidators: ValidatorFn[] = [this.requiredValidator, this.lengthValidator];
 
-
 	public inputTextDemoForm: FormGroup;
 	public inputEmailDemoForm: FormGroup;
 	public inputPasswordDemoForm: FormGroup;

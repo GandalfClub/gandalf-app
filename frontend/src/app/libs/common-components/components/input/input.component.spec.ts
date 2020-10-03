@@ -79,21 +79,25 @@ describe('InputComponent', () => {
 				expect(component.formControl.errors).toBeTruthy();
 			}));
 
-			it('should not render errors if unmarked', () => {
+			it('should not render errors if unmarked', fakeAsync(() => {
+				component.validate();
+				flush();
+
 				expect(html.innerText.includes(errorText)).toBeFalsy();
-			});
+			}));
+
 			it('should set errors text to errorsArray', fakeAsync(() => {
 				component.validate();
 				flush();
 
 				expect(component.errorsArray.includes(errorText)).toBeTruthy();
 			}));
+
 			it('should render error message', fakeAsync(() => {
 				component.validate();
 				component.formControl.markAsTouched();
 				flush();
 				fixture.detectChanges();
-				console.log('end testing', html.innerText, component.formControl, component.errorsArray)
 
 				expect(html.innerText.includes(errorText)).toBeTruthy();
 			}));
