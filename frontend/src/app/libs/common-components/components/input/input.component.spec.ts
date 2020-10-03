@@ -1,5 +1,5 @@
 import { forwardRef } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,7 +20,7 @@ describe('InputComponent', () => {
 	const lengthValidator: ValidatorFn = function userNameValidator(control: FormControl): ValidationErrors | null {
 		const minLength: number = 6;
 		if (control.value.length < minLength) {
-			return {valueLength: errorText};
+			return {message: errorText};
 		}
 		return null;
 	};
@@ -63,7 +63,6 @@ describe('InputComponent', () => {
 
 		it('placeholder input should be rendered',  () => {
 			expect (html.innerHTML.includes(placeholder)).toBeTruthy();
-
 			});
 	});
 
@@ -73,32 +72,31 @@ describe('InputComponent', () => {
 				fixture.detectChanges();
 			});
 
-			it('should generate errors in formControl', () => {
-				expect(component.formControl.errors.valueLength).toBe(errorText);
-			});
+			it('should generate error in formControl', fakeAsync(() => {
+				component.validate();
+				flush();
+
+				expect(component.formControl.errors).toBeTruthy();
+			}));
 
 			it('should not render errors if unmarked', () => {
 				expect(html.innerText.includes(errorText)).toBeFalsy();
 			});
-			it('should set errors text to errorsArray', async () => {
-				fixture.detectChanges();
-				await new Promise((resolve: any) => {
-					setTimeout(() => {
-						resolve();
-						}, 0);
-				});
+			it('should set errors text to errorsArray', fakeAsync(() => {
+				component.validate();
+				flush();
+
 				expect(component.errorsArray.includes(errorText)).toBeTruthy();
-			});
-			it('should render error message', async () => {
+			}));
+			it('should render error message', fakeAsync(() => {
+				component.validate();
 				component.formControl.markAsTouched();
-				await new Promise((resolve: any) => {
-					setTimeout(() => {
-						fixture.detectChanges();
-						resolve();
-						}, 0);
-				});
+				flush();
+				fixture.detectChanges();
+				console.log('end testing', html.innerText, component.formControl, component.errorsArray)
+
 				expect(html.innerText.includes(errorText)).toBeTruthy();
-			});
+			}));
 		});
 
 		describe('default value', () => {
@@ -111,5 +109,4 @@ describe('InputComponent', () => {
 				expect(html.innerText.includes(value)).toBeTruthy();
 			});
 		});
-
 });

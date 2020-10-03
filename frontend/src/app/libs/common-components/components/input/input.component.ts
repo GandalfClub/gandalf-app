@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, EventEmitter, Output, OnInit, Optional, Host, SkipSelf, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, EventEmitter, Output, OnInit, Optional, Host, SkipSelf, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn} from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { PasswordVisibility } from '../../shared/password-visibility.enum';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 import { InputType } from '../../shared/input-type.enum';
 
@@ -20,7 +21,7 @@ import { InputType } from '../../shared/input-type.enum';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
+export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit {
 
 	@Input() public inputValidators: ValidatorFn[] = null;
 
@@ -59,8 +60,10 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 
 	private syncValidators: ValidatorFn[] | null = null;
 	private asyncValidators: AsyncValidatorFn[] | null = null;
-	private defaultValue: number | string | boolean | null | undefined;
+
 	private destroy$: Subject<any> = new Subject();
+
+	private errorOnInlineValidators: string = 'All inline validators are ignored';
 
 	public get icon(): string {
 		return Boolean(this.secured) ? PasswordVisibility.On : PasswordVisibility.Off;
@@ -99,7 +102,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	) {}
 
 	public ngOnInit(): void {
-		this.defaultValue = Boolean(this.value) ?  this.value : null;
+
 		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
 		if (this.formControlName != null && this.parentFormContainer != null) {
 
@@ -113,22 +116,17 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 		}
 
 		this.subscribeToChanges();
-		this.inlineSyncValidators = this.getInlineSyncValidatorsFromFormControl();
-		this.inlineAsyncValidators = this.getInlineAsyncValidatorsFromFormControl();
+		this.checkInlineValidators();
 		this.setSyncValidator();
 		this.setAsyncValidator();
-		this.setValidatorsToFormControl();
 		this.switchToDisable();
-		this.errorsFromFormControl();
-		this.getDefaultValue();
 	}
-
 	public ngAfterViewInit(): void {
-		if (Boolean(this.defaultValue)) {
-			setTimeout(() => {
-					this.formControl.setValue(this.defaultValue);
-			});
-		}
+		setTimeout(() => {
+			if (Boolean(this.value)) {
+				this.formControl.setValue(this.value);
+			}
+		}, 0);
 	}
 
 	public ngOnDestroy(): void {
@@ -147,12 +145,15 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 	public onChange: any = () => undefined;
 
 	public writeValue(value: any): void {
-		this.value = value;
+		if (!Boolean(this.value) ) {
+			this.value = value;
+		}
 		this.onChange(value);
 		if (this.formControl && this.formControl.value) {
 			this.onTouched();
 		}
 		this.valueChange.emit(value);
+		this.validate();
 	}
 
 	public onValueChange(value: any): void {
@@ -162,11 +163,13 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 			this.onChange(value);
 			this.valueChange.emit(value);
 		}
+		this.validate();
 	}
 
 	public onValueInput(value: any): void {
 		this.value = value;
 		this.onChange(value);
+		this.validate();
 	}
 
 	public registerOnChange(fn: any): void {
@@ -182,73 +185,99 @@ export class InputComponent implements ControlValueAccessor, OnInit, AfterViewIn
 		if (this.asyncValidators.length > 0) {this.formControl.setAsyncValidators(this.asyncValidators); }
 	}
 
-	private getDefaultValue(): void {
-		if (this.formControl?.value && !Boolean(this.defaultValue)) {
-			this.defaultValue = this.formControl?.value;
-		}
+	public validate(): void {
+		this.errorsArray = [];
+		this.invokeSyncValidators();
+		this.invokeAsyncValidators().
+			then(() => {
+				if (Boolean(this.errorsArray?.length)) {
+					this.formControl.setErrors({error: 'formControl has error'});
+					this.changeDetector.detectChanges();
+				} else {
+					this.formControl.setErrors(null);
+					this.changeDetector.detectChanges();
+				}
+			});
 	}
 
 	private setSyncValidator(): void {
-		this.syncValidators = [].concat(this.inputValidators, this.changeValidators, this.inlineSyncValidators)
+		this.syncValidators = [].concat(this.inputValidators, this.changeValidators)
 		.filter((validator: ValidatorFn | null) => validator);
 	}
 	private setAsyncValidator(): void {
-		this.asyncValidators = [].concat(this.inputValidatorsAsync, this.changeValidatorsAsync, this.inlineAsyncValidators)
+		this.asyncValidators = [].concat(this.inputValidatorsAsync, this.changeValidatorsAsync)
 		.filter((validator: ValidatorFn | null) => validator);
 	}
 
-	private getInlineSyncValidatorsFromFormControl(): ValidatorFn[] {
-		if (this.formControl?.validator) {
-			return [].concat(this.formControl.validator);
+	private invokeSyncValidators(): void {
+		if (Boolean(this.syncValidators?.length)) {
+			this.syncValidators.map((validator: ValidatorFn ) => {
+				const error: ValidationErrors = validator(this.formControl);
+				// this.formControl.setErrors(error);
+				if (error?.message) {
+				this.getCustomErrorsArray(error);
+				}
+
+			});
 		}
-		return null;
 	}
 
-	private getInlineAsyncValidatorsFromFormControl(): AsyncValidatorFn[] {
-		if (this.formControl.asyncValidator) {
-			return [].concat(this.formControl.asyncValidator);
+	private async invokeAsyncValidators(): Promise<any> {
+		return new Promise((resolve: (value?: any) => void) => {
+			if (Boolean (this.asyncValidators?.length)) {
+				this.asyncValidators.map(async (validator: AsyncValidatorFn) => {
+					let asyncError: Promise<ValidationErrors | null> | Observable<ValidationErrors | null> = validator(this.formControl);
+					asyncError = this.promiseToObservable(asyncError);
+					asyncError.pipe(take(1)).subscribe((error: ValidationErrors) => {
+						if (error?.message && !this.errorsArray?.includes(error.message)) {
+							this.getCustomErrorsArray(error);
+						}
+						resolve();
+					});
+				});
+			} else {
+				resolve();
+			}
+		});
+
+	}
+
+	private isAsyncErrorPromise(error: Promise<ValidationErrors | null> | Observable<ValidationErrors | null>): boolean {
+		return (error as Promise<ValidationErrors>).then !== undefined;
+	}
+
+	private promiseToObservable(error: Promise<ValidationErrors | null> | Observable<ValidationErrors | null>): Observable<ValidationErrors> {
+
+		if (this.isAsyncErrorPromise(error)) {
+			return fromPromise(error as Promise<ValidationErrors>);
 		}
-		return null;
+		return error as Observable<ValidationErrors>;
+	}
+
+	private checkInlineValidators(): void {
+		if (this.formControl.validator) {
+			this.formControl.clearValidators();
+			throw new Error(this.errorOnInlineValidators);
+		}
+		if (this.formControl.asyncValidator) {
+			this.formControl.clearAsyncValidators();
+			throw new Error(this.errorOnInlineValidators);
+		}
 	}
 
 	private subscribeToChanges(): void {
 		this.formControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-		this.errorsFromFormControl();
+			if (Boolean(this.errorsArray?.length)) {
+				this.formControl.setErrors({error: 'formControl has error'});
+			}
 		});
 	}
 
-	private errorsFromFormControl(): void {
-		setTimeout(() => {
-			this.errorsArray = [];
-			const errors: ValidationErrors = this.formControl.errors;
-			if (errors) {
-				this.getCustomErrorsArray(errors);
-			}
-		}, 0);
-	}
-
-	// private isEmpty(obj: any): boolean {
-	// 	if (obj) {
-	// 		for (const key in obj) {
-	// 			if (Boolean(key) && ) {
-	// 				return false;
-	// 			}
-	// 		}
-	// 		return true;
-	// 	}
-	// }
-
-	private getCustomErrorsArray(errors: ValidationErrors): void {
-		const errorKeys: string[] = errors ? Object.keys(errors) : null;
-		if (errorKeys.length > 0) {
-			errorKeys.map((errorKey: string) => {
-				if (typeof(errors[errorKey]) === 'string') {
-					this.errorsArray.push(errors[errorKey]);
-				}
-			});
+	private getCustomErrorsArray(error: ValidationErrors): void {
+		if (typeof(error.message === 'string')) {
+			this.errorsArray.push(error.message);
 		}
 		this.changeDetector.detectChanges();
-		console.log(this.formControlName, this.formControl)
 	}
 
 }
