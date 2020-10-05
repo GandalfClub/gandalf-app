@@ -1,0 +1,10 @@
+.mat-checkbox-dark {
+	color: $color-white;
+	@include mat-checkbox-theme ($app-theme-dark);
+
+	&.mat-checkbox-disabled {
+		.mat-checkbox-label {
+			color: $color-white-50;
+		}
+	}
+}
