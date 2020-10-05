@@ -1,0 +1,19 @@
+<app-demo-group class="progress-demo" [title]="'Slide toggle'">
+    <div class="light-theme">
+        <app-demo-state [title]="'active'" [isDark]="false">
+            <app-progress-bar
+                [progress]="50"
+                [theme]=lightTheme>
+            </app-progress-bar>
+        </app-demo-state>
+    </div>
+    <div class="dark-theme">
+        <app-demo-state [title]="'active'" [isDark]="true">
+            <app-progress-bar
+                [progress]="50"
+                [theme]=darkTheme>
+            </app-progress-bar>
+        </app-demo-state>
+	</div>
+	<!-- <mat-progress-bar mode="determinate" value="60"></mat-progress-bar> -->
+</app-demo-group>

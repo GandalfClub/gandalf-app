@@ -18,6 +18,7 @@ import { EventDateComponent } from './components/event-date/event-date.component
 import { EventTimeComponent } from './components/event-time/event-time.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 		FormsModule,
 		MatCardModule,
 		MatCheckboxModule,
-		MatMenuModule
+		MatMenuModule,
+		MatProgressBarModule
 	],
 	exports: [
 		MatInputModule,
@@ -58,7 +60,10 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 		EventTileComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
-		SlideToggleComponent],
+		SlideToggleComponent,
+		MatProgressBarModule,
+		ProgressBarComponent
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
