@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
@@ -10,11 +10,13 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 export class ProgressBarComponent {
 
 @Input()
-  public progress: number = 20;
+  public progress: number;
 
 @Input()
-	public theme: ComponentTheme = ComponentTheme.Light;
+  public theme: ComponentTheme = ComponentTheme.Light;
 
-
+  public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
 
 }
