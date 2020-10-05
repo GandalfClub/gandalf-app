@@ -1,0 +1,28 @@
+.tag-list {
+	.mat-chip.mat-standard-chip {
+		.mat-chip-remove {
+			color: $color-black-50;
+			opacity: 1;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		
+		&.mat-chip-selected {
+			.mat-chip-remove {
+				color: $color-white-100;
+				opacity: 1;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&--dark-theme {
+		.mat-chip.mat-standard-chip {
+			color: $color-black-100;
+			background-color: $color-white-100;
+		}
+	}
+}

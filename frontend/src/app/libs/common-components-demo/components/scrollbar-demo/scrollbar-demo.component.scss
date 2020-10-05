@@ -1,0 +1,20 @@
+@import "variables";
+
+.scrollbar-demo {
+  &__container {
+    width: 400px;
+    height: 300px;
+    overflow: auto;
+
+    border: 1px solid $color-black-50;
+
+    &--dark-theme {
+      border-color: $color-white-50;
+    }
+  }
+
+  &__overflowing-content {
+    width: 600px;
+    height: 500px;
+  }
+}
