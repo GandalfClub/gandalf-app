@@ -68,7 +68,6 @@ describe('CheckboxComponent', () => {
 		});
 	});
 
-
 	describe('when @Input gets valueField', () => {
 		beforeEach(() => {
 			component.valueField = testData.valueField;
