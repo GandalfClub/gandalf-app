@@ -15,20 +15,20 @@ $app-theme-dark: mat-dark-theme(
 );
 
 $app-typography: mat-typography-config(
-	$font-family:		$font-main-regular,
-	$display-4: 		mat-typography-level(112px, 112px, normal, $font-main-regular, $letter-spacing: -0.05em),
-  $display-3:     mat-typography-level(56px, 56px, normal, $font-main-regular, $letter-spacing: -0.02em),
-  $display-2:     mat-typography-level(45px, 48px, normal, $font-main-regular, $letter-spacing: -0.005em),
-	$display-1:     mat-typography-level(34px, 40px, normal, $font-main-regular),
-	$headline: 			mat-typography-level(48px, 56px, bold, $font-main-bold, 0),
-	$title:					mat-typography-level(32px, 40px, bold, $font-main-bold, 0),
-	$subheading-2: 	mat-typography-level(24px, 28px, bold, $font-main-bold, 0),
-	$subheading-1: 	mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
-	$body-2:        mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
-	$body-1:        mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
-	$caption:				mat-typography-level(12px, 17px, normal, $font-main-regular, 0),
-	$button:       	mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
-  $input:         mat-typography-level(inherit, 1.125, normal, $font-main-regular)
+	$font-family: $font-main-regular,
+	$display-4: mat-typography-level(112px, 112px, normal, $font-main-regular, $letter-spacing: -0.05em),
+	$display-3: mat-typography-level(56px, 56px, normal, $font-main-regular, $letter-spacing: -0.02em),
+	$display-2: mat-typography-level(45px, 48px, normal, $font-main-regular, $letter-spacing: -0.005em),
+	$display-1: mat-typography-level(34px, 40px, normal, $font-main-regular),
+	$headline: mat-typography-level(48px, 56px, bold, $font-main-bold, 0),
+	$title:	mat-typography-level(32px, 40px, bold, $font-main-bold, 0),
+	$subheading-2: mat-typography-level(24px, 28px, bold, $font-main-bold, 0),
+	$subheading-1: mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
+	$body-2: mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$body-1: mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$caption: mat-typography-level(12px, 17px, normal, $font-main-regular, 0),
+	$button: mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
+	$input: mat-typography-level(inherit, 1.125, normal, $font-main-regular)
 );
 
 @include mat-core($app-typography);
@@ -39,4 +39,5 @@ $app-typography: mat-typography-config(
 @import "./app/libs/common-components/components/popover/popover.theme.scss";
 @import "./app/libs/common-components/components/input/input.theme.scss";
 @import "./app/libs/common-components/components/tabs/tabs.theme.scss";
-@import "./app/libs/common-components/components/tag-list/tag-list.theme.scss"
+@import "./app/libs/common-components/components/tag-list/tag-list.theme.scss";
+@import "./app/libs/common-components/components/progress-bar/progress-bar.theme.scss"
