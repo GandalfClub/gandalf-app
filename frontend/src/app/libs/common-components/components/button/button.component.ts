@@ -12,6 +12,7 @@ export class ButtonComponent {
 	public basicType: ButtonType = ButtonType.Basic;
 	public outlinedType: ButtonType = ButtonType.Outlined;
 	public flatType: ButtonType = ButtonType.Flat;
+	public iconType: ButtonType = ButtonType.Icon;
 
 	@Input()
 	public type: ButtonType = ButtonType.Basic;
@@ -21,6 +22,12 @@ export class ButtonComponent {
 
 	@Input()
 	public disabled: boolean = false;
+
+	@Input()
+	public disableRipple: boolean = false;
+
+	@Input()
+	public disableHover: boolean = false;
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;

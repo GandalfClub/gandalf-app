@@ -1,3 +1,37 @@
-<mat-toolbar>
-	<app-logo></app-logo>
+<mat-toolbar class="header">
+	<div class="header__logo-container">
+		<img src="../../../../../assets/images/logo.svg">
+	</div>
+	<div class="header__admin-buttons" *ngIf="isAdminUser">
+		<app-button 
+				class="header__admin-button"
+				[class.header__admin-button--active]="adminLinksActivation.get('events')"
+				[theme]="darkTheme" 
+				[disableRipple]="true" 
+				[disableHover]="true"
+				(click)="onEventsClick()">
+			{{localization.events}}
+		</app-button>
+		<app-button 
+				class="header__admin-button" 
+				[class.header__admin-button--active]="adminLinksActivation.get('administration')"
+				[theme]="darkTheme"
+				[disableRipple]="true" 
+				[disableHover]="true"
+				(click)="onAdministrationClick()">
+			{{localization.administration}}
+		</app-button>
+	</div>
+	<div class="header__common-buttons">
+		<app-localization></app-localization>
+		<app-button class="header__button" *ngIf="isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">{{localization.create_event}}</app-button>
+		<ng-container *ngIf="isUnauthorizedUser">
+			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">{{localization.sign_in}}</app-button>
+			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">{{localization.sign_up}}</app-button>
+		</ng-container>
+		<ng-container *ngIf="!isUnauthorizedUser">
+
+			<app-notifications class="header__notifications"></app-notifications>
+		</ng-container>
+	</div>
 </mat-toolbar>

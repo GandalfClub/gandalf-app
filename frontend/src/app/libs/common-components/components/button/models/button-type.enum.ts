@@ -1,5 +1,6 @@
 export enum ButtonType {
 	Basic = 'basic',
 	Outlined = 'outlined',
-	Flat = 'flat'
+	Flat = 'flat',
+	Icon = 'icon'
 }

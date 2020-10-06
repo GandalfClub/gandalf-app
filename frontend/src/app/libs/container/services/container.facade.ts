@@ -4,29 +4,40 @@ import { Notification } from '../models/notification';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
+import { Claim } from '../models/claim';
+import { EntityStatus } from '../../auth/models/entity-status';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ContainerFacadeService {
 
-  private fakeRole: String = 'admin';
-  private fakeNotifications: Notification[] = [
-    { title: 'Test 1', content: 'FAKE NOTIFICATION' },
-    { title: 'Test 2', content: 'Content' }
-  ];
+	private fakeNotifications: EntityWrapper<Notification[]> = {
+		status: EntityStatus.Success,
+		value: [
+			{ title: 'Notification 1', content: 'content 1' },
+			{ title: 'Notification 2', content: 'content 2' }
+		]
+	};
 
-  constructor(private authFacadeService: AuthFacadeService) { }
+	private fakeUser: EntityWrapper<User> = {
+		status: EntityStatus.Success,
+		value: {
+			id: '1',
+			email: undefined,
+			isAdmin: undefined,
+			claims: [Claim.EventManager],
+		}
+	};
 
-  public get user$(): Observable<EntityWrapper<User>> {
-    return this.authFacadeService.user$;
-  }
+	constructor(private authFacadeService: AuthFacadeService) { }
 
-  public get role$(): Observable<String> {
-    return of(this.fakeRole);
-  }
+	public get user$(): Observable<EntityWrapper<User>> {
+		return of(this.fakeUser);
+		//	return this.authFacadeService.user$;
+	}
 
-  public get notifications$(): Observable<Notification[]> {
-    return of(this.fakeNotifications)
-  }
+	public get notifications$(): Observable<EntityWrapper<Notification[]>> {
+		return of(this.fakeNotifications);
+	}
 }

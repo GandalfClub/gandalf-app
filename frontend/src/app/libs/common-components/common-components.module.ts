@@ -28,7 +28,6 @@ import { EventCardDateComponent } from './components/event-card/components/event
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
-import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
 	declarations: [
@@ -87,8 +86,7 @@ import { AvatarModule } from 'ngx-avatar';
 		MatBadgeModule,
 		MatToolbarModule,
 		MatSelectModule,
-		MatMenuModule,
-		AvatarModule
+		MatMenuModule
 	],
 	providers: [
 		{

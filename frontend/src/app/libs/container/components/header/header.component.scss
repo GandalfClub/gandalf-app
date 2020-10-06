@@ -1,14 +1,39 @@
-.mat-toolbar.mat-primary {
-	position: sticky;
-	top: 0;
-	z-index: 1;
-}
+@import "variables";
 
-.mat-toolbar {
-	display: flex;
-	flex: 1 1 auto;
-	justify-content: space-between;
-	height: 80px;
-	padding: 0 70px 0 72px;
-	background: #212121;
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  display: flex;
+  height: 80px;
+  padding: 0 72px;
+
+  background: $color-black;
+
+  &__common-buttons {
+    margin-left: auto;
+  }
+
+  &__button {
+    margin-left: 16px;
+	}
+	
+  &__admin-button {
+    margin-left: 40px;
+	}
+	
+  &__notifications {
+    margin: 0 16px;
+	}
+
+  &__logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 184px;
+    height: 40px;
+
+    background: #ffffff;
+  }
 }

@@ -1,0 +1,14 @@
+@import "../drop-down-menu/drop-down-menu-theme.mixin";
+
+.notifications {
+	&__menu {
+		@include drop-down-menu-theme;
+	}
+
+	&__menu-item {
+		&.mat-menu-item {
+			height: unset;
+			min-height: 48px;
+		}
+	}
+}

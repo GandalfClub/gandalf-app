@@ -1,0 +1,12 @@
+@import "variables";
+@import "../drop-down-menu/menu-item-hover.mixin";
+
+.localization {
+	&__menu-item {
+		@include menu-item-hover;
+    text-align: center;
+    color: $color-white;
+  }
+}
+
+  

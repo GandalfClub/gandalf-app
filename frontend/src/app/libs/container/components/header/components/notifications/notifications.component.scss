@@ -1,0 +1,22 @@
+@import "variables";
+@import "../drop-down-menu/menu-item-hover.mixin";
+
+.notifications {
+	display: inline-block;
+
+	&__menu-item {
+		color: $color-white;
+	}
+
+	&__title {
+		@include text-h4;
+	}
+
+	&__content {
+		@include text-small;
+	}
+
+	&__menu-item {
+		@include menu-item-hover;
+	}
+}

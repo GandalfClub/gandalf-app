@@ -1,0 +1,10 @@
+@import "./components/localization/localization.theme.scss";
+@import "./components/notifications/notifications.theme.scss";
+
+.header {
+	&__admin-button--active {
+		& .button.button--dark-theme {
+			color: $color-primary;
+		}
+	}
+}

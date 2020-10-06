@@ -8,4 +8,5 @@ export interface User {
 	secondName?: string;
 	mobilePhone?: string;
 	password?: string;
+	claims?: string[];
 }

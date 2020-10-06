@@ -1,4 +1,4 @@
 export interface Notification {
-	title: String;
-	content: String;
+	title: string;
+	content: string;
 }
