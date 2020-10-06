@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
@@ -33,8 +34,8 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		SlideToggleComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
+		InputComponent,
 		ProgressBarComponent,
-		ButtonComponent,
 		ScrollbarDirective,
 		PopoverComponent,
 		RadioGroupComponent,
@@ -77,6 +78,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
+		InputComponent,
 		MatProgressBarModule,
 		ProgressBarComponent,
 		RadioGroupComponent,

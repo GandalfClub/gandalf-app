@@ -8,7 +8,9 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 import { DemoGroupComponent } from './demo-group/demo-group.component';
 import { ButtonDemoComponent } from './components/button-demo/button-demo.component';
 import { SlideToggleDemoComponent } from './components/slide-toggle-demo/slide-toggle-demo.component';
+import { InputDemoComponent } from './components/input-demo/input-demo.component';
 import { ProgressBarDemoComponent } from './components/progress-bar-demo/progress-bar-demo.component';
+
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
@@ -24,6 +26,7 @@ import { EventCardDemoComponent } from './components/event-card-demo/event-card-
 		DemoStateComponent,
 		SlideToggleDemoComponent,
 		ButtonDemoComponent,
+		InputDemoComponent,
 		ProgressBarDemoComponent,
 		ScrollbarDemoComponent,
 		PopoverDemoComponent,
