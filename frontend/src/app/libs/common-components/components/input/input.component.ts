@@ -159,16 +159,14 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	public onValueChange(value: any): void {
 		this.onTouched();
 		if (Boolean(this.value) && this.value !== value) {
-			this.value = value;
-			this.onChange(value);
+			this.setValue(value);
 			this.valueChange.emit(value);
 		}
 		this.validate();
 	}
 
 	public onValueInput(value: any): void {
-		this.value = value;
-		this.onChange(value);
+		this.setValue(value);
 		this.validate();
 	}
 
@@ -200,6 +198,11 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 			});
 	}
 
+	private setValue(value: any): void {
+		this.value = value;
+		this.onChange(value);
+	}
+
 	private setSyncValidator(): void {
 		this.syncValidators = [].concat(this.inputValidators, this.changeValidators)
 		.filter((validator: ValidatorFn | null) => validator);
@@ -213,7 +216,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 		if (Boolean(this.syncValidators?.length)) {
 			this.syncValidators.map((validator: ValidatorFn ) => {
 				const error: ValidationErrors = validator(this.formControl);
-				// this.formControl.setErrors(error);
 				if (error?.message) {
 				this.getCustomErrorsArray(error);
 				}
@@ -274,9 +276,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	}
 
 	private getCustomErrorsArray(error: ValidationErrors): void {
-		if (typeof(error.message === 'string')) {
-			this.errorsArray.push(error.message);
-		}
+		this.errorsArray.push(error.message);
 		this.changeDetector.detectChanges();
 	}
 
