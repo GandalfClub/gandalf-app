@@ -1,12 +1,19 @@
 @import "variables";
-@import "../drop-down-menu/menu-item-hover.mixin";
+@import "../drop-down-menu/drop-down-menu-theme";
 
 .localization {
+	@include drop-down-menu-container;
+
 	&__menu-item {
 		@include menu-item-hover;
     text-align: center;
     color: $color-white;
-  }
+	}
+	
+	&__menu-trigger {
+		display: flex;
+		align-items: center;
+	}
 }
 
   

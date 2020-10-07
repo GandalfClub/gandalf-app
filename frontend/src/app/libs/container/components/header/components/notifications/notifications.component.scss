@@ -1,22 +1,33 @@
 @import "variables";
-@import "../drop-down-menu/menu-item-hover.mixin";
+@import "../drop-down-menu/drop-down-menu-theme";
 
 .notifications {
-	display: inline-block;
+	@include drop-down-menu-container;
 
-	&__menu-item {
+  &__menu-trigger {
+    display: flex;
+    align-items: center;
+
 		color: $color-white;
-	}
+		cursor: pointer;
+		user-select: none;
+  }
 
-	&__title {
-		@include text-h4;
-	}
+  &__menu-item {
+		padding-top: 4px;
+		height: 60px;
+    color: $color-white;
+  }
 
-	&__content {
-		@include text-small;
-	}
+  &__title {
+    @include text-h4;
+  }
 
-	&__menu-item {
-		@include menu-item-hover;
-	}
+  &__content {
+    @include text-p;
+  }
+
+  &__menu-item {
+    @include menu-item-hover;
+  }
 }

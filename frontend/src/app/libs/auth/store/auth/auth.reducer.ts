@@ -6,6 +6,8 @@ import {
 	UpdateUserInfoFail,
 	SignUpSuccess,
 	SignInSuccess,
+	SignInFailure,
+	SignUpFailure
 } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
@@ -50,7 +52,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignInFailure).payload,
 				},
 			};
 		}
@@ -76,7 +78,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignUpFailure).payload,
 				},
 			};
 		}
@@ -104,7 +106,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: action.payload,
+					error: (action as UpdateUserInfoFail).payload,
 				},
 			};
 		}

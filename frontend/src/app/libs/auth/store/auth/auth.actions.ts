@@ -12,7 +12,7 @@ export enum AuthActionTypes {
 	SignUpFailure = '[Auth] Sign Up Failure',
 	UpdateUserInfo = '[Auth] Update user',
 	UpdateUserInfoSuccess = '[Auth] Update user success',
-	UpdateUserInfoFail = '[Auth] Update user failed',
+	UpdateUserInfoFail = '[Auth] Update user failed'
 }
 
 export class SignIn implements Action {

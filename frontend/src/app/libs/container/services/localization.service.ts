@@ -16,7 +16,10 @@ export class LocalizationService {
 				sign_up: 'Sign Up',
 				create_event: 'Create Event',
 				events: 'Events',
-				administration: 'Administration'
+				administration: 'Administration',
+				log_off: 'Log OFF',
+				account: 'Account',
+				user_name: 'User name'
 			}
 		],
 		[
@@ -29,7 +32,10 @@ export class LocalizationService {
 				sign_up: 'Регистрация',
 				create_event: 'Создать событие',
 				events: 'События',
-				administration: 'Администрирование'
+				administration: 'Администрирование',
+				log_off: 'Выйти',
+				account: 'Мой профиль',
+				user_name: 'Имя пользователя'
 			}
 		]
 	]);

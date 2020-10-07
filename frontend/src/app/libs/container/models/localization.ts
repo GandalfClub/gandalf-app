@@ -4,4 +4,7 @@ export interface Localization {
 	create_event: string;
 	events: string;
 	administration: string;
+	log_off: string;
+	account: string;
+	user_name: string;
 }

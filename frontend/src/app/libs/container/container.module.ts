@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationsComponent } from './components/header/components/notifications/notifications.component';
 import { LocalizationComponent } from './components/header/components/localization/localization.component';
+import { AvatarComponent } from './components/header/components/avatar/avatar.component';
 
 @NgModule({
 	declarations: [
@@ -15,7 +16,8 @@ import { LocalizationComponent } from './components/header/components/localizati
 		HeaderComponent,
 		FooterComponent,
 		NotificationsComponent,
-		LocalizationComponent
+		LocalizationComponent,
+		AvatarComponent
 	],
 	imports: [
 		CommonComponentsModule,

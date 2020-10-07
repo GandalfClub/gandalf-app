@@ -12,7 +12,6 @@ export class ButtonComponent {
 	public basicType: ButtonType = ButtonType.Basic;
 	public outlinedType: ButtonType = ButtonType.Outlined;
 	public flatType: ButtonType = ButtonType.Flat;
-	public iconType: ButtonType = ButtonType.Icon;
 
 	@Input()
 	public type: ButtonType = ButtonType.Basic;

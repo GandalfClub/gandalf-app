@@ -29,16 +29,6 @@
 			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
-	<button
-			*ngSwitchCase="iconType"  
-			mat-icon-button 
-			class="button button--icon"
-			[class.button--dark-theme]="isDarkTheme"
-			[class.button--disable-hover]="disableHover"
-			[disabled]="disabled"
-			[disableRipple]="disableRipple">
-		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
-	</button>
 </ng-container>
 
 <ng-template #buttonText>

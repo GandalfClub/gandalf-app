@@ -20,21 +20,10 @@ export class ContainerFacadeService {
 		]
 	};
 
-	private fakeUser: EntityWrapper<User> = {
-		status: EntityStatus.Success,
-		value: {
-			id: '1',
-			email: undefined,
-			isAdmin: undefined,
-			claims: [Claim.EventManager],
-		}
-	};
-
 	constructor(private authFacadeService: AuthFacadeService) { }
 
 	public get user$(): Observable<EntityWrapper<User>> {
-		return of(this.fakeUser);
-		//	return this.authFacadeService.user$;
+		return this.authFacadeService.user$;
 	}
 
 	public get notifications$(): Observable<EntityWrapper<Notification[]>> {

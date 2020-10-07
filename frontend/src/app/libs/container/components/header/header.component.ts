@@ -32,6 +32,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
+	public get userName(): string {
+		if (this.user?.firstName.replace(/\s/g, '').length > 0 || this.user?.secondName.replace(/\s/g, '').length > 0) {
+			return `${this.user?.firstName} ${this.user?.secondName}`;
+		} else {
+			return this.user.email;
+		}
+	}
+
 	public get localization(): Localization {
 		return this.localizationService.currentLocalization;
 	}
@@ -41,11 +49,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	}
 
 	public get isAdminUser(): boolean {
-		return this.user ? this.user.claims.includes(Claim.Admin) : false;
+		return this.user ? this.user.claims?.includes(Claim.Admin) : false;
 	}
 
 	public get isEventManagerUser(): boolean {
-		return this.user ? this.user.claims.includes(Claim.EventManager) : false;
+		return this.user ? this.user.claims?.includes(Claim.EventManager) : false;
 	}
 
 	constructor(public containerFacadeService: ContainerFacadeService, public localizationService: LocalizationService) {}
@@ -55,7 +63,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		.pipe(takeUntil(this.unsubscribe$))
 		.subscribe((entity: EntityWrapper<User>) => {
 			this.user = entity.value;
-			console.log(this.user);
 		});
 	}
 

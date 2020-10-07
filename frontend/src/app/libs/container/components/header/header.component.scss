@@ -5,14 +5,17 @@
   top: 0;
   z-index: 1;
 
-  display: flex;
+	display: flex;
+	align-items: center;
   height: 80px;
   padding: 0 72px;
 
   background: $color-black;
 
   &__common-buttons {
-    margin-left: auto;
+		display: flex;
+		align-items: center;
+		margin-left: auto;
   }
 
   &__button {
@@ -24,7 +27,11 @@
 	}
 	
   &__notifications {
-    margin: 0 16px;
+    margin: 0 24px;
+	}
+
+	&__avatar {
+		margin-left: 1px;
 	}
 
   &__logo-container {
@@ -32,7 +39,8 @@
     justify-content: center;
     align-items: center;
     min-width: 184px;
-    height: 40px;
+		height: 40px;
+		user-select: none;
 
     background: #ffffff;
   }

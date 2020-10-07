@@ -1,14 +1,16 @@
-<app-button class="notifications__button"
-		[type]="iconButtonType"
-		[theme]="darkTheme" 
-		[matMenuTriggerFor]="menu">
-	<mat-icon>notifications</mat-icon>
-</app-button>
-<mat-menu class="notifications__menu" #menu="matMenu">
-	<ng-container *ngFor="let notification of (containerFacadeService.notifications$ | async).value">
-		<button mat-menu-item class="notifications__menu-item">
-			<div class="notifications__title">{{notification.title}}</div>
-			<div class="notifications__content">{{notification.content}}</div>
-		</button>
-	</ng-container>
-</mat-menu>
+<div class="notifications">
+	<div class="notifications__menu-trigger" [matMenuTriggerFor]="menu">
+		<mat-icon [matBadge]="(containerFacadeService.notifications$ | async).value.length" [matBadgeSize]="'small'">
+			notifications
+		</mat-icon>
+	</div>
+	<mat-menu class="notifications__menu" #menu="matMenu" xPosition="before">
+		<ng-container *ngFor="let notification of (containerFacadeService.notifications$ | async).value">
+			<button mat-menu-item class="notifications__menu-item">
+				<div class="notifications__title">{{notification.title}}</div>
+				<div class="notifications__content">{{notification.content}}</div>
+			</button>
+		</ng-container>
+	</mat-menu>
+</div>
+
