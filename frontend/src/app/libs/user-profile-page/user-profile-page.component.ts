@@ -73,6 +73,4 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		};
 		return valuesFromForm;
 	}
-
-
 }
