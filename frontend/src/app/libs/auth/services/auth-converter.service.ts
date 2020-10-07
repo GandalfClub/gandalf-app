@@ -8,7 +8,6 @@ import { UserDto } from '../models/user-dto';
 export class AuthConverter {
 	public convertFromDto(userDto: UserDto): User {
 		return {
-			claims: userDto.claims,
 			email: userDto.email,
 			firstName: userDto.firstName,
 			isAdmin: userDto.isAdmin,
@@ -16,6 +15,7 @@ export class AuthConverter {
 			password: userDto.password,
 			secondName: userDto.secondName,
 			id: userDto._id,
+			claims: userDto.claims
 		};
 	}
 

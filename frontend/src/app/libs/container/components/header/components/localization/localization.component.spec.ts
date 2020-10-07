@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { LocalizationService } from 'src/app/libs/container/services/localization.service';
 
 import { LocalizationComponent } from './localization.component';
 
@@ -6,12 +8,14 @@ describe('LocalizationComponent', () => {
 	let component: LocalizationComponent;
 	let fixture: ComponentFixture<LocalizationComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ LocalizationComponent ]
+			imports: [ MatMenuModule ],
+			declarations: [ LocalizationComponent ],
+			providers: [ LocalizationService ]
 		})
 		.compileComponents();
-	}));
+	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(LocalizationComponent);

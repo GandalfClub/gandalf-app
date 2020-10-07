@@ -18,6 +18,7 @@ describe('AuthConverterService', () => {
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
 		password: 'undefined',
+		claims: []
 	};
 
 	const user: User = {
@@ -28,6 +29,7 @@ describe('AuthConverterService', () => {
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
 		password: 'undefined',
+		claims: []
 	};
 
 	const userChanges: Partial<UserDto> = {
@@ -35,6 +37,7 @@ describe('AuthConverterService', () => {
 		firstName: 'undefined',
 		mobilePhone: 'undefined',
 		secondName: 'undefined',
+		claims: []
 	};
 
 	const authResponse: AuthResponse = {

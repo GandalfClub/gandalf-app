@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { LocalizationService } from '../../services/localization.service';
 
 import { FooterComponent } from './footer.component';
 
@@ -8,7 +9,8 @@ describe('FooterComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ FooterComponent ]
+			declarations: [ FooterComponent ],
+			providers: [ LocalizationService ]
 		})
 		.compileComponents();
 	}));

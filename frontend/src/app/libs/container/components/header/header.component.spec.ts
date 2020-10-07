@@ -1,4 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { ContainerFacadeService } from '../../services/container.facade';
+import { LocalizationService } from '../../services/localization.service';
+import { ContainerStoreModule } from '../../store/store.module';
 
 import { HeaderComponent } from './header.component';
 
@@ -6,18 +11,28 @@ describe('HeaderComponent', () => {
 	let component: HeaderComponent;
 	let fixture: ComponentFixture<HeaderComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ HeaderComponent ]
+			imports: [
+				EffectsModule.forRoot([]),
+				StoreModule.forRoot({}),
+				ContainerStoreModule
+			],
+			declarations: [ HeaderComponent ],
+			providers: [ LocalizationService, ContainerFacadeService ]
 		})
 		.compileComponents();
-	}));
+	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(HeaderComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
+
+	afterEach(() => {
+		fixture.destroy();
+  });
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
