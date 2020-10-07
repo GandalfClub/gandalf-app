@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, skip, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EntityWrapper } from '../auth/models/entity-wraper';
@@ -29,14 +29,16 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
-		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>): void => {
-			if (user.status === EntityStatus.Success) {
+		this.authFacadeService.loadUser();
+		this.authFacadeService.user$
+			.pipe(
+				filter((user: EntityWrapper<User>) => user.status === EntityStatus.Success),
+				takeUntil(this.destroy$)
+			)
+			.subscribe((user: EntityWrapper<User>) => {
 				this.user = user.value;
-			}
-			if (this.user !== null) {
 				this.setValuesToForm();
-			}
-		});
+			});
 	}
 
 	public updateUserInfo(): void {
