@@ -6,6 +6,8 @@ import {
 	UpdateUserInfoFail,
 	SignUpSuccess,
 	SignInSuccess,
+	LoadUserSuccess,
+	LoadUserFail,
 	SignInFailure,
 	SignUpFailure
 } from './auth.actions';
@@ -107,6 +109,33 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 					status: EntityStatus.Error,
 					value: null,
 					error: (action as UpdateUserInfoFail).payload,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUser: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Pending,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Success,
+					value: (action as LoadUserSuccess).payload.user,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserFail: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Error,
+					value: null,
+					error: (action as LoadUserFail).payload
 				},
 			};
 		}

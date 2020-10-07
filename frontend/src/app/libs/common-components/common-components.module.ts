@@ -17,6 +17,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
@@ -34,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
 		SlideToggleComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
+		InputComponent,
+		ProgressBarComponent,
 		ScrollbarDirective,
 		PopoverComponent,
 		RadioGroupComponent,
@@ -41,8 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
-		EventCardDateComponent
-	],
+		EventCardDateComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -56,6 +60,7 @@ import { MatSelectModule } from '@angular/material/select';
 		MatCardModule,
 		MatCheckboxModule,
 		MatMenuModule,
+		MatProgressBarModule,
 		MatRadioModule,
 		MatTabsModule,
 		MatChipsModule
@@ -76,6 +81,9 @@ import { MatSelectModule } from '@angular/material/select';
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		SlideToggleComponent,
+		InputComponent,
+		MatProgressBarModule,
+		ProgressBarComponent,
 		RadioGroupComponent,
 		PopoverComponent,
 		ScrollbarDirective,
