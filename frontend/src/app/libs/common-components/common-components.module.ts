@@ -60,7 +60,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		MatProgressBarModule,
 		MatRadioModule,
 		MatTabsModule,
-		MatChipsModule
+		MatChipsModule,
 	],
 	exports: [
 		MatInputModule,
@@ -76,6 +76,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		MatSlideToggleModule,
 		MatCheckboxModule,
 		CreateDraftEventPopoverComponent,
+		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
 		InputComponent,

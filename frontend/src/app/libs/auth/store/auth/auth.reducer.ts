@@ -84,7 +84,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 			return {
 				...state,
 				user: {
-					status: EntityStatus.Success,
+					status: EntityStatus.Pending,
 					value: (action as UpdateUserInfo).payload.user,
 				},
 			};

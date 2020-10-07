@@ -1,0 +1,23 @@
+<section class="user-role-tile">
+  <div class="user-role-tile__container">
+    <div class="user-role-tile__photo">
+      {{user.photoUrl}}
+    </div>
+    <div class="user-role-tile__data">
+      <div class="user-role-tile__name">
+        <span>{{user.firstName}} </span>
+        <span>{{user.secondName}}</span>
+        <div class="user-role-tile__email">
+          <span>{{user.email}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="user-role-tile__slide-toggle">
+      <span>Event Manager </span>
+      <app-slide-toggle [value]="userEventManagerState"
+                        [disabled]="userUpdateIsDisabled"
+                        (toggled)="toggleEventManagerClaim($event)">
+      </app-slide-toggle>
+    </div>
+  </div>
+</section>

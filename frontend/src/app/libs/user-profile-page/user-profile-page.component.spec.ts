@@ -21,6 +21,7 @@ describe('UserProfileComponent', () => {
 			mobilePhone: 'test',
 			id: 'test',
 			isAdmin: false,
+			claims: [],
 		},
 	};
 
@@ -32,6 +33,7 @@ describe('UserProfileComponent', () => {
 		isAdmin: false,
 		email: 'test@test.by',
 		password: 'test',
+		claims: [],
 	};
 
 	let component: UserProfilePageComponent;

@@ -59,6 +59,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignInSuccess(user);
@@ -110,6 +111,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignUpSuccess(user);
@@ -153,6 +155,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfo({ user });
@@ -160,7 +163,7 @@ describe('AuthReducers', () => {
 		});
 		it('should return user', () => {
 			expect(newState.user).toEqual({
-				status: EntityStatus.Success,
+				status: EntityStatus.Pending,
 				value: user,
 			});
 		});
@@ -177,6 +180,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfoSuccess({ user });

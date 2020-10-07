@@ -12,6 +12,7 @@ describe('Sign In Success', () => {
 		id: '1',
 		email: 'test@test.test',
 		isAdmin: true,
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.SignInSuccess(payload);
@@ -76,6 +77,7 @@ describe('Sign Up Success', () => {
 		id: '1',
 		email: 'test@test.test',
 		isAdmin: true,
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.SignUpSuccess(payload);
@@ -132,6 +134,7 @@ describe('Update User Info', () => {
 		isAdmin: false,
 		id: '0',
 		email: 'test@test.test',
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.UpdateUserInfo({ user });
@@ -154,6 +157,7 @@ describe('update User Info Success', () => {
 		isAdmin: false,
 		id: '0',
 		email: 'test@test.test',
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.UpdateUserInfoSuccess({ user });

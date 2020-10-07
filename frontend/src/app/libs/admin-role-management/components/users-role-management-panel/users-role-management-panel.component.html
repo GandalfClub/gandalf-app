@@ -1,0 +1,28 @@
+<div class="users-role-management-panel">
+  <div class="users-role-management-panel__header">
+    <h3>Users</h3>
+  </div>
+  <div class="users-role-management-panel__input">
+    <div class="users-role-management-panel__input-header">
+      <h3>Search</h3>
+    </div>
+    <mat-form-field>
+      <input matInput
+             type="text"
+             [(ngModel)]="searchText"
+             autocomplete="off">
+    </mat-form-field>
+  </div>
+  <ng-container *ngFor="let item of filteredUsers">
+    <app-user-role-tile (isEventManager)="changeUserState($event, item)"
+                        [userUpdateIsDisabled]="userUpdateState"
+                        [user]="item"
+                        class="users-role-management-panel__user">
+    </app-user-role-tile>
+  </ng-container>
+  <ng-container *ngIf="userNotFound">
+    <div class="users-role-management-panel__empty">
+      <h3>Not Found</h3>
+    </div>
+  </ng-container>
+</div>
