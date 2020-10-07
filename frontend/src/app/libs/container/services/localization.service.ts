@@ -19,7 +19,8 @@ export class LocalizationService {
 				administration: 'Administration',
 				log_off: 'Log OFF',
 				account: 'Account',
-				user_name: 'User name'
+				user_name: 'User name',
+				footer_text: '© 2020 LEARNINJA. All rights reserved.'
 			}
 		],
 		[
@@ -35,7 +36,8 @@ export class LocalizationService {
 				administration: 'Администрирование',
 				log_off: 'Выйти',
 				account: 'Мой профиль',
-				user_name: 'Имя пользователя'
+				user_name: 'Имя пользователя',
+				footer_text: '© 2020 LEARNINJA. Все права защищены.'
 			}
 		]
 	]);

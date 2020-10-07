@@ -7,4 +7,5 @@ export interface Localization {
 	log_off: string;
 	account: string;
 	user_name: string;
+	footer_text: string;
 }
