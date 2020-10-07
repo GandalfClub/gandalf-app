@@ -11,6 +11,9 @@ import {
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
 	UpdateUserInfoFail,
+	LoadUser,
+	LoadUserSuccess,
+	LoadUserFail,
 } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
@@ -72,7 +75,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('SignInFalure', () => {
+	describe('SignInFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const error: Error = {
@@ -123,7 +126,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('SignUpFailure', () => {
+	describe('SignUpFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const error: Error = {
@@ -166,7 +169,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('UpdateUserInfoSuccessfuly', () => {
+	describe('UpdateUserInfoSuccess', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const user: User = {
@@ -190,7 +193,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('UpdateUserInfoFailed', () => {
+	describe('UpdateUserInfoFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const err: any = {
@@ -198,6 +201,61 @@ describe('AuthReducers', () => {
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfoFail(err);
+			newState = authReducer(initialState, action);
+		});
+		it('should return error', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Error,
+				value: null,
+				error: err,
+			});
+		});
+	});
+
+	describe('LoadUser', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		beforeEach(() => {
+			action = new LoadUser();
+			newState = authReducer(initialState, action);
+		});
+		it('should return the user.status - Pending', () => {
+			expect(newState.user.status).toBe(EntityStatus.Pending);
+		});
+	});
+
+	describe('LoadUserSuccess', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			firstName: '1',
+			secondName: '1',
+			mobilePhone: '1',
+			password: '1',
+			isAdmin: false,
+			id: '0',
+			email: 'test@test.test',
+		};
+		beforeEach(() => {
+			action = new LoadUserSuccess({ user });
+			newState = authReducer(initialState, action);
+		});
+		it('should return user', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('LoadUserFail', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const err: any = {
+			message: 'testError',
+		};
+		beforeEach(() => {
+			action = new LoadUserFail(err);
 			newState = authReducer(initialState, action);
 		});
 		it('should return error', () => {

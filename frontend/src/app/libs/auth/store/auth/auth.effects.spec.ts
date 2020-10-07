@@ -16,6 +16,9 @@ import {
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
 	UpdateUserInfoFail,
+	LoadUser,
+	LoadUserSuccess,
+	LoadUserFail,
 } from './auth.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { auth } from 'firebase';
@@ -242,6 +245,50 @@ describe('Auth Effects', () => {
 					s: new UpdateUserInfoSuccess({ user: mockAuthConverter.convertFromDto(userDto) }),
 				});
 				expect(createEffects(actions).updateUser$).toBeObservable(expected);
+			});
+		});
+	});
+
+	describe('LoadUser', () => {
+		const user: User = {
+			id: 'test',
+			email: 'test@test',
+			isAdmin: false,
+		};
+
+		const userDto: UserDto = {
+			_id: 'test',
+			email: 'test@test',
+			isAdmin: false,
+		};
+
+		const authResponse: AuthResponse = {
+			isCompetitionActive: false,
+			logged: true,
+			message: '',
+			status: 0,
+			user: userDto,
+		};
+
+		const error: Error = new Error('error') as any;
+
+		describe('when LoadUser was successful', () => {
+			it('should emit LoadUserSuccess action', () => {
+				mockAuthRepository.loadUser.and.returnValue(of(userDto));
+				const actions: Observable<Action> = hot('-a-|', { a: new LoadUser() });
+				const expected: Observable<Action> = cold('-s-|', {
+					s: new LoadUserSuccess({ user: mockAuthConverter.convertFromDto(userDto) }),
+				});
+				expect(createEffects(actions).LoadUserBack).toBeObservable(expected);
+			});
+		});
+
+		describe('when LoadUser failed', () => {
+			it('should emit LoadUserFail action', () => {
+				mockAuthRepository.loadUser.and.throwError(error);
+				const actions: Observable<Action> = hot('--a|', { a: new LoadUser() });
+				const expected: Observable<Action> = cold('--(f|)', { f: new LoadUserFail({ message: error }) });
+				expect(createEffects(actions).LoadUserBack).toBeObservable(expected);
 			});
 		});
 	});
