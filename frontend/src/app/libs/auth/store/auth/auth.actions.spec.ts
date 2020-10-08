@@ -5,6 +5,7 @@ import { AuthActionTypes, UpdateUserInfo, UpdateUserInfoFail, UpdateUserInfoSucc
 import { AuthState } from '../../models/auth-state';
 import { SignInByGithub } from './auth.actions';
 import { authReducer, initialState } from './auth.reducer';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('Sign In Success', () => {
 	let action: AuthActions.SignInSuccess;
@@ -209,6 +210,7 @@ describe('Load User Success', () => {
 		isAdmin: false,
 		id: '0',
 		email: 'test@test.test',
+		claims: [UserClaim.Admin]
 	};
 	beforeEach(() => {
 		action = new AuthActions.LoadUserSuccess({ user });

@@ -5,6 +5,7 @@ import { AuthResponse } from '../models/auth-response';
 import { UserDto } from '../models/user-dto';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { UserClaim } from '../../admin-role-management/models/user-claims.enum';
 
 describe('AuthService', () => {
 	let authRepository: AuthRepository;
@@ -25,6 +26,7 @@ describe('AuthService', () => {
 		_id: 'test',
 		email: 'test@test',
 		isAdmin: false,
+		claims: [UserClaim.Admin]
 	};
 
 	const mockHttpService: any = {

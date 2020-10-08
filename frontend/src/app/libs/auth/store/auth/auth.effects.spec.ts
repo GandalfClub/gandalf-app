@@ -28,6 +28,7 @@ import { createSpy } from '../../helpers/createSpy';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { UserDto } from '../../models/user-dto';
 import { AuthResponse } from '../../models/auth-response';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('Auth Effects', () => {
 	let mockAuthRepository: jasmine.SpyObj<AuthRepository>;
@@ -262,12 +263,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [UserClaim.Admin]
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [UserClaim.Admin]
 		};
 
 		const authResponse: AuthResponse = {
