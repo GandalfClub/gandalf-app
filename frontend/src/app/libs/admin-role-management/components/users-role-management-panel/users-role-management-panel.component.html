@@ -14,7 +14,7 @@
     </mat-form-field>
   </div>
   <ng-container *ngFor="let item of filteredUsers">
-    <app-user-role-tile (isEventManager)="changeUserState($event, item)"
+    <app-user-role-tile (isEventManager)="toggleEventManagerRole($event, item)"
                         [userUpdateIsDisabled]="userUpdateState"
                         [user]="item"
                         class="users-role-management-panel__user">

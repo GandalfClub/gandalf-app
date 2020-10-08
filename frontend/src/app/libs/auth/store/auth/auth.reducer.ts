@@ -10,9 +10,10 @@ import {
 	LoadUserFail,
 	SignInFailure,
 	SignUpFailure,
-} from './auth.actions';
+	ToggleEventManagerRole } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 export const authFeatureKey: string = 'auth';
 
@@ -139,6 +140,19 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
+		case AuthActionTypes.ToggleEventManagerRole: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					value: (action as ToggleEventManagerRole).payload.isEventManager ?
+					{...(action as ToggleEventManagerRole).payload.user, claims: [...state.user.value.claims, UserClaim.EventManager]} :
+					{...(action as ToggleEventManagerRole).payload.user, claims: state.user.value.claims.
+						filter((claim: UserClaim) => claim !== UserClaim.EventManager)}
+				},
+			};
+		}
+
 		default:
 			return state;
 	}

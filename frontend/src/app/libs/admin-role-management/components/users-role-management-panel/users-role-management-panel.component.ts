@@ -24,7 +24,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	constructor(
 		private userSearchService: UserSearchService,
 		private usersFacadeService: UsersFacadeService,
-		private aurhFacadeService: AuthFacadeService
+		private authFacadeService: AuthFacadeService
 	) {}
 
 	public get userUpdateState(): boolean {
@@ -44,21 +44,13 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 			this.users = users.value;
 		});
 
-		this.aurhFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
+		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.userUpdate = user;
 		});
 	}
 
-	public changeUserState(event: boolean, user: User): void {
-		const currentClaims: UserClaim[] = [...user.claims];
-		if (event) {
-			currentClaims.push(UserClaim.EventManager);
-			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: currentClaims }))(user));
-		}
-		if (!event) {
-			const claimsWithoutEventManager: UserClaim[] = currentClaims.filter((item: string) => item !== UserClaim.EventManager);
-			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: claimsWithoutEventManager }))(user));
-		}
+	public toggleEventManagerRole(isEventManager: boolean, user: User): void {
+		this.authFacadeService.toggleEventManagerRole(isEventManager, user);
 	}
 
 	public ngOnDestroy(): void {

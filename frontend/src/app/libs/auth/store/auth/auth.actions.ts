@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserCredentials } from '../../models/user-credentials';
 import { User } from '../../models/user';
+import { UsersActionType } from 'src/app/libs/admin-role-management/store/users/users.actions';
 
 export enum AuthActionTypes {
 	SignIn = '[Auth] Sign In',
@@ -16,6 +17,7 @@ export enum AuthActionTypes {
 	LoadUser = '[Auth] Load user',
 	LoadUserSuccess = '[Auth] Load user Success',
 	LoadUserFail = '[Auth] Load user Failure',
+	ToggleEventManagerRole = '[Auth] Toggle EventManager role'
 }
 
 export class SignIn implements Action {
@@ -100,6 +102,14 @@ export class LoadUserFail implements Action {
 		}
 	) {}
 }
+export class ToggleEventManagerRole  implements Action {
+	public readonly type: AuthActionTypes.ToggleEventManagerRole = AuthActionTypes.ToggleEventManagerRole;
+	constructor(public payload: {
+		isEventManager: boolean,
+		user: User
+		}
+	) {}
+}
 
 export type AuthActions =
 	| SignIn
@@ -114,4 +124,5 @@ export type AuthActions =
 	| UpdateUserInfoFail
 	| LoadUser
 	| LoadUserSuccess
-	| LoadUserFail;
+	| LoadUserFail
+	| ToggleEventManagerRole;
