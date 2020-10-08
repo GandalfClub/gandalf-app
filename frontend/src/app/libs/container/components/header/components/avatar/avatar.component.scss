@@ -2,61 +2,61 @@
 @import "../drop-down-menu/drop-down-menu-theme";
 
 .avatar {
-  @include drop-down-menu-container;
+	@include drop-down-menu-container;
 
-  &__photo-container {
-    width: 40px;
-    height: 40px;
-  }
+	&__photo-container {
+		width: 40px;
+		height: 40px;
+	}
 
-  &__photo {
-    width: 100%;
-    height: 100%;
+	&__photo {
+		width: 100%;
+		height: 100%;
 
-    border-radius: 50%;
+		border-radius: 50%;
 
-    object-fit: cover;
-  }
+		object-fit: cover;
+	}
 
-  &__menu-trigger {
-    display: inline-flex;
-    align-items: center;
+	&__menu-trigger {
+		display: inline-flex;
+		align-items: center;
 
-    cursor: pointer;
+		cursor: pointer;
 
-    user-select: none;
-  }
+		user-select: none;
+	}
 
-  &__user-name-container {
+	&__user-name-container {
 		height: 55px;
+
+		color: $color-white;
+
 		border-bottom: 1px solid $color-white;
+		cursor: default;
+	}
 
-    color: $color-white;
-
-    cursor: default;
-  }
-
-  &__user-name-label {
+	&__user-name-label {
 		@include text-small;
-		
-    margin-bottom: 4px;
-  }
 
-  &__user-name {
-    @include text-h4;
-  }
+		margin-bottom: 4px;
+	}
 
-  &__button {
+	&__user-name {
+		@include text-h4;
+	}
+
+	&__button {
 		@include menu-item-hover;
-		
-    height: 32px;
+			
+		height: 32px;
 
-    line-height: 31px;
+		line-height: 31px;
 		color: $color-white;
 		text-transform: uppercase;
-  }
+	}
 
-  &__arrow-icon {
-    color: $color-white;
-  }
+	&__arrow-icon {
+		color: $color-white;
+	}
 }

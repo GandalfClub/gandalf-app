@@ -4,30 +4,33 @@
 .notifications {
 	@include drop-down-menu-container;
 
-  &__menu-trigger {
-    display: flex;
-    align-items: center;
+	&__menu-trigger {
+		display: flex;
+		align-items: center;
 
 		color: $color-white;
+
 		cursor: pointer;
+
 		user-select: none;
-  }
+	}
 
-  &__menu-item {
-		padding-top: 4px;
+	&__menu-item {
 		height: 60px;
-    color: $color-white;
-  }
+		padding-top: 4px;
 
-  &__title {
-    @include text-h4;
-  }
+		color: $color-white;
+	}
 
-  &__content {
-    @include text-p;
-  }
+	&__title {
+		@include text-h4;
+	}
 
-  &__menu-item {
-    @include menu-item-hover;
-  }
+	&__content {
+		@include text-p;
+	}
+
+	&__menu-item {
+		@include menu-item-hover;
+	}
 }

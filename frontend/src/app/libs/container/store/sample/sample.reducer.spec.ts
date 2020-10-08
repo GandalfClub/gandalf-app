@@ -1,5 +1,4 @@
 import { reducer, initialState } from './sample.reducer';
-import { State } from '@ngrx/store';
 
 describe('Sample Reducer', () => {
 	describe('an unknown action', () => {

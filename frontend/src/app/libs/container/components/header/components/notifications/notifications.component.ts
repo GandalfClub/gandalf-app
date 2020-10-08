@@ -4,9 +4,9 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { ContainerFacadeService } from '../../../../services/container.facade';
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+	selector: 'app-notifications',
+	templateUrl: './notifications.component.html',
+	styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent {
 

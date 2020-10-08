@@ -5,9 +5,9 @@ import { Localization } from 'src/app/libs/container/models/localization';
 import { LocalizationService } from 'src/app/libs/container/services/localization.service';
 
 @Component({
-  selector: 'app-avatar',
-  templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss']
+	selector: 'app-avatar',
+	templateUrl: './avatar.component.html',
+	styleUrls: ['./avatar.component.scss']
 })
 export class AvatarComponent {
 

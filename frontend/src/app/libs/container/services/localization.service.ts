@@ -3,7 +3,7 @@ import { Locale } from '../models/locale';
 import { Localization } from '../models/localization';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class LocalizationService {
 
