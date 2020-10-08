@@ -37,6 +37,8 @@ describe('Auth Effects', () => {
 	let mockAuthConverter: jasmine.SpyObj<AuthConverter>;
 	let authFacade: jasmine.SpyObj<AuthFacadeService>;
 
+	authFacade = null;
+
 	function createEffects(source: Observable<Action>): AuthEffects {
 		return new AuthEffects(new Actions(source), mockAuthRepository, mockAngularFireAuth, mockAuthConverter, authFacade);
 	}
