@@ -4,7 +4,7 @@ import { UserProfilePageComponent } from './user-profile-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
@@ -45,6 +45,7 @@ describe('UserProfileComponent', () => {
 			return of(user);
 		},
 		updateUser: jasmine.createSpy('updateUser'),
+		loadUser: jasmine.createSpy('loaduser'),
 	};
 
 	beforeEach(async(() => {
@@ -83,11 +84,20 @@ describe('UserProfileComponent', () => {
 
 		describe('get auth user', () => {
 			beforeEach(() => {
-				mockUserFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((userAuth: EntityWrapper<User>) => {
-					userForm = userAuth.value;
-				});
+				mockUserFacadeService.user$
+					.pipe(
+						filter((userWrapper: EntityWrapper<User>) => userWrapper.status === EntityStatus.Success),
+						takeUntil(destroy$)
+					)
+					.subscribe((userAuth: EntityWrapper<User>) => {
+						userForm = userAuth.value;
+					});
 				spyOn<any>(component, 'setValuesToForm').and.stub();
 				component.ngOnInit();
+			});
+
+			it('loadUser called', () => {
+				expect(mockUserFacadeService.loadUser).toHaveBeenCalled();
 			});
 
 			it('setValuesToForm called', () => {
@@ -97,7 +107,12 @@ describe('UserProfileComponent', () => {
 
 		describe('without user', () => {
 			beforeEach(() => {
-				mockUserFacadeService.user$.pipe(takeUntil(destroy$)).subscribe();
+				mockUserFacadeService.user$
+					.pipe(
+						filter((userWrapper: EntityWrapper<User>) => userWrapper.status === EntityStatus.Success),
+						takeUntil(destroy$)
+					)
+					.subscribe();
 				user.status = EntityStatus.Error;
 				userForm = null;
 				component.ngOnInit();
