@@ -40,7 +40,7 @@ describe('Auth Effects', () => {
 	authFacade = null;
 
 	function createEffects(source: Observable<Action>): AuthEffects {
-		return new AuthEffects(new Actions(source), mockAuthRepository, mockAngularFireAuth, mockAuthConverter, authFacade);
+		return new AuthEffects(new Actions(source), mockAuthRepository, mockAngularFireAuth, mockAuthConverter);
 	}
 
 	const authUserCredential: auth.UserCredential = {

@@ -14,8 +14,7 @@ import {
 	UpdateUserInfoSuccess,
 	LoadUser,
 	LoadUserSuccess,
-	LoadUserFail,
-	ToggleEventManagerRole} from './auth.actions';
+	LoadUserFail } from './auth.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, tap, take } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -25,11 +24,11 @@ import { User } from '../../models/user';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { AuthResponse } from '../../models/auth-response';
 import { UserDto } from '../../models/user-dto';
-import { ActionType, GetEventsFail, GetEventsSuccess } from '../../../landing/store/events/events.actions';
-import { EventDto } from '../../../landing/models/event-dto';
-import { AuthFacadeService } from './auth.facade';
-import { EntityWrapper } from '../../models/entity-wraper';
-import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
+// import { ActionType, GetEventsFail, GetEventsSuccess } from '../../../landing/store/events/events.actions';
+// import { EventDto } from '../../../landing/models/event-dto';
+// import { AuthFacadeService } from './auth.facade';
+// import { EntityWrapper } from '../../models/entity-wraper';
+// import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 @Injectable()
 export class AuthEffects {
@@ -114,23 +113,10 @@ export class AuthEffects {
 		catchError((error: Error) => of(new LoadUserFail({ message: error })))
 	);
 
-	@Effect()
-	public SetEventManagerRole: Observable<Action> = this.actions.pipe(
-		ofType(AuthActionTypes.ToggleEventManagerRole),
-		map(() => {
-			let user: User;
-			this.authFacade.user$.pipe(take(1)).subscribe((entityUser: EntityWrapper<User>) => {
-				user = entityUser.value;
-			});
-			return new UpdateUserInfo({user});
-		})
-	);
-
 	constructor(
 		private actions: Actions,
 		private authRepository: AuthRepository,
 		private fireAuthService: AngularFireAuth,
 		private authConverter: AuthConverter,
-		private authFacade: AuthFacadeService
 	) {}
 }

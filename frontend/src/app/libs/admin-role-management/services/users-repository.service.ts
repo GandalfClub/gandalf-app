@@ -15,4 +15,10 @@ export class UsersRepositoryService {
 		const url: string = this.API_URL + '/users';
 		return this.http.get<UserDto[]>(url);
 	}
+
+	public updateUser(user: Partial<UserDto>): Observable<UserDto> {
+		const url: string = this.API_URL + '/users/update-user';
+		return this.http.post<UserDto>(url, user);
+	}
+
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { LoadUser, SignIn, SignInByGithub, SignUp, ToggleEventManagerRole, UpdateUserInfo } from './auth.actions';
+import { LoadUser, SignIn, SignInByGithub, SignUp, UpdateUserInfo } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { selectUser } from './auth.selectors';
@@ -31,10 +31,6 @@ export class AuthFacadeService {
 
 	public loadUser(): void {
 		this.store.dispatch(new LoadUser());
-	}
-
-	public toggleEventManagerRole(isEventManager: boolean, user: User): void {
-		this.store.dispatch(new ToggleEventManagerRole({isEventManager, user}));
 	}
 
 	get user$(): Observable<EntityWrapper<User>> {

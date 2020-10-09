@@ -5,6 +5,8 @@ export enum UsersActionType {
 	LoadUsers = '[Users] Load Users',
 	LoadUsersSuccess = '[Users] Load Users Success',
 	LoadUsersFail = '[Users] Load Users Fail',
+	ToggleEventManagerRole = '[Auth] Toggle EventManager role',
+	ToggleEventManagerRoleSuccess = '[Auth] Toggle EventManager role'
 }
 
 export class LoadUsers implements Action {
@@ -19,4 +21,17 @@ export class LoadUsersFail implements Action {
 	constructor(public payload: Error) {}
 }
 
-export type UsersActions = LoadUsers | LoadUsersSuccess | LoadUsersFail;
+export class ToggleEventManagerRole implements Action {
+	public readonly type: UsersActionType.ToggleEventManagerRole = UsersActionType.ToggleEventManagerRole;
+	constructor(public payload: {
+		user: User
+		}
+	) {}
+}
+
+export class ToggleEventManagerRoleSuccess implements Action {
+	public readonly type: UsersActionType.ToggleEventManagerRoleSuccess = UsersActionType.ToggleEventManagerRoleSuccess;
+	constructor(public payload: any = null) { }
+}
+
+export type UsersActions = LoadUsers | LoadUsersSuccess | LoadUsersFail | ToggleEventManagerRole | ToggleEventManagerRoleSuccess;

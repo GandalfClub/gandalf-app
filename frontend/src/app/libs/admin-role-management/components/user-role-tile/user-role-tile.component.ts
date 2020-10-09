@@ -9,17 +9,17 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 	styleUrls: ['./user-role-tile.component.scss'],
 })
 export class UserRoleTileComponent {
-	@Output() public isEventManager: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() public eventManagerClaimToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	@Input() public user: User;
 
-	@Input() public userUpdateIsDisabled: boolean = false;
+	@Input() public disabled: boolean = false;
 
 	public get userEventManagerState(): boolean {
 		return this.user.claims.includes(UserClaim.EventManager);
 	}
 
 	public toggleEventManagerClaim(event: boolean): void {
-		this.isEventManager.emit(event);
+		this.eventManagerClaimToggled.emit(event);
 	}
 }

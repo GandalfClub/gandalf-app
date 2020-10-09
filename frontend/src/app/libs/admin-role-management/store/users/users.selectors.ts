@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector, MemoizedSelector, State } from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { UsersState } from './users-state';
 import { adminRoleManagementFeatureKey } from '../store.module';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';

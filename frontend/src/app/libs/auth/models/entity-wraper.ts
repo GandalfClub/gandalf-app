@@ -4,5 +4,4 @@ export interface EntityWrapper<T> {
 	status: EntityStatus;
 	value?: T;
 	error?: any;
-	isEventManager?: boolean;
 }

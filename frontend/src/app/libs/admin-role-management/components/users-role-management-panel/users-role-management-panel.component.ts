@@ -27,16 +27,16 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		private authFacadeService: AuthFacadeService
 	) {}
 
-	public get userUpdateState(): boolean {
+	public get updateInProgress(): boolean {
 		return this.userUpdate.status === EntityStatus.Pending;
 	}
 
-	public get filteredUsers(): User[] {
+	public get foundUsers(): User[] {
 		return this.userSearchService.userSearch(this.users, this.searchText);
 	}
 
-	public get userNotFound(): boolean {
-		return this.filteredUsers && this.filteredUsers.length === 0;
+	public get foundUsersEmpty(): boolean {
+		return this.foundUsers && this.foundUsers.length === 0;
 	}
 
 	public ngOnInit(): void {
@@ -49,8 +49,12 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public toggleEventManagerRole(isEventManager: boolean, user: User): void {
-		this.authFacadeService.toggleEventManagerRole(isEventManager, user);
+	public toggleEventManagerClaim(isEventManager: boolean, user: User): void {
+		const toggledUser: User = isEventManager ?
+						{...user, claims: [...user.claims, UserClaim.EventManager]} :
+						{...user, claims: user.claims.
+							filter((claim: UserClaim) => claim !== UserClaim.EventManager)};
+		this.usersFacadeService.toggleEventManagerClaim(user);
 	}
 
 	public ngOnDestroy(): void {

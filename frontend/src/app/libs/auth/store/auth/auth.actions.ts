@@ -16,8 +16,7 @@ export enum AuthActionTypes {
 	UpdateUserInfoFail = '[Auth] Update user Failure',
 	LoadUser = '[Auth] Load user',
 	LoadUserSuccess = '[Auth] Load user Success',
-	LoadUserFail = '[Auth] Load user Failure',
-	ToggleEventManagerRole = '[Auth] Toggle EventManager role'
+	LoadUserFail = '[Auth] Load user Failure'
 }
 
 export class SignIn implements Action {
@@ -102,14 +101,6 @@ export class LoadUserFail implements Action {
 		}
 	) {}
 }
-export class ToggleEventManagerRole  implements Action {
-	public readonly type: AuthActionTypes.ToggleEventManagerRole = AuthActionTypes.ToggleEventManagerRole;
-	constructor(public payload: {
-		isEventManager: boolean,
-		user: User
-		}
-	) {}
-}
 
 export type AuthActions =
 	| SignIn
@@ -124,5 +115,4 @@ export type AuthActions =
 	| UpdateUserInfoFail
 	| LoadUser
 	| LoadUserSuccess
-	| LoadUserFail
-	| ToggleEventManagerRole;
+	| LoadUserFail;
