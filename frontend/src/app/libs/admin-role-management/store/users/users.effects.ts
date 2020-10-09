@@ -31,8 +31,7 @@ export class UsersEffects {
 				return this.usersRepository.updateUser(action.payload.user).pipe(
 					map(() => new ToggleEventManagerRoleSuccess())
 				);
-			
-			
+
 			// subscribe((entityUsers: EntityWrapper<User[]>) => {
 			// 	users = entityUsers.value;
 			// 	this.usersRepository.updateUser(users.find((user: User) => user.id === changedUser.id));
