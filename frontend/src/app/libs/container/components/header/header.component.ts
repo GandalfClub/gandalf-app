@@ -10,6 +10,7 @@ import { Claim } from '../../models/claim';
 import { ContainerFacadeService } from '../../services/container.facade';
 import { LocalizationService } from '../../services/localization.service';
 import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
+import { AdminLink } from '../../models/admin-link';
 
 @Component({
   selector: 'app-header',
@@ -25,9 +26,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	public user: User;
 
-	public adminLinksActivation: Map<string, boolean> = new Map([
-		['events', true],
-		['administration', false]
+	public adminLinksActivation: Map<AdminLink, boolean> = new Map([
+		[AdminLink.Events, true],
+		[AdminLink.Administration, false]
 	]);
 
 	public unsubscribe$: Subject<boolean> = new Subject<boolean>();
@@ -73,16 +74,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
-		this.adminLinksActivation.set('events', true);
+		this.adminLinksActivation.set(AdminLink.Events, true);
 	}
 
 	public onAdministrationClick(): void {
 		this.resetAdminLinksActivation();
-		this.adminLinksActivation.set('administration', true);
+		this.adminLinksActivation.set(AdminLink.Administration, true);
 	}
 
 	private resetAdminLinksActivation(): void {
-		this.adminLinksActivation.forEach((activation: boolean, linkKey: string) => {
+		this.adminLinksActivation.forEach((activationState: boolean, linkKey: AdminLink) => {
 			this.adminLinksActivation.set(linkKey, false);
 		});
 	}

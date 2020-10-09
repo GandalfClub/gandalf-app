@@ -30,7 +30,7 @@ export class ContainerFacadeService {
 			photoUrl: '',
 			email: 'good.gmail.com',
 			isAdmin: undefined,
-			claims: [Claim.EventManager],
+			claims: [Claim.Admin],
 		}
 	};
 

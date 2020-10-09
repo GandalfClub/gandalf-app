@@ -3,7 +3,7 @@ import { User } from 'src/app/libs/auth/models/user';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { Localization } from 'src/app/libs/container/models/localization';
 import { LocalizationService } from 'src/app/libs/container/services/localization.service';
-import { DefaultAvatarUrl } from './models/default-avatar-url';
+import { DefaultAvatarUrl } from '../../../../models/default-avatar-url';
 
 @Component({
 	selector: 'app-avatar',
