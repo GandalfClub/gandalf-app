@@ -5,11 +5,12 @@
 		</mat-icon>
 	</div>
 	<mat-menu class="notifications__menu" #menu="matMenu" xPosition="before">
-		<ng-container *ngFor="let notification of (containerFacadeService.notifications$ | async).value">
+		<ng-container *ngFor="let notification of (containerFacadeService.notifications$ | async).value; let last = last">
 			<button mat-menu-item class="notifications__menu-item">
 				<div class="notifications__title">{{notification.title}}</div>
 				<div class="notifications__content">{{notification.content}}</div>
 			</button>
+			<mat-divider class="notifications__divider" *ngIf="!last"></mat-divider>
 		</ng-container>
 	</mat-menu>
 </div>

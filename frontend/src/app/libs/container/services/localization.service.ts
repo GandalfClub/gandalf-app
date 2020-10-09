@@ -17,8 +17,8 @@ export class LocalizationService {
 				create_event: 'Create Event',
 				events: 'Events',
 				administration: 'Administration',
-				log_off: 'Log OFF',
-				account: 'Account',
+				log_off: 'LOG OFF',
+				account: 'ACCOUNT',
 				user_name: 'User name',
 				footer_text: '© 2020 LEARNINJA. All rights reserved.'
 			}

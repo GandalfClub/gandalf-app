@@ -4,7 +4,7 @@ import { Notification } from '../models/notification';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
-import { Claim } from '../models/claim';
+import { UserClaim } from '../../auth/models/user-claim';
 import { EntityStatus } from '../../auth/models/entity-status';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class ContainerFacadeService {
 			photoUrl: '',
 			email: 'good.gmail.com',
 			isAdmin: undefined,
-			claims: [Claim.Admin],
+			claims: [UserClaim.Admin],
 		}
 	};
 

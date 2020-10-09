@@ -2,14 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerComponent } from './container.component';
 import { ContainerStoreModule } from './store/store.module';
-import { EffectsRootModule, EffectsModule } from '@ngrx/effects';
-import { StoreRootModule, StoreModule } from '@ngrx/store';
-import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { User } from '../auth/models/user';
 import { EntityStatus } from '../auth/models/entity-status';
-import { Claim } from './models/claim';
+import { UserClaim } from '../auth/models/user-claim';
 
 describe('ContainerComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -21,7 +20,7 @@ describe('ContainerComponent', () => {
 			photoUrl: '',
 			email: '1@1.com',
 			isAdmin: undefined,
-			claims: [Claim.Admin],
+			claims: [UserClaim.Admin],
 		}
 	};
 

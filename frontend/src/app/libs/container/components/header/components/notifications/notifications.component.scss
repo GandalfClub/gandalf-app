@@ -16,10 +16,14 @@
 	}
 
 	&__menu-item {
-		height: 60px;
+		height: 54px;
 		padding-top: 4px;
 
 		color: $color-white;
+	}
+
+	&__divider {
+		border-top-color: $color-white-10;
 	}
 
 	&__title {

@@ -28,7 +28,8 @@
 	}
 
 	&__user-name-container {
-		height: 55px;
+		padding: 0 10px;
+		height: 49px;
 
 		color: $color-white;
 
@@ -50,10 +51,10 @@
 		@include menu-item-hover;
 			
 		height: 32px;
+		padding: 0 10px;
 
 		line-height: 31px;
 		color: $color-white;
-		text-transform: uppercase;
 	}
 
 	&__arrow-icon {

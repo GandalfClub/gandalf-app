@@ -1,3 +1,5 @@
+import { UserClaim } from './user-claim';
+
 export interface UserDto {
 	_id: string;
 	email: string;
@@ -8,5 +10,5 @@ export interface UserDto {
 	secondName?: string;
 	mobilePhone?: string;
 	password?: string;
-	claims?: string[];
+	claims?: UserClaim[];
 }

@@ -2,10 +2,10 @@
 	<div class="header__logo-container">
 		<img src="assets/images/logo.svg">
 	</div>
-	<div class="header__admin-buttons" *ngIf="isAdminUser">
+	<div class="header__admin-buttons" *ngIf="userService.isAdminUser">
 		<app-button 
 				class="header__admin-button"
-				[class.header__admin-button--active]="adminLinksActivation.get('events')"
+				[class.header__admin-button--active]="adminLinksActivation.get(eventsLink)"
 				[theme]="darkTheme" 
 				[disableRipple]="true" 
 				[disableHover]="true"
@@ -14,7 +14,7 @@
 		</app-button>
 		<app-button 
 				class="header__admin-button" 
-				[class.header__admin-button--active]="adminLinksActivation.get('administration')"
+				[class.header__admin-button--active]="adminLinksActivation.get(administrationLink)"
 				[theme]="darkTheme"
 				[disableRipple]="true" 
 				[disableHover]="true"
@@ -24,19 +24,14 @@
 	</div>
 	<div class="header__common-buttons">
 		<app-localization class="header__localization"></app-localization>
-		<app-button class="header__button" *ngIf="isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">{{localization.create_event}}</app-button>
-		<ng-container *ngIf="isUnauthorizedUser">
+		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">{{localization.create_event}}</app-button>
+		<ng-container *ngIf="userService.isUnauthorizedUser">
 			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">{{localization.sign_in}}</app-button>
 			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">{{localization.sign_up}}</app-button>
 		</ng-container>
-		<ng-container *ngIf="!isUnauthorizedUser">
+		<ng-container *ngIf="!userService.isUnauthorizedUser">
 			<app-notifications class="header__notifications"></app-notifications>
-			<app-avatar class="header__avatar"
-					[userName]="userName"
-					[userPhotoUrl]="user.photoUrl"
-					[isEventManagerUser]="isEventManagerUser" 
-					[isAdminUser]="isAdminUser">
-			</app-avatar>
+			<app-avatar class="header__avatar"></app-avatar>
 		</ng-container>
 	</div>
 </header>
