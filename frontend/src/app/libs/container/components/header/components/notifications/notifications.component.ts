@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ButtonType } from 'src/app/libs/common-components/components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
-import { ContainerFacadeService } from '../../../../services/container.facade';
+import { ContainerFacadeService } from 'src/app/libs/container/services/container-facade.service';
 
 @Component({
 	selector: 'app-notifications',

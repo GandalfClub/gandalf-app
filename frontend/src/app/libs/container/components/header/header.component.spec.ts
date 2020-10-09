@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { ContainerFacadeService } from '../../services/container.facade';
+import { ContainerFacadeService } from '../../services/container-facade.service';
 import { ContainerStoreModule } from '../../store/store.module';
 
 import { HeaderComponent } from './header.component';

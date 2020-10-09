@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { ContainerFacadeService } from 'src/app/libs/container/services/container.facade';
+import { ContainerFacadeService } from 'src/app/libs/container/services/container-facade.service';
 import { ContainerStoreModule } from 'src/app/libs/container/store/store.module';
 import { NotificationsComponent } from './notifications.component';
 

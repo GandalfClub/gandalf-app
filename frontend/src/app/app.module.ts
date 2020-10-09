@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
+import { AuthModule } from './libs/auth/auth.module';
 
 @NgModule({
 	declarations: [AppComponent, CodejarComponent],
@@ -16,6 +17,7 @@ import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.com
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
+		AuthModule,
 		ContainerModule,
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),

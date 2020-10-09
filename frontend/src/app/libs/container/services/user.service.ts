@@ -6,24 +6,18 @@ import { User } from '../../auth/models/user';
 import { UserClaim } from '../../auth/models/user-claim';
 import { DefaultAvatarUrl } from '../models/default-avatar-url';
 import { getUserFullName } from '../utils/get-user-full-name';
-import { ContainerFacadeService } from './container.facade';
+import { ContainerFacadeService } from './container-facade.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnDestroy {
+export class UserService {
 
 	private user: User;
 
 	private unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private containerFacadeService: ContainerFacadeService) {
-		this.containerFacadeService.user$
-		.pipe(takeUntil(this.unsubscribe$))
-		.subscribe((entity: EntityWrapper<User>) => {
-			this.user = entity.value;
-		});
-	}
+	constructor(private containerFacadeService: ContainerFacadeService) {}
 
 	public get userFullName(): string {
 		return getUserFullName(this.user.firstName, this.user.secondName);
@@ -52,7 +46,15 @@ export class UserService implements OnDestroy {
 			DefaultAvatarUrl.Participation;
 	}
 
-	public ngOnDestroy(): void {
+	public subscribeUser(): void {
+		this.containerFacadeService.user$
+		.pipe(takeUntil(this.unsubscribe$))
+		.subscribe((entity: EntityWrapper<User>) => {
+			this.user = entity.value;
+		});
+	}
+
+	public unsubscribeUser(): void {
 		this.unsubscribe$.next(true);
 		this.unsubscribe$.complete();
 	}

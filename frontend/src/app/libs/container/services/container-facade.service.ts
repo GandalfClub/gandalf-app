@@ -37,7 +37,6 @@ export class ContainerFacadeService {
 	constructor(private authFacadeService: AuthFacadeService) { }
 
 	public get user$(): Observable<EntityWrapper<User>> {
-		return of(this.fakeUser);
 		return this.authFacadeService.user$;
 	}
 

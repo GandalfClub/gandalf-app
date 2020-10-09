@@ -31,7 +31,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
 	declarations: [
