@@ -20,9 +20,24 @@ export class ContainerFacadeService {
 		]
 	};
 
+	// TODO: remove fakeUser
+	private fakeUser: EntityWrapper<User> = {
+		status: EntityStatus.Success,
+		value: {
+			id: '1',
+			firstName: 'Uladzimir',
+			secondName: 'Svirydzenka',
+			photoUrl: '',
+			email: 'good.gmail.com',
+			isAdmin: undefined,
+			claims: [Claim.EventManager],
+		}
+	};
+
 	constructor(private authFacadeService: AuthFacadeService) { }
 
 	public get user$(): Observable<EntityWrapper<User>> {
+		return of(this.fakeUser);
 		return this.authFacadeService.user$;
 	}
 
