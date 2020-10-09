@@ -1,0 +1,27 @@
+<mat-form-field 
+	appearance="outline" 
+	class="input"
+	[class.input--dark]="isDarkTheme">
+
+	<mat-label>{{label}}<span *ngIf="showRequiredSign">*</span></mat-label>
+	<input
+		matInput 
+		(input)="onValueInput($event.target.value)"
+		[formControl]="formControl"
+		[type]="inputType"
+		(change)="onValueChange($event.target.value)"
+		(blur)="onTouched()"
+		placeholder={{placeholder}}>
+
+	<mat-error *ngFor="let error of errorsArray">
+		{{error}}
+	</mat-error>
+	<button 
+		*ngIf="isPassword"
+		mat-icon-button matSuffix 
+		(click)="secured = !secured" 
+		[attr.aria-label]="'Hide password'" 
+		[attr.aria-pressed]="secured">
+		<mat-icon>{{icon}}</mat-icon>
+	</button>
+</mat-form-field>

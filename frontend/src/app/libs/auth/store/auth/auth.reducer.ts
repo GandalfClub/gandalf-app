@@ -6,6 +6,10 @@ import {
 	UpdateUserInfoFail,
 	SignUpSuccess,
 	SignInSuccess,
+	LoadUserSuccess,
+	LoadUserFail,
+	SignInFailure,
+	SignUpFailure,
 } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
@@ -50,7 +54,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignInFailure).payload,
 				},
 			};
 		}
@@ -76,7 +80,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignUpFailure).payload,
 				},
 			};
 		}
@@ -104,7 +108,34 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: action.payload,
+					error: (action as UpdateUserInfoFail).payload,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUser: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Pending,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Success,
+					value: (action as LoadUserSuccess).payload.user,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserFail: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Error,
+					value: null,
+					error: (action as LoadUserFail).payload,
 				},
 			};
 		}
