@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
-import { LocalizationService } from 'src/app/libs/container/services/localization.service';
 
 import { LocalizationComponent } from './localization.component';
 
@@ -11,8 +10,7 @@ describe('LocalizationComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [ MatMenuModule ],
-			declarations: [ LocalizationComponent ],
-			providers: [ LocalizationService ]
+			declarations: [ LocalizationComponent ]
 		})
 		.compileComponents();
 	});

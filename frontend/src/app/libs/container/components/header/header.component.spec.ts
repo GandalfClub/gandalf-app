@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ContainerFacadeService } from '../../services/container.facade';
-import { LocalizationService } from '../../services/localization.service';
 import { ContainerStoreModule } from '../../store/store.module';
 
 import { HeaderComponent } from './header.component';
@@ -19,7 +18,7 @@ describe('HeaderComponent', () => {
 				ContainerStoreModule
 			],
 			declarations: [ HeaderComponent ],
-			providers: [ LocalizationService, ContainerFacadeService ]
+			providers: [ ContainerFacadeService ]
 		})
 		.compileComponents();
 	});

@@ -7,10 +7,10 @@
 	</div>
 	<mat-menu class="avatar__menu" #menu="matMenu" xPosition="before">
 		<button mat-menu-item class="avatar__user-name-container">
-			<div class="avatar__user-name-label">{{localization.user_name}}</div>
+			<div class="avatar__user-name-label">{{'LABEL.USER_NAME' | translate}}</div>
 			<div class="avatar__user-name">{{displayedName}}</div>
 		</button>
-		<button mat-menu-item class="avatar__button" routerLink="profile">{{localization.account}}</button>
-		<button mat-menu-item class="avatar__button" (click)="refreshPage()">{{localization.log_off}}</button>
+		<button mat-menu-item class="avatar__button" routerLink="profile">{{"BUTTON.ACCOUNT" | translate}}</button>
+		<button mat-menu-item class="avatar__button" (click)="refreshPage()">{{"BUTTON.LOG_OFF" | translate}}</button>
 	</mat-menu>
 </div>

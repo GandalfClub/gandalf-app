@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ButtonType } from 'src/app/libs/common-components/components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
-import { Localization } from '../../models/localization';
-import { LocalizationService } from '../../services/localization.service';
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -31,11 +30,7 @@ export class HeaderComponent {
 		return AdminLink.Administration;
 	}
 
-	public get localization(): Localization {
-		return this.localizationService.currentLocalization;
-	}
-
-	constructor(public localizationService: LocalizationService, public userService: UserService) {}
+	constructor(public translateService: TranslateService, public userService: UserService) {}
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();

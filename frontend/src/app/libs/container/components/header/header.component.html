@@ -10,7 +10,7 @@
 				[disableRipple]="true" 
 				[disableHover]="true"
 				(click)="onEventsClick()">
-			{{localization.events}}
+			{{"BUTTON.EVENTS" | translate}}
 		</app-button>
 		<app-button 
 				class="header__admin-button" 
@@ -19,15 +19,21 @@
 				[disableRipple]="true" 
 				[disableHover]="true"
 				(click)="onAdministrationClick()">
-			{{localization.administration}}
+			{{"BUTTON.ADMINISTRATION" | translate}}
 		</app-button>
 	</div>
 	<div class="header__common-buttons">
 		<app-localization class="header__localization"></app-localization>
-		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">{{localization.create_event}}</app-button>
+		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">
+			{{"BUTTON.CREATE_EVENT" | translate}}
+		</app-button>
 		<ng-container *ngIf="userService.isUnauthorizedUser">
-			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">{{localization.sign_in}}</app-button>
-			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">{{localization.sign_up}}</app-button>
+			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">
+				{{"BUTTON.SIGN_IN" | translate}}
+			</app-button>
+			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">
+				{{"BUTTON.SIGN_UP" | translate}}
+			</app-button>
 		</ng-container>
 		<ng-container *ngIf="!userService.isUnauthorizedUser">
 			<app-notifications class="header__notifications"></app-notifications>

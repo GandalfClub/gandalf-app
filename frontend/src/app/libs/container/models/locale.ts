@@ -1,4 +1,4 @@
-export interface Locale {
-	name: string;
-	code: string;
+export enum Locale {
+	Russian = 'ru',
+	English = 'en'
 }

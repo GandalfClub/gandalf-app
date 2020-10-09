@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
-import { LocalizationService } from '../../../../services/localization.service';
 
 @Component({
 	selector: 'app-localization',
@@ -11,5 +11,5 @@ export class LocalizationComponent {
 
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
-	constructor(public localizationService: LocalizationService) {}
+	constructor(public translateService: TranslateService) {}
 }

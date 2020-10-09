@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
-import { Localization } from 'src/app/libs/container/models/localization';
-import { LocalizationService } from 'src/app/libs/container/services/localization.service';
 import { UserService } from 'src/app/libs/container/services/user.service';
 
 @Component({
@@ -22,11 +20,7 @@ export class AvatarComponent {
 		this.userService.userEmail;
 	}
 
-	public get localization(): Localization {
-		return this.localizationService.currentLocalization;
-	}
-
-	constructor(private localizationService: LocalizationService, public userService: UserService) {}
+	constructor(public userService: UserService) {}
 
 	public refreshPage(): void {
 		window.location.reload();

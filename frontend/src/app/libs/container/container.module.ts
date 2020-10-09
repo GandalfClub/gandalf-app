@@ -10,6 +10,14 @@ import { LocalizationComponent } from './components/header/components/localizati
 import { AvatarComponent } from './components/header/components/avatar/avatar.component';
 import { NotificationsComponent } from './components/header/components/notifications/notifications.component';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+	return new TranslateHttpLoader(http);
+}
+
 @NgModule({
 	declarations: [
 		ContainerComponent,
@@ -23,7 +31,15 @@ import { NotificationsComponent } from './components/header/components/notificat
 		CommonComponentsModule,
 		CommonModule,
 		ContainerStoreModule,
-		RouterModule
+		RouterModule,
+		HttpClientModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [ HttpClient ]
+			}
+		})
 	],
 	exports: [
 		ContainerComponent
