@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { LocalizationService } from 'src/app/libs/container/services/localization.service';
+import { UserService } from 'src/app/libs/container/services/user.service';
+import { ContainerStoreModule } from 'src/app/libs/container/store/store.module';
 
 import { AvatarComponent } from './avatar.component';
 
@@ -10,9 +14,14 @@ describe('AvatarComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [ MatMenuModule ],
+			imports: [
+				MatMenuModule,
+				EffectsModule.forRoot([]),
+				StoreModule.forRoot({}),
+				ContainerStoreModule
+			],
 			declarations: [ AvatarComponent ],
-			providers: [ LocalizationService ]
+			providers: [ LocalizationService, UserService ]
 		})
 		.compileComponents();
 	});
