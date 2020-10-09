@@ -18,6 +18,7 @@ import {
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 import { User } from '../../models/user';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('AuthReducers', () => {
 	describe('Init', () => {
@@ -239,6 +240,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [UserClaim.Admin]
 		};
 		beforeEach(() => {
 			action = new LoadUserSuccess({ user });

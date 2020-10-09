@@ -24,19 +24,19 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	constructor(
 		private userSearchService: UserSearchService,
 		private usersFacadeService: UsersFacadeService,
-		private aurhFacadeService: AuthFacadeService
+		private authFacadeService: AuthFacadeService
 	) {}
 
-	public get userUpdateState(): boolean {
+	public get updateInProgress(): boolean {
 		return this.userUpdate.status === EntityStatus.Pending;
 	}
 
-	public get filteredUsers(): User[] {
+	public get foundUsers(): User[] {
 		return this.userSearchService.userSearch(this.users, this.searchText);
 	}
 
-	public get userNotFound(): boolean {
-		return this.filteredUsers && this.filteredUsers.length === 0;
+	public get foundUsersEmpty(): boolean {
+		return this.foundUsers && this.foundUsers.length === 0;
 	}
 
 	public ngOnInit(): void {
@@ -44,21 +44,17 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 			this.users = users.value;
 		});
 
-		this.aurhFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
+		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.userUpdate = user;
 		});
 	}
 
-	public changeUserState(event: boolean, user: User): void {
-		const currentClaims: UserClaim[] = [...user.claims];
-		if (event) {
-			currentClaims.push(UserClaim.EventManager);
-			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: currentClaims }))(user));
-		}
-		if (!event) {
-			const claimsWithoutEventManager: UserClaim[] = currentClaims.filter((item: string) => item !== UserClaim.EventManager);
-			this.aurhFacadeService.updateUser((({ claims, password, ...dto }: User) => ({ ...dto, claims: claimsWithoutEventManager }))(user));
-		}
+	public toggleEventManagerClaim(isEventManager: boolean, user: User): void {
+		const toggledUser: User = isEventManager ?
+						{...user, claims: [...user.claims, UserClaim.EventManager]} :
+						{...user, claims: user.claims.
+							filter((claim: UserClaim) => claim !== UserClaim.EventManager)};
+		this.usersFacadeService.toggleEventManagerClaim(user);
 	}
 
 	public ngOnDestroy(): void {

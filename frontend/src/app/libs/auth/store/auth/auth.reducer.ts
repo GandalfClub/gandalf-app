@@ -9,10 +9,10 @@ import {
 	LoadUserSuccess,
 	LoadUserFail,
 	SignInFailure,
-	SignUpFailure,
-} from './auth.actions';
+	SignUpFailure } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 export const authFeatureKey: string = 'auth';
 
@@ -139,6 +139,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				},
 			};
 		}
+
 		default:
 			return state;
 	}

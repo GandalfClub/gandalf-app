@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { selectUsers, selectUsersValue } from './users.selectors';
-import { LoadUsers } from './users.actions';
+import { LoadUsers, ToggleEventManagerRole } from './users.actions';
 import { UsersState } from './users-state';
 import { User } from '../../../auth/models/user';
 
@@ -23,5 +23,9 @@ export class UsersFacadeService {
 
 	public loadUsers(): void {
 		this.store.dispatch(new LoadUsers());
+	}
+
+	public toggleEventManagerClaim(user: User): void {
+		this.store.dispatch(new ToggleEventManagerRole({user}));
 	}
 }

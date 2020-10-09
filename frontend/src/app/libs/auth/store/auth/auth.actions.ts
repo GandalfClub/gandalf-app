@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { UserCredentials } from '../../models/user-credentials';
 import { User } from '../../models/user';
+import { UsersActionType } from 'src/app/libs/admin-role-management/store/users/users.actions';
 
 export enum AuthActionTypes {
 	SignIn = '[Auth] Sign In',
@@ -15,7 +16,7 @@ export enum AuthActionTypes {
 	UpdateUserInfoFail = '[Auth] Update user Failure',
 	LoadUser = '[Auth] Load user',
 	LoadUserSuccess = '[Auth] Load user Success',
-	LoadUserFail = '[Auth] Load user Failure',
+	LoadUserFail = '[Auth] Load user Failure'
 }
 
 export class SignIn implements Action {
