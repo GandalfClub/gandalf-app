@@ -28,7 +28,7 @@ describe('UserComponent', () => {
 		fixture = TestBed.createComponent(UserRoleTileComponent);
 		component = fixture.componentInstance;
 		component.user = user;
-		component.userUpdateIsDisabled = false;
+		component.disabled = false;
 		fixture.detectChanges();
 	});
 
@@ -36,16 +36,16 @@ describe('UserComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('when togle slide switched', () => {
+	describe('when toggle slide switched', () => {
 		beforeEach(() => {
-			spyOn(component.isEventManager, 'emit');
+			spyOn(component.eventManagerClaimToggled, 'emit');
 			const matTogle: MatSlideToggle = fixture.debugElement.nativeElement;
 			const event: MatSlideToggleChange = new MatSlideToggleChange(matTogle, true);
 			component.toggleEventManagerClaim(true);
 		});
 
 		it('calls toggleIsAdminClaim', () => {
-			expect(component.isEventManager.emit).toHaveBeenCalledWith(true);
+			expect(component.eventManagerClaimToggled.emit).toHaveBeenCalledWith(true);
 		});
 	});
 });
