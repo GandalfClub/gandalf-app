@@ -6,18 +6,9 @@ import { RouterModule } from '@angular/router';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LocalizationComponent } from './components/header/components/localization/localization.component';
 import { AvatarComponent } from './components/header/components/avatar/avatar.component';
 import { NotificationsComponent } from './components/header/components/notifications/notifications.component';
-
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { AuthStoreModule } from '../auth/store/store.module';
-
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-	return new TranslateHttpLoader(http);
-}
+import { LocalizationModule } from './components/localization/localization.module';
 
 @NgModule({
 	declarations: [
@@ -25,7 +16,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 		HeaderComponent,
 		FooterComponent,
 		NotificationsComponent,
-		LocalizationComponent,
 		AvatarComponent
 	],
 	imports: [
@@ -33,14 +23,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 		CommonModule,
 		ContainerStoreModule,
 		RouterModule,
-		HttpClientModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: HttpLoaderFactory,
-				deps: [ HttpClient ]
-			}
-		})
+		LocalizationModule
 	],
 	exports: [
 		ContainerComponent

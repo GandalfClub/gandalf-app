@@ -1,7 +1,0 @@
-@import "../drop-down-menu/drop-down-menu-theme";
-
-.localization {
-	&__menu {
-		@include drop-down-menu-theme;
-	}
-}

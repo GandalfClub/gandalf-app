@@ -1,5 +1,5 @@
 @import "variables";
-@import "../drop-down-menu/drop-down-menu-theme";
+@import "../header/components/drop-down-menu/drop-down-menu-theme.scss";
 
 .localization {
   @include drop-down-menu-container;

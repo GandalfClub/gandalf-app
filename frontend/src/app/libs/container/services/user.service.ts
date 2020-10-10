@@ -20,7 +20,7 @@ export class UserService {
 	constructor(private containerFacadeService: ContainerFacadeService) {}
 
 	public get userFullName(): string {
-		return getUserFullName(this.user.firstName, this.user.secondName);
+		return getUserFullName(this.user?.firstName, this.user?.secondName);
 	}
 
 	public get userEmail(): string {
@@ -32,11 +32,11 @@ export class UserService {
 	}
 
 	public get isAdminUser(): boolean {
-		return this.user ? this.user.claims?.includes(UserClaim.Admin) : false;
+		return this.user?.claims?.includes(UserClaim.Admin);
 	}
 
 	public get isEventManagerUser(): boolean {
-		return this.user ? this.user.claims?.includes(UserClaim.EventManager) : false;
+		return this.user?.claims?.includes(UserClaim.EventManager);
 	}
 
 	public get photoUrl(): string {

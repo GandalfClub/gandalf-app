@@ -9,6 +9,8 @@ import { EntityWrapper } from '../auth/models/entity-wraper';
 import { User } from '../auth/models/user';
 import { EntityStatus } from '../auth/models/entity-status';
 import { UserClaim } from '../auth/models/user-claim';
+import { AuthModule } from '../auth/auth.module';
+import { LocalizationModule } from './components/localization/localization.module';
 
 describe('ContainerComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -42,17 +44,19 @@ describe('ContainerComponent', () => {
 		},
 	};
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ContainerComponent],
 			imports: [
 				EffectsModule.forRoot([]),
 				StoreModule.forRoot({}),
-				ContainerStoreModule
+				ContainerStoreModule,
+				LocalizationModule,
+				AuthModule
 			]
 		})
 			.compileComponents();
-	}));
+	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ContainerComponent);

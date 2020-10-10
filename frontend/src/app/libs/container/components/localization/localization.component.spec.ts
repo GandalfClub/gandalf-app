@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { LocalizationComponent } from './localization.component';
+import { LocalizationModule } from './localization.module';
 
 describe('LocalizationComponent', () => {
 	let component: LocalizationComponent;
@@ -9,13 +10,10 @@ describe('LocalizationComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [ MatMenuModule ],
-			declarations: [ LocalizationComponent ]
+			imports: [ MatMenuModule, LocalizationModule ]
 		})
 		.compileComponents();
-	});
 
-	beforeEach(() => {
 		fixture = TestBed.createComponent(LocalizationComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
