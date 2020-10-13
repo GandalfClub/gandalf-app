@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
+import { ContainerFacadeService } from 'src/app/libs/container/services/container-facade.service';
 import { UserService } from 'src/app/libs/container/services/user.service';
 
 @Component({
@@ -20,9 +21,5 @@ export class AvatarComponent {
 		this.userService.userEmail;
 	}
 
-	constructor(public userService: UserService) {}
-
-	public refreshPage(): void {
-		window.location.reload();
-	}
+	constructor(public userService: UserService, public containerFacadeService: ContainerFacadeService) {}
 }

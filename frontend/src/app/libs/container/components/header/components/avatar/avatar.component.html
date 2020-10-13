@@ -11,6 +11,6 @@
 			<div class="avatar__user-name">{{displayedName}}</div>
 		</button>
 		<button mat-menu-item class="avatar__button" routerLink="profile">{{"BUTTON.ACCOUNT" | translate}}</button>
-		<button mat-menu-item class="avatar__button" (click)="refreshPage()">{{"BUTTON.LOG_OFF" | translate}}</button>
+		<button mat-menu-item class="avatar__button" (click)="containerFacadeService.signOut()">{{"BUTTON.LOG_OFF" | translate}}</button>
 	</mat-menu>
 </div>

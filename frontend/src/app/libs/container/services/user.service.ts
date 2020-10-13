@@ -28,7 +28,7 @@ export class UserService {
 	}
 
 	public get isUnauthorizedUser(): boolean {
-		return this.user === undefined;
+		return !Boolean(this.user);
 	}
 
 	public get isAdminUser(): boolean {

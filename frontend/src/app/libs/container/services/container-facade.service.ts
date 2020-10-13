@@ -29,4 +29,8 @@ export class ContainerFacadeService {
 	public get notifications$(): Observable<EntityWrapper<Notification[]>> {
 		return of(this.fakeNotifications);
 	}
+
+	public signOut(): void {
+		this.authFacadeService.signOut();
+	}
 }

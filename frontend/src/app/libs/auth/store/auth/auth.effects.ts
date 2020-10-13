@@ -15,6 +15,8 @@ import {
 	LoadUser,
 	LoadUserSuccess,
 	LoadUserFail,
+	SignOutSuccess,
+	SignOutFailure,
 } from './auth.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
@@ -25,8 +27,6 @@ import { User } from '../../models/user';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { AuthResponse } from '../../models/auth-response';
 import { UserDto } from '../../models/user-dto';
-import { ActionType, GetEventsFail, GetEventsSuccess } from '../../../landing/store/events/events.actions';
-import { EventDto } from '../../../landing/models/event-dto';
 
 @Injectable()
 export class AuthEffects {
@@ -109,6 +109,20 @@ export class AuthEffects {
 				.pipe(map((userDto: UserDto) => new LoadUserSuccess({ user: this.authConverter.convertFromDto(userDto) })))
 		),
 		catchError((error: Error) => of(new LoadUserFail({ message: error })))
+	);
+
+	@Effect()
+	public SignOut: Observable<Action> = this.actions.pipe(
+		ofType(AuthActionTypes.SignOut),
+		exhaustMap(() => {
+			return this.authRepository.signOut();
+		}),
+		map(() => {
+			return new SignOutSuccess();
+		}),
+		catchError((error: Error) => {
+			return of(new SignOutFailure({ message: error }));
+		})
 	);
 
 	constructor(

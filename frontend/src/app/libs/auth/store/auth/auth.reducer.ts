@@ -9,7 +9,8 @@ import {
 	LoadUserSuccess,
 	LoadUserFail,
 	SignInFailure,
-	SignUpFailure
+	SignUpFailure,
+	SignOut
 } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
@@ -137,6 +138,32 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 					value: null,
 					error: (action as LoadUserFail).payload
 				},
+			};
+		}
+		case AuthActionTypes.SignOut: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Pending,
+				}
+			};
+		}
+		case AuthActionTypes.SignOutSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Init
+				}
+			};
+		}
+		case AuthActionTypes.SignOutFailure: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Error
+				}
 			};
 		}
 		default:
