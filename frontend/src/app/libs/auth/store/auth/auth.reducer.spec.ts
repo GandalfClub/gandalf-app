@@ -18,6 +18,7 @@ import {
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 import { User } from '../../models/user';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('AuthReducers', () => {
 	describe('Init', () => {
@@ -62,6 +63,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignInSuccess(user);
@@ -113,6 +115,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignUpSuccess(user);
@@ -156,6 +159,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfo({ user });
@@ -163,7 +167,7 @@ describe('AuthReducers', () => {
 		});
 		it('should return user', () => {
 			expect(newState.user).toEqual({
-				status: EntityStatus.Success,
+				status: EntityStatus.Pending,
 				value: user,
 			});
 		});
@@ -180,6 +184,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfoSuccess({ user });
@@ -235,6 +240,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [UserClaim.Admin]
 		};
 		beforeEach(() => {
 			action = new LoadUserSuccess({ user });

@@ -15,7 +15,6 @@ import {
 	SignUpFailure,
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
-	UpdateUserInfoFail,
 	LoadUser,
 	LoadUserSuccess,
 	LoadUserFail,
@@ -28,11 +27,16 @@ import { createSpy } from '../../helpers/createSpy';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { UserDto } from '../../models/user-dto';
 import { AuthResponse } from '../../models/auth-response';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
+import { AuthFacadeService } from './auth.facade';
 
 describe('Auth Effects', () => {
 	let mockAuthRepository: jasmine.SpyObj<AuthRepository>;
 	let mockAngularFireAuth: jasmine.SpyObj<AngularFireAuth>;
 	let mockAuthConverter: jasmine.SpyObj<AuthConverter>;
+	let authFacade: jasmine.SpyObj<AuthFacadeService>;
+
+	authFacade = null;
 
 	function createEffects(source: Observable<Action>): AuthEffects {
 		return new AuthEffects(new Actions(source), mockAuthRepository, mockAngularFireAuth, mockAuthConverter);
@@ -80,12 +84,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -129,12 +135,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -173,6 +181,7 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const credentials: UserCredentials = {
@@ -184,6 +193,7 @@ describe('Auth Effects', () => {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const authResponse: AuthResponse = {
@@ -222,6 +232,7 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const credentials: UserCredentials = {
@@ -233,6 +244,7 @@ describe('Auth Effects', () => {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [],
 		};
 
 		const error: Error = new Error('error') as any;
@@ -254,12 +266,14 @@ describe('Auth Effects', () => {
 			id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [UserClaim.Admin]
 		};
 
 		const userDto: UserDto = {
 			_id: 'test',
 			email: 'test@test',
 			isAdmin: false,
+			claims: [UserClaim.Admin]
 		};
 
 		const authResponse: AuthResponse = {

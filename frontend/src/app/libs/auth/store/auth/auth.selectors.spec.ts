@@ -11,6 +11,7 @@ describe('Auth Selectors', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		},
 	};
 	const state: AuthState = {
