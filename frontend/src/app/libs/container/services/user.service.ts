@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { UserClaim } from '../../admin-role-management/models/user-claims.enum';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
-import { UserClaim } from '../../auth/models/user-claim';
 import { DefaultAvatarUrl } from '../models/default-avatar-url';
 import { getUserFullName } from '../utils/get-user-full-name';
 import { ContainerFacadeService } from './container-facade.service';

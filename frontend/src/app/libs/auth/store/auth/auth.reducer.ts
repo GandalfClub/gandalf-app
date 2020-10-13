@@ -10,8 +10,10 @@ import {
 	LoadUserFail,
 	SignInFailure,
 	SignUpFailure,
-	SignOut
-} from './auth.actions';
+	SignOut,
+	SignOutSuccess,
+	SignOutFailure
+	} from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 
@@ -89,7 +91,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 			return {
 				...state,
 				user: {
-					status: EntityStatus.Success,
+					status: EntityStatus.Pending,
 					value: (action as UpdateUserInfo).payload.user,
 				},
 			};

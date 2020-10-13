@@ -63,6 +63,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	private getChangesFromForm(): User {
 		const valuesFromForm: User = {
+			...this.user,
 			id: this.user.id,
 			isAdmin: this.user.isAdmin,
 			email: this.profileForm.value.email,

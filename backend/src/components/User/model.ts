@@ -1,8 +1,12 @@
 import * as bcrypt from 'bcryptjs';
-import * as crypto from 'crypto';
 import { NextFunction } from 'express';
-import { Document, Schema, Types } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import mainDbConnection from '../../config/connection/main-db';
+
+export enum UserClaim {
+	Admin = 'Admin',
+	EventManager = 'EventManager',
+}
 
 /**
  * @export
@@ -16,7 +20,9 @@ export interface IUserModel extends Document {
 	email: string;
 	password: string;
 	isAdmin: boolean;
-	claims: string[];
+	claims: UserClaim[];
+	displayName?: string;
+	photoUrl?: string;
 	comparePassword: (password: string) => Promise<boolean>;
 }
 
@@ -45,7 +51,7 @@ const UserSchema: Schema = new Schema(
 			default: false,
 		},
 		claims: {
-			type: Schema.Types.Array,
+			type: Schema.Types,
 			default: [],
 		},
 	},

@@ -36,6 +36,13 @@ const routes: Routes = [
 			),
 	},
 	{
+		path: 'adminrolemanagement',
+		loadChildren: () =>
+			import('./libs/admin-role-management/admin-role-management.module').then(
+				(m: typeof import('./libs/admin-role-management/admin-role-management.module')) => m.AdminRoleManagementModule
+			),
+	},
+	{
 		path: 'demo',
 		loadChildren: () =>
 			import('./libs/common-components-demo/common-components-demo.module').then(

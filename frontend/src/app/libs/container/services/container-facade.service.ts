@@ -4,7 +4,6 @@ import { Notification } from '../models/notification';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
-import { UserClaim } from '../../auth/models/user-claim';
 import { EntityStatus } from '../../auth/models/entity-status';
 
 @Injectable({
