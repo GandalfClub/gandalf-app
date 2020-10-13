@@ -59,6 +59,9 @@ describe('UserListComponent', () => {
 		get users$(): Observable<EntityWrapper<User[]>> {
 			return of(users);
 		},
+		toggleEventManagerClaim(selectedUser: User): User {
+			return selectedUser;
+		}
 	};
 
 	const mockAuthFacadeService: Partial<AuthFacadeService> = {
@@ -77,11 +80,13 @@ describe('UserListComponent', () => {
 				UserSearchService,
 			],
 		}).compileComponents();
+
 	}));
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(UsersRoleManagementPanelComponent);
 		component = fixture.componentInstance;
+
 		fixture.detectChanges();
 	});
 
@@ -89,23 +94,27 @@ describe('UserListComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	// describe('when event set user event manager emited', () => {
-	// 	beforeEach(() => {
-	// 		component.toggleEventManagerRole(true, updateUserNotEventManage);
-	// 	});
+	describe('when event set user event manager emited', () => {
+		beforeEach(() => {
+			spyOn(mockUsersFacadeService, 'toggleEventManagerClaim');
+			component.toggleEventManagerClaim(true, updateUserNotEventManage);
 
-	// 	it('should update user state', () => {
-	// 		expect(mockAuthFacadeService.updateUser).toHaveBeenCalledWith(updateUserEventManage);
-	// 	});
-	// });
+		});
 
-	// describe('when event clear user event manager status emited', () => {
-	// 	beforeEach(() => {
-	// 		component.toggleEventManagerRole(false, updateUserEventManage);
-	// 	});
+		it('should update user state', () => {
+			expect(mockUsersFacadeService.toggleEventManagerClaim).toHaveBeenCalledWith(updateUserEventManage);
+		});
+	});
+	describe('when event clear user event manager status emited', () => {
+		beforeEach(() => {
+			spyOn(mockUsersFacadeService, 'toggleEventManagerClaim');
+			component.toggleEventManagerClaim(false, updateUserEventManage);
 
-	// 	it('should update user state', () => {
-	// 		expect(mockAuthFacadeService.updateUser).toHaveBeenCalledWith(updateUserNotEventManage);
-	// 	});
-	// });
+		});
+
+		it('should update user state', () => {
+			expect(mockUsersFacadeService.toggleEventManagerClaim).toHaveBeenCalledWith(updateUserNotEventManage);
+		});
+	});
+
 });

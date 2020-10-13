@@ -15,7 +15,6 @@ import {
 	SignUpFailure,
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
-	UpdateUserInfoFail,
 	LoadUser,
 	LoadUserSuccess,
 	LoadUserFail,

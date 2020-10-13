@@ -26,6 +26,6 @@ export class UsersFacadeService {
 	}
 
 	public toggleEventManagerClaim(user: User): void {
-		this.store.dispatch(new ToggleEventManagerRole({user}));
+		this.store.dispatch(new ToggleEventManagerRole(user));
 	}
 }

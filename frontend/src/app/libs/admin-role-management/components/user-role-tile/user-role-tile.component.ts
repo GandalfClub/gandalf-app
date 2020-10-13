@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { UserClaim } from '../../models/user-claims.enum';
 import { User } from 'src/app/libs/auth/models/user';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
 	selector: 'app-user-role-tile',
@@ -15,7 +14,7 @@ export class UserRoleTileComponent {
 
 	@Input() public disabled: boolean = false;
 
-	public get userEventManagerState(): boolean {
+	public get isEventManager(): boolean {
 		return this.user.claims.includes(UserClaim.EventManager);
 	}
 

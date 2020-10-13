@@ -1,8 +1,7 @@
-import { UsersActionType, UsersActions, ToggleEventManagerRole } from './users.actions';
+import { UsersActionType, UsersActions } from './users.actions';
 import { UsersState } from './users-state';
 import { EntityStatus } from '../../../auth/models/entity-status';
 import { User } from 'src/app/libs/auth/models/user';
-import { UserClaim } from '../../models/user-claims.enum';
 
 export const initialState: UsersState = {
 	users: {
@@ -48,10 +47,15 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 				users: {
 					...state.users,
 					status: EntityStatus.Pending,
-					value: [
-						...state.users.value.filter((user: User) => user.id !== action.payload.user.id),
-						action.payload.user
-					]
+					value:
+					Boolean(state.users.value) ?
+						[
+							...state.users.value.filter((user: User) => user.id !== action.payload.id),
+							action.payload
+						] :
+						[
+							action.payload
+						]
 				},
 			};
 		}
@@ -61,6 +65,16 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 				users: {
 					...state.users,
 					status: EntityStatus.Success,
+				},
+			};
+		}
+		case UsersActionType.ToggleEventManagerRoleFail: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Error,
+					error: action.payload,
 				},
 			};
 		}

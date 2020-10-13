@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { UsersEffects } from './users.effects';
 import { UsersRepositoryService } from '../../services/users-repository.service';
 import { User } from '../../../auth/models/user';
-import { LoadUsers, LoadUsersSuccess, LoadUsersFail } from './users.actions';
+import { LoadUsers, LoadUsersSuccess, LoadUsersFail, ToggleEventManagerRole, ToggleEventManagerRoleSuccess, ToggleEventManagerRoleFail } from './users.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -19,6 +19,28 @@ describe('Events Effects', () => {
 	let error: Error;
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
+
+	user = {
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		id: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
+
+	userDto = {
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		_id: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 
 	function createEffects(source: Observable<Action>): UsersEffects {
 		return new UsersEffects(new Actions(source), mockUsersRepository, authConverter);
@@ -40,30 +62,9 @@ describe('Events Effects', () => {
 	}));
 
 	describe('getUsers', () => {
+
 		describe('when LoadUsers success', () => {
 			beforeEach(() => {
-				user = {
-					firstName: 'test',
-					secondName: 'test',
-					mobilePhone: 'test',
-					id: 'test',
-					isAdmin: false,
-					email: 'test@test.by',
-					password: 'test',
-					claims: [],
-				};
-
-				userDto = {
-					firstName: 'test',
-					secondName: 'test',
-					mobilePhone: 'test',
-					_id: 'test',
-					isAdmin: false,
-					email: 'test@test.by',
-					password: 'test',
-					claims: [],
-				};
-
 				mockUsersRepository.getUsers.and.returnValue(of([userDto]));
 				actions = hot('-a-|', { a: new LoadUsers() });
 				expected = cold('-s-|', { s: new LoadUsersSuccess([user]) });
@@ -84,6 +85,35 @@ describe('Events Effects', () => {
 
 			it('should emit LoadUsersFail action', () => {
 				expect(createEffects(actions).GetUsers).toBeObservable(expected);
+			});
+		});
+	});
+
+	describe('updateUsers', () => {
+
+		describe('when update users success', () => {
+			beforeEach(() => {
+
+				mockUsersRepository.updateUser.and.returnValue(of(userDto));
+				actions = hot('-a-|', { a: new ToggleEventManagerRole(user) });
+				expected = cold('-s-|', { s: new ToggleEventManagerRoleSuccess() });
+			});
+
+			it('should emit ToggleEventManagerRoleSuccess action', () => {
+				expect(createEffects(actions).SetEventManagerRole).toBeObservable(expected);
+			});
+		});
+
+		describe('when update Users fail', () => {
+			beforeEach(() => {
+				error = new Error('test');
+				mockUsersRepository.updateUser.and.throwError(error);
+				actions = hot('-a|', { a: new ToggleEventManagerRole(user) });
+				expected = cold('-(s|)', { s: new ToggleEventManagerRoleFail(error) });
+			});
+
+			it('should emit ToggleEventManagerRoleFail action', () => {
+				expect(createEffects(actions).SetEventManagerRole).toBeObservable(expected);
 			});
 		});
 	});

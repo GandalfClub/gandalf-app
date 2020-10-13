@@ -54,7 +54,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 						{...user, claims: [...user.claims, UserClaim.EventManager]} :
 						{...user, claims: user.claims.
 							filter((claim: UserClaim) => claim !== UserClaim.EventManager)};
-		this.usersFacadeService.toggleEventManagerClaim(user);
+		this.usersFacadeService.toggleEventManagerClaim(toggledUser);
 	}
 
 	public ngOnDestroy(): void {

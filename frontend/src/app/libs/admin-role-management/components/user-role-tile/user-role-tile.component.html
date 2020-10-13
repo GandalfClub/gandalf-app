@@ -14,7 +14,7 @@
     </div>
     <div class="user-role-tile__slide-toggle">
       <span>Event Manager </span>
-      <app-slide-toggle [value]="userEventManagerState"
+      <app-slide-toggle [value]="isEventManager"
                         [disabled]="disabled"
                         (toggled)="toggleEventManagerClaim($event)">
       </app-slide-toggle>
