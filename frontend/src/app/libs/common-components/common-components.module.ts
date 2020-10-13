@@ -19,7 +19,7 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
@@ -43,7 +43,8 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
-		EventCardDateComponent],
+		EventCardDateComponent,
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -88,7 +89,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsComponent,
 		TabsPanelComponent,
 		TagListComponent,
-		EventCardComponent
+		EventCardComponent,
 	],
 	providers: [
 		{
