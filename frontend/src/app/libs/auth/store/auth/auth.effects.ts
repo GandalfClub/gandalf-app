@@ -27,6 +27,7 @@ import { User } from '../../models/user';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { AuthResponse } from '../../models/auth-response';
 import { UserDto } from '../../models/user-dto';
+import { Router } from '@angular/router';
 // import { ActionType, GetEventsFail, GetEventsSuccess } from '../../../landing/store/events/events.actions';
 // import { EventDto } from '../../../landing/models/event-dto';
 // import { AuthFacadeService } from './auth.facade';
@@ -134,6 +135,6 @@ export class AuthEffects {
 		private actions: Actions,
 		private authRepository: AuthRepository,
 		private fireAuthService: AngularFireAuth,
-		private authConverter: AuthConverter,
+		private authConverter: AuthConverter
 	) {}
 }

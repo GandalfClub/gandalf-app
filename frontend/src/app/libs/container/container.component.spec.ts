@@ -8,9 +8,9 @@ import { Observable, of } from 'rxjs';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { User } from '../auth/models/user';
 import { EntityStatus } from '../auth/models/entity-status';
-import { UserClaim } from '../auth/models/user-claim';
 import { AuthModule } from '../auth/auth.module';
 import { LocalizationModule } from './components/localization/localization.module';
+import { UserClaim } from '../admin-role-management/models/user-claims.enum';
 
 describe('ContainerComponent', () => {
 	const user: EntityWrapper<User> = {
