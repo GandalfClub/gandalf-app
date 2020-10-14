@@ -3,47 +3,33 @@ import { TestBed } from '@angular/core/testing';
 import { AuthConverter } from './auth-converter.service';
 import { UserDto } from '../models/user-dto';
 import { User } from '../models/user';
-import { AuthResponse } from '../models/auth-response';
 
 describe('AuthConverterService', () => {
 	let service: AuthConverter;
-	let createdUser: User;
-	let createdUserChanges: Partial<UserDto>;
+	const user: User = {
+		id: 'test',
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 
 	const userDto: UserDto = {
-		email: '1@1.com',
-		isAdmin: false,
 		_id: 'test',
-		firstName: 'undefined',
-		mobilePhone: 'undefined',
-		secondName: 'undefined',
-		password: 'undefined',
-	};
-
-	const user: User = {
-		email: '1@1.com',
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
 		isAdmin: false,
-		id: 'test',
-		firstName: 'undefined',
-		mobilePhone: 'undefined',
-		secondName: 'undefined',
-		password: 'undefined',
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
 	};
 
-	const userChanges: Partial<UserDto> = {
-		_id: 'test',
-		firstName: 'undefined',
-		mobilePhone: 'undefined',
-		secondName: 'undefined',
-	};
-
-	const authResponse: AuthResponse = {
-		isCompetitionActive: false,
-		logged: true,
-		message: 'test',
-		status: 0,
-		user: userDto,
-	};
+	let convertedUser: User | UserDto;
+	let convertedUsers: User[];
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
@@ -54,23 +40,33 @@ describe('AuthConverterService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	describe('convertFromDto method should rename "_id" key', () => {
+	describe('convertUserFromDto method should rename "_id" key', () => {
 		beforeEach(() => {
-			createdUser = service.convertFromDto(userDto);
+			convertedUser = service.convertFromDto(userDto);
 		});
 
 		it('should rename "_id" key', () => {
-			expect(createdUser).toEqual(user);
+			expect(convertedUser).toEqual(user);
 		});
 	});
 
-	describe('convertToDto  method should rename "id" key', () => {
+	describe('convertUserToDto method should rename "id" key', () => {
 		beforeEach(() => {
-			createdUserChanges = service.convertToDto(user);
+			convertedUser = service.convertToDto(user);
 		});
 
 		it('should rename "id" key', () => {
-			expect(createdUserChanges).toEqual(userChanges);
+			expect(convertedUser).toEqual(userDto);
+		});
+	});
+
+	describe('convertUsersFromDto method should rename "_id" key', () => {
+		beforeEach(() => {
+			convertedUsers = service.convertUsersFromDto([userDto]);
+		});
+
+		it('should rename "_id" key', () => {
+			expect(convertedUsers).toEqual([user]);
 		});
 	});
 });

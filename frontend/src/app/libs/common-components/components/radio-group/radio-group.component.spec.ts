@@ -22,7 +22,7 @@ const testData: RadioGroupDataDemo = {
 		{
 			title: 'Option 3',
 			value: 3,
-		}
+		},
 	],
 	labelField: 'title',
 	valueField: 'value',
@@ -35,10 +35,9 @@ describe('RadioGroupComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ RadioGroupComponent ],
-			imports: [ MatRadioModule ]
-		})
-		.compileComponents();
+			declarations: [RadioGroupComponent],
+			imports: [MatRadioModule],
+		}).compileComponents();
 		fixture = TestBed.createComponent(RadioGroupComponent);
 		component = fixture.componentInstance;
 		component.options = testData.options;
@@ -142,7 +141,7 @@ describe('RadioGroupComponent', () => {
 
 		describe('when click unchecked radio', () => {
 			beforeEach(() => {
-				spyOn(component.valueChange, 'emit');
+				spyOn(component.valueChange, 'emit').and.callThrough();
 				radioButtons[0].nativeElement.click();
 				fixture.detectChanges();
 			});

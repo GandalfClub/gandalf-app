@@ -11,10 +11,14 @@ import {
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
 	UpdateUserInfoFail,
+	LoadUser,
+	LoadUserSuccess,
+	LoadUserFail,
 } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 import { User } from '../../models/user';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('AuthReducers', () => {
 	describe('Init', () => {
@@ -59,6 +63,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignInSuccess(user);
@@ -72,7 +77,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('SignInFalure', () => {
+	describe('SignInFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const error: Error = {
@@ -110,6 +115,7 @@ describe('AuthReducers', () => {
 			id: '0',
 			isAdmin: false,
 			email: 'test@mail.t',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new SignUpSuccess(user);
@@ -123,7 +129,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('SignUpFailure', () => {
+	describe('SignUpFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const error: Error = {
@@ -153,6 +159,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfo({ user });
@@ -160,13 +167,13 @@ describe('AuthReducers', () => {
 		});
 		it('should return user', () => {
 			expect(newState.user).toEqual({
-				status: EntityStatus.Success,
+				status: EntityStatus.Pending,
 				value: user,
 			});
 		});
 	});
 
-	describe('UpdateUserInfoSuccessfuly', () => {
+	describe('UpdateUserInfoSuccess', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const user: User = {
@@ -177,6 +184,7 @@ describe('AuthReducers', () => {
 			isAdmin: false,
 			id: '0',
 			email: 'test@test.test',
+			claims: [],
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfoSuccess({ user });
@@ -190,7 +198,7 @@ describe('AuthReducers', () => {
 		});
 	});
 
-	describe('UpdateUserInfoFailed', () => {
+	describe('UpdateUserInfoFail', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
 		const err: any = {
@@ -198,6 +206,62 @@ describe('AuthReducers', () => {
 		};
 		beforeEach(() => {
 			action = new UpdateUserInfoFail(err);
+			newState = authReducer(initialState, action);
+		});
+		it('should return error', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Error,
+				value: null,
+				error: err,
+			});
+		});
+	});
+
+	describe('LoadUser', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		beforeEach(() => {
+			action = new LoadUser();
+			newState = authReducer(initialState, action);
+		});
+		it('should return the user.status - Pending', () => {
+			expect(newState.user.status).toBe(EntityStatus.Pending);
+		});
+	});
+
+	describe('LoadUserSuccess', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const user: User = {
+			firstName: '1',
+			secondName: '1',
+			mobilePhone: '1',
+			password: '1',
+			isAdmin: false,
+			id: '0',
+			email: 'test@test.test',
+			claims: [UserClaim.Admin]
+		};
+		beforeEach(() => {
+			action = new LoadUserSuccess({ user });
+			newState = authReducer(initialState, action);
+		});
+		it('should return user', () => {
+			expect(newState.user).toEqual({
+				status: EntityStatus.Success,
+				value: user,
+			});
+		});
+	});
+
+	describe('LoadUserFail', () => {
+		let action: AuthActions = {} as AuthActions;
+		let newState: AuthState;
+		const err: any = {
+			message: 'testError',
+		};
+		beforeEach(() => {
+			action = new LoadUserFail(err);
 			newState = authReducer(initialState, action);
 		});
 		it('should return error', () => {

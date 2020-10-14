@@ -5,6 +5,7 @@ import { AuthActionTypes, UpdateUserInfo, UpdateUserInfoFail, UpdateUserInfoSucc
 import { AuthState } from '../../models/auth-state';
 import { SignInByGithub } from './auth.actions';
 import { authReducer, initialState } from './auth.reducer';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 describe('Sign In Success', () => {
 	let action: AuthActions.SignInSuccess;
@@ -12,6 +13,7 @@ describe('Sign In Success', () => {
 		id: '1',
 		email: 'test@test.test',
 		isAdmin: true,
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.SignInSuccess(payload);
@@ -76,6 +78,7 @@ describe('Sign Up Success', () => {
 		id: '1',
 		email: 'test@test.test',
 		isAdmin: true,
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.SignUpSuccess(payload);
@@ -132,6 +135,7 @@ describe('Update User Info', () => {
 		isAdmin: false,
 		id: '0',
 		email: 'test@test.test',
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.UpdateUserInfo({ user });
@@ -154,6 +158,7 @@ describe('update User Info Success', () => {
 		isAdmin: false,
 		id: '0',
 		email: 'test@test.test',
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.UpdateUserInfoSuccess({ user });
@@ -166,7 +171,7 @@ describe('update User Info Success', () => {
 	});
 });
 
-describe('update User Failure', () => {
+describe('update User Fail', () => {
 	let action: AuthActions.UpdateUserInfoFail;
 	const error: Error = {
 		name: 'test error',
@@ -175,9 +180,61 @@ describe('update User Failure', () => {
 	beforeEach(() => {
 		action = new AuthActions.UpdateUserInfoFail({ message: error });
 	});
-	it('should create UpdateUserInfoFailedAction action', () => {
+	it('should create UpdateUserInfoFailAction action', () => {
 		expect({ ...action }).toEqual({
 			type: AuthActionTypes.UpdateUserInfoFail,
+			payload: { message: error },
+		});
+	});
+});
+
+describe('Load User', () => {
+	let action: AuthActions.LoadUser;
+	beforeEach(() => {
+		action = new AuthActions.LoadUser();
+	});
+	it('should create LoadUser action', () => {
+		expect({ ...action }).toEqual({
+			type: AuthActions.AuthActionTypes.LoadUser,
+		});
+	});
+});
+
+describe('Load User Success', () => {
+	let action: AuthActions.LoadUserSuccess;
+	const user: User = {
+		firstName: '1',
+		secondName: '1',
+		mobilePhone: '1',
+		password: '1',
+		isAdmin: false,
+		id: '0',
+		email: 'test@test.test',
+		claims: [UserClaim.Admin]
+	};
+	beforeEach(() => {
+		action = new AuthActions.LoadUserSuccess({ user });
+	});
+	it('should create LoadUserSuccess action', () => {
+		expect({ ...action }).toEqual({
+			type: AuthActionTypes.LoadUserSuccess,
+			payload: { user },
+		});
+	});
+});
+
+describe('Load User Fail', () => {
+	let action: AuthActions.LoadUserFail;
+	const error: Error = {
+		name: 'test error',
+		message: 'sign up failed',
+	};
+	beforeEach(() => {
+		action = new AuthActions.LoadUserFail({ message: error });
+	});
+	it('should create LoadUserFail action', () => {
+		expect({ ...action }).toEqual({
+			type: AuthActionTypes.LoadUserFail,
 			payload: { message: error },
 		});
 	});

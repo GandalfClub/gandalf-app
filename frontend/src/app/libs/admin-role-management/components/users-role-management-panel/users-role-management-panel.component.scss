@@ -1,0 +1,32 @@
+@import "variables";
+
+.users-role-management-panel {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&__header {
+		width: 70%;
+		margin: auto;
+		border-bottom: 2px solid $color-black-50;
+		height: 30px;
+	}
+
+	&__user {
+		margin: 5px 0 5px 0;
+	}
+
+	&__empty {
+		align-self: center;
+	}
+
+	&__input {
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+	}
+
+	&__input-header {
+		margin: 10px 10px 0 0;
+	}
+}

@@ -6,9 +6,13 @@ import {
 	UpdateUserInfoFail,
 	SignUpSuccess,
 	SignInSuccess,
-} from './auth.actions';
+	LoadUserSuccess,
+	LoadUserFail,
+	SignInFailure,
+	SignUpFailure } from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
+import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 export const authFeatureKey: string = 'auth';
 
@@ -50,7 +54,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignInFailure).payload,
 				},
 			};
 		}
@@ -76,7 +80,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignUpFailure).payload,
 				},
 			};
 		}
@@ -84,7 +88,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 			return {
 				...state,
 				user: {
-					status: EntityStatus.Success,
+					status: EntityStatus.Pending,
 					value: (action as UpdateUserInfo).payload.user,
 				},
 			};
@@ -104,10 +108,38 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: action.payload,
+					error: (action as UpdateUserInfoFail).payload,
 				},
 			};
 		}
+		case AuthActionTypes.LoadUser: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Pending,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Success,
+					value: (action as LoadUserSuccess).payload.user,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserFail: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Error,
+					value: null,
+					error: (action as LoadUserFail).payload,
+				},
+			};
+		}
+
 		default:
 			return state;
 	}
