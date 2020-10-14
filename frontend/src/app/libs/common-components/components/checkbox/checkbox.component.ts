@@ -33,7 +33,11 @@ export class CheckboxComponent {
 	}
 	public getValue(index: number): any {
 		const option: any = this.options[index];
-		const value: any = this.valueField !== undefined ? option[this.valueField] : index;
+		const isDefined: boolean = this.isDefined(this.valueField);
+		const value: any = isDefined ? option[this.valueField] : index;
 		return value;
+	}
+	public isDefined(valueField: any): boolean {
+		return valueField !== undefined;
 	}
 }
