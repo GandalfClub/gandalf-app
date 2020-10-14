@@ -5,7 +5,7 @@
 		[checked]="option.checked"
 		[class.mat-checkbox-disabled]="option.disabled"
 		[class.mat-checkbox-dark]="isDarkTheme"
-		[value]="isDefined(valueField) ? option[valueField] : (index + 1)"
+		[value]="getValue(index)"
 		*ngFor="let option of options; let index = index"
 		(change)="check($event)">
 		<span class="checkbox-group__checkbox-label" 

@@ -25,14 +25,15 @@ export class CheckboxComponent {
 	public valueField: string;
 	@Input()
 	public value: any;
-
 	public check(event: any): void {
 		this.change.emit(event);
 	}
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
-	public isDefined(value: any): boolean {
-		return value !== undefined;
+	public getValue(index: number): any {
+		const option: any = this.options[index];
+		const value: any = this.valueField !== undefined ? option[this.valueField] : index;
+		return value;
 	}
 }
