@@ -43,8 +43,8 @@ export class CheckboxDemoComponent {
 		valueField: 'value',
 	};
 
-	public onChange(state: string): void {
-		console.log(state);
+	public onChange(event: string): void {
+		console.log(event);
 	}
 
 }
