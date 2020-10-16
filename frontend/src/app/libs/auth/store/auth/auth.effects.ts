@@ -19,7 +19,7 @@ import {
 	LoadUserSuccess,
 	LoadUserFail } from './auth.actions';
 import { Observable, of, from } from 'rxjs';
-import { map, switchMap, exhaustMap, catchError, tap, take } from 'rxjs/operators';
+import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Action } from '@ngrx/store';
@@ -27,12 +27,6 @@ import { User } from '../../models/user';
 import { AuthConverter } from '../../services/auth-converter.service';
 import { AuthResponse } from '../../models/auth-response';
 import { UserDto } from '../../models/user-dto';
-import { Router } from '@angular/router';
-// import { ActionType, GetEventsFail, GetEventsSuccess } from '../../../landing/store/events/events.actions';
-// import { EventDto } from '../../../landing/models/event-dto';
-// import { AuthFacadeService } from './auth.facade';
-// import { EntityWrapper } from '../../models/entity-wraper';
-// import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 @Injectable()
 export class AuthEffects {
