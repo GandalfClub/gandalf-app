@@ -11,7 +11,7 @@ import { EntityStatus } from '../../auth/models/entity-status';
 })
 export class ContainerFacadeService {
 
-	private fakeNotifications: EntityWrapper<Notification[]> = {
+	public fakeNotifications: EntityWrapper<Notification[]> = {
 		status: EntityStatus.Success,
 		value: [
 			{ title: 'Notification 1', content: 'content 1' },
