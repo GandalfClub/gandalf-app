@@ -32,4 +32,17 @@ describe('AvatarComponent', () => {
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});
+
+	describe('when @Input gets userName', () => {
+		const userName: string = '1 2';
+
+		beforeEach(() => {
+			component.userName = userName;
+			fixture.detectChanges();
+		});
+
+		it('should define userName', () => {
+			expect(component.userName).toEqual(userName);
+		});
+	});
 });

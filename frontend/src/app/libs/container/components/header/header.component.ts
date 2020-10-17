@@ -42,7 +42,7 @@ export class HeaderComponent {
 		this.adminLinksActivation.set(AdminLink.Administration, true);
 	}
 
-	private resetAdminLinksActivation(): void {
+	public resetAdminLinksActivation(): void {
 		this.adminLinksActivation.forEach((activationState: boolean, linkKey: AdminLink) => {
 			this.adminLinksActivation.set(linkKey, false);
 		});
