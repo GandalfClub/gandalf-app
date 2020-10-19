@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CompilerFactory, COMPILER_OPTIONS, NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +28,9 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 
 @NgModule({
 	declarations: [
@@ -43,7 +46,9 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
-		EventCardDateComponent],
+		EventCardDateComponent,
+		TableComponent,
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -60,7 +65,8 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		MatProgressBarModule,
 		MatRadioModule,
 		MatTabsModule,
-		MatChipsModule
+		MatChipsModule,
+		MatTableModule
 	],
 	exports: [
 		MatInputModule,
@@ -87,13 +93,19 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsComponent,
 		TabsPanelComponent,
 		TagListComponent,
-		EventCardComponent
-	],
+		EventCardComponent,
+		TableComponent,
+		MatTableModule,
+		],
 	providers: [
 		{
 			provide: MatDialogRef,
 			useValue: {},
 		},
+		{
+			provide: CompilerFactory,
+			useClass: JitCompilerFactory,
+			deps: [COMPILER_OPTIONS] },
 	],
 })
 export class CommonComponentsModule {}
