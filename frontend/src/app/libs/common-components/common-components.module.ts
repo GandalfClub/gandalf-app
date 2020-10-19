@@ -12,6 +12,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
@@ -19,7 +20,7 @@ import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/c
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
 import { ScrollbarDirective } from './directives/scrollbar/scrollbar.directive';
 import { RadioGroupComponent } from './components/radio-group/radio-group.component';
@@ -35,6 +36,7 @@ import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 @NgModule({
 	declarations: [
 		SlideToggleComponent,
+		CheckboxComponent,
 		CreateDraftEventPopoverComponent,
 		ButtonComponent,
 		InputComponent,
@@ -82,8 +84,10 @@ import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 		MatSlideToggleModule,
 		MatCheckboxModule,
 		CreateDraftEventPopoverComponent,
+		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
+		CheckboxComponent,
 		InputComponent,
 		MatProgressBarModule,
 		ProgressBarComponent,

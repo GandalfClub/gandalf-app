@@ -1,8 +1,8 @@
 import * as Joi from 'joi';
+import { Types } from 'mongoose';
+import { IUserService } from './interface';
 import UserModel, { IUserModel } from './model';
 import UserValidation from './validation';
-import { IUserService } from './interface';
-import { Types } from 'mongoose';
 
 /**
  * @export
@@ -78,10 +78,18 @@ const UserService: IUserService = {
 			if (validate.error) {
 				throw new Error(validate.error.message);
 			}
-			const user: IUserModel = await UserModel.findByIdAndUpdate(body._id, body);
-			const updatedUser: IUserModel = await UserModel.findById(user._id);
+			const user: IUserModel = await UserModel.findById(body._id);
+			user.firstName = body.firstName;
+			user.secondName = body.secondName;
+			user.mobilePhone = body.secondName;
+			user.email = body.email;
+			user.isAdmin = body.isAdmin;
+			user.claims = body.claims;
+			user.displayName = body.displayName;
+			user.photoUrl = body.photoUrl;
+			await UserModel.findByIdAndUpdate(body._id, body);
 
-			return updatedUser;
+			return user;
 		} catch (error) {
 			throw new Error(error.message);
 		}
