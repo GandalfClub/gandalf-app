@@ -1,0 +1,40 @@
+@import "variables";
+@import "../drop-down-menu/drop-down-menu-theme";
+
+.notifications {
+	@include drop-down-menu-container;
+
+	&__menu-trigger {
+		display: flex;
+		align-items: center;
+
+		color: $color-white;
+
+		cursor: pointer;
+
+		user-select: none;
+	}
+
+	&__menu-item {
+		height: 54px;
+		padding-top: 4px;
+
+		color: $color-white;
+	}
+
+	&__divider {
+		border-top-color: $color-white-10;
+	}
+
+	&__title {
+		@include text-h4;
+	}
+
+	&__content {
+		@include text-p;
+	}
+
+	&__menu-item {
+		@include menu-item-hover;
+	}
+}

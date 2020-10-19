@@ -4,7 +4,11 @@
   transition: background-color 0.4s;
   &:hover:not([disabled="true"]) {
     background-color: transparentize($color: white, $amount: 0.92);
-  }
+	}
+	
+	&.button--disable-hover:hover:not([disabled="true"]) {
+		background-color: transparent;
+	}
 }
 
 .button {
@@ -30,8 +34,8 @@
     &[disabled="true"] {
       color: transparentize($color: white, $amount: 0.7); 
     }
-  }
-
+	}
+	
   &--basic {
     @include button-hover();
   }

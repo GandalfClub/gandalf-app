@@ -9,10 +9,13 @@ import {
 	LoadUserSuccess,
 	LoadUserFail,
 	SignInFailure,
-	SignUpFailure } from './auth.actions';
+	SignUpFailure,
+	SignOut,
+	SignOutSuccess,
+	SignOutFailure
+	} from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
-import { UserClaim } from 'src/app/libs/admin-role-management/models/user-claims.enum';
 
 export const authFeatureKey: string = 'auth';
 
@@ -135,11 +138,36 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: (action as LoadUserFail).payload,
+					error: (action as LoadUserFail).payload
 				},
 			};
 		}
-
+		case AuthActionTypes.SignOut: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Pending,
+				}
+			};
+		}
+		case AuthActionTypes.SignOutSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Init
+				}
+			};
+		}
+		case AuthActionTypes.SignOutFailure: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Error
+				}
+			};
+		}
 		default:
 			return state;
 	}

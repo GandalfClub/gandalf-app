@@ -1,1 +1,5 @@
-<p>container works!</p>
+<app-header *ngIf="!hideHeader"></app-header>
+<div class="container">
+	<router-outlet></router-outlet>
+</div>
+<app-footer *ngIf="!hideFooter"></app-footer>

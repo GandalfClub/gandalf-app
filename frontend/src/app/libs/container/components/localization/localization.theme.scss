@@ -1,0 +1,7 @@
+@import "../header/components/drop-down-menu/drop-down-menu-theme.scss";
+
+.localization {
+	&__menu {
+		@include drop-down-menu-theme;
+	}
+}

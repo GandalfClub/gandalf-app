@@ -18,7 +18,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
@@ -29,6 +28,11 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
 	declarations: [
@@ -93,6 +97,11 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
+		MatBadgeModule,
+		MatToolbarModule,
+		MatSelectModule,
+		MatMenuModule,
+		MatDividerModule
 	],
 	providers: [
 		{
@@ -101,4 +110,4 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		},
 	],
 })
-export class CommonComponentsModule {}
+export class CommonComponentsModule { }
