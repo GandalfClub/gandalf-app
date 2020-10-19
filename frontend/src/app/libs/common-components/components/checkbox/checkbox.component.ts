@@ -14,6 +14,8 @@ export class CheckboxComponent {
 	@Input()
 	public checked: boolean = false;
 	@Input()
+	public indeterminate: boolean = false;
+	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 	@Input()
 	public options: any[];

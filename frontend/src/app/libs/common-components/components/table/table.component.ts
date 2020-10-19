@@ -1,11 +1,14 @@
 import { SelectionModel } from '@angular/cdk/collections';
+import { CommonModule } from '@angular/common';
 import { Identifiers } from '@angular/compiler';
 import { Compiler, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Input, ModuleWithComponentFactories, NgModule, OnInit, Renderer2, TemplateRef, Type, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Data } from '@angular/router';
 import { element } from 'protractor';
+import { CheckboxGroupDataDemo } from 'src/app/libs/common-components-demo/models/checkbox-group-data-demo';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { TableConfig, Column, TableColumnType } from './models/row-config.enum';
 
 export interface PeriodicElement {
@@ -14,7 +17,7 @@ export interface PeriodicElement {
 	weight: number;
 	symbol: string;
 }
-
+let tableTemplate: string = '';
 @Component({
 	selector: 'app-table',
 	template: '',
@@ -98,18 +101,26 @@ export class TableComponent implements OnInit {
 				element =
 				`<ng-container matColumnDef="select">
 					<th mat-header-cell *matHeaderCellDef>
-						<mat-checkbox (change)="$event ? masterToggle() : null"
+						<app-checkbox-group	class="checkbox-group-demo__container"
+							[options]="checkboxGroupData.options"
 							[checked]="selection.hasValue() && isAllSelected()"
+							[theme]="theme"
 							[indeterminate]="selection.hasValue() && !isAllSelected()"
-							[aria-label]="checkboxLabel()">
-						</mat-checkbox>
+							[labelField]="checkboxLabel()"
+							[valueField]="checkboxGroupData.valueField"
+							(change)="$event ? masterToggle() : null">
+						</app-checkbox-group>
 					</th>
 					<td mat-cell *matCellDef="let row">
-						<mat-checkbox (click)="$event.stopPropagation()"
-							(change)="$event ? selection.toggle(row) : null"
+						<app-checkbox-group	class="checkbox-group-demo__container"
+							(click)="$event.stopPropagation()"
+							[options]="checkboxGroupData.options"
 							[checked]="selection.isSelected(row)"
-							[aria-label]="checkboxLabel(row)">
-						</mat-checkbox>
+							[theme]="theme"
+							[labelField]="checkboxLabel(row)"
+							[valueField]="checkboxGroupData.valueField"
+							(change)="$event ? selection.toggle(row) : null">
+						</app-checkbox-group>
 					</td>
 				</ng-container>`;
 				this.displayedColumns.push('select')
@@ -117,7 +128,7 @@ export class TableComponent implements OnInit {
 			columns = columns + ` ${element}`;
 		}
 
-		this.tableTemplate = `
+		tableTemplate = `
 		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-component" [class.table-component--dark-theme]="isDarkTheme">
 			${columns}
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -147,17 +158,28 @@ export class TableComponent implements OnInit {
 
 	public createDynamicComponent(): any  {
 
-		@Component({template: this.tableTemplate, jit: true })
+		@Component({template: tableTemplate, jit: true })
 		class CustomDynamicComponent implements OnInit {
 
 			@Input()
 				public theme: ComponentTheme = ComponentTheme.Light;
 			@Input()
 				public data: any;
-
-			public displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+			@Input()
+			public displayedColumns: string[] = [];
 			public dataSource: MatTableDataSource<PeriodicElement>;
 			public selection: SelectionModel<PeriodicElement> = new SelectionModel<PeriodicElement>(true, []);
+
+			public checkboxGroupData: CheckboxGroupDataDemo = {
+				options: [
+					{
+						title: '',
+						value: 1,
+						checked: false
+					}],
+					labelField: '',
+					valueField: 'value'
+				};
 
 			public ngOnInit(): void {
 				this.dataSource = new MatTableDataSource<PeriodicElement>(this.data);
@@ -172,6 +194,7 @@ export class TableComponent implements OnInit {
 
 			/** Selects all rows if they are not all selected; otherwise clear selection. */
 			masterToggle() {
+				console.log('masterToggle')
 			  this.isAllSelected() ?
 				  this.selection.clear() :
 				  this.dataSource.data.forEach(row => this.selection.select(row));
@@ -184,6 +207,7 @@ export class TableComponent implements OnInit {
 			  }
 			  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
 			}
+
 			public get isDarkTheme(): boolean {
 				return this.theme === ComponentTheme.Dark;
 			}
@@ -198,7 +222,7 @@ export class TableComponent implements OnInit {
 
 		const moduleClass = class RuntimeComponentModule {
 		};
-		const decoratedNgModule = NgModule({ imports: [MatTableModule, MatCheckboxModule], declarations: [component] })(moduleClass);
+		const decoratedNgModule = NgModule({ imports: [CommonModule, MatCheckboxModule, MatTableModule], declarations: [component, CheckboxComponent] })(moduleClass);
 
 	 return decoratedNgModule;
 	  }
