@@ -118,7 +118,7 @@ export class TableComponent implements OnInit {
 		}
 
 		this.tableTemplate = `
-		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-component" [class.component-table--dark-theme]="isDarkTheme">
+		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-component" [class.table-component--dark-theme]="isDarkTheme">
 			${columns}
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 			<tr mat-row *matRowDef="let row; columns: displayedColumns;"

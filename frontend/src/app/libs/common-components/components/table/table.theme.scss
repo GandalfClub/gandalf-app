@@ -1,3 +1,20 @@
+@import "variables";
+
 .table-component {
 	width: 100%;
-  }
+
+	&--dark-theme {
+		background: $color-black;
+	}
+	&--dark-theme .mat-header-cell{
+		color: $color-white;
+	}
+	&--dark-theme .mat-cell{
+		color: $color-white;
+		border-bottom-color: $color-white-30;
+	}
+	&--dark-theme .mat-footer-cell{
+		color: $color-white;
+		border-top-color: $color-white-30;
+	}
+}
