@@ -1,7 +1,7 @@
 <app-demo-group class="progress-demo" [title]="'Table'">
 	<div class="light-theme">
 		<app-demo-state [title]="'Mendeleevs table'" [isDark]="false">
-			<app-table [tableConfig]="tableConfig" [data]="data"></app-table>
+			<app-table [tableConfig]="tableConfig" [data]="data" (toggled)="onToggle($event)" (checked)="onCheck($event)"></app-table>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TableConfig, TableColumnType } from 'src/app/libs/common-components/components/table/models/row-config.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
@@ -15,7 +15,7 @@ export class TableDemoComponent  {
 			name: 'check'
 		},
 		{
-			columnType: TableColumnType.Text,
+			columnType: TableColumnType.TextSortable,
 			name: 'No.'
 		},
 		{
@@ -25,6 +25,10 @@ export class TableDemoComponent  {
 		{
 			columnType: TableColumnType.Text,
 			name: 'Weight'
+		},
+		{
+			columnType: TableColumnType.Toggle,
+			name: 'Event Manager'
 		},
 		{
 			columnType: TableColumnType.Text,
@@ -48,4 +52,11 @@ export class TableDemoComponent  {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
+	public onToggle(row): void {
+		console.log(row)
+	}
+
+	public onCheck(selected): void {
+		console.log(selected)
+	}
 }

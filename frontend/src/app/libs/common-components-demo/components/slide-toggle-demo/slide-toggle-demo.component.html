@@ -3,16 +3,18 @@
 		<app-demo-state [title]="'active'" [isDark]="false">
 			<app-slide-toggle
 				[value]="false"
-				[disabled]="false" 
+				[disabled]="false"
 				[theme]=lightTheme
+				[title]="'Slide me!'"
 				(toggled)="onToggle($event)">
 			</app-slide-toggle>
 		</app-demo-state>
 		<app-demo-state [title]="'disabled'">
 			<app-slide-toggle
 				[value]="false"
-				[disabled]="true" 
+				[disabled]="true"
 				[theme]=lightTheme
+				[title]="'Slide me!'"
 				(toggled)="onToggle($event)">
 			</app-slide-toggle>
 		</app-demo-state>
@@ -21,16 +23,18 @@
 		<app-demo-state [title]="'active'" [isDark]="true">
 			<app-slide-toggle
 				[value]="true"
-				[disabled]="false" 
+				[disabled]="false"
 				[theme]=darkTheme
+				[title]="'Slide me!'"
 				(toggled)="onToggle($event)">
 			</app-slide-toggle>
 		</app-demo-state>
 		<app-demo-state [title]="'disabled'" [isDark]="true">
 			<app-slide-toggle
 				[value]="true"
-				[disabled]="true" 
+				[disabled]="true"
 				[theme]=darkTheme
+				[title]="'Slide me!'"
 				(toggled)="onToggle($event)">
 			</app-slide-toggle>
 		</app-demo-state>

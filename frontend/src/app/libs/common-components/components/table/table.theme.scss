@@ -1,19 +1,16 @@
 @import "variables";
-// .mat-header-cell {
-// 	flex-direction: column;
-// 	justify-content: center;
-// 	align-self: center;
-//   }
 
-//   .mat-cell {
-// 	text-align: center;
-// 	justify-content:center;
-// 	align-self: center;
-
-//   }
 
 .table-component {
 	width: 100%;
+
+	.mat-header-cell {
+		vertical-align: middle;
+	}
+
+	.mat-cell {
+		vertical-align: middle;
+	}
 
 	&--dark-theme {
 		background: $color-black;

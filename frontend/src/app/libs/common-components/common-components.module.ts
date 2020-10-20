@@ -32,6 +32,7 @@ import { EventCardDateComponent } from './components/event-card/components/event
 import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
 	declarations: [
@@ -68,7 +69,8 @@ import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 		MatRadioModule,
 		MatTabsModule,
 		MatChipsModule,
-		MatTableModule
+		MatTableModule,
+		MatSortModule
 	],
 	exports: [
 		MatInputModule,
@@ -100,6 +102,7 @@ import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 		EventCardComponent,
 		TableComponent,
 		MatTableModule,
+		MatSortModule
 		],
 	providers: [
 		{
