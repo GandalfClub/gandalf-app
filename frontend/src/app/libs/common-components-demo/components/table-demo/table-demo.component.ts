@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { TableConfig, TableColumnType } from 'src/app/libs/common-components/components/table/models/row-config.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
+export interface PeriodicElement {
+	name: string;
+	position: number;
+	weight: number;
+	symbol: string;
+}
+
 @Component({
 	selector: 'app-table-demo',
 	templateUrl: './table-demo.component.html',
@@ -36,7 +43,7 @@ export class TableDemoComponent  {
 		},
 	];
 
-	public data: any = [
+	public data: PeriodicElement[] = [
 		{position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
 		{position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
 		{position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -52,11 +59,11 @@ export class TableDemoComponent  {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
-	public onToggle(row): void {
-		console.log(row)
+	public onToggle(row: PeriodicElement): void {
+		console.log(row);
 	}
 
-	public onCheck(selected): void {
-		console.log(selected)
+	public onCheck(selected: PeriodicElement[]): void {
+		console.log(selected);
 	}
 }

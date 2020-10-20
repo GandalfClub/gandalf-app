@@ -1,11 +1,11 @@
 <app-demo-group class="progress-demo" [title]="'Table'">
 	<div class="light-theme">
-		<app-demo-state [title]="'Mendeleevs table'" [isDark]="false">
+		<app-demo-state [title]="'Mendeleev`s table'" [isDark]="false">
 			<app-table [tableConfig]="tableConfig" [data]="data" (toggled)="onToggle($event)" (checked)="onCheck($event)"></app-table>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">
-		<app-demo-state [title]="'Progress 35%'" [isDark]="true">
+		<app-demo-state [title]="'Mendeleev`s table in dark'" [isDark]="true">
 			<app-table [tableConfig]="tableConfig" [data]="data" [theme]="darkTheme"></app-table>
 		</app-demo-state>
 	</div>
