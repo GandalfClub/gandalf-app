@@ -5,9 +5,10 @@ export enum TableColumnType {
 	Toggle = 'toggle'
 }
 
-export interface TableConfig {
+export interface ColumnConfig {
 	columnType: TableColumnType;
-	name: string;
+	columnName: string;
+	dataName: string;
 }
 
 export interface Column {

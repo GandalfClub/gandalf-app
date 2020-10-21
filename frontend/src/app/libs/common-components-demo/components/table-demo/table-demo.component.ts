@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TableConfig, TableColumnType } from 'src/app/libs/common-components/components/table/models/row-config.enum';
+import { TableColumnType, ColumnConfig } from 'src/app/libs/common-components/components/table/models/row-config.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 
 export interface PeriodicElement {
@@ -16,30 +16,36 @@ export interface PeriodicElement {
 })
 export class TableDemoComponent  {
 
-	public tableConfig: TableConfig[] = [
+	public columnsConfig: ColumnConfig[] = [
 		{
 			columnType: TableColumnType.Checkbox,
-			name: 'check'
+			columnName: 'check',
+			dataName: 'check'
 		},
 		{
 			columnType: TableColumnType.TextSortable,
-			name: 'No.'
+			columnName: 'No.',
+			dataName: 'number'
 		},
 		{
 			columnType: TableColumnType.Text,
-			name: 'Name'
+			columnName: 'Name',
+			dataName: 'name'
 		},
 		{
 			columnType: TableColumnType.Text,
-			name: 'Weight'
+			columnName: 'Weight',
+			dataName: 'weight'
 		},
 		{
 			columnType: TableColumnType.Toggle,
-			name: 'Event Manager'
+			columnName: 'Event Manager',
+			dataName: 'toggleManager'
 		},
 		{
 			columnType: TableColumnType.Text,
-			name: 'Symbol'
+			columnName: 'Symbol',
+			dataName: 'symbol'
 		},
 	];
 

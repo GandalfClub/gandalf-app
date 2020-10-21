@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Compiler, Component, ComponentFactory, ComponentRef, ElementRef, EventEmitter, Input, ModuleWithComponentFactories, NgModule, OnDestroy, OnInit, Output, Renderer2, TemplateRef, Type, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Compiler, Component, ComponentFactory, ComponentRef, EventEmitter, Input, ModuleWithComponentFactories, NgModule, OnDestroy, OnInit, Output, TemplateRef, Type, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -11,7 +11,7 @@ import { CheckboxGroupDataDemo } from 'src/app/libs/common-components-demo/model
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
-import { TableConfig, Column, TableColumnType } from './models/row-config.enum';
+import { ColumnConfig, Column, TableColumnType } from './models/row-config.enum';
 
 export interface PeriodicElement {
 	name: string;
@@ -32,7 +32,7 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Input()
-	public tableConfig: TableConfig[];
+	public columnsConfig: ColumnConfig[];
 
 	@Input()
 	public data: T[];
@@ -60,7 +60,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
-		this.setRows();
 		this.createDom();
 	}
 
@@ -69,45 +68,29 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	public setRows(): void {
-		const dataNames: string[] = Object.keys(this.data[0]);
-		let i: number = 0;
-		for (const tableConfig of this.tableConfig) {
-			if (tableConfig.columnType === TableColumnType.Text || tableConfig.columnType === TableColumnType.TextSortable) {
-				this.columns.push({
-					columnType: tableConfig.columnType,
-					columnName: tableConfig.name,
-					dataName: dataNames[i]
-				});
-				i++;
-			} else {
-				this.columns.push({
-					columnType: tableConfig.columnType,
-					columnName: tableConfig.name,
-					dataName: tableConfig.name
-				});
-			}
-		}
-	}
-
 	public createDom(): void {
 		let columns: string = '';
 
-		for (const column of this.columns) {
+		for (const column of this.columnsConfig) {
 			let element: string = null;
-			if (column.columnType === TableColumnType.Text) {
-				element = this.createTextColumn(column);
-				this.displayedColumns.push(column.dataName);
-			} else if (column.columnType === TableColumnType.TextSortable) {
-				element = this.createTextSortableColumn(column);
-				this.displayedColumns.push(column.dataName);
-				this.hasTextSortable = true;
-			} else if (column.columnType === TableColumnType.Checkbox) {
-				element = this.createCheckboxColumn(column);
-				this.displayedColumns.push(column.dataName);
-			} else if (column.columnType === TableColumnType.Toggle) {
-				element = this.createToggleColumn(column);
-				this.displayedColumns.push(column.dataName);
+			switch (column.columnType) {
+				case TableColumnType.Text:
+					element = this.createTextColumn(column);
+					this.displayedColumns.push(column.dataName);
+					break;
+				case TableColumnType.TextSortable:
+					element = this.createTextSortableColumn(column);
+					this.displayedColumns.push(column.dataName);
+					this.hasTextSortable = true;
+					break;
+				case TableColumnType.Checkbox:
+					element = this.createCheckboxColumn(column);
+					this.displayedColumns.push(column.dataName);
+					break;
+				case TableColumnType.Toggle:
+					element = this.createToggleColumn(column);
+					this.displayedColumns.push(column.dataName);
+					break;
 			}
 			columns = columns + ` ${element}`;
 		}
@@ -119,19 +102,21 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		this.renderTableInnerComponent(component, module);
 	}
 
-	public createTextColumn(column: Column): string {
+	public createTextColumn(column: ColumnConfig): string {
 		return	`<ng-container matColumnDef="${column.dataName}">
 					<th mat-header-cell *matHeaderCellDef> ${column.columnName} </th>
 					<td mat-cell *matCellDef="let element"> {{element.${column.dataName}}} </td>
 				</ng-container>`;
 	}
-	public createTextSortableColumn(column: Column): string {
+
+	public createTextSortableColumn(column: ColumnConfig): string {
 		return	`<ng-container matColumnDef="${column.dataName}">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header> ${column.dataName} </th>
+					<th mat-header-cell *matHeaderCellDef mat-sort-header> ${column.columnName} </th>
 					<td mat-cell *matCellDef="let row"> {{row.${column.dataName}}} </td>
 				</ng-container>`;
 	}
-	public createCheckboxColumn(column: Column): string {
+
+	public createCheckboxColumn(column: ColumnConfig): string {
 		return	`<ng-container matColumnDef="${column.dataName}">
 					<th mat-header-cell *matHeaderCellDef>
 						<app-checkbox-group	class="checkbox-group-demo__container"
@@ -158,9 +143,9 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 				</ng-container>`;
 	}
 
-	public createToggleColumn(column: Column): string {
+	public createToggleColumn(column: ColumnConfig): string {
 		return	`<ng-container matColumnDef="${column.dataName}">
-					<th mat-header-cell *matHeaderCellDef> ${column.dataName} </th>
+					<th mat-header-cell *matHeaderCellDef> ${column.columnName} </th>
 					<td mat-cell *matCellDef="let row">
 						<app-slide-toggle
 							[value]="false"
