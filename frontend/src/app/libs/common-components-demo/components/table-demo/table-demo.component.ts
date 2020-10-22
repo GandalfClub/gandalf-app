@@ -25,7 +25,7 @@ export class TableDemoComponent  {
 		{
 			columnType: TableColumnType.TextSortable,
 			columnName: 'No.',
-			dataName: 'number'
+			dataName: 'position'
 		},
 		{
 			columnType: TableColumnType.Text,
@@ -65,11 +65,21 @@ export class TableDemoComponent  {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
+	public headerButtonText: string = 'delete';
+
 	public onToggle(row: PeriodicElement): void {
 		console.log(row);
 	}
 
 	public onCheck(selected: PeriodicElement[]): void {
+		console.log(selected);
+	}
+
+	public onHeaderButtonClick(selected: PeriodicElement[]): void {
+		console.log(selected);
+	}
+
+	public onRowButtonClick(selected: PeriodicElement): void {
 		console.log(selected);
 	}
 }

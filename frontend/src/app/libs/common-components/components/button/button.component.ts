@@ -22,6 +22,9 @@ export class ButtonComponent {
 	@Input()
 	public disabled: boolean = false;
 
+	@Input()
+	public icon: string;
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}

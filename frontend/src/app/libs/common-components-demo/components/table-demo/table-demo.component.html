@@ -1,12 +1,31 @@
 <app-demo-group class="progress-demo" [title]="'Table'">
 	<div class="light-theme">
 		<app-demo-state [title]="'Mendeleev`s table'" [isDark]="false">
-			<app-table [columnsConfig]="columnsConfig" [data]="data" (toggled)="onToggle($event)" (checked)="onCheck($event)"></app-table>
+			<app-table
+				[columnsConfig]="columnsConfig"
+				[data]="data"
+				(toggled)="onToggle($event)"
+				(checked)="onCheck($event)"
+				[headerButtonText]="headerButtonText"
+				[headerButtonIcon]="'delete'"
+				[rowButtonIcon]="'delete'"
+				(headerButtonClicked)="onHeaderButtonClick($event)"
+				(rowButtonClicked)="onRowButtonClick($event)">
+			</app-table>
 		</app-demo-state>
 	</div>
 	<div class="dark-theme">
 		<app-demo-state [title]="'Mendeleev`s table in dark'" [isDark]="true">
-			<app-table [columnsConfig]="columnsConfig" [data]="data" [theme]="darkTheme"></app-table>
+			<app-table
+				[columnsConfig]="columnsConfig"
+				[data]="data"
+				[theme]="darkTheme"
+				[headerButtonText]="headerButtonText"
+				[headerButtonIcon]="'delete'"
+				[rowButtonIcon]="'delete'"
+				(headerButtonClicked)="onHeaderButtonClick($event)"
+				(rowButtonClicked)="onRowButtonClick($event)">
+			</app-table>
 		</app-demo-state>
 	</div>
 </app-demo-group>
