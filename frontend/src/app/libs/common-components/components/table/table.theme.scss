@@ -71,25 +71,25 @@
 
 		&--dark-theme {
 			background: $color-gray;
-		}
-		&--dark-theme .mat-header-cell {
-			color: $color-white;
-		}
-		&--dark-theme .mat-header-cell {
-			color: $color-white;
-			border-bottom-color: $color-white-30;
-		}
-		&--dark-theme .mat-cell {
-			color: $color-white;
-			border-bottom-color: $color-white-30;
-		}
-		&--dark-theme .mat-footer-cell {
-			color: $color-white;
-			border-top-color: $color-white-30;
-		}
-		&--dark-theme &__row--hover {
-			background-color: $color-gray-light;
-			cursor: pointer;
+
+			.mat-header-cell {
+				color: $color-white;
+			}
+			.mat-header-cell {
+				color: $color-white;
+				border-bottom-color: $color-white-30;
+			}
+			.mat-cell {
+				color: $color-white;
+				border-bottom-color: $color-white-30;
+			}
+			.mat-footer-cell {
+				color: $color-white;
+				border-top-color: $color-white-30;
+			}
+			.table-content__row--hover {
+				background-color: $color-gray-light;
+			}
 		}
 	}
 }
