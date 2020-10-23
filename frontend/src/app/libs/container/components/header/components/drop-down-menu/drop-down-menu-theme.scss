@@ -1,0 +1,21 @@
+@mixin drop-down-menu-theme() {
+	&.mat-menu-panel {
+		min-width: 64px;
+		border: 1px solid $color-white;
+		background: $color-black;
+	}
+	& .mat-menu-content:not(:empty) {
+		padding: 0;
+	}
+}
+
+@mixin menu-item-hover() {
+	&:hover {
+		background-color: $color-white-10;
+	}
+}
+
+@mixin drop-down-menu-container() {
+	display: flex;
+	height: 50px;
+}

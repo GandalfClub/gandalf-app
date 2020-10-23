@@ -1,20 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { State } from './store/sample/sample.reducer';
-import { selectSampleState } from './store/sample/sample.selectors';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Locale } from './models/locale';
+import { UserService } from './services/user.service';
 
 @Component({
 	selector: 'app-container',
 	templateUrl: './container.component.html',
 	styleUrls: ['./container.component.scss']
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit, OnDestroy {
+	public hideHeader: boolean = false;
+	public hideFooter: boolean = false;
 
-	constructor(private store: Store<State>) { }
+	constructor(public translateService: TranslateService, private userService: UserService) {
+		translateService.addLangs([Locale.English, Locale.Russian]);
+		translateService.setDefaultLang(Locale.English);
+		const browserLang: string = translateService.getBrowserLang();
+		const browserLangRegExp: RegExp = new RegExp(`${Locale.Russian}|${Locale.English}`);
+		translateService.use(browserLang.match(browserLangRegExp) ? browserLang : Locale.English);
+	}
 
 	public ngOnInit(): void {
-		this.store.select(selectSampleState).subscribe((state: State) => {
-			console.log(state, 'store works');
-		});
+		this.userService.subscribeUser();
+	}
+
+	public ngOnDestroy(): void {
+		this.userService.unsubscribeUser();
 	}
 }

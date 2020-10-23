@@ -18,7 +18,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { CreateDraftEventPopoverComponent } from './create-draft-event-popover/create-draft-event-popover.component';
 import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PopoverComponent } from './components/popover/popover.component';
@@ -33,6 +32,11 @@ import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import { MatSortModule } from '@angular/material/sort';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
 	declarations: [
@@ -102,7 +106,12 @@ import { MatSortModule } from '@angular/material/sort';
 		EventCardComponent,
 		TableComponent,
 		MatTableModule,
-		MatSortModule
+		MatSortModule,
+		MatBadgeModule,
+		MatToolbarModule,
+		MatSelectModule,
+		MatMenuModule,
+		MatDividerModule
 		],
 	providers: [
 		{
@@ -115,4 +124,4 @@ import { MatSortModule } from '@angular/material/sort';
 			deps: [COMPILER_OPTIONS] },
 	],
 })
-export class CommonComponentsModule {}
+export class CommonComponentsModule { }
