@@ -25,6 +25,7 @@ export class ButtonComponent {
 	@Input()
 	public icon: string;
 
+	@Input()
 	public disableRipple: boolean = false;
 
 	@Input()
