@@ -16,6 +16,8 @@ $color-mint: #EF5350;
 $color-purple: #7457E6;
 $color-coral: #FF8A65;
 $color-black: #212121;
+$color-gray: #373737;
+$color-gray-light: #424242;
 $color-white: #FFFFFF;
 $color-yellow: #FDD835;
 // gradients
@@ -24,9 +26,10 @@ $gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 
 $gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), #FF7B52;
 $gradient-important-role: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #212121;
 // blacks
-$color-black-medium-emphasis: rgba(0, 0, 0, .6);
+$color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
 $color-black-100: rgba($color-black, 100);
 $color-black-95: rgba($color-black, .95);
+$color-black-90: rgba($color-black, .90);
 $color-black-75: rgba($color-black, .75);
 $color-black-50: rgba($color-black, .50);
 $color-black-30: rgba($color-black, .30);
@@ -38,6 +41,7 @@ $color-white-100: rgba($color-white, 100);
 $color-white-75: rgba($color-white, .75);
 $color-white-50: rgba($color-white, .50);
 $color-white-30: rgba($color-white, .30);
+$color-white-15: rgba($color-white, .15);
 $color-white-10: rgba($color-white, .10);
 $color-white-5: rgba($color-white, .05);
 // typography

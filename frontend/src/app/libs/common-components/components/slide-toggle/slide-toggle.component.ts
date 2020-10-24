@@ -13,6 +13,9 @@ export class SlideToggleComponent {
 	public disabled: boolean = false;
 
 	@Input()
+	public title: string = '';
+
+	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Output()

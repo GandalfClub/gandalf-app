@@ -19,6 +19,7 @@ import { TypographyDemoComponent } from './components/typography-demo/typography
 import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
 import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 import { EventCardDemoComponent } from './components/event-card-demo/event-card-demo.component';
+import { TableDemoComponent } from './components/table-demo/table-demo.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,8 @@ import { EventCardDemoComponent } from './components/event-card-demo/event-card-
 		TypographyDemoComponent,
 		TabsDemoComponent,
 		TagDemoComponent,
-		EventCardDemoComponent],
+		EventCardDemoComponent,
+		TableDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,

@@ -1,0 +1,95 @@
+@import "variables";
+.table {
+	border-radius: 8px 8px 0px 0px;
+
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+
+	.table-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		padding: .3rem 1rem;
+
+		height: 64px;
+
+		border-radius: 8px 8px 0px 0px;
+
+		background: $color-white;
+
+		.mat-form-field-wrapper {
+			padding-bottom: 0;
+		}
+
+		&--dark-theme {
+			color: $color-white;
+			background: $color-gray;
+
+			.mat-form-field-label {
+				color: $color-white-75;
+			}
+
+			.mat-form-field-appearance-outline .mat-form-field-outline {
+				color: $color-white-30;
+			}
+
+			.mat-input-element::placeholder {
+				color: $color-white-75;
+			}
+		}
+
+		&--selected {
+			background-color: $color-primary;
+			color: $color-white;
+		}
+	}
+	.mat-form-field-placeholder {
+		color: $color-white-75;
+	}
+
+	.table-content {
+		width: 100%;
+		box-shadow: none;
+
+
+		.mat-header-cell {
+			vertical-align: middle;
+		}
+
+		.mat-cell {
+			vertical-align: middle;
+		}
+
+		&__row--hover {
+			background-color: $color-black-5;
+			cursor: pointer;
+		}
+
+		&__row-button {
+			width :64px;
+		}
+
+		&--dark-theme {
+			background: $color-gray;
+
+			.mat-header-cell {
+				color: $color-white;
+			}
+			.mat-header-cell {
+				color: $color-white;
+				border-bottom-color: $color-white-30;
+			}
+			.mat-cell {
+				color: $color-white;
+				border-bottom-color: $color-white-30;
+			}
+			.mat-footer-cell {
+				color: $color-white;
+				border-top-color: $color-white-30;
+			}
+			.table-content__row--hover {
+				background-color: $color-gray-light;
+			}
+		}
+	}
+}

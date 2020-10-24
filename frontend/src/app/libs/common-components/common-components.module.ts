@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CompilerFactory, COMPILER_OPTIONS, NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +28,10 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+import { MatSortModule } from '@angular/material/sort';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
@@ -50,14 +54,15 @@ import { InputComponent } from './components/input/input.component';
 		TagListComponent,
 		EventCardComponent,
 		EventCardDateComponent,
+		TableComponent,
 	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
 		MatButtonModule,
+		MatIconModule,
 		MatFormFieldModule,
 		CommonModule,
-		MatIconModule,
 		MatTooltipModule,
 		MatSlideToggleModule,
 		FormsModule,
@@ -68,6 +73,8 @@ import { InputComponent } from './components/input/input.component';
 		MatRadioModule,
 		MatTabsModule,
 		MatChipsModule,
+		MatTableModule,
+		MatSortModule
 	],
 	exports: [
 		MatInputModule,
@@ -97,17 +104,24 @@ import { InputComponent } from './components/input/input.component';
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
+		TableComponent,
+		MatTableModule,
+		MatSortModule,
 		MatBadgeModule,
 		MatToolbarModule,
 		MatSelectModule,
 		MatMenuModule,
 		MatDividerModule
-	],
+		],
 	providers: [
 		{
 			provide: MatDialogRef,
 			useValue: {},
 		},
+		{
+			provide: CompilerFactory,
+			useClass: JitCompilerFactory,
+			deps: [COMPILER_OPTIONS] },
 	],
 })
 export class CommonComponentsModule { }

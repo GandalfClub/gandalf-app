@@ -26,13 +26,18 @@
 
   border-radius: 20px;
 
+  &__icon{
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
   &--dark-theme {
     color: white;
 
     border-color: white;
 
     &[disabled="true"] {
-      color: transparentize($color: white, $amount: 0.7); 
+      color: transparentize($color: white, $amount: 0.7);
     }
 	}
 	

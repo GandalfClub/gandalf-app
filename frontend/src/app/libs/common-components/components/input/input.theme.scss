@@ -20,16 +20,20 @@
 	.mat-input-element {
 		color: $color-white-100;
 	}
+	.mat-input-element::placeholder{
+		color: $color-white-75;
+	}
 	.mat-icon {
 		color: $color-white-75;
 	}
 	.mat-form-field-label {
 		color: $color-white-75;
 	}
+
 	.mat-form-field-disabled .mat-input-element {
 		color: $color-white-50;
 	}
-} 
+}
 
 .input--dark.mat-form-field-disabled .mat-input-element {
 	color: $color-white-50;
@@ -49,4 +53,4 @@
 	.mat-form-field-label {
 		color: $color-white-75;
 	}
-} 
+}

@@ -1,18 +1,8 @@
 <ng-container [ngSwitch]="type">
 	<button
-			*ngSwitchCase="basicType" 
-			mat-button 
-			class="button button--basic" 
-			[class.button--dark-theme]="isDarkTheme"
-			[class.button--disable-hover]="disableHover"
-			[disabled]="disabled"
-			[disableRipple]="disableRipple">
-		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
-	</button>
-	<button 
-			*ngSwitchCase="outlinedType" 
-			mat-stroked-button 
-			class="button button--outlined" 
+			*ngSwitchCase="basicType"
+			mat-button
+			class="button button--basic"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
@@ -20,8 +10,18 @@
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
-			*ngSwitchCase="flatType"  
-			mat-flat-button 
+			*ngSwitchCase="outlinedType"
+			mat-stroked-button
+			class="button button--outlined"
+			[class.button--dark-theme]="isDarkTheme"
+			[class.button--disable-hover]="disableHover"
+			[disabled]="disabled"
+			[disableRipple]="disableRipple">
+		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
+	</button>
+	<button
+			*ngSwitchCase="flatType"
+			mat-flat-button
 			class="button button--flat"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
@@ -32,5 +32,6 @@
 </ng-container>
 
 <ng-template #buttonText>
+	<mat-icon *ngIf="icon" class="button__icon">{{icon}}</mat-icon>
 	<ng-content></ng-content>
 </ng-template>
