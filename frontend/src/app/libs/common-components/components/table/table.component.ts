@@ -232,7 +232,10 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 				<tr mat-row *matRowDef="let row; columns: displayedColumns;"
-					(click)="onCheck(row)" (mouseenter)="onMouseIn(row)" [class.table-content__row--hover]="this.hoverRow===row">
+					(click)="onCheck(row)"
+					(mouseenter)="onMouseIn(row)"
+					[class.table-content__row--hover]="this.hoverRow===row"
+					[class.table-content__last-row]="row===data[data.length-1]">
 				</tr>
 
 				<tr class="mat-row" *matNoDataRow>
