@@ -16,6 +16,4 @@ export class SearchInputComponent {
 
 	@Input() public preIcon: string;
 
-	@Input() public hidden: boolean;
-
 }

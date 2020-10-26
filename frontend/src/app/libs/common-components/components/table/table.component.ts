@@ -41,9 +41,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 	public data: T[];
 
 	@Input()
-	public searchInputIsHidden: boolean;
-
-	@Input()
 	public searchInputLabel: string;
 
 	@Input()
@@ -194,7 +191,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					(keyup)="applyFilter($event)"
 					[theme]="theme"
 					[preIcon]="'search'"
-					[hidden]="searchInputIsHidden"
 					[label]="searchInputLabel"
 					[placeholder]="searchInputPlaceholder">
 				</app-search-input>
@@ -273,8 +269,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 		componentRef.instance.searchInputLabel = this.searchInputLabel;
 		componentRef.instance.searchInputPlaceholder = this.searchInputPlaceholder;
-		componentRef.instance.searchInputIsHidden = this.searchInputIsHidden;
-
 	}
 
 	public handleToggleOutput(componentRef: any): void {
@@ -308,9 +302,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 			@Input()
 			public displayedColumns: string[] = [];
-
-			@Input()
-			public searchInputIsHidden: boolean;
 
 			@Input()
 			public searchInputLabel: string;
