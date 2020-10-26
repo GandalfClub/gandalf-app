@@ -1,15 +1,21 @@
 @import "variables";
 
-.input .mat-form-field-flex {
-	align-items: center;
+.input {
+	&__pre-icon {
+		margin-right: 5px;
+
+		font-size: 20px;
+		}
+	.mat-form-field-flex {
+		align-items: center;
+	}
+	.mat-form-field-appearance-outline .mat-form-field-suffix {
+		top: 0;
+	}
 }
 
 .mat-form-field-appearance-outline .mat-form-field-infix {
 	padding: .7rem 0;
-}
-
-.input .mat-form-field-appearance-outline .mat-form-field-suffix {
-	top: 0;
 }
 
 .mat-form-field-appearance-outline.input--dark .mat-form-field-outline {
@@ -20,7 +26,7 @@
 	.mat-input-element {
 		color: $color-white-100;
 	}
-	.mat-input-element::placeholder{
+	.mat-input-element::placeholder {
 		color: $color-white-75;
 	}
 	.mat-icon {

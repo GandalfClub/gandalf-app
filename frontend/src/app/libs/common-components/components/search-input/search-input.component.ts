@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
-  selector: 'app-search-input',
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.scss']
+	selector: 'app-search-input',
+	templateUrl: './search-input.component.html',
+	styleUrls: ['./search-input.component.scss']
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent {
 
-  constructor() { }
+	@Input() public theme: ComponentTheme;
 
-  ngOnInit(): void {
-  }
+	@Input() public label: string;
+
+	@Input() public placeholder: string;
+
+	@Input() public preIcon: string;
+
+	@Input() public hidden: boolean;
 
 }

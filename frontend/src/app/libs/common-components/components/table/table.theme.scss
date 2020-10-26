@@ -24,27 +24,12 @@
 		&--dark-theme {
 			color: $color-white;
 			background: $color-gray;
-
-			.mat-form-field-label {
-				color: $color-white-75;
-			}
-
-			.mat-form-field-appearance-outline .mat-form-field-outline {
-				color: $color-white-30;
-			}
-
-			.mat-input-element::placeholder {
-				color: $color-white-75;
-			}
 		}
 
 		&--selected {
 			background-color: $color-primary;
 			color: $color-white;
 		}
-	}
-	.mat-form-field-placeholder {
-		color: $color-white-75;
 	}
 
 	.table-content {

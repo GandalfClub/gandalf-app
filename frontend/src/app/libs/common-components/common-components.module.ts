@@ -112,7 +112,8 @@ import { InputComponent } from './components/input/input.component';
 		MatToolbarModule,
 		MatSelectModule,
 		MatMenuModule,
-		MatDividerModule
+		MatDividerModule,
+		SearchInputComponent
 		],
 	providers: [
 		{
