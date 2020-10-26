@@ -148,4 +148,26 @@ describe('ButtonComponent', () => {
 			expect(htmlElement.querySelector('.button[disabled="true"]')).toBeNull();
 		});
 	});
+
+	describe('when @Input gets disableHover', () => {
+		beforeEach(() => {
+			component.disableHover = true;
+			fixture.detectChanges();
+		});
+
+		it('should define disableHover', () => {
+			expect(component.disableHover).toBeTrue();
+		});
+	});
+
+	describe('when @Input gets disableRipple', () => {
+		beforeEach(() => {
+			component.disableRipple = true;
+			fixture.detectChanges();
+		});
+
+		it('should define disableRipple', () => {
+			expect(component.disableRipple).toBeTrue();
+		});
+	});
 });

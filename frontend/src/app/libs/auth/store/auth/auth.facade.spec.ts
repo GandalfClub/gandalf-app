@@ -20,10 +20,7 @@ describe('Auth.FacadeService', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [
-				AuthFacadeService,
-				provideMockStore({ initialState }),
-			],
+			providers: [AuthFacadeService, provideMockStore({ initialState })],
 		});
 		authFacadeService = TestBed.inject(AuthFacadeService);
 		mockStore = TestBed.inject(MockStore);

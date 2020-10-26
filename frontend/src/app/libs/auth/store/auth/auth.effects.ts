@@ -10,11 +10,16 @@ import {
 	SignUp,
 	SignUpFailure,
 	SignUpSuccess,
+	SignOut,
+	SignOutSuccess,
+	SignOutFailure,
 	UpdateUserInfo,
 	UpdateUserInfoSuccess,
-} from './auth.actions';
+	LoadUser,
+	LoadUserSuccess,
+	LoadUserFail } from './auth.actions';
 import { Observable, of, from } from 'rxjs';
-import { map, switchMap, exhaustMap, catchError, tap } from 'rxjs/operators';
+import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Action } from '@ngrx/store';
@@ -93,6 +98,31 @@ export class AuthEffects {
 					.pipe(map((userDto: UserDto) => new UpdateUserInfoSuccess({ user: this.authConverter.convertFromDto(userDto) })))
 			)
 		)
+	);
+
+	@Effect()
+	public LoadUserBack: Observable<Action> = this.actions.pipe(
+		ofType(AuthActionTypes.LoadUser),
+		exhaustMap(() =>
+			this.authRepository
+				.loadUser()
+				.pipe(map((userDto: UserDto) => new LoadUserSuccess({ user: this.authConverter.convertFromDto(userDto) })))
+		),
+		catchError((error: Error) => of(new LoadUserFail({ message: error })))
+	);
+
+	@Effect()
+	public SignOut: Observable<Action> = this.actions.pipe(
+		ofType(AuthActionTypes.SignOut),
+		exhaustMap(() => {
+			return this.authRepository.signOut();
+		}),
+		map(() => {
+			return new SignOutSuccess();
+		}),
+		catchError((error: Error) => {
+			return of(new SignOutFailure({ message: error }));
+		})
 	);
 
 	constructor(

@@ -21,7 +21,7 @@ class UserValidation extends Validation {
 	 * @returns {Joi.ValidationResult<IUserModel >}
 	 * @memberof UserValidation
 	 */
-	createUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
+	public createUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
 		const schema: Joi.Schema = Joi.object().keys({
 			email: Joi.string()
 				.email({
@@ -38,7 +38,7 @@ class UserValidation extends Validation {
 	 * @returns {Joi.ValidationResult<{ id: string }>}
 	 * @memberof UserValidation
 	 */
-	findUser(body: {
+	public findUser(body: {
 		id: string;
 	}): Joi.ValidationResult<{
 		id: string;
@@ -55,7 +55,7 @@ class UserValidation extends Validation {
 	 * @returns {Joi.ValidationResult<{ id: string }>}
 	 * @memberof UserValidation
 	 */
-	removeUser(body: {
+	public removeUser(body: {
 		id: string;
 	}): Joi.ValidationResult<{
 		id: string;
@@ -72,12 +72,17 @@ class UserValidation extends Validation {
 	 * @returns {Joi.ValidationResult<IUserModel >}
 	 * @memberof UserValidation
 	 */
-	updateUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
+	public updateUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
 		const schema: Joi.Schema = Joi.object().keys({
 			_id: Joi.string().required(),
-			firstName: Joi.string().required(),
-			secondName: Joi.string().required(),
-			mobilePhone: Joi.string().required(),
+			firstName: this.customJoi,
+			secondName: this.customJoi,
+			mobilePhone: this.customJoi,
+			claims: this.customJoi,
+			displayName: this.customJoi,
+			photoUrl: this.customJoi,
+			email: this.customJoi,
+			isAdmin: this.customJoi,
 		});
 
 		return Joi.validate(params, schema);

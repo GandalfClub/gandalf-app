@@ -1,0 +1,16 @@
+<div class="avatar">
+	<div class="avatar__menu-trigger" [matMenuTriggerFor]="menu">
+		<div class="avatar__photo-container">
+			<img class="avatar__photo" [src]="userService.photoUrl">
+		</div>
+		<mat-icon class="avatar__arrow-icon">arrow_drop_down</mat-icon>
+	</div>
+	<mat-menu class="avatar__menu" #menu="matMenu" xPosition="before">
+		<button mat-menu-item class="avatar__user-name-container">
+			<div class="avatar__user-name-label">{{'LABEL.USER_NAME' | translate}}</div>
+			<div class="avatar__user-name">{{displayedName}}</div>
+		</button>
+		<button mat-menu-item class="avatar__button" routerLink="profile">{{"BUTTON.ACCOUNT" | translate}}</button>
+		<button mat-menu-item class="avatar__button" (click)="containerFacadeService.signOut()">{{"BUTTON.LOG_OFF" | translate}}</button>
+	</mat-menu>
+</div>

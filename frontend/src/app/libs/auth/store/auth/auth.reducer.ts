@@ -6,7 +6,14 @@ import {
 	UpdateUserInfoFail,
 	SignUpSuccess,
 	SignInSuccess,
-} from './auth.actions';
+	LoadUserSuccess,
+	LoadUserFail,
+	SignInFailure,
+	SignUpFailure,
+	SignOut,
+	SignOutSuccess,
+	SignOutFailure
+	} from './auth.actions';
 import { AuthState } from '../../models/auth-state';
 import { EntityStatus } from '../../models/entity-status';
 
@@ -50,7 +57,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignInFailure).payload,
 				},
 			};
 		}
@@ -76,7 +83,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				...state,
 				user: {
 					status: EntityStatus.Error,
-					error: action.payload,
+					error: (action as SignUpFailure).payload,
 				},
 			};
 		}
@@ -84,7 +91,7 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 			return {
 				...state,
 				user: {
-					status: EntityStatus.Success,
+					status: EntityStatus.Pending,
 					value: (action as UpdateUserInfo).payload.user,
 				},
 			};
@@ -104,8 +111,61 @@ export function authReducer(state: AuthState = initialState, action: AuthActions
 				user: {
 					status: EntityStatus.Error,
 					value: null,
-					error: action.payload,
+					error: (action as UpdateUserInfoFail).payload,
 				},
+			};
+		}
+		case AuthActionTypes.LoadUser: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Pending,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Success,
+					value: (action as LoadUserSuccess).payload.user,
+				},
+			};
+		}
+		case AuthActionTypes.LoadUserFail: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Error,
+					value: null,
+					error: (action as LoadUserFail).payload
+				},
+			};
+		}
+		case AuthActionTypes.SignOut: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Pending,
+				}
+			};
+		}
+		case AuthActionTypes.SignOutSuccess: {
+			return {
+				...state,
+				user: {
+					status: EntityStatus.Init
+				}
+			};
+		}
+		case AuthActionTypes.SignOutFailure: {
+			return {
+				...state,
+				user: {
+					...state.user,
+					status: EntityStatus.Error
+				}
 			};
 		}
 		default:
