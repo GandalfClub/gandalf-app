@@ -28,6 +28,7 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 
 @NgModule({
 	declarations: [
@@ -43,7 +44,8 @@ import { EventCardDateComponent } from './components/event-card/components/event
 		TabsPanelComponent,
 		TagListComponent,
 		EventCardComponent,
-		EventCardDateComponent],
+		EventCardDateComponent,
+		SearchInputComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
