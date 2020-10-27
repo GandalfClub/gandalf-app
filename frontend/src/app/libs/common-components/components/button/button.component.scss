@@ -5,7 +5,7 @@
   &:hover:not([disabled="true"]) {
     background-color: transparentize($color: white, $amount: 0.92);
 	}
-	
+
 	&.button--disable-hover:hover:not([disabled="true"]) {
 		background-color: transparent;
 	}
@@ -26,7 +26,7 @@
 
   border-radius: 20px;
 
-  &__icon{
+  &__icon {
     font-size: 20px;
     margin-right: 5px;
   }
@@ -40,7 +40,7 @@
       color: transparentize($color: white, $amount: 0.7);
     }
 	}
-	
+
   &--basic {
     @include button-hover();
   }

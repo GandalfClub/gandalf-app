@@ -17,10 +17,11 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonComponent } from '../button/button.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { InputComponent } from '../input/input.component';
+import { SearchInputComponent } from '../search-input/search-input.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
 import { ColumnConfig, Column, TableColumnType } from './models/row-config.enum';
 
-let tableTemplate: string = '';
+let TableTemplate: string = '';
 @Component({
 	selector: 'app-table',
 	template: '<ng-container #table></ng-container>',
@@ -38,6 +39,12 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 	@Input()
 	public data: T[];
+
+	@Input()
+	public searchInputLabel: string;
+
+	@Input()
+	public searchInputPlaceholder: string;
 
 	@Input()
 	public headerButtonText: string;
@@ -66,8 +73,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 	public columns: Column[] = [];
 
 	public displayedColumns: string[] = [];
-
-	private hasTextSortable: boolean;
 
 	private destroy$: Subject<any> = new Subject();
 
@@ -98,7 +103,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 				case TableColumnType.TextSortable:
 					element = this.createTextSortableColumn(column);
 					this.displayedColumns.push(column.dataName);
-					this.hasTextSortable = true;
 					break;
 				case TableColumnType.Checkbox:
 					element = this.createCheckboxColumn(column);
@@ -181,15 +185,15 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		const templateHeader: string =
 			`<div class="table-header" [class.table-header--dark-theme]="isDarkTheme" [class.table-header--selected]="selection.selected.length">
 
-				<app-input
+				<app-search-input
 					*ngIf="!selection.selected.length"
 					#input
 					(keyup)="applyFilter($event)"
-					[type]="'text'"
 					[theme]="theme"
-					[label]="'Filter'"
-					[placeholder]="'Find it'">
-				</app-input>
+					[preIcon]="'search'"
+					[label]="searchInputLabel"
+					[placeholder]="searchInputPlaceholder">
+				</app-search-input>
 
 				<p class="table-header__selected" *ngIf="selection.selected?.length">
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
@@ -205,7 +209,7 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 			</div>`;
 
-		tableTemplate =
+		TableTemplate =
 		`<div class="table">
 			${templateHeader}
 
@@ -228,7 +232,10 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 				<tr mat-row *matRowDef="let row; columns: displayedColumns;"
-					(click)="onCheck(row)" (mouseenter)="onMouseIn(row)" [class.table-content__row--hover]="this.hoverRow===row">
+					(click)="onCheck(row)"
+					(mouseenter)="onMouseIn(row)"
+					[class.table-content__row--hover]="this.hoverRow===row"
+					[class.table-content__last-row]="row===data[data.length-1]">
 				</tr>
 
 				<tr class="mat-row" *matNoDataRow>
@@ -262,6 +269,9 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		componentRef.instance.headerButtonIcon = this.headerButtonIcon;
 		componentRef.instance.rowButtonIcon = this.rowButtonIcon;
 		componentRef.instance.displayedColumns = this.displayedColumns;
+
+		componentRef.instance.searchInputLabel = this.searchInputLabel;
+		componentRef.instance.searchInputPlaceholder = this.searchInputPlaceholder;
 	}
 
 	public handleToggleOutput(componentRef: any): void {
@@ -282,7 +292,7 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 	public createDynamicComponent(): any  {
 		@Component({
-			template: tableTemplate,
+			template: TableTemplate,
 			jit: true,
 			changeDetection: ChangeDetectionStrategy.OnPush})
 		class CustomDynamicComponent implements OnInit, AfterViewInit  {
@@ -295,6 +305,12 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 
 			@Input()
 			public displayedColumns: string[] = [];
+
+			@Input()
+			public searchInputLabel: string;
+
+			@Input()
+			public searchInputPlaceholder: string;
 
 			@Input()
 			public headerButtonText: string;
@@ -435,7 +451,8 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					CheckboxComponent,
 					SlideToggleComponent,
 					ButtonComponent,
-					InputComponent
+					InputComponent,
+					SearchInputComponent
 				] })(moduleClass);
 
 	return decoratedNgModule;

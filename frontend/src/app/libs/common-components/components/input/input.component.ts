@@ -35,6 +35,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	@Input() public disabled: boolean = false;
 
+	@Input() public preIcon: string;
+
 	@Input() public formControl: FormControl;
 
 	@Input() public value: number | string | boolean | null | undefined;

@@ -28,6 +28,7 @@ import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
@@ -55,7 +56,7 @@ import { InputComponent } from './components/input/input.component';
 		EventCardComponent,
 		EventCardDateComponent,
 		TableComponent,
-	],
+		SearchInputComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -111,7 +112,8 @@ import { InputComponent } from './components/input/input.component';
 		MatToolbarModule,
 		MatSelectModule,
 		MatMenuModule,
-		MatDividerModule
+		MatDividerModule,
+		SearchInputComponent
 		],
 	providers: [
 		{

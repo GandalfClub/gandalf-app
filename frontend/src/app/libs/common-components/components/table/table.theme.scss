@@ -24,27 +24,12 @@
 		&--dark-theme {
 			color: $color-white;
 			background: $color-gray;
-
-			.mat-form-field-label {
-				color: $color-white-75;
-			}
-
-			.mat-form-field-appearance-outline .mat-form-field-outline {
-				color: $color-white-30;
-			}
-
-			.mat-input-element::placeholder {
-				color: $color-white-75;
-			}
 		}
 
 		&--selected {
 			background-color: $color-primary;
 			color: $color-white;
 		}
-	}
-	.mat-form-field-placeholder {
-		color: $color-white-75;
 	}
 
 	.table-content {
@@ -66,7 +51,7 @@
 		}
 
 		&__row-button {
-			width :64px;
+			width: 64px;
 		}
 
 		&--dark-theme {
@@ -84,11 +69,17 @@
 				border-bottom-color: $color-white-30;
 			}
 			.mat-footer-cell {
-				color: $color-white;
+				color: red;
 				border-top-color: $color-white-30;
+				border-bottom: none;
 			}
 			.table-content__row--hover {
 				background-color: $color-gray-light;
+			}
+			.table-content__last-row {
+				.mat-cell {
+					border-bottom: none;
+				}
 			}
 		}
 	}
