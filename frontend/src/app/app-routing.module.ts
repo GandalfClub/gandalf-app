@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminPanelGuard } from './libs/guards/admin-panel/admin-panel.guard';
 
 const routes: Routes = [
 	{
@@ -36,6 +37,19 @@ const routes: Routes = [
 			),
 	},
 	{
+<<<<<<< Updated upstream
+=======
+		path: 'adminrolemanagement',
+		loadChildren: () =>
+			import('./libs/admin-role-management/admin-role-management.module').then(
+				(m: typeof import('./libs/admin-role-management/admin-role-management.module')) => m.AdminRoleManagementModule
+			),
+		canLoad: [
+			AdminPanelGuard
+		]
+	},
+	{
+>>>>>>> Stashed changes
 		path: 'demo',
 		loadChildren: () =>
 			import('./libs/common-components-demo/common-components-demo.module').then(

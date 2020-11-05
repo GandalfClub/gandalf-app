@@ -8,4 +8,9 @@ export interface User {
 	secondName?: string;
 	mobilePhone?: string;
 	password?: string;
+<<<<<<< Updated upstream
+=======
+	claims: UserClaim[];
+	isEventManager?: boolean;
+>>>>>>> Stashed changes
 }

@@ -6,6 +6,7 @@ import { UserDto } from '../models/user-dto';
 	providedIn: 'root',
 })
 export class AuthConverter {
+<<<<<<< Updated upstream
 	public convertFromDto(userDto: UserDto): User {
 		return {
 			email: userDto.email,
@@ -16,6 +17,11 @@ export class AuthConverter {
 			secondName: userDto.secondName,
 			id: userDto._id,
 		};
+=======
+	public convertFromDto(user: UserDto): User {
+		console.log('convert')
+		return (({ _id, ...dto }: UserDto) => ({ id: _id, ...dto }))(user);
+>>>>>>> Stashed changes
 	}
 
 	public convertToDto(user: User): Partial<UserDto> {

@@ -1,0 +1,36 @@
+<div class="users-role-management-panel">
+	<app-progress-bar
+		*ngIf="usersRequestStatus === pendingStatus"
+		[mode]="'indeterminate'"
+		[theme]=darkTheme>
+	</app-progress-bar>
+
+	<div class="users-role-management-panel__table-wrapper">
+		<app-table
+			*ngIf="users"
+			[columnsConfig]="columnsConfig"
+			[data]="users"
+			(toggled)="toggleEventManagerClaim($event)"
+			(checked)="onCheck($event)"
+			[theme]="darkTheme"
+			[headerButtonText]="headerButtonText"
+			[headerButtonIcon]="'delete'"
+			[rowButtonIcon]="'delete'"
+			[searchInputLabel]="'Find a user'"
+			[searchInputPlaceholder]="'Enter name or email'"
+			(headerButtonClicked)="onHeaderButtonClick($event)"
+			(rowButtonClicked)="onRowButtonClick($event)">
+		</app-table>
+	</div>
+	<ng-container *ngIf="!users && usersRequestStatus !== pendingStatus">
+		<div class="users-role-management-panel__empty">
+            <h3>Not Found</h3>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="!users && usersRequestStatus === pendingStatus">
+		<div class="users-role-management-panel__empty">
+            <h3>...loading</h3>
+		</div>
+	</ng-container>
+</div>
