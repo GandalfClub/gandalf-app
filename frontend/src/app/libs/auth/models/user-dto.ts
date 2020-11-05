@@ -1,3 +1,5 @@
+import { UserClaim } from '../../admin-role-management/models/user-claims.enum';
+
 export interface UserDto {
 	_id: string;
 	email: string;
@@ -9,4 +11,5 @@ export interface UserDto {
 	secondName?: string;
 	mobilePhone?: string;
 	password?: string;
+	claims: UserClaim[];
 }

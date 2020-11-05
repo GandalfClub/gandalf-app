@@ -10,9 +10,15 @@ export enum AuthActionTypes {
 	SignUp = '[Auth] Sign Up',
 	SignUpSuccess = '[Auth] Sign Up Success',
 	SignUpFailure = '[Auth] Sign Up Failure',
+	SignOut = '[Auth] Sign Out',
+	SignOutSuccess = '[Auth] Sign Out Success',
+	SignOutFailure = '[Auth] Sign Out Failure',
 	UpdateUserInfo = '[Auth] Update user',
-	UpdateUserInfoSuccess = '[Auth] Update user success',
-	UpdateUserInfoFail = '[Auth] Update user failed',
+	UpdateUserInfoSuccess = '[Auth] Update user Success',
+	UpdateUserInfoFail = '[Auth] Update user Failure',
+	LoadUser = '[Auth] Load user',
+	LoadUserSuccess = '[Auth] Load user Success',
+	LoadUserFail = '[Auth] Load user Failure'
 }
 
 export class SignIn implements Action {
@@ -76,6 +82,45 @@ export class UpdateUserInfoFail implements Action {
 	) {}
 }
 
+export class LoadUser implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.LoadUser;
+}
+
+export class LoadUserSuccess implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.LoadUserSuccess;
+	constructor(
+		public payload: {
+			user: User;
+		}
+	) {}
+}
+
+export class LoadUserFail implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.LoadUserFail;
+	constructor(
+		public payload: {
+			message: Error;
+		}
+	) {}
+}
+
+export class SignOut implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.SignOut;
+}
+
+export class SignOutSuccess implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.SignOutSuccess;
+}
+
+export class SignOutFailure implements Action {
+	public readonly type: AuthActionTypes = AuthActionTypes.SignOutFailure;
+	constructor(
+		public payload: {
+			message: Error;
+		}
+	) {}
+}
+
 export type AuthActions =
 	| SignIn
 	| SignInByGithub
@@ -84,6 +129,10 @@ export type AuthActions =
 	| SignUp
 	| SignUpSuccess
 	| SignUpFailure
+	| SignOut
 	| UpdateUserInfo
 	| UpdateUserInfoSuccess
-	| UpdateUserInfoFail;
+	| UpdateUserInfoFail
+	| LoadUser
+	| LoadUserSuccess
+	| LoadUserFail;

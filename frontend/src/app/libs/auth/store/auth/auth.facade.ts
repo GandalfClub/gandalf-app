@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { SignIn, SignInByGithub, SignUp, UpdateUserInfo } from './auth.actions';
+import { LoadUser, SignOut, SignIn, SignInByGithub, SignUp, UpdateUserInfo } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { isAdminUser, selectUser } from './auth.selectors';
@@ -25,11 +25,19 @@ export class AuthFacadeService {
 		this.store.dispatch(new SignUp({ email, password }));
 	}
 
+	public signOut(): void {
+		this.store.dispatch(new SignOut());
+	}
+
 	public updateUser(user: User): void {
 		this.store.dispatch(new UpdateUserInfo({ user }));
 	}
 
-	public get user$(): Observable<EntityWrapper<User>> {
+	public loadUser(): void {
+		this.store.dispatch(new LoadUser());
+	}
+
+	get user$(): Observable<EntityWrapper<User>> {
 		return this.store.pipe(select(selectUser));
 	}
 

@@ -37,8 +37,6 @@ const routes: Routes = [
 			),
 	},
 	{
-<<<<<<< Updated upstream
-=======
 		path: 'adminrolemanagement',
 		loadChildren: () =>
 			import('./libs/admin-role-management/admin-role-management.module').then(
@@ -49,7 +47,6 @@ const routes: Routes = [
 		]
 	},
 	{
->>>>>>> Stashed changes
 		path: 'demo',
 		loadChildren: () =>
 			import('./libs/common-components-demo/common-components-demo.module').then(

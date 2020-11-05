@@ -14,10 +14,12 @@ import { ProgressBarDemoComponent } from './components/progress-bar-demo/progres
 import { PopoverDemoComponent } from './components/popover-demo/popover-demo.component';
 import { ScrollbarDemoComponent } from './components/scrollbar-demo/scrollbar-demo.component';
 import { RadioGroupDemoComponent } from './components/radio-group-demo/radio-group-demo.component';
+import { CheckboxDemoComponent } from './components/checkbox-demo/checkbox-demo.component';
 import { TypographyDemoComponent } from './components/typography-demo/typography-demo.component';
 import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
 import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 import { EventCardDemoComponent } from './components/event-card-demo/event-card-demo.component';
+import { TableDemoComponent } from './components/table-demo/table-demo.component';
 
 @NgModule({
 	declarations: [
@@ -31,10 +33,12 @@ import { EventCardDemoComponent } from './components/event-card-demo/event-card-
 		ScrollbarDemoComponent,
 		PopoverDemoComponent,
 		RadioGroupDemoComponent,
+		CheckboxDemoComponent,
 		TypographyDemoComponent,
 		TabsDemoComponent,
 		TagDemoComponent,
-		EventCardDemoComponent],
+		EventCardDemoComponent,
+		TableDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,

@@ -1,0 +1,12 @@
+<div class="localization">
+	<app-button class="localization__menu-trigger" [theme]="darkTheme" [matMenuTriggerFor]="menu">
+		{{translateService.currentLang}}
+	</app-button>
+	<mat-menu class="localization__menu" #menu="matMenu">
+		<button mat-menu-item class="localization__menu-item"
+				*ngFor="let locale of translateService.getLangs()"
+				(click)="translateService.use(locale)">
+			<span>{{locale | uppercase}}</span>
+		</button>
+	</mat-menu>
+</div>

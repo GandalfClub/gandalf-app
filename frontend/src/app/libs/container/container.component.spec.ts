@@ -2,10 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerComponent } from './container.component';
 import { ContainerStoreModule } from './store/store.module';
-<<<<<<< Updated upstream
-import { EffectsRootModule, EffectsModule } from '@ngrx/effects';
-import { StoreRootModule, StoreModule } from '@ngrx/store';
-=======
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -17,15 +13,24 @@ import { LocalizationModule } from './components/localization/localization.modul
 import { UserClaim } from '../admin-role-management/models/user-claims.enum';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { UserService } from './services/user.service';
->>>>>>> Stashed changes
 
 describe('ContainerComponent', () => {
+	const user: EntityWrapper<User> = {
+		status: EntityStatus.Success,
+		value: {
+			id: '1',
+			firstName: 'Uladzimir',
+			secondName: 'Svirydzenka',
+			photoUrl: '',
+			email: '1@1.com',
+			isAdmin: undefined,
+			claims: [UserClaim.Admin],
+		}
+	};
+
 	let component: ContainerComponent;
 	let fixture: ComponentFixture<ContainerComponent>;
 
-<<<<<<< Updated upstream
-	beforeEach(async(() => {
-=======
 	const mockAuthFacadeService: any = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
@@ -49,16 +54,11 @@ describe('ContainerComponent', () => {
 	};
 
 	beforeEach(() => {
->>>>>>> Stashed changes
 		TestBed.configureTestingModule({
 			declarations: [ContainerComponent],
 			imports: [
 				EffectsModule.forRoot([]),
 				StoreModule.forRoot({}),
-<<<<<<< Updated upstream
-				ContainerStoreModule
-			]
-=======
 				ContainerStoreModule,
 				LocalizationModule,
 				AuthModule
@@ -67,10 +67,9 @@ describe('ContainerComponent', () => {
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{ provide: UserService, useValue: mockUserFacadeService }
 			],
->>>>>>> Stashed changes
 		})
 			.compileComponents();
-	}));
+	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ContainerComponent);

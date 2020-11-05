@@ -1,0 +1,17 @@
+{
+	"BUTTON": {
+		"SIGN_IN": "Sing In",
+		"SIGN_UP": "Sign Up",
+		"CRATE_EVENT": "Create Event",
+		"EVENTS": "Events",
+		"ADMINISTRATION": "Administration",
+		"LOG_OFF": "LOG OFF",
+		"ACCOUNT": "ACCOUNT"
+	},
+	"LABEL": {
+		"USER_NAME": "User name"
+	},
+	"FOOTER": {
+		"ALL_RIGHTS_RESERVED": "All rights reserved."
+	}
+}

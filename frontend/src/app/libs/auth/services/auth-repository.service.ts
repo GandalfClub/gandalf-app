@@ -27,8 +27,18 @@ export class AuthRepository {
 		return this.http.post<AuthResponse>(url, { email, password });
 	}
 
+	public signOut(): Observable<any> {
+		const url: string = `${this.API_URL}/auth/logout`;
+		return this.http.post<AuthResponse>(url, { });
+	}
+
 	public updateUser(user: Partial<UserDto>): Observable<UserDto> {
 		const url: string = this.API_URL + '/users/update-user';
 		return this.http.post<UserDto>(url, user);
+	}
+
+  public loadUser(): Observable<UserDto> {
+  	const url: string = this.API_URL + '/users/self';
+	  return this.http.get<UserDto>(url);
 	}
 }

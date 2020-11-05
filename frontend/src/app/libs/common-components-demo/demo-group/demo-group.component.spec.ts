@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DemoGroupComponent } from './demo-group.component';
 
-describe('ComponentsDemoGroupComponent', () => {
+describe('DemoGroupComponent', () => {
 	let component: DemoGroupComponent;
 	let fixture: ComponentFixture<DemoGroupComponent>;
 	let htmlElement: HTMLElement;

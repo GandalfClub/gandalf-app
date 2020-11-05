@@ -4,7 +4,11 @@
   transition: background-color 0.4s;
   &:hover:not([disabled="true"]) {
     background-color: transparentize($color: white, $amount: 0.92);
-  }
+	}
+
+	&.button--disable-hover:hover:not([disabled="true"]) {
+		background-color: transparent;
+	}
 }
 
 .button {
@@ -22,15 +26,20 @@
 
   border-radius: 20px;
 
+  &__icon {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
   &--dark-theme {
     color: white;
 
     border-color: white;
 
     &[disabled="true"] {
-      color: transparentize($color: white, $amount: 0.7); 
+      color: transparentize($color: white, $amount: 0.7);
     }
-  }
+	}
 
   &--basic {
     @include button-hover();

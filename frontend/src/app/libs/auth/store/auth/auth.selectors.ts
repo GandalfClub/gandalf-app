@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector, MemoizedSelector, DefaultProjectorFn } from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { User } from '../../models/user';
 import { authFeatureKey } from './auth.reducer';
 import { AuthState } from '../../models/auth-state';

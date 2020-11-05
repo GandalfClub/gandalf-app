@@ -22,6 +22,15 @@ export class ButtonComponent {
 	@Input()
 	public disabled: boolean = false;
 
+	@Input()
+	public icon: string;
+
+	@Input()
+	public disableRipple: boolean = false;
+
+	@Input()
+	public disableHover: boolean = false;
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
