@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of, Subscriber, throwError } from 'rxjs';
 import { UsersEffects } from './users.effects';
 import { UsersRepositoryService } from '../../services/users-repository.service';
 import { User } from '../../../auth/models/user';
@@ -10,10 +10,12 @@ import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { AuthConverter } from '../../../auth/services/auth-converter.service';
 import { UserDto } from 'src/app/libs/auth/models/user-dto';
+import { provideMockActions } from '@ngrx/effects/testing';
 
 describe('Events Effects', () => {
 	let mockUsersRepository: jasmine.SpyObj<UsersRepositoryService>;
 	let authConverter: AuthConverter;
+	let effects: UsersEffects;
 	let user: User;
 	let userDto: UserDto;
 	let error: Error;
@@ -42,51 +44,58 @@ describe('Events Effects', () => {
 		claims: [],
 	};
 
-	function createEffects(source: Observable<Action>): UsersEffects {
-		return new UsersEffects(new Actions(source), mockUsersRepository, authConverter);
-	}
+	// function createEffects(source: Observable<Action>): UsersEffects {
+	// 	return new UsersEffects(new Actions(source), mockUsersRepository, authConverter);
+	// }
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			providers: [
+				AuthConverter,
+				UsersEffects,
+				provideMockActions(() => actions),
 				{
 					provide: UsersRepositoryService,
 					useValue: createSpy(UsersRepositoryService.prototype, {
-						getUsers: jasmine.createSpy().and.returnValue(of([user])),
-						updateUser: jasmine.createSpy().and.returnValue(of([user])),
+						// getUsers: jasmine.createSpy().and.returnValue(of([user])),
+						// updateUser: jasmine.createSpy().and.returnValue(of([user])),
 					}),
 				},
 			],
 		});
 		mockUsersRepository = TestBed.inject(UsersRepositoryService) as jasmine.SpyObj<UsersRepositoryService>;
 		authConverter = TestBed.inject(AuthConverter);
+		effects = TestBed.inject(UsersEffects);
 	}));
+
+	it('should be constructed', () => {
+		expect(effects).toBeTruthy();
+	});
 
 	describe('getUsers', () => {
 
 		describe('when LoadUsers success', () => {
 			beforeEach(() => {
 				mockUsersRepository.getUsers.and.returnValue(of([userDto]));
-				actions = hot('-a-|', { a: new LoadUsers() });
-				expected = cold('-s-|', { s: new LoadUsersSuccess([user]) });
+				actions = hot('a', { a: new LoadUsers() });
+				expected = cold('s', { s: new LoadUsersSuccess([user]) });
 			});
 
 			it('should emit LoadUsers action', () => {
-				expect(createEffects(actions).GetUsers).toBeObservable(expected);
+				expect(effects.GetUsers).toBeObservable(expected);
 			});
 		});
 
 		describe('when Load Users fail', () => {
 			beforeEach(() => {
 				error = new Error('test');
-				mockUsersRepository.getUsers.and.throwError(error);
-				actions = hot('-a|', { a: new LoadUsers() });
-				expected = cold('-(s|)', { s: new LoadUsersFail(error) });
+				mockUsersRepository.getUsers.and.returnValue(throwError(error));
+				actions = hot('a', { a: new LoadUsers() });
+				expected = cold('s', { s: new LoadUsersFail(error) });
 			});
 
 			it('should emit LoadUsersFail action', () => {
-				console.log('aaaaaaaaaaaaaaaa', createEffects(actions).GetUsers, expected)
-				expect(createEffects(actions).GetUsers).toBeObservable(expected);
+				expect(effects.GetUsers).toBeObservable(expected);
 			});
 		});
 	});
@@ -97,25 +106,25 @@ describe('Events Effects', () => {
 			beforeEach(() => {
 
 				mockUsersRepository.updateUser.and.returnValue(of(userDto));
-				actions = hot('-a-|', { a: new ToggleEventManagerRole(user) });
-				expected = cold('-s-|', { s: new ToggleEventManagerRoleSuccess(user) });
+				actions = hot('a', { a: new ToggleEventManagerRole(user) });
+				expected = cold('s', { s: new ToggleEventManagerRoleSuccess(user) });
 			});
 
 			it('should emit ToggleEventManagerRoleSuccess action', () => {
-				expect(createEffects(actions).SetEventManagerRole).toBeObservable(expected);
+				expect(effects.SetEventManagerRole).toBeObservable(expected);
 			});
 		});
 
 		describe('when update Users fail', () => {
 			beforeEach(() => {
 				error = new Error('test');
-				mockUsersRepository.updateUser.and.throwError(error);
-				actions = hot('-a|', { a: new ToggleEventManagerRole(user) });
-				expected = cold('-(s|)', { s: new ToggleEventManagerRoleFail(error) });
+				mockUsersRepository.updateUser.and.returnValue(throwError(error));
+				actions = hot('a', { a: new ToggleEventManagerRole(user) });
+				expected = cold('s)', { s: new ToggleEventManagerRoleFail(error) });
 			});
 
 			it('should emit ToggleEventManagerRoleFail action', () => {
-				expect(createEffects(actions).SetEventManagerRole).toBeObservable(expected);
+				expect(effects.SetEventManagerRole).toBeObservable(expected);
 			});
 		});
 	});
