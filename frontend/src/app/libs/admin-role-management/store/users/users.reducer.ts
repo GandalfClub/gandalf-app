@@ -152,7 +152,6 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 			};
 		}
 
-
 		default:
 			return state;
 	}

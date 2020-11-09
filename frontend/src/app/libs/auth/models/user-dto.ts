@@ -13,5 +13,4 @@ export interface UserDto {
 	password?: string;
 	claims: UserClaim[];
 	checked?: boolean;
-
 }

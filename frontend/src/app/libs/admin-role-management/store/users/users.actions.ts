@@ -37,6 +37,7 @@ export class ToggleEventManagerRoleSuccess implements Action {
 	public readonly type: UsersActionType.ToggleEventManagerRoleSuccess = UsersActionType.ToggleEventManagerRoleSuccess;
 	constructor(public payload: User) { }
 }
+
 export class ToggleEventManagerRoleFail implements Action {
 	public readonly type: UsersActionType.ToggleEventManagerRoleFail = UsersActionType.ToggleEventManagerRoleFail;
 	constructor(public payload: Error) { }
@@ -65,6 +66,7 @@ export class RemoveSelectedUsersSuccess implements Action {
 	public readonly type: UsersActionType.RemoveSelectedUsersSuccess = UsersActionType.RemoveSelectedUsersSuccess;
 	constructor(public payload: string[]) { }
 }
+
 export class RemoveSelectedUsersFail implements Action {
 	public readonly type: UsersActionType.RemoveSelectedUsersFail = UsersActionType.RemoveSelectedUsersFail;
 	constructor(public payload: Error) { }

@@ -19,10 +19,11 @@ import { TableComponent } from 'src/app/libs/common-components/components/table/
 	styleUrls: ['./users-role-management-panel.component.scss'],
 })
 export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
-	public searchText: string = '';
-	public userTemplatesChanges$: Observable<SimpleChanges[]>;
+
 	public destroy$: Subject<boolean> = new Subject();
+
 	public userUpdate: EntityWrapper<User>;
+
 	public users: User[];
 
 	public isSelectedUsersRemoving: boolean;
@@ -35,6 +36,8 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
 	public usersRequestStatus: string;
+
+	public selectedUsers: User[];
 
 	@ViewChild(TableComponent)
 	public tableComponent: TableComponent <User>;
@@ -62,10 +65,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		}
 	];
 
-	public selectedUsers: User[];
-
 	constructor(
-		private userSearchService: UserSearchService,
 		private usersFacadeService: UsersFacadeService,
 		private authFacadeService: AuthFacadeService,
 	) {}
@@ -126,14 +126,6 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 	public get updateInProgress(): boolean {
 		return this.userUpdate.status === EntityStatus.Pending;
-	}
-
-	public get foundUsers(): User[] {
-		return this.userSearchService.userSearch(this.users, this.searchText);
-	}
-
-	public get foundUsersEmpty(): boolean {
-		return this.foundUsers && this.foundUsers.length === 0;
 	}
 
 	public toggleEventManagerClaim(event: RowToggleOutput<User>): void {
