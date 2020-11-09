@@ -48,7 +48,7 @@ export class UsersEffects {
 		ofType(UsersActionType.RemoveSelectedUsers),
 		switchMap((action: RemoveSelectedUsers)  => {
 				return this.usersRepository.removeSelectedUsers(action.payload).pipe(
-					map((removedUsersId: string[]) => {console.log(removedUsersId); return new RemoveSelectedUsersSuccess(removedUsersId)}),
+					map((removedUsersId: string[]) => new RemoveSelectedUsersSuccess(removedUsersId)),
 					catchError((error: Error) => of(new RemoveSelectedUsersFail(error)))
 				);
 		}),

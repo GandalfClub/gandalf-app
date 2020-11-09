@@ -62,7 +62,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		}
 	];
 
-	private selectedUsers: User[];
+	public selectedUsers: User[];
 
 	constructor(
 		private userSearchService: UserSearchService,

@@ -7,7 +7,6 @@ import { UserDto } from '../models/user-dto';
 })
 export class AuthConverter {
 	public convertFromDto(user: UserDto): User {
-		console.log('convert')
 		return (({ _id, ...dto }: UserDto) => ({ id: _id, ...dto }))(user);
 	}
 
