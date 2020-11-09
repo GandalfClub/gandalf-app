@@ -6,8 +6,6 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Route, UrlSegment } from '@angular/router';
-
-
 import { AdminPanelGuard } from './admin-panel.guard';
 
 describe('AdminPanelGuard', () => {
