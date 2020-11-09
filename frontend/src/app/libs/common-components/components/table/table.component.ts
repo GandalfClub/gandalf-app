@@ -360,6 +360,8 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 			public hoverRow: T;
 
+			public filterValue: string;
+
 			public checkboxGroupData: CheckboxGroupDataDemo = {
 				options: [
 					{
@@ -377,6 +379,9 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 				if (this.data !== this.previousData) {
 					this.previousData = this.data;
 					this.dataSource = new MatTableDataSource<T>(this.data);
+					if (Boolean(this.filterValue)) {
+						this.applyFilterAfterChanges(this.filterValue);
+					}
 					this.cdr.detectChanges();
 				}
 			}
@@ -434,6 +439,11 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 			public applyFilter(event: Event): void {
 				const filterValue: string = (event.target as HTMLInputElement).value;
+				this.dataSource.filter = filterValue.trim().toLowerCase();
+				this.filterValue = filterValue;
+			}
+
+			public applyFilterAfterChanges(filterValue: string): void {
 				this.dataSource.filter = filterValue.trim().toLowerCase();
 			}
 
