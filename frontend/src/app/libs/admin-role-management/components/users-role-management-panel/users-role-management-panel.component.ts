@@ -1,4 +1,4 @@
-import { Component, SimpleChanges, OnDestroy, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, SimpleChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UsersFacadeService } from '../../store/users/users.facade';
 import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/libs/auth/models/user';
@@ -6,12 +6,12 @@ import { UserClaim } from '../../models/user-claims.enum';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { UserSearchService } from '../../services/user-search.service';
 import { ColumnConfig, TableColumnType } from 'src/app/libs/common-components/components/table/models/row-config.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { RowToggleOutput } from 'src/app/libs/common-components/components/table/models/row-toggle-output.enum';
-import { UrlResolver } from '@angular/compiler';
+import { TableComponent } from 'src/app/libs/common-components/components/table/table.component';
 
 @Component({
 	selector: 'app-users-role-management-panel',
@@ -25,7 +25,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	public userUpdate: EntityWrapper<User>;
 	public users: User[];
 
-	// public data: User[];
+	public isSelectedUsersRemoving: boolean;
 
 	public pendingStatus: string = EntityStatus.Pending;
 
@@ -35,13 +35,15 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 
 	public usersRequestStatus: string;
-	// public requestStatus$: Observable<string> = this.usersFacadeService.usersStatus$;
+
+	@ViewChild(TableComponent)
+	public tableComponent: TableComponent <User>;
 
 	public columnsConfig: ColumnConfig[] = [
 		{
 			columnType: TableColumnType.Checkbox,
 			columnName: 'check',
-			dataName: 'check'
+			dataName: 'checked'
 		},
 		{
 			columnType: TableColumnType.TextSortable,
@@ -60,7 +62,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		}
 	];
 
-	private checkedUsers: User[];
+	private selectedUsers: User[];
 
 	constructor(
 		private userSearchService: UserSearchService,
@@ -72,29 +74,49 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 		this.usersFacadeService.users$.pipe(takeUntil(this.destroy$)).forEach((users: EntityWrapper<User[]>) => {
 
-		this.usersRequestStatus = users.status;
+			this.usersRequestStatus = users.status;
 
-		const temporaryUsers: User[] = [];
+			const temporaryUsers: User[] = [];
 
-		if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
-			for (const user of users.value) {
-				const userForTable: User = {...user};
-				userForTable.isEventManager =
-					userForTable.claims.includes(UserClaim.EventManager) ?
-					true :
-					false;
+			if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
+				for (const user of users.value) {
+					let userForTable: User = {...user};
+
+					if (Boolean(this.selectedUsers?.length)) {
+						userForTable = this.getOriginalSelectedUserObjects(userForTable);
+					}
+
+					userForTable.isEventManager =
+						userForTable.claims.includes(UserClaim.EventManager) ?
+						true :
+						false;
+
 					temporaryUsers.push(userForTable);
+				}
+
+				this.users = temporaryUsers;
+
+				if (Boolean(this.tableComponent) && this.isSelectedUsersRemoving) {
+					this.isSelectedUsersRemoving = false;
+					this.selectedUsers = [];
+					this.tableComponent.clearSelectedRows();
+				}
 			}
-			this.users = temporaryUsers;
-			console.log('data', temporaryUsers)
-
-		}
-
 		});
 
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.userUpdate = user;
 		});
+	}
+
+	// we need original selected objects for comparison in table component to render this selections
+	public getOriginalSelectedUserObjects(user: User): User {
+		for (const selectedUser of this.selectedUsers) {
+			if (user.id === selectedUser.id) {
+				user = selectedUser;
+			}
+		}
+		return user;
 	}
 
 	public ngOnDestroy(): void {
@@ -125,16 +147,19 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	}
 
 	public onCheck(selected: User[]): void {
-		this.checkedUsers = [...selected];
+		this.selectedUsers = [...selected];
 	}
 
-	public onHeaderButtonClick(selected: User[]): void {
-		console.log(selected);
+	public onHeaderButtonClick(selectedUsers: User[]): void {
+		const selectedUsersId: string[] = [];
+		for (const user of selectedUsers) {
+			selectedUsersId.push(user.id);
+		}
+		this.isSelectedUsersRemoving = true;
+		this.usersFacadeService.removeSelectedUsers(selectedUsersId);
 	}
 
 	public onRowButtonClick(user: User): void {
 		this.usersFacadeService.removeUser(user);
-
-		console.log(user);
 	}
 }

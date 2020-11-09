@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-
-import { exhaustMap, map, catchError, take, switchMap } from 'rxjs/operators';
+import { exhaustMap, map, catchError, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { UsersActionType, LoadUsersFail, LoadUsersSuccess, ToggleEventManagerRoleSuccess, ToggleEventManagerRole, ToggleEventManagerRoleFail, RemoveUser, RemoveUserSuccess } from './users.actions';
+import { UsersActionType, LoadUsersFail, LoadUsersSuccess, ToggleEventManagerRoleSuccess, ToggleEventManagerRole, ToggleEventManagerRoleFail, RemoveUser, RemoveUserSuccess, RemoveSelectedUsers, RemoveSelectedUsersSuccess, RemoveUserFail, RemoveSelectedUsersFail } from './users.actions';
 import { UsersRepositoryService } from '../../services/users-repository.service';
 import { Action } from '@ngrx/store';
 import { UserDto } from '../../../auth/models/user-dto';
@@ -20,7 +19,6 @@ export class UsersEffects {
 				catchError((error: Error) => of(new LoadUsersFail(error)))
 			)
 		)
-		// вот когда здесь все норм работает
 	);
 
 	@Effect()
@@ -40,7 +38,18 @@ export class UsersEffects {
 		switchMap((action: RemoveUser)  => {
 				return this.usersRepository.removeUser(this.authConverter.convertToDto(action.payload)).pipe(
 					map((user: UserDto) => new RemoveUserSuccess(this.authConverter.convertFromDto(user))),
-					catchError((error: Error) => of(new ToggleEventManagerRoleFail(error)))
+					catchError((error: Error) => of(new RemoveUserFail(error)))
+				);
+		}),
+	);
+
+	@Effect()
+	public RemoveSelectedUsers: Observable<Action> = this.actions$.pipe(
+		ofType(UsersActionType.RemoveSelectedUsers),
+		switchMap((action: RemoveSelectedUsers)  => {
+				return this.usersRepository.removeSelectedUsers(action.payload).pipe(
+					map((removedUsersId: string[]) => {console.log(removedUsersId); return new RemoveSelectedUsersSuccess(removedUsersId)}),
+					catchError((error: Error) => of(new RemoveSelectedUsersFail(error)))
 				);
 		}),
 	);
@@ -49,5 +58,5 @@ export class UsersEffects {
 		private actions$: Actions,
 		private usersRepository: UsersRepositoryService,
 		private authConverter: AuthConverter
-		) {}
+	) {}
 }

@@ -121,6 +121,38 @@ const UserService: IUserService = {
 			throw new Error(error.message);
 		}
 	},
+
+	/**
+	 * @param {string[]} id
+	 * @returns {Promise < IUserModel >}
+	 * @memberof UserService
+	 */
+	async removeSelectedUsers(usersId: string[]): Promise<string[]> {
+		const removedUsersId: string[] = [];
+		try {
+			for (const id of usersId) {
+				const validate: Joi.ValidationResult<{
+					id: string;
+				}> = UserValidation.removeUser({
+					id,
+				});
+
+				if (validate.error) {
+					throw new Error(validate.error.message);
+				}
+
+				const user: IUserModel = await UserModel.findOneAndRemove({
+					_id: Types.ObjectId(id),
+				});
+				removedUsersId.push(user._id);
+			}
+
+
+			return removedUsersId;
+		} catch (error) {
+			throw new Error(error.message);
+		}
+	},
 };
 
 export default UserService;

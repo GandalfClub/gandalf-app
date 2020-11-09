@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { selectUsers, selectUsersStatus, selectUsersValue } from './users.selectors';
-import { LoadUsers, RemoveUser, ToggleEventManagerRole } from './users.actions';
+import { LoadUsers, RemoveSelectedUsers, RemoveUser, ToggleEventManagerRole } from './users.actions';
 import { UsersState } from './users-state';
 import { User } from '../../../auth/models/user';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
@@ -36,5 +36,9 @@ export class UsersFacadeService {
 
 	public removeUser(user: User): void {
 		this.store.dispatch(new RemoveUser(user));
+	}
+
+	public removeSelectedUsers(usersId: string[]): void {
+		this.store.dispatch(new RemoveSelectedUsers(usersId));
 	}
 }

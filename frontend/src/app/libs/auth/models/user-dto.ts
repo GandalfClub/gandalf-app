@@ -12,4 +12,6 @@ export interface UserDto {
 	mobilePhone?: string;
 	password?: string;
 	claims: UserClaim[];
+	checked?: boolean;
+
 }

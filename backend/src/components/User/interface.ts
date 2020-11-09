@@ -38,4 +38,11 @@ export interface IUserService {
 	 * @memberof IUserService
 	 */
 	removeUser(id: string): Promise<IUserModel>;
+
+	/**
+	 * @param {string[]} id
+	 * @returns {Promise < string[] >}
+	 * @memberof UserService
+	 */
+	removeSelectedUsers(ids: string[]): Promise<string[]>;
 }

@@ -117,6 +117,42 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 			};
 		}
 
+		case UsersActionType.RemoveSelectedUsers: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Pending,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveSelectedUsersSuccess: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					value:
+						[
+							...state.users.value.filter((user: User) => !action.payload.includes(user.id))
+						],
+					status: EntityStatus.Success,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveSelectedUsersFail: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Error,
+					error: action.payload,
+				},
+			};
+		}
+
+
 		default:
 			return state;
 	}

@@ -1,11 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
-import { Observable, Observer, of, Subscriber, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { UsersEffects } from './users.effects';
 import { UsersRepositoryService } from '../../services/users-repository.service';
 import { User } from '../../../auth/models/user';
-import { LoadUsers, LoadUsersSuccess, LoadUsersFail, ToggleEventManagerRole, ToggleEventManagerRoleSuccess, ToggleEventManagerRoleFail } from './users.actions';
+import { LoadUsers, LoadUsersSuccess, LoadUsersFail, ToggleEventManagerRole, ToggleEventManagerRoleSuccess, ToggleEventManagerRoleFail, RemoveUser, RemoveUserSuccess, RemoveUserFail, RemoveSelectedUsers, RemoveSelectedUsersSuccess, RemoveSelectedUsersFail } from './users.actions';
 import { cold, hot } from 'jasmine-marbles';
-import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { AuthConverter } from '../../../auth/services/auth-converter.service';
@@ -44,10 +43,6 @@ describe('Events Effects', () => {
 		claims: [],
 	};
 
-	// function createEffects(source: Observable<Action>): UsersEffects {
-	// 	return new UsersEffects(new Actions(source), mockUsersRepository, authConverter);
-	// }
-
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			providers: [
@@ -56,10 +51,7 @@ describe('Events Effects', () => {
 				provideMockActions(() => actions),
 				{
 					provide: UsersRepositoryService,
-					useValue: createSpy(UsersRepositoryService.prototype, {
-						// getUsers: jasmine.createSpy().and.returnValue(of([user])),
-						// updateUser: jasmine.createSpy().and.returnValue(of([user])),
-					}),
+					useValue: createSpy(UsersRepositoryService.prototype, {}),
 				},
 			],
 		});
@@ -128,4 +120,63 @@ describe('Events Effects', () => {
 			});
 		});
 	});
+
+	describe('remove User', () => {
+
+		describe('when user removing success', () => {
+			beforeEach(() => {
+
+				mockUsersRepository.removeUser.and.returnValue(of(userDto));
+				actions = hot('a', { a: new RemoveUser(user) });
+				expected = cold('s', { s: new RemoveUserSuccess(user) });
+			});
+
+			it('should emit RemoveUserSuccess action', () => {
+				expect(effects.RemoveUser).toBeObservable(expected);
+			});
+		});
+
+		describe('when user removing fail', () => {
+			beforeEach(() => {
+				error = new Error('test');
+				mockUsersRepository.removeUser.and.returnValue(throwError(error));
+				actions = hot('a', { a: new RemoveUser(user) });
+				expected = cold('s)', { s: new RemoveUserFail(error) });
+			});
+
+			it('should emit RemoveUserFail action', () => {
+				expect(effects.RemoveUser).toBeObservable(expected);
+			});
+		});
+	});
+
+	describe('remove Users array', () => {
+
+		describe('when users array removing success', () => {
+			beforeEach(() => {
+
+				mockUsersRepository.removeSelectedUsers.and.returnValue(of([user.id]));
+				actions = hot('a', { a: new RemoveSelectedUsers([user.id]) });
+				expected = cold('s', { s: new RemoveSelectedUsersSuccess([user.id]) });
+			});
+
+			it('should emit RemoveSelectedUsersSuccess action', () => {
+				expect(effects.RemoveSelectedUsers).toBeObservable(expected);
+			});
+		});
+
+		describe('when users array removing fail', () => {
+			beforeEach(() => {
+				error = new Error('test');
+				mockUsersRepository.removeSelectedUsers.and.returnValue(throwError(error));
+				actions = hot('a', { a: new RemoveSelectedUsers([user.id]) });
+				expected = cold('s)', { s: new RemoveSelectedUsersFail(error) });
+			});
+
+			it('should emit RemoveSelectedUsersFail action', () => {
+				expect(effects.RemoveSelectedUsers).toBeObservable(expected);
+			});
+		});
+	});
+
 });

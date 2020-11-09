@@ -12,4 +12,5 @@ export interface User {
 	password?: string;
 	claims: UserClaim[];
 	isEventManager?: boolean;
+	checked?: boolean;
 }

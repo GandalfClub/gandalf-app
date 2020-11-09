@@ -10,7 +10,10 @@ export enum UsersActionType {
 	ToggleEventManagerRoleFail = '[Users] Toggle EventManager role fail',
 	RemoveUser = '[Users] Remove User',
 	RemoveUserSuccess = '[Users] Remove User success',
-	RemoveUserFail = '[Users] Remove User fail'
+	RemoveUserFail = '[Users] Remove User fail',
+	RemoveSelectedUsers = '[Users] Remove Selected Users ',
+	RemoveSelectedUsersSuccess = '[Users] Remove Selected Users Success',
+	RemoveSelectedUsersFail = '[Users] Remove Selected Users Fail',
 }
 
 export class LoadUsers implements Action {
@@ -53,6 +56,20 @@ export class RemoveUserFail implements Action {
 	constructor(public payload: Error) { }
 }
 
+export class RemoveSelectedUsers implements Action {
+	public readonly type: UsersActionType.RemoveSelectedUsers = UsersActionType.RemoveSelectedUsers;
+	constructor(public payload: string[]) {}
+}
+
+export class RemoveSelectedUsersSuccess implements Action {
+	public readonly type: UsersActionType.RemoveSelectedUsersSuccess = UsersActionType.RemoveSelectedUsersSuccess;
+	constructor(public payload: string[]) { }
+}
+export class RemoveSelectedUsersFail implements Action {
+	public readonly type: UsersActionType.RemoveSelectedUsersFail = UsersActionType.RemoveSelectedUsersFail;
+	constructor(public payload: Error) { }
+}
+
 export type UsersActions =
 LoadUsers |
 LoadUsersSuccess |
@@ -62,5 +79,8 @@ ToggleEventManagerRoleSuccess |
 ToggleEventManagerRoleFail |
 RemoveUser |
 RemoveUserSuccess |
-RemoveUserFail
+RemoveUserFail |
+RemoveSelectedUsers |
+RemoveSelectedUsersSuccess |
+RemoveSelectedUsersFail
 ;

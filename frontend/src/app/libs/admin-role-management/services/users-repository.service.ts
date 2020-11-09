@@ -22,6 +22,7 @@ export class UsersRepositoryService {
 		const updatedUser: Partial<UserDto> = {...user};
 		delete updatedUser.password;
 		delete updatedUser.isEventManager;
+		delete updatedUser.checked;
 
 		return this.http.post<UserDto>(url, updatedUser);
 	}
@@ -30,6 +31,12 @@ export class UsersRepositoryService {
 		const url: string = this.API_URL + `/users/${user._id}`;
 
 		return this.http.delete<UserDto>(url);
+	}
+
+	public removeSelectedUsers(usersId: string[]): Observable<string[]> {
+		const url: string = this.API_URL + `/users/remove-users`;
+
+		return this.http.post<string[]>(url, usersId);
 	}
 
 }

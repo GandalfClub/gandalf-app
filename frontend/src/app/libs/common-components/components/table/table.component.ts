@@ -25,7 +25,7 @@ import { RowToggleOutput } from './models/row-toggle-output.enum';
 let TableTemplate: string = '';
 @Component({
 	selector: 'app-table',
-	template: '<ng-container #table></ng-container>',
+	template: '',
 	styleUrls: ['./table.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -67,9 +67,6 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 	@Output()
 	public rowButtonClicked: EventEmitter<T> = new EventEmitter();
-
-	@ViewChild('table', {read: ViewContainerRef})
-	public container: ViewContainerRef;
 
 	public columns: Column[] = [];
 
@@ -305,6 +302,12 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 		componentRef.instance.rowButtonClicked.pipe(takeUntil(this.destroy$)).subscribe((selected: T) => this.rowButtonClicked.emit(selected));
 	}
 
+	public clearSelectedRows(): void {
+		if (Boolean(this.innerComponentRef)) {
+			this.innerComponentRef.instance.clearSelectedRows();
+		}
+	}
+
 	public createDynamicComponent(): any  {
 		@Component({
 			template: TableTemplate,
@@ -354,8 +357,6 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 			public dataSource: MatTableDataSource<T>;
 
 			public selection: SelectionModel<T> = new SelectionModel<T>(true, []);
-
-			public selected: any;
 
 			public hoverRow: T;
 
@@ -447,6 +448,10 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 			public onRowButtonClick(row: T, event: Event): void {
 				this.rowButtonClicked.emit(row);
 				event.stopPropagation();
+			}
+
+			public clearSelectedRows(): void {
+				this.selection.clear();
 			}
 
 		}
