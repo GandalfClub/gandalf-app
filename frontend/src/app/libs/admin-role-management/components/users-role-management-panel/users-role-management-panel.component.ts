@@ -12,6 +12,7 @@ import { ColumnConfig, TableColumnType } from 'src/app/libs/common-components/co
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { RowToggleOutput } from 'src/app/libs/common-components/components/table/models/row-toggle-output.enum';
 import { TableComponent } from 'src/app/libs/common-components/components/table/table.component';
+import { ProgressBarMode } from 'src/app/libs/common-components/shared/progress-bar-mode.enum';
 
 @Component({
 	selector: 'app-users-role-management-panel',
@@ -32,8 +33,9 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 	public headerButtonText: string = 'delete';
 
-	public lightTheme: ComponentTheme = ComponentTheme.Light;
-	public darkTheme: ComponentTheme = ComponentTheme.Dark;
+	public progressBarMode: string = ProgressBarMode.Indeterminate;
+
+	public readonly componentTheme: typeof ComponentTheme = ComponentTheme;
 
 	public usersRequestStatus: string;
 
@@ -67,42 +69,44 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private usersFacadeService: UsersFacadeService,
-		private authFacadeService: AuthFacadeService,
+		private authFacadeService: AuthFacadeService
 	) {}
 
 	public ngOnInit(): void {
 
-		this.usersFacadeService.users$.pipe(takeUntil(this.destroy$)).forEach((users: EntityWrapper<User[]>) => {
+		this.usersFacadeService.users$
+			.pipe(takeUntil(this.destroy$))
+			.forEach((users: EntityWrapper<User[]>) => {
 
-			this.usersRequestStatus = users.status;
+				this.usersRequestStatus = users.status;
 
-			const temporaryUsers: User[] = [];
+				const temporaryUsers: User[] = [];
 
-			if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
-				for (const user of users.value) {
-					let userForTable: User = {...user};
+				if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
+					for (const user of users.value) {
+						let userForTable: User = {...user};
 
-					if (Boolean(this.selectedUsers?.length)) {
-						userForTable = this.getOriginalSelectedUserObjects(userForTable);
+						if (Boolean(this.selectedUsers?.length)) {
+							userForTable = this.getOriginalSelectedUserObjects(userForTable);
+						}
+
+						userForTable.isEventManager =
+							userForTable.claims.includes(UserClaim.EventManager) ?
+							true :
+							false;
+
+						temporaryUsers.push(userForTable);
 					}
 
-					userForTable.isEventManager =
-						userForTable.claims.includes(UserClaim.EventManager) ?
-						true :
-						false;
+					this.users = temporaryUsers;
 
-					temporaryUsers.push(userForTable);
+					if (Boolean(this.tableComponent) && this.isSelectedUsersRemoving) {
+						this.isSelectedUsersRemoving = false;
+						this.selectedUsers = [];
+						this.tableComponent.clearSelectedRows();
+					}
 				}
-
-				this.users = temporaryUsers;
-
-				if (Boolean(this.tableComponent) && this.isSelectedUsersRemoving) {
-					this.isSelectedUsersRemoving = false;
-					this.selectedUsers = [];
-					this.tableComponent.clearSelectedRows();
-				}
-			}
-		});
+			});
 
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.userUpdate = user;
@@ -111,11 +115,11 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 	// we need original selected objects for comparison in table component to render this selections
 	public getOriginalSelectedUserObjects(user: User): User {
-		for (const selectedUser of this.selectedUsers) {
+		this.selectedUsers.forEach((selectedUser: User) => {
 			if (user.id === selectedUser.id) {
 				user = selectedUser;
 			}
-		}
+		});
 		return user;
 	}
 
@@ -131,11 +135,13 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 	public toggleEventManagerClaim(event: RowToggleOutput<User>): void {
 		const user: User = event.row;
 		const toggledUser: User = event.state ?
-						{...user, claims: [...user.claims.
-							filter((claim: UserClaim) => claim !== UserClaim.EventManager), UserClaim.EventManager]} :
-						{...user, claims: user.claims.
-							filter((claim: UserClaim) => claim !== UserClaim.EventManager)};
+						{...user, claims: [...this.filterByEventManagerClaim(user.claims), UserClaim.EventManager]} :
+						{...user, claims: this.filterByEventManagerClaim(user.claims)};
 		this.usersFacadeService.toggleEventManagerClaim(toggledUser);
+	}
+
+	public filterByEventManagerClaim(claims: UserClaim[]): UserClaim[] {
+		return claims.filter((claim: UserClaim) => claim !== UserClaim.EventManager);
 	}
 
 	public onCheck(selected: User[]): void {
@@ -144,9 +150,11 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 	public onHeaderButtonClick(selectedUsers: User[]): void {
 		const selectedUsersId: string[] = [];
-		for (const user of selectedUsers) {
-			selectedUsersId.push(user.id);
+
+		if (Boolean(selectedUsers.length)) {
+			selectedUsers.map((user: User) => selectedUsersId.push(user.id));
 		}
+
 		this.isSelectedUsersRemoving = true;
 		this.usersFacadeService.removeSelectedUsers(selectedUsersId);
 	}

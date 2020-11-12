@@ -58,7 +58,6 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 					...state.users,
 					value:
 						[
-							// ...state.users.value.filter((user: User) => user.id !== action.payload.id),
 							...state.users.value.map((user: User) => {
 								if (user.id === action.payload.id) {
 									user = action.payload;

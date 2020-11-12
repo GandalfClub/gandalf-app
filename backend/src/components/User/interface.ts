@@ -41,7 +41,7 @@ export interface IUserService {
 
 	/**
 	 * @param {string[]} id
-	 * @returns {Promise < string[] >}
+	 * @returns {Promise<string[]>}
 	 * @memberof UserService
 	 */
 	removeSelectedUsers(ids: string[]): Promise<string[]>;

@@ -10,7 +10,7 @@ import UserValidation from './validation';
  */
 const UserService: IUserService = {
 	/**
-	 * @returns {Promise < IUserModel[] >}
+	 * @returns {Promise<IUserModel[]>}
 	 * @memberof UserService
 	 */
 	async findAllUsers(): Promise<IUserModel[]> {
@@ -48,7 +48,7 @@ const UserService: IUserService = {
 
 	/**
 	 * @param {IUserModel} user
-	 * @returns {Promise < IUserModel >}
+	 * @returns {Promise<IUserModel>}
 	 * @memberof UserService
 	 */
 	async createUser(body: IUserModel): Promise<IUserModel> {
@@ -69,7 +69,7 @@ const UserService: IUserService = {
 
 	/**
 	 * @param {IUserModel} user
-	 * @returns {Promise < IUserModel >}
+	 * @returns {Promise<IUserModel>}
 	 * @memberof UserService
 	 */
 	async updateUser(body: IUserModel): Promise<IUserModel> {
@@ -97,7 +97,7 @@ const UserService: IUserService = {
 
 	/**
 	 * @param {string} id
-	 * @returns {Promise < IUserModel >}
+	 * @returns {Promise<IUserModel>}
 	 * @memberof UserService
 	 */
 	async removeUser(id: string): Promise<IUserModel> {
@@ -124,7 +124,7 @@ const UserService: IUserService = {
 
 	/**
 	 * @param {string[]} id
-	 * @returns {Promise < IUserModel >}
+	 * @returns {Promise<IUserModel>}
 	 * @memberof UserService
 	 */
 	async removeSelectedUsers(usersId: string[]): Promise<string[]> {

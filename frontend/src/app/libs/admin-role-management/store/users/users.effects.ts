@@ -25,7 +25,7 @@ export class UsersEffects {
 	public SetEventManagerRole: Observable<Action> = this.actions$.pipe(
 		ofType(UsersActionType.ToggleEventManagerRole),
 		switchMap((action: ToggleEventManagerRole)  => {
-				return this.usersRepository.updateUser(this.authConverter.convertToDto(action.payload)).pipe(
+				return this.usersRepository.updateUser(action.payload).pipe(
 					map((user: UserDto) => new ToggleEventManagerRoleSuccess(this.authConverter.convertFromDto(user))),
 					catchError((error: Error) => of(new ToggleEventManagerRoleFail(error)))
 				);
@@ -36,7 +36,7 @@ export class UsersEffects {
 	public RemoveUser: Observable<Action> = this.actions$.pipe(
 		ofType(UsersActionType.RemoveUser),
 		switchMap((action: RemoveUser)  => {
-				return this.usersRepository.removeUser(this.authConverter.convertToDto(action.payload)).pipe(
+				return this.usersRepository.removeUser(action.payload).pipe(
 					map((user: UserDto) => new RemoveUserSuccess(this.authConverter.convertFromDto(user))),
 					catchError((error: Error) => of(new RemoveUserFail(error)))
 				);

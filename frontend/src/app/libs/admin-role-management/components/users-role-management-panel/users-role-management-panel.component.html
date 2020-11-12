@@ -1,8 +1,8 @@
 <div class="users-role-management-panel">
 	<app-progress-bar
 		*ngIf="usersRequestStatus === pendingStatus"
-		[mode]="'indeterminate'"
-		[theme]=darkTheme>
+		[mode]="progressBarMode"
+		[theme]="componentTheme.Dark">
 	</app-progress-bar>
 
 	<div class="users-role-management-panel__table-wrapper">
@@ -12,7 +12,7 @@
 			[data]="users"
 			(toggled)="toggleEventManagerClaim($event)"
 			(checked)="onCheck($event)"
-			[theme]="darkTheme"
+			[theme]="componentTheme.Dark"
 			[headerButtonText]="headerButtonText"
 			[headerButtonIcon]="'delete'"
 			[rowButtonIcon]="'delete'"

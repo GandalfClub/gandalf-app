@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDto } from '../../auth/models/user-dto';
+import { AuthConverter } from '../../auth/services/auth-converter.service';
+import { User } from '../../auth/models/user';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,17 +11,22 @@ import { UserDto } from '../../auth/models/user-dto';
 export class UsersRepositoryService {
 	private API_URL: string = '/api';
 
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		private authConverter: AuthConverter
+		) {}
 
 	public getUsers(): Observable<UserDto[]> {
 		const url: string = this.API_URL + '/users';
 		return this.http.get<UserDto[]>(url);
 	}
 
-	public updateUser(user: Partial<UserDto>): Observable<UserDto> {
+	public updateUser(user: User): Observable<UserDto> {
+		const userDto: Partial<UserDto> = this.authConverter.convertToDto(user);
+
 		const url: string = this.API_URL + '/users/update-user';
 
-		const updatedUser: Partial<UserDto> = {...user};
+		const updatedUser: Partial<UserDto> = {...userDto};
 		delete updatedUser.password;
 		delete updatedUser.isEventManager;
 		delete updatedUser.checked;
@@ -27,8 +34,11 @@ export class UsersRepositoryService {
 		return this.http.post<UserDto>(url, updatedUser);
 	}
 
-	public removeUser(user: Partial<UserDto>): Observable<UserDto> {
-		const url: string = this.API_URL + `/users/${user._id}`;
+	public removeUser(user: User): Observable<UserDto> {
+
+		const userDto: Partial<UserDto> = this.authConverter.convertToDto(user);
+
+		const url: string = this.API_URL + `/users/${userDto._id}`;
 
 		return this.http.delete<UserDto>(url);
 	}
