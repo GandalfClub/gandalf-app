@@ -1,8 +1,19 @@
 import { UsersRepositoryService } from './users-repository.service';
 import { UserDto } from '../../auth/models/user-dto';
 import { of } from 'rxjs';
+import { User } from '../../auth/models/user';
 
 describe('EventsService', () => {
+	const user: User = {
+		id: 'test',
+		firstName: 'John',
+		secondName: 'Connor',
+		mobilePhone: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 	const userDto: UserDto = {
 		_id: 'test',
 		firstName: 'John',
@@ -26,9 +37,10 @@ describe('EventsService', () => {
 	let eventsRepository: UsersRepositoryService;
 
 	const httpSpy: any = jasmine.createSpyObj('http', ['get', 'post', 'delete']);
+	const authConverter: any = jasmine.createSpyObj('authConverter', ['convertFromDto', 'convertToDto', 'convertUsersFromDto']);
 
 	beforeEach(() => {
-		eventsRepository = new UsersRepositoryService(httpSpy);
+		eventsRepository = new UsersRepositoryService(httpSpy, authConverter);
 	});
 
 	it('should be created', () => {
@@ -51,12 +63,13 @@ describe('EventsService', () => {
 	describe('when updateUser called', () => {
 		beforeEach(() => {
 			httpSpy.post.and.returnValue(of(userDto));
+			authConverter.convertToDto.and.returnValue(userDto);
 		});
 
 		it('should called with post method and update-user path and return array of users', () => {
-			eventsRepository.updateUser(userDto).subscribe((user: UserDto) => {
+			eventsRepository.updateUser(user).subscribe((updatedUser: UserDto) => {
 				expect(httpSpy.post).toHaveBeenCalledWith('/api/users/update-user', userDtoWithoutPassword);
-				expect(user).toEqual(userDto);
+				expect(updatedUser).toEqual(userDto);
 			});
 		});
 	});
@@ -64,12 +77,13 @@ describe('EventsService', () => {
 	describe('when removeUser called', () => {
 		beforeEach(() => {
 			httpSpy.delete.and.returnValue(of(userDto));
+			authConverter.convertToDto.and.returnValue(userDto);
 		});
 
 		it('should called with delete method and user/:userId path and return array of users', () => {
-			eventsRepository.removeUser(userDto).subscribe((user: UserDto) => {
+			eventsRepository.removeUser(user).subscribe((removedUser: UserDto) => {
 				expect(httpSpy.delete).toHaveBeenCalledWith(`/api/users/${userDto._id}`);
-				expect(user).toEqual(userDto);
+				expect(removedUser).toEqual(userDto);
 			});
 		});
 	});
