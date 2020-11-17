@@ -1,9 +1,9 @@
 @import "variables";
 
 @mixin button-hover() {
-  transition: background-color 0.4s;
-  &:hover:not([disabled="true"]) {
-    background-color: transparentize($color: white, $amount: 0.92);
+	transition: background-color 0.4s;
+	&:hover:not([disabled="true"]) {
+		background-color: transparentize($color: white, $amount: 0.92);
 	}
 
 	&.button--disable-hover:hover:not([disabled="true"]) {
@@ -12,68 +12,109 @@
 }
 
 .button {
-  display: inline-flex;
+	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-  height: 40px;
 
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: rgba(33, 33, 33, 0.75);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+	padding: 14px 18px;
 
-  border-radius: 20px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 17px;
+	color: rgba(33, 33, 33, 0.75);
+	text-transform: uppercase;
+	letter-spacing: 1px;
 
-  &__icon {
-    font-size: 20px;
-    margin-right: 5px;
-  }
+	border-radius: 20px;
 
-  &--dark-theme {
-    color: white;
+	&__content {
 
-    border-color: white;
-
-    &[disabled="true"] {
-      color: transparentize($color: white, $amount: 0.7);
-    }
+		display: flex;
+		align-items: center;
 	}
 
-  &--basic {
-    @include button-hover();
-  }
+	&__icon {
 
-  &--outlined {
+		&--extra-small {
+			height: 16px;
+			width: 16px;
+
+			padding-right: 14px;
+
+			font-size: 16px;
+		}
+
+		&--small {
+			height: 24px;
+			width: 24px;
+
+			padding-right: 14px;
+
+			font-size: 24px;
+		}
+
+		&--medium {
+			height: 32px;
+			width: 32px;
+
+			padding-right: 14px;
+
+			font-size: 32px;
+		}
+
+		&--large {
+			height: 64px;
+			width: 64px;
+
+			padding-right: 14px;
+
+			font-size: 64px;
+		}
+	}
+
+	&--dark-theme {
+		color: white;
+
+		border-color: white;
+
+		&[disabled="true"] {
+			color: transparentize($color: white, $amount: 0.7);
+		}
+	}
+
+	&--basic {
+		@include button-hover();
+	}
+
+	&--outlined {
 		@include button-hover();
 
-    border-color: $color-black-10;
+		border-color: $color-black-10;
 
-    &.button--dark-theme {
-      border-color: $color-white-100;
+		&.button--dark-theme {
+			border-color: $color-white-100;
 
-      &[disabled="true"] {
+			&[disabled="true"] {
 				color: $color-white-30;
-        border-color: $color-white-30;
-      }
-    }
-  }
+				border-color: $color-white-30;
+			}
+		}
+	}
 
-  &--flat {
-    color: white;
+	&--flat {
+		color: white;
 
-    background-color: #367ff6;
-    border-color: #367ff6;
+		background-color: #367ff6;
+		border-color: #367ff6;
 
 		&[disabled="true"] {
 			color: $color-white-100;
 		}
 
-    &.button--dark-theme[disabled="true"] {
-      color: $color-white-75;
+		&.button--dark-theme[disabled="true"] {
+			color: $color-white-75;
 
-      background-color: $color-white-30;
-    }
-  }
+			background-color: $color-white-30;
+		}
+	}
 }

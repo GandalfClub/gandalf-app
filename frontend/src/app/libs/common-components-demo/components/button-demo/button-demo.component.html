@@ -22,6 +22,17 @@
 				<app-button type="flat" [disabled]="true">Button</app-button>
 			</app-demo-state>
 		</div>
+		<div class="button-demo__active">
+			<app-demo-state [title]="'medium icon'" class="button-demo__container">
+				<app-button [icon]="'done'" [iconSize]="iconSizes.M"></app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'medium icon with label'"  class="button-demo__container">
+				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M">Button</app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'small icon with label'" class="button-demo__container">
+				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S">Button</app-button>
+			</app-demo-state>
+		</div>
 	</div>
 	<div class="dark-theme button-demo__states">
 		<div class="button-demo__active">
@@ -44,6 +55,17 @@
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
 				<app-button type="flat" [disabled]="true" [theme]="darkTheme">Button</app-button>
+			</app-demo-state>
+		</div>
+		<div class="button-demo__active">
+			<app-demo-state [title]="'medium icon'" class="button-demo__container" [isDark]="true">
+				<app-button [icon]="'done'" [iconSize]="iconSizes.M" [theme]="darkTheme"></app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'medium icon with label'"  class="button-demo__container" [isDark]="true">
+				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M" [theme]="darkTheme">Button</app-button>
+			</app-demo-state>
+			<app-demo-state [title]="'small icon with label'" class="button-demo__container" [isDark]="true">
+				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S" [theme]="darkTheme">Button</app-button>
 			</app-demo-state>
 		</div>
 	</div>
