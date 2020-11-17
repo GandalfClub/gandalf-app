@@ -16,7 +16,7 @@
 	align-items: center;
 	justify-content: center;
 
-	padding: 14px 18px;
+	padding: 10px 12px;
 
 	font-weight: 500;
 	font-size: 14px;
@@ -35,11 +35,11 @@
 
 	&__icon {
 
+		padding: 0 4px;
+
 		&--extra-small {
 			height: 16px;
 			width: 16px;
-
-			padding-right: 14px;
 
 			font-size: 16px;
 		}
@@ -48,16 +48,12 @@
 			height: 24px;
 			width: 24px;
 
-			padding-right: 14px;
-
 			font-size: 24px;
 		}
 
 		&--medium {
 			height: 32px;
 			width: 32px;
-
-			padding-right: 14px;
 
 			font-size: 32px;
 		}
@@ -66,10 +62,12 @@
 			height: 64px;
 			width: 64px;
 
-			padding-right: 14px;
-
 			font-size: 64px;
 		}
+	}
+
+	&__label {
+		padding: 0 4px;
 	}
 
 	&--dark-theme {
