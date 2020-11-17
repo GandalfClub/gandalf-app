@@ -36,9 +36,7 @@ export class UsersRepositoryService {
 
 	public removeUser(user: User): Observable<UserDto> {
 
-		const userDto: Partial<UserDto> = this.authConverter.convertToDto(user);
-
-		const url: string = this.API_URL + `/users/${userDto._id}`;
+		const url: string = this.API_URL + `/users/${user.id}`;
 
 		return this.http.delete<UserDto>(url);
 	}

@@ -80,25 +80,9 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 				this.usersRequestStatus = users.status;
 
-				const temporaryUsers: User[] = [];
-
 				if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
-					for (const user of users.value) {
-						let userForTable: User = {...user};
 
-						if (Boolean(this.selectedUsers?.length)) {
-							userForTable = this.getOriginalSelectedUserObjects(userForTable);
-						}
-
-						userForTable.isEventManager =
-							userForTable.claims.includes(UserClaim.EventManager) ?
-							true :
-							false;
-
-						temporaryUsers.push(userForTable);
-					}
-
-					this.users = temporaryUsers;
+					this.users = this.createUsersForRender(users.value);
 
 					if (Boolean(this.tableComponent) && this.isSelectedUsersRemoving) {
 						this.isSelectedUsersRemoving = false;
@@ -113,7 +97,28 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	// we need original selected objects for comparison in table component to render this selections
+	public createUsersForRender(users: User[]): User[] {
+
+		const temporaryUsers: User[] = [];
+
+		for (const user of users) {
+			let userForTable: User = {...user};
+
+			if (Boolean(this.selectedUsers?.length)) {
+				userForTable = this.getOriginalSelectedUserObjects(userForTable);
+			}
+
+			userForTable.isEventManager =
+				userForTable.claims.includes(UserClaim.EventManager) ?
+				true :
+				false;
+
+			temporaryUsers.push(userForTable);
+		}
+
+		return temporaryUsers;
+	}
+
 	public getOriginalSelectedUserObjects(user: User): User {
 		this.selectedUsers.forEach((selectedUser: User) => {
 			if (user.id === selectedUser.id) {
