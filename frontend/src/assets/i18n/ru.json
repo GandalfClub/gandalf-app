@@ -8,6 +8,9 @@
 		"LOG_OFF": "Выйти",
 		"ACCOUNT": "Мой профиль"
 	},
+	"ERROR_MESSAGE":{
+		"EMAIL_ERROR_MESSAGE": "Aдрес электронной почты имеет неверный формат"
+	},
 	"LABEL": {
 		"USER_NAME": "Имя пользователя"
 	},

@@ -44,10 +44,9 @@ export class SignInComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public get emailInputErrorMessage(): string {
+ 	public get emailInputErrorMessage(): string {
 		if ((this.signInFormGroupControl.email.touched || this.submitted) && !this.signInFormGroupControl.email.valid) {
-			const emailInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.email.errors);
-			return emailInputErrorMessage[0];
+			return 'ERROR_MESSAGE.EMAIL_ERROR_MESSAGE';
 		}
 		return;
 	}
