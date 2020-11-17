@@ -53,8 +53,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
 	public get passwordInputErrorMessage(): string {
 		if ((this.signInFormGroupControl.password.touched || this.submitted) && !this.signInFormGroupControl.password.valid) {
-			const passwordInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.password.errors);
-			return passwordInputErrorMessage[0];
+			return 'ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE';
 		}
 		return;
 	}

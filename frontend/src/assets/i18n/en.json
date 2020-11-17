@@ -9,7 +9,8 @@
 		"ACCOUNT": "ACCOUNT"
 	},
 	"ERROR_MESSAGE": {
-		"EMAIL_ERROR_MESSAGE": "Your email has invalid format"
+		"EMAIL_ERROR_MESSAGE": "Your email has invalid format",
+		"PASSWORD_ERROR_MESSAGE": "Password must have length 6-18 symbols, includes digits, symbols, uppercase and lowercase letters"
 	},
 	"LABEL": {
 		"USER_NAME": "User name"
