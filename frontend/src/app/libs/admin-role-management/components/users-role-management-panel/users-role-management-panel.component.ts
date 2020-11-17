@@ -82,7 +82,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 
 				if (Boolean(users.value?.length) && this.usersRequestStatus !== EntityStatus.Pending) {
 
-					this.users = this.createUsersForRender(users.value);
+					this.users = this.getUsersForRender(users.value);
 
 					if (Boolean(this.tableComponent) && this.isSelectedUsersRemoving) {
 						this.isSelectedUsersRemoving = false;
@@ -97,7 +97,7 @@ export class UsersRoleManagementPanelComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public createUsersForRender(users: User[]): User[] {
+	public getUsersForRender(users: User[]): User[] {
 
 		const temporaryUsers: User[] = [];
 
