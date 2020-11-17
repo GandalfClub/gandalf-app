@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 	public userCredential: UserCredentials;
 	public authError: string;
 	public isLoading: boolean = false;
-	private passwordMinLenth: number = 6;
+	private emailMaxLength: number = 128;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private router: Router) {}
@@ -39,8 +39,8 @@ export class SignInComponent implements OnInit, OnDestroy {
 		});
 
 		this.signInFormGroup = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', [Validators.required, Validators.minLength(this.passwordMinLenth)]],
+			email: ['', [Validators.required, Validators.email, Validators.maxLength(this.emailMaxLength), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+			password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,17}')]],
 		});
 	}
 
