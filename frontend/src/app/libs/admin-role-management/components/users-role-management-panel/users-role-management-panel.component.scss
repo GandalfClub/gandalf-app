@@ -12,12 +12,21 @@
 		height: 30px;
 	}
 
+	&__table-wrapper {
+		align-self: center;
+
+		padding-top: 32px;
+		width: 70%;
+	}
+
 	&__user {
 		margin: 5px 0 5px 0;
 	}
 
 	&__empty {
 		align-self: center;
+
+		color: $color-white;
 	}
 
 	&__input {

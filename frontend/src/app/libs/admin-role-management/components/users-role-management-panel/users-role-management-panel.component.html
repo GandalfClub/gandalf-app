@@ -1,28 +1,36 @@
 <div class="users-role-management-panel">
-	<div class="users-role-management-panel__header">
-		<h3>Users</h3>
+	<app-progress-bar
+		*ngIf="usersRequestStatus === pendingStatus"
+		[mode]="progressBarMode"
+		[theme]="componentTheme.Dark">
+	</app-progress-bar>
+
+	<div class="users-role-management-panel__table-wrapper">
+		<app-table
+			*ngIf="users"
+			[columnsConfig]="columnsConfig"
+			[data]="users"
+			(toggled)="toggleEventManagerClaim($event)"
+			(checked)="onCheck($event)"
+			[theme]="componentTheme.Dark"
+			[headerButtonText]="headerButtonText"
+			[headerButtonIcon]="'delete'"
+			[rowButtonIcon]="'delete'"
+			[searchInputLabel]="'Find a user'"
+			[searchInputPlaceholder]="'Enter name or email'"
+			(headerButtonClicked)="onHeaderButtonClick($event)"
+			(rowButtonClicked)="onRowButtonClick($event)">
+		</app-table>
 	</div>
-	<div class="users-role-management-panel__input">
-		<div class="users-role-management-panel__input-header">
-			<h3>Search</h3>
-		</div>
-		<mat-form-field>
-			<input matInput
-						 type="text"
-						 [(ngModel)]="searchText"
-						 autocomplete="off">
-		</mat-form-field>
-	</div>
-	<ng-container *ngFor="let user of foundUsers">
-		<app-user-role-tile (eventManagerClaimToggled)="toggleEventManagerClaim($event, user)"
-												[disabled]="updateInProgress"
-												[user]="user"
-												class="users-role-management-panel__user">
-		</app-user-role-tile>
-	</ng-container>
-	<ng-container *ngIf="foundUsersEmpty">
+	<ng-container *ngIf="!users && usersRequestStatus !== pendingStatus">
 		<div class="users-role-management-panel__empty">
-			<h3>Not Found</h3>
+            <h3>Not Found</h3>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="!users && usersRequestStatus === pendingStatus">
+		<div class="users-role-management-panel__empty">
+            <h3>...loading</h3>
 		</div>
 	</ng-container>
 </div>
