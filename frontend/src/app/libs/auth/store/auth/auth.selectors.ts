@@ -10,3 +10,8 @@ export const selectUser: MemoizedSelector<AuthState, EntityWrapper<User>> = crea
 	selectAuthState,
 	(state: AuthState) => state.user
 );
+
+export const isAdminUser: MemoizedSelector<AuthState, boolean> = createSelector(
+	selectAuthState,
+	(state: AuthState) => state.user.value.isAdmin
+);

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { Locale } from './models/locale';
 import { UserService } from './services/user.service';
 
@@ -12,7 +13,11 @@ export class ContainerComponent implements OnInit, OnDestroy {
 	public hideHeader: boolean = false;
 	public hideFooter: boolean = false;
 
-	constructor(public translateService: TranslateService, private userService: UserService) {
+	constructor (
+		public translateService: TranslateService,
+		private userService: UserService,
+		private authFacadeService: AuthFacadeService
+	) {
 		translateService.addLangs([Locale.English, Locale.Russian]);
 		translateService.setDefaultLang(Locale.English);
 		const browserLang: string = translateService.getBrowserLang();
@@ -21,6 +26,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
+		this.authFacadeService.loadUser();
 		this.userService.subscribeUser();
 	}
 

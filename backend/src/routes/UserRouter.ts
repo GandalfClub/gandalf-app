@@ -19,6 +19,8 @@ router.post('/update-user', UserComponent.updateUser);
 
 router.delete('/:id', AccessGuard.isAdmin, UserComponent.removeUser);
 
+router.post('/remove-users', AccessGuard.isAdmin, UserComponent.removeSelectedUsers);
+
 /**
  * @export {express.Router}
  */

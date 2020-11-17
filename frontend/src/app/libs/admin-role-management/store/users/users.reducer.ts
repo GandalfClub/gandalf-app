@@ -47,15 +47,7 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 				users: {
 					...state.users,
 					status: EntityStatus.Pending,
-					value:
-					Boolean(state.users.value) ?
-						[
-							...state.users.value.filter((user: User) => user.id !== action.payload.id),
-							action.payload
-						] :
-						[
-							action.payload
-						]
+					error: null
 				},
 			};
 		}
@@ -64,11 +56,91 @@ export function usersReducer(state: UsersState = initialState, action: UsersActi
 				...state,
 				users: {
 					...state.users,
+					value:
+						[
+							...state.users.value.map((user: User) => {
+								if (user.id === action.payload.id) {
+									user = action.payload;
+								}
+								return user;
+							}),
+						],
 					status: EntityStatus.Success,
+					error: null
 				},
 			};
 		}
 		case UsersActionType.ToggleEventManagerRoleFail: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Error,
+					error: action.payload,
+				},
+			};
+		}
+
+		case UsersActionType.RemoveUser: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Pending,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveUserSuccess: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					value:
+						[
+							...state.users.value.filter((user: User) => user.id !== action.payload.id),
+						],
+					status: EntityStatus.Success,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveUserFail: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Error,
+					error: action.payload,
+				},
+			};
+		}
+
+		case UsersActionType.RemoveSelectedUsers: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					status: EntityStatus.Pending,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveSelectedUsersSuccess: {
+			return {
+				...state,
+				users: {
+					...state.users,
+					value:
+						[
+							...state.users.value.filter((user: User) => !action.payload.includes(user.id))
+						],
+					status: EntityStatus.Success,
+					error: null
+				},
+			};
+		}
+		case UsersActionType.RemoveSelectedUsersFail: {
 			return {
 				...state,
 				users: {
