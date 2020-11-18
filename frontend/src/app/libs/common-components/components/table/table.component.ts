@@ -35,31 +35,18 @@ let TableTemplate: string = '';
 export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
-
 	@Input() public columnsConfig: ColumnConfig[];
-
 	@Input() public data: T[];
-
 	@Input() public searchInputLabel: string;
-
 	@Input() public searchInputPlaceholder: string;
-
 	@Input() public headerButtonText: string;
-
 	@Input() public headerButtonIcon: string;
-
 	@Input() public headerButtonIconSize: ButtonIconSize;
-
 	@Input() public rowButtonIcon: string;
-
 	@Input() public rowButtonIconSize: ButtonIconSize;
-
 	@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
-
 	@Output() public checked: EventEmitter<T[]> = new EventEmitter();
-
 	@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
 	@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 	public columns: Column[] = [];
@@ -334,27 +321,16 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 			public previousData: T[];
 
 			@Input() public displayedColumns: string[] = [];
-
 			@Input() public searchInputLabel: string;
-
 			@Input() public searchInputPlaceholder: string;
-
 			@Input() public headerButtonText: string;
-
 			@Input() public headerButtonIcon: string;
-
 			@Input() public headerButtonIconSize: ButtonIconSize;
-
 			@Input() public rowButtonIcon: string;
-
 			@Input() public rowButtonIconSize: ButtonIconSize;
-
 			@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
-
 			@Output() public checked: EventEmitter<T[]> = new EventEmitter();
-
 			@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
 			@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 			@ViewChild(MatSort) sort: MatSort;
