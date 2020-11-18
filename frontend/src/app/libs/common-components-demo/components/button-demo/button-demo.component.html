@@ -2,70 +2,70 @@
 	<div class="light-theme button-demo__states">
 		<div class="button-demo__active">
 			<app-demo-state [title]="'basic'" class="button-demo__container">
-				<app-button>Button</app-button>
+				<app-button>{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'outlined'" class="button-demo__container">
-				<app-button type="outlined">Button</app-button>
+				<app-button type="outlined">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'flat'" class="button-demo__container">
-				<app-button type="flat">Button</app-button>
+				<app-button type="flat">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 		<div class="button-demo__disabled">
 			<app-demo-state class="button-demo__container">
-				<app-button [disabled]="true">Button</app-button>
+				<app-button [disabled]="true">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container">
-				<app-button type="outlined" [disabled]="true">Button</app-button>
+				<app-button type="outlined" [disabled]="true">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container">
-				<app-button type="flat" [disabled]="true">Button</app-button>
+				<app-button type="flat" [disabled]="true">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 		<div class="button-demo__active">
 			<app-demo-state [title]="'medium icon'" class="button-demo__container">
 				<app-button [icon]="'done'" [iconSize]="iconSizes.M"></app-button>
 			</app-demo-state>
-			<app-demo-state [title]="'medium icon with label'"  class="button-demo__container">
-				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M">Button</app-button>
+			<app-demo-state [title]="'medium icon with button text'"  class="button-demo__container">
+				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M">{{buttonText}}</app-button>
 			</app-demo-state>
-			<app-demo-state [title]="'small icon with label'" class="button-demo__container">
-				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S">Button</app-button>
+			<app-demo-state [title]="'small icon with button text'" class="button-demo__container">
+				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 	</div>
 	<div class="dark-theme button-demo__states">
 		<div class="button-demo__active">
 			<app-demo-state [title]="'basic'" class="button-demo__container" [isDark]="true">
-				<app-button [theme]="darkTheme">Button</app-button>
+				<app-button [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'outlined'" class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [theme]="darkTheme">Button</app-button>
+				<app-button type="outlined" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state [title]="'flat'" class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [theme]="darkTheme">Button</app-button>
+				<app-button type="flat" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 		<div class="button-demo__disabled">
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button [disabled]="true" [theme]="darkTheme">Button</app-button>
+				<app-button [disabled]="true" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [disabled]="true" [theme]="darkTheme">Button</app-button>
+				<app-button type="outlined" [disabled]="true" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [disabled]="true" [theme]="darkTheme">Button</app-button>
+				<app-button type="flat" [disabled]="true" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 		<div class="button-demo__active">
 			<app-demo-state [title]="'medium icon'" class="button-demo__container" [isDark]="true">
 				<app-button [icon]="'done'" [iconSize]="iconSizes.M" [theme]="darkTheme"></app-button>
 			</app-demo-state>
-			<app-demo-state [title]="'medium icon with label'"  class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M" [theme]="darkTheme">Button</app-button>
+			<app-demo-state [title]="'medium icon with button text'"  class="button-demo__container" [isDark]="true">
+				<app-button type="outlined" [icon]="'done_all'" [iconSize]="iconSizes.M" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
-			<app-demo-state [title]="'small icon with label'" class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S" [theme]="darkTheme">Button</app-button>
+			<app-demo-state [title]="'small icon with button text'" class="button-demo__container" [isDark]="true">
+				<app-button type="flat" [icon]="'fingerprint'" [iconSize]="iconSizes.S" [theme]="darkTheme">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
 	</div>

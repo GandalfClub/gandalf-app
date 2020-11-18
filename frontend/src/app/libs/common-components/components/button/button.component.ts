@@ -35,22 +35,6 @@ export class ButtonComponent {
 	@Input()
 	public disableHover: boolean = false;
 
-	public get isIconExtraSmall(): boolean {
-		return this.iconSize === ButtonIconSize.XS;
-	}
-
-	public get isIconSmall(): boolean {
-		return this.iconSize === ButtonIconSize.S;
-	}
-
-	public get isIconMedium(): boolean {
-		return this.iconSize === ButtonIconSize.M;
-	}
-
-	public get isIconLarge(): boolean {
-		return this.iconSize === ButtonIconSize.L;
-	}
-
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}

@@ -9,6 +9,8 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 })
 export class ButtonDemoComponent {
 
+  public buttonText: string = 'Button';
+
   public iconSizes: typeof ButtonIconSize = ButtonIconSize;
 
 	public lightTheme: ComponentTheme = ComponentTheme.Light;

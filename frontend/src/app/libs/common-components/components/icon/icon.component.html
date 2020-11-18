@@ -1,0 +1,9 @@
+<mat-icon
+	*ngIf="icon"
+	class="button__icon"
+	[class.button__icon--{{iconSize?}}]="isIconExtraSmall"
+	[class.button__icon--{{iconSize?}}]="isIconSmall"
+	[class.button__icon--{{iconSize?}}]="isIconMedium"
+	[class.button__icon--{{iconSize?}}]="isIconLarge">
+		{{icon}}
+</mat-icon>

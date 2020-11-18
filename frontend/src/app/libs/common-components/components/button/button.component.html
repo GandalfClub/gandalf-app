@@ -33,16 +33,12 @@
 
 <ng-template #buttonText>
 	<div class="button__content">
-		<mat-icon
+		<app-icon
 			*ngIf="icon"
-			class="button__icon"
-			[class.button__icon--extra-small]="isIconExtraSmall"
-			[class.button__icon--small]="isIconSmall"
-			[class.button__icon--medium]="isIconMedium"
-			[class.button__icon--large]="isIconLarge">
+			[icon]="icon"
+			[iconSize]="iconSize">
+		</app-icon>
 
-			{{icon}}
-		</mat-icon>
 		<span class="button__label">
 			<ng-content></ng-content>
 		</span>
