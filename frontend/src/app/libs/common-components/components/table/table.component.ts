@@ -186,18 +186,16 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
 				</p>
 				<app-button
-					class="button"
 					type="outlined"
 					[icon]="headerButtonIcon"
 					[theme]="theme"
 					*ngIf="selection.selected?.length"
 					(click)="onHeaderButtonClick()">
 					<app-icon
-						class="button__icon"
 						[icon]="headerButtonIcon"
 						[size]="headerButtonIconSize">
 					</app-icon>
-					<span class="button__text">
+					<span>
 						{{headerButtonText}}
 					</span>
 				</app-button>
@@ -216,14 +214,12 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td class="table-content__row-button" mat-cell *matCellDef="let row">
 						<app-button
-							class="button"
 							*ngIf="rowButtonIcon && this.hoverRow===row"
 							type="basic"
 							[icon]="rowButtonIcon"
 							[theme]="theme"
 							(click)="onRowButtonClick(row, $event)">
 							<app-icon
-								class="button__icon"
 								[icon]="rowButtonIcon"
 								[size]="rowButtonIconSize">
 							</app-icon>

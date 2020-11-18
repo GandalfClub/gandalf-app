@@ -42,8 +42,6 @@
 		}
 
 		.mat-cell {
-			min-height: 44px;
-
 			vertical-align: middle;
 		}
 
@@ -83,15 +81,6 @@
 					border-bottom: none;
 				}
 			}
-		}
-	}
-	.button {
-
-		&__icon {
-			padding: 0 4px;
-		}
-		&__text {
-			padding: 0 4px;
 		}
 	}
 }
