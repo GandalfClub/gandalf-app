@@ -12,22 +12,22 @@ export class IconComponent {
 	public icon: string;
 
 	@Input()
-	public iconSize: ButtonIconSize;
+	public size: ButtonIconSize;
 
 	public get isIconExtraSmall(): boolean {
-		return this.iconSize === ButtonIconSize.XS;
+		return this.size === ButtonIconSize.XS;
 	}
 
 	public get isIconSmall(): boolean {
-		return this.iconSize === ButtonIconSize.S;
+		return this.size === ButtonIconSize.S;
 	}
 
 	public get isIconMedium(): boolean {
-		return this.iconSize === ButtonIconSize.M;
+		return this.size === ButtonIconSize.M;
 	}
 
 	public get isIconLarge(): boolean {
-		return this.iconSize === ButtonIconSize.L;
+		return this.size === ButtonIconSize.L;
 	}
 
 }

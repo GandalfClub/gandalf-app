@@ -18,16 +18,10 @@ export class ButtonComponent {
 	public type: ButtonType = ButtonType.Basic;
 
 	@Input()
-	public iconSize: ButtonIconSize = ButtonIconSize.S;
-
-	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Input()
 	public disabled: boolean = false;
-
-	@Input()
-	public icon: string;
 
 	@Input()
 	public disableRipple: boolean = false;

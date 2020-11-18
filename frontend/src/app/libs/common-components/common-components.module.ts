@@ -58,7 +58,8 @@ import { IconComponent } from './components/icon/icon.component';
 		EventCardDateComponent,
 		TableComponent,
 		SearchInputComponent,
-		IconComponent],
+		IconComponent
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -115,7 +116,8 @@ import { IconComponent } from './components/icon/icon.component';
 		MatSelectModule,
 		MatMenuModule,
 		MatDividerModule,
-		SearchInputComponent
+		SearchInputComponent,
+		IconComponent
 		],
 	providers: [
 		{
