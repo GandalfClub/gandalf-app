@@ -15,7 +15,9 @@ import { takeUntil } from 'rxjs/operators';
 import { CheckboxGroupDataDemo } from 'src/app/libs/common-components-demo/models/checkbox-group-data-demo';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonComponent } from '../button/button.component';
+import { ButtonIconSize } from '../button/models/button-icons-size.eum';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { IconComponent } from '../icon/icon.component';
 import { InputComponent } from '../input/input.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
@@ -46,7 +48,11 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 	@Input() public headerButtonIcon: string;
 
+	@Input() public headerButtonIconSize: ButtonIconSize;
+
 	@Input() public rowButtonIcon: string;
+
+	@Input() public rowButtonIconSize: ButtonIconSize;
 
 	@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
 
@@ -193,12 +199,20 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
 				</p>
 				<app-button
+					class="button"
 					type="outlined"
 					[icon]="headerButtonIcon"
 					[theme]="theme"
 					*ngIf="selection.selected?.length"
 					(click)="onHeaderButtonClick()">
-					{{headerButtonText}}
+					<app-icon
+						class="button__icon"
+						[icon]="headerButtonIcon"
+						[size]="headerButtonIconSize">
+					</app-icon>
+					<span class="button__text">
+						{{headerButtonText}}
+					</span>
 				</app-button>
 
 			</div>`;
@@ -207,7 +221,7 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 		`<div class="table">
 			${templateHeader}
 
-			<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-content" [class.table-content--dark-theme]="isDarkTheme" matSort>
+			<table mat-table [dataSource]="dataSource" class="table-content mat-elevation-z8" [class.table-content--dark-theme]="isDarkTheme" matSort>
 
 				${columns}
 
@@ -215,11 +229,17 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td class="table-content__row-button" mat-cell *matCellDef="let row">
 						<app-button
+							class="button"
 							*ngIf="rowButtonIcon && this.hoverRow===row"
 							type="basic"
 							[icon]="rowButtonIcon"
 							[theme]="theme"
 							(click)="onRowButtonClick(row, $event)">
+							<app-icon
+								class="button__icon"
+								[icon]="rowButtonIcon"
+								[size]="rowButtonIconSize">
+							</app-icon>
 						</app-button>
 					</td>
 				</ng-container>
@@ -262,7 +282,11 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 		componentRef.instance.data = this.data;
 		componentRef.instance.headerButtonText = this.headerButtonText;
 		componentRef.instance.headerButtonIcon = this.headerButtonIcon;
+		componentRef.instance.headerButtonIconSize = this.headerButtonIconSize;
+
 		componentRef.instance.rowButtonIcon = this.rowButtonIcon;
+		componentRef.instance.rowButtonIconSize = this.rowButtonIconSize;
+
 		componentRef.instance.displayedColumns = this.displayedColumns;
 
 		componentRef.instance.searchInputLabel = this.searchInputLabel;
@@ -319,7 +343,11 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 			@Input() public headerButtonIcon: string;
 
+			@Input() public headerButtonIconSize: ButtonIconSize;
+
 			@Input() public rowButtonIcon: string;
+
+			@Input() public rowButtonIconSize: ButtonIconSize;
 
 			@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
 
@@ -470,7 +498,8 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					SlideToggleComponent,
 					ButtonComponent,
 					InputComponent,
-					SearchInputComponent
+					SearchInputComponent,
+					IconComponent
 				] })(moduleClass);
 
 	return decoratedNgModule;
