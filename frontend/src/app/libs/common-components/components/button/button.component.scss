@@ -16,6 +16,7 @@
 	align-items: center;
 	justify-content: center;
 
+	min-width: 40px;
 	padding: 10px 12px;
 
 	font-weight: 500;
@@ -68,6 +69,10 @@
 
 	&__label {
 		padding: 0 4px;
+	}
+
+	&__label:empty {
+		padding: 0;
 	}
 
 	&--dark-theme {
