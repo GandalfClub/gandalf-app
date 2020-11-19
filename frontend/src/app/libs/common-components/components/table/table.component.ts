@@ -15,7 +15,10 @@ import { takeUntil } from 'rxjs/operators';
 import { CheckboxGroupDataDemo } from 'src/app/libs/common-components-demo/models/checkbox-group-data-demo';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonComponent } from '../button/button.component';
+import { IconSize } from '../icon/models/icon-size.enum';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { IconButtonComponent } from '../icon-button/icon-button.component';
+import { IconComponent } from '../icon/icon.component';
 import { InputComponent } from '../input/input.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
@@ -33,27 +36,18 @@ let TableTemplate: string = '';
 export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
-
 	@Input() public columnsConfig: ColumnConfig[];
-
 	@Input() public data: T[];
-
 	@Input() public searchInputLabel: string;
-
 	@Input() public searchInputPlaceholder: string;
-
 	@Input() public headerButtonText: string;
-
 	@Input() public headerButtonIcon: string;
-
+	@Input() public headerButtonIconSize: IconSize;
 	@Input() public rowButtonIcon: string;
-
+	@Input() public rowButtonIconSize: IconSize;
 	@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
-
 	@Output() public checked: EventEmitter<T[]> = new EventEmitter();
-
 	@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
 	@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 	public columns: Column[] = [];
@@ -192,14 +186,15 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 				<p class="table-header__selected" *ngIf="selection.selected?.length">
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
 				</p>
-				<app-button
+				<app-icon-button
 					type="outlined"
-					[icon]="headerButtonIcon"
+					[startIcon]="headerButtonIcon"
+					[iconSize]="rowButtonIconSize"
 					[theme]="theme"
 					*ngIf="selection.selected?.length"
 					(click)="onHeaderButtonClick()">
 					{{headerButtonText}}
-				</app-button>
+				</app-icon-button>
 
 			</div>`;
 
@@ -207,20 +202,21 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 		`<div class="table">
 			${templateHeader}
 
-			<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-content" [class.table-content--dark-theme]="isDarkTheme" matSort>
+			<table mat-table [dataSource]="dataSource" class="table-content mat-elevation-z8" [class.table-content--dark-theme]="isDarkTheme" matSort>
 
 				${columns}
 
 				<ng-container matColumnDef="button">
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td class="table-content__row-button" mat-cell *matCellDef="let row">
-						<app-button
+						<app-icon-button
 							*ngIf="rowButtonIcon && this.hoverRow===row"
 							type="basic"
-							[icon]="rowButtonIcon"
+							[startIcon]="rowButtonIcon"
+							[iconSize]="rowButtonIconSize"
 							[theme]="theme"
 							(click)="onRowButtonClick(row, $event)">
-						</app-button>
+						</app-icon-button>
 					</td>
 				</ng-container>
 
@@ -262,7 +258,11 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 		componentRef.instance.data = this.data;
 		componentRef.instance.headerButtonText = this.headerButtonText;
 		componentRef.instance.headerButtonIcon = this.headerButtonIcon;
+		componentRef.instance.headerButtonIconSize = this.headerButtonIconSize;
+
 		componentRef.instance.rowButtonIcon = this.rowButtonIcon;
+		componentRef.instance.rowButtonIconSize = this.rowButtonIconSize;
+
 		componentRef.instance.displayedColumns = this.displayedColumns;
 
 		componentRef.instance.searchInputLabel = this.searchInputLabel;
@@ -310,23 +310,16 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 			public previousData: T[];
 
 			@Input() public displayedColumns: string[] = [];
-
 			@Input() public searchInputLabel: string;
-
 			@Input() public searchInputPlaceholder: string;
-
 			@Input() public headerButtonText: string;
-
 			@Input() public headerButtonIcon: string;
-
+			@Input() public headerButtonIconSize: IconSize;
 			@Input() public rowButtonIcon: string;
-
+			@Input() public rowButtonIconSize: IconSize;
 			@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
-
 			@Output() public checked: EventEmitter<T[]> = new EventEmitter();
-
 			@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
 			@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 			@ViewChild(MatSort) sort: MatSort;
@@ -470,7 +463,9 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					SlideToggleComponent,
 					ButtonComponent,
 					InputComponent,
-					SearchInputComponent
+					SearchInputComponent,
+					IconComponent,
+					IconButtonComponent
 				] })(moduleClass);
 
 	return decoratedNgModule;

@@ -1,0 +1,16 @@
+.icon-button-demo {
+	&__states {
+		display: flex;
+		flex-flow: column wrap;
+	}
+
+	&__active {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	&__disabled {
+		display: flex;
+		flex-flow: row wrap;
+	}
+}

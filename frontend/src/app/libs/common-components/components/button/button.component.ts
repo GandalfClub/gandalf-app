@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -21,9 +20,6 @@ export class ButtonComponent {
 
 	@Input()
 	public disabled: boolean = false;
-
-	@Input()
-	public icon: string;
 
 	@Input()
 	public disableRipple: boolean = false;
