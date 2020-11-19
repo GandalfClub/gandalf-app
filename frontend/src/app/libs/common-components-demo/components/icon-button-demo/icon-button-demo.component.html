@@ -1,0 +1,36 @@
+<app-demo-group class="icon-button-demo" [title]="'Icon buttons'">
+	<div class="light-theme button-demo__states">
+		<div class="icon-button-demo__active">
+			<app-demo-state [title]="'medium icon'" class="icon-button-demo__container">
+				<app-icon-button startIcon="done" iconSize="medium"></app-icon-button>
+			</app-demo-state>
+			<app-demo-state [title]="'medium icon with button text'"  class="icon-button-demo__container">
+				<app-icon-button type="outlined" startIcon="done_all" iconSize="medium">
+					{{buttonText}}
+				</app-icon-button>
+			</app-demo-state>
+			<app-demo-state [title]="'small icons with button text'" class="icon-button-demo__container">
+				<app-icon-button type="flat" startIcon="fingerprint" endIcon="delete" iconSize="small">
+					{{buttonText}}
+				</app-icon-button>
+			</app-demo-state>
+		</div>
+	</div>
+	<div class="dark-theme button-demo__states">
+			<div class="icon-button-demo__active">
+			<app-demo-state [title]="'medium icon'" class="icon-button-demo__container" [isDark]="true">
+				<app-icon-button [theme]="darkTheme" startIcon="done" iconSize="medium"></app-icon-button>
+			</app-demo-state>
+			<app-demo-state [title]="'medium icon with button text'"  class="icon-button-demo__container" [isDark]="true">
+				<app-icon-button type="outlined" [theme]="darkTheme" startIcon="done_all" iconSize="medium">
+					{{buttonText}}
+				</app-icon-button>
+			</app-demo-state>
+			<app-demo-state [title]="'small icons with button text'" class="icon-button-demo__container" [isDark]="true">
+				<app-icon-button type="flat" [theme]="darkTheme" startIcon="fingerprint" endIcon="delete" iconSize="small">
+					{{buttonText}}
+				</app-icon-button>
+			</app-demo-state>
+		</div>
+	</div>
+</app-demo-group>

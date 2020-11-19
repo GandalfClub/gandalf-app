@@ -1,0 +1,16 @@
+.icon-button {
+
+	// letter-spacing: 0;
+
+	&__icon {
+		padding: 0 4px;
+	}
+
+	&__text {
+		padding: 0 4px;
+	}
+
+	&__text:empty {
+		padding: 0;
+	}
+}

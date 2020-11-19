@@ -39,6 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
 import { IconComponent } from './components/icon/icon.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 
 @NgModule({
 	declarations: [
@@ -58,7 +59,8 @@ import { IconComponent } from './components/icon/icon.component';
 		EventCardDateComponent,
 		TableComponent,
 		SearchInputComponent,
-		IconComponent
+		IconComponent,
+		IconButtonComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -117,7 +119,8 @@ import { IconComponent } from './components/icon/icon.component';
 		MatMenuModule,
 		MatDividerModule,
 		SearchInputComponent,
-		IconComponent
+		IconComponent,
+		IconButtonComponent
 		],
 	providers: [
 		{

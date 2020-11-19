@@ -22,38 +22,6 @@
 				<app-button type="flat" [disabled]="true">{{buttonText}}</app-button>
 			</app-demo-state>
 		</div>
-		<div class="button-demo__active">
-			<app-demo-state [title]="'medium icon'" class="button-demo__container">
-				<app-button>
-					<app-icon
-						[icon]="'done'"
-						[size]="medium">
-					</app-icon>
-				</app-button>
-			</app-demo-state>
-			<app-demo-state [title]="'medium icon with button text'"  class="button-demo__container">
-				<app-button type="outlined">
-					<app-icon
-						[icon]="'done_all'"
-						[size]="medium">
-					</app-icon>
-					<span>
-						{{buttonText}}
-					</span>
-				</app-button>
-			</app-demo-state>
-			<app-demo-state [title]="'small icon with button text'" class="button-demo__container">
-				<app-button type="flat">
-					<app-icon
-						[icon]="'fingerprint'"
-						[size]="small">
-					</app-icon>
-					<span>
-						{{buttonText}}
-					</span>
-				</app-button>
-			</app-demo-state>
-		</div>
 	</div>
 	<div class="dark-theme button-demo__states">
 		<div class="button-demo__active">
@@ -76,38 +44,6 @@
 			</app-demo-state>
 			<app-demo-state class="button-demo__container" [isDark]="true">
 				<app-button type="flat" [disabled]="true" [theme]="darkTheme">{{buttonText}}</app-button>
-			</app-demo-state>
-		</div>
-		<div class="button-demo__active">
-			<app-demo-state [title]="'medium icon'" class="button-demo__container" [isDark]="true">
-				<app-button [theme]="darkTheme">
-					<app-icon
-						[icon]="'done'"
-						[size]="medium">
-					</app-icon>
-				</app-button>
-			</app-demo-state>
-			<app-demo-state [title]="'medium icon with button text'"  class="button-demo__container" [isDark]="true">
-				<app-button type="outlined" [theme]="darkTheme">
-					<app-icon
-						[icon]="'done_all'"
-						[size]="medium">
-					</app-icon>
-					<span>
-						{{buttonText}}
-					</span>
-				</app-button>
-			</app-demo-state>
-			<app-demo-state [title]="'small icon with button text'" class="button-demo__container" [isDark]="true">
-				<app-button type="flat" [theme]="darkTheme">
-					<app-icon
-						[icon]="'fingerprint'"
-						[size]="small">
-					</app-icon>
-					<span>
-						{{buttonText}}
-					</span>
-				</app-button>
 			</app-demo-state>
 		</div>
 	</div>
