@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { ButtonIconSize } from './models/button-icons-size.eum';
-
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',

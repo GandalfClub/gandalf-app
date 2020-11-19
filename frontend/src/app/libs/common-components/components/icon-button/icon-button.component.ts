@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { ButtonIconSize } from '../button/models/button-icons-size.eum';
+import { IconSize } from '../icon/models/icon-size.enum';
 import { ButtonType } from '../button/models/button-type.enum';
 
 @Component({
@@ -23,6 +23,6 @@ export class IconButtonComponent {
   public endIcon: string;
 
   @Input()
-  public iconSize: ButtonIconSize;
+  public iconSize: IconSize;
 
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ButtonIconSize } from '../button/models/button-icons-size.eum';
+import { Component, Input } from '@angular/core';
+import { IconSize } from './models/icon-size.enum';
 
 @Component({
 	selector: 'app-icon',
@@ -12,6 +12,6 @@ export class IconComponent {
 	public icon: string;
 
 	@Input()
-	public size: ButtonIconSize = ButtonIconSize.S;
+	public size: IconSize = IconSize.S;
 
 }
