@@ -17,6 +17,7 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonComponent } from '../button/button.component';
 import { ButtonIconSize } from '../button/models/button-icons-size.eum';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { IconComponent } from '../icon/icon.component';
 import { InputComponent } from '../input/input.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
@@ -185,20 +186,15 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 				<p class="table-header__selected" *ngIf="selection.selected?.length">
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
 				</p>
-				<app-button
+				<app-icon-button
 					type="outlined"
-					[icon]="headerButtonIcon"
+					[startIcon]="headerButtonIcon"
+					[iconSize]="rowButtonIconSize"
 					[theme]="theme"
 					*ngIf="selection.selected?.length"
 					(click)="onHeaderButtonClick()">
-					<app-icon
-						[icon]="headerButtonIcon"
-						[size]="headerButtonIconSize">
-					</app-icon>
-					<span>
-						{{headerButtonText}}
-					</span>
-				</app-button>
+					{{headerButtonText}}
+				</app-icon-button>
 
 			</div>`;
 
@@ -213,17 +209,14 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 				<ng-container matColumnDef="button">
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td class="table-content__row-button" mat-cell *matCellDef="let row">
-						<app-button
+						<app-icon-button
 							*ngIf="rowButtonIcon && this.hoverRow===row"
 							type="basic"
-							[icon]="rowButtonIcon"
+							[startIcon]="rowButtonIcon"
+							[iconSize]="rowButtonIconSize"
 							[theme]="theme"
 							(click)="onRowButtonClick(row, $event)">
-							<app-icon
-								[icon]="rowButtonIcon"
-								[size]="rowButtonIconSize">
-							</app-icon>
-						</app-button>
+						</app-icon-button>
 					</td>
 				</ng-container>
 
@@ -471,7 +464,8 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					ButtonComponent,
 					InputComponent,
 					SearchInputComponent,
-					IconComponent
+					IconComponent,
+					IconButtonComponent
 				] })(moduleClass);
 
 	return decoratedNgModule;
