@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, AbstractControl, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
@@ -31,12 +31,11 @@ export class SignInComponent implements OnInit, OnDestroy {
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private translate: TranslateService, private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
-		private router: Router, private containerFacadService: ContainerFacadeService,
-		public changeDedectionRef: ChangeDetectorRef) { }
+		private router: Router, private containerFacadService: ContainerFacadeService) {}
 
 	public ngOnInit(): void {
+		this.containerFacadService.hideElementOnSignIn();
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
-			this.containerFacadService.hideElementOnSignIn();
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
 				this.router.navigate(['/']);

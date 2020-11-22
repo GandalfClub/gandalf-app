@@ -29,7 +29,7 @@
 	 &__link-welcomeBack {
 		@include text-h2();
 		color: $color-white; 
-		cursor: default;
+		cursor: pointer;
 
 	}
 	 &__link {
@@ -38,22 +38,23 @@
 		text-align: right;
 		width:100%; 
 		margin:15px 0 40px 0;
-		cursor: default;
+		cursor: pointer;
 	}
 	&__btn {
 		text-align: center;
 	}
 	&__icon {
 		margin: 15px 0 7px 0;
+		cursor: pointer;
 	} 
 	&__header {
 		align-self: flex-end;
 		margin: 40px 70px 0 0; 
 	}
-	&__text {
+	&__link-sign-up {
 		@include text-p();
 		margin-left:12px;
-		cursor: default;
+		cursor: pointer;
 
 		&--white {
 			color: $color-white;

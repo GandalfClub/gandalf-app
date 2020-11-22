@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Locale } from './models/locale';
 import { UserService } from './services/user.service';
@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 	templateUrl: './container.component.html',
 	styleUrls: ['./container.component.scss'],
 })
-export class ContainerComponent implements OnInit, OnDestroy {
+export class ContainerComponent implements OnInit, OnDestroy, AfterViewChecked {
 	 public hideHeader$: Observable<boolean> = this.containerFacadeService.hideHeader;
 	 public hideFooter$: Observable<boolean> = this.containerFacadeService.hideFooter;
 	constructor(public translateService: TranslateService, private userService: UserService,
-		private containerFacadeService: ContainerFacadeService) {
+		private containerFacadeService: ContainerFacadeService, private changeDedectionRef: ChangeDetectorRef) {
 		translateService.addLangs([Locale.English, Locale.Russian]);
 		translateService.setDefaultLang(Locale.English);
 		const browserLang: string = translateService.getBrowserLang();
@@ -26,7 +26,12 @@ export class ContainerComponent implements OnInit, OnDestroy {
 		this.userService.subscribeUser();
 	}
 
+	public ngAfterViewChecked(): void {
+		 this.changeDedectionRef.detectChanges();
+	}
+
 	public ngOnDestroy(): void {
 		this.userService.unsubscribeUser();
 	}
+
 }

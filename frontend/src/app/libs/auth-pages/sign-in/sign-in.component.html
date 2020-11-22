@@ -4,9 +4,10 @@
 	</div>
 	<div class="sign-in-page__container-page">
 		<div class="sign-in-page__header">
-			<span class="sign-in-page__text sign-in-page__text--white"> {{"SIGN_IN.NO_ACCOUNT" | translate}}</span>
+			<span class="sign-in-page__link-sign-up sign-in-page__link-sign-up--white">
+				{{"SIGN_IN.NO_ACCOUNT" | translate}}</span>
 			<a routerLink="signup"
-				class="sign-in-page__text sign-in-page__text--blue">{{"SIGN_IN.SIGN_UP_BTN" | translate}}</a>
+				class="sign-in-page__link-sign-up sign-in-page__link-sign-up--blue">{{"SIGN_IN.SIGN_UP_BTN" | translate}}</a>
 		</div>
 		<div class="sign-in-page__container-form">
 			<h2 class="sign-in-page__link-welcomeBack">{{"SIGN_IN.WELCOME_BACK" | translate}}</h2>
@@ -19,13 +20,13 @@
 				<div class="sign-in-page__divider"></div>
 			</div>
 			<form [formGroup]="signInFormGroup" (ngSubmit)="submit()" class="sign-in-page__form">
-				<div class="sign-in-page__wrapper">
+				<div>
 					<app-input [inputValidators]="emailValidators" [theme]="darkTheme"
 						[label]="'SIGN_IN.EMAIL' | translate" [type]="'email'" [placeholder]="'pat@example.com'"
 						formControlName="email" class="sign-in-page__input-email"></app-input>
 				</div>
 
-				<div class="sign-in-page__wrapper">
+				<div>
 					<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'"
 						[label]="'SIGN_IN.PASSWORD' | translate" [secured]="false" formControlName="password"
 						class="sign-in-page__input-password">
