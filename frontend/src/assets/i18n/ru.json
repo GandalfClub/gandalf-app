@@ -17,5 +17,15 @@
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "Все права защищены."
+	},
+	"SIGN_IN": {
+		"NO_ACCOUNT": "Нет аккаунта?",
+		"SIGN_UP_BTN": "Зарегистрироваться",
+		"WELCOME_BACK": "Добро пожаловать",
+		"OR": "ИЛИ",
+		"FORGOT_PASSWORD": "Забыли пароль?",
+		"SIGN_IN_BTN": "Войти",
+		"PASSWORD": "Пароль",
+		"EMAIL": "Email"
 	}
 }

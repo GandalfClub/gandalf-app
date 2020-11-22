@@ -17,5 +17,15 @@
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "All rights reserved."
+	},
+	"SIGN_IN": {
+		"NO_ACCOUNT": "Don't have an account?",
+		"SIGN_UP_BTN": "Sign up",
+		"WELCOME_BACK": "Welcome Back",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_IN_BTN": "Sign in",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
 	}
 }

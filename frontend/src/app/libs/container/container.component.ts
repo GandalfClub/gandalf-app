@@ -2,17 +2,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Locale } from './models/locale';
 import { UserService } from './services/user.service';
+import { ContainerFacadeService } from './services/container-facade.service';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-container',
 	templateUrl: './container.component.html',
-	styleUrls: ['./container.component.scss']
+	styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit, OnDestroy {
-	public hideHeader: boolean = false;
-	public hideFooter: boolean = false;
-
-	constructor(public translateService: TranslateService, private userService: UserService) {
+	 public hideHeader$: Observable<boolean> = this.containerFacadeService.hideHeader;
+	 public hideFooter$: Observable<boolean> = this.containerFacadeService.hideFooter;
+	constructor(public translateService: TranslateService, private userService: UserService,
+		private containerFacadeService: ContainerFacadeService) {
 		translateService.addLangs([Locale.English, Locale.Russian]);
 		translateService.setDefaultLang(Locale.English);
 		const browserLang: string = translateService.getBrowserLang();
