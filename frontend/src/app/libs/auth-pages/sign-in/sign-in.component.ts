@@ -46,10 +46,6 @@ export class SignInComponent implements OnInit, OnDestroy {
 			}
 		});
 
-		/* this.signInFormGroup = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.email, Validators.maxLength(this.emailMaxLength), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-			password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,17}')]],
-		}); */
 		this.signInFormGroup = this.formBuilder.group({
 			email: '',
 			password: '',
@@ -62,7 +58,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		if (control && Boolean(control.value) && control.value.length >= maxLength ||
 			control && Boolean(control.value) && !emailPattern.test(control.value) ||
 			!Boolean(control.value)) {
-			return { message: this.translate.instant('ERROR_MESSAGE.EMAIL_ERROR_MESSAGE' )};
+			return { message: this.translate.instant('ERROR_MESSAGE.EMAIL_ERROR_MESSAGE') };
 		}
 		return null;
 	}
@@ -71,25 +67,11 @@ export class SignInComponent implements OnInit, OnDestroy {
 		const passwordPattern: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,17}$/;
 		if (control && Boolean(control.value) && !passwordPattern.test(control.value) ||
 			!Boolean(control.value)) {
-			return { message: this.translate.instant('ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE' )};
+			return { message: this.translate.instant('ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE') };
 		}
 		return null;
 	}
 
-/* 	public get emailInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.email.touched || this.submitted) && !this.signInFormGroupControl.email.valid) {
-			return 'ERROR_MESSAGE.EMAIL_ERROR_MESSAGE';
-		}
-		return;
-	}
-
-	public get passwordInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.password.touched || this.submitted) && !this.signInFormGroupControl.password.valid) {
-			return 'ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE';
-		}
-		return;
-	}
-*/
 	public get signInFormGroupControl(): { [key: string]: AbstractControl } {
 		return this.signInFormGroup.controls;
 	}
