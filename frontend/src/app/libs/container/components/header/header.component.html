@@ -28,7 +28,7 @@
 			{{"BUTTON.CREATE_EVENT" | translate}}
 		</app-button>
 		<ng-container *ngIf="userService.isUnauthorizedUser">
-			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">
+			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" (click)="onSignInPage()">
 				{{"BUTTON.SIGN_IN" | translate}}
 			</app-button>
 			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">

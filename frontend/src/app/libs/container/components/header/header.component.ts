@@ -4,6 +4,8 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { ContainerFacadeService } from '../../services/container-facade.service';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +32,8 @@ export class HeaderComponent {
 		return AdminLink.Administration;
 	}
 
-	constructor(public translateService: TranslateService, public userService: UserService) {}
+	constructor(public translateService: TranslateService, public userService: UserService,
+		private router: Router, private containerFacadService: ContainerFacadeService) {}
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
@@ -40,6 +43,10 @@ export class HeaderComponent {
 	public onAdministrationClick(): void {
 		this.resetAdminLinksActivation();
 		this.adminLinksActivation.set(AdminLink.Administration, true);
+	}
+	public onSignInPage(): void {
+		this.containerFacadService.hideElementOnSignIn();
+		this.router.navigate(['/signin']);
 	}
 
 	public resetAdminLinksActivation(): void {

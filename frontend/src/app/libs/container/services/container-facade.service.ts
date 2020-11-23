@@ -6,9 +6,9 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { EntityStatus } from '../../auth/models/entity-status';
 import { Store } from '@ngrx/store';
-import * as SelectorSignIn from '../store/sign-in-page/sign-in-page.selectors';
-import { HideHeaderAndFooter } from '../store/sign-in-page/sign-in-page.actions';
-import { SignInState } from '../store/sign-in-page/sign-in-page.reducer';
+import * as ContainerSelectors from '../store/container/container.selectors';
+import { HideHeaderAndFooter } from '../store/container/container.actions';
+import { State } from '../store/container/container.reducer';
 
 @Injectable({
 	providedIn: 'root'
@@ -23,7 +23,7 @@ export class ContainerFacadeService {
 		]
 	};
 
-	constructor(private authFacadeService: AuthFacadeService, private signInStore: Store<SignInState>) { }
+	constructor(private authFacadeService: AuthFacadeService, private containerStore: Store<State>) { }
 
 	public get user$(): Observable<EntityWrapper<User>> {
 		return this.authFacadeService.user$;
@@ -36,16 +36,17 @@ export class ContainerFacadeService {
 	public signOut(): void {
 		this.authFacadeService.signOut();
 	}
-	public hideElementOnSignIn(): void {
-		this.signInStore.dispatch(new HideHeaderAndFooter());
+
+	 public hideElementOnSignIn(): void {
+		this.containerStore.dispatch(new HideHeaderAndFooter());
 	}
 
 	public get hideHeader(): Observable<boolean> {
-		return this.signInStore.select(SelectorSignIn.selectHideHeader);
+		return this.containerStore.select(ContainerSelectors.selectHideHeader);
 	}
 
 	public get hideFooter(): Observable<boolean> {
-		return this.signInStore.select(SelectorSignIn.selectHideFooter);
+		return this.containerStore.select(ContainerSelectors.selectHideFooter);
 	}
 
 }
