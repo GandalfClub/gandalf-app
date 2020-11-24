@@ -4,7 +4,7 @@ import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { EntityStatus } from '../../auth/models/entity-status';
-import { Subject } from 'rxjs';
+import { Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
 import { IconVisibility } from '../models/icon-visibility';
@@ -12,6 +12,7 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { ReCaptchaV3Service, OnExecuteData } from 'ng-recaptcha';
 
 @Component({
 	selector: 'app-sign-in',
@@ -31,7 +32,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private translate: TranslateService, private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
-		private router: Router, private containerFacadService: ContainerFacadeService) {}
+		private router: Router, private containerFacadService: ContainerFacadeService, private recaptchaV3Service: ReCaptchaV3Service) { }
 
 	public ngOnInit(): void {
 		this.containerFacadService.hideElementOnSignIn();
@@ -48,7 +49,14 @@ export class SignInComponent implements OnInit, OnDestroy {
 		this.signInFormGroup = this.formBuilder.group({
 			email: '',
 			password: '',
+			token: ''
 		});
+
+		this.recaptchaV3Service.onExecute
+			.subscribe((data: OnExecuteData) => {
+				this.signInFormGroup.patchValue({token: data.token});
+			});
+			this.recaptchaV3Service.execute('importantAction');
 	}
 
 	public emailValidator(control: FormControl): ValidationErrors | null {
@@ -89,6 +97,14 @@ export class SignInComponent implements OnInit, OnDestroy {
 
 	public signInByGithub(): void {
 		this.authFacadeService.signInByGithub();
+	}
+
+	public onSinUp(): void {
+		this.router.navigateByUrl('/signup');
+	}
+
+	public onPageBack(): void {
+		this.router.navigateByUrl('/');
 	}
 
 	public ngOnDestroy(): void {

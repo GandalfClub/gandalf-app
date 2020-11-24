@@ -6,11 +6,11 @@
 		<div class="sign-in-page__header">
 			<span class="sign-in-page__link-sign-up sign-in-page__link-sign-up--white">
 				{{"SIGN_IN.NO_ACCOUNT" | translate}}</span>
-			<a routerLink="signup"
+			<a (click)="onSinUp()"
 				class="sign-in-page__link-sign-up sign-in-page__link-sign-up--blue">{{"SIGN_IN.SIGN_UP_BTN" | translate}}</a>
 		</div>
 		<div class="sign-in-page__container-form">
-			<h2 class="sign-in-page__link-welcomeBack">{{"SIGN_IN.WELCOME_BACK" | translate}}</h2>
+			<h2 class="sign-in-page__link-welcomeBack" (click)="onPageBack()">{{"SIGN_IN.WELCOME_BACK" | translate}}</h2>
 
 			<div (click)="signInByGithub()" class="sign-in-page__icon"><img
 					src="assets/images/social-media-icons/github-icon.png" alt="gitHub-icon"></div>
@@ -39,7 +39,7 @@
 				<div class="sign-in-page__btn">
 					<app-button type="flat" [theme]="darkTheme">{{"SIGN_IN.SIGN_IN_BTN" | translate}}</app-button>
 				</div>
-
+				
 			</form>
 			<mat-error *ngIf="authError">{{ authError }}</mat-error>
 		</div>
