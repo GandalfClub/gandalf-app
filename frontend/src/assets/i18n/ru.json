@@ -6,7 +6,9 @@
 		"EVENTS": "События",
 		"ADMINISTRATION": "Администрирование",
 		"LOG_OFF": "Выйти",
-		"ACCOUNT": "Мой профиль"
+		"ACCOUNT": "Мой профиль",
+		"LANGUAGE-RU": "Русский",
+		"LANGUAGE-EN": "Английский"
 	},
 	"LABEL": {
 		"USER_NAME": "Имя пользователя"

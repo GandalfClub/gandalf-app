@@ -5,14 +5,21 @@
   @include drop-down-menu-container;
 
   &__menu-item {
-		@include menu-item-hover;
-		
-    text-align: center;
-    color: $color-white;
+	@include menu-item-hover;
+	color: $color-white;
+	width:150px;
+	margin:8px 0;
   }
-
   &__menu-trigger {
     display: flex;
-    align-items: center;
+	align-items: center;
   }
+  &__language {
+	  @include text-p();
+	  color: $color-white;
+  }
+   &__flag {
+	   margin-right: 16px; 
+	   vertical-align: middle;
+  } 
 }
