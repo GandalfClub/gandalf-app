@@ -61,6 +61,7 @@ export class InputDemoComponent implements OnInit {
 	}
 
 	public emailValidator(control: FormControl): ValidationErrors | null {
+		console.log('works');
 		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 		if (control && Boolean(control.value) && !emailPattern.test(control.value)) {
