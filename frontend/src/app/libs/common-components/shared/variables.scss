@@ -8,18 +8,19 @@ $layout-columns-quantity: 12;
 $layout-column-width: 10 * $main-grid-unit;
 $layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
 // colors
-// main
+// primary
 $color-primary: #367FF6;
+$color-primary-dark: #2B508B;
+$color-primary-light: #5E99F7;
+// secondary
 $color-error: #EF5350;
+$color-yellow: #FFD600;
 // additional
-$color-mint: #EF5350;
+$color-mint: #74E3D2;
 $color-purple: #7457E6;
-$color-coral: #FF8A65;
+$color-coral: #FF7B52;
 $color-black: #212121;
-$color-gray: #373737;
-$color-gray-light: #424242;
 $color-white: #FFFFFF;
-$color-yellow: #FDD835;
 // gradients
 $gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), #367FF6;
 $gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #7457E6;
@@ -30,7 +31,9 @@ $color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
 $color-black-100: rgba($color-black, 100);
 $color-black-95: rgba($color-black, .95);
 $color-black-90: rgba($color-black, .90);
+$color-black-85: rgba($color-black, .85);
 $color-black-75: rgba($color-black, .75);
+$color-black-60: rgba($color-black, .60);
 $color-black-50: rgba($color-black, .50);
 $color-black-30: rgba($color-black, .30);
 $color-black-10: rgba($color-black, .10);
