@@ -7,7 +7,7 @@
   &__menu-item {
 	@include menu-item-hover;
 	color: $color-white;
-	width:150px;
+	width:152px;
 	margin:8px 0;
   }
   &__menu-trigger {
@@ -16,7 +16,6 @@
   }
   &__language {
 	  @include text-p();
-	  color: $color-white;
   }
    &__flag {
 	   margin-right: 16px; 
