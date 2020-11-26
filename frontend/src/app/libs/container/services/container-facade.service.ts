@@ -11,42 +11,43 @@ import { HideHeaderAndFooter } from '../store/container/container.actions';
 import { State } from '../store/container/container.reducer';
 
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContainerFacadeService {
+  public fakeNotifications: EntityWrapper<Notification[]> = {
+    status: EntityStatus.Success,
+    value: [
+      { title: 'Notification 1', content: 'content 1' },
+      { title: 'Notification 2', content: 'content 2' },
+    ],
+  };
 
-	public fakeNotifications: EntityWrapper<Notification[]> = {
-		status: EntityStatus.Success,
-		value: [
-			{ title: 'Notification 1', content: 'content 1' },
-			{ title: 'Notification 2', content: 'content 2' }
-		]
-	};
+  constructor(
+    private authFacadeService: AuthFacadeService,
+    private containerStore: Store<State>
+  ) {}
 
-	constructor(private authFacadeService: AuthFacadeService, private containerStore: Store<State>) { }
+  public get user$(): Observable<EntityWrapper<User>> {
+    return this.authFacadeService.user$;
+  }
 
-	public get user$(): Observable<EntityWrapper<User>> {
-		return this.authFacadeService.user$;
-	}
+  public get notifications$(): Observable<EntityWrapper<Notification[]>> {
+    return of(this.fakeNotifications);
+  }
 
-	public get notifications$(): Observable<EntityWrapper<Notification[]>> {
-		return of(this.fakeNotifications);
-	}
+  public signOut(): void {
+    this.authFacadeService.signOut();
+  }
 
-	public signOut(): void {
-		this.authFacadeService.signOut();
-	}
+  public hideElementOnSignIn(): void {
+    this.containerStore.dispatch(new HideHeaderAndFooter());
+  }
 
-	 public hideElementOnSignIn(): void {
-		this.containerStore.dispatch(new HideHeaderAndFooter());
-	}
+  public get hideHeader(): Observable<boolean> {
+    return this.containerStore.select(ContainerSelectors.selectHideHeader);
+  }
 
-	public get hideHeader(): Observable<boolean> {
-		return this.containerStore.select(ContainerSelectors.selectHideHeader);
-	}
-
-	public get hideFooter(): Observable<boolean> {
-		return this.containerStore.select(ContainerSelectors.selectHideFooter);
-	}
-
+  public get hideFooter(): Observable<boolean> {
+    return this.containerStore.select(ContainerSelectors.selectHideFooter);
+  }
 }
