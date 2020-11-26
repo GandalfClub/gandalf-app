@@ -6,7 +6,9 @@
 		"EVENTS": "Events",
 		"ADMINISTRATION": "Administration",
 		"LOG_OFF": "LOG OFF",
-		"ACCOUNT": "ACCOUNT"
+		"ACCOUNT": "ACCOUNT",
+		"LANGUAGE-RU": "Russian",
+		"LANGUAGE-EN": "English"
 	},
 	"LABEL": {
 		"USER_NAME": "User name"

@@ -2,17 +2,26 @@
 @import "../header/components/drop-down-menu/drop-down-menu-theme.scss";
 
 .localization {
-  @include drop-down-menu-container;
+	@include drop-down-menu-container;
 
-  &__menu-item {
+	&__menu-item {
 		@include menu-item-hover;
-		
-    text-align: center;
-    color: $color-white;
-  }
+		color: $color-white;
+		width: 152px;
+		margin: $main-grid-unit 0;
+	}
 
-  &__menu-trigger {
-    display: flex;
-    align-items: center;
-  }
+	&__menu-trigger {
+		display: flex;
+		align-items: center;
+	}
+
+	&__language {
+		@include text-p();
+	}
+
+	&__flag {
+		margin-right: $main-grid-unit * 2;
+		vertical-align: middle;
+	}
 }

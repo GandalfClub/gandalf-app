@@ -4,9 +4,9 @@
 	</app-button>
 	<mat-menu class="localization__menu" #menu="matMenu">
 		<button mat-menu-item class="localization__menu-item"
-				*ngFor="let locale of translateService.getLangs()"
-				(click)="translateService.use(locale)">
-			<span>{{locale | uppercase}}</span>
+			*ngFor="let button of languageButtons" (click)="translateService.use(button.locale)">
+			<img [src]="button.url" class="localization__flag">
+			<span class="localization__language">{{button.value | translate}}</span>
 		</button>
 	</mat-menu>
 </div>
