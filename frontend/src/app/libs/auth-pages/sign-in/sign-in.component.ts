@@ -4,7 +4,7 @@ import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { EntityStatus } from '../../auth/models/entity-status';
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
 import { IconVisibility } from '../models/icon-visibility';
@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		private router: Router, private containerFacadService: ContainerFacadeService, private recaptchaV3Service: ReCaptchaV3Service) { }
 
 	public ngOnInit(): void {
-		this.containerFacadService.hideElementOnSignIn();
+		this.containerFacadService.hideElementsOnSignIn();
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
@@ -54,9 +54,9 @@ export class SignInComponent implements OnInit, OnDestroy {
 
 		this.recaptchaV3Service.onExecute
 			.subscribe((data: OnExecuteData) => {
-				this.signInFormGroup.patchValue({token: data.token});
+				this.signInFormGroup.patchValue({ token: data.token });
 			});
-			this.recaptchaV3Service.execute('importantAction');
+		this.recaptchaV3Service.execute('importantAction');
 	}
 
 	public emailValidator(control: FormControl): ValidationErrors | null {
@@ -108,6 +108,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy(): void {
+		this.containerFacadService.showElementsOnSignIn();
 		this.destroy$.next(true);
 		this.destroy$.complete();
 	}

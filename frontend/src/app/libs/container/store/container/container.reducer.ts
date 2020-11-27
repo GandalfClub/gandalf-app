@@ -23,6 +23,13 @@ export function containerReducer(state: State = initialState, action: ContainerA
 				hideFooter: true
 			};
 
+			case ContainerActionTypes.ShowHeaderAndFooter:
+			return {
+				...state,
+				hideHeader: false,
+				hideFooter: false
+			};
+
 		case ContainerActionTypes.LoadSamples:
 			return state;
 

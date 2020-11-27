@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 import { ContainerFacadeService } from '../../services/container-facade.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+	selector: 'app-header',
+	templateUrl: './header.component.html',
+	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 
@@ -32,8 +32,7 @@ export class HeaderComponent {
 		return AdminLink.Administration;
 	}
 
-	constructor(public translateService: TranslateService, public userService: UserService,
-		private router: Router, private containerFacadService: ContainerFacadeService) {}
+	constructor(public translateService: TranslateService, public userService: UserService) { }
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
@@ -43,10 +42,6 @@ export class HeaderComponent {
 	public onAdministrationClick(): void {
 		this.resetAdminLinksActivation();
 		this.adminLinksActivation.set(AdminLink.Administration, true);
-	}
-	public onSignInPage(): void {
-		this.containerFacadService.hideElementOnSignIn();
-		this.router.navigate(['/signin']);
 	}
 
 	public resetAdminLinksActivation(): void {

@@ -7,7 +7,7 @@ import { User } from '../../auth/models/user';
 import { EntityStatus } from '../../auth/models/entity-status';
 import { Store } from '@ngrx/store';
 import * as ContainerSelectors from '../store/container/container.selectors';
-import { HideHeaderAndFooter } from '../store/container/container.actions';
+import { HideHeaderAndFooter, ShowHeaderAndFooter } from '../store/container/container.actions';
 import { State } from '../store/container/container.reducer';
 
 @Injectable({
@@ -39,8 +39,12 @@ export class ContainerFacadeService {
 		this.authFacadeService.signOut();
 	}
 
-	public hideElementOnSignIn(): void {
+	public hideElementsOnSignIn(): void {
 		this.containerStore.dispatch(new HideHeaderAndFooter());
+	}
+
+	public showElementsOnSignIn(): void {
+		this.containerStore.dispatch(new ShowHeaderAndFooter());
 	}
 
 	public get hideHeader(): Observable<boolean> {
