@@ -105,7 +105,8 @@
   input:-webkit-autofill:focus {
     background-color: $color-black !important;
     color: white !important;
-    -webkit-box-shadow: 0 0 0 1000px $color-black inset !important;
+	-webkit-box-shadow: 0 0 0 1000px $color-black inset !important;
+	box-shadow: 0 0 0 1000px $color-black inset !important;
     -webkit-text-fill-color: white !important;
   }
   .mat-form-field {
