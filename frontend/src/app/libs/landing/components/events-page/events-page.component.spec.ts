@@ -2,11 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingPageComponent } from './events-page.component';
 import { EventsFacadeService } from '../../store/events/events.facade';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
-
-import { EventCard } from '../../models/event';
-
 
 describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;

@@ -23,7 +23,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 	public pendingStatus: EntityStatus = EntityStatus.Pending;
 	public successStatus: EntityStatus = EntityStatus.Success;
 
-
 	private destroy$: Subject<any> = new Subject();
 
 	constructor(
