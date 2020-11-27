@@ -4,19 +4,20 @@ import { EventFacadeService } from './event.facade';
 import { EventState } from './event-state';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
-import { Event } from '../../../landing/models/event';
+import { EventCard } from '../../../landing/models/event';
 import { first } from 'rxjs/operators';
 import { MemoizedSelector } from '@ngrx/store';
 import { selectEvent, selectEventValue } from './event.selectors';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events FacadeService', () => {
 	let mockStore: MockStore<EventState>;
 	let eventFacadeService: EventFacadeService;
-	let event: Event;
-	let eventState: EntityWrapper<Event>;
+	let event: EventCard;
+	let eventState: EntityWrapper<EventCard>;
 	let initialState: EventState = { event: eventState };
-	let mockEventSelectorSelectEvent: MemoizedSelector<EventState, EntityWrapper<Event>>;
-	let mockEventSelectorSelectEventValue: MemoizedSelector<EventState, Event>;
+	let mockEventSelectorSelectEvent: MemoizedSelector<EventState, EntityWrapper<EventCard>>;
+	let mockEventSelectorSelectEventValue: MemoizedSelector<EventState, EventCard>;
 	let id: string;
 
 	beforeEach(() => {
@@ -34,6 +35,8 @@ describe('Events FacadeService', () => {
 			startTime: null,
 			endDate: null,
 			endTime: null,
+			users: [],
+			size: EventCardSize.S
 		};
 		eventState = {
 			status: EntityStatus.Success,
@@ -47,7 +50,7 @@ describe('Events FacadeService', () => {
 	describe('method events$', () => {
 		it('should return events', () => {
 			mockEventSelectorSelectEvent = mockStore.overrideSelector(selectEvent, eventState);
-			eventFacadeService.event$.pipe(first()).subscribe((result: EntityWrapper<Event>) => {
+			eventFacadeService.event$.pipe(first()).subscribe((result: EntityWrapper<EventCard>) => {
 				return expect(result).toEqual(eventState);
 			});
 		});
@@ -56,7 +59,7 @@ describe('Events FacadeService', () => {
 	describe('method eventsValue$', () => {
 		it('should return events value', () => {
 			mockEventSelectorSelectEventValue = mockStore.overrideSelector(selectEventValue, event);
-			eventFacadeService.eventValue$.pipe(first()).subscribe((result: Event) => {
+			eventFacadeService.eventValue$.pipe(first()).subscribe((result: EventCard) => {
 				expect(result).toEqual(event);
 			});
 		});

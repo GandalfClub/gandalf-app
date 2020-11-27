@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { EventConverter } from './event-converter.service';
 
-import { Event } from '../models/event';
+import { EventCard } from '../models/event';
 
 describe('EventConverterService', () => {
 	let service: EventConverter;
-	let events: Event[];
+	let events: EventCard[];
 
 	const eventDto: any = {
 		_id: 'test',
@@ -25,7 +25,7 @@ describe('EventConverterService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	describe('convertFromDto methodshould rename "_id" key', () => {
+	describe('convertFromDto method should rename "_id" key', () => {
 		beforeEach(() => {
 			events = service.convertFromDto([eventDto]);
 		});

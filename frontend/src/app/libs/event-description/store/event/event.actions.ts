@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Event } from '../../../landing/models/event';
+import { EventCard } from '../../../landing/models/event';
 
 export enum EventActionTypes {
 	LoadEvent = '[Event] Load Event',
@@ -13,7 +13,7 @@ export class LoadEvent implements Action {
 }
 export class LoadEventSuccess implements Action {
 	public readonly type: EventActionTypes.LoadEventSuccess = EventActionTypes.LoadEventSuccess;
-	constructor(public payload: Event) {}
+	constructor(public payload: EventCard) {}
 }
 export class LoadEventFail implements Action {
 	public readonly type: EventActionTypes.LoadEventFail = EventActionTypes.LoadEventFail;

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { EventCardSize as EventCardSize } from './models/event-card-size';
 import { NgClassInput } from '../../models/ng-class-input';
 import { ComponentTheme } from '../../shared/component-theme.enum';
@@ -9,7 +9,8 @@ import { Tag } from '../tag-list/models/tag';
 @Component({
   selector: 'app-event-card',
   templateUrl: './event-card.component.html',
-  styleUrls: ['./event-card.component.scss']
+  styleUrls: ['./event-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventCardComponent implements OnChanges {
 
@@ -41,7 +42,7 @@ export class EventCardComponent implements OnChanges {
 	public color: EventCardColor;
 
 	@Input()
-	public size: EventCardSize = EventCardSize.Small;
+	public size: EventCardSize = EventCardSize.S;
 
 	@Input()
 	public hideNotStartedLabel: boolean = false;
@@ -56,7 +57,7 @@ export class EventCardComponent implements OnChanges {
 			}];
 		}
 
-		if ('roles' in changes) {
+		if (this.roles && 'roles' in changes) {
 			this.tags = this.roles.map((role: string) => {
 				return {
 					label: role,
@@ -77,8 +78,8 @@ export class EventCardComponent implements OnChanges {
 			'event-card__container--rounded-corner--top-right': this.roundedCorner === EventCardRoundedCorner.TopRight,
 			'event-card__container--rounded-corner--bottom-right': this.roundedCorner === EventCardRoundedCorner.BottomRight,
 			'event-card__container--rounded-corner--bottom-left': this.roundedCorner === EventCardRoundedCorner.BottomLeft,
-			'event-card__container--size--small': this.size === EventCardSize.Small,
-			'event-card__container--size--large': this.size === EventCardSize.Large
+			'event-card__container--size--small': this.size === EventCardSize.S,
+			'event-card__container--size--large': this.size === EventCardSize.L
 		};
 	}
 
@@ -91,10 +92,10 @@ export class EventCardComponent implements OnChanges {
 	}
 
 	public get isNotStartedLabelShown(): boolean {
-		return !this.hideNotStartedLabel && this.endDate && !this.draft && this.roles.length === 0;
+		return !this.hideNotStartedLabel && this.endDate && !this.draft && this.roles?.length === 0;
 	}
 
 	public get isProgressDefined(): boolean {
-		return typeof this.progress === 'number';
+		return Boolean(this.progress);
 	}
 }

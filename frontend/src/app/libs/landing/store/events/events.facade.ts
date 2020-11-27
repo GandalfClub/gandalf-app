@@ -4,7 +4,7 @@ import { GetEvents } from './events.actions';
 import { EventsState } from './events-state';
 import { Observable } from 'rxjs';
 import { selectEvents, selectEventsValue } from './events.selectors';
-import { Event } from '../../models/event';
+import { EventCard } from '../../models/event';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 
 @Injectable({
@@ -13,11 +13,11 @@ import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 export class EventsFacadeService {
 	constructor(private store: Store<EventsState>) {}
 
-	public get events$(): Observable<EntityWrapper<Event[]>> {
+	public get events$(): Observable<EntityWrapper<EventCard[]>> {
 		return this.store.pipe(select(selectEvents));
 	}
 
-	public get eventsValue$(): Observable<Event[]> {
+	public get eventsValue$(): Observable<EventCard[]> {
 		return this.store.pipe(select(selectEventsValue));
 	}
 

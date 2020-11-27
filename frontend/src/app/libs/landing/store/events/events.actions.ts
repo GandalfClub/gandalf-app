@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Event } from '../../models/event';
+import { EventCard } from '../../models/event';
 
 export enum ActionType {
 	GetEvents = '[Events/API] Get events',
@@ -13,7 +13,7 @@ export class GetEvents implements Action {
 
 export class GetEventsSuccess implements Action {
 	public readonly type: ActionType.GetEventsSuccess = ActionType.GetEventsSuccess;
-	constructor(public payload: Event[]) {}
+	constructor(public payload: EventCard[]) {}
 }
 
 export class GetEventsFail implements Action {

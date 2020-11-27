@@ -1,5 +1,5 @@
 <header class="header">
-	<div class="header__logo-container" routerLink="/">
+	<div class="header__logo-container" routerLink="/landing">
 		<img class="header__logo" src="assets/images/logo.svg">
 	</div>
 	<div class="header__admin-buttons" *ngIf="userService.user?.isAdmin">
@@ -10,7 +10,7 @@
 				[disableRipple]="true"
 				[disableHover]="true"
 				(click)="onEventsClick()"
-				routerLink="/">
+				routerLink="/landing">
 			{{"BUTTON.EVENTS" | translate}}
 		</app-button>
 		<app-button

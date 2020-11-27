@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { EventsEffects } from './events.effects';
 import { EventsRepository } from '../../services/events-repository.service';
-import { Event } from '../../models/event';
+import { EventCard } from '../../models/event';
 import { GetEvents, GetEventsSuccess, GetEventsFail } from './events.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
@@ -10,11 +10,12 @@ import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
 import { destroyPlatform } from '@angular/core';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Effects', () => {
 	let mockEventsRepository: jasmine.SpyObj<EventsRepository>;
 	let eventConverter: EventConverter;
-	let event: Event;
+	let event: EventCard;
 	let error: Error;
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
@@ -50,6 +51,8 @@ describe('Events Effects', () => {
 					startTime: null,
 					endDate: null,
 					endTime: null,
+					users: [],
+					size: EventCardSize.S
 				};
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));

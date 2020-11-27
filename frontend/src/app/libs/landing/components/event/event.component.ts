@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Event } from '../../models/event';
+import { EventCard } from '../../models/event';
 
 @Component({
 	selector: 'app-event',
@@ -7,5 +7,5 @@ import { Event } from '../../models/event';
 	styleUrls: ['./event.component.scss'],
 })
 export class EventComponent {
-	@Input() public event: Event;
+	@Input() public event: EventCard;
 }

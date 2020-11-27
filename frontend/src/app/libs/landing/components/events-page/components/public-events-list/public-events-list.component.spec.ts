@@ -1,7 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EventsFacadeService } from 'src/app/libs/landing/store/events/events.facade';
 import { PublicEventsListComponent } from './public-events-list.component';
-import { EventsFacadeService } from '../../store/events/events.facade';
 
 describe('PublicEventsListComponent', () => {
 	let component: PublicEventsListComponent;

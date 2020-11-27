@@ -2,14 +2,15 @@ import { EventsAction, GetEvents, GetEventsSuccess, GetEventsFail } from 'src/ap
 import { eventsReducer, initialState } from 'src/app/libs/landing/store/events/events.reducer';
 import { EventsState } from 'src/app/libs/landing/store/events/events-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { Event } from '../../models/event';
+import { EventCard } from '../../models/event';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Reducer', () => {
 	let action: EventsAction;
 	let result: EventsState;
-	let eventsEerror: Error;
+	let eventsError: Error;
 
-	let event: Event;
+	let event: EventCard;
 
 	beforeEach(() => {
 		event = {
@@ -21,6 +22,8 @@ describe('Events Reducer', () => {
 			startTime: null,
 			endDate: null,
 			endTime: null,
+			users: [],
+			size: EventCardSize.S
 		};
 	});
 
@@ -74,15 +77,15 @@ describe('Events Reducer', () => {
 
 	describe('GetEventsFail', () => {
 		beforeEach(() => {
-			eventsEerror = new Error('error');
-			action = new GetEventsFail(eventsEerror) as EventsAction;
+			eventsError = new Error('error');
+			action = new GetEventsFail(eventsError) as EventsAction;
 			result = eventsReducer(initialState, action);
 		});
 
 		it('should return the error', () => {
 			expect(result.events).toEqual({
 				status: EntityStatus.Error,
-				error: eventsEerror,
+				error: eventsError,
 			});
 		});
 	});

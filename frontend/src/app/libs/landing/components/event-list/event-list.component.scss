@@ -1,0 +1,30 @@
+@import "variables";
+
+$top-padding: 80px;
+
+$quantity-font: 16px;
+
+.app-event-list {
+
+	padding: $top-padding 72px 64px;
+
+	&__quantity {
+		margin-top: calc((-#{$quantity-font} / 2)  - (#{$top-padding} / 2));
+		margin-bottom: calc((#{-$quantity-font} / 2)  + (#{$top-padding} / 2));
+		padding-left: 12px;
+
+		color: $color-white;
+
+		font-size: $quantity-font;
+		text-transform: uppercase;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	&__event {
+		margin: 12px;
+	}
+}
