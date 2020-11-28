@@ -9,9 +9,14 @@ describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;
 	let fixture: ComponentFixture<LandingPageComponent>;
 	const mockEventsFacadeService: any = {
-		eventsValue$: of(
+		events$: of(
 			{
-				title: 'test'
+				status: 'Success',
+				value:
+					{
+						title: 'test'
+					},
+				error: null
 			}
 		),
 

@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 import { User } from 'src/app/libs/auth/models/user';
@@ -27,6 +28,9 @@ describe('EventCardComponent', () => {
 			declarations: [ EventCardComponent, TagListComponent ],
 			imports: [ MatChipsModule ]
 		})
+		.overrideComponent(EventCardComponent, {
+			set: { changeDetection: ChangeDetectionStrategy.Default }
+		  })
 		.compileComponents();
 
 		fixture = TestBed.createComponent(EventCardComponent);
@@ -37,9 +41,9 @@ describe('EventCardComponent', () => {
 
 		component.title = title;
 
-		fixture.detectChanges();
-
 		htmlElement = fixture.nativeElement;
+
+		fixture.detectChanges();
 	});
 
 	it('should create', () => {
