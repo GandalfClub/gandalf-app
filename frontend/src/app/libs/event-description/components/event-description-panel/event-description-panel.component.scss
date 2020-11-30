@@ -1,29 +1,43 @@
+@import "variables";
+
 .app-event-description-panel {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	letter-spacing: 1.25px;
-	color: #000000;
 
+	&__container {
+		display: flex;
+		align-items: center;
+	}
+	&__box-left {
+		margin: 40px 0 40px 176px;
+	}
+	&__box-right {
+		margin: 40px 176px 40px 0;
+	}
 	&__title {
-		font-weight: 500;
-		font-size: 60px;
-		line-height: 120%;
-		text-transform: capitalize;
+		@include text-h1();
+		color: $color-white-100;
+		margin-bottom:16px;
+	}
+	&__description {
+		@include text-p();
+		color: $color-white-100;
+		margin-bottom:24px;
+	}
+	&__take-part-button {
+		@include text-h4();
+
 	}
 
-	&__date,
-	&__time {
-		font-style: normal;
-		font-weight: normal;
-		font-size: 16px;
-		line-height: 16px;
-	}
+}
 
-	&__tool-tip {
-		align-self: flex-end;
-	}
+.primary {
+	background: $gradient-primary;
+}
+.secondary {
+	background: $gradient-secondary;
+}
+.tertiary {
+	background: $gradient-tertiary;
+}
+.important-role{
+	background: $gradient-important-role;
 }

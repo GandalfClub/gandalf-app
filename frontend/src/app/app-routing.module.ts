@@ -9,7 +9,7 @@ const routes: Routes = [
 			import('./libs/landing/landing.module').then((m: typeof import('./libs/landing/landing.module')) => m.LandingModule),
 	},
 	{
-		path: 'eventdescription',
+		path: 'event',
 		loadChildren: () =>
 			import('./libs/event-description/event-description.module').then(
 				(m: typeof import('./libs/event-description/event-description.module')) => m.EventDescriptionModule

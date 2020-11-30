@@ -7,4 +7,5 @@ export interface Event {
 	startTime: Date;
 	endDate: Date;
 	endTime: Date;
+	color?: string;
 }

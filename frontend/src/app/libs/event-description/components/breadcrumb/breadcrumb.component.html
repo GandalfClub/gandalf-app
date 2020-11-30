@@ -1,0 +1,26 @@
+<!-- 
+<ol class="breadcrumb">
+	<li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
+		<ng-container *ngIf="breadcrumb.url">
+			<a [routerLink]="[breadcrumb.url]">
+				{{ breadcrumb.label }}
+			</a>
+		</ng-container>
+		 <img src="assets/icons/icon-chevron-right.svg" alt="">
+		<ng-container *ngIf="!breadcrumb.url">
+			<span>
+				{{ breadcrumb.label }}
+			</span>
+		</ng-container>
+	</li>
+</ol>  -->
+
+
+<div class="breadcrumb">
+			<ng-container *ngFor="let breadcrumb of breadcrumbs; let i = index;">
+				<img *ngIf = "i == '1'" src="assets/icons/icon-chevron-right.svg" alt="icons" class="breadcrumb__img" >
+				<span [routerLink]="breadcrumb.url" class="breadcrumb__link">
+					{{ breadcrumb.label }}
+				</span>
+			</ng-container>
+</div> 
