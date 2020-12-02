@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { Event } from '../../models/event';
