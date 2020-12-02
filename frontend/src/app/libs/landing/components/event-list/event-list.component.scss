@@ -27,4 +27,7 @@ $quantity-font: 16px;
 	&__event {
 		margin: 12px;
 	}
+	&__event:hover {
+		cursor: pointer;
+	}
 }

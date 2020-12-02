@@ -6,7 +6,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
-import { EventCard } from '../../models/event';
+import { Event } from '../../models/event';
 import { EventsFacadeService } from '../../store/events/events.facade';
 
 @Component({
@@ -16,7 +16,7 @@ import { EventsFacadeService } from '../../store/events/events.facade';
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 
-	public events: EntityWrapper<EventCard[]>;
+	public events: EntityWrapper<Event[]>;
 
 	public user: EntityWrapper<User>;
 
@@ -34,7 +34,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 		this.eventsFacadeService.getEvents();
 
 		this.eventsFacadeService.events$.pipe(takeUntil(this.destroy$))
-		.subscribe((events: EntityWrapper<EventCard[]>) => {
+		.subscribe((events: EntityWrapper<Event[]>) => {
 			this.events = events;
 		});
 

@@ -1,7 +1,7 @@
 import { EventActions, LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
 import { EventState } from './event-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { eventReducer, initialState } from './event.reducer';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
@@ -11,7 +11,7 @@ describe('Events Reducer', () => {
 	let eventEerror: Error;
 	let id: string;
 
-	let event: EventCard;
+	let event: Event;
 
 	beforeEach(() => {
 		event = {

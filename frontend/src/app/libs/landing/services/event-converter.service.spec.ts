@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { EventConverter } from './event-converter.service';
 
-import { EventCard } from '../models/event';
+import { Event } from '../models/event';
 
 describe('EventConverterService', () => {
 	let service: EventConverter;
-	let events: EventCard[];
+	let events: Event[];
 
 	const eventDto: any = {
 		_id: 'test',

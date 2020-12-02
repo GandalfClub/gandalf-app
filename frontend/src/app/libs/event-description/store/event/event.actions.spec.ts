@@ -1,5 +1,5 @@
 import * as EventActions from './event.actions';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('EventConverterService', () => {
@@ -19,7 +19,7 @@ describe('EventConverterService', () => {
 	});
 
 	describe('LoadEventSuccess', () => {
-		const payload: EventCard = {
+		const payload: Event = {
 			id: 'test',
 			title: 'test',
 			description: 'test',

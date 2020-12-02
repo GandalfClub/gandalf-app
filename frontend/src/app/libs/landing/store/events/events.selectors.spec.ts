@@ -1,14 +1,14 @@
 import { selectEventsState, selectEvents, selectEventsValue } from './events.selectors';
 import { EventsState } from './events-state';
 import { EntityStatus } from '../../../auth/models/entity-status';
-import { EventCard } from '../../models/event';
+import { Event } from '../../models/event';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { async } from '@angular/core/testing';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Selectors', () => {
-	let event: EventCard;
-	let events: EntityWrapper<EventCard[]>;
+	let event: Event;
+	let events: EntityWrapper<Event[]>;
 	let state: EventsState;
 
 	beforeEach(async(() => {

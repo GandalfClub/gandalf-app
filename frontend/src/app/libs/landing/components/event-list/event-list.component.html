@@ -4,20 +4,20 @@
 	</p>
 
 	<div class="app-event-list__list">
-		<ng-container *ngFor="let event of events">
-			<app-event-card
-				class="app-event-list__event"
-				[title]="event.title"
-				[startDate]="event.startDate"
-				[endDate]="event.endDate"
-				[progress]="event.progress"
-				[participants]="event.users.length"
-				[roundedCorner]="event.roundedCorner"
-				[color]="event.color"
-				[roles]="event.roles"
-				[size]="getSize(event)"
-				[draft]="event.draft">
-			</app-event-card>
-		</ng-container>
+		<app-event-card
+			class="app-event-list__event"
+			*ngFor="let event of events"
+			[title]="event.title"
+			[startDate]="event.startDate"
+			[endDate]="event.endDate"
+			[progress]="event.progress"
+			[participants]="event.users.length"
+			[roundedCorner]="event.roundedCorner"
+			[color]="event.color"
+			[roles]="event.roles"
+			[size]="getSize(event)"
+			[draft]="event.draft"
+			(click)="navigateToEventsecription(event.id)">
+		</app-event-card>
 	</div>
 </div>

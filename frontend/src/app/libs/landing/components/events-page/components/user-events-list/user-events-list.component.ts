@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { User } from 'src/app/libs/auth/models/user';
-import { EventCard } from '../../../../models/event';
+import { Event } from '../../../../models/event';
 import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
 
 @Component({
@@ -13,7 +13,7 @@ import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
 export class UserEventsListComponent implements OnChanges {
 
 	@Input()
-	public events: EventCard[] = [];
+	public events: Event[] = [];
 
 	@Input()
 	public user: User;
@@ -21,8 +21,8 @@ export class UserEventsListComponent implements OnChanges {
 	public myEventsLabel: EventQuantityLabel = EventQuantityLabel.My;
 	public allEventsLabel: EventQuantityLabel = EventQuantityLabel.All;
 
-	public myEvents: EventCard[];
-	public otherEvents: EventCard[];
+	public myEvents: Event[];
+	public otherEvents: Event[];
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		this.getMyAndOtherEvents();
@@ -33,7 +33,7 @@ export class UserEventsListComponent implements OnChanges {
 		this.otherEvents = [];
 
 		if (Boolean(this.events?.length)) {
-			this.events.map((event: EventCard) => {
+			this.events.map((event: Event) => {
 				if (this.isUserInEvent(event)) {
 					this.myEvents.push(event);
 				} else {
@@ -43,7 +43,7 @@ export class UserEventsListComponent implements OnChanges {
 		}
 	}
 
-	public isUserInEvent(event: EventCard): boolean {
+	public isUserInEvent(event: Event): boolean {
 		return event.users.some((user: User) => user.id === this.user.id);
 	}
 

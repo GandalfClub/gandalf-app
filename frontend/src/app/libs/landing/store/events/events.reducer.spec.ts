@@ -2,7 +2,7 @@ import { EventsAction, GetEvents, GetEventsSuccess, GetEventsFail } from 'src/ap
 import { eventsReducer, initialState } from 'src/app/libs/landing/store/events/events.reducer';
 import { EventsState } from 'src/app/libs/landing/store/events/events-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { EventCard } from '../../models/event';
+import { Event } from '../../models/event';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Reducer', () => {
@@ -10,7 +10,7 @@ describe('Events Reducer', () => {
 	let result: EventsState;
 	let eventsError: Error;
 
-	let event: EventCard;
+	let event: Event;
 
 	beforeEach(() => {
 		event = {

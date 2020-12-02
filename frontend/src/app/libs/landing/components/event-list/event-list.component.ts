@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
-import { EventCard } from '../../models/event';
+import { Event } from '../../models/event';
 
 @Component({
 	selector: 'app-event-list',
@@ -10,16 +11,22 @@ import { EventCard } from '../../models/event';
 export class EventListComponent {
 
 	@Input()
-	public events: EventCard[] = [];
+	public events: Event[] = [];
 
 	@Input()
-	public quantityLabel: EventCard[] = [];
+	public quantityLabel: Event[] = [];
 
-	public getSize(event: EventCard): EventCardSize {
+	public constructor(private router: Router) {}
+
+	public getSize(event: Event): EventCardSize {
 		if (!Boolean(event?.size)) {
 			return EventCardSize.S;
 		}
 		return event.size;
+	}
+
+	public navigateToEventsecription(id: string): void {
+		this.router.navigate([`/eventsecription/${id}`]);
 	}
 
 }

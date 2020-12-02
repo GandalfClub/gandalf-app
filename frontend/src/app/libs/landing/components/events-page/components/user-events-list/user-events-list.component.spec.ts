@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { User } from 'src/app/libs/auth/models/user';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
-import { EventCard } from '../../../../models/event';
+import { Event } from '../../../../models/event';
 
 import { UserEventsListComponent } from './user-events-list.component';
 
@@ -16,7 +16,7 @@ describe('UserEventsListComponent', () => {
 		claims: []
 	};
 
-	const events: Partial<EventCard[]> = [
+	const events: Partial<Event[]> = [
 		{
 			id: 't1',
 			title: 'test1',

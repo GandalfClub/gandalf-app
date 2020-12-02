@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { EventEffects } from './event.effects';
 import { EventRepository } from '../../services/event-repository.service';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
@@ -15,7 +15,7 @@ import { EventCardSize } from 'src/app/libs/common-components/components/event-c
 describe('Events Effects', () => {
 	let mockEventRepository: jasmine.SpyObj<EventRepository>;
 	let eventConverter: EventConverter;
-	let event: EventCard;
+	let event: Event;
 	let eventDto: EventDto;
 	let error: Error;
 	let actions: Observable<Action>;

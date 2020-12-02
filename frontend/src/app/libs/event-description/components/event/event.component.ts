@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 
 @Component({
 	selector: 'app-event',
@@ -27,7 +27,7 @@ export class EventComponent implements OnInit {
 		this.user$ = this.authFacadeService.user$;
 	}
 
-	public get event$(): Observable<EventCard> {
+	public get event$(): Observable<Event> {
 		return this.eventFacadeService.eventValue$;
 	}
 }

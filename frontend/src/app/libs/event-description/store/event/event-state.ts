@@ -1,6 +1,6 @@
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 
 export interface EventState {
-	event: EntityWrapper<EventCard>;
+	event: EntityWrapper<Event>;
 }

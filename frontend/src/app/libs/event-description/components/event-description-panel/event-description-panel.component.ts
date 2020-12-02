@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
@@ -10,7 +10,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 	styleUrls: ['./event-description-panel.component.scss'],
 })
 export class EventDescriptionPanelComponent {
-	@Input() public event: EventCard;
+	@Input() public event: Event;
 
 	@Input() public user: EntityWrapper<User>;
 

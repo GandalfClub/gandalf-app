@@ -4,7 +4,7 @@ import { EventFacadeService } from './event.facade';
 import { EventState } from './event-state';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { EntityStatus } from '../../../auth/models/entity-status';
-import { EventCard } from '../../../landing/models/event';
+import { Event } from '../../../landing/models/event';
 import { first } from 'rxjs/operators';
 import { MemoizedSelector } from '@ngrx/store';
 import { selectEvent, selectEventValue } from './event.selectors';
@@ -13,11 +13,11 @@ import { EventCardSize } from 'src/app/libs/common-components/components/event-c
 describe('Events FacadeService', () => {
 	let mockStore: MockStore<EventState>;
 	let eventFacadeService: EventFacadeService;
-	let event: EventCard;
-	let eventState: EntityWrapper<EventCard>;
+	let event: Event;
+	let eventState: EntityWrapper<Event>;
 	let initialState: EventState = { event: eventState };
-	let mockEventSelectorSelectEvent: MemoizedSelector<EventState, EntityWrapper<EventCard>>;
-	let mockEventSelectorSelectEventValue: MemoizedSelector<EventState, EventCard>;
+	let mockEventSelectorSelectEvent: MemoizedSelector<EventState, EntityWrapper<Event>>;
+	let mockEventSelectorSelectEventValue: MemoizedSelector<EventState, Event>;
 	let id: string;
 
 	beforeEach(() => {
@@ -50,7 +50,7 @@ describe('Events FacadeService', () => {
 	describe('method events$', () => {
 		it('should return events', () => {
 			mockEventSelectorSelectEvent = mockStore.overrideSelector(selectEvent, eventState);
-			eventFacadeService.event$.pipe(first()).subscribe((result: EntityWrapper<EventCard>) => {
+			eventFacadeService.event$.pipe(first()).subscribe((result: EntityWrapper<Event>) => {
 				return expect(result).toEqual(eventState);
 			});
 		});
@@ -59,7 +59,7 @@ describe('Events FacadeService', () => {
 	describe('method eventsValue$', () => {
 		it('should return events value', () => {
 			mockEventSelectorSelectEventValue = mockStore.overrideSelector(selectEventValue, event);
-			eventFacadeService.eventValue$.pipe(first()).subscribe((result: EventCard) => {
+			eventFacadeService.eventValue$.pipe(first()).subscribe((result: Event) => {
 				expect(result).toEqual(event);
 			});
 		});

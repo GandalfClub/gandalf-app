@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
-import { EventCard } from '../../models/event';
+import { Event } from '../../models/event';
 
 import { EventComponent } from './event.component';
-const event: EventCard = {
+const event: Event = {
 	id: '',
 	title: '',
 	description: '',

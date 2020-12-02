@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { EventCard } from 'src/app/libs/landing/models/event';
+import { Event } from 'src/app/libs/landing/models/event';
 import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
 
 @Component({
@@ -11,7 +11,7 @@ import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
 export class PublicEventsListComponent {
 
 	@Input()
-	public events: EventCard[] = [];
+	public events: Event[] = [];
 
 	public allEventsLabel: EventQuantityLabel = EventQuantityLabel.All;
 

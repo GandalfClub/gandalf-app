@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { EventConverter } from './event-converter.service';
-import { EventCard } from '../../landing/models/event';
+import { Event } from '../../landing/models/event';
 import { EventDto } from '../../landing/models/event-dto';
 import { EventCardSize } from '../../common-components/components/event-card/models/event-card-size';
 
 describe('EventConverterService', () => {
 	let service: EventConverter;
-	let event: EventCard;
+	let event: Event;
 
 	const eventDto: EventDto = {
 		_id: 'test',

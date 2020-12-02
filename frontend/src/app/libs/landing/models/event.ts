@@ -1,7 +1,7 @@
 import { User } from '../../auth/models/user';
 import { EventCardSize } from '../../common-components/components/event-card/models/event-card-size';
 
-export interface EventCard {
+export interface Event {
 	id: string;
 	title: string;
 	description: string;
