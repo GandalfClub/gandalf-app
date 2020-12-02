@@ -79,6 +79,13 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 		letter-spacing: 1px;
 }
 
+@mixin text-h4-bold() {
+    font-family: $font-main-bold;
+    font-size: 18px;
+    line-height: 28px;
+	letter-spacing: 0px;
+}
+
 @mixin text-p() {
     font-family: $font-main-regular;
     font-size: 14px;

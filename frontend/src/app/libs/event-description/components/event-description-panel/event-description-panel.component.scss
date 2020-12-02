@@ -1,32 +1,84 @@
 @import "variables";
 
 .app-event-description-panel {
+	background-color: #f8f8f8;
 
+	&__breadcrumb {
+		position: sticky;
+		top: 80px;
+		z-index: 2;
+	}
 	&__container {
 		display: flex;
-		align-items: center;
+		align-items: start;
+		justify-content: center;
 	}
 	&__box-left {
-		margin: 40px 0 40px 176px;
+		width: 600px;
+		margin: 40px 0;
 	}
+
 	&__box-right {
-		margin: 40px 176px 40px 0;
+		width: 290px;
+		margin: 40px 0;
 	}
+
 	&__title {
 		@include text-h1();
 		color: $color-white-100;
-		margin-bottom:16px;
+		margin-bottom: 16px;
 	}
+
 	&__description {
 		@include text-p();
 		color: $color-white-100;
-		margin-bottom:24px;
+		margin-bottom: 24px;
 	}
+
 	&__take-part-button {
 		@include text-h4();
-
 	}
 
+	&__time-events {
+		margin-bottom: 24px;
+	}
+
+	&__calendar,
+	&__participants-img {
+		vertical-align: middle;
+	}
+
+	&__time,
+	&__date,
+	&__participants-numbers {
+		@include text-h4-bold();
+		color: $color-white-100;
+		vertical-align: middle;
+	}
+
+	&__content-wrapper {
+		/* width: 100%; */
+		background: red;
+		height: calc( 100vh - 272px);;
+		// margin: 40px 176px;
+		// overflow: hidden;
+		overflow: scroll; 
+		margin: 40px 176px;
+	}
+	&__content {
+		@include text-p();
+		background: yellow;
+		color: $color-black-100;
+		// overflow: scroll; 
+
+	}
+}
+
+::ng-deep {
+	.button--flat {
+		background-color: $color-coral !important;
+		padding: 12px 16px !important;
+	}
 }
 
 .primary {
@@ -38,6 +90,6 @@
 .tertiary {
 	background: $gradient-tertiary;
 }
-.important-role{
+.important-role {
 	background: $gradient-important-role;
 }
