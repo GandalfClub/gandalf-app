@@ -1,5 +1,7 @@
 @import "variables";
 
+$appear-bottom-panel: 200px;
+
 .app-event-description-panel {
 	background-color: #f8f8f8;
 
@@ -8,11 +10,14 @@
 		top: 80px;
 		z-index: 2;
 	}
+
 	&__container {
 		display: flex;
 		align-items: start;
 		justify-content: center;
+		padding: 0 $main-grid-unit * 22 0 $main-grid-unit * 22;
 	}
+
 	&__box-left {
 		width: 600px;
 		margin: 40px 0;
@@ -57,20 +62,28 @@
 	}
 
 	&__content-wrapper {
-		/* width: 100%; */
-		background: red;
-		height: calc( 100vh - 272px);;
-		// margin: 40px 176px;
-		// overflow: hidden;
-		overflow: scroll; 
-		margin: 40px 176px;
+		// border-top: 1px solid black;
+		display: inline-block;
+		margin-top: calc(100vh - #{$appear-bottom-panel});
 	}
+
 	&__content {
 		@include text-p();
-		background: yellow;
 		color: $color-black-100;
-		// overflow: scroll; 
+		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
+			$main-grid-unit * 22;
+	}
 
+	&__bottom-panel {
+		padding: 0 $layout-outer-margin;
+		background-color: $color-white-100;
+		position: sticky;
+		bottom: 0;
+		height: $main-grid-unit * 10;
+		width: 100vw;
+		@include text-p();
+		line-height: $main-grid-unit * 10;
+		vertical-align: middle;
 	}
 }
 

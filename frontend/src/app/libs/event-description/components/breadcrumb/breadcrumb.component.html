@@ -1,6 +1,6 @@
 <div class="breadcrumb">
 			<ng-container *ngFor="let breadcrumb of breadcrumbs; let i = index;">
-				<img *ngIf = "i === '1'" src="assets/images/icons/icon-chevron-right.svg" alt="icons" class="breadcrumb__img" >
+				<img *ngIf = "i === 1" src="assets/images/icons/icon-chevron-right.svg" alt="icons" class="breadcrumb__img" >
 				<span [routerLink]="breadcrumb.url" class="breadcrumb__link">
 					{{ breadcrumb.label }}
 				</span>
