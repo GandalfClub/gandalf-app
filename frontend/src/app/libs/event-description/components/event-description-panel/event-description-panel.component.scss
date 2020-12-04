@@ -61,17 +61,11 @@ $appear-bottom-panel: 200px;
 		vertical-align: middle;
 	}
 
-	&__content-wrapper {
-		// border-top: 1px solid black;
-		display: inline-block;
-		margin-top: calc(100vh - #{$appear-bottom-panel});
-	}
-
-	&__content {
-		@include text-p();
+	&__time-bottom,
+	&__date-bottom,
+	&__participants-numbers-bottom {
 		color: $color-black-100;
-		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
-			$main-grid-unit * 22;
+		vertical-align: middle;
 	}
 
 	&__bottom-panel {
@@ -84,6 +78,32 @@ $appear-bottom-panel: 200px;
 		@include text-p();
 		line-height: $main-grid-unit * 10;
 		vertical-align: middle;
+		box-sizing: border-box;
+	}
+
+	&__box-bottom {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__event-info-bottom {
+		display: flex;
+	}
+
+	&__participants-events-bottom {
+		margin-left: $main-grid-unit * 5;
+	}
+
+	&__content-wrapper {
+		display: inline-block;
+		margin-top: calc(100vh - #{$appear-bottom-panel});
+	}
+
+	&__content {
+		@include text-p();
+		color: $color-black-100;
+		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
+			$main-grid-unit * 22;
 	}
 }
 
@@ -97,12 +117,15 @@ $appear-bottom-panel: 200px;
 .primary {
 	background: $gradient-primary;
 }
+
 .secondary {
 	background: $gradient-secondary;
 }
+
 .tertiary {
 	background: $gradient-tertiary;
 }
+
 .important-role {
 	background: $gradient-important-role;
 }
