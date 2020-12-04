@@ -26,8 +26,8 @@ export class EventCardDemoComponent {
 		}
 	];
 
-	public cardSizeSmall: EventCardSize = EventCardSize.Small;
-	public cardSizeLarge: EventCardSize = EventCardSize.Large;
+	public cardSizeSmall: EventCardSize = EventCardSize.S;
+	public cardSizeLarge: EventCardSize = EventCardSize.L;
 
 	public roundedCorners: EventCardRoundedCorner[] = [
 		EventCardRoundedCorner.TopLeft,

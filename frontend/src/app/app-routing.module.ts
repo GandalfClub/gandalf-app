@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPanelGuard } from './libs/guards/admin-panel/admin-panel.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
 	{
 		path: 'landing',
 		loadChildren: () =>

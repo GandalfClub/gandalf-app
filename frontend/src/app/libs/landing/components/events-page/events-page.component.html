@@ -1,0 +1,12 @@
+<ng-container *ngIf="events.status === successStatus">
+	<app-user-events-list
+		*ngIf="user?.value"
+		[user]="user.value"
+		[events]="events.value">
+	</app-user-events-list>
+
+	<app-public-events-list
+		*ngIf="!user?.value && user.status !== pendingStatus"
+		[events]="events.value">
+	</app-public-events-list>
+</ng-container>

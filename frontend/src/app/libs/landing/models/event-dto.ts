@@ -1,3 +1,5 @@
+import { EventCardSize } from '../../common-components/components/event-card/models/event-card-size';
+
 export interface EventDto {
 	_id: string;
 	isActive: boolean;
@@ -12,4 +14,5 @@ export interface EventDto {
 	startTime: Date;
 	endDate: Date;
 	endTime: Date;
+	size: EventCardSize;
 }

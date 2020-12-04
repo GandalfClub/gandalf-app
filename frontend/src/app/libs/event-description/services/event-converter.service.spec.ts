@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { EventConverter } from './event-converter.service';
 import { Event } from '../../landing/models/event';
 import { EventDto } from '../../landing/models/event-dto';
+import { EventCardSize } from '../../common-components/components/event-card/models/event-card-size';
 
 describe('EventConverterService', () => {
 	let service: EventConverter;
@@ -21,6 +22,7 @@ describe('EventConverterService', () => {
 		tasks: null,
 		isActive: null,
 		maxScore: null,
+		size: EventCardSize.S
 	};
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
