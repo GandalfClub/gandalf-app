@@ -7,44 +7,44 @@ $appear-bottom-panel: 200px;
 
 	&__breadcrumb {
 		position: sticky;
-		top: 80px;
+		top: $layout-column-width;
 		z-index: 2;
 	}
 
 	&__container {
 		display: flex;
-		align-items: start;
+		align-items: flex-start;
 		justify-content: space-between;
 		padding: 0 $main-grid-unit * 22 0 $main-grid-unit * 22;
 	}
 
 	&__box-left {
 		width: 600px;
-		margin: 40px 0;
+		margin: $main-grid-unit * 5 0;
 	}
 
 	&__box-right {
 		width: 290px;
-		margin: 40px 0;
+		margin: $main-grid-unit * 5 0;
 	}
 
 	&__title {
 		@include text-h1();
 		color: $color-white-100;
-		margin-bottom: 16px;
+		margin-bottom:  $main-grid-unit * 2;
 	}
 
 	&__description {
 		@include text-p();
 		color: $color-white-100;
-		margin-bottom: 24px;
+		margin-bottom:  $layout-gutter;
 	}
 
 	&__take-part-button {
 		@include text-h4();
 		::ng-deep {
 			button {
-				padding: 12px 16px !important;
+				padding: 12px $main-grid-unit * 2 !important;
 			}
 		}
 	}
@@ -58,7 +58,7 @@ $appear-bottom-panel: 200px;
 	}
 
 	&__time-events {
-		margin-bottom: 24px;
+		margin-bottom:  $layout-gutter;
 	}
 
 	&__calendar,
