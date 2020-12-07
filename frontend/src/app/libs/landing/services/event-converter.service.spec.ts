@@ -25,7 +25,7 @@ describe('EventConverterService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	describe('convertFromDto methodshould rename "_id" key', () => {
+	describe('convertFromDto method should rename "_id" key', () => {
 		beforeEach(() => {
 			events = service.convertFromDto([eventDto]);
 		});

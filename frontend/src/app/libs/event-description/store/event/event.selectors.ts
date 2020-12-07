@@ -6,6 +6,7 @@ import { Event } from '../../../landing/models/event';
 
 export const selectEventState: MemoizedSelector<{}, EventState> = createFeatureSelector<EventState>(eventDescriptionFeatureKey);
 
-export const selectEvent: MemoizedSelector<{}, EntityWrapper<Event>> = createSelector(selectEventState, (state: EventState) => state.event);
+export const selectEvent: MemoizedSelector<{}, EntityWrapper<Event>> =
+	createSelector(selectEventState, (state: EventState) => state.event);
 
 export const selectEventValue: MemoizedSelector<{}, Event> = createSelector(selectEventState, (state: EventState) => state.event.value);

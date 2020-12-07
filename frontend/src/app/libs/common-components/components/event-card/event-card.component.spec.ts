@@ -1,5 +1,7 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
+import { User } from 'src/app/libs/auth/models/user';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { TagListComponent } from '../tag-list/tag-list.component';
 
@@ -14,6 +16,7 @@ const endDate: Date = new Date('2020-01-05');
 const progress: number = 69;
 const participants: number = 13;
 const roles: string[] = ['Mentor', 'HR', 'Manger'];
+const users: User[] = [];
 
 describe('EventCardComponent', () => {
 	let component: EventCardComponent;
@@ -25,15 +28,22 @@ describe('EventCardComponent', () => {
 			declarations: [ EventCardComponent, TagListComponent ],
 			imports: [ MatChipsModule ]
 		})
+		.overrideComponent(EventCardComponent, {
+			set: { changeDetection: ChangeDetectionStrategy.Default }
+		  })
 		.compileComponents();
 
 		fixture = TestBed.createComponent(EventCardComponent);
 		component = fixture.componentInstance;
 		component.startDate = startDate;
 		component.endDate = endDate;
-		fixture.detectChanges();
+		component.participants = participants;
+
+		component.title = title;
 
 		htmlElement = fixture.nativeElement;
+
+		fixture.detectChanges();
 	});
 
 	it('should create', () => {
@@ -41,11 +51,6 @@ describe('EventCardComponent', () => {
 	});
 
 	describe('when @Input gets title', () => {
-		beforeEach(() => {
-			component.title = title;
-			fixture.detectChanges();
-		});
-
 		it('should show title', () => {
 			expect(htmlElement.querySelector('.event-card__title').textContent).toContain(title);
 		});
@@ -107,7 +112,6 @@ describe('EventCardComponent', () => {
 
 	describe('when @Input gets participants', () => {
 		beforeEach(() => {
-			component.participants = participants;
 			fixture.detectChanges();
 		});
 
@@ -187,7 +191,7 @@ describe('EventCardComponent', () => {
 	describe('when @Input gets size', () => {
 		describe('when @Input gets large size', () => {
 			beforeEach(() => {
-				component.size = EventCardSize.Large;
+				component.size = EventCardSize.L;
 				fixture.detectChanges();
 			});
 
@@ -198,7 +202,7 @@ describe('EventCardComponent', () => {
 
 		describe('when @Input gets small size', () => {
 			beforeEach(() => {
-				component.size = EventCardSize.Small;
+				component.size = EventCardSize.S;
 				fixture.detectChanges();
 			});
 
@@ -212,6 +216,7 @@ describe('EventCardComponent', () => {
 		describe('hideNotStartedLabel is true', () => {
 			beforeEach(() => {
 				component.hideNotStartedLabel = true;
+
 				fixture.detectChanges();
 			});
 

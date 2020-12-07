@@ -4,6 +4,7 @@ import { EventDescriptionPanelComponent } from './event-description-panel.compon
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 const event: Event = {
 	id: '',
@@ -14,6 +15,8 @@ const event: Event = {
 	startTime: null,
 	endDate: null,
 	endTime: null,
+	users: [],
+	size: EventCardSize.S
 };
 
 const user: EntityWrapper<User> = {

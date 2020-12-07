@@ -6,6 +6,8 @@ export interface IEventsnModel extends Document {
     description: string;
     isActive: boolean;
     created: Date;
+    startDate: Date;
+    endDate: Date;
     maxScore: number;
     tasks: Types.ObjectId[];
     users: Types.ObjectId[];
@@ -41,6 +43,14 @@ const eventsSchema: Schema = new Schema({
         type: Schema.Types.Date,
         default: null
     },
+    startDate: {
+        type: Schema.Types.Date,
+        default: null
+    },
+    endDate: {
+        type: Schema.Types.Date,
+        default: null
+    },
     maxScore: {
         type: Schema.Types.Number,
         default: 0
@@ -56,7 +66,7 @@ const eventsSchema: Schema = new Schema({
     participations: {
         type: [Schema.Types.ObjectId],
         ref: 'ParticipationModel'
-    }
+    },
 }, {
     collection: 'events'
 });
