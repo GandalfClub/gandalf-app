@@ -5,6 +5,7 @@ import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
+import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
 
 const event: Event = {
 	id: '',
@@ -30,7 +31,7 @@ describe('EventComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventDescriptionPanelComponent],
+			declarations: [EventDescriptionPanelComponent, ButtonComponent],
 		}).compileComponents();
 		fixture = TestBed.createComponent(EventDescriptionPanelComponent);
 		component = fixture.componentInstance;
@@ -57,7 +58,7 @@ describe('EventComponent', () => {
 		});
 
 		it('should disable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button').disabled).toBeTrue();
+			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button button').disabled).toBeTrue();
 		});
 	});
 
@@ -68,7 +69,7 @@ describe('EventComponent', () => {
 		});
 
 		it('should enable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button').disabled).toBeFalse();
+			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button button').disabled).toBeFalse();
 		});
 	});
 });
