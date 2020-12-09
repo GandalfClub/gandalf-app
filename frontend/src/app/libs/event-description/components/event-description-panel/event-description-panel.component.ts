@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Event } from '../../../landing/models/event';
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
@@ -8,6 +8,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 	selector: 'app-event-description-panel',
 	templateUrl: './event-description-panel.component.html',
 	styleUrls: ['./event-description-panel.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class EventDescriptionPanelComponent {
 	@Input() public event: Event;

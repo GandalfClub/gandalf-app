@@ -1,6 +1,6 @@
 @import "variables";
 
-$appear-bottom-panel: 200px;
+$appear-bottom-panel: $main-grid-unit * 25;
 
 .app-event-description-panel {
 	background-color: #f8f8f8;
@@ -19,46 +19,37 @@ $appear-bottom-panel: 200px;
 	}
 
 	&__box-left {
-		width: 600px;
 		margin: $main-grid-unit * 5 0;
 	}
 
 	&__box-right {
-		width: 290px;
 		margin: $main-grid-unit * 5 0;
 	}
 
 	&__title {
 		@include text-h1();
 		color: $color-white-100;
-		margin-bottom:  $main-grid-unit * 2;
+		margin-bottom: $main-grid-unit * 2;
 	}
 
 	&__description {
 		@include text-p();
 		color: $color-white-100;
-		margin-bottom:  $layout-gutter;
+		margin-bottom: $layout-gutter;
 	}
 
 	&__take-part-button {
 		@include text-h4();
-		::ng-deep {
-			button {
-				padding: 12px $main-grid-unit * 2 !important;
-			}
+		button {
+			padding: 12px $main-grid-unit * 2 !important;
 		}
-	}
-
-	&__take-part-button {
-		::ng-deep {
-			button:enabled {
-				background-color: $color-coral !important;
-			}
+		button:enabled {
+			background-color: $color-coral;
 		}
 	}
 
 	&__time-events {
-		margin-bottom:  $layout-gutter;
+		margin-bottom: $layout-gutter;
 	}
 
 	&__calendar,
@@ -82,16 +73,16 @@ $appear-bottom-panel: 200px;
 	}
 
 	&__bottom-panel {
-		padding: 0 $layout-outer-margin;
-		background-color: $color-white-100;
-		position: sticky;
-		bottom: 0;
-		height: $main-grid-unit * 10;
-		width: 100vw;
 		@include text-p();
+		position: sticky;
+		width: 100vw;
+		bottom: 0;
+		padding: 0 $layout-outer-margin;
+		height: $main-grid-unit * 10;
 		line-height: $main-grid-unit * 10;
 		vertical-align: middle;
 		box-sizing: border-box;
+		background-color: $color-white-100;
 	}
 
 	&__box-bottom {
@@ -114,6 +105,7 @@ $appear-bottom-panel: 200px;
 
 	&__content {
 		@include text-p();
+		min-height: 100vh;
 		color: $color-black-100;
 		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
 			$main-grid-unit * 22;
