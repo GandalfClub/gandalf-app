@@ -3,7 +3,6 @@ import { Event } from '../../../landing/models/event';
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { ButtonColor } from 'src/app/libs/common-components/components/button/models/button-color.enum';
 
 @Component({
 	selector: 'app-event-description-panel',

@@ -2,27 +2,36 @@
 	<div class="app-event-description-panel__breadcrumb">
 		<app-breadcrumb [event]="event"></app-breadcrumb>
 	</div>
-
 	<div class="app-event-description-panel__container {{event?.color}}">
 		<div class="app-event-description-panel__box-left">
-			<div class="app-event-description-panel__title">{{event.title}}</div>
-			<div class="app-event-description-panel__description" [innerHTML]="event.description"></div>
+			<div class="app-event-description-panel__title">
+				{{event.title}}
+			</div>
+			<div class="app-event-description-panel__description"
+				 [innerHTML]="event.description | safeHtml">
+			</div>
 			<div class="app-event-description-panel__tool-tip"
-				matTooltip="You must be logged in to participate in this round" [matTooltipDisabled]="userLoginStatus">
-				<app-button type="flat" color="accept" class="app-event-description-panel__take-part-button"
-					[disabled]="!userLoginStatus">TAKE PART</app-button>
+				 matTooltip="You must be logged in to participate in this round"
+				 [matTooltipDisabled]="userLoginStatus">
+				<app-button class="app-event-description-panel__take-part-button"
+							type="flat"
+							color="accept"
+							[disabled]="!userLoginStatus">
+					TAKE PART
+				</app-button>
 			</div>
 		</div>
-
 		<div class="app-event-description-panel__box-right">
 			<div class="app-event-description-panel__time-events">
-				<img src="assets/images/icons/icon-calendar-b.svg" alt="icon-calendar"
-					class="app-event-description-panel__calendar">
+				<img class="app-event-description-panel__calendar"
+					 src="assets/images/icons/icon-calendar-b.svg"
+					 alt="icon-calendar">
 				<ng-container *ngIf="event.endDate else withoutEndDateTemplate">
 					<span class="app-event-description-panel__date">
 						{{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}
 					</span>
-					<span *ngIf="event.startTime && event.endTime" class="app-event-description-panel__time">
+					<span class="app-event-description-panel__time"
+						  *ngIf="event.startTime && event.endTime">
 						{{ event.startTime | date:'h a' }} - {{ event.endTime | date:'h a' }}
 					</span>
 				</ng-container>
@@ -36,29 +45,32 @@
 				</ng-template>
 			</div>
 			<div class="app-event-description-panel__participants-events">
-				<img src="assets/images/icons/icon-user-b.svg" alt="icon-user"
-					class="app-event-description-panel__participants-img">
-				<span class="app-event-description-panel__participants-numbers">{{event.users.length}}</span>
+				<img class="app-event-description-panel__participants-img"
+					 src="assets/images/icons/icon-user-b.svg"
+					 alt="icon-user">
+				<span class="app-event-description-panel__participants-numbers">
+					{{event.users.length}}
+				</span>
 			</div>
 		</div>
 	</div>
-
 	<div class="app-event-description-panel__content-wrapper">
-		<div class="app-event-description-panel__content">
-			{{event.description}}
+		<div class="app-event-description-panel__content"
+			 [innerHTML]="event.description | safeHtml">
 		</div>
 		<div class="app-event-description-panel__bottom-panel">
 			<div class="app-event-description-panel__box-bottom">
 				<div class="app-event-description-panel__event-info-bottom">
 					<div class="app-event-description-panel__time-events-bottom">
-						<img src="assets/images/icons/icon-calendar.svg" alt="icon-calendar"
-							class="app-event-description-panel__calendar">
+						<img class="app-event-description-panel__calendar"
+							 src="assets/images/icons/icon-calendar.svg"
+							 alt="icon-calendar">
 						<ng-container *ngIf="event.endDate else withoutEndDateTemplate">
 							<span class="app-event-description-panel__date-bottom">
 								{{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}
 							</span>
-							<span *ngIf="event.startTime && event.endTime"
-								class="app-event-description-panel__time-bottom">
+							<span class="app-event-description-panel__time-bottom"
+								  *ngIf="event.startTime && event.endTime">
 								{{ event.startTime | date:'h a' }} - {{ event.endTime | date:'h a' }}
 							</span>
 						</ng-container>
@@ -71,20 +83,23 @@
 							</span>
 						</ng-template>
 					</div>
-
 					<div class="app-event-description-panel__participants-events-bottom">
-						<img src="assets/images/icons/icon-user.svg" alt="icon-user"
-							class="app-event-description-panel__participants-img">
-						<span
-							class="app-event-description-panel__participants-numbers-bottom">{{event.users.length}}</span>
+						<img class="app-event-description-panel__participants-img"
+							 src="assets/images/icons/icon-user.svg"
+							 alt="icon-user">
+						<span class="app-event-description-panel__participants-numbers-bottom">
+							{{event.users.length}}
+						</span>
 					</div>
 				</div>
-
 				<div class="app-event-description-panel__tool-tip-bottom"
-					matTooltip="You must be logged in to participate in this round"
-					[matTooltipDisabled]="userLoginStatus">
-					<app-button type="flat" class="app-event-description-panel__take-part-button"
-						[disabled]="!userLoginStatus">TAKE PART</app-button>
+					 matTooltip="You must be logged in to participate in this round"
+					 [matTooltipDisabled]="userLoginStatus">
+					<app-button class="app-event-description-panel__take-part-button"
+								type="flat"
+								[disabled]="!userLoginStatus">
+						TAKE PART
+					</app-button>
 				</div>
 			</div>
 		</div>

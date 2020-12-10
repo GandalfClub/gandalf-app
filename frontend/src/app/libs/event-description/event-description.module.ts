@@ -7,9 +7,10 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 import { EventComponent } from './components/event/event.component';
 import { EventDescriptionPanelComponent } from './components/event-description-panel/event-description-panel.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { SafeHtmlPipe } from '../pipes/sanitizer.pipe';
 
 @NgModule({
-	declarations: [EventComponent, EventDescriptionPanelComponent, BreadcrumbComponent],
+	declarations: [EventComponent, EventDescriptionPanelComponent, BreadcrumbComponent, SafeHtmlPipe],
 	imports: [CommonModule, CommonComponentsModule, EventDescriptionRoutingModule, EventStoreModule],
 })
 export class EventDescriptionModule {}
