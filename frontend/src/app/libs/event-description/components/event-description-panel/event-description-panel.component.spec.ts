@@ -6,6 +6,7 @@ import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
+import { SafeHtmlPipe } from 'src/app/libs/pipes/sanitizer.pipe';
 
 const event: Event = {
 	id: '',
@@ -17,7 +18,7 @@ const event: Event = {
 	endDate: null,
 	endTime: null,
 	users: [],
-	size: EventCardSize.S
+	size: EventCardSize.S,
 };
 
 const user: EntityWrapper<User> = {
@@ -31,7 +32,11 @@ describe('EventComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventDescriptionPanelComponent, ButtonComponent],
+			declarations: [
+				EventDescriptionPanelComponent,
+				ButtonComponent,
+				SafeHtmlPipe,
+			],
 		}).compileComponents();
 		fixture = TestBed.createComponent(EventDescriptionPanelComponent);
 		component = fixture.componentInstance;
@@ -47,7 +52,10 @@ describe('EventComponent', () => {
 
 	describe('when @Input get event value', () => {
 		it('should correctly render the passed @Input event value', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__title').textContent).toContain('test');
+			expect(
+				compiledElement.querySelector('.app-event-description-panel__title')
+					.textContent
+			).toContain('test');
 		});
 	});
 
@@ -58,7 +66,11 @@ describe('EventComponent', () => {
 		});
 
 		it('should disable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button button').disabled).toBeTrue();
+			expect(
+				compiledElement.querySelector(
+					'.app-event-description-panel__take-part-button button'
+				).disabled
+			).toBeTrue();
 		});
 	});
 
@@ -69,7 +81,11 @@ describe('EventComponent', () => {
 		});
 
 		it('should enable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button button').disabled).toBeFalse();
+			expect(
+				compiledElement.querySelector(
+					'.app-event-description-panel__take-part-button button'
+				).disabled
+			).toBeFalse();
 		});
 	});
 });
