@@ -6,110 +6,110 @@ $layout-outer-margin: 9 * $main-grid-unit;
 $layout-gutter: 3 * $main-grid-unit;
 $layout-columns-quantity: 12;
 $layout-column-width: 10 * $main-grid-unit;
-$layout-total-width: 153 * $main-grid-unit + 2 * $layout-outer-margin;
+$layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
 // colors
 // primary
-$color-primary: #367ff6;
-$color-primary-dark: #2b508b;
-$color-primary-light: #5e99f7;
+$color-primary: #367FF6;
+$color-primary-dark: #2B508B;
+$color-primary-light: #5E99F7;
 // secondary
-$color-error: #ef5350;
-$color-yellow: #ffd600;
+$color-error: #EF5350;
+$color-yellow: #FFD600;
 // additional
-$color-mint: #74e3d2;
-$color-purple: #7457e6;
-$color-coral: #ff7b52;
+$color-mint: #74E3D2;
+$color-purple: #7457E6;
+$color-coral: #FF7B52;
 $color-black: #212121;
-$color-white: #ffffff;
+$color-white: #FFFFFF;
 // gradients
-$gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), #367ff6;
-$gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #7457e6;
-$gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), #ff7b52;
+$gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), #367FF6;
+$gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #7457E6;
+$gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), #FF7B52;
 $gradient-important-role: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #212121;
 // blacks
 $color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
 $color-black-100: rgba($color-black, 100);
-$color-black-95: rgba($color-black, 0.95);
-$color-black-90: rgba($color-black, 0.9);
-$color-black-85: rgba($color-black, 0.85);
-$color-black-75: rgba($color-black, 0.75);
-$color-black-60: rgba($color-black, 0.6);
-$color-black-50: rgba($color-black, 0.5);
-$color-black-30: rgba($color-black, 0.3);
-$color-black-10: rgba($color-black, 0.1);
-$color-black-5: rgba($color-black, 0.05);
-$color-black-3: rgba($color-black, 0.03);
+$color-black-95: rgba($color-black, .95);
+$color-black-90: rgba($color-black, .90);
+$color-black-85: rgba($color-black, .85);
+$color-black-75: rgba($color-black, .75);
+$color-black-60: rgba($color-black, .60);
+$color-black-50: rgba($color-black, .50);
+$color-black-30: rgba($color-black, .30);
+$color-black-10: rgba($color-black, .10);
+$color-black-5: rgba($color-black, .05);
+$color-black-3: rgba($color-black, .03);
 // whites
 $color-white-100: rgba($color-white, 100);
-$color-white-75: rgba($color-white, 0.75);
-$color-white-50: rgba($color-white, 0.5);
-$color-white-30: rgba($color-white, 0.3);
-$color-white-10: rgba($color-white, 0.1);
-$color-white-5: rgba($color-white, 0.05);
+$color-white-75: rgba($color-white, .75);
+$color-white-50: rgba($color-white, .50);
+$color-white-30: rgba($color-white, .30);
+$color-white-10: rgba($color-white, .10);
+$color-white-5: rgba($color-white, .05);
 // typography
-$font-main-bold: "Roboto Bold", sans-serif;
-$font-main-regular: "Roboto Regular", sans-serif;
-$font-main-medium: "Roboto Medium", sans-serif;
+$font-main-bold: 'Roboto Bold', sans-serif;
+$font-main-regular: 'Roboto Regular', sans-serif;
+$font-main-medium: 'Roboto Medium', sans-serif;
 // typography styles
 @mixin text-h1() {
-	font-family: $font-main-bold;
-	font-size: 48px;
-	line-height: 56px;
-	letter-spacing: 0;
+    font-family: $font-main-bold;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0;
 }
 
 @mixin text-h2() {
-	font-family: $font-main-bold;
-	font-size: 32px;
-	line-height: 40px;
-	letter-spacing: 0;
+    font-family: $font-main-bold;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0;
 }
 
 @mixin text-h3() {
-	font-family: $font-main-bold;
-	font-size: 24px;
-	line-height: 28px;
-	letter-spacing: 0;
+    font-family: $font-main-bold;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0;
 }
 
 @mixin text-h4() {
-	font-family: $font-main-medium;
-	font-size: 14px;
-	line-height: 16px;
+    font-family: $font-main-medium;
+    font-size: 14px;
+    line-height: 16px;
 	letter-spacing: 1px;
 }
 
 @mixin text-h4-bold() {
-	font-family: $font-main-bold;
-	font-size: 18px;
+    font-family: $font-main-bold;
+    font-size: 18px;
 	line-height: 28px;
 	letter-spacing: 0px;
 }
 
 @mixin text-p() {
-	font-family: $font-main-regular;
-	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0;
+    font-family: $font-main-regular;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
 }
 
 @mixin text-p-bold() {
-	font-family: $font-main-bold;
-	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0;
+    font-family: $font-main-bold;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
 }
 
 @mixin text-small() {
-	font-family: $font-main-regular;
-	font-size: 12px;
-	line-height: 16px;
-	letter-spacing: 0;
+    font-family: $font-main-regular;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
 }
 
 @mixin text-small-bold() {
-	font-family: $font-main-bold;
-	font-size: 12px;
-	line-height: 16px;
-	letter-spacing: 0;
+    font-family: $font-main-bold;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
 }
