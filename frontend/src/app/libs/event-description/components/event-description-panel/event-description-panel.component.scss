@@ -40,12 +40,6 @@ $appear-bottom-panel: $main-grid-unit * 25;
 
 	&__take-part-button {
 		@include text-h4();
-		button {
-			padding: 12px $main-grid-unit * 2 !important;
-		}
-		button:enabled {
-			background-color: $color-coral;
-		}
 	}
 
 	&__time-events {
@@ -55,6 +49,7 @@ $appear-bottom-panel: $main-grid-unit * 25;
 	&__calendar,
 	&__participants-img {
 		vertical-align: middle;
+		margin-right: $main-grid-unit;
 	}
 
 	&__time,
