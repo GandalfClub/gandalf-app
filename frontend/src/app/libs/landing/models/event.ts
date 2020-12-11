@@ -10,6 +10,7 @@ export interface Event {
 	startTime: Date;
 	endDate: Date;
 	endTime: Date;
+	color?: string;
 	users: User[];
 	size: EventCardSize;
 }

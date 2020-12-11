@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import { ButtonColor } from './models/button-color.enum';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -14,6 +15,9 @@ export class ButtonComponent {
 
 	@Input()
 	public type: ButtonType = ButtonType.Basic;
+
+	@Input()
+	public color: ButtonColor;
 
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;

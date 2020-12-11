@@ -10,6 +10,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 	styleUrls: ['./event-description-panel.component.scss'],
 })
 export class EventDescriptionPanelComponent {
+
 	@Input() public event: Event;
 
 	@Input() public user: EntityWrapper<User>;

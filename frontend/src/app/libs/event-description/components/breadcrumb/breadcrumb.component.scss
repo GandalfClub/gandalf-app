@@ -1,0 +1,25 @@
+@import "variables";
+
+.breadcrumb {
+	background-color: $color-white-100;
+	height: 48px;
+	text-align: left;
+	outline: none;
+
+	&__link {
+		@include text-p();
+		line-height: $main-grid-unit * 6;
+		vertical-align: middle;
+	}
+	&__link:first-child {
+		color: $color-primary;
+		cursor: pointer;
+		margin-left: $layout-outer-margin;
+	}
+	&__link:last-child {
+		color: $color-black-100;
+	}
+	&__img {
+		vertical-align: middle;
+	}
+}

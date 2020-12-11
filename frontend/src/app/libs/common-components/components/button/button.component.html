@@ -2,7 +2,7 @@
 	<button
 			*ngSwitchCase="basicType"
 			mat-button
-			class="button button--basic"
+			class="button button--basic button--color-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
@@ -12,7 +12,7 @@
 	<button
 			*ngSwitchCase="outlinedType"
 			mat-stroked-button
-			class="button button--outlined"
+			class="button button--outlined button--color-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
@@ -22,7 +22,7 @@
 	<button
 			*ngSwitchCase="flatType"
 			mat-flat-button
-			class="button button--flat"
+			class="button button--flat button--color-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
