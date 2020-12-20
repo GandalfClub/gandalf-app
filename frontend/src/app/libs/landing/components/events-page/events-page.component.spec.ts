@@ -4,6 +4,7 @@ import { LandingPageComponent } from './events-page.component';
 import { EventsFacadeService } from '../../store/events/events.facade';
 import { of } from 'rxjs';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
+import { Router } from '@angular/router';
 
 describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;
@@ -35,12 +36,22 @@ describe('EventsPageComponent', () => {
 		),
 	};
 
+	const mockRouter: any = {
+		router$: of(
+			{
+				id: 'router'
+			}
+		),
+	};
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [LandingPageComponent],
 			providers: [
 				{ provide: EventsFacadeService, useValue: mockEventsFacadeService },
-				{ provide: AuthFacadeService, useValue: mockAuthFacadeService}],
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService},
+				{ provide: Router, useValue: mockRouter}
+			],
 		}).compileComponents();
 		fixture = TestBed.createComponent(LandingPageComponent);
 		component = fixture.componentInstance;

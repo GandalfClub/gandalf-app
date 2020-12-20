@@ -10,7 +10,6 @@ import { Event } from '../../models/event';
 import { EventsFacadeService } from '../../store/events/events.facade';
 import { ButtonType } from 'src/app/libs/common-components/components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +32,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 	constructor(
 		private eventsFacadeService: EventsFacadeService,
 		private authFacadeService: AuthFacadeService,
-		public translateService: TranslateService,
 		public router: Router
 	) { }
 
