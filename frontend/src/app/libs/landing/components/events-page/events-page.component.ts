@@ -48,9 +48,11 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 				this.user = user;
 			});
 	}
+
 	public goToSignUp(): void {
-		this.router.navigateByUrl('/signup')
+		this.router.navigateByUrl('/signup');
 	}
+
 	public ngOnDestroy(): void {
 		this.destroy$.next();
 		this.destroy$.complete();
