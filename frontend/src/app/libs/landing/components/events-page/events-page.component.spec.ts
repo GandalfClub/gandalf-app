@@ -5,6 +5,7 @@ import { EventsFacadeService } from '../../store/events/events.facade';
 import { of } from 'rxjs';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;
@@ -14,9 +15,9 @@ describe('EventsPageComponent', () => {
 			{
 				status: 'Success',
 				value:
-					{
-						title: 'test'
-					},
+				{
+					title: 'test'
+				},
 				error: null
 			}
 		),
@@ -49,9 +50,12 @@ describe('EventsPageComponent', () => {
 			declarations: [LandingPageComponent],
 			providers: [
 				{ provide: EventsFacadeService, useValue: mockEventsFacadeService },
-				{ provide: AuthFacadeService, useValue: mockAuthFacadeService},
-				{ provide: Router, useValue: mockRouter}
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
+				{ provide: Router, useValue: mockRouter }
 			],
+			imports: [
+				TranslateModule.forRoot(),
+			]
 		}).compileComponents();
 		fixture = TestBed.createComponent(LandingPageComponent);
 		component = fixture.componentInstance;
