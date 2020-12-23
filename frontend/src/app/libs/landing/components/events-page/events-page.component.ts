@@ -8,6 +8,9 @@ import { User } from 'src/app/libs/auth/models/user';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { Event } from '../../models/event';
 import { EventsFacadeService } from '../../store/events/events.facade';
+import { ButtonType } from 'src/app/libs/common-components/components/button/models/button-type.enum';
+import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-landing-page',
@@ -15,7 +18,8 @@ import { EventsFacadeService } from '../../store/events/events.facade';
 	styleUrls: ['./events-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
-
+	public flatButtonType: ButtonType = ButtonType.Flat;
+	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 	public events: EntityWrapper<Event[]>;
 
 	public user: EntityWrapper<User>;
@@ -27,21 +31,26 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private eventsFacadeService: EventsFacadeService,
-		private authFacadeService: AuthFacadeService
-		) {}
+		private authFacadeService: AuthFacadeService,
+		public router: Router
+	) { }
 
 	public ngOnInit(): void {
 		this.eventsFacadeService.getEvents();
 
 		this.eventsFacadeService.events$.pipe(takeUntil(this.destroy$))
-		.subscribe((events: EntityWrapper<Event[]>) => {
-			this.events = events;
-		});
+			.subscribe((events: EntityWrapper<Event[]>) => {
+				this.events = events;
+			});
 
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$))
-		.subscribe((user: EntityWrapper<User>) => {
-			this.user = user;
-		});
+			.subscribe((user: EntityWrapper<User>) => {
+				this.user = user;
+			});
+	}
+
+	public goToSignUp(): void {
+		this.router.navigateByUrl('/signup');
 	}
 
 	public ngOnDestroy(): void {
