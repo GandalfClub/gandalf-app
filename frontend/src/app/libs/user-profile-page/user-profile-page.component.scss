@@ -1,0 +1,9 @@
+@import "variables";
+
+.app-user-config {
+	&__breadcrumb {
+		position: sticky;
+		top: $layout-column-width;
+		z-index: 2;
+	}
+}

@@ -7,6 +7,7 @@ import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
 
 @Component({
 	selector: 'app-user-config',
@@ -18,7 +19,8 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public user: User;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private authFacadeService: AuthFacadeService, private router: Router, private formBuilder: FormBuilder) {
+	constructor(private authFacadeService: AuthFacadeService, private router: Router, private formBuilder: FormBuilder, 
+		public breadcrumbFacadeService: BreadcrumbFacadeService) {
 		this.profileForm = formBuilder.group({
 			email: [''],
 			password: [''],
@@ -29,6 +31,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit(): void {
+		this.breadcrumbFacadeService.loadBreadcrumb('Account Settings');
 		this.authFacadeService.loadUser();
 		this.authFacadeService.user$
 			.pipe(
