@@ -13,7 +13,7 @@ export class BreadcrumbComponent implements OnInit {
 	public lastValueBreadcumb: string;
 	@Input() public event: Event;
 
-	constructor( public breadcrumbFacadeService: BreadcrumbFacadeService) {
+	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
 		this.breadcrumbFacadeService.label$.subscribe((item: string) => this.lastValueBreadcumb = item);
 	}
 

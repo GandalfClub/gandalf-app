@@ -6,6 +6,8 @@ import { of } from 'rxjs';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbModule } from 'src/app/libs/breadcrumb/breadcrumb.module';
 
 describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;
@@ -37,6 +39,8 @@ describe('EventsPageComponent', () => {
 		),
 	};
 
+	const breadcrumbFacadeService: any = { };
+
 	const mockRouter: any = {
 		router$: of(
 			{
@@ -49,12 +53,14 @@ describe('EventsPageComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [LandingPageComponent],
 			providers: [
+				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
 				{ provide: EventsFacadeService, useValue: mockEventsFacadeService },
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{ provide: Router, useValue: mockRouter }
 			],
 			imports: [
 				TranslateModule.forRoot(),
+				BreadcrumbModule
 			]
 		}).compileComponents();
 		fixture = TestBed.createComponent(LandingPageComponent);

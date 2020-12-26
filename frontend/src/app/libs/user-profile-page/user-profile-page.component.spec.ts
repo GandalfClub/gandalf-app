@@ -9,6 +9,7 @@ import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -40,6 +41,11 @@ describe('UserProfileComponent', () => {
 	let destroy$: Subject<boolean>;
 	let userForm: User;
 	let fixture: ComponentFixture<UserProfilePageComponent>;
+	const breadcrumbFacadeService: any = {
+		label$: of('hello test'),
+		loadBreadcrumb: () => { }
+	};
+
 	const mockUserFacadeService: Partial<AuthFacadeService> = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
@@ -52,7 +58,11 @@ describe('UserProfileComponent', () => {
 		TestBed.configureTestingModule({
 			declarations: [UserProfilePageComponent],
 			imports: [ReactiveFormsModule, RouterTestingModule],
-			providers: [{ provide: AuthFacadeService, useValue: mockUserFacadeService }, { provide: FormBuilder }],
+			providers: [
+				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
+				{ provide: AuthFacadeService, useValue: mockUserFacadeService },
+				{ provide: FormBuilder }
+			],
 		}).compileComponents();
 	}));
 
