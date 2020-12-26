@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { BreadCrumb } from './model/breadcrumb.model';
 import { BreadcrumbFacadeService } from './store/breadcrumb.facade';
 
-
 @Component({
 	selector: 'app-breadcrumb',
 	templateUrl: './breadcrumb.component.html',
@@ -11,17 +10,17 @@ import { BreadcrumbFacadeService } from './store/breadcrumb.facade';
 })
 export class BreadcrumbComponent implements OnInit {
 	public breadcrumbs: BreadCrumb[] = [];
-	public lastValueBreadcumbs;
+	public lastValueBreadcumb: string;
 	@Input() public event: Event;
 
-	constructor(private activatedRoute: ActivatedRoute, public breadcrumbFacadeService: BreadcrumbFacadeService ) {
-	this.breadcrumbFacadeService.label$.subscribe(item => this.lastValueBreadcumbs = item)
-	 }
+	constructor( public breadcrumbFacadeService: BreadcrumbFacadeService) {
+		this.breadcrumbFacadeService.label$.subscribe((item: string) => this.lastValueBreadcumb = item);
+	}
 
 	public ngOnInit(): void {
-	 	this.breadcrumbs = [
+		this.breadcrumbs = [
 			{ url: '/landing', label: 'Events' },
-			{ label: this.lastValueBreadcumbs}
-		]; 
+			{ label: this.lastValueBreadcumb }
+		];
 	}
 }

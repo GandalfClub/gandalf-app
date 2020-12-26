@@ -5,14 +5,11 @@ import { Observable } from 'rxjs';
 import { selectLastValueBreadcrumb } from './breadcrumb.selectors';
 import { BreadcrumbAction } from './breadcrumb.action';
 
-
 @Injectable({
 	providedIn: 'root',
 })
 export class BreadcrumbFacadeService {
-	subscribe() {
-		throw new Error('Method not implemented.');
-	}
+
 	constructor(private store: Store<BreadcrumbState>) { }
 
 	public get label$(): Observable<string> {

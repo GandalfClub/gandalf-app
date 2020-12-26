@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter, skip, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
@@ -19,7 +18,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public user: User;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private authFacadeService: AuthFacadeService, private router: Router, private formBuilder: FormBuilder, 
+	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
 		public breadcrumbFacadeService: BreadcrumbFacadeService) {
 		this.profileForm = formBuilder.group({
 			email: [''],

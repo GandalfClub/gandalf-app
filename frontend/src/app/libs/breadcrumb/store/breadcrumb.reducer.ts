@@ -15,7 +15,7 @@ export function breadcrumbReducer(state: BreadcrumbState = initialState, action:
 			return {
 				...state,
 				label: action.payload
-				}
+				};
 		}
 
 		default:

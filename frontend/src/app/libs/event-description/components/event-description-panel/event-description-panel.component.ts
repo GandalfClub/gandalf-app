@@ -5,7 +5,6 @@ import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
 
-
 @Component({
 	selector: 'app-event-description-panel',
 	templateUrl: './event-description-panel.component.html',
@@ -19,7 +18,7 @@ export class EventDescriptionPanelComponent implements OnInit {
 
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
 	}
-	
+
 	public ngOnInit(): void {
 		this.breadcrumbFacadeService.loadBreadcrumb(this.event.title);
 	}
