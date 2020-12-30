@@ -9,11 +9,13 @@ import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 import { AuthStoreModule } from '../auth/store/store.module';
 import { BreadcrumbStoreModule } from '../breadcrumb/store/store.module';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
 	declarations: [UserProfilePageComponent],
-	imports: [CommonComponentsModule, CommonModule, AuthStoreModule, ReactiveFormsModule, BreadcrumbStoreModule, BreadcrumbModule ],
+	imports: [CommonComponentsModule, CommonModule, AuthStoreModule, ReactiveFormsModule, BreadcrumbStoreModule, BreadcrumbModule,
+		TranslateModule],
 	exports: [UserProfilePageRoutingModule],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })
-export class UserProfilePageModule {}
+export class UserProfilePageModule { }

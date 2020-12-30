@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,6 +16,9 @@ import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
 export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public profileForm: FormGroup;
 	public user: User;
+	public message: string = 'Only images are supported';
+	public url: string | ArrayBuffer = 'assets/images/avatars/avatar-participant.svg';
+	@ViewChild('fileUpload', { static: false }) fileUploadInput: ElementRef;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
@@ -41,6 +44,21 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 				this.user = user.value;
 				this.setValuesToForm();
 			});
+	}
+
+	public onClickInput(): void {
+		const fileUpload: HTMLElement = this.fileUploadInput.nativeElement;
+		fileUpload.click();
+	}
+
+	public onSelectFile(event: any): void {
+		if (event.target.files && event.target.files[0]) {
+			const reader: FileReader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]);
+			reader.onload = (e: any) => {
+				this.url = e.target.result;
+			};
+		}
 	}
 
 	public updateUserInfo(): void {

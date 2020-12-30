@@ -1,50 +1,92 @@
 <div class="app-user-config">
-<div class="app-user-config__breadcrumb">
-	<app-breadcrumb></app-breadcrumb>
-</div> 
-<form [formGroup]="profileForm">
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" />
-        </mat-form-field>
-    </div>
+	<div class="app-user-config__breadcrumb">
+		<app-breadcrumb></app-breadcrumb>
+	</div>
+	<div class="app-user-config__content">
+		<div class="app-user-config__sidebar">
+			<div class="app-user-config__title app-user-config__title--sidebar">
+				{{ "USER-PROFILE.ACCOUNT_SETTINGS" | translate}}</div>
+			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
+			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.PASSWORD" | translate}}</div>
+			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}</div>
+		</div>
+		<div class="app-user-config__settings">
+			<div class="app-user-config__title app-user-config__title--settings">
+				{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
+			<div class="app-user-config__avatar">
+				<img class="app-user-config__img"
+					 src={{url}}
+					 alt="avatar">
+				<span class="app-user-config__upload-photo"
+					  (click)="onClickInput()">
+					{{ "USER-PROFILE.UPLOAD_PHOTO" | translate}}
+				</span>
+				<input class="app-user-config__input-file"
+					   type="file"
+					   (change)="onSelectFile($event)"
+					   #fileUpload
+					   name="fileUpload"
+					   accept="image/*" />
+			</div>
+		</div>
+	</div>
 
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" />
-        </mat-form-field>
-    </div>
 
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Phone</mat-label>
-            <input matInput type="tel" formControlName="mobilePhone" />
-        </mat-form-field>
-    </div>
+	<form [formGroup]="profileForm">
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Email</mat-label>
+				<input matInput
+					   type="email"
+					   formControlName="email" />
+			</mat-form-field>
+		</div>
 
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>First name</mat-label>
-            <input matInput type="text" formControlName="firstName" />
-        </mat-form-field>
-    </div>
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Password</mat-label>
+				<input matInput
+					   type="password"
+					   formControlName="password" />
+			</mat-form-field>
+		</div>
 
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Last name</mat-label>
-            <input matInput type="text" formControlName="secondName" />
-        </mat-form-field>
-    </div>
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Phone</mat-label>
+				<input matInput
+					   type="tel"
+					   formControlName="mobilePhone" />
+			</mat-form-field>
+		</div>
 
-    <div>
-        <div>
-            <button mat-raised-button (click)="updateUserInfo()" [disabled]="!user">Save changes</button>
-        </div>
-        <div>
-            <button mat-raised-button>Cancel</button>
-        </div>
-    </div>
-</form>
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>First name</mat-label>
+				<input matInput
+					   type="text"
+					   formControlName="firstName" />
+			</mat-form-field>
+		</div>
+
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Last name</mat-label>
+				<input matInput
+					   type="text"
+					   formControlName="secondName" />
+			</mat-form-field>
+		</div>
+
+		<div>
+			<div>
+				<button mat-raised-button
+						(click)="updateUserInfo()"
+						[disabled]="!user">Save changes</button>
+			</div>
+			<div>
+				<button mat-raised-button>Cancel</button>
+			</div>
+		</div>
+	</form>
 </div>

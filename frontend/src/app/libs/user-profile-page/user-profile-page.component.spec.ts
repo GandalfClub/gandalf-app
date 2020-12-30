@@ -10,6 +10,7 @@ import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -57,7 +58,7 @@ describe('UserProfileComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [UserProfilePageComponent],
-			imports: [ReactiveFormsModule, RouterTestingModule],
+			imports: [ReactiveFormsModule, RouterTestingModule, TranslateModule.forRoot()],
 			providers: [
 				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
 				{ provide: AuthFacadeService, useValue: mockUserFacadeService },

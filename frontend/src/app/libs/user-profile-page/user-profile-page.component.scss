@@ -6,4 +6,71 @@
 		top: $layout-column-width;
 		z-index: 2;
 	}
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		margin-top: $layout-gutter;
+	}
+
+	&__sidebar {
+		background-color: #373737;
+		width: $layout-outer-margin * 4;
+		margin-right: $layout-gutter;
+	}
+
+	&__title {
+		@include text-h4-bold();
+		color: $color-white-100;
+		background-color: #424242;
+	}
+
+	&__title--sidebar {
+		padding: 14px 16px;
+	}
+
+	&__title--settings {
+		padding: 14px 32px;
+	}
+
+	&__sidebar-element {
+		@include text-p();
+		color: $color-white-75;
+		padding: 12px $main-grid-unit * 2;
+		margin: $main-grid-unit 0;
+	}
+
+	&__sidebar-element:active {
+		@include text-p-bold();
+		color: $color-white-100;
+		border-left: 2px solid $color-primary;
+	}
+
+	&__settings {
+		width: 496px;
+		background-color: #373737;
+	}
+
+	&__avatar {
+		margin: 32px;
+	}
+
+	&__img {
+		width: 80px;
+		height: 80px;
+		vertical-align: middle;
+		border-radius: 50%;
+		margin-right: $main-grid-unit * 2;
+	}
+
+	&__upload-photo {
+		@include text-small();
+		color: $color-primary;
+		cursor: pointer;
+	}
+
+	&__input-file {
+		display: none;
+	}
 }
