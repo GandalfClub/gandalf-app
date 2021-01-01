@@ -41,7 +41,7 @@
 		margin: $main-grid-unit 0;
 	}
 
-	&__sidebar-element:active {
+	&__sidebar-element:focus {
 		@include text-p-bold();
 		color: $color-white-100;
 		border-left: 2px solid $color-primary;
@@ -72,5 +72,11 @@
 
 	&__input-file {
 		display: none;
+	}
+	&__input {
+		display: block;
+	}
+	&__form {
+		text-align: center;
 	}
 }

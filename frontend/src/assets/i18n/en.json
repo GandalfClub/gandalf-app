@@ -25,6 +25,10 @@
 		"PERSONAL_INFO": "Personal Information",
 		"PASSWORD": "Password",
 		"SOCIAL_LINKS": "Social Links",
-		"UPLOAD_PHOTO": "Upload photo"
+		"UPLOAD_PHOTO": "Upload photo",
+		"FIRST_NAME": "First Name",
+		"LAST_NAME": "Last Name",
+		"EMAIL": "Email",
+		"PHONE": "Phone"
 	}
 }

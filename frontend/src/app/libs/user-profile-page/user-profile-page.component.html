@@ -28,10 +28,38 @@
 					   name="fileUpload"
 					   accept="image/*" />
 			</div>
+			<div class="app-user-config__form">
+				<app-input class="app-user-config__input"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'text'"
+						   [label]="'USER-PROFILE.FIRST_NAME' | translate">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'text'"
+						   [label]="'USER-PROFILE.LAST_NAME' | translate">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'email'"
+						   [label]="'USER-PROFILE.EMAIL' | translate"
+						   [secured]="false">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'tel'"
+						   [label]="'USER-PROFILE.PHONE' | translate"
+						   [secured]="false">
+				</app-input>
+			</div>
 		</div>
 	</div>
 
-
+	<!-- 
 	<form [formGroup]="profileForm">
 		<div>
 			<mat-form-field appearance="fill">
@@ -88,5 +116,5 @@
 				<button mat-raised-button>Cancel</button>
 			</div>
 		</div>
-	</form>
+	</form> -->
 </div>

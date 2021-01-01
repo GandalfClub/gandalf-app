@@ -7,6 +7,7 @@ import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
+import { ComponentTheme } from '../common-components/shared/component-theme.enum';
 
 @Component({
 	selector: 'app-user-config',
@@ -14,9 +15,9 @@ import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
 	styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit, OnDestroy {
+	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 	public profileForm: FormGroup;
 	public user: User;
-	public message: string = 'Only images are supported';
 	public url: string | ArrayBuffer = 'assets/images/avatars/avatar-participant.svg';
 	@ViewChild('fileUpload', { static: false }) fileUploadInput: ElementRef;
 	private destroy$: Subject<boolean> = new Subject<boolean>();

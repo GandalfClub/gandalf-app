@@ -47,6 +47,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	@Input() public label: string;
 
+	@Input() public size: string;
+
 	@Input() public placeholder: string;
 
 	@Input() public showRequiredSign: boolean;
