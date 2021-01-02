@@ -29,6 +29,11 @@
 		"FIRST_NAME": "First Name",
 		"LAST_NAME": "Last Name",
 		"EMAIL": "Email",
-		"PHONE": "Phone"
+		"PHONE": "Phone",
+		"SAVE_PROFILE": "SAVE PROFILE",
+		"OLD_PASSWORD": "Old password",
+		"NEW_PASSWORD": "New password",
+		"CHANGE": "CHANGE",
+		"UPDATE": "UPDATE"
 	}
 }

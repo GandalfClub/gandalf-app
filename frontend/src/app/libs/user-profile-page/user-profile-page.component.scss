@@ -27,11 +27,11 @@
 	}
 
 	&__title--sidebar {
-		padding: 14px 16px;
+		padding: 14px $main-grid-unit * 2;
 	}
 
 	&__title--settings {
-		padding: 14px 32px;
+		padding: 14px $main-grid-unit * 4;
 	}
 
 	&__sidebar-element {
@@ -39,9 +39,10 @@
 		color: $color-white-75;
 		padding: 12px $main-grid-unit * 2;
 		margin: $main-grid-unit 0;
+		cursor: pointer;
 	}
 
-	&__sidebar-element:focus {
+	&__sidebar-element--active {
 		@include text-p-bold();
 		color: $color-white-100;
 		border-left: 2px solid $color-primary;
@@ -49,6 +50,7 @@
 
 	&__settings {
 		width: 496px;
+		margin-bottom: $main-grid-unit * 8;
 		background-color: #373737;
 	}
 
@@ -57,8 +59,8 @@
 	}
 
 	&__img {
-		width: 80px;
-		height: 80px;
+		width: $layout-column-width;
+		height: $layout-column-width;
 		vertical-align: middle;
 		border-radius: 50%;
 		margin-right: $main-grid-unit * 2;
@@ -73,10 +75,26 @@
 	&__input-file {
 		display: none;
 	}
+	
 	&__input {
 		display: block;
+		margin-left: $main-grid-unit * 4;
 	}
+
 	&__form {
-		text-align: center;
+		margin-top: $main-grid-unit * 4;
+	}
+
+	&__btn {
+		display: inline-block;
+		margin: 10px 0 $main-grid-unit * 4 $main-grid-unit * 4;
+	}
+
+	&__box-link {
+		width: 496px;
+	}
+
+	&__icon {
+		margin: 0 16px -8px 32px;
 	}
 }

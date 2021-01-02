@@ -18,6 +18,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 	public profileForm: FormGroup;
 	public user: User;
+	public showSection: string = 'personal_information';
 	public url: string | ArrayBuffer = 'assets/images/avatars/avatar-participant.svg';
 	@ViewChild('fileUpload', { static: false }) fileUploadInput: ElementRef;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
@@ -65,6 +66,18 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public updateUserInfo(): void {
 		const updatedUser: User = this.getChangesFromForm();
 		this.authFacadeService.updateUser(updatedUser);
+	}
+
+	public goToPersonalInformation(): void {
+		this.showSection = 'personal_information';
+	}
+
+	public goToChangePassword(): void {
+		this.showSection = 'change_password';
+	}
+
+	public goToSocialLinks(): void {
+		this.showSection = 'social_media';
 	}
 
 	public ngOnDestroy(): void {

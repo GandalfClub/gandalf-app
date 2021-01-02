@@ -29,6 +29,12 @@
 		"FIRST_NAME": "Имя",
 		"LAST_NAME": "Фамилия",
 		"EMAIL": "Email",
-		"PHONE": "Телефон"
+		"PHONE": "Телефон",
+		"SAVE_PROFILE": "СОХРАНИТЬ ИЗМЕНЕНИЯ",
+		"OLD_PASSWORD": "Старый пароль",
+		"NEW_PASSWORD": "Новый пароль",
+		"CHANGE": "ИЗМЕНИТЬ",
+		"UPDATE": "ОБНОВИТЬ"
 	}
+	
 }

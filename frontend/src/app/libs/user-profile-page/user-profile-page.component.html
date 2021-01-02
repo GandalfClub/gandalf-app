@@ -6,11 +6,19 @@
 		<div class="app-user-config__sidebar">
 			<div class="app-user-config__title app-user-config__title--sidebar">
 				{{ "USER-PROFILE.ACCOUNT_SETTINGS" | translate}}</div>
-			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
-			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.PASSWORD" | translate}}</div>
-			<div class="app-user-config__sidebar-element">{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}</div>
+			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'personal_information'}"
+				 class="app-user-config__sidebar-element"
+				 (click)="goToPersonalInformation()">{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
+			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'change_password'}"
+				 class="app-user-config__sidebar-element"
+				 (click)="goToChangePassword()">{{ "USER-PROFILE.PASSWORD" | translate}}</div>
+			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'social_media'}"
+				 class="app-user-config__sidebar-element"
+				 (click)="goToSocialLinks()">{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}
+			</div>
 		</div>
-		<div class="app-user-config__settings">
+		<div class="app-user-config__settings"
+			 *ngIf="showSection === 'personal_information'">
 			<div class="app-user-config__title app-user-config__title--settings">
 				{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
 			<div class="app-user-config__avatar">
@@ -28,33 +36,142 @@
 					   name="fileUpload"
 					   accept="image/*" />
 			</div>
+			<app-input class="app-user-config__input"
+					   size="full"
+					   [theme]="darkTheme"
+					   [type]="'text'"
+					   [label]="'USER-PROFILE.FIRST_NAME' | translate">
+			</app-input>
+			<app-input class="app-user-config__input"
+					   size="full"
+					   [theme]="darkTheme"
+					   [type]="'text'"
+					   [label]="'USER-PROFILE.LAST_NAME' | translate">
+			</app-input>
+			<app-input class="app-user-config__input"
+					   size="full"
+					   [theme]="darkTheme"
+					   [type]="'email'"
+					   [label]="'USER-PROFILE.EMAIL' | translate"
+					   [secured]="false">
+			</app-input>
+			<app-input class="app-user-config__input"
+					   size="full"
+					   [theme]="darkTheme"
+					   [type]="'tel'"
+					   [label]="'USER-PROFILE.PHONE' | translate"
+					   [secured]="false">
+			</app-input>
+			<app-button class="app-user-config__btn"
+						type="flat"
+						color="basic">
+				{{ "USER-PROFILE.SAVE_PROFILE" | translate}}
+			</app-button>
+		</div>
+
+		<div class="app-user-config__settings"
+			 *ngIf="showSection === 'change_password'">
+			<div class="app-user-config__title app-user-config__title--settings">
+				{{ "USER-PROFILE.PASSWORD" | translate}}</div>
 			<div class="app-user-config__form">
 				<app-input class="app-user-config__input"
 						   size="full"
 						   [theme]="darkTheme"
-						   [type]="'text'"
-						   [label]="'USER-PROFILE.FIRST_NAME' | translate">
+						   [type]="'password'"
+						   [label]="'USER-PROFILE.OLD_PASSWORD' | translate">
 				</app-input>
 				<app-input class="app-user-config__input"
 						   size="full"
 						   [theme]="darkTheme"
-						   [type]="'text'"
-						   [label]="'USER-PROFILE.LAST_NAME' | translate">
+						   [type]="'password'"
+						   [label]="'USER-PROFILE.NEW_PASSWORD' | translate">
 				</app-input>
-				<app-input class="app-user-config__input"
-						   size="full"
-						   [theme]="darkTheme"
-						   [type]="'email'"
-						   [label]="'USER-PROFILE.EMAIL' | translate"
-						   [secured]="false">
-				</app-input>
-				<app-input class="app-user-config__input"
-						   size="full"
-						   [theme]="darkTheme"
-						   [type]="'tel'"
-						   [label]="'USER-PROFILE.PHONE' | translate"
-						   [secured]="false">
-				</app-input>
+
+				<app-button class="app-user-config__btn"
+							type="flat"
+							color="basic">
+					{{ "USER-PROFILE.CHANGE" | translate}}
+				</app-button>
+			</div>
+		</div>
+
+		<div class="app-user-config__settings"
+			 *ngIf="showSection === 'social_media'">
+			<div class="app-user-config__title app-user-config__title--settings">
+				{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}</div>
+			<div class="app-user-config__form">
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/skype.svg"
+						 alt="skype">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'Skype'">
+					</app-input>
+				</div>
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/telegram.svg"
+						 alt="telegram">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'Telegram'">
+					</app-input>
+				</div>
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/vk.svg"
+						 alt="vk">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'VK'">
+					</app-input>
+				</div>
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/facebook.svg"
+						 alt="facebook">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'Facebook'">
+					</app-input>
+				</div>
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/linkedin.svg"
+						 alt="linkedin">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'LinkedIn'">
+					</app-input>
+				</div>
+
+				<div class="app-user-config__box-link">
+					<img class="app-user-config__icon"
+						 src="assets/images/social-media/github.svg"
+						 alt="github">
+					<app-input class="app-user-config__input-links"
+							   size="medium"
+							   [theme]="darkTheme"
+							   [type]="'text'"
+							   [label]="'GitHub'">
+					</app-input>
+				</div>
+				<app-button class="app-user-config__btn"
+							type="flat"
+							color="basic">
+					{{ "USER-PROFILE.CHANGE" | translate}}
+				</app-button>
 			</div>
 		</div>
 	</div>
@@ -117,4 +234,3 @@
 			</div>
 		</div>
 	</form> -->
-</div>
