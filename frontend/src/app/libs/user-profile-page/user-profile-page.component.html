@@ -23,7 +23,7 @@
 				{{ "USER-PROFILE.PERSONAL_INFO" | translate }}</div>
 			<form action="/"
 				  [formGroup]="profileForm"
-				  (ngSubmit)="submitProfileForm()">
+				  (ngSubmit)="updateUserInfo()">
 				<div class="app-user-config__avatar">
 					<img class="app-user-config__img"
 						 src={{url}}
@@ -91,7 +91,7 @@
 				{{ "USER-PROFILE.PASSWORD" | translate }}</div>
 			<form action=""
 				  [formGroup]="passwordForm"
-				  (ngSubmit)="submitPasswordForm()">
+				  (ngSubmit)="updateUserInfo()">
 				<div class="app-user-config__form">
 					<app-input class="app-user-config__input"
 							   formControlName="oldPassword"
@@ -123,7 +123,7 @@
 				{{ "USER-PROFILE.SOCIAL_LINKS" | translate }}</div>
 			<form action=""
 				  [formGroup]="socialLinksForm"
-				  (ngSubmit)="submitSocialLinksForm()">
+				  (ngSubmit)="updateUserInfo()">
 				<div class="app-user-config__form">
 					<div class="app-user-config__box-link">
 						<img class="app-user-config__icon"

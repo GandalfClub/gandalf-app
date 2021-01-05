@@ -108,18 +108,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		this.showSection = 'social_media';
 	}
 
-	public submitProfileForm(): void {
-		this.profileForm.value;
-	}
-
-	public submitPasswordForm(): void {
-		this.passwordForm.value;
-	}
-
-	public submitSocialLinksForm(): void {
-		this.socialLinksForm.value;
-	}
-
 	public ngOnDestroy(): void {
 		this.destroy$.next(true);
 		this.destroy$.complete();
