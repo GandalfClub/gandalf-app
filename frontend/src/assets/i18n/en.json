@@ -34,6 +34,8 @@
 		"OLD_PASSWORD": "Old password",
 		"NEW_PASSWORD": "New password",
 		"CHANGE": "CHANGE",
-		"UPDATE": "UPDATE"
+		"UPDATE": "UPDATE",
+		"DELETE": "Delete",
+		"EDIT": "Edit Avatar"
 	}
 }

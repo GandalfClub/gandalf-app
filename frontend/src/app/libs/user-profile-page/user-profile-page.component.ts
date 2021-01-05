@@ -17,6 +17,8 @@ import { ComponentTheme } from '../common-components/shared/component-theme.enum
 export class UserProfilePageComponent implements OnInit, OnDestroy {
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
 	public profileForm: FormGroup;
+	public passwordForm: FormGroup;
+	public socialLinksForm: FormGroup;
 	public user: User;
 	public showSection: string = 'personal_information';
 	public url: string | ArrayBuffer = 'assets/images/avatars/avatar-participant.svg';
@@ -25,12 +27,26 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
 		public breadcrumbFacadeService: BreadcrumbFacadeService) {
-		this.profileForm = formBuilder.group({
+		this.profileForm = this.formBuilder.group({
 			email: [''],
 			password: [''],
 			mobilePhone: [''],
 			firstName: [''],
 			secondName: [''],
+		});
+
+		this.passwordForm = this.formBuilder.group({
+			oldPassword: [''],
+			newPassword: [''],
+		});
+
+		this.socialLinksForm = this.formBuilder.group({
+			skype: [''],
+			telegram: [''],
+			vk: [''],
+			facebook: [''],
+			linkedin: [''],
+			github: [''],
 		});
 	}
 
@@ -48,6 +64,14 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 			});
 	}
 
+	public get visibilityUploadSpan(): string {
+		return this.url === 'assets/images/avatars/avatar-participant.svg' ? 'inline' : 'none';
+	}
+
+	public get visibilitySpan(): string {
+		return this.url !== 'assets/images/avatars/avatar-participant.svg' ? 'inline' : 'none';
+	}
+
 	public onClickInput(): void {
 		const fileUpload: HTMLElement = this.fileUploadInput.nativeElement;
 		fileUpload.click();
@@ -61,6 +85,10 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 				this.url = e.target.result;
 			};
 		}
+	}
+	public onDeletePhoto(): void {
+		this.fileUploadInput.nativeElement.value = '';
+		this.url = 'assets/images/avatars/avatar-participant.svg';
 	}
 
 	public updateUserInfo(): void {
@@ -78,6 +106,18 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 
 	public goToSocialLinks(): void {
 		this.showSection = 'social_media';
+	}
+
+	public submitProfileForm(): void {
+		this.profileForm.value;
+	}
+
+	public submitPasswordForm(): void {
+		this.passwordForm.value;
+	}
+
+	public submitSocialLinksForm(): void {
+		this.socialLinksForm.value;
 	}
 
 	public ngOnDestroy(): void {

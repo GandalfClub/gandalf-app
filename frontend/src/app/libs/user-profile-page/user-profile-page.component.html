@@ -5,232 +5,205 @@
 	<div class="app-user-config__content">
 		<div class="app-user-config__sidebar">
 			<div class="app-user-config__title app-user-config__title--sidebar">
-				{{ "USER-PROFILE.ACCOUNT_SETTINGS" | translate}}</div>
+				{{ "USER-PROFILE.ACCOUNT_SETTINGS" | translate }}</div>
 			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'personal_information'}"
 				 class="app-user-config__sidebar-element"
-				 (click)="goToPersonalInformation()">{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
+				 (click)="goToPersonalInformation()">{{ "USER-PROFILE.PERSONAL_INFO" | translate }}</div>
 			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'change_password'}"
 				 class="app-user-config__sidebar-element"
-				 (click)="goToChangePassword()">{{ "USER-PROFILE.PASSWORD" | translate}}</div>
+				 (click)="goToChangePassword()">{{ "USER-PROFILE.PASSWORD" | translate }}</div>
 			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'social_media'}"
 				 class="app-user-config__sidebar-element"
-				 (click)="goToSocialLinks()">{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}
+				 (click)="goToSocialLinks()">{{ "USER-PROFILE.SOCIAL_LINKS" | translate }}
 			</div>
 		</div>
 		<div class="app-user-config__settings"
 			 *ngIf="showSection === 'personal_information'">
 			<div class="app-user-config__title app-user-config__title--settings">
-				{{ "USER-PROFILE.PERSONAL_INFO" | translate}}</div>
-			<div class="app-user-config__avatar">
-				<img class="app-user-config__img"
-					 src={{url}}
-					 alt="avatar">
-				<span class="app-user-config__upload-photo"
-					  (click)="onClickInput()">
-					{{ "USER-PROFILE.UPLOAD_PHOTO" | translate}}
-				</span>
-				<input class="app-user-config__input-file"
-					   type="file"
-					   (change)="onSelectFile($event)"
-					   #fileUpload
-					   name="fileUpload"
-					   accept="image/*" />
-			</div>
-			<app-input class="app-user-config__input"
-					   size="full"
-					   [theme]="darkTheme"
-					   [type]="'text'"
-					   [label]="'USER-PROFILE.FIRST_NAME' | translate">
-			</app-input>
-			<app-input class="app-user-config__input"
-					   size="full"
-					   [theme]="darkTheme"
-					   [type]="'text'"
-					   [label]="'USER-PROFILE.LAST_NAME' | translate">
-			</app-input>
-			<app-input class="app-user-config__input"
-					   size="full"
-					   [theme]="darkTheme"
-					   [type]="'email'"
-					   [label]="'USER-PROFILE.EMAIL' | translate"
-					   [secured]="false">
-			</app-input>
-			<app-input class="app-user-config__input"
-					   size="full"
-					   [theme]="darkTheme"
-					   [type]="'tel'"
-					   [label]="'USER-PROFILE.PHONE' | translate"
-					   [secured]="false">
-			</app-input>
-			<app-button class="app-user-config__btn"
-						type="flat"
-						color="basic">
-				{{ "USER-PROFILE.SAVE_PROFILE" | translate}}
-			</app-button>
+				{{ "USER-PROFILE.PERSONAL_INFO" | translate }}</div>
+			<form action="/"
+				  [formGroup]="profileForm"
+				  (ngSubmit)="submitProfileForm()">
+				<div class="app-user-config__avatar">
+					<img class="app-user-config__img"
+						 src={{url}}
+						 alt="avatar">
+					<span [style.display]="visibilityUploadSpan"
+						  class="app-user-config__upload-photo"
+						  (click)="onClickInput()">
+						{{ "USER-PROFILE.UPLOAD_PHOTO" | translate }}
+					</span>
+					<span [style.display]="visibilitySpan"
+						  class="app-user-config__upload-photo">
+						{{ "USER-PROFILE.EDIT" | translate}}
+					</span>
+					<span [style.display]="visibilitySpan"
+						  class="app-user-config__upload-photo"
+						  (click)="onDeletePhoto()">
+						{{ "USER-PROFILE.DELETE" | translate }}
+					</span>
+					<input class="app-user-config__input-file"
+						   type="file"
+						   (change)="onSelectFile($event)"
+						   #fileUpload
+						   name="fileUpload"
+						   accept="image/*" />
+				</div>
+				<app-input class="app-user-config__input"
+						   formControlName="firstName"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'text'"
+						   [label]="'USER-PROFILE.FIRST_NAME' | translate">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   formControlName="secondName"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'text'"
+						   [label]="'USER-PROFILE.LAST_NAME' | translate">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   formControlName="email"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'email'"
+						   [label]="'USER-PROFILE.EMAIL' | translate">
+				</app-input>
+				<app-input class="app-user-config__input"
+						   formControlName="mobilePhone"
+						   size="full"
+						   [theme]="darkTheme"
+						   [type]="'tel'"
+						   [label]="'USER-PROFILE.PHONE' | translate">
+				</app-input>
+				<app-button class="app-user-config__btn"
+							type="flat"
+							color="basic">
+					{{ "USER-PROFILE.SAVE_PROFILE" | translate }}
+				</app-button>
+			</form>
 		</div>
 
 		<div class="app-user-config__settings"
 			 *ngIf="showSection === 'change_password'">
 			<div class="app-user-config__title app-user-config__title--settings">
-				{{ "USER-PROFILE.PASSWORD" | translate}}</div>
-			<div class="app-user-config__form">
-				<app-input class="app-user-config__input"
-						   size="full"
-						   [theme]="darkTheme"
-						   [type]="'password'"
-						   [label]="'USER-PROFILE.OLD_PASSWORD' | translate">
-				</app-input>
-				<app-input class="app-user-config__input"
-						   size="full"
-						   [theme]="darkTheme"
-						   [type]="'password'"
-						   [label]="'USER-PROFILE.NEW_PASSWORD' | translate">
-				</app-input>
+				{{ "USER-PROFILE.PASSWORD" | translate }}</div>
+			<form action=""
+				  [formGroup]="passwordForm"
+				  (ngSubmit)="submitPasswordForm()">
+				<div class="app-user-config__form">
+					<app-input class="app-user-config__input"
+							   formControlName="oldPassword"
+							   size="full"
+							   [theme]="darkTheme"
+							   [type]="'password'"
+							   [label]="'USER-PROFILE.OLD_PASSWORD' | translate">
+					</app-input>
+					<app-input class="app-user-config__input"
+							   formControlName="newPassword"
+							   size="full"
+							   [theme]="darkTheme"
+							   [type]="'password'"
+							   [label]="'USER-PROFILE.NEW_PASSWORD' | translate">
+					</app-input>
 
-				<app-button class="app-user-config__btn"
-							type="flat"
-							color="basic">
-					{{ "USER-PROFILE.CHANGE" | translate}}
-				</app-button>
-			</div>
+					<app-button class="app-user-config__btn"
+								type="flat"
+								color="basic">
+						{{ "USER-PROFILE.CHANGE" | translate }}
+					</app-button>
+				</div>
+			</form>
 		</div>
 
 		<div class="app-user-config__settings"
 			 *ngIf="showSection === 'social_media'">
 			<div class="app-user-config__title app-user-config__title--settings">
-				{{ "USER-PROFILE.SOCIAL_LINKS" | translate}}</div>
-			<div class="app-user-config__form">
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/skype.svg"
-						 alt="skype">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'Skype'">
-					</app-input>
-				</div>
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/telegram.svg"
-						 alt="telegram">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'Telegram'">
-					</app-input>
-				</div>
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/vk.svg"
-						 alt="vk">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'VK'">
-					</app-input>
-				</div>
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/facebook.svg"
-						 alt="facebook">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'Facebook'">
-					</app-input>
-				</div>
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/linkedin.svg"
-						 alt="linkedin">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'LinkedIn'">
-					</app-input>
-				</div>
+				{{ "USER-PROFILE.SOCIAL_LINKS" | translate }}</div>
+			<form action=""
+				  [formGroup]="socialLinksForm"
+				  (ngSubmit)="submitSocialLinksForm()">
+				<div class="app-user-config__form">
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/skype.svg"
+							 alt="skype">
+						<app-input class="app-user-config__input-links"
+								   formControlName="skype"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'Skype'">
+						</app-input>
+					</div>
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/telegram.svg"
+							 alt="telegram">
+						<app-input class="app-user-config__input-links"
+								   formControlName="telegram"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'Telegram'">
+						</app-input>
+					</div>
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/vk.svg"
+							 alt="vk">
+						<app-input class="app-user-config__input-links"
+								   formControlName="vk"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'VK'">
+						</app-input>
+					</div>
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/facebook.svg"
+							 alt="facebook">
+						<app-input class="app-user-config__input-links"
+								   formControlName="facebook"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'Facebook'">
+						</app-input>
+					</div>
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/linkedin.svg"
+							 alt="linkedin">
+						<app-input class="app-user-config__input-links"
+								   formControlName="linkedin"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'LinkedIn'">
+						</app-input>
+					</div>
 
-				<div class="app-user-config__box-link">
-					<img class="app-user-config__icon"
-						 src="assets/images/social-media/github.svg"
-						 alt="github">
-					<app-input class="app-user-config__input-links"
-							   size="medium"
-							   [theme]="darkTheme"
-							   [type]="'text'"
-							   [label]="'GitHub'">
-					</app-input>
+					<div class="app-user-config__box-link">
+						<img class="app-user-config__icon"
+							 src="assets/images/social-media/github.svg"
+							 alt="github">
+						<app-input class="app-user-config__input-links"
+								   formControlName="github"
+								   size="medium"
+								   [theme]="darkTheme"
+								   [type]="'text'"
+								   [label]="'GitHub'">
+						</app-input>
+					</div>
+					<app-button class="app-user-config__btn"
+								type="flat"
+								color="basic">
+						{{ "USER-PROFILE.CHANGE" | translate }}
+					</app-button>
 				</div>
-				<app-button class="app-user-config__btn"
-							type="flat"
-							color="basic">
-					{{ "USER-PROFILE.CHANGE" | translate}}
-				</app-button>
-			</div>
+			</form>
 		</div>
 	</div>
-
-	<!-- 
-	<form [formGroup]="profileForm">
-		<div>
-			<mat-form-field appearance="fill">
-				<mat-label>Email</mat-label>
-				<input matInput
-					   type="email"
-					   formControlName="email" />
-			</mat-form-field>
-		</div>
-
-		<div>
-			<mat-form-field appearance="fill">
-				<mat-label>Password</mat-label>
-				<input matInput
-					   type="password"
-					   formControlName="password" />
-			</mat-form-field>
-		</div>
-
-		<div>
-			<mat-form-field appearance="fill">
-				<mat-label>Phone</mat-label>
-				<input matInput
-					   type="tel"
-					   formControlName="mobilePhone" />
-			</mat-form-field>
-		</div>
-
-		<div>
-			<mat-form-field appearance="fill">
-				<mat-label>First name</mat-label>
-				<input matInput
-					   type="text"
-					   formControlName="firstName" />
-			</mat-form-field>
-		</div>
-
-		<div>
-			<mat-form-field appearance="fill">
-				<mat-label>Last name</mat-label>
-				<input matInput
-					   type="text"
-					   formControlName="secondName" />
-			</mat-form-field>
-		</div>
-
-		<div>
-			<div>
-				<button mat-raised-button
-						(click)="updateUserInfo()"
-						[disabled]="!user">Save changes</button>
-			</div>
-			<div>
-				<button mat-raised-button>Cancel</button>
-			</div>
-		</div>
-	</form> -->

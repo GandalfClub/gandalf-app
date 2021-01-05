@@ -10,7 +10,8 @@ import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { InputComponent } from '../common-components/components/input/input.component';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -28,13 +29,13 @@ describe('UserProfileComponent', () => {
 	};
 
 	const updateUser: User = {
+		email: 'test@test.by',
+		password: 'test',
 		firstName: 'test',
 		secondName: 'test',
 		mobilePhone: 'test',
 		id: 'test',
 		isAdmin: false,
-		email: 'test@test.by',
-		password: 'test',
 		claims: [],
 	};
 
@@ -57,12 +58,12 @@ describe('UserProfileComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [UserProfilePageComponent],
+			declarations: [UserProfilePageComponent, InputComponent],
 			imports: [ReactiveFormsModule, RouterTestingModule, TranslateModule.forRoot()],
 			providers: [
 				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
 				{ provide: AuthFacadeService, useValue: mockUserFacadeService },
-				{ provide: FormBuilder }
+				FormBuilder,
 			],
 		}).compileComponents();
 	}));

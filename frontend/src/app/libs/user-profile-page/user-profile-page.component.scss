@@ -64,18 +64,20 @@
 		vertical-align: middle;
 		border-radius: 50%;
 		margin-right: $main-grid-unit * 2;
+		object-fit: cover;
 	}
 
 	&__upload-photo {
 		@include text-small();
 		color: $color-primary;
+		margin-right: $main-grid-unit * 2;
 		cursor: pointer;
 	}
 
 	&__input-file {
 		display: none;
 	}
-	
+
 	&__input {
 		display: block;
 		margin-left: $main-grid-unit * 4;
