@@ -6,19 +6,19 @@
 		<div class="app-user-config__sidebar">
 			<div class="app-user-config__title app-user-config__title--sidebar">
 				{{ "USER-PROFILE.ACCOUNT_SETTINGS" | translate }}</div>
-			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'personal_information'}"
+			<div [ngClass]="{'app-user-config__sidebar-element--active': personal_information}"
 				 class="app-user-config__sidebar-element"
 				 (click)="goToPersonalInformation()">{{ "USER-PROFILE.PERSONAL_INFO" | translate }}</div>
-			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'change_password'}"
+			<div [ngClass]="{'app-user-config__sidebar-element--active': change_password }"
 				 class="app-user-config__sidebar-element"
 				 (click)="goToChangePassword()">{{ "USER-PROFILE.PASSWORD" | translate }}</div>
-			<div [ngClass]="{'app-user-config__sidebar-element--active': showSection === 'social_media'}"
+			<div [ngClass]="{'app-user-config__sidebar-element--active': social_media }"
 				 class="app-user-config__sidebar-element"
 				 (click)="goToSocialLinks()">{{ "USER-PROFILE.SOCIAL_LINKS" | translate }}
 			</div>
 		</div>
 		<div class="app-user-config__settings"
-			 *ngIf="showSection === 'personal_information'">
+			 *ngIf="personal_information">
 			<div class="app-user-config__title app-user-config__title--settings">
 				{{ "USER-PROFILE.PERSONAL_INFO" | translate }}</div>
 			<form action="/"
@@ -86,7 +86,7 @@
 		</div>
 
 		<div class="app-user-config__settings"
-			 *ngIf="showSection === 'change_password'">
+			 *ngIf="change_password">
 			<div class="app-user-config__title app-user-config__title--settings">
 				{{ "USER-PROFILE.PASSWORD" | translate }}</div>
 			<form action=""
@@ -118,7 +118,7 @@
 		</div>
 
 		<div class="app-user-config__settings"
-			 *ngIf="showSection === 'social_media'">
+			 *ngIf="social_media">
 			<div class="app-user-config__title app-user-config__title--settings">
 				{{ "USER-PROFILE.SOCIAL_LINKS" | translate }}</div>
 			<form action=""

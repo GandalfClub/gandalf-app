@@ -72,6 +72,18 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 		return this.url !== 'assets/images/avatars/avatar-participant.svg' ? 'inline' : 'none';
 	}
 
+	public get personal_information(): boolean {
+		return this.showSection === 'personal_information'
+	}
+
+	public get change_password(): boolean {
+		return this.showSection === 'change_password';
+	}
+	
+	public get social_media(): boolean {
+		return this.showSection === 'social_media';
+	}
+
 	public onClickInput(): void {
 		const fileUpload: HTMLElement = this.fileUploadInput.nativeElement;
 		fileUpload.click();

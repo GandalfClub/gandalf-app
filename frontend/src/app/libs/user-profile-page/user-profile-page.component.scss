@@ -93,10 +93,10 @@
 	}
 
 	&__box-link {
-		width: 496px;
+		width: $main-grid-unit * 62;
 	}
 
 	&__icon {
-		margin: 0 16px -8px 32px;
+		margin: 0 $main-grid-unit * 2 -8px $main-grid-unit * 4;
 	}
 }
