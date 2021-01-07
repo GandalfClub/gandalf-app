@@ -73,13 +73,13 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
 	}
 
 	public get personal_information(): boolean {
-		return this.showSection === 'personal_information'
+		return this.showSection === 'personal_information';
 	}
 
 	public get change_password(): boolean {
 		return this.showSection === 'change_password';
 	}
-	
+
 	public get social_media(): boolean {
 		return this.showSection === 'social_media';
 	}
