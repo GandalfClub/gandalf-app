@@ -2,16 +2,22 @@
 	"BUTTON": {
 		"SIGN_IN": "Sing In",
 		"SIGN_UP": "Sign Up",
-		"CRATE_EVENT": "Create Event",
+		"CREATE_EVENT": "Create Event",
 		"EVENTS": "Events",
 		"ADMINISTRATION": "Administration",
 		"LOG_OFF": "LOG OFF",
 		"ACCOUNT": "ACCOUNT",
 		"LANGUAGE-RU": "Russian",
-		"LANGUAGE-EN": "English"
+		"LANGUAGE-EN": "English",
+		"CREATE": "CREATE",
+		"CANCEL": "CANCEL"
 	},
 	"LABEL": {
-		"USER_NAME": "User name"
+		"USER_NAME": "User name",
+		"EVENT_NAME": "Event name"
+	},
+	"PLACEHOLDER": {
+		"EVENT_NAME": "e.g. My event"
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "All rights reserved."

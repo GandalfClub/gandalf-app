@@ -1,61 +1,65 @@
 @import "variables";
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+	position: sticky;
+	top: 0;
+	z-index: 2;
 
-  display: flex;
-  align-items: center;
-  height: 80px;
-  padding: 0 72px;
+	display: flex;
+	align-items: center;
+	height: 80px;
+	padding: 0 72px;
 
-  background: $color-black;
+	background: $color-black;
 
-  &__common-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+	&__common-buttons {
+		display: flex;
+		align-items: center;
+		margin-left: auto;
+	}
 
-  &__button {
-    margin-left: 16px;
-  }
+	&__button {
+		margin-left: 16px;
 
-  &__admin-button {
-    margin-left: 40px;
-  }
+		&--create-event {
+			margin-right: $main-grid-unit * 4;
+		}
+	}
 
-  &__notifications {
-    margin: 0 24px;
-  }
+	&__admin-button {
+		margin-left: 40px;
+	}
 
-  &__avatar {
-    margin-left: 1px;
-  }
+	&__notifications {
+		margin: 0 24px;
+	}
 
-  &__logo-container {
-    position: relative;
+	&__avatar {
+		margin-left: 1px;
+	}
 
-    min-width: 184px;
-    height: 40px;
+	&__logo-container {
+		position: relative;
 
-    line-height: 40px;
+		min-width: 184px;
+		height: 40px;
 
-    background: #ffffff;
+		line-height: 40px;
 
-    user-select: none;
-  }
+		background: #ffffff;
 
-  &__logo-container:hover {
-    cursor: pointer;
-  }
+		user-select: none;
+	}
 
-  &__logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+	&__logo-container:hover {
+		cursor: pointer;
+	}
 
-    transform: translate(-50%, -50%);
-  }
+	&__logo {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+
+		transform: translate(-50%, -50%);
+	}
 }

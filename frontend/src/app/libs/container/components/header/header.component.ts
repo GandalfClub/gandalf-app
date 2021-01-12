@@ -4,11 +4,12 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+	selector: 'app-header',
+	templateUrl: './header.component.html',
+	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 
@@ -16,6 +17,8 @@ export class HeaderComponent {
 	public flatButtonType: ButtonType = ButtonType.Flat;
 
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
+
+	public lightTheme: ComponentTheme = ComponentTheme.Light;
 
 	public adminLinksActivation: Map<AdminLink, boolean> = new Map([
 		[AdminLink.Events, true],
@@ -30,7 +33,20 @@ export class HeaderComponent {
 		return AdminLink.Administration;
 	}
 
-	constructor(public translateService: TranslateService, public userService: UserService) {}
+	constructor(public translateService: TranslateService, public userService: UserService,
+		public dialog: MatDialog, public dialogRef: MatDialogRef<any>) { }
+
+	public createEvent(): void {
+	/* 	const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+			width: '250px',
+			data: { name: this.name, animal: this.animal }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+			this.animal = result;
+		}); */
+	}
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();

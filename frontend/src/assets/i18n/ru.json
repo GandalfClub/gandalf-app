@@ -2,7 +2,7 @@
 	"BUTTON": {
 		"SIGN_IN": "Войти",
 		"SIGN_UP": "Регистрация",
-		"CRATE_EVENT": "Создать событие",
+		"CREATE_EVENT": "Создать событие",
 		"EVENTS": "События",
 		"ADMINISTRATION": "Администрирование",
 		"LOG_OFF": "Выйти",
@@ -11,7 +11,11 @@
 		"LANGUAGE-EN": "Английский"
 	},
 	"LABEL": {
-		"USER_NAME": "Имя пользователя"
+		"USER_NAME": "Имя пользователя",
+		"EVENT_NAME": "Event name"
+	},
+	"PLACEHOLDER": {
+		"EVENT_NAME": "например, Моё событие"
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "Все права защищены."
