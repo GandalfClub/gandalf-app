@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { BreadCrumb } from './model/breadcrumb.model';
-import { Observable } from 'rxjs';
-import { Event } from '../../../landing/models/event';
+import { BreadcrumbFacadeService } from './store/breadcrumb.facade';
 
 @Component({
 	selector: 'app-breadcrumb',
@@ -12,14 +10,17 @@ import { Event } from '../../../landing/models/event';
 })
 export class BreadcrumbComponent implements OnInit {
 	public breadcrumbs: BreadCrumb[] = [];
+	public lastValueBreadcumb: string;
 	@Input() public event: Event;
 
-	constructor(private activatedRoute: ActivatedRoute) { }
+	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
+		this.breadcrumbFacadeService.label$.subscribe((item: string) => this.lastValueBreadcumb = item);
+	}
 
 	public ngOnInit(): void {
 		this.breadcrumbs = [
-			{ url: '/landing', label: this.activatedRoute.routeConfig.data.breadcrumb },
-			{ label: this.event.title }
+			{ url: '/landing', label: 'Events' },
+			{ label: this.lastValueBreadcumb }
 		];
 	}
 }

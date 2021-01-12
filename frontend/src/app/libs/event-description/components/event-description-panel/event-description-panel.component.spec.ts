@@ -7,6 +7,10 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
 import { SafeHtmlPipe } from 'src/app/libs/pipes/sanitizer.pipe';
+import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
+import { provideMockStore } from '@ngrx/store/testing';
+import { BreadcrumbComponent } from 'src/app/libs/breadcrumb/breadcrumb.component';
+import { of } from 'rxjs';
 
 const event: Event = {
 	id: '',
@@ -25,6 +29,11 @@ const user: EntityWrapper<User> = {
 	status: EntityStatus.Init,
 };
 
+const breadcrumbFacadeService: any = {
+	label$: of('hello test'),
+	loadBreadcrumb: () => { }
+};
+
 describe('EventComponent', () => {
 	let component: EventDescriptionPanelComponent;
 	let fixture: ComponentFixture<EventDescriptionPanelComponent>;
@@ -36,7 +45,11 @@ describe('EventComponent', () => {
 				EventDescriptionPanelComponent,
 				ButtonComponent,
 				SafeHtmlPipe,
+				BreadcrumbComponent
 			],
+			providers: [
+				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
+			]
 		}).compileComponents();
 		fixture = TestBed.createComponent(EventDescriptionPanelComponent);
 		component = fixture.componentInstance;
