@@ -19,5 +19,23 @@
 	"LANDING-PAGE": {
 		"TITLE": "Welcome to Learninja!",
 		"TEXT": "Join the platform and train your skills to become a true ninja in your expertise!"
+	},
+	"USER-PROFILE": {
+		"ACCOUNT_SETTINGS": "Account Settings",
+		"PERSONAL_INFO": "Personal Information",
+		"PASSWORD": "Password",
+		"SOCIAL_LINKS": "Social Links",
+		"UPLOAD_PHOTO": "Upload photo",
+		"FIRST_NAME": "First Name",
+		"LAST_NAME": "Last Name",
+		"EMAIL": "Email",
+		"PHONE": "Phone",
+		"SAVE_PROFILE": "SAVE PROFILE",
+		"OLD_PASSWORD": "Old password",
+		"NEW_PASSWORD": "New password",
+		"CHANGE": "CHANGE",
+		"UPDATE": "UPDATE",
+		"DELETE": "Delete",
+		"EDIT": "Edit Avatar"
 	}
 }
