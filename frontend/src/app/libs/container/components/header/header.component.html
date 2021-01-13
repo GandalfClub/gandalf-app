@@ -30,34 +30,17 @@
 					*ngIf="userService.isEventManagerUser"
 					[theme]="darkTheme"
 					[type]="flatButtonType"
-					(click)="templatepopoverdark.open()">
+					(click)="templatepopoverlight.open()">
 			{{"BUTTON.CREATE_EVENT" | translate}}
 		</app-button>
-		<!-- 		<div mat-dialog-content>
-			<p>Create Event</p>
-			<app-input type="text"
-					   [theme]="darkTheme"
-					   [label]="'LABEL.EVENT_NAME' | translate"
-					   [placeholder]="'PLACEHOLDER.EVENT_NAME' | translate">
-			</app-input>
-			<app-button class="header__button header__button--cancel"
-						[theme]="darkTheme"
-						[type]="flatButtonType">
-				{{"BUTTON.CANCEL" | translate}}
-			</app-button>
-			<app-button class="header__button header__button--create"
-						[theme]="darkTheme"
-						[type]="flatButtonType">
-				{{"BUTTON.CREATE" | translate}}
-			</app-button>
-		</div> -->
 		<app-popover [theme]="lightTheme"
-					 #templatepopoverdark>
+					 #templatepopoverlight>
 			<div class="popover-title">
 				{{"BUTTON.CREATE_EVENT" | translate}}
 			</div>
 			<div class="popover-content">
 				<app-input type="text"
+						   widthInput="416px"
 						   [theme]="lightTheme"
 						   [label]="'LABEL.EVENT_NAME' | translate"
 						   [placeholder]="'PLACEHOLDER.EVENT_NAME' | translate">
@@ -67,14 +50,13 @@
 				<app-button class="popover-actions__btn"
 							type="outlined"
 							[theme]="lightTheme"
-							(click)="templatepopoverdark.close()">
-							{{"BUTTON.CANCEL" | translate}}
+							(click)="templatepopoverlight.close()">
+					{{"BUTTON.CANCEL" | translate}}
 				</app-button>
 				<app-button class="popover-actions__btn"
 							type="flat"
-							[theme]="lightTheme"
-							(click)="templatepopoverdark.close()">
-							{{"BUTTON.CREATE" | translate}}
+							[theme]="lightTheme">
+					{{"BUTTON.CREATE" | translate}}
 				</app-button>
 			</div>
 		</app-popover>

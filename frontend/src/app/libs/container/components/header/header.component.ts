@@ -4,7 +4,6 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-header',
@@ -34,10 +33,6 @@ export class HeaderComponent {
 	}
 
 	constructor(public translateService: TranslateService, public userService: UserService) { }
-
-	public createEvent(): void {
-		console.log('something');
-	}
 
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
