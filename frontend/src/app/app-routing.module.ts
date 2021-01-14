@@ -53,6 +53,13 @@ export const routes: Routes = [
 				(m: typeof import('./libs/common-components-demo/common-components-demo.module')) => m.CommonComponentsDemoModule
 			),
 	},
+	{
+		path: 'eventcreation',
+		loadChildren: () =>
+			import('./libs/event-creation/event-creation.module').then(
+				(m: typeof import('./libs/event-creation/event-creation.module')) => m.EventCreationModule
+			),
+	},
 ];
 
 @NgModule({
