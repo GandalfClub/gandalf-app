@@ -8,18 +8,27 @@ import { ContainerStoreModule } from '../../store/store.module';
 import { LocalizationModule } from '../localization/localization.module';
 
 import { HeaderComponent } from './header.component';
+import { Router, Routes } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonComponentsDemoComponent } from 'src/app/libs/common-components-demo/common-components-demo.component';
 
 describe('HeaderComponent', () => {
 	let component: HeaderComponent;
 	let fixture: ComponentFixture<HeaderComponent>;
-
+	const mockRoutes: Routes = [
+		{
+			path: 'test',
+			component: CommonComponentsDemoComponent
+		}
+	];
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				EffectsModule.forRoot([]),
 				StoreModule.forRoot({}),
 				ContainerStoreModule,
-				LocalizationModule
+				LocalizationModule,
+				RouterTestingModule.withRoutes(mockRoutes)
 			],
 			declarations: [ HeaderComponent ],
 			providers: [ ContainerFacadeService ]

@@ -4,6 +4,7 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-header',
@@ -32,8 +33,11 @@ export class HeaderComponent {
 		return AdminLink.Administration;
 	}
 
-	constructor(public translateService: TranslateService, public userService: UserService) { }
+	constructor(public translateService: TranslateService, public userService: UserService, public router: Router) { }
 
+	public createEvent(): void {
+		this.router.navigateByUrl('/profile');
+	}
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
 		this.adminLinksActivation.set(AdminLink.Events, true);

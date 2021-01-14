@@ -4,12 +4,10 @@
 	position: sticky;
 	top: 0;
 	z-index: 2;
-
 	display: flex;
 	align-items: center;
 	height: 80px;
 	padding: 0 72px;
-
 	background: $color-black;
 
 	&__common-buttons {
@@ -40,14 +38,10 @@
 
 	&__logo-container {
 		position: relative;
-
 		min-width: 184px;
 		height: 40px;
-
 		line-height: 40px;
-
 		background: #ffffff;
-
 		user-select: none;
 	}
 
@@ -59,7 +53,14 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-
 		transform: translate(-50%, -50%);
+	}
+}
+
+.popover-actions {
+	text-align: right;
+
+	&__btn--margin {
+		margin-right: $main-grid-unit * 2;
 	}
 }

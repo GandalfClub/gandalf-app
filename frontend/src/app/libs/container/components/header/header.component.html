@@ -29,6 +29,7 @@
 		<app-button class="header__button header__button--create-event"
 					*ngIf="userService.isEventManagerUser"
 					[theme]="darkTheme"
+					color="mint"
 					[type]="flatButtonType"
 					(click)="templatepopoverlight.open()">
 			{{"BUTTON.CREATE_EVENT" | translate}}
@@ -47,7 +48,7 @@
 				</app-input>
 			</div>
 			<div class="popover-actions">
-				<app-button class="popover-actions__btn"
+				<app-button class="popover-actions__btn popover-actions__btn--margin"
 							type="outlined"
 							[theme]="lightTheme"
 							(click)="templatepopoverlight.close()">
@@ -55,7 +56,8 @@
 				</app-button>
 				<app-button class="popover-actions__btn"
 							type="flat"
-							[theme]="lightTheme">
+							[theme]="lightTheme"
+							(click)="createEvent()">
 					{{"BUTTON.CREATE" | translate}}
 				</app-button>
 			</div>
