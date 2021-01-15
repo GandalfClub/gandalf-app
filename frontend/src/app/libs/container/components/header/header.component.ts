@@ -36,7 +36,7 @@ export class HeaderComponent {
 	constructor(public translateService: TranslateService, public userService: UserService, public router: Router) { }
 
 	public createEvent(): void {
-		this.router.navigateByUrl('/profile');
+		this.router.navigateByUrl('/eventcreation');
 	}
 	public onEventsClick(): void {
 		this.resetAdminLinksActivation();
