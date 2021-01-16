@@ -4,6 +4,7 @@
 	background-color: $color-white-100;
 	height: 48px;
 	text-align: left;
+	min-width: $layout-column-width * 5;
 	outline: none;
 
 	&__link {
