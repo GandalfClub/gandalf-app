@@ -42,6 +42,8 @@ import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { SelectComponent } from './components/select/select.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
 	declarations: [
@@ -63,7 +65,9 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 		SearchInputComponent,
 		IconComponent,
 		IconButtonComponent,
-		DatepickerComponent
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -85,6 +89,7 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 		MatTableModule,
 		MatSortModule,
 		MatDatepickerModule,
+		MatSelectModule
 	],
 	exports: [
 		MatInputModule,
@@ -125,7 +130,9 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 		SearchInputComponent,
 		IconComponent,
 		IconButtonComponent,
-		DatepickerComponent
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent
 	],
 	providers: [
 		{

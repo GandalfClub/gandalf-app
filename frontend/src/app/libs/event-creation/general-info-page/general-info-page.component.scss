@@ -1,3 +1,23 @@
 @import "variables";
 
+.app-general-info {
+	background: $color-white;
+	margin: 24px 72px;
 
+	&__header {
+		display: flex;
+		align-items: center;
+		height: 56px;
+		margin-bottom: $main-grid-unit * 5;
+		background: $gradient-tertiary;
+	}
+	&__title {
+		@include text-h4-bold;
+		color: $color-white;
+		margin-left: 16px;
+	}
+
+	&__event-title {
+		margin: 0 40px 32px 40px;	
+	}
+}

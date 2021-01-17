@@ -1,0 +1,7 @@
+@import "variables";
+
+.app-datepicker {
+	&__field {
+		width: $main-grid-unit * 22 ;
+	}
+}

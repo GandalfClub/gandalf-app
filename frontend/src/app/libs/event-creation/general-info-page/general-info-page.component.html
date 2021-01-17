@@ -1,13 +1,27 @@
-<div class="app-general-info"  theme="lightTheme">
+<div class="app-general-info">
 	<div class="app-general-info__header">
-		<p class="app-general-info__title">General Inforamation</p>
-		<app-input widthInput="872px"
-				   theme="lightTheme"
-				   type="text"
-				   label="Event title"></app-input>
+		<span class="app-general-info__title">General Inforamation</span>
 	</div>
+	<app-input class="app-general-info__event-title"
+			   widthInput="872px"
+			   theme="lightTheme"
+			   type="text"
+			   label="Event title"></app-input>
 	<div>
 		<app-datepicker label="Start date"></app-datepicker>
+		<app-select label="Start date"></app-select>
 		<app-datepicker label="End date"></app-datepicker>
+		<app-select label="End date"></app-select>
+		<app-slide-toggle value="false"
+						  theme=lightTheme
+						  title="Continuous event">
+		</app-slide-toggle>
+		<span class="app-general-info__tool-tip"
+			 matTooltip="Info about the action">
+			<img src="assets/images/icons/icon-info.svg">
+	</span>
 	</div>
-</div>
+	<app-textarea label="Short summary (optional)"
+				  widthTextarea="872px"></app-textarea>
+	<div>
+	</div>

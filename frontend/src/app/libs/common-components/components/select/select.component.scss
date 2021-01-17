@@ -1,0 +1,7 @@
+@import "variables";
+
+.app-select {
+	&__field {
+		width: $main-grid-unit * 15 ;
+	}
+}
