@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentTheme } from '../common-components/shared/component-theme.enum';
 
 @Component({

@@ -7,10 +7,11 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 import { BreadcrumbStoreModule } from '../breadcrumb/store/store.module';
 import { EventCreationRoutingModule } from './event-creation-routing.module';
 import { BreadcrumbTabModule } from '../breadcrumb-tab/breadcrumb-tab.module';
+import { GeneralInfoPageModule } from './general-info-page/general-info-page.module';
 
 @NgModule({
 	declarations: [
-		EventCreationComponent
+		EventCreationComponent,
 	],
 	imports: [
 		RouterModule,
@@ -18,7 +19,8 @@ import { BreadcrumbTabModule } from '../breadcrumb-tab/breadcrumb-tab.module';
 		CommonModule,
 		CommonComponentsModule,
 		BreadcrumbStoreModule,
-		BreadcrumbTabModule
+		BreadcrumbTabModule,
+		GeneralInfoPageModule
 	],
 	exports: [EventCreationRoutingModule]
 })

@@ -40,6 +40,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
 import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
 
 @NgModule({
 	declarations: [
@@ -60,7 +62,8 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		TableComponent,
 		SearchInputComponent,
 		IconComponent,
-		IconButtonComponent
+		IconButtonComponent,
+		DatepickerComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -80,7 +83,8 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		MatTabsModule,
 		MatChipsModule,
 		MatTableModule,
-		MatSortModule
+		MatSortModule,
+		MatDatepickerModule,
 	],
 	exports: [
 		MatInputModule,
@@ -120,8 +124,9 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		MatDividerModule,
 		SearchInputComponent,
 		IconComponent,
-		IconButtonComponent
-		],
+		IconButtonComponent,
+		DatepickerComponent
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
@@ -130,7 +135,8 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		{
 			provide: CompilerFactory,
 			useClass: JitCompilerFactory,
-			deps: [COMPILER_OPTIONS] },
+			deps: [COMPILER_OPTIONS]
+		},
 	],
 })
 export class CommonComponentsModule { }

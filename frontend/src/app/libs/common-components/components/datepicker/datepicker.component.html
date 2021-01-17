@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+	<mat-label>{{label}}</mat-label>
+	<input matInput [matDatepicker]="picker">
+	<mat-datepicker-toggle matSuffix [for]="picker">
+		<mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+	</mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
