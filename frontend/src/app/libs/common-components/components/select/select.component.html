@@ -1,7 +1,16 @@
-<mat-form-field appearance="outline" class="app-select__field">
-	<mat-label>{{label}}</mat-label>
-	<mat-select disableRipple>
-		<mat-option *ngFor="let option of generateTime(); let isFirst = first;"
-					value="isFirst">{{option}}</mat-option>
-	</mat-select>
-</mat-form-field>
+<div class="app-select">
+	<mat-form-field appearance="outline"
+					class="app-select__field">
+		<mat-icon matSuffix
+				  [ngClass]="{ 'app-select__arrow--gray': !opened,
+				   'app-select__arrow--blue': opened }">
+			{{icon}}</mat-icon>
+		<mat-label>{{label}}</mat-label>
+		<mat-select class="my-class"
+					disableOptionCentering
+					(openedChange)="openedChange($event)">
+			<mat-option *ngFor="let option of generateTime();"
+						value="option">{{option}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>

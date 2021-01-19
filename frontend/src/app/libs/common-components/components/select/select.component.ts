@@ -7,7 +7,15 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent {
+	public icon: string = 'keyboard_arrow_down';
+	public opened: boolean = false;
 	@Input() public label: string;
+	@Input() public placeholder: string;
+
+	public openedChange(opened: boolean) {
+		this.opened = opened;
+		this.icon = opened ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+	};
 
 	public generateTime(): string[] {
 		const maxhour: number = 23;
