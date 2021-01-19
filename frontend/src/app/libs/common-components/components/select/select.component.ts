@@ -12,10 +12,10 @@ export class SelectComponent {
 	@Input() public label: string;
 	@Input() public placeholder: string;
 
-	public openedChange(opened: boolean) {
+	public openedChange(opened: boolean): void {
 		this.opened = opened;
 		this.icon = opened ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-	};
+	}
 
 	public generateTime(): string[] {
 		const maxhour: number = 23;
