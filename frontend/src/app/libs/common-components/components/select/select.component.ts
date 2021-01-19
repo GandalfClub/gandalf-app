@@ -10,7 +10,6 @@ export class SelectComponent {
 	public icon: string = 'keyboard_arrow_down';
 	public opened: boolean = false;
 	@Input() public label: string;
-	@Input() public placeholder: string;
 
 	public openedChange(opened: boolean): void {
 		this.opened = opened;
@@ -21,12 +20,12 @@ export class SelectComponent {
 		const maxhour: number = 23;
 		const zero: number = 0;
 		const one: number = 1;
-		const tenhour: number = 10;
+		const tenhours: number = 10;
 		const arrayTime: string[] = [];
 
 		for (let i: number = zero; i <= maxhour; i++) {
 			let hour: number | string = i;
-			if (i < tenhour) {
+			if (i < tenhours) {
 				hour = '0' + hour;
 			}
 			for (let j: number = zero; j <= one; j++) {

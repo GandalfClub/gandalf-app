@@ -6,7 +6,7 @@
 				   'app-select__arrow--blue': opened }">
 			{{icon}}</mat-icon>
 		<mat-label>{{label}}</mat-label>
-		<mat-select class="my-class"
+		<mat-select
 					disableOptionCentering
 					(openedChange)="openedChange($event)">
 			<mat-option *ngFor="let option of generateTime();"
