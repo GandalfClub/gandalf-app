@@ -44,6 +44,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { SelectComponent } from './components/select/select.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
 
 @NgModule({
 	declarations: [
@@ -67,7 +68,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		IconButtonComponent,
 		DatepickerComponent,
 		SelectComponent,
-		TextareaComponent
+		TextareaComponent,
+		TabNavigationComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -132,7 +134,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		IconButtonComponent,
 		DatepickerComponent,
 		SelectComponent,
-		TextareaComponent
+		TextareaComponent,
+		TabNavigationComponent
 	],
 	providers: [
 		{

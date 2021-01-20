@@ -1,11 +1,14 @@
 @import "variables";
 
 .breadcrumb {
+	display: flex;
+	justify-content: space-between;
 	background-color: $color-white-100;
 	height: 48px;
-	text-align: left;
+	vertical-align: middle;
 	min-width: $layout-column-width * 5;
 	outline: none;
+	border-bottom: 1px solid #E9E9E9;
 
 	&__link {
 		@include text-p();
@@ -22,5 +25,14 @@
 	}
 	&__img {
 		vertical-align: middle;
+	}
+	&__main{
+		display: inline-block;
+	}
+	&__nav{
+		display: inline-block;
+		vertical-align: middle;
+		line-height: $main-grid-unit * 6;
+		margin-right: $layout-outer-margin;
 	}
 }

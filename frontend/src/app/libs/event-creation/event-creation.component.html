@@ -1,9 +1,8 @@
 <div class="event-creation">
-	<!-- 	<app-breadcrumb>
-			<app-tab-navigation-button>General</app-tab-navigation-button>
-		</app-breadcrumb>
-		<div class="event-creation__content">
-			<app-general-page *ngIf="..."></app-general-page>
-		</div> -->
-	 <app-general-info></app-general-info>
+	<app-breadcrumb>
+		<app-tab-navigation (changeTab)="changeTab($event)"></app-tab-navigation>
+	</app-breadcrumb>
+	<ng-container *ngIf="generalTab">
+		<app-general-info></app-general-info>
+	</ng-container>
 </div>
