@@ -6,8 +6,8 @@ import { of } from 'rxjs';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
-import { BreadcrumbModule } from 'src/app/libs/breadcrumb/breadcrumb.module';
+import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbModule } from 'src/app/libs/common-components/components/breadcrumb/breadcrumb.module';
 
 describe('EventsPageComponent', () => {
 	let component: LandingPageComponent;

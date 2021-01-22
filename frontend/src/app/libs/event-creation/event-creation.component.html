@@ -5,4 +5,24 @@
 	<ng-container *ngIf="generalTab">
 		<app-general-info></app-general-info>
 	</ng-container>
+	<div class="event-creation__bottom-bar">
+		<div>
+			<app-icon-button type="outlined"
+							 startIcon="delete"
+							 iconSize="small">
+				DELETE EVENT
+			</app-icon-button>
+		</div>
+		<div>
+			<app-button class="event-creation__btn"
+						type="outlined"
+						color="primary">
+				SAVE AS DRAFT
+			</app-button>
+			<app-button type="flat"
+						color="primary">
+				PUBLISH
+			</app-button>
+		</div>
+	</div>
 </div>

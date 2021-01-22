@@ -1,23 +1,38 @@
 @import "variables";
 
 .app-general-info {
- 	background: $color-white;
-	margin: 24px 72px;
+	background: $color-white;
+	margin: $layout-gutter $layout-outer-margin 0 $layout-outer-margin;
 
 	&__header {
 		display: flex;
 		align-items: center;
-		height: 56px;
-		margin-bottom: $main-grid-unit * 5;
 		background: $gradient-tertiary;
+	}
+	&__form {
+		margin: $main-grid-unit * 5;
+		margin-bottom: 0;
 	}
 	&__title {
 		@include text-h4-bold;
 		color: $color-white;
-		margin-left: 16px;
+		margin: 14px $main-grid-unit * 2;
 	}
 
-	&__event-title {
-		margin: 0 40px 32px 40px;	
+	&__date {
+		margin-right: $main-grid-unit;
+	}
+	&__time,
+	&__arrow {
+		margin-right: $secondary-grid-unit * 5;
+	}
+
+	&__info {
+		margin-left: $secondary-grid-unit * 3;
+	}
+
+	&__ckeditor {
+		padding-bottom: $main-grid-unit * 5;
+		padding-top: $layout-gutter;
 	}
 }

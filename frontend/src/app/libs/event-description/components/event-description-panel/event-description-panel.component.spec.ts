@@ -7,9 +7,9 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
 import { SafeHtmlPipe } from 'src/app/libs/pipes/sanitizer.pipe';
-import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
 import { provideMockStore } from '@ngrx/store/testing';
-import { BreadcrumbComponent } from 'src/app/libs/breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from 'src/app/libs/common-components/components/breadcrumb/breadcrumb.component';
 import { of } from 'rxjs';
 
 const event: Event = {

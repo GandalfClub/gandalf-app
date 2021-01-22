@@ -45,6 +45,8 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 import { SelectComponent } from './components/select/select.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
 
 @NgModule({
 	declarations: [
@@ -69,7 +71,8 @@ import { TabNavigationComponent } from './components/tab-navigation/tab-navigati
 		DatepickerComponent,
 		SelectComponent,
 		TextareaComponent,
-		TabNavigationComponent
+		TabNavigationComponent,
+		CkeditorComponent,
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -91,7 +94,8 @@ import { TabNavigationComponent } from './components/tab-navigation/tab-navigati
 		MatTableModule,
 		MatSortModule,
 		MatDatepickerModule,
-		MatSelectModule
+		MatSelectModule,
+		CKEditorModule
 	],
 	exports: [
 		MatInputModule,
@@ -135,7 +139,8 @@ import { TabNavigationComponent } from './components/tab-navigation/tab-navigati
 		DatepickerComponent,
 		SelectComponent,
 		TextareaComponent,
-		TabNavigationComponent
+		TabNavigationComponent,
+		CkeditorComponent
 	],
 	providers: [
 		{

@@ -1,5 +1,19 @@
 @import "variables";
 
 .event-creation {
-	background: #E5E5E5;
-} 
+	background: #e5e5e5;
+
+	&__bottom-bar {
+		position: sticky;
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+		bottom: 0;
+		background: $color-white-100;
+		border-top: 1px solid $color-black-10;
+		padding:$secondary-grid-unit * 3 $layout-outer-margin;
+	}
+	&__btn {
+		margin-right:$main-grid-unit * 2;
+	}
+}

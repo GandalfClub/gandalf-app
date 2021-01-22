@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 
 @Component({
 	selector: 'app-event-creation',
@@ -8,6 +8,7 @@ import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
 })
 export class EventCreationComponent implements OnInit {
 	public currentTab: string = 'generalTab';
+	public eventCreated: boolean = false;
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
 	}
 

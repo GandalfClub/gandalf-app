@@ -7,8 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 import { AuthStoreModule } from '../auth/store/store.module';
-import { BreadcrumbStoreModule } from '../breadcrumb/store/store.module';
-import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
+import { BreadcrumbStoreModule } from '../common-components/components/breadcrumb/store/store.module';
+import { BreadcrumbModule } from '../common-components/components/breadcrumb/breadcrumb.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
