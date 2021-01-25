@@ -1,6 +1,6 @@
 <mat-form-field appearance="outline" class="app-datepicker__field">
 	<mat-label>{{label}}</mat-label>
-	<input matInput [matDatepicker]="picker">
+	<input matInput [matDatepicker]="picker" [formControl]="formControl">
 	<mat-datepicker-toggle matSuffix [for]="picker">
 		<mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
 	</mat-datepicker-toggle>

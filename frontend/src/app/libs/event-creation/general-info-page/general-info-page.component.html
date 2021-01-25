@@ -1,47 +1,55 @@
 <div class="app-general-info">
 	<div class="app-general-info__header">
-		<span class="app-general-info__title">General Inforamation</span>
+		<span class="app-general-info__title">General Information</span>
 	</div>
 	<div class="app-general-info__form">
-		<app-input widthInput="872px"
-				   theme="lightTheme"
-				   type="text"
-				   label="Event title"></app-input>
-		<div>
-			<app-datepicker class="app-general-info__date"
-							label="Start date"></app-datepicker>
-			<app-select class="app-general-info__time"
-						label="Start time"></app-select>
-			<img class="app-general-info__arrow"
-				 src="assets/images/icons/icon-arrow-forward.svg"
-				 alt="arrow-forward">
-			<app-datepicker class="app-general-info__date"
-							label="End date"></app-datepicker>
-			<app-select class="app-general-info__time"
-						label="End time"></app-select>
-			<app-slide-toggle value="false"
-							  theme=lightTheme
-							  title="Continuous event">
-			</app-slide-toggle>
-			<span matTooltip="Info about the action">
-				<img class="app-general-info__info"
-					 src="assets/images/icons/icon-info.svg">
-			</span>
-		</div>
-		<app-textarea label="Short summary (optional)"
-					  widthTextarea="872px"></app-textarea>
-		<div>
-			<app-slide-toggle value="false"
-							  theme=lightTheme
-							  title="Private event">
-			</app-slide-toggle>
-			<span matTooltip="Info about the action">
-				<img class="app-general-info__info"
-					 src="assets/images/icons/icon-info.svg">
-			</span>
-		</div>
-		<div class="app-general-info__ckeditor">
-			<app-ckeditor></app-ckeditor>
-		</div>
+		<form action=""
+			  [formGroup]="newEventInformationForm">
+			<app-input formControlName="title"
+					   [(ngModel)]="title"
+					   widthInput="872px"
+					   theme="lightTheme"
+					   type="text"
+					   label="Event title">
+			</app-input>
+			<div>
+				<app-datepicker formControlName="startDate"
+								class="app-general-info__date"
+								label="Start date"></app-datepicker>
+				<app-select class="app-general-info__time"
+							label="Start time"></app-select>
+				<img class="app-general-info__arrow"
+					 src="assets/images/icons/icon-arrow-forward.svg"
+					 alt="arrow-forward">
+				<app-datepicker formControlName="endDate"
+								class="app-general-info__date"
+								label="End date"></app-datepicker>
+				<app-select class="app-general-info__time"
+							label="End time"></app-select>
+				<app-slide-toggle value="false"
+								  theme=lightTheme
+								  title="Continuous event">
+				</app-slide-toggle>
+				<span matTooltip="Info about the action">
+					<img class="app-general-info__info"
+						 src="assets/images/icons/icon-info.svg">
+				</span>
+			</div>
+			<app-textarea label="Short summary (optional)"
+						  widthTextarea="872px"></app-textarea>
+			<div>
+				<app-slide-toggle value="false"
+								  theme=lightTheme
+								  title="Private event">
+				</app-slide-toggle>
+				<span matTooltip="Info about the action">
+					<img class="app-general-info__info"
+						 src="assets/images/icons/icon-info.svg">
+				</span>
+			</div>
+			<div class="app-general-info__ckeditor">
+				<app-ckeditor></app-ckeditor>
+			</div>
+		</form>
 	</div>
 </div>

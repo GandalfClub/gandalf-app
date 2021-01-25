@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AvatarComponent } from './components/header/components/avatar/avatar.component';
 import { NotificationsComponent } from './components/header/components/notifications/notifications.component';
 import { LocalizationModule } from './components/localization/localization.module';
+import { NewEventStoreModule } from '../event-creation/store/store.module';
 
 @NgModule({
 	declarations: [
@@ -23,10 +24,12 @@ import { LocalizationModule } from './components/localization/localization.modul
 		CommonModule,
 		ContainerStoreModule,
 		RouterModule,
-		LocalizationModule
+		LocalizationModule,
+		NewEventStoreModule
 	],
 	exports: [
 		ContainerComponent
-	]
+	],
+	
 })
 export class ContainerModule { }
