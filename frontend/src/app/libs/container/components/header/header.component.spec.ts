@@ -10,7 +10,6 @@ import { Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonComponentsDemoComponent } from 'src/app/libs/common-components-demo/common-components-demo.component';
 
-
 describe('HeaderComponent', () => {
 	let component: HeaderComponent;
 	let fixture: ComponentFixture<HeaderComponent>;

@@ -19,5 +19,4 @@ export class NewEventFacadeService {
 	public setTitleForNewEvent(title: string): void {
 		this.store.dispatch(new NewEventAction(title));
 	}
-
 }

@@ -29,7 +29,6 @@ import { NewEventStoreModule } from '../event-creation/store/store.module';
 	],
 	exports: [
 		ContainerComponent
-	],
-	
+	]
 })
 export class ContainerModule { }

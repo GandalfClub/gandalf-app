@@ -7,4 +7,4 @@ export enum NewEventActionTypes {
 export class NewEventAction implements Action {
 	public readonly type: NewEventActionTypes = NewEventActionTypes.SetTitleForEvent;
 	constructor(public payload: string) { }
-};
+}

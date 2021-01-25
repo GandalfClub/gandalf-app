@@ -56,17 +56,11 @@ export class DatepickerComponent implements ControlValueAccessor, OnInit, OnDest
 
 	public inlineSyncValidators: ValidatorFn[] = null;
 	public inlineAsyncValidators: AsyncValidatorFn[] = null;
-
 	public errorsArray: string[] = [];
-
 	private syncValidators: ValidatorFn[] | null = null;
 	private asyncValidators: AsyncValidatorFn[] | null = null;
-
 	private destroy$: Subject<any> = new Subject();
-
 	private errorOnInlineValidators: string = 'All inline validators are ignored';
-
-
 	public constructor(
 		@Optional() @Host() @SkipSelf() protected parentFormContainer: ControlContainer,
 		public elementRef: ElementRef,

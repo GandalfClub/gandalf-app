@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Output, EventEmitter, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ButtonType } from 'src/app/libs/common-components/components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { AdminLink } from '../../models/admin-link';
@@ -6,7 +6,6 @@ import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { NewEventFacadeService } from 'src/app/libs/event-creation/store/newEvent.facade';
-import { MatDialogRef } from '@angular/material/dialog';
 import { PopoverComponent } from 'src/app/libs/common-components/components/popover/popover.component';
 
 @Component({
@@ -15,7 +14,6 @@ import { PopoverComponent } from 'src/app/libs/common-components/components/popo
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	@Output() submitClicked = new EventEmitter<any>();
 	@ViewChild('templatepopoverlight')
 	public popoverTemplate: PopoverComponent;
 	public outlinedButtonType: ButtonType = ButtonType.Outlined;

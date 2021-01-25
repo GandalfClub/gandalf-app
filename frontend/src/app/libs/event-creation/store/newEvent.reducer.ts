@@ -9,7 +9,7 @@ export const initialState: NewEventState = {
 };
 
 export function newEventReducer(state: NewEventState = initialState, action: NewEventAction): NewEventState {
-	
+
 	switch (action.type) {
 
 		case NewEventActionTypes.SetTitleForEvent: {
