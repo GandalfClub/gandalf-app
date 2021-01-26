@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, DoCheck } from '@angular/core';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NewEventFacadeService } from '../store/newEvent.facade';
@@ -10,8 +10,9 @@ import { take, first } from 'rxjs/operators';
 	styleUrls: ['./general-info-page.component.scss'],
 })
 export class GeneralInfoPageComponent implements OnInit {
+	@Output() passForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
-	public newEventInformationForm: FormGroup;
+	public dataFromEventForm: FormGroup;
 	public title: string;
 
 	constructor(private formBuilder: FormBuilder, private titleForNewEvent: NewEventFacadeService) {
@@ -21,8 +22,7 @@ export class GeneralInfoPageComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-
-		this.newEventInformationForm = this.formBuilder.group({
+		this.dataFromEventForm = this.formBuilder.group({
 			title: '',
 			// shortSummary: '',
 			startDate: '',
@@ -33,6 +33,10 @@ export class GeneralInfoPageComponent implements OnInit {
 			// isPrivate: '',
 			// isContinuous: '',
 			// isDraft: '',
+		});
+
+		this.dataFromEventForm.valueChanges.subscribe(() => {
+			this.passForm.emit(this.dataFromEventForm);
 		});
 	}
 

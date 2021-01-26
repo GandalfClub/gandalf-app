@@ -3,7 +3,7 @@
 		<app-tab-navigation (changeTab)="changeTab($event)"></app-tab-navigation>
 	</app-breadcrumb>
 	<ng-container *ngIf="generalTab">
-		<app-general-info></app-general-info>
+		<app-general-info (passForm)="getFormFromGeneralComponent($event)"></app-general-info>
 	</ng-container>
 	<div class="event-creation__bottom-bar">
 		<div>
@@ -16,11 +16,13 @@
 		<div>
 			<app-button class="event-creation__btn"
 						type="outlined"
-						color="primary">
+						color="primary"
+						(click)="saveAsDraft()">
 				SAVE AS DRAFT
 			</app-button>
 			<app-button type="flat"
-						color="primary">
+						color="primary"
+						(click)="send()">
 				PUBLISH
 			</app-button>
 		</div>

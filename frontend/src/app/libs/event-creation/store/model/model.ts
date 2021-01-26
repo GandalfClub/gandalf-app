@@ -1,7 +1,7 @@
 export interface NewEvent {
 	title: string;
 	shortSummary: string;
-    startDate: Date;
+	startDate: Date;
 	endDate: Date;
 	startTime: Date;
 	endTime: Date;
