@@ -67,11 +67,6 @@ export class SelectComponent implements OnInit {
 		return arrayTime;
 	}
 
-	private setValue(value: any): void {
-		this.value = value;
-		this.onChange(value);
-	}
-
 	public onTouched: any = () => undefined;
 
 	public onChange: any = () => undefined;
@@ -102,5 +97,10 @@ export class SelectComponent implements OnInit {
 	public registerOnTouched(fn: any): void {
 		this.onTouched = fn;
 	}
-}
 
+	private setValue(value: any): void {
+		this.value = value;
+		this.onChange(value);
+	}
+
+}
