@@ -39,7 +39,8 @@
 						 src="assets/images/icons/icon-info.svg">
 				</span>
 			</div>
-			<app-textarea label="Short summary (optional)"
+			<app-textarea formControlName="shortSummary"
+						  label="Short summary (optional)"
 						  widthTextarea="872px"></app-textarea>
 			<div>
 				<app-slide-toggle formControlName="isPrivate"
@@ -54,7 +55,8 @@
 				</span>
 			</div>
 			<div class="app-general-info__ckeditor">
-				<app-ckeditor></app-ckeditor>
+				<app-ckeditor formControlName="description"
+				(getDataCkeditor)="getDataFromEditor($event)"></app-ckeditor>
 			</div>
 		</form>
 	</div>

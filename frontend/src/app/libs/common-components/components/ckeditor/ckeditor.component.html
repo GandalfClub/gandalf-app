@@ -1,1 +1,3 @@
-<ckeditor [config]="config"></ckeditor>
+<ckeditor [config]="config"
+		  (change)="getDataCkeditor($event)"
+		  [formControl]="formControl"></ckeditor>

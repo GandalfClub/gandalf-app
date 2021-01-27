@@ -25,12 +25,12 @@ export class GeneralInfoPageComponent implements OnInit {
 	public ngOnInit(): void {
 		this.dataFromEventForm = this.formBuilder.group({
 			title: '',
-			// shortSummary: '',
+			shortSummary: '',
 			startDate: '',
 			endDate: '',
 			startTime: '',
 			endTime: '',
-			// description: '',
+			description: '',
 			isPrivate: false,
 			isContinuous: false,
 		});
@@ -50,6 +50,10 @@ export class GeneralInfoPageComponent implements OnInit {
 		this.dataFromEventForm.patchValue({
 			isContinuous: state
 		  });
+	}
+
+	public getDataFromEditor(data: any): void {
+		console.log(data);
 	}
 
 }

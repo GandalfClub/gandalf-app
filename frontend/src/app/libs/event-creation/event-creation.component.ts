@@ -36,6 +36,7 @@ export class EventCreationComponent implements OnInit {
 		this.currentTab = tab;
 	}
 	public saveAsDraft(): void {
+		console.log(this.newEvent);
 		this.newEvent.isDraft = true;
 	}
 
