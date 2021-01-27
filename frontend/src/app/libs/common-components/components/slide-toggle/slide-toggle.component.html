@@ -1,8 +1,8 @@
-<mat-slide-toggle
-	[checked]="value"
-	(change)="toggle()"
-	color="primary"
-	[class.mat-slide-toggle-bar-dark]="isDarkTheme"
-	[disabled]="disabled">
-		{{title}}
+<mat-slide-toggle [checked]="value"
+				  (change)="toggle()"
+				  [formControl]="formControl"
+				  color="primary"
+				  [class.mat-slide-toggle-bar-dark]="isDarkTheme"
+				  [disabled]="disabled">
+	{{title}}
 </mat-slide-toggle>

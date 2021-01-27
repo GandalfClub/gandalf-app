@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, DoCheck } from '@angular/core';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NewEventFacadeService } from '../store/newEvent.facade';
-import { take, first } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-general-info',
@@ -14,6 +13,8 @@ export class GeneralInfoPageComponent implements OnInit {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
 	public dataFromEventForm: FormGroup;
 	public title: string;
+	public isPrivate: boolean;
+	public isContinuous: boolean;
 
 	constructor(private formBuilder: FormBuilder, private titleForNewEvent: NewEventFacadeService) {
 		this.titleForNewEvent.title$.subscribe((item: string) => {
@@ -27,17 +28,28 @@ export class GeneralInfoPageComponent implements OnInit {
 			// shortSummary: '',
 			startDate: '',
 			endDate: '',
-			// startTime: '',
-			// endTime: '',
+			startTime: '',
+			endTime: '',
 			// description: '',
-			// isPrivate: '',
-			// isContinuous: '',
-			// isDraft: '',
+			isPrivate: false,
+			isContinuous: false,
 		});
 
 		this.dataFromEventForm.valueChanges.subscribe(() => {
 			this.passForm.emit(this.dataFromEventForm);
 		});
+	}
+
+	public changePrivateState(state: boolean): void {
+		this.dataFromEventForm.patchValue({
+			isPrivate: state
+		  });
+	}
+
+	public changeisContinuous(state: boolean): void {
+		this.dataFromEventForm.patchValue({
+			isContinuous: state
+		  });
 	}
 
 }

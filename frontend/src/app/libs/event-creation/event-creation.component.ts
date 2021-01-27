@@ -7,11 +7,9 @@ import { NewEvent } from './store/model/model';
 	selector: 'app-event-creation',
 	templateUrl: './event-creation.component.html',
 	styleUrls: ['./event-creation.component.scss'],
-	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventCreationComponent implements OnInit {
 	public currentTab: string = 'generalTab';
-	// public eventCreated: boolean = false;
 	public newEvent: NewEvent;
 	@ViewChild('generalInfoPage')
 	public generalInfoPage: FormData;
@@ -39,12 +37,10 @@ export class EventCreationComponent implements OnInit {
 	}
 	public saveAsDraft(): void {
 		this.newEvent.isDraft = true;
-		console.log('newEvent', this.newEvent);
 	}
 
 	public send(): void {
 		this.newEvent.isDraft = false;
-		console.log('newEvent', this.newEvent);
 	}
 	public getFormFromGeneralComponent(data: FormGroup): void {
 		this.formFromGeneralComponent = data.value;

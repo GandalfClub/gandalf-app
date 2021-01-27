@@ -6,11 +6,11 @@
 				   'app-select__arrow--blue': opened }">
 			{{icon}}</mat-icon>
 		<mat-label>{{label}}</mat-label>
-		<mat-select
+		<mat-select [formControl]="formControl"
 					disableOptionCentering
 					(openedChange)="openedChange($event)">
 			<mat-option *ngFor="let option of generateTime();"
-						value="option">{{option}}</mat-option>
+						[value]="option">{{option}}</mat-option>
 		</mat-select>
 	</mat-form-field>
 </div>

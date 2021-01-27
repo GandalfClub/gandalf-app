@@ -16,7 +16,8 @@
 				<app-datepicker formControlName="startDate"
 								class="app-general-info__date"
 								label="Start date"></app-datepicker>
-				<app-select class="app-general-info__time"
+				<app-select formControlName="startTime"
+							class="app-general-info__time"
 							label="Start time"></app-select>
 				<img class="app-general-info__arrow"
 					 src="assets/images/icons/icon-arrow-forward.svg"
@@ -24,11 +25,14 @@
 				<app-datepicker formControlName="endDate"
 								class="app-general-info__date"
 								label="End date"></app-datepicker>
-				<app-select class="app-general-info__time"
+				<app-select formControlName="endTime"
+							class="app-general-info__time"
 							label="End time"></app-select>
-				<app-slide-toggle value="false"
+				<app-slide-toggle formControlName="isContinuous"
+								  [value]="false"
 								  theme=lightTheme
-								  title="Continuous event">
+								  title="Continuous event"
+								  (toggled)="changeisContinuous($event)">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
@@ -38,9 +42,11 @@
 			<app-textarea label="Short summary (optional)"
 						  widthTextarea="872px"></app-textarea>
 			<div>
-				<app-slide-toggle value="false"
+				<app-slide-toggle formControlName="isPrivate"
+								  [value]="false"
 								  theme=lightTheme
-								  title="Private event">
+								  title="Private event"
+								  (toggled)="changePrivateState($event)">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
