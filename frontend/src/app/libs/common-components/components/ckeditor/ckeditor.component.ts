@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ChangeDetectionStrategy, Output, EventEmitter, Optional, Host, SkipSelf, ElementRef } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy, Output, EventEmitter, Optional, Host, SkipSelf, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { CKEditor4 } from 'ckeditor4-angular';
 import { FormControl, NG_VALUE_ACCESSOR, ControlContainer, FormGroup } from '@angular/forms';
 import { ComponentTheme } from '../../shared/component-theme.enum';
@@ -16,7 +16,7 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CkeditorComponent {
+export class CkeditorComponent implements OnInit, AfterViewInit {
 
 	@Input() public value: boolean;
 
@@ -95,8 +95,8 @@ export class CkeditorComponent {
 
 	registerOnTouched(fn: any): void { this.onTouched = fn; }
 
-	public getDataCkeditor(event): any {
-		return event.editor.getData()
+	public getDataCkeditor(event: any): any {
+		return event.editor.getData();
 	}
 
 	private setValue(value: any): void {

@@ -61,7 +61,7 @@ export class TextareaComponent implements ControlValueAccessor, OnInit, AfterVie
 		}
 
 	}
-	
+
 	public ngAfterViewInit(): void {
 		setTimeout(() => {
 			if (Boolean(this.value)) {
@@ -84,4 +84,3 @@ export class TextareaComponent implements ControlValueAccessor, OnInit, AfterVie
 	}
 
 }
-
