@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, DoCheck } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { NewEventFacadeService } from '../store/newEvent.facade';
 
 @Component({
@@ -11,7 +11,7 @@ import { NewEventFacadeService } from '../store/newEvent.facade';
 export class GeneralInfoPageComponent implements OnInit {
 	@Output() passForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
-	public dataFromEventForm: FormGroup;
+	public eventFormGroup: FormGroup;
 	public title: string;
 	public isPrivate: boolean;
 	public isContinuous: boolean;
@@ -23,7 +23,7 @@ export class GeneralInfoPageComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this.dataFromEventForm = this.formBuilder.group({
+		this.eventFormGroup = this.formBuilder.group({
 			title: '',
 			shortSummary: '',
 			startDate: '',
@@ -36,8 +36,8 @@ export class GeneralInfoPageComponent implements OnInit {
 			isDraft: '',
 		});
 
-		this.dataFromEventForm.valueChanges.subscribe(() => {
-			this.passForm.emit(this.dataFromEventForm);
+		this.eventFormGroup.valueChanges.subscribe(() => {
+			this.passForm.emit(this.eventFormGroup);
 		});
 	}
 

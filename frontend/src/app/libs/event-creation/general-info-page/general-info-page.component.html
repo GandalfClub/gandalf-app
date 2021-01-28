@@ -1,37 +1,37 @@
 <div class="app-general-info">
 	<div class="app-general-info__header">
-		<span class="app-general-info__title">General Information</span>
+		<span class="app-general-info__title">{{ "EVENT-CREATION.TITLE_GENERAL" | translate }}</span>
 	</div>
 	<div class="app-general-info__form">
 		<form action=""
-			  [formGroup]="dataFromEventForm">
+			  [formGroup]="eventFormGroup">
 			<app-input formControlName="title"
 					   [(ngModel)]="title"
 					   widthInput="872px"
 					   theme="lightTheme"
 					   type="text"
-					   label="Event title">
+					   [label]="'LABEL.EVENT_TITLE' | translate">
 			</app-input>
 			<div>
 				<app-datepicker formControlName="startDate"
 								class="app-general-info__date"
-								label="Start date"></app-datepicker>
+								[label]="'LABEL.START_DATE' | translate"></app-datepicker>
 				<app-select formControlName="startTime"
 							class="app-general-info__time"
-							label="Start time"></app-select>
+							[label]="'LABEL.START_TIME' | translate"></app-select>
 				<img class="app-general-info__arrow"
 					 src="assets/images/icons/icon-arrow-forward.svg"
 					 alt="arrow-forward">
 				<app-datepicker formControlName="endDate"
 								class="app-general-info__date"
-								label="End date"></app-datepicker>
+								[label]="'LABEL.END_DATE' | translate"></app-datepicker>
 				<app-select formControlName="endTime"
 							class="app-general-info__time"
-							label="End time"></app-select>
+							[label]="'LABEL.END_TIME' | translate"></app-select>
 				<app-slide-toggle formControlName="isContinuous"
 								  [value]="false"
 								  theme=lightTheme
-								  title="Continuous event">
+								  [title]="'LABEL.CONTINUOUS_EVENT' | translate">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
@@ -39,13 +39,13 @@
 				</span>
 			</div>
 			<app-textarea formControlName="shortSummary"
-						  label="Short summary (optional)"
+						  [label]="'LABEL.SHORT_SUMMARY' | translate"
 						  widthTextarea="872px"></app-textarea>
 			<div>
 				<app-slide-toggle formControlName="isPrivate"
 								  [value]="false"
 								  theme=lightTheme
-								  title="Private event">
+								  [title]="'LABEL.PRIVATE_EVENT' | translate">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"

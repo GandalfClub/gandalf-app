@@ -10,11 +10,23 @@
 		"LANGUAGE-RU": "Russian",
 		"LANGUAGE-EN": "English",
 		"CREATE": "CREATE",
-		"CANCEL": "CANCEL"
+		"CANCEL": "CANCEL",
+		"DELETE_EVENT": "DELETE EVENT",
+		"SAVE_AS_DRAFT": "SAVE AS DRAFT",
+		"PUBLISH": "PUBLISH"
 	},
 	"LABEL": {
 		"USER_NAME": "User name",
-		"EVENT_NAME": "Event name"
+		"EVENT_NAME": "Event name",
+		"EVENT_TITLE": "Event title",
+		"START_DATE": "Start date",
+		"START_TIME": "Start time",
+		"END_DATE": "End date",
+		"END_TIME": "End time",
+		"SHORT_SUMMARY": "Short summary (optional)",
+		"CONTINUOUS_EVENT": "Continuous event",
+		"PRIVATE_EVENT": "Private event",
+		"CKEDITOR": "Type details for this new event"
 	},
 	"PLACEHOLDER": {
 		"EVENT_NAME": "e.g. My event"
@@ -43,5 +55,15 @@
 		"UPDATE": "UPDATE",
 		"DELETE": "Delete",
 		"EDIT": "Edit Avatar"
+	},
+	"EVENT-CREATION": {
+		"GENERAL_TABS": "GENERAL",
+		"TASKS_TABS": "TASKS",
+		"INVITATIONS_TABS": "INVITATIONS",
+		"TITLE_GENERAL": "General Information"
+	},
+	"TOOLTIP": {
+		"FOR_IS_CONTINUOUS": "Info about the action",
+		"FOR_IS_PRIVATE": "Info about the action"
 	}
 }

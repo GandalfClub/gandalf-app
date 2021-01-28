@@ -10,7 +10,7 @@
 			<app-icon-button type="outlined"
 							 startIcon="delete"
 							 iconSize="small">
-				DELETE EVENT
+				{{ "BUTTON.DELETE_EVENT" | translate }}
 			</app-icon-button>
 		</div>
 		<div>
@@ -18,12 +18,12 @@
 						type="outlined"
 						color="primary"
 						(click)="saveAsDraft()">
-				SAVE AS DRAFT
+				{{ "BUTTON.SAVE_AS_DRAFT" | translate }}
 			</app-button>
 			<app-button type="flat"
 						color="primary"
 						(click)="send()">
-				PUBLISH
+				{{ "BUTTON.PUBLISH" | translate }}
 			</app-button>
 		</div>
 	</div>

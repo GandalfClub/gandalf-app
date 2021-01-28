@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { FormGroup } from '@angular/forms';
 import { NewEvent } from './store/model/model';
@@ -39,6 +39,7 @@ export class EventCreationComponent implements OnInit {
 			isDraft: true
 		});
 		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
+		console.log(this.formFromGeneralComponent.value);
 	}
 
 	public send(): void {
@@ -46,6 +47,7 @@ export class EventCreationComponent implements OnInit {
 			isDraft: false
 		});
 		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
+		console.log(this.formFromGeneralComponent.value);
 	}
 
 	public getFormFromGeneralComponent(data: FormGroup): void {

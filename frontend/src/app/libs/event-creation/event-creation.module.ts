@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LocalizationModule } from 'src/app/libs/container/components/localization/localization.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { EventCreationComponent } from './event-creation.component';
 import { CommonModule } from '@angular/common';
 import { CommonComponentsModule } from '../common-components/common-components.module';
@@ -16,7 +16,7 @@ import { BreadcrumbModule } from '../common-components/components/breadcrumb/bre
 	],
 	imports: [
 		RouterModule,
-		LocalizationModule,
+		TranslateModule,
 		CommonModule,
 		CommonComponentsModule,
 		BreadcrumbStoreModule,
