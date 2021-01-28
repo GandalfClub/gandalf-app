@@ -29,8 +29,7 @@
 		<app-button class="header__button header__button--create-event"
 					*ngIf="userService.isEventManagerUser"
 					[theme]="darkTheme"
-					color="mint"
-					[type]="flatButtonType"
+					[type]="outlinedButtonType"
 					(click)="templatepopoverlight.open()">
 			{{"BUTTON.CREATE_EVENT" | translate}}
 		</app-button>

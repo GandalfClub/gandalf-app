@@ -31,8 +31,7 @@
 				<app-slide-toggle formControlName="isContinuous"
 								  [value]="false"
 								  theme=lightTheme
-								  title="Continuous event"
-								  (toggled)="changeisContinuous($event)">
+								  title="Continuous event">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
@@ -46,8 +45,7 @@
 				<app-slide-toggle formControlName="isPrivate"
 								  [value]="false"
 								  theme=lightTheme
-								  title="Private event"
-								  (toggled)="changePrivateState($event)">
+								  title="Private event">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
@@ -55,8 +53,7 @@
 				</span>
 			</div>
 			<div class="app-general-info__ckeditor">
-				<app-ckeditor formControlName="description"
-				(getDataCkeditor)="getDataFromEditor($event)"></app-ckeditor>
+				<app-ckeditor formControlName="description"></app-ckeditor>
 			</div>
 		</form>
 	</div>

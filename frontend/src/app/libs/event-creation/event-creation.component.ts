@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { FormGroup } from '@angular/forms';
 import { NewEvent } from './store/model/model';
+import { NewEventFacadeService } from './store/newEvent.facade';
 
 @Component({
 	selector: 'app-event-creation',
@@ -11,10 +12,8 @@ import { NewEvent } from './store/model/model';
 export class EventCreationComponent implements OnInit {
 	public currentTab: string = 'generalTab';
 	public newEvent: NewEvent;
-	@ViewChild('generalInfoPage')
-	public generalInfoPage: FormData;
 	public formFromGeneralComponent: FormGroup;
-	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
+	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService, public newEventsFacadeService: NewEventFacadeService) {
 	}
 
 	public ngOnInit(): void {
@@ -36,15 +35,20 @@ export class EventCreationComponent implements OnInit {
 		this.currentTab = tab;
 	}
 	public saveAsDraft(): void {
-		console.log(this.newEvent);
-		this.newEvent.isDraft = true;
+		this.formFromGeneralComponent.patchValue({
+			isDraft: true
+		});
+		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
 	}
 
 	public send(): void {
-		this.newEvent.isDraft = false;
+		this.formFromGeneralComponent.patchValue({
+			isDraft: false
+		});
+		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
 	}
+
 	public getFormFromGeneralComponent(data: FormGroup): void {
-		this.formFromGeneralComponent = data.value;
-		this.newEvent = { ...this.newEvent, ...this.formFromGeneralComponent };
+		this.formFromGeneralComponent = data;
 	}
 }

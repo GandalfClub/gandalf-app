@@ -11,7 +11,8 @@ export interface IEventsnModel extends Document {
     maxScore: number;
     tasks: Types.ObjectId[];
     users: Types.ObjectId[];
-    participations: Types.ObjectId[];
+	participations: Types.ObjectId[];
+	isDraft: boolean;
 }
 
 export interface IEventsnModelUpdate {
@@ -66,6 +67,10 @@ const eventsSchema: Schema = new Schema({
     participations: {
         type: [Schema.Types.ObjectId],
         ref: 'ParticipationModel'
+	},
+	isDraft: {
+        type: Schema.Types.Boolean,
+        default: null
     },
 }, {
     collection: 'events'

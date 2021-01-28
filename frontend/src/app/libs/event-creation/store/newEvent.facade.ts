@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { NewEventState } from './newEvent.reducer';
-import { NewEventAction } from './newEvent.actions';
+import { SetTitleAction, CreateEventAction } from './newEvent.actions';
 import { selectTitleForNewEvent } from './newEvent.selectors';
+import { NewEvent } from './model/model';
 
 @Injectable({
 	providedIn: 'root',
@@ -17,6 +18,10 @@ export class NewEventFacadeService {
 	}
 
 	public setTitleForNewEvent(title: string): void {
-		this.store.dispatch(new NewEventAction(title));
+		this.store.dispatch(new SetTitleAction(title));
+	}
+
+	public createNewEvent(event: NewEvent): void {
+		this.store.dispatch(new CreateEventAction(event));
 	}
 }

@@ -33,27 +33,12 @@ export class GeneralInfoPageComponent implements OnInit {
 			description: '',
 			isPrivate: false,
 			isContinuous: false,
+			isDraft: '',
 		});
 
 		this.dataFromEventForm.valueChanges.subscribe(() => {
 			this.passForm.emit(this.dataFromEventForm);
 		});
-	}
-
-	public changePrivateState(state: boolean): void {
-		this.dataFromEventForm.patchValue({
-			isPrivate: state
-		  });
-	}
-
-	public changeisContinuous(state: boolean): void {
-		this.dataFromEventForm.patchValue({
-			isContinuous: state
-		  });
-	}
-
-	public getDataFromEditor(data: any): void {
-		console.log(data);
 	}
 
 }
