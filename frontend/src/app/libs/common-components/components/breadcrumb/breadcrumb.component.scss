@@ -1,6 +1,6 @@
 @import "variables";
 
-.breadcrumb {
+.app-breadcrumb {
 	display: flex;
 	justify-content: space-between;
 	background-color: $color-white-100;
@@ -26,7 +26,7 @@
 	&__img {
 		vertical-align: middle;
 	}
-	&__main{
+	&__body{
 		display: inline-block;
 	}
 	&__nav{

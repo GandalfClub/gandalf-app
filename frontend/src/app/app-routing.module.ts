@@ -54,7 +54,7 @@ export const routes: Routes = [
 			),
 	},
 	{
-		path: 'eventcreation',
+		path: 'create-event',
 		loadChildren: () =>
 			import('./libs/event-creation/event-creation.module').then(
 				(m: typeof import('./libs/event-creation/event-creation.module')) => m.EventCreationModule

@@ -1,17 +1,17 @@
-<div class="breadcrumb">
-	<div class="breadcrumb__main">
+<div class="app-breadcrumb">
+	<div class="app-breadcrumb__body">
 		<ng-container *ngFor="let breadcrumb of breadcrumbs; let isFirst = first;">
-			<span class="breadcrumb__link"
+			<span class="app-breadcrumb__link"
 				  [routerLink]="breadcrumb.url">
 				{{ breadcrumb.label }}
 			</span>
-			<img class="breadcrumb__img"
+			<img class="app-breadcrumb__img"
 				 *ngIf="isFirst"
 				 src="assets/images/icons/icon-chevron-right.svg"
 				 alt="icons">
 		</ng-container>
 	</div>
-	<div class="breadcrumb__nav">
+	<div class="app-breadcrumb__nav">
 		<ng-content></ng-content>
 	</div>
 </div>

@@ -89,13 +89,12 @@ export class SlideToggleComponent implements ControlValueAccessor, OnInit, After
 
 	public onChange: any = () => this.value;
 
-	registerOnChange(fn: any): void { this.onChange = fn; }
+	public registerOnChange(fn: any): void { this.onChange = fn; }
 
-	registerOnTouched(fn: any): void { this.onTouched = fn; }
+	public registerOnTouched(fn: any): void { this.onTouched = fn; }
 
 	private setValue(value: any): void {
 		this.value = value;
 		this.onChange(value);
-	}
-
+	}	
 }

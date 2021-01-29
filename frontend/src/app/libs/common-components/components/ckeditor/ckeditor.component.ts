@@ -42,7 +42,6 @@ export class CkeditorComponent implements OnInit, AfterViewInit {
 			{ name: 'tools', items: ['Maximize', 'ShowBlocks'] }
 		]
 	};
-	theme: any;
 
 	public constructor(
 		@Optional() @Host() @SkipSelf() protected parentFormContainer: ControlContainer,
@@ -51,7 +50,7 @@ export class CkeditorComponent implements OnInit, AfterViewInit {
 
 	public ngOnInit(): void {
 		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
-		if (this.formControlName != null && this.parentFormContainer != null) {
+		if (Boolean(this.formControlName) && this.parentFormContainer != null) {
 
 			this.formControl = (this.parentFormContainer.control as FormGroup).controls[this.formControlName] as FormControl;
 			if (this.formControl === undefined) {
@@ -61,10 +60,6 @@ export class CkeditorComponent implements OnInit, AfterViewInit {
 		} else {
 			this.formControl = new FormControl('');
 		}
-	}
-
-	public get isDarkTheme(): boolean {
-		return this.theme === ComponentTheme.Dark;
 	}
 
 	public writeValue(val: boolean | null): void {

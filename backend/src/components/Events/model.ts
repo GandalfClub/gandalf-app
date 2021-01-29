@@ -11,8 +11,8 @@ export interface IEventsnModel extends Document {
     maxScore: number;
     tasks: Types.ObjectId[];
     users: Types.ObjectId[];
-	participations: Types.ObjectId[];
-	isDraft: boolean;
+    participations: Types.ObjectId[];
+    isDraft: boolean;
 }
 
 export interface IEventsnModelUpdate {
