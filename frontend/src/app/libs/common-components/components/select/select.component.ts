@@ -1,5 +1,6 @@
-import { Component, Input, ChangeDetectionStrategy, forwardRef, Output, EventEmitter, OnInit, Optional, Host, SkipSelf, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, FormControl, ControlContainer, FormGroup } from '@angular/forms';
+import { Component, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
+import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
 
 @Component({
 	selector: 'app-select',
@@ -14,33 +15,13 @@ import { NG_VALUE_ACCESSOR, FormControl, ControlContainer, FormGroup } from '@an
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent extends FormControlCommonDirective {
 	public icon: string = 'keyboard_arrow_down';
 	public opened: boolean = false;
 	@Input() public label: string;
 	@Input() public formControlName: string;
 	@Input() public formControl: FormControl;
 	@Input() public value: number | string | null | undefined;
-	@Output() public valueChange: EventEmitter<number | string | boolean | null | undefined> = new EventEmitter();
-
-	public constructor(
-		@Optional() @Host() @SkipSelf() protected parentFormContainer: ControlContainer,
-		public elementRef: ElementRef
-	) { }
-
-	public ngOnInit(): void {
-		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
-		if (this.formControlName != null && this.parentFormContainer != null) {
-
-			this.formControl = (this.parentFormContainer.control as FormGroup).controls[this.formControlName] as FormControl;
-			if (this.formControl === undefined) {
-				throw new Error(`Form control ${this.formControlName} is not registered in form group`);
-			}
-
-		} else {
-			this.formControl = new FormControl('');
-		}
-	}
 
 	public openedChange(opened: boolean): void {
 		this.opened = opened;
@@ -65,42 +46,6 @@ export class SelectComponent implements OnInit {
 			}
 		}
 		return arrayTime;
-	}
-
-	public onTouched: any = () => undefined;
-
-	public onChange: any = () => undefined;
-
-	public writeValue(value: any): void {
-		if (!Boolean(this.value)) {
-			this.value = value;
-		}
-		this.onChange(value);
-		if (this.formControl && this.formControl.value) {
-			this.onTouched();
-		}
-		this.valueChange.emit(value);
-
-	}
-
-	public onValueChange(value: any): void {
-		this.onTouched();
-		if (Boolean(this.value) && this.value !== value) {
-			this.setValue(value);
-			this.valueChange.emit(value);
-		}
-	}
-	public registerOnChange(fn: any): void {
-		this.onChange = fn;
-	}
-
-	public registerOnTouched(fn: any): void {
-		this.onTouched = fn;
-	}
-
-	private setValue(value: any): void {
-		this.value = value;
-		this.onChange(value);
 	}
 
 }

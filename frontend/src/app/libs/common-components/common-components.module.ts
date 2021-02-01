@@ -47,6 +47,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
+import { FormControlCommonDirective } from './directives/formControl/form-control-common.directive';
 
 @NgModule({
 	declarations: [
@@ -73,6 +74,7 @@ import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
 		TextareaComponent,
 		TabNavigationComponent,
 		CkeditorComponent,
+		FormControlCommonDirective
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -140,7 +142,8 @@ import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
 		SelectComponent,
 		TextareaComponent,
 		TabNavigationComponent,
-		CkeditorComponent
+		CkeditorComponent,
+		FormControlCommonDirective
 	],
 	providers: [
 		{
