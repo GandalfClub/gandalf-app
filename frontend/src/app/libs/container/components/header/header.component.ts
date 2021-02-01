@@ -41,7 +41,7 @@ export class HeaderComponent {
 	public createEvent(): void {
 		this.popoverTemplate.close();
 		this.newEventFacadeService.setTitleForNewEvent(this.eventTitle);
-		this.router.navigateByUrl('/eventcreation');
+		this.router.navigateByUrl('/create-event');
 	}
 
 	public onEventsClick(): void {
