@@ -12,7 +12,6 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
 import { TranslateService } from '@ngx-translate/core';
-import { ReCaptchaV3Service, OnExecuteData } from 'ng-recaptcha';
 
 @Component({
 	selector: 'app-sign-in',
@@ -32,7 +31,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(private translate: TranslateService, private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
-		private router: Router, private containerFacadService: ContainerFacadeService, private recaptchaV3Service: ReCaptchaV3Service) { }
+		private router: Router, private containerFacadService: ContainerFacadeService) { }
 
 	public ngOnInit(): void {
 		this.containerFacadService.hideElementsOnSignIn();
@@ -51,12 +50,6 @@ export class SignInComponent implements OnInit, OnDestroy {
 			password: '',
 			token: ''
 		});
-
-		this.recaptchaV3Service.onExecute
-			.subscribe((data: OnExecuteData) => {
-				this.signInFormGroup.patchValue({ token: data.token });
-			});
-		this.recaptchaV3Service.execute('importantAction');
 	}
 
 	public emailValidator(control: FormControl): ValidationErrors | null {
