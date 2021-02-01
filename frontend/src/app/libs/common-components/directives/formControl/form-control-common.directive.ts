@@ -22,7 +22,7 @@ export class FormControlCommonDirective implements OnInit, AfterViewInit {
 
 	public ngOnInit(): void {
 		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
-		if (this.formControlName != null && this.parentFormContainer != null) {
+		if ( Boolean(this.formControlName) && Boolean(this.parentFormContainer)) {
 
 			this.formControl = (this.parentFormContainer.control as FormGroup).controls[this.formControlName] as FormControl;
 			if (this.formControl === undefined) {
@@ -34,7 +34,7 @@ export class FormControlCommonDirective implements OnInit, AfterViewInit {
 		}
 	}
 
-	public writeValue(val: boolean | null): void {
+	public writeValue(val: any): void {
 		this.value = val;
 	}
 
