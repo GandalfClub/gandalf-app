@@ -1,48 +1,52 @@
 <div class="container">
     <div class='signin__background-container'>
-        <img src="assets/images/ninjaBackground.svg">
+        <img class='signup__background' src="assets/images/ninjaBackground.svg">
     </div>
     <div class="container_content">
-        <div class="container__form-signin">
-            <div class="container_signin">
-                <p class="typography__white">Already have an account?</p>
-                <a href="https://www.google.com/" target="_blank">Sign in</a>
-            </div>
-        <h2 class="typography__white">Create Account</h2>
-        <div class="container__logo">
-            <img src="assets/images/logos/google.svg">
-            <img src="assets/images/logos/linkedin.svg">
-            <img src="assets/images/logos/facebook.svg">
-            <img src="assets/images/logos/github.svg">
+        <div class="container_signin">
+            <p class="sign-in-question">Already have an account?</p>
+            <a href="https://www.google.com/" target="_blank">Sign in</a>
         </div>
-        <div>
-            <h4 class="typography__white">OR</h4>
-        </div>
-        <form [formGroup]="signUpFormGroup" (ngSubmit)="submit()">
-            <div>
-            <app-input class="input_medium" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'First Name'" [placeholder]="'First Name'" formControlName="firstName"></app-input>
-            <app-input class="input_medium" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Last Name'" [placeholder]="'Last Name'" formControlName="lastName"></app-input>
+        <div class="container__form-signup">
+            <h2 class="typography__white">Create Account</h2>
+            <div class="container__logo">
+                <img src="assets/images/logos/github.svg" (click)="onGitHubSignInClicked()">
             </div>
-            <div>
-                <app-input class="input_big" [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Email'" [placeholder]="'example@gmail.com'" formControlName="email"></app-input>
-            </div>
-            <div>
-                <app-input class="input_big" [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Password'" [placeholder]="'At least 8 characters, numbers and latin letters only'" formControlName="password"></app-input>
-            </div>
-            <div>
-                <app-input class="input_big" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Mobile phone (optional)'" [placeholder]="'Mobile phone (optional)'" formControlName="mobilePhone"></app-input>
-            </div>
-            <div>
-            </div>
+            <form [formGroup]="signUpFormGroup" (ngSubmit)="submit()">
+                <div class="dividers-container">
+                    <div class="divider"></div>
+                        <h4 class="or">OR</h4>
+                    <div class="divider"></div>
+                </div>
+                <div class="name-inputs-container">
+                    <div class="name-input-container">
+                        <app-input class="input_first-name" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'First Name'" [placeholder]="'First Name'" formControlName="firstName"></app-input>
+                    </div>
+                    <div class="name-input-container">
+                        <app-input class="input_last-name" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Last Name'" [placeholder]="'Last Name'" formControlName="lastName"></app-input>
+                    </div>
+                </div>
+                <div>
+                    <app-input class="input_big" [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Email'" [placeholder]="'example@gmail.com'" formControlName="email" ></app-input>
+                </div>
+                <div>
+                    <app-input class="input_big" [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Password'" [placeholder]="'At least 8 characters, numbers and latin letters only'" formControlName="password" ></app-input>
+                </div>
+                <div>
+                    <app-input class="input_big" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Mobile phone (optional)'" [placeholder]="'Mobile phone (optional)'" formControlName="mobilePhone" [prefix]="'+375'" [mask]="'(00)-000-00-00'"></app-input>
+                </div>
+                
+                <div>
+                </div>
+            
+                <div class="container__button">
+                    <app-button class="sign-up-button" type="flat" (click)="submit()">SIGN UP</app-button>
+                </div>
+   
+            </form>
         
-            <div class="container__button">
-            <app-button type="flat">SIGN UP</app-button>
-            </div>
-        
-        </form>
-        
-        <mat-error *ngIf="authError" (click)="submit()">{{ authError }}</mat-error>
-        </div>
+             <mat-error *ngIf="authError" (click)="submit()">{{ authError }}</mat-error>
+        </div>    
     </div>
 
 </div>
