@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Locale } from './models/locale';
 import { UserService } from './services/user.service';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-container',
@@ -11,8 +14,13 @@ import { UserService } from './services/user.service';
 export class ContainerComponent implements OnInit, OnDestroy {
 	public hideHeader: boolean = false;
 	public hideFooter: boolean = false;
+	public destroy$: Subject<boolean> = new Subject();
 
-	constructor(public translateService: TranslateService, private userService: UserService) {
+	constructor(
+		public translateService: TranslateService,
+		private userService: UserService,
+		public router: Router
+		) {
 		translateService.addLangs([Locale.English, Locale.Russian]);
 		translateService.setDefaultLang(Locale.English);
 		const browserLang: string = translateService.getBrowserLang();

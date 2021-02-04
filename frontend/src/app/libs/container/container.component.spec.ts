@@ -11,6 +11,7 @@ import { EntityStatus } from '../auth/models/entity-status';
 import { AuthModule } from '../auth/auth.module';
 import { LocalizationModule } from './components/localization/localization.module';
 import { UserClaim } from '../admin-role-management/models/user-claims.enum';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContainerComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -52,7 +53,8 @@ describe('ContainerComponent', () => {
 				StoreModule.forRoot({}),
 				ContainerStoreModule,
 				LocalizationModule,
-				AuthModule
+				AuthModule,
+				RouterTestingModule
 			]
 		})
 			.compileComponents();
