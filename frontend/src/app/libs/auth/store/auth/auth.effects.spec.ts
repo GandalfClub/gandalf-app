@@ -209,7 +209,7 @@ describe('Auth Effects', () => {
 		describe('when auth was successful', () => {
 			it('should emit SignUpSuccess action', () => {
 				mockAuthRepository.signUp.and.returnValue(of(authResponse));
-				const actions: Observable<Action> = hot('-a-|', { a: new SignUp(credentials) });
+				const actions: Observable<Action> = hot('-a-|', { a: new SignUp(user) });
 				const expected: Observable<Action> = cold('-s-|', {
 					s: new SignUpSuccess(mockAuthConverter.convertFromDto(authResponse.user)),
 				});
@@ -220,7 +220,7 @@ describe('Auth Effects', () => {
 		describe('when auth failed', () => {
 			it('should emit SignUpFailed action', () => {
 				mockAuthRepository.signUp.and.throwError(error);
-				const actions: Observable<Action> = hot('--a|', { a: new SignUp(credentials) });
+				const actions: Observable<Action> = hot('--a|', { a: new SignUp(user) });
 				const expected: Observable<Action> = cold('--(f|)', { f: new SignUpFailure(error) });
 				expect(createEffects(actions).SignUp).toBeObservable(expected);
 			});

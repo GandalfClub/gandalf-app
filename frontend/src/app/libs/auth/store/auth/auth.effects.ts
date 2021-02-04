@@ -17,7 +17,7 @@ import {
 	UpdateUserInfoSuccess,
 	LoadUser,
 	LoadUserSuccess,
-	LoadUserFail } from './auth.actions';
+	LoadUserFail} from './auth.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';

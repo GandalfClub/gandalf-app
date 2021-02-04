@@ -18,7 +18,10 @@ export enum AuthActionTypes {
 	UpdateUserInfoFail = '[Auth] Update user Failure',
 	LoadUser = '[Auth] Load user',
 	LoadUserSuccess = '[Auth] Load user Success',
-	LoadUserFail = '[Auth] Load user Failure'
+	LoadUserFail = '[Auth] Load user Failure',
+	GetRecaptchaStatus = '[Auth] Get Recaptcha',
+	GetRecaptchaStatusSuccess = '[Auth] Get Recaptcha Success',
+	GetRecaptchaStatusFailure = '[Auth] Get Recaptcha Failure'
 }
 
 export class SignIn implements Action {
@@ -42,7 +45,7 @@ export class SignInFailure implements Action {
 
 export class SignUp implements Action {
 	public readonly type: AuthActionTypes.SignUp = AuthActionTypes.SignUp;
-	constructor(public payload: UserCredentials) {}
+	constructor(public payload: User) {}
 }
 
 export class SignUpSuccess implements Action {
@@ -135,4 +138,4 @@ export type AuthActions =
 	| UpdateUserInfoFail
 	| LoadUser
 	| LoadUserSuccess
-	| LoadUserFail;
+	| LoadUserFail

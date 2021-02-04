@@ -99,8 +99,18 @@ describe('AuthReducers', () => {
 	describe('SignUp', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
+		let user: User = {
+			id: 'test',
+			email: 'test@test.com',
+			isAdmin: false,
+			firstName: 'TestFirstName',
+			secondName: 'TestSecondName',
+			mobilePhone: '+375291234567',
+			password: 'Qqqqqqq1!',
+			claims: [],
+		};
 		beforeEach(() => {
-			action = new SignUp({ email: '', password: '' });
+			action = new SignUp(user);
 			newState = authReducer(initialState, action);
 		});
 		it('should return the user.status - Pending', () => {

@@ -37,8 +37,8 @@ export class AuthRepository {
 		return this.http.post<UserDto>(url, user);
 	}
 
-  public loadUser(): Observable<UserDto> {
-  	const url: string = this.API_URL + '/users/self';
-	  return this.http.get<UserDto>(url);
+  	public loadUser(): Observable<UserDto> {
+  		const url: string = this.API_URL + '/users/self';
+	 	 return this.http.get<UserDto>(url);
 	}
 }
