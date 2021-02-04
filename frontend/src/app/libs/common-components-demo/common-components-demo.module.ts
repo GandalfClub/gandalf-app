@@ -20,6 +20,7 @@ import { TabsDemoComponent } from './components/tabs-demo/tabs-demo.component';
 import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 import { EventCardDemoComponent } from './components/event-card-demo/event-card-demo.component';
 import { TableDemoComponent } from './components/table-demo/table-demo.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,10 @@ import { TableDemoComponent } from './components/table-demo/table-demo.component
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,
-		CommonComponentsModule
+		CommonComponentsModule,
+		NgxMaskModule.forRoot({
+			showMaskTyped : true,
+		  })
 	],
 	exports: [CommonComponentsDemoRoutingModule],
 })

@@ -38,6 +38,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 	declarations: [
@@ -75,7 +76,10 @@ import { InputComponent } from './components/input/input.component';
 		MatTabsModule,
 		MatChipsModule,
 		MatTableModule,
-		MatSortModule
+		MatSortModule,
+		NgxMaskModule.forRoot({
+			showMaskTyped : true,
+		  })
 	],
 	exports: [
 		MatInputModule,
@@ -91,7 +95,7 @@ import { InputComponent } from './components/input/input.component';
 		MatSlideToggleModule,
 		MatCheckboxModule,
 		CreateDraftEventPopoverComponent,
-		FormsModule,
+		
 		ButtonComponent,
 		SlideToggleComponent,
 		CheckboxComponent,

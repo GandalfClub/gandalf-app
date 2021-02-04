@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputComponent } from 'src/app/libs/common-components/components/input/input.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { InputDemoComponent } from './input-demo.component';
 
@@ -22,7 +23,8 @@ describe('ParentControlComponent', () => {
 				FormsModule,
 				ReactiveFormsModule,
 				MatFormFieldModule,
-				MatInputModule
+				MatInputModule,
+				NgxMaskModule.forRoot()
 			],
 			providers: [
 			]
