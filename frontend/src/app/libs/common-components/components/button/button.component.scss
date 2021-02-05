@@ -21,7 +21,7 @@
 
 	font-weight: 500;
 	font-size: 14px;
-	line-height: 17px;
+	line-height: 16px;
 	color: rgba(33, 33, 33, 0.75);
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -92,5 +92,14 @@
 	&--color-cancel {
 		background-color: $color-black-95;
 		border-color: $color-black-95;
+	}
+
+	&--color-mint {
+		background-color: $color-mint;
+		border-color: $color-mint;
+	}
+	&--color-outlined-primary {
+		border-color: $color-primary;
+		color: $color-primary;
 	}
 }

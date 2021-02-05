@@ -1,0 +1,6 @@
+<div class="app-tab-navigation__block" [class.app-tab-navigation__block--active]="generalTab"
+	 (click)="changePage('generalTab')">GENERAL</div>
+<div class="app-tab-navigation__block"
+	 (click)="changePage('tasksTab')" [class.app-tab-navigation__block--active]="tasksTab">TASKS (8)</div>
+<div class="app-tab-navigation__block"
+	 (click)="changePage('invitationsTab')" [class.app-tab-navigation__block--active]="invitationsTab">INVITATIONS (0)</div>

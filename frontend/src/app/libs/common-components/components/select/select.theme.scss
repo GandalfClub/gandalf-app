@@ -1,0 +1,29 @@
+.mat-select-arrow-wrapper {
+	display: none !important;
+}
+
+.mat-select-value {
+	display: inline !important;
+}
+
+.mat-select-panel {
+	position: absolute;
+	width: 120px !important;
+	top: 26px;
+	left: 4px;
+	min-width: calc(100% + 22px) !important;
+	border-radius: 4px !important;
+	border-top-style: none;
+}
+
+.mat-select-panel ng-animating {
+	visibility: hidden;
+}
+
+.mat-form-field-type-mat-select .mat-form-field-label {
+	width: calc(100% - 10px) !important;
+}
+
+.mat-select-panel .mat-option {
+	padding-left: 0.8em !important;
+}

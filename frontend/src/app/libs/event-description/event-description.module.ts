@@ -7,8 +7,8 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 import { EventComponent } from './components/event/event.component';
 import { EventDescriptionPanelComponent } from './components/event-description-panel/event-description-panel.component';
 import { SafeHtmlPipe } from '../pipes/sanitizer.pipe';
-import { BreadcrumbStoreModule } from '../breadcrumb/store/store.module';
-import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
+import { BreadcrumbStoreModule } from '../common-components/components/breadcrumb/store/store.module';
+import { BreadcrumbModule } from '../common-components/components/breadcrumb/breadcrumb.module';
 
 @NgModule({
 	declarations: [EventComponent, EventDescriptionPanelComponent, SafeHtmlPipe],

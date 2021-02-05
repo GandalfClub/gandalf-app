@@ -3,7 +3,7 @@ import { Event } from '../../../landing/models/event';
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
-import { BreadcrumbFacadeService } from 'src/app/libs/breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
 
 @Component({
 	selector: 'app-event-description-panel',

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from './model/breadcrumb.model';
 import { BreadcrumbFacadeService } from './store/breadcrumb.facade';
 
@@ -11,7 +10,6 @@ import { BreadcrumbFacadeService } from './store/breadcrumb.facade';
 export class BreadcrumbComponent implements OnInit {
 	public breadcrumbs: BreadCrumb[] = [];
 	public lastValueBreadcumb: string;
-	@Input() public event: Event;
 
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
 		this.breadcrumbFacadeService.label$.subscribe((item: string) => this.lastValueBreadcumb = item);

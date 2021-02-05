@@ -6,7 +6,7 @@ import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
-import { BreadcrumbFacadeService } from '../breadcrumb/store/breadcrumb.facade';
+import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { ComponentTheme } from '../common-components/shared/component-theme.enum';
 
 @Component({

@@ -2,16 +2,32 @@
 	"BUTTON": {
 		"SIGN_IN": "Войти",
 		"SIGN_UP": "Регистрация",
-		"CRATE_EVENT": "Создать событие",
+		"CREATE_EVENT": "Создать событие",
 		"EVENTS": "События",
 		"ADMINISTRATION": "Администрирование",
 		"LOG_OFF": "Выйти",
 		"ACCOUNT": "Мой профиль",
 		"LANGUAGE-RU": "Русский",
-		"LANGUAGE-EN": "Английский"
+		"LANGUAGE-EN": "Английский",
+		"DELETE_EVENT": "УДАЛИТЬ МЕТРОПРИЯТИЕ",
+		"SAVE_AS_DRAFT": "СОХРАНИТЬ В ЧЕРНОВИКИ",
+		"PUBLISH": "ОПУБЛИКОВАТЬ"
 	},
 	"LABEL": {
-		"USER_NAME": "Имя пользователя"
+		"USER_NAME": "Имя пользователя",
+		"EVENT_NAME": "Название мероприятия",
+		"EVENT_TITLE": "Название мероприятия",
+		"START_DATE": "День старта",
+		"START_TIME": "Начало",
+		"END_DATE": "День завершения",
+		"END_TIME": "Конец",
+		"SHORT_SUMMARY": "Краткое описание (необязательно)",
+		"CONTINUOUS_EVENT": "Непрерывное мероприятие",
+		"PRIVATE_EVENT": "Конфиденциальное мероприятие",
+		"CKEDITOR": "Введите детали для нового мероприятия"
+	},
+	"PLACEHOLDER": {
+		"EVENT_NAME": "например, Моё событие"
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "Все права защищены."
@@ -37,6 +53,15 @@
 		"UPDATE": "ОБНОВИТЬ",
 		"DELETE": "Удалить",
 		"EDIT": "Редактировать фотографию"
+	},
+	"EVENT-CREATION": {
+		"GENERAL_TABS": "ОСНОВНОЕ",
+		"TASKS_TABS": "ЗАДАЧИ",
+		"INVITATIONS_TABS": "ПРИГЛАШЕНИЯ",
+		"TITLE_GENERAL": "Основная информация"
+	},
+	"TOOLTIP": {
+		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
+		"FOR_IS_PRIVATE": "Информация о мероприятии"
 	}
-	
 }

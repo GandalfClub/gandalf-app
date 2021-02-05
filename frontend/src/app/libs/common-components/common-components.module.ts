@@ -40,6 +40,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
 import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { SelectComponent } from './components/select/select.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
+import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
+import { FormControlCommonDirective } from './directives/formControl/form-control-common.directive';
 
 @NgModule({
 	declarations: [
@@ -60,7 +68,13 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		TableComponent,
 		SearchInputComponent,
 		IconComponent,
-		IconButtonComponent
+		IconButtonComponent,
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent,
+		TabNavigationComponent,
+		CkeditorComponent,
+		FormControlCommonDirective
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -80,7 +94,10 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		MatTabsModule,
 		MatChipsModule,
 		MatTableModule,
-		MatSortModule
+		MatSortModule,
+		MatDatepickerModule,
+		MatSelectModule,
+		CKEditorModule
 	],
 	exports: [
 		MatInputModule,
@@ -120,8 +137,14 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		MatDividerModule,
 		SearchInputComponent,
 		IconComponent,
-		IconButtonComponent
-		],
+		IconButtonComponent,
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent,
+		TabNavigationComponent,
+		CkeditorComponent,
+		FormControlCommonDirective
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
@@ -130,7 +153,8 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 		{
 			provide: CompilerFactory,
 			useClass: JitCompilerFactory,
-			deps: [COMPILER_OPTIONS] },
+			deps: [COMPILER_OPTIONS]
+		},
 	],
 })
 export class CommonComponentsModule { }

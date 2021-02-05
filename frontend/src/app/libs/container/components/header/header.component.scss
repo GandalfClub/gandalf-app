@@ -1,61 +1,66 @@
 @import "variables";
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	height: 80px;
+	padding: 0 72px;
+	background: $color-black;
 
-  display: flex;
-  align-items: center;
-  height: 80px;
-  padding: 0 72px;
+	&__common-buttons {
+		display: flex;
+		align-items: center;
+		margin-left: auto;
+	}
 
-  background: $color-black;
+	&__button {
+		margin-left: 16px;
 
-  &__common-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+		&--create-event {
+			margin-right: $main-grid-unit * 4;
+		}
+	}
 
-  &__button {
-    margin-left: 16px;
-  }
+	&__admin-button {
+		margin-left: 40px;
+	}
 
-  &__admin-button {
-    margin-left: 40px;
-  }
+	&__notifications {
+		margin: 0 24px;
+	}
 
-  &__notifications {
-    margin: 0 24px;
-  }
+	&__avatar {
+		margin-left: 1px;
+	}
 
-  &__avatar {
-    margin-left: 1px;
-  }
+	&__logo-container {
+		position: relative;
+		min-width: 184px;
+		height: 40px;
+		line-height: 40px;
+		background: #ffffff;
+		user-select: none;
+	}
 
-  &__logo-container {
-    position: relative;
+	&__logo-container:hover {
+		cursor: pointer;
+	}
 
-    min-width: 184px;
-    height: 40px;
+	&__logo {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
 
-    line-height: 40px;
+.popover-actions {
+	text-align: right;
 
-    background: #ffffff;
-
-    user-select: none;
-  }
-
-  &__logo-container:hover {
-    cursor: pointer;
-  }
-
-  &__logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-  }
+	&__btn--margin {
+		margin-right: $main-grid-unit * 2;
+	}
 }
