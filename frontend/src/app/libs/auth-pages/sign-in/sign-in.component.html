@@ -1,32 +1,53 @@
-<div>
-  <form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
-        <mat-error *ngIf="emailInputErrorMessage">{{ emailInputErrorMessage }}</mat-error>
-      </mat-form-field>
-    </div>
+<div class="sign-in-page">
+	<div class="sign-in-page__container-img">
+		<img src="assets/images/authorization-bg.svg" alt="authorization" class="sign-in-page__img" />
+		<img src="assets/images/logo-dark.svg" alt="logo-dark" class="sign-in-page__logo" />
+	</div>
+	<div class="sign-in-page__container-page">
+		<div class="sign-in-page__header">
+			<span class="sign-in-page__link-sign-up sign-in-page__link-sign-up--white">
+				{{ "SIGN_IN.NO_ACCOUNT" | translate }}</span>
+			<a (click)="onSinUp()"
+				class="sign-in-page__link-sign-up sign-in-page__link-sign-up--blue">{{ "SIGN_IN.SIGN_UP_BTN" | translate }}</a>
+		</div>
+		<div class="sign-in-page__container-form">
+			<h2 class="sign-in-page__link-welcomeBack" (click)="onPageBack()">
+				{{ "SIGN_IN.WELCOME_BACK" | translate }}
+			</h2>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
-        <mat-error *ngIf="passwordInputErrorMessage">{{ passwordInputErrorMessage }}</mat-error>
-        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-          <mat-icon>{{ passwordIconVisibility }}</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+			<div (click)="signInByGithub()" class="sign-in-page__icon">
+				<img src="assets/images/social-media-icons/github.svg" alt="gitHub-icon" />
+			</div>
 
-    <div>
-      <button mat-raised-button [disabled]="!signInFormGroup.valid || isLoading">Sign in</button>
-    </div>
-  </form>
+			<div class="sign-in-page__container-divider">
+				<div class="sign-in-page__divider"></div>
+				<p class="sign-in-page__or">{{ "SIGN_IN.OR" | translate }}</p>
+				<div class="sign-in-page__divider"></div>
+			</div>
+			<form [formGroup]="signInFormGroup" (ngSubmit)="submit()" class="sign-in-page__form">
+				<div>
+					<app-input [inputValidators]="emailValidators" [theme]="darkTheme"
+						[label]="'SIGN_IN.EMAIL' | translate" [type]="'email'" [placeholder]="'pat@example.com'"
+						formControlName="email" class="sign-in-page__input-email"></app-input>
+				</div>
 
-  <div>
-    <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
-  </div>
+				<div>
+					<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'"
+						[label]="'SIGN_IN.PASSWORD' | translate" [secured]="false" formControlName="password"
+						class="sign-in-page__input-password">
+					</app-input>
+				</div>
+				<div class="sign-in-page__link">
+					<span>{{ "SIGN_IN.FORGOT_PASSWORD" | translate }}</span>
+				</div>
 
-  <mat-error *ngIf="authError">{{ authError }}</mat-error>
+				<div class="sign-in-page__btn">
+					<app-button type="flat" [theme]="darkTheme">{{
+            "SIGN_IN.SIGN_IN_BTN" | translate
+          }}</app-button>
+				</div>
+			</form>
+			<mat-error *ngIf="authError">{{ authError }}</mat-error>
+		</div>
+	</div>
 </div>

@@ -1,5 +1,6 @@
-<app-header *ngIf="router.url !== '/signup'"></app-header>
+<app-header *ngIf="!(hideHeader$ | async)"></app-header>
 <div class="container">
 	<router-outlet></router-outlet>
 </div>
-<app-footer *ngIf="router.url !== '/signup'"></app-footer>
+<app-footer *ngIf="!(hideFooter$ | async)"></app-footer>
+

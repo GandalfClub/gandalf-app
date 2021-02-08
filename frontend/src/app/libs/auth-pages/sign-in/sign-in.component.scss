@@ -1,1 +1,128 @@
+@import "variables";
 
+.sign-in-page {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	background: $color-black;
+
+	&__container-img {
+		flex: 1.5;
+		background-color: #f2f4f8;
+		overflow: hidden;
+	}
+
+	&__img {
+		width: 100%;
+		height: auto;
+	}
+
+	&__logo {
+		position: fixed;
+		top: 70px;
+		left: 70px;
+	}
+
+	&__container-page {
+		display: flex;
+		flex-direction: column;
+		flex: 3;
+		height: 100%;
+	}
+
+	&__container-form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+	}
+
+	&__link-welcomeBack {
+		@include text-h2();
+		color: $color-white;
+		cursor: pointer;
+	}
+
+	&__link {
+		@include text-p();
+		color: $color-primary;
+		text-align: right;
+		width: 100%;
+		margin: $main-grid-unit 0 $main-grid-unit * 5 0;
+		cursor: pointer;
+	}
+
+	&__btn {
+		text-align: center;
+	}
+
+	&__icon {
+		margin: $main-grid-unit * 2 0 $main-grid-unit 0;
+		cursor: pointer;
+	}
+
+	&__header {
+		align-self: flex-end;
+		margin: $secondary-grid-unit * 10 $layout-outer-margin 0 0;
+	}
+
+	&__link-sign-up {
+		@include text-p();
+		margin-left: 12px;
+		cursor: pointer;
+
+		&--white {
+			color: $color-white;
+		}
+		&--blue {
+			color: $color-primary;
+		}
+	}
+
+	&__container-divider {
+		display: flex;
+		align-items: center;
+		margin-bottom: $main-grid-unit;
+	}
+
+	&__divider {
+		background: $color-white-10;
+		height: 1px;
+		width: 160px;
+	}
+
+	&__or {
+		@include text-h4();
+		color: $color-white-50;
+		margin: $layout-gutter;
+	}
+}
+
+::ng-deep {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:active,
+	input:-webkit-autofill:focus {
+		background-color: $color-black !important;
+		color: white !important;
+		-webkit-box-shadow: 0 0 0 1000px $color-black inset !important;
+		box-shadow: 0 0 0 1000px $color-black inset !important;
+		-webkit-text-fill-color: white !important;
+	}
+	.mat-form-field {
+		width: 390px !important;
+	}
+	.mat-button,
+	.mat-flat-button {
+		padding: 12px 40px;
+	}
+	.grecaptcha-badge {
+		visibility: hidden;
+	}
+}
+
+@media (max-width: 768px) {
+	.sign-in-page__container-img {
+		display: none;
+	}
+}
