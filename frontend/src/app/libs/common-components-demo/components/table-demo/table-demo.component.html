@@ -21,6 +21,8 @@
 			<app-table
 				[columnsConfig]="columnsConfig"
 				[data]="data"
+				(toggled)="onToggle($event)"
+				(checked)="onCheck($event)"
 				[theme]="darkTheme"
 				[headerButtonText]="headerButtonText"
 				[headerButtonIcon]="'delete'"

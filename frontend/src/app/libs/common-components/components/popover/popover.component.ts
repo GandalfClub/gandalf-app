@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild} from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 
 @Component({
@@ -11,11 +11,10 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 export class PopoverComponent {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
-
 	@ViewChild('template')
 	public popoverTemplate: TemplateRef<PopoverComponent>;
 
-	constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<any>) {}
+	constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<any>) { }
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;

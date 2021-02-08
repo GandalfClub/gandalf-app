@@ -1,13 +1,22 @@
-import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { Component, Input, Output, ChangeDetectionStrategy, EventEmitter, forwardRef } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
 
 @Component({
 	selector: 'app-slide-toggle',
 	templateUrl: './slide-toggle.component.html',
 	styleUrls: ['./slide-toggle.component.scss'],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => SlideToggleComponent),
+			multi: true
+		}
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SlideToggleComponent {
+export class SlideToggleComponent extends FormControlCommonDirective {
 
 	@Input()
 	public disabled: boolean = false;
@@ -18,18 +27,22 @@ export class SlideToggleComponent {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
-	@Output()
-	public toggled: EventEmitter<boolean> = new EventEmitter();
-
 	@Input()
 	public value: boolean;
+
+	@Input() public formControlName: string;
+
+	@Input() public formControl: FormControl;
+
+	@Output() public toggled: EventEmitter<boolean> = new EventEmitter();
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
 
 	public toggle(): void {
 		this.value = !this.value;
 		this.toggled.emit(this.value);
 	}
 
-	public get isDarkTheme(): boolean {
-		return this.theme === ComponentTheme.Dark;
-	}
 }

@@ -1,37 +1,79 @@
 <header class="header">
-	<div class="header__logo-container">
-		<img class="header__logo" src="assets/images/logo.svg">
+	<div class="header__logo-container"
+		 routerLink="/landing">
+		<img class="header__logo"
+			 src="assets/images/logo.svg">
 	</div>
-	<div class="header__admin-buttons" *ngIf="userService.isAdminUser">
-		<app-button 
-				class="header__admin-button"
-				[class.header__admin-button--active]="adminLinksActivation.get(eventsLink)"
-				[theme]="darkTheme" 
-				[disableRipple]="true" 
-				[disableHover]="true"
-				(click)="onEventsClick()">
+	<div class="header__admin-buttons"
+		 *ngIf="userService.user?.isAdmin">
+		<app-button class="header__admin-button"
+					[class.header__admin-button--active]="adminLinksActivation.get(eventsLink)"
+					[theme]="darkTheme"
+					[disableRipple]="true"
+					[disableHover]="true"
+					(click)="onEventsClick()"
+					routerLink="/landing">
 			{{"BUTTON.EVENTS" | translate}}
 		</app-button>
-		<app-button 
-				class="header__admin-button" 
-				[class.header__admin-button--active]="adminLinksActivation.get(administrationLink)"
-				[theme]="darkTheme"
-				[disableRipple]="true" 
-				[disableHover]="true"
-				(click)="onAdministrationClick()">
+		<app-button class="header__admin-button"
+					[class.header__admin-button--active]="adminLinksActivation.get(administrationLink)"
+					[theme]="darkTheme"
+					[disableRipple]="true"
+					[disableHover]="true"
+					(click)="onAdministrationClick()"
+					routerLink="/adminrolemanagement">
 			{{"BUTTON.ADMINISTRATION" | translate}}
 		</app-button>
 	</div>
 	<div class="header__common-buttons">
-		<app-localization class="header__localization"></app-localization>
-		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme" [type]="flatButtonType">
+		<app-button class="header__button header__button--create-event"
+					*ngIf="userService.isEventManagerUser"
+					[theme]="darkTheme"
+					[type]="outlinedButtonType"
+					(click)="templatepopoverlight.open()">
 			{{"BUTTON.CREATE_EVENT" | translate}}
 		</app-button>
+		<app-popover [theme]="lightTheme"
+					 #templatepopoverlight>
+			<div class="popover-title">
+				{{"BUTTON.CREATE_EVENT" | translate}}
+			</div>
+			<div class="popover-content">
+				<app-input type="text"
+						   [(ngModel)]="eventTitle"
+						   widthInput="416px"
+						   [theme]="lightTheme"
+						   [label]="'LABEL.EVENT_NAME' | translate"
+						   [placeholder]="'PLACEHOLDER.EVENT_NAME' | translate">
+				</app-input>
+			</div>
+			<div class="popover-actions">
+				<app-button class="popover-actions__btn popover-actions__btn--margin"
+							type="outlined"
+							[theme]="lightTheme"
+							(click)="templatepopoverlight.close()">
+					{{"BUTTON.CANCEL" | translate}}
+				</app-button>
+				<app-button class="popover-actions__btn"
+							type="flat"
+							[theme]="lightTheme"
+							(click)="createEvent()">
+					{{"BUTTON.CREATE" | translate}}
+				</app-button>
+			</div>
+		</app-popover>
+		<app-localization class="header__localization"></app-localization>
 		<ng-container *ngIf="userService.isUnauthorizedUser">
-			<app-button class="header__button" [theme]="darkTheme" [type]="outlinedButtonType" routerLink="signin">
+			<app-button class="header__button"
+						[theme]="darkTheme"
+						[type]="outlinedButtonType"
+						routerLink="signin">
 				{{"BUTTON.SIGN_IN" | translate}}
 			</app-button>
-			<app-button class="header__button" [theme]="darkTheme" [type]="flatButtonType" routerLink="signup">
+			<app-button class="header__button"
+						[theme]="darkTheme"
+						[type]="flatButtonType"
+						routerLink="signup">
 				{{"BUTTON.SIGN_UP" | translate}}
 			</app-button>
 		</ng-container>

@@ -1,0 +1,30 @@
+.icon {
+
+	&--extra-small {
+		height: 16px;
+		width: 16px;
+
+		font-size: 16px;
+	}
+
+	&--small {
+		height: 24px;
+		width: 24px;
+
+		font-size: 24px;
+	}
+
+	&--medium {
+		height: 32px;
+		width: 32px;
+
+		font-size: 32px;
+	}
+
+	&--large {
+		height: 64px;
+		width: 64px;
+
+		font-size: 64px;
+	}
+}

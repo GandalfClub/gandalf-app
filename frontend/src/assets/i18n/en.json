@@ -2,16 +2,68 @@
 	"BUTTON": {
 		"SIGN_IN": "Sing In",
 		"SIGN_UP": "Sign Up",
-		"CRATE_EVENT": "Create Event",
+		"CREATE_EVENT": "Create Event",
 		"EVENTS": "Events",
 		"ADMINISTRATION": "Administration",
 		"LOG_OFF": "LOG OFF",
-		"ACCOUNT": "ACCOUNT"
+		"ACCOUNT": "ACCOUNT",
+		"LANGUAGE-RU": "Russian",
+		"LANGUAGE-EN": "English",
+		"CREATE": "CREATE",
+		"CANCEL": "CANCEL",
+		"DELETE_EVENT": "DELETE EVENT",
+		"SAVE_AS_DRAFT": "SAVE AS DRAFT",
+		"PUBLISH": "PUBLISH"
 	},
 	"LABEL": {
-		"USER_NAME": "User name"
+		"USER_NAME": "User name",
+		"EVENT_NAME": "Event name",
+		"EVENT_TITLE": "Event title",
+		"START_DATE": "Start date",
+		"START_TIME": "Start time",
+		"END_DATE": "End date",
+		"END_TIME": "End time",
+		"SHORT_SUMMARY": "Short summary (optional)",
+		"CONTINUOUS_EVENT": "Continuous event",
+		"PRIVATE_EVENT": "Private event",
+		"CKEDITOR": "Type details for this new event"
+	},
+	"PLACEHOLDER": {
+		"EVENT_NAME": "e.g. My event"
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "All rights reserved."
+	},
+	"LANDING-PAGE": {
+		"TITLE": "Welcome to Learninja!",
+		"TEXT": "Join the platform and train your skills to become a true ninja in your expertise!"
+	},
+	"USER-PROFILE": {
+		"ACCOUNT_SETTINGS": "Account Settings",
+		"PERSONAL_INFO": "Personal Information",
+		"PASSWORD": "Password",
+		"SOCIAL_LINKS": "Social Links",
+		"UPLOAD_PHOTO": "Upload photo",
+		"FIRST_NAME": "First Name",
+		"LAST_NAME": "Last Name",
+		"EMAIL": "Email",
+		"PHONE": "Phone",
+		"SAVE_PROFILE": "SAVE PROFILE",
+		"OLD_PASSWORD": "Old password",
+		"NEW_PASSWORD": "New password",
+		"CHANGE": "CHANGE",
+		"UPDATE": "UPDATE",
+		"DELETE": "Delete",
+		"EDIT": "Edit Avatar"
+	},
+	"EVENT-CREATION": {
+		"GENERAL_TABS": "GENERAL",
+		"TASKS_TABS": "TASKS",
+		"INVITATIONS_TABS": "INVITATIONS",
+		"TITLE_GENERAL": "General Information"
+	},
+	"TOOLTIP": {
+		"FOR_IS_CONTINUOUS": "Info about the action",
+		"FOR_IS_PRIVATE": "Info about the action"
 	}
 }

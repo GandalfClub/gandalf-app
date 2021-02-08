@@ -6,7 +6,25 @@ describe('EventConverterService', () => {
 	UsersActions.LoadUsersFail |
 	UsersActions.LoadUsersSuccess |
 	UsersActions.ToggleEventManagerRole |
-	UsersActions.ToggleEventManagerRoleFail;
+	UsersActions.ToggleEventManagerRoleSuccess |
+	UsersActions.ToggleEventManagerRoleFail |
+	UsersActions.RemoveUser |
+	UsersActions.RemoveUserSuccess |
+	UsersActions.RemoveUserFail |
+	UsersActions.RemoveSelectedUsers |
+	UsersActions.RemoveSelectedUsersSuccess |
+	UsersActions.RemoveSelectedUsersFail;
+
+	const user: User = {
+		firstName: 'test',
+		secondName: 'test',
+		mobilePhone: 'test',
+		id: 'test',
+		isAdmin: false,
+		email: 'test@test.by',
+		password: 'test',
+		claims: [],
+	};
 
 	describe('LoadUsers', () => {
 		beforeEach(() => {
@@ -21,12 +39,7 @@ describe('EventConverterService', () => {
 
 	describe('LoadUsersSuccess', () => {
 		const payload: User[] = [
-			{
-				id: '1',
-				email: 'test@test.test',
-				isAdmin: true,
-				claims: [],
-			},
+			user
 		];
 		beforeEach(() => {
 			action = new UsersActions.LoadUsersSuccess(payload);
@@ -56,17 +69,9 @@ describe('EventConverterService', () => {
 			});
 		});
 	});
-	describe('Toggle EventManager role', () => {
-		const payload: User = {
-			firstName: 'test',
-			secondName: 'test',
-			mobilePhone: 'test',
-			id: 'test',
-			isAdmin: false,
-			email: 'test@test.by',
-			password: 'test',
-			claims: [],
-		};
+
+	describe('ToggleEventManagerRole', () => {
+		const payload: User = user;
 		beforeEach(() => {
 			action = new UsersActions.ToggleEventManagerRole(payload);
 		});
@@ -78,6 +83,21 @@ describe('EventConverterService', () => {
 			});
 		});
 	});
+
+	describe('ToggleEventManagerRoleSuccess', () => {
+		const payload: User = user;
+		beforeEach(() => {
+			action = new UsersActions.ToggleEventManagerRoleSuccess(payload);
+		});
+
+		it('should create ToggleEventManagerRoleSuccess action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.ToggleEventManagerRoleSuccess,
+				payload,
+			});
+		});
+	});
+
 	describe('ToggleEventManagerRoleFail', () => {
 		const payload: Error = {
 			name: 'test error',
@@ -94,4 +114,95 @@ describe('EventConverterService', () => {
 			});
 		});
 	});
+
+	describe('RemoveUser', () => {
+		const payload: User = user;
+		beforeEach(() => {
+			action = new UsersActions.RemoveUser(payload);
+		});
+
+		it('should create RemoveUser action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveUser,
+				payload,
+			});
+		});
+	});
+
+	describe('RemoveUserSuccess', () => {
+		const payload: User = user;
+		beforeEach(() => {
+			action = new UsersActions.RemoveUserSuccess(payload);
+		});
+
+		it('should create RemoveUser action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveUserSuccess,
+				payload,
+			});
+		});
+	});
+
+	describe('RemoveUserFail', () => {
+		const payload: Error = {
+			name: 'test error',
+			message: 'remove user fail',
+		};
+		beforeEach(() => {
+			action = new UsersActions.RemoveUserFail(payload);
+		});
+
+		it('should create RemoveUserFail action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveUserFail,
+				payload,
+			});
+		});
+	});
+
+	describe('RemoveSelectedUsers', () => {
+		const payload: string[] = [user.id];
+		beforeEach(() => {
+			action = new UsersActions.RemoveSelectedUsers(payload);
+		});
+
+		it('should create RemoveSelectedUsers action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveSelectedUsers,
+				payload,
+			});
+		});
+	});
+
+	describe('RemoveSelectedUsersSuccess', () => {
+		const payload: string[] = [user.id];
+		beforeEach(() => {
+			action = new UsersActions.RemoveSelectedUsersSuccess(payload);
+		});
+
+		it('should create RemoveSelectedUsersSuccess action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveSelectedUsersSuccess,
+				payload,
+			});
+		});
+	});
+
+	describe('RemoveSelectedUsersFail', () => {
+		const payload: Error = {
+			name: 'test error',
+			message: 'remove selected users fail',
+		};
+		beforeEach(() => {
+			action = new UsersActions.RemoveSelectedUsersFail(payload);
+		});
+
+		it('should create RemoveUserFail action', () => {
+			expect({ ...action }).toEqual({
+				type: UsersActions.UsersActionType.RemoveSelectedUsersFail,
+				payload,
+			});
+		});
+	});
+
 });

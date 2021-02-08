@@ -1,0 +1,102 @@
+@import "variables";
+
+.app-user-config {
+	&__breadcrumb {
+		position: sticky;
+		top: $layout-column-width;
+		z-index: 2;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		margin-top: $layout-gutter;
+	}
+
+	&__sidebar {
+		background-color: #373737;
+		width: $layout-outer-margin * 4;
+		margin-right: $layout-gutter;
+	}
+
+	&__title {
+		@include text-h4-bold();
+		color: $color-white-100;
+		background-color: #424242;
+	}
+
+	&__title--sidebar {
+		padding: 14px $main-grid-unit * 2;
+	}
+
+	&__title--settings {
+		padding: 14px $main-grid-unit * 4;
+	}
+
+	&__sidebar-element {
+		@include text-p();
+		color: $color-white-75;
+		padding: 12px $main-grid-unit * 2;
+		margin: $main-grid-unit 0;
+		cursor: pointer;
+	}
+
+	&__sidebar-element--active {
+		@include text-p-bold();
+		color: $color-white-100;
+		border-left: 2px solid $color-primary;
+	}
+
+	&__settings {
+		width: 496px;
+		margin-bottom: $main-grid-unit * 8;
+		background-color: #373737;
+	}
+
+	&__avatar {
+		margin: 32px;
+	}
+
+	&__img {
+		width: $layout-column-width;
+		height: $layout-column-width;
+		vertical-align: middle;
+		border-radius: 50%;
+		margin-right: $main-grid-unit * 2;
+		object-fit: cover;
+	}
+
+	&__upload-photo {
+		@include text-small();
+		color: $color-primary;
+		margin-right: $main-grid-unit * 2;
+		cursor: pointer;
+	}
+
+	&__input-file {
+		display: none;
+	}
+
+	&__input {
+		display: block;
+		margin-left: $main-grid-unit * 4;
+	}
+
+	&__form {
+		margin-top: $main-grid-unit * 4;
+	}
+
+	&__btn {
+		display: inline-block;
+		margin: 10px 0 $main-grid-unit * 4 $main-grid-unit * 4;
+	}
+
+	&__box-link {
+		width: $main-grid-unit * 62;
+	}
+
+	&__icon {
+		margin: 0 $main-grid-unit * 2 -8px $main-grid-unit * 4;
+	}
+}

@@ -1,29 +1,124 @@
+@import "variables";
+
+$appear-bottom-panel: $main-grid-unit * 25;
+
 .app-event-description-panel {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	letter-spacing: 1.25px;
-	color: #000000;
+	background-color: #f8f8f8;
+
+	&__breadcrumb {
+		position: sticky;
+		top: $layout-column-width;
+		z-index: 2;
+	}
+
+	&__container {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		padding: 0 $main-grid-unit * 22 0 $main-grid-unit * 22;
+	}
+
+	&__box-left {
+		margin: $main-grid-unit * 5 0;
+	}
+
+	&__box-right {
+		margin: $main-grid-unit * 5 0;
+	}
 
 	&__title {
-		font-weight: 500;
-		font-size: 60px;
-		line-height: 120%;
-		text-transform: capitalize;
+		@include text-h1();
+		color: $color-white-100;
+		margin-bottom: $main-grid-unit * 2;
 	}
 
+	&__description {
+		@include text-p();
+		color: $color-white-100;
+		margin-bottom: $layout-gutter;
+	}
+
+	&__take-part-button {
+		@include text-h4();
+	}
+
+	&__time-events {
+		margin-bottom: $layout-gutter;
+	}
+
+	&__calendar,
+	&__participants-img {
+		vertical-align: middle;
+		margin-right: $main-grid-unit;
+	}
+
+	&__time,
 	&__date,
-	&__time {
-		font-style: normal;
-		font-weight: normal;
-		font-size: 16px;
-		line-height: 16px;
+	&__participants-numbers {
+		@include text-h4-bold();
+		color: $color-white-100;
+		vertical-align: middle;
 	}
 
-	&__tool-tip {
-		align-self: flex-end;
+	&__time-bottom,
+	&__date-bottom,
+	&__participants-numbers-bottom {
+		color: $color-black-100;
+		vertical-align: middle;
 	}
+
+	&__bottom-panel {
+		@include text-p();
+		position: sticky;
+		width: 100vw;
+		bottom: 0;
+		padding: 0 $layout-outer-margin;
+		height: $main-grid-unit * 10;
+		line-height: $main-grid-unit * 10;
+		vertical-align: middle;
+		box-sizing: border-box;
+		background-color: $color-white-100;
+	}
+
+	&__box-bottom {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__event-info-bottom {
+		display: flex;
+	}
+
+	&__participants-events-bottom {
+		margin-left: $main-grid-unit * 5;
+	}
+
+	&__content-wrapper {
+		display: inline-block;
+		margin-top: calc(100vh - #{$appear-bottom-panel});
+	}
+
+	&__content {
+		@include text-p();
+		min-height: 100vh;
+		color: $color-black-100;
+		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
+			$main-grid-unit * 22;
+	}
+}
+
+.primary {
+	background: $gradient-primary;
+}
+
+.secondary {
+	background: $gradient-secondary;
+}
+
+.tertiary {
+	background: $gradient-tertiary;
+}
+
+.important-role {
+	background: $gradient-important-role;
 }

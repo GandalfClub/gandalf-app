@@ -12,6 +12,8 @@ import { AuthModule } from '../auth/auth.module';
 import { LocalizationModule } from './components/localization/localization.module';
 import { UserClaim } from '../admin-role-management/models/user-claims.enum';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { UserService } from './services/user.service';
 
 describe('ContainerComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -34,6 +36,10 @@ describe('ContainerComponent', () => {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
 		},
+
+		loadUser(): EntityWrapper<User> {
+			return user;
+		},
 		signInByGithub(): void {
 			user.status = EntityStatus.Pending;
 		},
@@ -43,6 +49,9 @@ describe('ContainerComponent', () => {
 		signUp(): void {
 			user.status = EntityStatus.Pending;
 		},
+	};
+	const mockUserFacadeService: any = {
+		subscribeUser(): void {}
 	};
 
 	beforeEach(() => {
@@ -55,7 +64,11 @@ describe('ContainerComponent', () => {
 				LocalizationModule,
 				AuthModule,
 				RouterTestingModule
-			]
+			],
+			providers: [
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
+				{ provide: UserService, useValue: mockUserFacadeService }
+			],
 		})
 			.compileComponents();
 	});
@@ -68,5 +81,20 @@ describe('ContainerComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	describe('when component initializing', () => {
+		beforeEach(() => {
+			spyOn(mockAuthFacadeService, 'loadUser');
+			spyOn(mockUserFacadeService, 'subscribeUser');
+			component.ngOnInit();
+		});
+
+		it('should call method loadUser() from AuthFacadeService', () => {
+			expect(mockAuthFacadeService.loadUser).toHaveBeenCalled();
+		});
+		it('should call method subscribeUser() from UserService', () => {
+			expect(mockUserFacadeService.subscribeUser).toHaveBeenCalled();
+		});
 	});
 });

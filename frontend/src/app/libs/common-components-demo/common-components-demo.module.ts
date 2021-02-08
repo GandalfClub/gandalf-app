@@ -21,6 +21,7 @@ import { TagDemoComponent } from './components/tag-demo/tag-demo.component';
 import { EventCardDemoComponent } from './components/event-card-demo/event-card-demo.component';
 import { TableDemoComponent } from './components/table-demo/table-demo.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { IconButtonDemoComponent } from './components/icon-button-demo/icon-button-demo.component';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import { NgxMaskModule } from 'ngx-mask';
 		TabsDemoComponent,
 		TagDemoComponent,
 		EventCardDemoComponent,
-		TableDemoComponent],
+		TableDemoComponent,
+		IconButtonDemoComponent],
 	imports: [
 		CommonModule,
 		CommonComponentsDemoRoutingModule,

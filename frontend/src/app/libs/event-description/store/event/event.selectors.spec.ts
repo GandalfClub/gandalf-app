@@ -4,6 +4,7 @@ import { EntityStatus } from '../../../auth/models/entity-status';
 import { Event } from '../../../landing/models/event';
 import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { async } from '@angular/core/testing';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Selectors', () => {
 	let eventValue: Event;
@@ -20,6 +21,8 @@ describe('Events Selectors', () => {
 			startTime: null,
 			endDate: null,
 			endTime: null,
+			users: [],
+			size: EventCardSize.S
 		};
 
 		event = {

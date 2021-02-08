@@ -1,0 +1,10 @@
+<mat-form-field appearance="outline"
+				[style.width]="widthTextarea">
+	<mat-label>{{label}}</mat-label>
+	<textarea matInput
+			  cdkTextareaAutosize
+			  cdkAutosizeMinRows="4"
+			  [formControl]="formControl"
+			  (change)="onValueChange($event.target.value)"
+			  ></textarea>
+</mat-form-field>

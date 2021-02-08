@@ -1,5 +1,5 @@
-<app-demo-group class="button-demo" [title]="'Popups'">
-	<div class="light-theme button-demo__states">
+<app-demo-group class="popover-demo" [title]="'Popups'">
+	<div class="light-theme">
 		<app-popover #templatepopover>
 			<div class="popover-title">
 				Title
@@ -8,10 +8,21 @@
 				Content Lorem ipsum
 			</div>
 			<div class="popover-actions">
-				<button mat-button (click)="templatepopover.close()">Action</button>
+				<app-button
+					class="popover-actions__btn"
+					type="outlined"
+					(click)="templatepopover.close()">
+						Button
+				</app-button>
+				<app-button
+					class="popover-actions__btn"
+					type="flat"
+					(click)="templatepopover.close()">
+						Submit
+				</app-button>
 			</div>
 		</app-popover>
-		<div class="button-demo__active">
+		<div class="popover-demo__active">
 			<app-demo-state [title]="'light'" class="button-demo__container">
 				<app-button type="flat" (click)="templatepopover.open()">
 					Open
@@ -19,7 +30,7 @@
 			</app-demo-state>
 		</div>
 	</div>
-	<div class="dark-theme button-demo__states">
+	<div class="dark-theme">
 		<app-popover [theme]="darkTheme" #templatepopoverdark>
 			<div class="popover-title">
 				Title
@@ -28,19 +39,31 @@
 				Content Lorem ipsum
 			</div>
 			<div class="popover-actions">
-				<button mat-button (click)="templatepopoverdark.close()">Action</button>
+				<app-button
+					class="popover-actions__btn"
+					type="outlined"
+					[theme]="darkTheme"
+					(click)="templatepopoverdark.close()">
+						Button
+				</app-button>
+				<app-button
+					class="popover-actions__btn"
+					type="flat"
+					[theme]="darkTheme"
+					(click)="templatepopoverdark.close()">
+						Submit
+				</app-button>
 			</div>
 		</app-popover>
-		<div class="button-demo__active">
+		<div>
 			<app-demo-state
-				[title]="'darks'"
-				class="button-demo__container"
+				[title]="'dark'"
 				[isDark]="true">
 				<app-button
 					type="flat"
 					[theme]="darkTheme"
 					(click)="templatepopoverdark.open()">
-					Open
+						Open
 				</app-button>
 			</app-demo-state>
 		</div>

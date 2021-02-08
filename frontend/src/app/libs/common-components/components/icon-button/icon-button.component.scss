@@ -1,0 +1,17 @@
+.icon-button {
+
+
+	&__icon {
+		padding: 0 4px;
+
+		line-height: 0;
+	}
+
+	&__text {
+		padding: 0 4px;
+	}
+
+	&__text:empty {
+		padding: 0;
+	}
+}

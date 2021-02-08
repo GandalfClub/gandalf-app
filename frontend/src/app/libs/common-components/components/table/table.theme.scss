@@ -23,7 +23,7 @@
 
 		&--dark-theme {
 			color: $color-white;
-			background: $color-gray;
+			background: $color-black-90;
 		}
 
 		&--selected {
@@ -55,7 +55,7 @@
 		}
 
 		&--dark-theme {
-			background: $color-gray;
+			background: $color-black-90;
 
 			.mat-header-cell {
 				color: $color-white;
@@ -74,7 +74,7 @@
 				border-bottom: none;
 			}
 			.table-content__row--hover {
-				background-color: $color-gray-light;
+				background-color: $color-black-85;
 			}
 			.table-content__last-row {
 				.mat-cell {

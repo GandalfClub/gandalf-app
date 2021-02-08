@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { LoadUser, SignOut, SignIn, SignInByGithub, SignUp, UpdateUserInfo } from './auth.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
-import { selectUser } from './auth.selectors';
+import { isAdminUser, selectUser } from './auth.selectors';
 import { AuthState } from '../../models/auth-state';
 import { EntityWrapper } from '../../models/entity-wraper';
 
@@ -40,4 +40,5 @@ export class AuthFacadeService {
 	get user$(): Observable<EntityWrapper<User>> {
 		return this.store.pipe(select(selectUser));
 	}
+
 }

@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, EventEmitter, Output, OnInit, Optional, Host, SkipSelf, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { AsyncValidatorFn, ControlContainer, ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { PasswordVisibility } from '../../shared/password-visibility.enum';
 import { fromPromise } from 'rxjs/internal-compatibility';
-
 import { InputType } from '../../shared/input-type.enum';
 
 @Component({
@@ -52,6 +51,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	@Input() public showRequiredSign: boolean;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
+
+	@Input() public widthInput: string;
 
 	@Output() public valueChange: EventEmitter<number | string | boolean | null | undefined> = new EventEmitter();
 
@@ -105,7 +106,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 		@Optional() @Host() @SkipSelf() protected parentFormContainer: ControlContainer,
 		public elementRef: ElementRef,
 		public changeDetector: ChangeDetectorRef
-	) {}
+	) { }
 
 	public ngOnInit(): void {
 		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
@@ -150,7 +151,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	public onChange: any = () => undefined;
 
 	public writeValue(value: any): void {
-		if (!Boolean(this.value) ) {
+		if (!Boolean(this.value)) {
 			this.value = value;
 		}
 		this.onChange(value);
@@ -184,8 +185,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	}
 
 	public setValidatorsToFormControl(): void {
-		if (this.syncValidators.length > 0) {this.formControl.setValidators(this.syncValidators); }
-		if (this.asyncValidators.length > 0) {this.formControl.setAsyncValidators(this.asyncValidators); }
+		if (this.syncValidators.length > 0) { this.formControl.setValidators(this.syncValidators); }
+		if (this.asyncValidators.length > 0) { this.formControl.setAsyncValidators(this.asyncValidators); }
 	}
 
 	public validate(): void {
@@ -194,7 +195,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 		this.invokeAsyncValidators().
 			then(() => {
 				if (Boolean(this.errorsArray?.length)) {
-					this.formControl.setErrors({error: 'formControl has error'});
+					this.formControl.setErrors({ error: 'formControl has error' });
 					this.changeDetector.detectChanges();
 				} else {
 					this.formControl.setErrors(null);
@@ -210,19 +211,19 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	private setSyncValidator(): void {
 		this.syncValidators = [].concat(this.inputValidators, this.changeValidators)
-		.filter((validator: ValidatorFn | null) => validator);
+			.filter((validator: ValidatorFn | null) => validator);
 	}
 	private setAsyncValidator(): void {
 		this.asyncValidators = [].concat(this.inputValidatorsAsync, this.changeValidatorsAsync)
-		.filter((validator: ValidatorFn | null) => validator);
+			.filter((validator: ValidatorFn | null) => validator);
 	}
 
 	private invokeSyncValidators(): void {
 		if (Boolean(this.syncValidators?.length)) {
-			this.syncValidators.map((validator: ValidatorFn ) => {
+			this.syncValidators.map((validator: ValidatorFn) => {
 				const error: ValidationErrors = validator(this.formControl);
 				if (error?.message) {
-				this.getCustomErrorsArray(error);
+					this.getCustomErrorsArray(error);
 				}
 
 			});
@@ -231,7 +232,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	private async invokeAsyncValidators(): Promise<any> {
 		return new Promise((resolve: (value?: any) => void) => {
-			if (Boolean (this.asyncValidators?.length)) {
+			if (Boolean(this.asyncValidators?.length)) {
 				this.asyncValidators.map(async (validator: AsyncValidatorFn) => {
 					let asyncError: Promise<ValidationErrors | null> | Observable<ValidationErrors | null> = validator(this.formControl);
 					asyncError = this.promiseToObservable(asyncError);
@@ -275,7 +276,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	private subscribeToChanges(): void {
 		this.formControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
 			if (Boolean(this.errorsArray?.length)) {
-				this.formControl.setErrors({error: 'formControl has error'});
+				this.formControl.setErrors({ error: 'formControl has error' });
 			}
 		});
 	}

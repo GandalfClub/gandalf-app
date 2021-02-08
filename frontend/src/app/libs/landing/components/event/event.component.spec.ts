@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { Event } from '../../models/event';
 
 import { EventComponent } from './event.component';
@@ -11,6 +12,8 @@ const event: Event = {
 	startTime: null,
 	endDate: null,
 	endTime: null,
+	users: [],
+	size: EventCardSize.S
 };
 
 describe('EventComponent', () => {

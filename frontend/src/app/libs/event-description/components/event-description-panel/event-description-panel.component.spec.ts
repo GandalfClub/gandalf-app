@@ -4,6 +4,13 @@ import { EventDescriptionPanelComponent } from './event-description-panel.compon
 import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
+import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
+import { SafeHtmlPipe } from 'src/app/libs/pipes/sanitizer.pipe';
+import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
+import { provideMockStore } from '@ngrx/store/testing';
+import { BreadcrumbComponent } from 'src/app/libs/common-components/components/breadcrumb/breadcrumb.component';
+import { of } from 'rxjs';
 
 const event: Event = {
 	id: '',
@@ -14,10 +21,17 @@ const event: Event = {
 	startTime: null,
 	endDate: null,
 	endTime: null,
+	users: [],
+	size: EventCardSize.S,
 };
 
 const user: EntityWrapper<User> = {
 	status: EntityStatus.Init,
+};
+
+const breadcrumbFacadeService: any = {
+	label$: of('hello test'),
+	loadBreadcrumb: () => { }
 };
 
 describe('EventComponent', () => {
@@ -27,7 +41,15 @@ describe('EventComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventDescriptionPanelComponent],
+			declarations: [
+				EventDescriptionPanelComponent,
+				ButtonComponent,
+				SafeHtmlPipe,
+				BreadcrumbComponent
+			],
+			providers: [
+				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
+			]
 		}).compileComponents();
 		fixture = TestBed.createComponent(EventDescriptionPanelComponent);
 		component = fixture.componentInstance;
@@ -43,7 +65,10 @@ describe('EventComponent', () => {
 
 	describe('when @Input get event value', () => {
 		it('should correctly render the passed @Input event value', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__title').textContent).toContain('test');
+			expect(
+				compiledElement.querySelector('.app-event-description-panel__title')
+					.textContent
+			).toContain('test');
 		});
 	});
 
@@ -54,7 +79,11 @@ describe('EventComponent', () => {
 		});
 
 		it('should disable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button').disabled).toBeTrue();
+			expect(
+				compiledElement.querySelector(
+					'.app-event-description-panel__take-part-button button'
+				).disabled
+			).toBeTrue();
 		});
 	});
 
@@ -65,7 +94,11 @@ describe('EventComponent', () => {
 		});
 
 		it('should enable button take event', () => {
-			expect(compiledElement.querySelector('.app-event-description-panel__take-part-button').disabled).toBeFalse();
+			expect(
+				compiledElement.querySelector(
+					'.app-event-description-panel__take-part-button button'
+				).disabled
+			).toBeFalse();
 		});
 	});
 });
