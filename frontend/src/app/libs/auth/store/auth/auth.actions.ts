@@ -138,4 +138,4 @@ export type AuthActions =
 	| UpdateUserInfoFail
 	| LoadUser
 	| LoadUserSuccess
-	| LoadUserFail
+	| LoadUserFail;

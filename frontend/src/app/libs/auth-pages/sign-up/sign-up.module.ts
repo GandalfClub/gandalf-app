@@ -7,7 +7,6 @@ import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
 import { StoreModule } from '@ngrx/store';
 import { NgxMaskModule } from 'ngx-mask';
 
-
 @NgModule({
 	declarations: [SignUpComponent],
 	imports: [

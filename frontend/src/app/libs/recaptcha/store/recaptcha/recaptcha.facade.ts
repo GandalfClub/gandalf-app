@@ -13,11 +13,11 @@ import { Recaptcha } from '../../models/recaptcha';
 export class RecaptchaFacadeService {
 	constructor(private store: Store<RecaptchaState>) {}
 
-	public getRecaptchaStatus(token): void {
+	public getRecaptchaStatus(token: string): void {
 		this.store.dispatch(new GetRecaptchaStatus(token));
 	}
 
-	get isRecaptchaPassed$(): Observable<EntityWrapper<Recaptcha>>{
+	get isRecaptchaPassed$(): Observable<EntityWrapper<Recaptcha>> {
 		return this.store.pipe(select(selectIsRecaptchaPassed));
 	}
 }

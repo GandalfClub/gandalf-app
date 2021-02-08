@@ -13,23 +13,19 @@ import { Recaptcha } from '../../models/recaptcha';
 
 @Injectable()
 export class RecaptchaEffects {
-	
+
 	@Effect()
 	public GetRecaptchaStatus: Observable<Action> = this.actions.pipe(
 		ofType(RecaptchaActionTypes.GetRecaptchaStatus),
 		map((action: GetRecaptchaStatus) => action.payload),
-		exhaustMap((token) =>
-			{
-			return this.RecaptchaRepository
+		exhaustMap((token: string) => this.recaptchaRepository
 				.getRecaptchaStatus(token)
-				.pipe(map((recaptcha: Recaptcha) => new GetRecaptchaStatusSuccess()))
-			}
-		),
+				.pipe(map((recaptcha: Recaptcha) => new GetRecaptchaStatusSuccess()))),
 		catchError((error: Error) => of(new GetRecaptchaStatusFailure(error)))
 	);
 
 	constructor(
 		private actions: Actions,
-		private RecaptchaRepository: RecaptchaRepository,
+		private recaptchaRepository: RecaptchaRepository,
 	) {}
 }

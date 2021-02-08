@@ -37,8 +37,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	constructor(
 		private authFacadeService: AuthFacadeService,
 		private formBuilder: FormBuilder,
-		private router: Router,		
-		private RecaptchaFacadeService: RecaptchaFacadeService,
+		private router: Router,
+		private recaptchaFacadeService: RecaptchaFacadeService,
 		private recaptchaV3Service: ReCaptchaV3Service,
 		) {}
 
@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 		});
 	}
 	public passwordValidator(control: AbstractControl): ValidationErrors | null {
-		
+
 		const passwordPattern: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,18}$/;
 		if (control && Boolean(control.value) && !passwordPattern.test(control.value)) {
 			return {message: `Password must have length 6-18 symbols, includes digits, symbols, uppercase and lowercase letters`};
@@ -118,13 +118,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 	public submit(): void {
 		this.recaptchaV3Service.execute('signUpUser')
-			.subscribe((token) => this.handleToken(token));
+			.subscribe((token: string) => this.handleToken(token));
 	}
 
-	public handleToken(token): void {
-		this.RecaptchaFacadeService.getRecaptchaStatus(token);
-		this.RecaptchaFacadeService.isRecaptchaPassed$.pipe(takeUntil(this.destroy$)).subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
-			if(recaptcha.status === EntityStatus.Success) {
+	public handleToken(token: string): void {
+		this.recaptchaFacadeService.getRecaptchaStatus(token);
+		this.recaptchaFacadeService.isRecaptchaPassed$.pipe(takeUntil(this.destroy$)).subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
+			if (recaptcha.status === EntityStatus.Success) {
 				this.signUpUser();
 			}
 		});
@@ -137,7 +137,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 			this.authFacadeService.signUp(this.user);
 		}
 	}
-	
+
 	public onGitHubSignInClicked(): void {
 		this.authFacadeService.signInByGithub();
 	}

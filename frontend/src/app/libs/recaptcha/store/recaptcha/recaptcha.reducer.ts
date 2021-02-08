@@ -22,7 +22,7 @@ export function recaptchaReducer(state: RecaptchaState = initialState, action: R
 			return {
 				...state,
 				recaptcha: {
-					status: EntityStatus.Success					
+					status: EntityStatus.Success
 				}
 			};
 		}
@@ -31,7 +31,7 @@ export function recaptchaReducer(state: RecaptchaState = initialState, action: R
 				...state,
 				recaptcha: {
 					status: EntityStatus.Error,
-					error: (action as GetRecaptchaStatusFailure).payload,					
+					error: (action as GetRecaptchaStatusFailure).payload,
 				}
 			};
 		}

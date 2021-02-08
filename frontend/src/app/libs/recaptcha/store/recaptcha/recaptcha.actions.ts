@@ -8,23 +8,20 @@ export enum RecaptchaActionTypes {
 }
 
 export class GetRecaptchaStatus implements Action {
-	public readonly type: RecaptchaActionTypes.GetRecaptchaStatus = RecaptchaActionTypes.GetRecaptchaStatus;
-	constructor(public payload: {
-		token
-	}) {}
+	public readonly type: RecaptchaActionTypes = RecaptchaActionTypes.GetRecaptchaStatus;
+	constructor(public payload: string) {}
 }
 
 export class GetRecaptchaStatusSuccess implements Action {
-	public readonly type: RecaptchaActionTypes.GetRecaptchaStatusSuccess = RecaptchaActionTypes.GetRecaptchaStatusSuccess;	
+	public readonly type: RecaptchaActionTypes = RecaptchaActionTypes.GetRecaptchaStatusSuccess;
 	constructor() {}
 }
 
 export class GetRecaptchaStatusFailure implements Action {
-	public readonly type: RecaptchaActionTypes.GetRecaptchaStatusFailure = RecaptchaActionTypes.GetRecaptchaStatusFailure;
+	public readonly type: RecaptchaActionTypes = RecaptchaActionTypes.GetRecaptchaStatusFailure;
 	constructor(public payload: Error) {}
 }
 
 export type RecaptchaActions =
 	| GetRecaptchaStatus
-	| GetRecaptchaStatusSuccess
-	| GetRecaptchaStatusFailure;
+	| GetRecaptchaStatusSuccess;

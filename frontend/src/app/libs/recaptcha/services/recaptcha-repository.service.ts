@@ -11,7 +11,7 @@ export class RecaptchaRepository {
 
 	constructor(private http: HttpClient) {}
 
-  	public getRecaptchaStatus(token): Observable<Recaptcha> {
+  	public getRecaptchaStatus(token: string): Observable<Recaptcha> {
 		const url: string = this.API_URL + '/recaptcha/recaptcha-status';
 	 	return this.http.post<Recaptcha>(url, {token});
 	}

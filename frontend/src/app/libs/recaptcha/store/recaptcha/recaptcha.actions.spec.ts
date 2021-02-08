@@ -35,9 +35,7 @@ describe('Get Recaptcha Status Failure', () => {
 
 describe('Get Recaptcha Status', () => {
 	let action: RecaptchaActions.GetRecaptchaStatus;
-	const payload = {
-		token: 'testToken'
-	};
+	const payload: string = 'testToken';
 	beforeEach(() => {
 		action = new RecaptchaActions.GetRecaptchaStatus(payload);
 	});

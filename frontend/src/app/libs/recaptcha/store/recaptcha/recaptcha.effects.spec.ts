@@ -45,9 +45,7 @@ describe('Recaptcha Effects', () => {
 			isRecaptchaPassed: true
 		};
 
-		const token = {
-			token: 'testToken'
-		};
+		const token: string = 'testToken';
 
 		const error: Error = new Error('error') as any;
 

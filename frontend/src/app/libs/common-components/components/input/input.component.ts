@@ -54,7 +54,7 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Output() public valueChange: EventEmitter<number | string | boolean | null | undefined> = new EventEmitter();
-	
+
 	@Input() public prefix: string;
 
 	@Input() public mask: string;
@@ -262,9 +262,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	}
 
 	private checkInlineValidators(): void {
-		if(this.formControl.validator) {
-			console.log('name', this.formControlName);
-		}
 		if (this.formControl.validator) {
 			this.formControl.clearValidators();
 			throw new Error(this.errorOnInlineValidators);

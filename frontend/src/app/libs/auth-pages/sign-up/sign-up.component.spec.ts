@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
 import { StoreModule } from '@ngrx/store';
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { NgxMaskModule } from 'ngx-mask';
 
 describe('SignUpComponent', () => {
@@ -60,8 +60,6 @@ describe('SignUpComponent', () => {
 		}
 	};
 
-	
-
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignUpComponent],
@@ -75,7 +73,7 @@ describe('SignUpComponent', () => {
 			providers: [
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{ provide: RecaptchaFacadeService, useValue: mockRecaptchaFacadeService },
-				{ provide: RECAPTCHA_V3_SITE_KEY, useValue: "6LcHvukZAAAAAL5zRwijNVtgSAE4nUqkFKZ7h1Qa" }
+				{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcHvukZAAAAAL5zRwijNVtgSAE4nUqkFKZ7h1Qa' }
 			],
 		}).compileComponents();
 	}));
@@ -153,7 +151,7 @@ describe('SignUpComponent', () => {
 				component.signUpUser();
 			});
 
-			const user = {
+			const userDto: any = {
 				firstName: 'TestFirstName',
 				lastName: 'TestLastName',
 				email: 'test@test.by',
@@ -162,7 +160,7 @@ describe('SignUpComponent', () => {
 			};
 
 			it('should call signUp ', () => {
-				expect(mockAuthFacadeService.signUp).toHaveBeenCalledWith(user);
+				expect(mockAuthFacadeService.signUp).toHaveBeenCalledWith(userDto);
 			});
 		});
 

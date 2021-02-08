@@ -95,7 +95,6 @@ import { NgxMaskModule } from 'ngx-mask';
 		MatSlideToggleModule,
 		MatCheckboxModule,
 		CreateDraftEventPopoverComponent,
-		
 		ButtonComponent,
 		SlideToggleComponent,
 		CheckboxComponent,

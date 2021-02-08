@@ -99,7 +99,7 @@ describe('AuthReducers', () => {
 	describe('SignUp', () => {
 		let action: AuthActions = {} as AuthActions;
 		let newState: AuthState;
-		let user: User = {
+		const user: User = {
 			id: 'test',
 			email: 'test@test.com',
 			isAdmin: false,
