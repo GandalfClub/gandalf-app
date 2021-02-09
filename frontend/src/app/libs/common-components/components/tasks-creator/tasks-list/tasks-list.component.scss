@@ -1,0 +1,27 @@
+@import "variables";
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding: $main-grid-unit;
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: $main-grid-unit;
+    background: $gradient-tasks-list;
+  }
+
+  &__item {
+    padding: $secondary-grid-unit * 3 $secondary-grid-unit * 4;
+    background: $color-white;
+    border: 1px solid $color-mercury;
+    border-radius: $secondary-grid-unit;
+  }
+}
