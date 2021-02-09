@@ -1,0 +1,15 @@
+@import "variables";
+
+.tasks-creator-tab {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  &__list {
+    width: $layout-sidebar-width;
+  }
+
+  &__creator {
+    width: calc(100% - #{$layout-sidebar-width} - #{$layout-gutter});
+  }
+}

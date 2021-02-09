@@ -1,0 +1,13 @@
+@import "variables";
+
+.tasks-creator {
+  height: 100%;
+  background-color: $color-white;
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
