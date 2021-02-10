@@ -4,8 +4,10 @@ import { SignUpComponent } from './sign-up.component';
 import { of, Subject, Observable } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { RecaptchaFacadeService } from '../../recaptcha/store/recaptcha/recaptcha.facade';
 import { ReactiveFormsModule, FormGroup, AbstractControl, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { Recaptcha } from '../../recaptcha/models/recaptcha';
@@ -15,6 +17,7 @@ import { CommonComponentsModule } from '../../common-components/common-component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { NgxMaskModule } from 'ngx-mask';
@@ -47,6 +50,11 @@ describe('SignUpComponent', () => {
 		},
 	};
 
+	const containerFacadeService: any = {
+		hideElementsOnSignIn(): void {
+		}
+	};
+
 	const recaptcha: EntityWrapper<Recaptcha> = {
 		status: EntityStatus.Success,
 	};
@@ -69,10 +77,13 @@ describe('SignUpComponent', () => {
 				CommonComponentsModule,
 				BrowserAnimationsModule,
 				RecaptchaV3Module,
-				StoreModule, NgxMaskModule.forRoot()],
+				StoreModule,
+				TranslateModule.forRoot(),
+				NgxMaskModule.forRoot()],
 			providers: [
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
 				{ provide: RecaptchaFacadeService, useValue: mockRecaptchaFacadeService },
+				{ provide: ContainerFacadeService, useValue: containerFacadeService },
 				{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcHvukZAAAAAL5zRwijNVtgSAE4nUqkFKZ7h1Qa' }
 			],
 		}).compileComponents();

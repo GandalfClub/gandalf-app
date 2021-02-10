@@ -79,5 +79,15 @@
 		"SIGN_IN_BTN": "Sign in",
 		"PASSWORD": "Password",
 		"EMAIL": "Email"
+	},
+	"SIGN_UP": {
+		"HAS_ACCOUNT": "Already have an account?",
+		"SIGN_IN_BTN": "Sign in",
+		"CREATE_ACCOUNT": "Create Account",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_UP_BTN": "Sign up",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
 	}
 }

@@ -5,6 +5,7 @@ import { CommonComponentsModule } from '../../common-components/common-component
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
 import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { NgxMaskModule } from 'ngx-mask';
 		CommonModule,
 		RecaptchaModule,
 		StoreModule,
+		TranslateModule,
 		NgxMaskModule.forRoot({
 			showMaskTyped : true,
 		  })

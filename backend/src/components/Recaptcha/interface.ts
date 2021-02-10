@@ -1,41 +1,13 @@
-import { IUserModel } from './model';
+import { IRecaptchaModel } from './model';
 
 /**
  * @export
- * @interface IUserService
+ * @interface IRecaptchaService
  */
-export interface IUserService {
-	/**
-	 * @returns {Promise<IUserModel[]>}
-	 * @memberof IUserService
-	 */
-	findAllUsers(): Promise<IUserModel[]>;
-
-	/**
-	 * @param {string} code
-	 * @returns {Promise<IUserModel>}
-	 * @memberof IUserService
-	 */
-	findUser(id: string): Promise<IUserModel>;
-
-	/**
-	 * @param {IUserModel} IUserModel
-	 * @returns {Promise<IUserModel>}
-	 * @memberof IUserService
-	 */
-	createUser(IUserModel: IUserModel): Promise<IUserModel>;
-
-	/**
-	 * @param {IUserModel} IUserModel
-	 * @returns {Promise<IUserModel>}
-	 * @memberof IUserService
-	 */
-	updateUser(IUserModel: IUserModel): Promise<IUserModel>;
-
-	/**
-	 * @param {string} id
-	 * @returns {Promise<IUserModel>}
-	 * @memberof IUserService
-	 */
-	removeUser(id: string): Promise<IUserModel>;
+export interface IRecaptchaService {
+	// /**
+	//  * @returns {Promise<IRecaptchaModel[]>}
+	//  * @memberof IRecaptchaService
+	//  */
+	// postRecaptchaToken(): Promise<IRecaptchaModel[]>;
 }

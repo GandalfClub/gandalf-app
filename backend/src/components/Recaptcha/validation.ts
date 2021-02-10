@@ -1,92 +1,13 @@
 import * as Joi from 'joi';
 import Validation from '../validation';
-import { IUserModel } from './model';
+import { IRecaptchaModel } from './model';
 
 /**
  * @export
- * @class UserValidation
+ * @class RecaptchaValidation
  * @extends Validation
  */
-class UserValidation extends Validation {
-	/**
-	 * Creates an instance of UserValidation.
-	 * @memberof UserValidation
-	 */
-	constructor() {
-		super();
-	}
-
-	/**
-	 * @param {IUserModel} params
-	 * @returns {Joi.ValidationResult<IUserModel >}
-	 * @memberof UserValidation
-	 */
-	public createUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
-		const schema: Joi.Schema = Joi.object().keys({
-			email: Joi.string()
-				.email({
-					minDomainAtoms: 2,
-				})
-				.required(),
-		});
-
-		return Joi.validate(params, schema);
-	}
-
-	/**
-	 * @param {{ id: string }} body
-	 * @returns {Joi.ValidationResult<{ id: string }>}
-	 * @memberof UserValidation
-	 */
-	public findUser(body: {
-		id: string;
-	}): Joi.ValidationResult<{
-		id: string;
-	}> {
-		const schema: Joi.Schema = Joi.object().keys({
-			id: this.customJoi.objectId().required(),
-		});
-
-		return Joi.validate(body, schema);
-	}
-
-	/**
-	 * @param {{ id: string }} body
-	 * @returns {Joi.ValidationResult<{ id: string }>}
-	 * @memberof UserValidation
-	 */
-	public removeUser(body: {
-		id: string;
-	}): Joi.ValidationResult<{
-		id: string;
-	}> {
-		const schema: Joi.Schema = Joi.object().keys({
-			id: this.customJoi.objectId().required(),
-		});
-
-		return Joi.validate(body, schema);
-	}
-
-	/**
-	 * @param {IUserModel} params
-	 * @returns {Joi.ValidationResult<IUserModel >}
-	 * @memberof UserValidation
-	 */
-	public updateUser(params: IUserModel): Joi.ValidationResult<IUserModel> {
-		const schema: Joi.Schema = Joi.object().keys({
-			_id: Joi.string().required(),
-			firstName: this.customJoi,
-			secondName: this.customJoi,
-			mobilePhone: this.customJoi,
-			claims: this.customJoi,
-			displayName: this.customJoi,
-			photoUrl: this.customJoi,
-			email: this.customJoi,
-			isAdmin: this.customJoi,
-		});
-
-		return Joi.validate(params, schema);
-	}
+class RecaptchaValidation extends Validation {
 }
 
-export default new UserValidation();
+export default new RecaptchaValidation();

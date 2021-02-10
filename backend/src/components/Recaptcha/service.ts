@@ -1,126 +1,42 @@
 import * as Joi from 'joi';
 import { Types } from 'mongoose';
-import { IUserService } from './interface';
-import UserModel, { IUserModel } from './model';
-import UserValidation from './validation';
+import { IRecaptchaService } from './interface';
+import RecaptchaModel, { IRecaptchaModel } from './model';
+import RecaptchaValidation from './validation';
 
 /**
  * @export
- * @implements {IUserModelService}
+ * @implements {IRecaptchaModelService}
  */
-const UserService: IUserService = {
-	/**
-	 * @returns {Promise < IUserModel[] >}
-	 * @memberof UserService
-	 */
-	async findAllUsers(): Promise<IUserModel[]> {
-		try {
-			return await UserModel.find({});
-		} catch (error) {
-			throw new Error(error.message);
-		}
-	},
+const RecaptchaService: IRecaptchaService = {
+    // /**
+    //  * @param {IUserModel} body
+    //  * @returns {Promise <IUserModel>}
+    //  * @memberof AuthService
+    //  */
+    // async postRecaptchaToken(body: IRecaptchaModel): Promise < IRecaptchaModel > {
+    //     try {
 
-	/**
-	 * @param {string} id
-	 * @returns {Promise < IUserModel >}
-	 * @memberof UserService
-	 */
-	async findUser(id: string): Promise<IUserModel> {
-		try {
-			const validate: Joi.ValidationResult<{
-				id: string;
-			}> = UserValidation.findUser({
-				id,
-			});
+    //         const recaptcha: IUserModel = new UserModel({
+    //             email: body.email,
+    //             password: body.password
+    //         });
 
-			if (validate.error) {
-				throw new Error(validate.error.message);
-			}
+    //         const query: IUserModel = await UserModel.findOne({
+    //             email: body.email
+    //         });
 
-			return await UserModel.findOne({
-				_id: Types.ObjectId(id),
-			});
-		} catch (error) {
-			throw new Error(error.message);
-		}
-	},
+    //         if (query) {
+    //             throw new Error('This email already exists');
+    //         }
 
-	/**
-	 * @param {IUserModel} user
-	 * @returns {Promise < IUserModel >}
-	 * @memberof UserService
-	 */
-	async createUser(body: IUserModel): Promise<IUserModel> {
-		try {
-			const validate: Joi.ValidationResult<IUserModel> = UserValidation.createUser(body);
+    //         const saved: IUserModel = await user.save();
 
-			if (validate.error) {
-				throw new Error(validate.error.message);
-			}
-
-			const user: IUserModel = await UserModel.create(body);
-
-			return user;
-		} catch (error) {
-			throw new Error(error.message);
-		}
-	},
-
-	/**
-	 * @param {IUserModel} user
-	 * @returns {Promise < IUserModel >}
-	 * @memberof UserService
-	 */
-	async updateUser(body: IUserModel): Promise<IUserModel> {
-		try {
-			const validate: Joi.ValidationResult<IUserModel> = UserValidation.updateUser(body);
-			if (validate.error) {
-				throw new Error(validate.error.message);
-			}
-			const user: IUserModel = await UserModel.findById(body._id);
-			user.firstName = body.firstName;
-			user.secondName = body.secondName;
-			user.mobilePhone = body.secondName;
-			user.email = body.email;
-			user.isAdmin = body.isAdmin;
-			user.claims = body.claims;
-			user.displayName = body.displayName;
-			user.photoUrl = body.photoUrl;
-			await UserModel.findByIdAndUpdate(body._id, body);
-
-			return user;
-		} catch (error) {
-			throw new Error(error.message);
-		}
-	},
-
-	/**
-	 * @param {string} id
-	 * @returns {Promise < IUserModel >}
-	 * @memberof UserService
-	 */
-	async removeUser(id: string): Promise<IUserModel> {
-		try {
-			const validate: Joi.ValidationResult<{
-				id: string;
-			}> = UserValidation.removeUser({
-				id,
-			});
-
-			if (validate.error) {
-				throw new Error(validate.error.message);
-			}
-
-			const user: IUserModel = await UserModel.findOneAndRemove({
-				_id: Types.ObjectId(id),
-			});
-
-			return user;
-		} catch (error) {
-			throw new Error(error.message);
-		}
-	},
+    //         return saved;
+    //     } catch (error) {
+    //         throw new Error(error);
+    //     }
+    // },
 };
 
-export default UserService;
+export default RecaptchaService;

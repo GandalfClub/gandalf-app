@@ -11,8 +11,10 @@ import { Recaptcha } from '../../recaptcha/models/recaptcha';
 import { IconVisibility } from '../models/icon-visibility';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { RecaptchaFacadeService } from 'src/app/libs/recaptcha/store/recaptcha/recaptcha.facade';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-sign-up',
@@ -36,13 +38,16 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private authFacadeService: AuthFacadeService,
+		private containerFacadeService: ContainerFacadeService,
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private recaptchaFacadeService: RecaptchaFacadeService,
 		private recaptchaV3Service: ReCaptchaV3Service,
+		private translate: TranslateService,
 		) {}
 
 	public ngOnInit(): void {
+		this.containerFacadeService.hideElementsOnSignIn();
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
@@ -140,6 +145,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 	public onGitHubSignInClicked(): void {
 		this.authFacadeService.signInByGithub();
+	}
+
+	public onSignIn(): void {
+		this.router.navigateByUrl('/signin');
 	}
 
 	public ngOnDestroy(): void {

@@ -37,6 +37,44 @@
 		margin: auto;
 	}
 
+	&__inputs-name-container {
+		display: flex;
+		width: 100%;
+	}
+
+	&__input-first-name-container {
+		width: calc(50% - 24px);
+		padding-right: 24px;
+	}
+
+	&__input-last-name-container {
+		width: 50%;
+	}
+
+	&__input-first-name {
+		width: 100%;
+	}
+
+	&__input-last-name {
+		width: 100%;
+	}
+
+	&__input-email {
+		width: 100%;
+	}
+
+	&__input-password {
+		width: 100%;
+	}
+
+	&__input-mobile {
+		width: 100%;
+	}
+
+	&__form {
+		width: 100%;
+	}
+
 	&__link-welcomeBack {
 		@include text-h2();
 		color: $color-white;
@@ -82,13 +120,14 @@
 	&__container-divider {
 		display: flex;
 		align-items: center;
+		width: 100%;
 		margin-bottom: $main-grid-unit;
 	}
 
 	&__divider {
 		background: $color-white-10;
 		height: 1px;
-		width: 160px;
+		width: 100%;
 	}
 
 	&__or {
@@ -109,9 +148,6 @@
 		box-shadow: 0 0 0 1000px $color-black inset !important;
 		-webkit-text-fill-color: white !important;
 	}
-	.mat-form-field {
-		width: 390px !important;
-	}
 	.mat-button,
 	.mat-flat-button {
 		padding: 12px 40px;
@@ -122,109 +158,4 @@
 	.sign-up-page__container-img {
 		display: none;
 	}
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container__form-signup {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.container_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: calc(100% - 456px);
-    height: 100vh;
-}
-.container__logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 51%;
-    max-width: 200px;
-}
-
-.input_first-name {
-    width: calc(100% - 24px);
-    padding-right: 24px;
-}
-
-.input_last-name {
-    width: 100%;
-}
-
-.input_big {
-    width: 100%;
-}
-
-.typography__white {
-    color: rgba(255, 255, 255);
-}
-
-.or {
-    color: rgba(255, 255, 255, 0.5);
-    padding: 0 26px;
-}
-
-.container_signup {
-    width: calc(100% - 72px);
-    display: flex;
-    justify-content: flex-end;
-    padding: 40px 72px 0 0;
-}
-
-.container__button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.signup__background {
-    height: 100vh;
-}
-
-.signup__background-container {
-    height: 100vh;
-}
-
-.name-input-container {
-    width: 50%;
-}
-
-.name-inputs-container {
-    display: flex;
-    width: 100%;
-}
-
-.dividers-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 32px 0;
-}
-
-.divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    //border-top-color: rgb(255, 255, 255);
-    width: calc(50% - 36px);
-    height: 10px;
-}
-
-.sign-up-question {
-    color: rgba(255, 255, 255);
-    padding-right: 12px;
-
 }
