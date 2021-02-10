@@ -22,7 +22,9 @@ describe('Events Selectors', () => {
 			endDate: null,
 			endTime: null,
 			users: [],
-			size: EventCardSize.S
+			size: EventCardSize.S,
+			eventParticipations: [],
+			roles: []
 		};
 
 		event = {

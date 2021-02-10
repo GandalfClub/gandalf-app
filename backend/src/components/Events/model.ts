@@ -1,6 +1,20 @@
 import { Document, Schema, Types } from 'mongoose';
 import mainDBConnection from '../../config/connection/main-db';
 
+export enum EventUserRoles {
+    Admin = 'admin',
+    HR = 'hr',
+    EventManager = 'event manager',
+    Participator = 'participator',
+  }
+export interface IEventParticipationModel extends Document {
+    created: Date;
+    userId: string;
+    eventId: string;
+    roles: EventUserRoles[];
+    approved: boolean;
+}
+
 export interface IEventsnModel extends Document {
     title: string;
     description: string;
@@ -12,6 +26,7 @@ export interface IEventsnModel extends Document {
     tasks: Types.ObjectId[];
     users: Types.ObjectId[];
     participations: Types.ObjectId[];
+    eventParticipations: [IEventParticipationModel];
     isDraft: boolean;
 }
 
@@ -26,6 +41,20 @@ export interface IEventTaskUpdate {
     eventId: Types.ObjectId;
     tasksId: Types.ObjectId[];
 }
+
+export const eventParticipationSubSchema: Schema = new Schema({
+    created: Schema.Types.Date,
+    userId: {
+        type: Schema.Types.String,
+        ref: 'TaskModel',
+    },
+    eventId: {
+        type: Schema.Types.String,
+        ref: 'EventsModel'
+    },
+    roles: [String],
+    approved: Schema.Types.Boolean
+});
 
 const eventsSchema: Schema = new Schema({
     title: {
@@ -67,8 +96,12 @@ const eventsSchema: Schema = new Schema({
     participations: {
         type: [Schema.Types.ObjectId],
         ref: 'ParticipationModel'
-	},
-	isDraft: {
+    },
+    eventParticipations: {
+        type: [eventParticipationSubSchema],
+        default: []
+    },
+    isDraft: {
         type: Schema.Types.Boolean,
         default: null
     },

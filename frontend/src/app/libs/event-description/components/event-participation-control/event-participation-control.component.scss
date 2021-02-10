@@ -1,0 +1,20 @@
+@import "variables";
+
+.app-event-participation-control__container {
+  display: flex;
+  align-items: center;
+}
+
+.app-event-participation-control__hint {
+  @include text-small();
+  
+  max-width: 470px;
+
+  color: $color-white-75;
+
+  margin: 0;
+  padding: 0 $main-grid-unit * 2;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

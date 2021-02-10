@@ -1,0 +1,59 @@
+<ng-container [ngSwitch]="getControlType(event, user)">
+  <div
+    *ngSwitchCase="takePart"
+    class="app-event-participation-control__container"
+  >
+    <app-button type="flat" color="accept" (click)="onTakePart(event, user)">
+      TAKE PART
+    </app-button>
+  </div>
+
+  <div
+    *ngSwitchCase="approved"
+    class="app-event-participation-control__container"
+  >
+    <app-button type="flat" color="basic" disabled="true">
+      APPROVED
+    </app-button>
+    <p *ngIf="showHint" class="app-event-participation-control__hint">
+      Your registration is approved. The button Open Event will be available on
+      the day of the event.
+    </p>
+  </div>
+
+  <div
+    *ngSwitchCase="waiting"
+    class="app-event-participation-control__container"
+  >
+    <app-button type="flat" color="basic" disabled="true">
+      WAITING
+    </app-button>
+    <p *ngIf="showHint" class="app-event-participation-control__hint">
+      We are approving your participation.
+    </p>
+  </div>
+
+  <div
+    *ngSwitchCase="openEvent"
+    class="app-event-participation-control__container"
+  >
+    <app-button type="flat" color="accept">
+      OPEN EVENT
+    </app-button>
+  </div>
+
+  <div
+    *ngSwitchCase="noUser"
+    class="app-event-participation-control__container"
+  >
+    <app-button
+      class="app-event-participation-control__btn--no-user"
+      type="flat"
+      color="accept"
+      matTooltip="You must be logged in to participate in this round"
+      disabled="true"
+    >
+      TAKE PART
+    </app-button>
+  </div>
+</ng-container>

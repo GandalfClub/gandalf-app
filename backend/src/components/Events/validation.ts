@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 import Validation from '../validation';
-import { IEventsnModel, IEventsnModelUpdate } from './model';
+import { IEventParticipationModel, IEventsnModel, IEventsnModelUpdate } from './model';
 
 class EventValidation extends Validation {
     constructor() {
@@ -23,6 +23,17 @@ class EventValidation extends Validation {
             title: Joi.string().required(),
             description: Joi.string().required(),
             isActive: Joi.boolean().required()
+        });
+
+        return Joi.validate(params, schema);
+    }
+
+    addNewParticipation(params: IEventParticipationModel): Joi.ValidationResult<IEventParticipationModel> {
+        const schema: Joi.Schema = Joi.object().keys({
+            userId: Joi.string().required(),
+            eventId: Joi.string().required(),
+            approved: Joi.boolean().required(),
+            roles: Joi.array().items(Joi.string()).required()
         });
 
         return Joi.validate(params, schema);

@@ -23,7 +23,9 @@ describe('Events Reducer', () => {
 			endDate: null,
 			endTime: null,
 			users: [],
-			size: EventCardSize.S
+			size: EventCardSize.S,
+			eventParticipations: [],
+			roles: []
 		};
 	});
 
