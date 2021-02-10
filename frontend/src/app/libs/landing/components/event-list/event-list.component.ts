@@ -25,8 +25,8 @@ export class EventListComponent {
 		return event.size;
 	}
 
-	public navigateToEventsecription(id: string): void {
-		this.router.navigate([`/eventsecription/${id}`]);
+	public navigateToEventPage(id: string): void {
+		this.router.navigate([`/event/${id}`]);
 	}
 
 }
