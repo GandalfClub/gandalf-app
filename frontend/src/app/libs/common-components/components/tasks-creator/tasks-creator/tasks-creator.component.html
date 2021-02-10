@@ -1,28 +1,92 @@
-<div class="tasks-creator">
+<form [formGroup]="taskCreatorControl" class="tasks-creator">
   <ng-container *ngIf="!isListEmpty; else emptyList">
     <div class="tasks-creator__header event-gradient">
-      <app-input></app-input>
+      <mat-form-field class="" appearance="outline">
+        <input matInput type="text" formControlName="taskNameControl">
+        <button mat-button *ngIf="taskName" matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
     </div>
     <div class="tasks-creator__body">
-      <mat-form-field appearance="fill">
-        <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
-        <mat-select disableOptionCentering [(ngModel)]="selectedTaskType">
-          <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType"
-          >{{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+
+      <div class="tasks-creator__basic-settings">
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
+          <mat-select disableOptionCentering formControlName="selectedTaskTypeControl"
+                      (openedChange)="onOpenTaskTypesSelector($event)" [value]="taskTypesEnum.single">
+            <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType"
+            >{{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div>
+          <app-slide-toggle [labelPosition]="'before'"
+                            [disabled]="isMentorCheckDisabled()"
+                            [value]="isMentorCheckSelected"
+                            formControlName="mentorCheckControl"
+                            [title]="'Mentor check'"></app-slide-toggle>
+          <mat-form-field class="tasks-creator__max-score" appearance="outline">
+            <input matInput type="number"
+                   formControlName="maxScoreControl"
+                   placeholder="{{ 'TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate }}">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <app-ckeditor [value]="false"
+                    theme=lightTheme
+                    [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
 
       <ng-container [ngSwitch]="selectedTaskType">
 
-        <ng-container *ngSwitchCase="taskTypesEnum.text">text</ng-container>
-        <ng-container *ngSwitchCase="taskTypesEnum.single">single</ng-container>
-        <ng-container *ngSwitchCase="taskTypesEnum.coding">coding</ng-container>
+        <ng-container *ngSwitchCase="taskTypesEnum.single">
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group">
+            <div>
+              <mat-radio-button value="1"></mat-radio-button>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
+                <input matInput type="text">
+              </mat-form-field>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <div>
+              <mat-radio-button value="2"></mat-radio-button>
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
+                <input matInput type="text">
+              </mat-form-field>
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </mat-radio-group>
+
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
+            <mat-icon>close</mat-icon> add new
+          </button>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="taskTypesEnum.coding">
+          <div style="height: 500px; display:block;">
+            <app-monaco-editor [language]="'javascript'"></app-monaco-editor>
+          </div>
+        </ng-container>
+
         <ng-container *ngSwitchCase="taskTypesEnum.multiple">multip</ng-container>
 
       </ng-container>
     </div>
   </ng-container>
-</div>
+</form>
 
 <ng-template #emptyList>
   <div class="tasks-creator__empty">

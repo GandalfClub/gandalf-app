@@ -18,4 +18,12 @@
   &__body {
     padding: $events-creator-padding;
   }
+
+  &__basic-settings {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__max-score {
+  }
 }
