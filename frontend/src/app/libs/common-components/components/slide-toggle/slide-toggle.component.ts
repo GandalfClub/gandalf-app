@@ -30,6 +30,9 @@ export class SlideToggleComponent extends FormControlCommonDirective {
 	@Input()
 	public value: boolean;
 
+	@Input()
+  public labelPosition: 'before' | 'after';
+
 	@Input() public formControlName: string;
 
 	@Input() public formControl: FormControl;

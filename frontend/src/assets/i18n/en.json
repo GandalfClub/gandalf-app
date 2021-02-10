@@ -69,7 +69,10 @@
          "SINGLE": "Single answer",
          "MULTIPLE": "Multiple answers",
          "TEXT": "Text answer"
-    }
+    },
+    "MENTOR_CHECK_LABEL": "Mentor check",
+    "MAX_SCORE_PLACEHOLDER": "Max score",
+    "TEXT_EDITOR_PLACEHOLDER": "Enter question here"
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",

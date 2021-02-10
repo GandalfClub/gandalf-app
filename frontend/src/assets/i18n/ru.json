@@ -67,7 +67,10 @@
       "SINGLE": "Одиночный ответ",
       "MULTIPLE": "Множественный выбор",
       "TEXT": "Текстовый ответ"
-    }
+    },
+    "MENTOR_CHECK_LABEL": "Проверка ментором",
+    "MAX_SCORE_PLACEHOLDER": "Максимальная оценка",
+    "TEXT_EDITOR_PLACEHOLDER": "Введите вопрос"
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
