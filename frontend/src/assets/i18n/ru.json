@@ -77,6 +77,15 @@
 		"INVITATIONS_TABS": "ПРИГЛАШЕНИЯ",
 		"TITLE_GENERAL": "Основная информация"
 	},
+  "TASK-CREATION": {
+    "TASK_TYPE_LABEL": "Тип задачи",
+    "TASKS_TYPES": {
+      "CODING": "Код",
+      "SINGLE": "Одиночный ответ",
+      "MULTIPLE": "Множественный выбор",
+      "TEXT": "Текстовый ответ"
+    }
+  },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
 		"FOR_IS_PRIVATE": "Информация о мероприятии"
