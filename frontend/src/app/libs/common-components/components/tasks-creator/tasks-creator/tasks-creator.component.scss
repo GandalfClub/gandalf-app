@@ -10,4 +10,12 @@
     justify-content: center;
     height: 100%;
   }
+
+  &__header {
+    padding: $main-grid-unit;
+  }
+
+  &__body {
+    padding: $events-creator-padding;
+  }
 }

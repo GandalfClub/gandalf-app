@@ -1,5 +1,31 @@
 <div class="tasks-creator">
-  <div *ngIf="isListEmpty" class="tasks-creator__empty">
+  <ng-container *ngIf="!isListEmpty; else emptyList">
+    <div class="tasks-creator__header event-gradient">
+      <app-input></app-input>
+    </div>
+    <div class="tasks-creator__body">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
+        <mat-select disableOptionCentering [(ngModel)]="selectedTaskType">
+          <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType"
+          >{{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-container [ngSwitch]="selectedTaskType">
+
+        <ng-container *ngSwitchCase="taskTypesEnum.text">text</ng-container>
+        <ng-container *ngSwitchCase="taskTypesEnum.single">single</ng-container>
+        <ng-container *ngSwitchCase="taskTypesEnum.coding">coding</ng-container>
+        <ng-container *ngSwitchCase="taskTypesEnum.multiple">multip</ng-container>
+
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #emptyList>
+  <div class="tasks-creator__empty">
     <span>EMPTY</span>
   </div>
-</div>
+</ng-template>
