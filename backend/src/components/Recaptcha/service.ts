@@ -9,34 +9,6 @@ import RecaptchaValidation from './validation';
  * @implements {IRecaptchaModelService}
  */
 const RecaptchaService: IRecaptchaService = {
-    // /**
-    //  * @param {IUserModel} body
-    //  * @returns {Promise <IUserModel>}
-    //  * @memberof AuthService
-    //  */
-    // async postRecaptchaToken(body: IRecaptchaModel): Promise < IRecaptchaModel > {
-    //     try {
-
-    //         const recaptcha: IUserModel = new UserModel({
-    //             email: body.email,
-    //             password: body.password
-    //         });
-
-    //         const query: IUserModel = await UserModel.findOne({
-    //             email: body.email
-    //         });
-
-    //         if (query) {
-    //             throw new Error('This email already exists');
-    //         }
-
-    //         const saved: IUserModel = await user.save();
-
-    //         return saved;
-    //     } catch (error) {
-    //         throw new Error(error);
-    //     }
-    // },
 };
 
 export default RecaptchaService;

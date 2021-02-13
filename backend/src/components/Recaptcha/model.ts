@@ -24,7 +24,7 @@ const RecaptchaSchema: Schema = new Schema(
 		versionKey: false,
 	}
 ).pre('save', async function (next: NextFunction): Promise<void> {
-	const user: any = this; // tslint:disable-line
+	const recaptcha: any = this; // tslint:disable-line
 
 });
 
