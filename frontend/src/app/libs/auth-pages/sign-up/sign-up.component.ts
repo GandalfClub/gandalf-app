@@ -60,7 +60,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 		this.signUpFormGroup = this.formBuilder.group({
 			firstName: [''],
-			lastName: [''],
+			secondName: [''],
 			email: [''],
 			password: [''],
 			mobilePhone: [''],
@@ -152,6 +152,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnDestroy(): void {
+		this.containerFacadeService.showElementsOnSignIn();
 		this.destroy$.next(true);
 		this.destroy$.complete();
 	}

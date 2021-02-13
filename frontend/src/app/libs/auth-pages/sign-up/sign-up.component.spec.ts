@@ -28,7 +28,7 @@ describe('SignUpComponent', () => {
 	let emailInput: AbstractControl;
 	let passwordInput: AbstractControl;
 	let firstNameInput: AbstractControl;
-	let lastNameInput: AbstractControl;
+	let secondNameInput: AbstractControl;
 	let mobilePhoneInput: AbstractControl;
 	let destroy$: Subject<boolean>;
 	let fixture: ComponentFixture<SignUpComponent>;
@@ -52,6 +52,8 @@ describe('SignUpComponent', () => {
 
 	const containerFacadeService: any = {
 		hideElementsOnSignIn(): void {
+		},
+		showElementsOnSignIn(): void {
 		}
 	};
 
@@ -147,7 +149,7 @@ describe('SignUpComponent', () => {
 			emailInput = form.controls.email;
 			passwordInput = form.controls.password;
 			firstNameInput = form.controls.firstName;
-			lastNameInput = form.controls.lastName;
+			secondNameInput = form.controls.secondName;
 			mobilePhoneInput = form.controls.mobilePhone;
 		});
 
@@ -156,7 +158,7 @@ describe('SignUpComponent', () => {
 				emailInput.setValue('test@test.by');
 				passwordInput.setValue('Qq@1qq');
 				firstNameInput.setValue('TestFirstName');
-				lastNameInput.setValue('TestLastName');
+				secondNameInput.setValue('TestLastName');
 				mobilePhoneInput.setValue('+375291234567');
 				component.submitted = true;
 				component.signUpUser();
@@ -164,7 +166,7 @@ describe('SignUpComponent', () => {
 
 			const userDto: any = {
 				firstName: 'TestFirstName',
-				lastName: 'TestLastName',
+				secondName: 'TestLastName',
 				email: 'test@test.by',
 				password: 'Qq@1qq',
 				mobilePhone: '+375291234567',
