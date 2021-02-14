@@ -1,19 +1,19 @@
 @import "variables";
 
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: $footer-height;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: $footer-height;
 
-  background: #212121;
+	background: #212121;
 
-  &__text {
-    @include text-small;
+	&__text {
+		@include text-small;
 
-    margin-bottom: 0;
+		margin-bottom: 0;
 
-    color: $color-white;
-  }
+		color: $color-white;
+	}
 }
