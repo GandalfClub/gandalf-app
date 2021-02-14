@@ -4,35 +4,35 @@
   flex-grow: 1;
   background: $color-white;
 
-  &__header {
-    display: flex;
-    align-items: center;
-    background: $gradient-tertiary;
-  }
-  &__form {
-    margin: $main-grid-unit * 5;
-    margin-bottom: 0;
-  }
-  &__title {
-    @include text-h4-bold;
-    color: $color-white;
-    margin: 14px $main-grid-unit * 2;
-  }
+	&__header {
+		display: flex;
+		align-items: center;
+		background: $gradient-tertiary;
+	}
+	&__form {
+		margin: $main-grid-unit * 5;
+		margin-bottom: 0;
+	}
+	&__title {
+		@include text-h4-bold;
+		color: $color-white;
+		margin: 14px $main-grid-unit * 2;
+	}
 
-  &__date {
-    margin-right: $main-grid-unit;
-  }
-  &__time,
-  &__arrow {
-    margin-right: $secondary-grid-unit * 5;
-  }
+	&__date {
+		margin-right: $main-grid-unit;
+	}
+	&__time,
+	&__arrow {
+		margin-right: $secondary-grid-unit * 5;
+	}
 
-  &__info {
-    margin-left: $secondary-grid-unit * 3;
-  }
+	&__info {
+		margin-left: $secondary-grid-unit * 3;
+	}
 
-  &__ckeditor {
-    padding-bottom: $main-grid-unit * 5;
-    padding-top: $layout-gutter;
-  }
+	&__ckeditor {
+		padding-bottom: $main-grid-unit * 5;
+		padding-top: $layout-gutter;
+	}
 }
