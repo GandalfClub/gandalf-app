@@ -1,12 +1,32 @@
 <form [formGroup]="taskCreatorControl" class="tasks-creator">
   <ng-container *ngIf="!isListEmpty; else emptyList">
     <div class="tasks-creator__header event-gradient">
-      <mat-form-field class="" appearance="outline">
-        <input matInput type="text" formControlName="taskNameControl">
-        <button mat-button *ngIf="taskName" matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
+
+      <div *ngIf="!isTaskNameEditMode">
+        {{ taskName }}
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="isTaskNameEditMode = true">
+          <mat-icon>mode</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="isTaskNameEditMode">
+        <mat-form-field appearance="outline">
+          <input matInput type="text"
+                 formControlName="taskNameControl"
+                 placeholder="Task name">
+        </mat-form-field>
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="isTaskNameEditMode = false">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearTaskName()">
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
+      </div>
+
+      <button mat-button matSuffix mat-icon-button aria-label="Delete task">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
     <div class="tasks-creator__body">
 
@@ -16,8 +36,9 @@
           <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
           <mat-select disableOptionCentering formControlName="selectedTaskTypeControl"
                       (openedChange)="onOpenTaskTypesSelector($event)" [value]="taskTypesEnum.single">
-            <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType"
-            >{{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}</mat-option>
+            <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType">
+              {{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -40,37 +61,31 @@
                     theme=lightTheme
                     [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
 
-      <ng-container [ngSwitch]="selectedTaskType">
+      <ng-container [ngSwitch]="getSelectedTaskType()">
 
         <ng-container *ngSwitchCase="taskTypesEnum.single">
           <mat-radio-group
             aria-labelledby="example-radio-group-label"
-            class="example-radio-group">
-            <div>
-              <mat-radio-button value="1"></mat-radio-button>
+            class="example-radio-group" formArrayName="answersArrayControl">
 
-              <mat-form-field appearance="outline">
-                <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
-                <input matInput type="text">
-              </mat-form-field>
-              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
-                <mat-icon>close</mat-icon>
-              </button>
-            </div>
             <div>
-              <mat-radio-button value="2"></mat-radio-button>
-              <mat-form-field appearance="outline">
-                <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
-                <input matInput type="text">
-              </mat-form-field>
-              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
-                <mat-icon>close</mat-icon>
-              </button>
+              <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
+                <mat-radio-button formControlName="isCorrect"></mat-radio-button>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
+                  <input matInput type="text" formControlName="label">
+                </mat-form-field>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeSingleAnswer(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
+
           </mat-radio-group>
 
-          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="taskName=''">
-            <mat-icon>close</mat-icon> add new
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addSingleAnswer()">
+            <mat-icon>add</mat-icon>
+            add new
           </button>
 
         </ng-container>

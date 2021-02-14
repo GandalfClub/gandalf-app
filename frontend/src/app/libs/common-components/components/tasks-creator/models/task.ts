@@ -1,6 +1,6 @@
 import {TasksTypes} from './tasks-creator';
 
-interface IAnswer {
+export interface IAnswer {
   label: string;
   isCorrect: boolean;
 }

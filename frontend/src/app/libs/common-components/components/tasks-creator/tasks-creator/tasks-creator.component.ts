@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TasksTypes } from '../models/tasks-creator';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IAnswer, ITask } from '../models/task';
 
-interface ICreatedTask {
+interface ICreatedTaskControls {
   taskNameControl: string;
   selectedTaskTypeControl: TasksTypes;
   maxScoreControl: number;
   mentorCheckControl: boolean;
+  answersArrayControl: IAnswer[];
 }
 
 @Component({
@@ -15,6 +17,10 @@ interface ICreatedTask {
   styleUrls: ['./tasks-creator.component.scss'],
 })
 export class TasksCreatorComponent implements OnInit {
+
+  @Input()
+  public task: ITask;
+
   public isTaskTypesSelectorOpened: boolean;
   public taskName: string;
   public maxScore: number;
@@ -29,38 +35,74 @@ export class TasksCreatorComponent implements OnInit {
   public selectedTaskType: TasksTypes = TasksTypes.single;
   public isMentorCheckSelected: boolean;
   public taskCreatorControl: FormGroup;
+  public isTaskNameEditMode: boolean = true;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   public onOpenTaskTypesSelector(isOpen: boolean): void {
     this.isTaskTypesSelectorOpened = isOpen;
-    if (this.selectedTaskType === TasksTypes.coding) {
-      this.isMentorCheckSelected = true;
-    }
   }
 
   public ngOnInit(): void {
-    this.taskCreatorControl = new FormGroup({
-      taskNameControl: new FormControl(),
-      selectedTaskTypeControl: new FormControl(),
-      maxScoreControl: new FormControl(),
-      mentorCheckControl: new FormControl(),
-    });
-
-    this.taskCreatorControl.valueChanges.subscribe(
-      ({ taskNameControl, selectedTaskTypeControl, maxScoreControl, mentorCheckControl }: ICreatedTask) => {
-        this.taskName = taskNameControl;
-        this.selectedTaskType = selectedTaskTypeControl;
-        this.maxScore = maxScoreControl;
-        this.isMentorCheckSelected = mentorCheckControl;
+    this.taskCreatorControl = this.formBuilder.group({
+        taskNameControl: new FormControl(),
+        selectedTaskTypeControl: new FormControl(TasksTypes.single),
+        maxScoreControl: new FormControl(),
+        mentorCheckControl: new FormControl(false),
+        answersArrayControl: this.formBuilder.array([]),
       }
     );
 
+    this.taskCreatorControl.valueChanges.subscribe(
+      ({
+         taskNameControl,
+         selectedTaskTypeControl,
+         maxScoreControl,
+         mentorCheckControl,
+         answersArrayControl
+       }: ICreatedTaskControls) => {
+        this.taskName = taskNameControl;
+        this.selectedTaskType = selectedTaskTypeControl;
+        this.maxScore = maxScoreControl;
+        this.isMentorCheckSelected = (selectedTaskTypeControl === TasksTypes.coding)
+          ? true
+          : this.isMentorCheckSelected = mentorCheckControl;
+
+        console.log(answersArrayControl);
+      }
+    );
+
+  }
+
+  public get answerControl(): FormArray {
+    return this.taskCreatorControl.get('answersArrayControl') as FormArray;
+  }
+
+  public addSingleAnswer(): void {
+    this.answerControl.push(this.formBuilder.group({
+        label: '',
+        isCorrect: false,
+      }
+    ));
+  }
+
+  public removeSingleAnswer(index: number): void {
+    this.answerControl.removeAt(index);
   }
 
   public isMentorCheckDisabled(): boolean {
     return this.selectedTaskType === TasksTypes.coding;
   }
 
+  public getSelectedTaskType(): TasksTypes {
+    return this.selectedTaskType;
+  }
+
+  public clearTaskName(): void {
+    this.taskCreatorControl.controls['taskNameControl'].setValue('');
+  }
+
+  private submitTask(): void {
+  }
 }
