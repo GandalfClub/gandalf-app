@@ -8,8 +8,19 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-shrink: 0;
     padding: $main-grid-unit;
+  }
+
+  &__title {
+    padding: 0 $main-grid-unit;
+    color: $color-white;
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &__content {
@@ -20,8 +31,28 @@
 
   &__item {
     padding: $secondary-grid-unit * 3 $secondary-grid-unit * 4;
-    background: $color-white;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
     border: 1px solid $color-mercury;
     border-radius: $secondary-grid-unit;
+    background: $color-white;
+
+    &:not(:last-child) {
+      margin-bottom: $main-grid-unit;
+    }
+  }
+
+  &__add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: $main-grid-unit * 5;
+    height: $main-grid-unit * 5;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { TasksTypes } from '../models/tasks-creator';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IAnswer, ITask } from '../models/task';
@@ -8,6 +8,7 @@ interface ICreatedTaskControls {
   selectedTaskTypeControl: TasksTypes;
   maxScoreControl: number;
   mentorCheckControl: boolean;
+  textEditorControl: string;
   answersArrayControl: IAnswer[];
 }
 
@@ -16,40 +17,55 @@ interface ICreatedTaskControls {
   templateUrl: './tasks-creator.component.html',
   styleUrls: ['./tasks-creator.component.scss'],
 })
-export class TasksCreatorComponent implements OnInit {
+export class TasksCreatorComponent implements OnInit, OnChanges {
 
   @Input()
-  public task: ITask;
+  public selectedTask: ITask;
 
   public isTaskTypesSelectorOpened: boolean;
   public taskName: string;
   public maxScore: number;
   public taskTypesEnum: typeof TasksTypes = TasksTypes;
-  public isListEmpty: boolean = false;
   public tasksTypes: Set<TasksTypes> = new Set([
     TasksTypes.text,
     TasksTypes.single,
     TasksTypes.multiple,
     TasksTypes.coding,
   ]);
-  public selectedTaskType: TasksTypes = TasksTypes.single;
-  public isMentorCheckSelected: boolean;
+  public selectedTaskType: TasksTypes;
   public taskCreatorControl: FormGroup;
   public isTaskNameEditMode: boolean = true;
 
   constructor(private formBuilder: FormBuilder) {
   }
 
+  get isMentorCheckSelected(): boolean {
+    return this.taskCreatorControl.get('isMentorCheckSelected')?.value as boolean ?? false;
+  }
+
+  get answerControl(): FormArray {
+    return this.taskCreatorControl.get('answersArrayControl') as FormArray;
+  }
+
+  set isMentorCheckSelected(value: boolean) {
+    this.taskCreatorControl.get('isMentorCheckSelected')?.setValue(value);
+  }
+
   public onOpenTaskTypesSelector(isOpen: boolean): void {
     this.isTaskTypesSelectorOpened = isOpen;
+  }
+
+  public get isListEmpty(): boolean {
+    return !Boolean(this.selectedTask) ?? true;
   }
 
   public ngOnInit(): void {
     this.taskCreatorControl = this.formBuilder.group({
         taskNameControl: new FormControl(),
-        selectedTaskTypeControl: new FormControl(TasksTypes.single),
+        selectedTaskTypeControl: new FormControl(),
         maxScoreControl: new FormControl(),
-        mentorCheckControl: new FormControl(false),
+        mentorCheckControl: new FormControl(),
+        textEditorControl: new FormControl(),
         answersArrayControl: this.formBuilder.array([]),
       }
     );
@@ -60,6 +76,7 @@ export class TasksCreatorComponent implements OnInit {
          selectedTaskTypeControl,
          maxScoreControl,
          mentorCheckControl,
+         textEditorControl,
          answersArrayControl
        }: ICreatedTaskControls) => {
         this.taskName = taskNameControl;
@@ -68,21 +85,21 @@ export class TasksCreatorComponent implements OnInit {
         this.isMentorCheckSelected = (selectedTaskTypeControl === TasksTypes.coding)
           ? true
           : this.isMentorCheckSelected = mentorCheckControl;
-
-        console.log(answersArrayControl);
       }
     );
 
   }
 
-  public get answerControl(): FormArray {
-    return this.taskCreatorControl.get('answersArrayControl') as FormArray;
+  public ngOnChanges(): void {
+    if (this.selectedTask) {
+      this.setSelectedTaskValues(this.selectedTask);
+    }
   }
 
-  public addSingleAnswer(): void {
+  public addSingleAnswer(value?: IAnswer): void {
     this.answerControl.push(this.formBuilder.group({
-        label: '',
-        isCorrect: false,
+        label: value?.label ?? '',
+        isCorrect: value?.isCorrect ?? '',
       }
     ));
   }
@@ -104,5 +121,19 @@ export class TasksCreatorComponent implements OnInit {
   }
 
   private submitTask(): void {
+  }
+
+  private setSelectedTaskValues(task: ITask): void {
+    this.taskCreatorControl.controls['taskNameControl'].setValue(task.taskName);
+    this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(task.taskType);
+    this.taskCreatorControl.controls['maxScoreControl'].setValue(task.maxScore);
+    this.isMentorCheckSelected = task.mentorCheck;
+    this.taskCreatorControl.controls['textEditorControl'].setValue(task.question);
+    if (task.answers) {
+      this.taskCreatorControl.controls['answersArrayControl'].setValue([]);
+      task.answers.forEach((answer: IAnswer) => {
+        this.addSingleAnswer(answer);
+      });
+    }
   }
 }
