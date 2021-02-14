@@ -57,7 +57,7 @@
 
       </div>
 
-      <app-ckeditor [value]="false"
+      <app-ckeditor formControlName="textEditorControl"
                     theme=lightTheme
                     [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
 
@@ -66,9 +66,9 @@
         <ng-container *ngSwitchCase="taskTypesEnum.single">
           <mat-radio-group
             aria-labelledby="example-radio-group-label"
-            class="example-radio-group" formArrayName="answersArrayControl">
+            class="example-radio-group">
 
-            <div>
+            <div formArrayName="answersArrayControl">
               <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
                 <mat-radio-button formControlName="isCorrect"></mat-radio-button>
                 <mat-form-field appearance="outline">
