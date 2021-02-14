@@ -12,6 +12,8 @@
   }
 
   &__header {
+    display: flex;
+    justify-content: space-between;
     padding: $main-grid-unit;
   }
 

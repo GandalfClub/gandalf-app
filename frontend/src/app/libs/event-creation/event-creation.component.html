@@ -5,12 +5,12 @@
   <app-general-info
     class="event-creation__tab-content"
     *ngIf="generalTab"
-    (passForm)="getFormFromGeneralComponent($event)"
-  ></app-general-info>
+    (passForm)="getFormFromGeneralComponent($event)">
+  </app-general-info>
   <app-tasks-creator-page
     class="event-creation__tab-content"
-    *ngIf="tasksTab"
-  ></app-tasks-creator-page>
+    *ngIf="tasksTab">
+  </app-tasks-creator-page>
   <div class="event-creation__bottom-bar">
     <div>
       <app-icon-button
