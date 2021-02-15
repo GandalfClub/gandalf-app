@@ -6,7 +6,7 @@ import {
 	RecaptchaActions
 } from './recaptcha.actions';
 import { RecaptchaState } from '../../models/recaptcha-state';
-import { EntityStatus } from '../../models/entity-status';
+import { EntityStatus } from '../../../auth/models/entity-status';
 import { Recaptcha } from '../../models/recaptcha';
 
 describe('RecaptchaReducers', () => {

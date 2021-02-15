@@ -51,16 +51,14 @@ describe('InputComponent', () => {
 		html = fixture.debugElement.nativeElement;
 		component.label = label;
 		component.placeholder = placeholder;
-		// component.prefix = prefix;
-		// component.mask = mask;
 		component.inputValidators = [lengthValidator];
 
 		fixture.detectChanges();
 	});
 
-	// it('should create', () => {
-	// 	expect(component).toBeTruthy();
-	// });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 
 	describe('appearance', () => {
 		it('label input should be rendered',  () => {

@@ -1,8 +1,8 @@
 import { selectRecaptchaState, selectIsRecaptchaPassed } from './recaptcha.selectors';
 import { RecaptchaState } from '../../models/recaptcha-state';
-import { EntityStatus } from '../../models/entity-status';
+import { EntityStatus } from '../../../auth/models/entity-status';
+import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { Recaptcha } from '../../models/recaptcha';
-import { EntityWrapper } from '../../models/entity-wraper';
 
 describe('Recaptcha Selectors', () => {
 	const recaptcha: EntityWrapper<Recaptcha> = {

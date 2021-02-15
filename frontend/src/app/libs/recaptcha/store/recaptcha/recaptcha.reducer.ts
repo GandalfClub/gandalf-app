@@ -6,7 +6,7 @@ import {
 	} from './recaptcha.actions';
 import { Recaptcha } from '../../models/recaptcha';
 import { RecaptchaState } from '../../models/recaptcha-state';
-import { EntityStatus } from '../../models/entity-status';
+import { EntityStatus } from '../../../auth/models/entity-status';
 
 export const recaptchaFeatureKey: string = 'recaptcha';
 

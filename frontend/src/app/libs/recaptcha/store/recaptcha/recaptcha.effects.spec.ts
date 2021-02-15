@@ -12,7 +12,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { auth } from 'firebase';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { createSpy } from '../../helpers/createSpy';
+import { createSpy } from '../../../auth/helpers/createSpy';
 import { RecaptchaDto } from '../../models/recaptcha-dto';
 import { RecaptchaResponse } from '../../models/recaptcha-response';
 import { RecaptchaFacadeService } from './recaptcha.facade';
