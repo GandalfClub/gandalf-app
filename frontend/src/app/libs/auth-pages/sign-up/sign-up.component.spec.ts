@@ -182,7 +182,7 @@ describe('SignUpComponent', () => {
 				emailInput.setValue('test');
 				passwordInput.setValue('123');
 				component.submitted = true;
-				component.submit();
+				component.signUpUser();
 			});
 
 			it('should not call signUp', () => {
