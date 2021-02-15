@@ -11,8 +11,8 @@ export async function postRecaptchaToken(req: Request, res: Response, next: Next
                 response: req.body.token
             }
         });
-        
-        if(result.data.score < 0.5) {
+        const minRecaptchaScore: number = 0.5;
+        if(result.data.score < minRecaptchaScore) {
             return res.status(403).json({ msg: 'Google Recaptcha error' });
         } else {
             res.status(201).json({
