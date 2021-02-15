@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 import { recaptchaFeatureKey } from './recaptcha.reducer';
 import { Recaptcha } from '../../models/recaptcha';
 import { RecaptchaState } from '../../models/recaptcha-state';
-import { EntityWrapper } from '../../models/entity-wraper';
+import { EntityWrapper } from '../../../auth/models/entity-wraper';
 
 export const selectRecaptchaState: MemoizedSelector<{}, RecaptchaState> = createFeatureSelector<RecaptchaState>(recaptchaFeatureKey);
 

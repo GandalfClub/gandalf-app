@@ -4,7 +4,7 @@ import { GetRecaptchaStatus } from './recaptcha.actions';
 import { Observable } from 'rxjs';
 import { selectIsRecaptchaPassed } from './recaptcha.selectors';
 import { RecaptchaState } from '../../models/recaptcha-state';
-import { EntityWrapper } from '../../models/entity-wraper';
+import { EntityWrapper } from '../../../auth/models/entity-wraper';
 import { Recaptcha } from '../../models/recaptcha';
 
 @Injectable({
