@@ -10,6 +10,7 @@ import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
 import { destroyPlatform } from '@angular/core';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Effects', () => {
 	let mockEventsRepository: jasmine.SpyObj<EventsRepository>;
@@ -50,6 +51,8 @@ describe('Events Effects', () => {
 					startTime: null,
 					endDate: null,
 					endTime: null,
+					users: [],
+					size: EventCardSize.S
 				};
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));

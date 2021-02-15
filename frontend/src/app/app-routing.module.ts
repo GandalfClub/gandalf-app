@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AdminPanelGuard } from './libs/guards/admin-panel/admin-panel.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
 	{
 		path: 'landing',
 		loadChildren: () =>
 			import('./libs/landing/landing.module').then((m: typeof import('./libs/landing/landing.module')) => m.LandingModule),
 	},
 	{
-		path: 'eventdescription',
+		path: 'event',
 		loadChildren: () =>
 			import('./libs/event-description/event-description.module').then(
 				(m: typeof import('./libs/event-description/event-description.module')) => m.EventDescriptionModule
@@ -42,12 +43,22 @@ const routes: Routes = [
 			import('./libs/admin-role-management/admin-role-management.module').then(
 				(m: typeof import('./libs/admin-role-management/admin-role-management.module')) => m.AdminRoleManagementModule
 			),
+		canLoad: [
+			AdminPanelGuard
+		]
 	},
 	{
 		path: 'demo',
 		loadChildren: () =>
 			import('./libs/common-components-demo/common-components-demo.module').then(
 				(m: typeof import('./libs/common-components-demo/common-components-demo.module')) => m.CommonComponentsDemoModule
+			),
+	},
+	{
+		path: 'create-event',
+		loadChildren: () =>
+			import('./libs/event-creation/event-creation.module').then(
+				(m: typeof import('./libs/event-creation/event-creation.module')) => m.EventCreationModule
 			),
 	},
 ];

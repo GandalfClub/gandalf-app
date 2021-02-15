@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UserProfilePageComponent } from './user-profile-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +8,9 @@ import { EntityWrapper } from '../auth/models/entity-wraper';
 import { EntityStatus } from '../auth/models/entity-status';
 import { User } from '../auth/models/user';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
+import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
+import { TranslateModule } from '@ngx-translate/core';
+import { InputComponent } from '../common-components/components/input/input.component';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -26,13 +28,13 @@ describe('UserProfileComponent', () => {
 	};
 
 	const updateUser: User = {
+		email: 'test@test.by',
+		password: 'test',
 		firstName: 'test',
 		secondName: 'test',
 		mobilePhone: 'test',
 		id: 'test',
 		isAdmin: false,
-		email: 'test@test.by',
-		password: 'test',
 		claims: [],
 	};
 
@@ -40,6 +42,11 @@ describe('UserProfileComponent', () => {
 	let destroy$: Subject<boolean>;
 	let userForm: User;
 	let fixture: ComponentFixture<UserProfilePageComponent>;
+	const breadcrumbFacadeService: any = {
+		label$: of('hello test'),
+		loadBreadcrumb: () => { }
+	};
+
 	const mockUserFacadeService: Partial<AuthFacadeService> = {
 		get user$(): Observable<EntityWrapper<User>> {
 			return of(user);
@@ -50,9 +57,13 @@ describe('UserProfileComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [UserProfilePageComponent],
-			imports: [ReactiveFormsModule, RouterTestingModule],
-			providers: [{ provide: AuthFacadeService, useValue: mockUserFacadeService }, { provide: FormBuilder }],
+			declarations: [UserProfilePageComponent, InputComponent],
+			imports: [ReactiveFormsModule, RouterTestingModule, TranslateModule.forRoot()],
+			providers: [
+				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
+				{ provide: AuthFacadeService, useValue: mockUserFacadeService },
+				FormBuilder,
+			],
 		}).compileComponents();
 	}));
 

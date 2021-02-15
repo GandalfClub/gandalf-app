@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Compiler, Component, ComponentFactory, ComponentRef, EventEmitter, Input, ModuleWithComponentFactories, NgModule, OnDestroy, OnInit, Output, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactory, ComponentRef, DoCheck, EventEmitter, Inject, Injectable, Input, ModuleWithComponentFactories, NgModule, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -15,70 +15,58 @@ import { takeUntil } from 'rxjs/operators';
 import { CheckboxGroupDataDemo } from 'src/app/libs/common-components-demo/models/checkbox-group-data-demo';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonComponent } from '../button/button.component';
+import { IconSize } from '../icon/models/icon-size.enum';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { IconButtonComponent } from '../icon-button/icon-button.component';
+import { IconComponent } from '../icon/icon.component';
 import { InputComponent } from '../input/input.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
 import { ColumnConfig, Column, TableColumnType } from './models/row-config.enum';
+import { RowToggleOutput } from './models/row-toggle-output.enum';
 
 let TableTemplate: string = '';
 @Component({
 	selector: 'app-table',
-	template: '<ng-container #table></ng-container>',
+	template: '',
 	styleUrls: ['./table.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class TableComponent <T> implements OnInit, OnDestroy {
+export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 
-	@Input()
-	public theme: ComponentTheme = ComponentTheme.Light;
-
-	@Input()
-	public columnsConfig: ColumnConfig[];
-
-	@Input()
-	public data: T[];
-
-	@Input()
-	public searchInputLabel: string;
-
-	@Input()
-	public searchInputPlaceholder: string;
-
-	@Input()
-	public headerButtonText: string;
-
-	@Input()
-	public headerButtonIcon: string;
-
-	@Input()
-	public rowButtonIcon: string;
-
-	@Output()
-	public toggled: EventEmitter<T> = new EventEmitter();
-
-	@Output()
-	public checked: EventEmitter<T[]> = new EventEmitter();
-
-	@Output()
-	public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
-	@Output()
-	public rowButtonClicked: EventEmitter<T> = new EventEmitter();
-
-	@ViewChild('table', {read: ViewContainerRef})
-	public container: ViewContainerRef;
+	@Input() public theme: ComponentTheme = ComponentTheme.Light;
+	@Input() public columnsConfig: ColumnConfig[];
+	@Input() public data: T[];
+	@Input() public searchInputLabel: string;
+	@Input() public searchInputPlaceholder: string;
+	@Input() public headerButtonText: string;
+	@Input() public headerButtonIcon: string;
+	@Input() public headerButtonIconSize: IconSize;
+	@Input() public rowButtonIcon: string;
+	@Input() public rowButtonIconSize: IconSize;
+	@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
+	@Output() public checked: EventEmitter<T[]> = new EventEmitter();
+	@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
+	@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 	public columns: Column[] = [];
 
 	public displayedColumns: string[] = [];
+
+	public innerComponentRef: ComponentRef<any>;
 
 	private destroy$: Subject<any> = new Subject();
 
 	constructor(
 		private viewContainer: ViewContainerRef,
 		private compiler: Compiler) {
+	}
+
+	public ngOnChanges(changes: SimpleChanges): void {
+		if (Boolean(this.innerComponentRef)) {
+			this.setUpdatedDataToInnerComponent(this.innerComponentRef);
+		}
 	}
 
 	public ngOnInit(): void {
@@ -113,7 +101,6 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					this.displayedColumns.push(column.dataName);
 					break;
 			}
-
 			columns = columns + ` ${element}`;
 		}
 		this.displayedColumns.push('button');
@@ -171,13 +158,14 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					<th mat-header-cell *matHeaderCellDef> ${column.columnName} </th>
 					<td mat-cell *matCellDef="let row">
 						<app-slide-toggle
-							[value]="false"
+							[value]="row.${column.dataName}"
 							[disabled]="false"
 							[theme]=theme
-							(toggled)="onToggle(row)"
+							(toggled)="onToggle($event,row)"
 							(click)="$event.stopPropagation()">
 						</app-slide-toggle>
 					</td>
+
 				</ng-container>`;
 	}
 
@@ -198,14 +186,15 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 				<p class="table-header__selected" *ngIf="selection.selected?.length">
 					{{selection.selected.length}} {{selection.selected.length===1 ? 'user' : 'users'}} selected
 				</p>
-				<app-button
+				<app-icon-button
 					type="outlined"
-					[icon]="headerButtonIcon"
+					[startIcon]="headerButtonIcon"
+					[iconSize]="rowButtonIconSize"
 					[theme]="theme"
 					*ngIf="selection.selected?.length"
 					(click)="onHeaderButtonClick()">
 					{{headerButtonText}}
-				</app-button>
+				</app-icon-button>
 
 			</div>`;
 
@@ -213,20 +202,21 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		`<div class="table">
 			${templateHeader}
 
-			<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-content" [class.table-content--dark-theme]="isDarkTheme" matSort>
+			<table mat-table [dataSource]="dataSource" class="table-content mat-elevation-z8" [class.table-content--dark-theme]="isDarkTheme" matSort>
 
 				${columns}
 
 				<ng-container matColumnDef="button">
 					<th mat-header-cell *matHeaderCellDef></th>
 					<td class="table-content__row-button" mat-cell *matCellDef="let row">
-						<app-button
+						<app-icon-button
 							*ngIf="rowButtonIcon && this.hoverRow===row"
 							type="basic"
-							[icon]="rowButtonIcon"
+							[startIcon]="rowButtonIcon"
+							[iconSize]="rowButtonIconSize"
 							[theme]="theme"
 							(click)="onRowButtonClick(row, $event)">
-						</app-button>
+						</app-icon-button>
 					</td>
 				</ng-container>
 
@@ -239,7 +229,7 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 				</tr>
 
 				<tr class="mat-row" *matNoDataRow>
-					<td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+					<td class="mat-cell" colspan="displayedColumns.length">No data matching the filter "{{input.value}}"</td>
 				</tr>
 			</table>
 			</div>`;
@@ -250,12 +240,13 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		.then((moduleWithFactories: ModuleWithComponentFactories<any>) => {
 			const componentFactory: ComponentFactory<typeof component> =
 			moduleWithFactories.componentFactories.find((x: ComponentFactory<any>) => x.componentType === component);
-			const componentRef: ComponentRef<typeof component> = this.viewContainer.createComponent(componentFactory);
-			this.setInputsToInnerComponent(componentRef);
-			this.handleToggleOutput(componentRef);
-			this.handleCheckboxOutput(componentRef);
-			this.handleHeaderButtonOutput(componentRef);
-			this.handleRowButtonOutput(componentRef);
+			this.innerComponentRef = this.viewContainer.createComponent(componentFactory);
+			this.setInputsToInnerComponent(this.innerComponentRef);
+
+			this.handleToggleOutput(this.innerComponentRef);
+			this.handleCheckboxOutput(this.innerComponentRef);
+			this.handleHeaderButtonOutput(this.innerComponentRef);
+			this.handleRowButtonOutput(this.innerComponentRef);
 		})
 		.catch((error: Error) => {
 			console.log(error);
@@ -267,15 +258,23 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		componentRef.instance.data = this.data;
 		componentRef.instance.headerButtonText = this.headerButtonText;
 		componentRef.instance.headerButtonIcon = this.headerButtonIcon;
+		componentRef.instance.headerButtonIconSize = this.headerButtonIconSize;
+
 		componentRef.instance.rowButtonIcon = this.rowButtonIcon;
+		componentRef.instance.rowButtonIconSize = this.rowButtonIconSize;
+
 		componentRef.instance.displayedColumns = this.displayedColumns;
 
 		componentRef.instance.searchInputLabel = this.searchInputLabel;
 		componentRef.instance.searchInputPlaceholder = this.searchInputPlaceholder;
 	}
 
+	public setUpdatedDataToInnerComponent(componentRef: any): void {
+		componentRef.instance.data = this.data;
+	}
+
 	public handleToggleOutput(componentRef: any): void {
-		componentRef.instance.toggled.pipe(takeUntil(this.destroy$)).subscribe((row: T) => this.toggled.emit(row));
+		componentRef.instance.toggled.pipe(takeUntil(this.destroy$)).subscribe((event: RowToggleOutput<T>) => this.toggled.emit(event));
 	}
 
 	public handleCheckboxOutput(componentRef: any): void {
@@ -290,57 +289,47 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 		componentRef.instance.rowButtonClicked.pipe(takeUntil(this.destroy$)).subscribe((selected: T) => this.rowButtonClicked.emit(selected));
 	}
 
+	public clearSelectedRows(): void {
+		if (Boolean(this.innerComponentRef)) {
+			this.innerComponentRef.instance.clearSelectedRows();
+		}
+	}
+
 	public createDynamicComponent(): any  {
 		@Component({
 			template: TableTemplate,
 			jit: true,
 			changeDetection: ChangeDetectionStrategy.OnPush})
-		class CustomDynamicComponent implements OnInit, AfterViewInit  {
 
-			@Input()
-			public theme: ComponentTheme = ComponentTheme.Light;
+		class CustomDynamicComponent implements DoCheck, AfterViewInit  {
 
-			@Input()
-			public data: T[];
+			@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-			@Input()
-			public displayedColumns: string[] = [];
+			@Input() public data: T[];
 
-			@Input()
-			public searchInputLabel: string;
+			public previousData: T[];
 
-			@Input()
-			public searchInputPlaceholder: string;
-
-			@Input()
-			public headerButtonText: string;
-
-			@Input()
-			public headerButtonIcon: string;
-
-			@Input()
-			public rowButtonIcon: string;
-
-			@Output()
-			public toggled: EventEmitter<T> = new EventEmitter();
-
-			@Output()
-			public checked: EventEmitter<T[]> = new EventEmitter();
-
-			@Output()
-			public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
-
-			@Output()
-			public rowButtonClicked: EventEmitter<T> = new EventEmitter();
+			@Input() public displayedColumns: string[] = [];
+			@Input() public searchInputLabel: string;
+			@Input() public searchInputPlaceholder: string;
+			@Input() public headerButtonText: string;
+			@Input() public headerButtonIcon: string;
+			@Input() public headerButtonIconSize: IconSize;
+			@Input() public rowButtonIcon: string;
+			@Input() public rowButtonIconSize: IconSize;
+			@Output() public toggled: EventEmitter<RowToggleOutput<T>> = new EventEmitter();
+			@Output() public checked: EventEmitter<T[]> = new EventEmitter();
+			@Output() public headerButtonClicked: EventEmitter<T[]> = new EventEmitter();
+			@Output() public rowButtonClicked: EventEmitter<T> = new EventEmitter();
 
 			@ViewChild(MatSort) sort: MatSort;
 			public dataSource: MatTableDataSource<T>;
 
 			public selection: SelectionModel<T> = new SelectionModel<T>(true, []);
 
-			public selected: any;
-
 			public hoverRow: T;
+
+			public filterValue: string;
 
 			public checkboxGroupData: CheckboxGroupDataDemo = {
 				options: [
@@ -353,8 +342,17 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					valueField: 'value'
 				};
 
-			public ngOnInit(): void {
-				this.dataSource = new MatTableDataSource<T>(this.data);
+			constructor(@Inject(ChangeDetectorRef) public cdr: ChangeDetectorRef) {}
+
+			public ngDoCheck(): void {
+				if (this.data !== this.previousData) {
+					this.previousData = this.data;
+					this.dataSource = new MatTableDataSource<T>(this.data);
+					if (Boolean(this.filterValue)) {
+						this.applyFilterAfterChanges(this.filterValue);
+					}
+					this.cdr.detectChanges();
+				}
 			}
 
 			public ngAfterViewInit(): void {
@@ -388,8 +386,12 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 				return this.theme === ComponentTheme.Dark;
 			}
 
-			public onToggle(row: T): void {
-				this.toggled.emit(row);
+			public onToggle(event: boolean, row: T): void {
+				const newToggleEvent: RowToggleOutput <T> = {
+					state: event,
+					row: row
+				};
+				this.toggled.emit(newToggleEvent);
 			}
 
 			public onCheckHeader(event: Event): void {
@@ -407,6 +409,11 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 			public applyFilter(event: Event): void {
 				const filterValue: string = (event.target as HTMLInputElement).value;
 				this.dataSource.filter = filterValue.trim().toLowerCase();
+				this.filterValue = filterValue;
+			}
+
+			public applyFilterAfterChanges(filterValue: string): void {
+				this.dataSource.filter = filterValue.trim().toLowerCase();
 			}
 
 			public onMouseIn(row: T): void {
@@ -420,6 +427,10 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 			public onRowButtonClick(row: T, event: Event): void {
 				this.rowButtonClicked.emit(row);
 				event.stopPropagation();
+			}
+
+			public clearSelectedRows(): void {
+				this.selection.clear();
 			}
 
 		}
@@ -452,7 +463,9 @@ export class TableComponent <T> implements OnInit, OnDestroy {
 					SlideToggleComponent,
 					ButtonComponent,
 					InputComponent,
-					SearchInputComponent
+					SearchInputComponent,
+					IconComponent,
+					IconButtonComponent
 				] })(moduleClass);
 
 	return decoratedNgModule;

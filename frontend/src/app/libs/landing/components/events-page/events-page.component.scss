@@ -1,0 +1,31 @@
+@import "variables";
+
+.app-landing-page {
+	&__wrapper-img {
+		position: relative;
+		height: $secondary-grid-unit * 73;
+	}
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__wrapper-text {
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		left: 72px;
+	}
+
+	&__title {
+		@include text-h1();
+		margin-bottom: $main-grid-unit; 
+	}
+
+	&__paragraph {
+		@include text-p();
+		margin-bottom: $secondary-grid-unit * 5; 
+	}
+}

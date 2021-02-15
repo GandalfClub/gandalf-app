@@ -8,6 +8,7 @@ import { Event } from '../../../landing/models/event';
 import { first } from 'rxjs/operators';
 import { MemoizedSelector } from '@ngrx/store';
 import { selectEvent, selectEventValue } from './event.selectors';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events FacadeService', () => {
 	let mockStore: MockStore<EventState>;
@@ -34,6 +35,8 @@ describe('Events FacadeService', () => {
 			startTime: null,
 			endDate: null,
 			endTime: null,
+			users: [],
+			size: EventCardSize.S
 		};
 		eventState = {
 			status: EntityStatus.Success,

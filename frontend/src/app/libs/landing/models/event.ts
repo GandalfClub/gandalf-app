@@ -1,3 +1,6 @@
+import { User } from '../../auth/models/user';
+import { EventCardSize } from '../../common-components/components/event-card/models/event-card-size';
+
 export interface Event {
 	id: string;
 	title: string;
@@ -7,4 +10,7 @@ export interface Event {
 	startTime: Date;
 	endDate: Date;
 	endTime: Date;
+	color?: string;
+	users: User[];
+	size: EventCardSize;
 }

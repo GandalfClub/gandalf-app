@@ -1,0 +1,16 @@
+@import "variables";
+
+.app-tab-navigation__block {
+	@include text-h4();
+	display: inline-block;
+	text-align: center;
+	width: 144px;
+	color: $color-black-70;
+	cursor: pointer;
+	padding-bottom: 15px;
+
+	&--active {
+		color: $color-primary;
+		border-bottom: 2px solid $color-primary;
+	}
+}

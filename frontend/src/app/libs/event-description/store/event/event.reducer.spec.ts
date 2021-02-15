@@ -3,6 +3,7 @@ import { EventState } from './event-state';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { Event } from '../../../landing/models/event';
 import { eventReducer, initialState } from './event.reducer';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Reducer', () => {
 	let action: EventActions;
@@ -22,6 +23,8 @@ describe('Events Reducer', () => {
 			startTime: null,
 			endDate: null,
 			endTime: null,
+			users: [],
+			size: EventCardSize.S
 		};
 	});
 

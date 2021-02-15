@@ -10,6 +10,7 @@ import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
 import { EventDto } from 'src/app/libs/landing/models/event-dto';
+import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Effects', () => {
 	let mockEventRepository: jasmine.SpyObj<EventRepository>;
@@ -52,6 +53,8 @@ describe('Events Effects', () => {
 					startTime: null,
 					endDate: null,
 					endTime: null,
+					users: [],
+					size: EventCardSize.S
 				};
 				eventDto = {
 					_id: 'test',
@@ -67,6 +70,8 @@ describe('Events Effects', () => {
 					tasks: null,
 					isActive: null,
 					maxScore: null,
+					size: EventCardSize.S
+
 				};
 				id = '1';
 				mockEventRepository.getEvent.and.returnValue(of(eventDto));

@@ -13,7 +13,7 @@
 				</app-event-card>
 			</app-demo-state>
 			<app-demo-state [title]="'with no end date'">
-				<app-event-card 
+				<app-event-card
 							[title]="eventCardData[0].title"
 							[startDate]="eventCardData[0].startDate"
 							[participants]="13"
@@ -40,7 +40,7 @@
 						[roles]="eventCardData[0].roles"
 						[color]="colors[3]"
 						[roundedCorner]="roundedCorners[3]">
-				</app-event-card>	
+				</app-event-card>
 			</app-demo-state>
 		</div>
 		<app-demo-state [title]="'LARGE CARD:'"></app-demo-state>
@@ -85,7 +85,7 @@
 				</app-event-card>
 			</app-demo-state>
 			<app-demo-state [title]="'with no end date'" [isDark]="true">
-				<app-event-card 
+				<app-event-card
 							[title]="eventCardData[0].title"
 							[startDate]="eventCardData[0].startDate"
 							[participants]="13"
@@ -103,7 +103,7 @@
 						[color]="colors[2]">
 				</app-event-card>
 			</app-demo-state>
-			<app-demo-state [title]="'with role Manager, Mentor or HR (only for light-background)'">
+			<app-demo-state [title]="'with role Manager, Mentor or HR (only for light-background)'" [isDark]="true">
 				<app-event-card
 						[title]="eventCardData[0].title"
 						[startDate]="eventCardData[0].startDate"
@@ -112,12 +112,12 @@
 						[roles]="eventCardData[0].roles"
 						[color]="colors[3]"
 						[roundedCorner]="roundedCorners[3]">
-				</app-event-card>	
+				</app-event-card>
 			</app-demo-state>
 		</div>
 		<app-demo-state [title]="'LARGE CARD:'" [isDark]="true"></app-demo-state>
 		<div class="event-card-demo__states-group">
-			<app-demo-state [title]="'draft (only for light-background)'">
+			<app-demo-state [title]="'draft (only for light-background)'" [isDark]="true">
 				<app-event-card
 						[size]="cardSizeLarge"
 						[draft]="true"

@@ -38,6 +38,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
+import { IconComponent } from './components/icon/icon.component';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { SelectComponent } from './components/select/select.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
+import { TabNavigationComponent } from './components/tab-navigation/tab-navigation.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
+import { FormControlCommonDirective } from './directives/formControl/form-control-common.directive';
 
 @NgModule({
 	declarations: [
@@ -56,7 +66,16 @@ import { InputComponent } from './components/input/input.component';
 		EventCardComponent,
 		EventCardDateComponent,
 		TableComponent,
-		SearchInputComponent],
+		SearchInputComponent,
+		IconComponent,
+		IconButtonComponent,
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent,
+		TabNavigationComponent,
+		CkeditorComponent,
+		FormControlCommonDirective
+	],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -75,7 +94,10 @@ import { InputComponent } from './components/input/input.component';
 		MatTabsModule,
 		MatChipsModule,
 		MatTableModule,
-		MatSortModule
+		MatSortModule,
+		MatDatepickerModule,
+		MatSelectModule,
+		CKEditorModule
 	],
 	exports: [
 		MatInputModule,
@@ -113,8 +135,16 @@ import { InputComponent } from './components/input/input.component';
 		MatSelectModule,
 		MatMenuModule,
 		MatDividerModule,
-		SearchInputComponent
-		],
+		SearchInputComponent,
+		IconComponent,
+		IconButtonComponent,
+		DatepickerComponent,
+		SelectComponent,
+		TextareaComponent,
+		TabNavigationComponent,
+		CkeditorComponent,
+		FormControlCommonDirective
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
@@ -123,7 +153,8 @@ import { InputComponent } from './components/input/input.component';
 		{
 			provide: CompilerFactory,
 			useClass: JitCompilerFactory,
-			deps: [COMPILER_OPTIONS] },
+			deps: [COMPILER_OPTIONS]
+		},
 	],
 })
 export class CommonComponentsModule { }

@@ -11,4 +11,6 @@ export interface User {
 	mobilePhone?: string;
 	password?: string;
 	claims: UserClaim[];
+	isEventManager?: boolean;
+	checked?: boolean;
 }

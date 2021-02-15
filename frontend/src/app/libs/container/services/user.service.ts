@@ -13,7 +13,7 @@ import { ContainerFacadeService } from './container-facade.service';
 })
 export class UserService {
 
-	private user: User;
+	public user: User;
 
 	private unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
