@@ -23,6 +23,7 @@ import { InputComponent } from '../input/input.component';
 import { SearchInputComponent } from '../search-input/search-input.component';
 import { SlideToggleComponent } from '../slide-toggle/slide-toggle.component';
 import { ColumnConfig, Column, TableColumnType } from './models/row-config.enum';
+import { NgxMaskModule } from 'ngx-mask';
 import { RowToggleOutput } from './models/row-toggle-output.enum';
 
 let TableTemplate: string = '';
@@ -456,7 +457,10 @@ export class TableComponent <T> implements OnChanges, OnInit, OnDestroy {
 					MatButtonModule,
 					MatIconModule,
 					MatFormFieldModule,
-					ReactiveFormsModule],
+					ReactiveFormsModule,
+					NgxMaskModule.forRoot({
+						showMaskTyped : true,
+					  })],
 				declarations: [
 					component,
 					CheckboxComponent,

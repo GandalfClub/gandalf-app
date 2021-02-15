@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators, FormBuilder, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
@@ -7,8 +7,14 @@ import { EntityStatus } from '../../auth/models/entity-status';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
+import { Recaptcha } from '../../recaptcha/models/recaptcha';
 import { IconVisibility } from '../models/icon-visibility';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
+import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
+import { RecaptchaFacadeService } from 'src/app/libs/recaptcha/store/recaptcha/recaptcha.facade';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-sign-up',
@@ -20,14 +26,28 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
+	public user: User;
 	public authError: string;
 	public isLoading: boolean = false;
+	public darkTheme: ComponentTheme = ComponentTheme.Dark;
+	public passwordValidators: ValidatorFn[] = [this.passwordValidator, this.requiredValidator];
+	public emailValidators: ValidatorFn[] = [this.emailValidator, this.requiredValidator];
+	public textSyncValidators: ValidatorFn[] = [this.lengthValidator, this.requiredValidator];
 	private passwordMinLenth: number = 6;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private router: Router) {}
+	constructor(
+		private authFacadeService: AuthFacadeService,
+		private containerFacadeService: ContainerFacadeService,
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private recaptchaFacadeService: RecaptchaFacadeService,
+		private recaptchaV3Service: ReCaptchaV3Service,
+		private translate: TranslateService,
+		) {}
 
 	public ngOnInit(): void {
+		this.containerFacadeService.hideElementsOnSignIn();
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
@@ -39,9 +59,42 @@ export class SignUpComponent implements OnInit, OnDestroy {
 		});
 
 		this.signUpFormGroup = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', [Validators.required, Validators.minLength(this.passwordMinLenth)]],
+			firstName: [''],
+			secondName: [''],
+			email: [''],
+			password: [''],
+			mobilePhone: [''],
 		});
+	}
+	public passwordValidator(control: AbstractControl): ValidationErrors | null {
+
+		const passwordPattern: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,18}$/;
+		if (control && Boolean(control.value) && !passwordPattern.test(control.value)) {
+			return {message: `Password must have length 6-18 symbols, includes digits, symbols, uppercase and lowercase letters`};
+		}
+		return null;
+	}
+	public requiredValidator(control: AbstractControl): ValidationErrors | null {
+		if (!Boolean(control.value)) {
+			return {message: `Its required field`};
+		}
+		return null;
+	}
+	public lengthValidator(control: FormControl): ValidationErrors | null {
+		const maxLength: number = 65;
+		if (control && Boolean(control.value) && control.value.length > maxLength) {
+			return {message: 'It should be at less than 64 characters'};
+		}
+		return null;
+	}
+	public emailValidator(control: AbstractControl): ValidationErrors | null {
+		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const maxLength: number = 128;
+
+		if (control && Boolean(control.value) && !emailPattern.test(control.value) || control.value.length > maxLength) {
+			return {message: `Your email have invalid format`};
+		}
+		return null;
 	}
 
 	public get emailInputErrorMessage(): string {
@@ -69,14 +122,37 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	}
 
 	public submit(): void {
+		this.recaptchaV3Service.execute('signUpUser')
+			.subscribe((token: string) => this.handleToken(token));
+	}
+
+	public handleToken(token: string): void {
+		this.recaptchaFacadeService.getRecaptchaStatus(token);
+		this.recaptchaFacadeService.isRecaptchaPassed$.pipe(takeUntil(this.destroy$)).subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
+			if (recaptcha.status === EntityStatus.Success) {
+				this.signUpUser();
+			}
+		});
+	}
+
+	public signUpUser(): void {
 		this.submitted = true;
-		this.userCredential = this.signUpFormGroup.value;
+		this.user = this.signUpFormGroup.value;
 		if (this.signUpFormGroup.valid) {
-			this.authFacadeService.signUp(this.userCredential.email, this.userCredential.password);
+			this.authFacadeService.signUp(this.user);
 		}
 	}
 
+	public onGitHubSignInClicked(): void {
+		this.authFacadeService.signInByGithub();
+	}
+
+	public onSignIn(): void {
+		this.router.navigateByUrl('/signin');
+	}
+
 	public ngOnDestroy(): void {
+		this.containerFacadeService.showElementsOnSignIn();
 		this.destroy$.next(true);
 		this.destroy$.complete();
 	}

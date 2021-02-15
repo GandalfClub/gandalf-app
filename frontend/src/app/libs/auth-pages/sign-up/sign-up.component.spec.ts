@@ -4,19 +4,32 @@ import { SignUpComponent } from './sign-up.component';
 import { of, Subject, Observable } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
-import { ReactiveFormsModule, FormGroup, AbstractControl } from '@angular/forms';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
+import { RecaptchaFacadeService } from '../../recaptcha/store/recaptcha/recaptcha.facade';
+import { ReactiveFormsModule, FormGroup, AbstractControl, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
+import { Recaptcha } from '../../recaptcha/models/recaptcha';
 import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { StoreModule } from '@ngrx/store';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { NgxMaskModule } from 'ngx-mask';
 
 describe('SignUpComponent', () => {
 	let component: SignUpComponent;
 	let form: FormGroup;
 	let emailInput: AbstractControl;
 	let passwordInput: AbstractControl;
+	let firstNameInput: AbstractControl;
+	let secondNameInput: AbstractControl;
+	let mobilePhoneInput: AbstractControl;
 	let destroy$: Subject<boolean>;
 	let fixture: ComponentFixture<SignUpComponent>;
 	const user: EntityWrapper<User> = {
@@ -37,11 +50,44 @@ describe('SignUpComponent', () => {
 		},
 	};
 
+	const containerFacadeService: any = {
+		hideElementsOnSignIn(): void {
+		},
+		showElementsOnSignIn(): void {
+		}
+	};
+
+	const recaptcha: EntityWrapper<Recaptcha> = {
+		status: EntityStatus.Success,
+	};
+
+	const mockRecaptchaFacadeService: any = {
+		get isRecaptchaPassed$(): Observable<EntityWrapper<Recaptcha>> {
+			return of(recaptcha);
+		},
+		getRecaptchaStatus(): void {
+			recaptcha.status = EntityStatus.Pending;
+		}
+	};
+
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignUpComponent],
-			imports: [RouterTestingModule, ReactiveFormsModule, CommonComponentsModule, BrowserAnimationsModule],
-			providers: [{ provide: AuthFacadeService, useValue: mockAuthFacadeService }],
+			imports: [
+				RouterTestingModule,
+				ReactiveFormsModule,
+				CommonComponentsModule,
+				BrowserAnimationsModule,
+				RecaptchaV3Module,
+				StoreModule,
+				TranslateModule.forRoot(),
+				NgxMaskModule.forRoot()],
+			providers: [
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
+				{ provide: RecaptchaFacadeService, useValue: mockRecaptchaFacadeService },
+				{ provide: ContainerFacadeService, useValue: containerFacadeService },
+				{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcHvukZAAAAAL5zRwijNVtgSAE4nUqkFKZ7h1Qa' }
+			],
 		}).compileComponents();
 	}));
 
@@ -102,18 +148,32 @@ describe('SignUpComponent', () => {
 			form = component.signUpFormGroup;
 			emailInput = form.controls.email;
 			passwordInput = form.controls.password;
+			firstNameInput = form.controls.firstName;
+			secondNameInput = form.controls.secondName;
+			mobilePhoneInput = form.controls.mobilePhone;
 		});
 
 		describe('with valid signUp form group', () => {
 			beforeEach(() => {
 				emailInput.setValue('test@test.by');
-				passwordInput.setValue('123456');
+				passwordInput.setValue('Qq@1qq');
+				firstNameInput.setValue('TestFirstName');
+				secondNameInput.setValue('TestLastName');
+				mobilePhoneInput.setValue('+375291234567');
 				component.submitted = true;
-				component.submit();
+				component.signUpUser();
 			});
 
+			const userDto: any = {
+				firstName: 'TestFirstName',
+				secondName: 'TestLastName',
+				email: 'test@test.by',
+				password: 'Qq@1qq',
+				mobilePhone: '+375291234567',
+			};
+
 			it('should call signUp ', () => {
-				expect(mockAuthFacadeService.signUp).toHaveBeenCalledWith('test@test.by', '123456');
+				expect(mockAuthFacadeService.signUp).toHaveBeenCalledWith(userDto);
 			});
 		});
 
@@ -122,7 +182,7 @@ describe('SignUpComponent', () => {
 				emailInput.setValue('test');
 				passwordInput.setValue('123');
 				component.submitted = true;
-				component.submit();
+				component.signUpUser();
 			});
 
 			it('should not call signUp', () => {
@@ -155,7 +215,7 @@ describe('SignUpComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.emailInputErrorMessage).toBe('email');
+				expect(component.emailValidator(emailInput)).toEqual({message: 'Your email have invalid format'});
 			});
 		});
 
@@ -166,13 +226,13 @@ describe('SignUpComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.emailInputErrorMessage).toBe('required');
+				expect(component.requiredValidator(emailInput)).toEqual({message: 'Its required field'});
 			});
 		});
 
 		describe('with valid password', () => {
 			beforeEach(() => {
-				passwordInput.setValue('123456');
+				passwordInput.setValue('Qq@1qq');
 			});
 
 			it('the form should be valid', () => {
@@ -187,7 +247,7 @@ describe('SignUpComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.passwordInputErrorMessage).toBe('minlength');
+				expect(component.passwordValidator(passwordInput)).toEqual({message: 'Password must have length 6-18 symbols, includes digits, symbols, uppercase and lowercase letters'});
 			});
 		});
 
@@ -198,7 +258,7 @@ describe('SignUpComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.passwordInputErrorMessage).toBe('required');
+				expect(component.requiredValidator(passwordInput)).toEqual({message: 'Its required field'});
 			});
 		});
 	});

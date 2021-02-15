@@ -1,0 +1,161 @@
+@import "variables";
+
+.sign-up-page {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	background: $color-black;
+
+	&__container-img {
+		flex: 1.5;
+		background-color: #f2f4f8;
+		overflow: hidden;
+	}
+
+	&__img {
+		width: 100%;
+		height: auto;
+	}
+
+	&__logo {
+		position: fixed;
+		top: 70px;
+		left: 70px;
+	}
+
+	&__container-page {
+		display: flex;
+		flex-direction: column;
+		flex: 3;
+		height: 100%;
+	}
+
+	&__container-form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+	}
+
+	&__inputs-name-container {
+		display: flex;
+		width: 100%;
+	}
+
+	&__input-first-name-container {
+		width: calc(50% - 24px);
+		padding-right: 24px;
+	}
+
+	&__input-last-name-container {
+		width: 50%;
+	}
+
+	&__input-first-name {
+		width: 100%;
+	}
+
+	&__input-last-name {
+		width: 100%;
+	}
+
+	&__input-email {
+		width: 100%;
+	}
+
+	&__input-password {
+		width: 100%;
+	}
+
+	&__input-mobile {
+		width: 100%;
+	}
+
+	&__form {
+		width: 100%;
+	}
+
+	&__link-welcomeBack {
+		@include text-h2();
+		color: $color-white;
+		cursor: pointer;
+	}
+
+	&__link {
+		@include text-p();
+		color: $color-primary;
+		text-align: right;
+		width: 100%;
+		margin: $main-grid-unit 0 $main-grid-unit * 5 0;
+		cursor: pointer;
+	}
+
+	&__btn {
+		text-align: center;
+	}
+
+	&__icon {
+		margin: $main-grid-unit * 2 0 $main-grid-unit 0;
+		cursor: pointer;
+	}
+
+	&__header {
+		align-self: flex-end;
+		margin: $secondary-grid-unit * 10 $layout-outer-margin 0 0;
+	}
+
+	&__link-sign-up {
+		@include text-p();
+		margin-left: 12px;
+		cursor: pointer;
+
+		&--white {
+			color: $color-white;
+		}
+		&--blue {
+			color: $color-primary;
+		}
+	}
+
+	&__container-divider {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		margin-bottom: $main-grid-unit;
+	}
+
+	&__divider {
+		background: $color-white-10;
+		height: 1px;
+		width: 100%;
+	}
+
+	&__or {
+		@include text-h4();
+		color: $color-white-50;
+		margin: $layout-gutter;
+	}
+}
+
+::ng-deep {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:active,
+	input:-webkit-autofill:focus {
+		background-color: $color-black !important;
+		color: white !important;
+		-webkit-box-shadow: 0 0 0 1000px $color-black inset !important;
+		box-shadow: 0 0 0 1000px $color-black inset !important;
+		-webkit-text-fill-color: white !important;
+	}
+	.mat-button,
+	.mat-flat-button {
+		padding: 12px 40px;
+	}
+}
+
+@media (max-width: 768px) {
+	.sign-up-page__container-img {
+		display: none;
+	}
+}

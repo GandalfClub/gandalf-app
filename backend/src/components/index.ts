@@ -3,6 +3,7 @@ import * as EventsComponent from './Events';
 import * as HtmlTask from './HtmlTask';
 import * as ParticipationComponent from './Participation';
 import * as PublicEventsComponent from './PublicEvents';
+import * as RecaptchaComponent from './Recaptcha';
 import * as SolutionComponent from './Solution';
 import * as TaskComponent from './Task';
 import * as UserComponent from './User';
@@ -13,6 +14,7 @@ export {
 	TaskComponent,
 	SolutionComponent,
 	ParticipationComponent,
+	RecaptchaComponent,
 	EventsComponent,
 	PublicEventsComponent,
 	HtmlTask,

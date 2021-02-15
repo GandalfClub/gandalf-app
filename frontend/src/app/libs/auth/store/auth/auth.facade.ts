@@ -21,8 +21,8 @@ export class AuthFacadeService {
 		this.store.dispatch(new SignInByGithub());
 	}
 
-	public signUp(email: string, password: string): void {
-		this.store.dispatch(new SignUp({ email, password }));
+	public signUp(user: User): void {
+		this.store.dispatch(new SignUp(user));
 	}
 
 	public signOut(): void {

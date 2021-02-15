@@ -11,6 +11,7 @@ import { EntityStatus } from '../auth/models/entity-status';
 import { AuthModule } from '../auth/auth.module';
 import { LocalizationModule } from './components/localization/localization.module';
 import { UserClaim } from '../admin-role-management/models/user-claims.enum';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { UserService } from './services/user.service';
 
@@ -61,7 +62,8 @@ describe('ContainerComponent', () => {
 				StoreModule.forRoot({}),
 				ContainerStoreModule,
 				LocalizationModule,
-				AuthModule
+				AuthModule,
+				RouterTestingModule
 			],
 			providers: [
 				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },

@@ -23,8 +23,11 @@ const AuthService: IAuthService = {
             }
 
             const user: IUserModel = new UserModel({
+                firstName: body.firstName,
+                secondName: body.secondName,
                 email: body.email,
-                password: body.password
+                password: body.password,
+                mobilePhone: body.mobilePhone
             });
 
             const query: IUserModel = await UserModel.findOne({
