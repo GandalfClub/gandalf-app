@@ -45,7 +45,7 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public onChange = (_) => {};
+  public onChange = (_: string) => {};
 
   public onBlur = () => {};
 

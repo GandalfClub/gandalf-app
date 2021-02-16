@@ -76,7 +76,11 @@
     },
     "MENTOR_CHECK_LABEL": "Mentor check",
     "MAX_SCORE_PLACEHOLDER": "Max score",
-    "TEXT_EDITOR_PLACEHOLDER": "Enter question here"
+    "TEXT_EDITOR_PLACEHOLDER": "Enter question here",
+    "LIST_HEADER_TITLE": "Tasks",
+    "ADD_NEW_OPTION_TITLE": "add new option",
+    "MENTOR_CHECK_TOGGLE": "Mentor check",
+    "TASK_NAME_PLACEHOLDER": "Task name"
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",

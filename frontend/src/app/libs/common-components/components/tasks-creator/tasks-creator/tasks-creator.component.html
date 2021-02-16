@@ -11,7 +11,7 @@
 
       <div *ngIf="isTaskNameEditMode">
 
-        <app-input [formControlName]="'taskNameControl'" [placeholder]="'Task name'"></app-input>
+        <app-input [formControlName]="'taskNameControl'" [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
 
         <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = false">
           <app-icon [icon]="'done'"></app-icon>
@@ -45,7 +45,7 @@
             [disabled]="isMentorCheckDisabled()"
             [value]="isMentorCheckSelected"
             formControlName="mentorCheckControl"
-            [title]="'Mentor check'">
+            [title]="('TASK-CREATION.MENTOR_CHECK_TOGGLE' | translate)">
           </app-slide-toggle>
           <app-input
             [type]="'number'"
@@ -87,7 +87,7 @@
 
           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addSingleAnswer()">
             <app-icon [icon]="'add'"></app-icon>
-            add new
+            {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
           </button>
 
         </ng-container>
