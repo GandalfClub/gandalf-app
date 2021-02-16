@@ -91,8 +91,6 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         this.isMentorCheckSelected = (selectedTaskTypeControl === TasksTypes.coding)
           ? true
           : this.isMentorCheckSelected = mentorCheckControl;
-        console.log(codeEditorControl);
-        console.log('changed')
       }
     );
 
@@ -147,7 +145,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         this.addSingleAnswer(answer);
       });
     }
-    if (task.code) {
+    if (Boolean(task.code)) {
       this.taskCreatorControl.controls['codeEditorControl'].setValue(task.code);
     }
   }
