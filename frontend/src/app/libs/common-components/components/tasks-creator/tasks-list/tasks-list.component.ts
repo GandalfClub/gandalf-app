@@ -39,7 +39,7 @@ export class TasksListComponent implements OnInit {
         mentorCheck: true,
         maxScore: 300,
         question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
-        code: 'some code',
+        code: `function a() {\n console.log(\'Hello world\');\n}`,
       },
       {
         taskName: 'task 3',

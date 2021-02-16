@@ -4,28 +4,25 @@
 
       <div *ngIf="!isTaskNameEditMode">
         {{ taskName }}
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="isTaskNameEditMode = true">
-          <mat-icon>mode</mat-icon>
+        <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = true">
+          <app-icon [icon]="'mode'"></app-icon>
         </button>
       </div>
 
       <div *ngIf="isTaskNameEditMode">
-        <mat-form-field appearance="outline">
-          <input matInput type="text"
-                 formControlName="taskNameControl"
-                 placeholder="Task name">
-        </mat-form-field>
 
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="isTaskNameEditMode = false">
-          <mat-icon>done</mat-icon>
+        <app-input [formControlName]="'taskNameControl'" [placeholder]="'Task name'"></app-input>
+
+        <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = false">
+          <app-icon [icon]="'done'"></app-icon>
         </button>
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearTaskName()">
-          <mat-icon>close</mat-icon>
+        <button mat-button matSuffix mat-icon-button (click)="clearTaskName()">
+          <app-icon [icon]="'close'"></app-icon>
         </button>
       </div>
 
-      <button mat-button matSuffix mat-icon-button aria-label="Delete task">
-        <mat-icon>delete</mat-icon>
+      <button mat-button matSuffix mat-icon-button>
+        <app-icon [icon]="'delete'"></app-icon>
       </button>
     </div>
     <div class="tasks-creator__body">
@@ -43,16 +40,18 @@
         </mat-form-field>
 
         <div>
-          <app-slide-toggle [labelPosition]="'before'"
-                            [disabled]="isMentorCheckDisabled()"
-                            [value]="isMentorCheckSelected"
-                            formControlName="mentorCheckControl"
-                            [title]="'Mentor check'"></app-slide-toggle>
-          <mat-form-field class="tasks-creator__max-score" appearance="outline">
-            <input matInput type="number"
-                   formControlName="maxScoreControl"
-                   placeholder="{{ 'TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate }}">
-          </mat-form-field>
+          <app-slide-toggle
+            [labelPosition]="'before'"
+            [disabled]="isMentorCheckDisabled()"
+            [value]="isMentorCheckSelected"
+            formControlName="mentorCheckControl"
+            [title]="'Mentor check'">
+          </app-slide-toggle>
+          <app-input
+            [type]="'number'"
+            [formControlName]="'maxScoreControl'"
+            [placeholder]="('TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate)">
+          </app-input>
         </div>
 
       </div>
@@ -70,13 +69,16 @@
 
             <div formArrayName="answersArrayControl">
               <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
+
                 <mat-radio-button formControlName="isCorrect"></mat-radio-button>
+
                 <mat-form-field appearance="outline">
                   <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
                   <input matInput type="text" formControlName="label">
                 </mat-form-field>
+
                 <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeSingleAnswer(i)">
-                  <mat-icon>delete</mat-icon>
+                  <app-icon [icon]="'delete'"></app-icon>
                 </button>
               </div>
             </div>
@@ -84,7 +86,7 @@
           </mat-radio-group>
 
           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addSingleAnswer()">
-            <mat-icon>add</mat-icon>
+            <app-icon [icon]="'add'"></app-icon>
             add new
           </button>
 
@@ -92,7 +94,12 @@
 
         <ng-container *ngSwitchCase="taskTypesEnum.coding">
           <div style="height: 500px; display:block;">
-            <app-monaco-editor [language]="'javascript'"></app-monaco-editor>
+            <app-monaco-editor
+              [language]="'javascript'"
+              [code]="code"
+              formControlName="codeEditorControl"
+              (codeChange)="updateCode($event)">
+            </app-monaco-editor>
           </div>
         </ng-container>
 
