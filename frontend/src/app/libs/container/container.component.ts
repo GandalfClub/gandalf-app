@@ -3,8 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { Locale } from './models/locale';
 import { UserService } from './services/user.service';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { ContainerFacadeService } from './services/container-facade.service';
-import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-container',
@@ -14,12 +16,15 @@ import { Observable } from 'rxjs';
 export class ContainerComponent implements OnInit, OnDestroy, AfterViewChecked {
 	 public hideHeader$: Observable<boolean> = this.containerFacadeService.hideHeader;
 	 public hideFooter$: Observable<boolean> = this.containerFacadeService.hideFooter;
+	 public destroy$: Subject<boolean> = new Subject();
+
 	constructor(
-		private containerFacadeService: ContainerFacadeService, private changeDedectionRef: ChangeDetectorRef,
 		public translateService: TranslateService,
 		private userService: UserService,
-		private authFacadeService: AuthFacadeService
-	) {
+		private containerFacadeService: ContainerFacadeService,
+		private changeDedectionRef: ChangeDetectorRef,
+		public router: Router,
+		private authFacadeService: AuthFacadeService) {
 		translateService.addLangs([Locale.English, Locale.Russian]);
 		translateService.setDefaultLang(Locale.English);
 		const browserLang: string = translateService.getBrowserLang();

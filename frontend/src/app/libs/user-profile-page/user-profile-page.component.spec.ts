@@ -11,6 +11,7 @@ import { AuthFacadeService } from '../auth/store/auth/auth.facade';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputComponent } from '../common-components/components/input/input.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 describe('UserProfileComponent', () => {
 	const user: EntityWrapper<User> = {
@@ -58,7 +59,11 @@ describe('UserProfileComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [UserProfilePageComponent, InputComponent],
-			imports: [ReactiveFormsModule, RouterTestingModule, TranslateModule.forRoot()],
+			imports: [
+				ReactiveFormsModule,
+				RouterTestingModule,
+				TranslateModule.forRoot(),
+				NgxMaskModule.forRoot()],
 			providers: [
 				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
 				{ provide: AuthFacadeService, useValue: mockUserFacadeService },

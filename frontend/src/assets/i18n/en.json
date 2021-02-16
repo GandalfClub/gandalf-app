@@ -79,5 +79,25 @@
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",
 		"FOR_IS_PRIVATE": "Info about the action"
+	},
+	"SIGN_IN": {
+		"NO_ACCOUNT": "Don't have an account?",
+		"SIGN_UP_BTN": "Sign up",
+		"WELCOME_BACK": "Welcome Back",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_IN_BTN": "Sign in",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
+	},
+	"SIGN_UP": {
+		"HAS_ACCOUNT": "Already have an account?",
+		"SIGN_IN_BTN": "Sign in",
+		"CREATE_ACCOUNT": "Create Account",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_UP_BTN": "Sign up",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
 	}
 }

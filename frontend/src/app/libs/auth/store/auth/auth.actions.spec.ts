@@ -110,9 +110,15 @@ describe('Sign Up Failure', () => {
 
 describe('Sign Up', () => {
 	let action: AuthActions.SignUp;
-	const payload: UserCredentials = {
+	const payload: User = {
+		id: 'test',
 		email: 'test@test.test',
-		password: 'test',
+		password: 'Qq1!',
+		firstName: 'TestFirstName',
+		secondName: 'TestSecondName',
+		mobilePhone: '+375291234567',
+		isAdmin: false,
+		claims: [],
 	};
 	beforeEach(() => {
 		action = new AuthActions.SignUp(payload);

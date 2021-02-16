@@ -1,16 +1,27 @@
 import * as fromContainer from './container.reducer';
-import { selectContainerState } from './container.selectors';
+import { selectContainerState, selectHideHeader, selectHideFooter } from './container.selectors';
 
 describe('Container Selectors', () => {
-	it('should select the feature state', () => {
-		const result: fromContainer.State = selectContainerState({
-			[fromContainer.containerFeatureKey]: {
-				container: 'container'
-			}
-		});
+	const state: fromContainer.State = {
+		hideHeader: false,
+		hideFooter: false,
+	};
 
-		expect(result).toEqual({
-			container: 'container'
+	describe('selectContainerState', () => {
+		it('should return the feature state', () => {
+			expect(selectContainerState.projector(state)).toEqual(state);
+		});
+	});
+
+	describe('selectHideHeader', () => {
+		it('should return header visibility', () => {
+			expect(selectHideHeader.projector(state)).toEqual(false);
+		});
+	});
+
+	describe('selectHideFooter', () => {
+		it('should return footer visibility', () => {
+			expect(selectHideFooter.projector(state)).toEqual(false);
 		});
 	});
 });

@@ -13,7 +13,7 @@
 		[type]="inputType"
 		(change)="onValueChange($event.target.value)"
 		(blur)="onTouched()"
-		placeholder={{placeholder}}>
+		placeholder={{placeholder}} prefix={{prefix}} mask={{mask}}>
 
 	<mat-error *ngFor="let error of errorsArray">
 		{{error}}

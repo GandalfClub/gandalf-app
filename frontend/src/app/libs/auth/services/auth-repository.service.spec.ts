@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { AuthRepository } from './auth-repository.service';
 import { AuthResponse } from '../models/auth-response';
 import { UserDto } from '../models/user-dto';
+import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { UserClaim } from '../../admin-role-management/models/user-claims.enum';
@@ -27,6 +28,17 @@ describe('AuthService', () => {
 		email: 'test@test',
 		isAdmin: false,
 		claims: [UserClaim.Admin]
+	};
+
+	const user: User = {
+		id: '1',
+		email: 'email@email.com',
+		isAdmin: false,
+		firstName: 'firstName',
+		secondName: 'lastName',
+		mobilePhone: '+375291234567',
+		password: 'Qq!11111',
+		claims: []
 	};
 
 	const mockHttpService: any = {
@@ -72,7 +84,7 @@ describe('AuthService', () => {
 
 	describe('signUp', () => {
 		it('should return an Observable<AuthResponse>', fakeAsync (() => {
-			authRepository.signUp('test', 'test').subscribe((response: AuthResponse) => {
+			authRepository.signUp(user).subscribe((response: AuthResponse) => {
 				expect(response).toEqual(validResponse);
 			});
 			flush();

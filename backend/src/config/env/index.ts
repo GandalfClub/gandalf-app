@@ -11,6 +11,7 @@ interface IEnvConfig {
 	EVENT_API?: string;
 	PUBLIC_EVENTS_API?: string;
 	HTML_TASK_API?: string;
+	RECAPTCHA_API?: string;
 	MONGODB_URI?: string;
 	IS_COMPETITION_ACTIVE?: string;
 	MAX_OPENED_PROCESSES_ON_SOLUTION_CHECK?: string;
@@ -33,6 +34,7 @@ interface IAppConfig {
 		eventUri: string;
 		publicEventsUri: string;
 		htmlTaskUri: string;
+		recaptchaUri: string;
 	};
 	maxOpenedProcessesOnSolutionCheck: number;
 	maxPendingSolutionsQueueLength: number;
@@ -73,6 +75,7 @@ const development: IAppConfig = {
 		eventUri: envConf.EVENT_API || '/api/events',
 		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
 		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
+		recaptchaUri: envConf.RECAPTCHA_API || '/api/recaptcha',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength,
@@ -95,6 +98,7 @@ const production: IAppConfig = {
 		eventUri: envConf.EVENT_API || '/api/events',
 		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
 		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
+		recaptchaUri: envConf.RECAPTCHA_API || '/api/recaptcha-status',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck || 4,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength || 50,
@@ -117,6 +121,7 @@ const test: IAppConfig = {
 		eventUri: envConf.EVENT_API || '/api/events',
 		publicEventsUri: envConf.PUBLIC_EVENTS_API || '/api/publicevents',
 		htmlTaskUri: envConf.HTML_TASK_API || '/api/html-tasks',
+		recaptchaUri: envConf.RECAPTCHA_API || '/api/recaptcha-status',
 	},
 	maxOpenedProcessesOnSolutionCheck: fromConfMaxOpenedProcessesOnSolutionCheck || 4,
 	maxPendingSolutionsQueueLength: fromConfMaxPendingSolutionsQueueLength || 50,

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response';
 import { UserDto } from '../models/user-dto';
+import { User } from '../models/user';
 
 @Injectable({
 	providedIn: 'root',
@@ -22,9 +23,9 @@ export class AuthRepository {
 		return this.http.post<AuthResponse>(url, { email, password });
 	}
 
-	public signUp(email: string, password: string): Observable<any> {
+	public signUp(user: User): Observable<any> {
 		const url: string = `${this.API_URL}/auth/signup`;
-		return this.http.post<AuthResponse>(url, { email, password });
+		return this.http.post<AuthResponse>(url, user);
 	}
 
 	public signOut(): Observable<any> {
@@ -37,8 +38,8 @@ export class AuthRepository {
 		return this.http.post<UserDto>(url, user);
 	}
 
-  public loadUser(): Observable<UserDto> {
-  	const url: string = this.API_URL + '/users/self';
-	  return this.http.get<UserDto>(url);
+  	public loadUser(): Observable<UserDto> {
+  		const url: string = this.API_URL + '/users/self';
+	 	 return this.http.get<UserDto>(url);
 	}
 }

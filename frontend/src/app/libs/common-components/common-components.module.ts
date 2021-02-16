@@ -38,6 +38,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { InputComponent } from './components/input/input.component';
+import { NgxMaskModule } from 'ngx-mask';
 import { IconComponent } from './components/icon/icon.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -95,6 +96,9 @@ import { FormControlCommonDirective } from './directives/formControl/form-contro
 		MatChipsModule,
 		MatTableModule,
 		MatSortModule,
+		NgxMaskModule.forRoot({
+			showMaskTyped : true,
+		  }),
 		MatDatepickerModule,
 		MatSelectModule,
 		CKEditorModule
@@ -113,7 +117,6 @@ import { FormControlCommonDirective } from './directives/formControl/form-contro
 		MatSlideToggleModule,
 		MatCheckboxModule,
 		CreateDraftEventPopoverComponent,
-		FormsModule,
 		ButtonComponent,
 		SlideToggleComponent,
 		CheckboxComponent,

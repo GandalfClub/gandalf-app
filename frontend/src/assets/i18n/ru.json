@@ -77,5 +77,25 @@
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
 		"FOR_IS_PRIVATE": "Информация о мероприятии"
+	},
+	"SIGN_IN": {
+		"NO_ACCOUNT": "Нет аккаунта?",
+		"SIGN_UP_BTN": "Зарегистрироваться",
+		"WELCOME_BACK": "Добро пожаловать",
+		"OR": "ИЛИ",
+		"FORGOT_PASSWORD": "Забыли пароль?",
+		"SIGN_IN_BTN": "Войти",
+		"PASSWORD": "Пароль",
+		"EMAIL": "Email"
+	},
+	"SIGN_UP": {
+		"NO_ACCOUNT": "Нет аккаунта?",
+		"SIGN_UP_BTN": "Войти в систему",
+		"CREATE_ACCOUNT": "Зарегистрироваться",
+		"OR": "ИЛИ",
+		"FORGOT_PASSWORD": "Забыли пароль?",
+		"SIGN_IN_BTN": "Войти",
+		"PASSWORD": "Пароль",
+		"EMAIL": "Email"
 	}
 }
