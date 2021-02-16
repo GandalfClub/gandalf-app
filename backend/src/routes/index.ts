@@ -9,6 +9,7 @@ import EventsRouter from './EventsRouter';
 import HtmlTaskRouter from './HtmlTaskRouter';
 import ParticipationRouter from './ParticipationRouter';
 import PublicEventsRouter from './PublicEventsRouter';
+import RecaptchaRouter from './RecaptchaRouter';
 import SolutionRouter from './SolutionRouter';
 import TaskRouter from './TaskRouter';
 import UserRouter from './UserRouter';
@@ -37,6 +38,8 @@ export function init(app: express.Application): void {
 	router.use(appConfig.api.publicEventsUri, PublicEventsRouter);
 
 	router.use(appConfig.api.htmlTaskUri, passportConfig.isAuthenticated, HtmlTaskRouter);
+
+	router.use(appConfig.api.recaptchaUri, RecaptchaRouter);
 
 	router.use(express.static(__dirname + `\\..\\gandalf-platform`));
 

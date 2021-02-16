@@ -56,6 +56,10 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	@Output() public valueChange: EventEmitter<number | string | boolean | null | undefined> = new EventEmitter();
 
+	@Input() public prefix: string;
+
+	@Input() public mask: string;
+
 	public inlineSyncValidators: ValidatorFn[] = null;
 	public inlineAsyncValidators: AsyncValidatorFn[] = null;
 
@@ -105,7 +109,6 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 	) { }
 
 	public ngOnInit(): void {
-
 		this.formControlName = this.elementRef.nativeElement.getAttribute('formControlName');
 		if (this.formControlName != null && this.parentFormContainer != null) {
 

@@ -1,29 +1,71 @@
-<div>
-  <form [formGroup]="signUpFormGroup" (ngSubmit)="submit()">
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
-        <mat-error *ngIf="emailInputErrorMessage">{{ emailInputErrorMessage }}</mat-error>
-      </mat-form-field>
-    </div>
+<div class="sign-up-page">
+	<div class="sign-up-page__container-img">
+		<img src="assets/images/authorization-bg.svg" alt="authorization" class="sign-up-page__img" />
+		<img src="assets/images/logo-dark.svg" alt="logo-dark" class="sign-up-page__logo" />
+	</div>
+	<div class="sign-up-page__container-page">
+		<div class="sign-up-page__header">
+			<span class="sign-up-page__link-sign-up sign-up-page__link-sign-up--white">
+				{{ "SIGN_UP.HAS_ACCOUNT" | translate }}</span>
+			<a (click)="onSignIn()"
+				class="sign-up-page__link-sign-up sign-up-page__link-sign-up--blue">{{ "SIGN_UP.SIGN_IN_BTN" | translate }}</a>
+		</div>
+		<div class="sign-up-page__container-form">
+			<h2 class="sign-up-page__link-welcomeBack">
+				{{ "SIGN_UP.CREATE_ACCOUNT" | translate }}
+			</h2>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
-        <mat-error *ngIf="passwordInputErrorMessage">{{ passwordInputErrorMessage }}</mat-error>
-        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-          <mat-icon>{{ passwordIconVisibility }}</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+			<div (click)="onGitHubSignInClicked()" class="sign-up-page__icon">
+				<img src="assets/images/social-media/github.svg" alt="gitHub-icon" />
+			</div>
 
-    <div>
-      <button mat-raised-button [disabled]="!signUpFormGroup.valid || isLoading">Sign up</button>
-    </div>
+			<div class="sign-up-page__container-divider">
+				<div class="sign-up-page__divider"></div>
+				<p class="sign-up-page__or">{{ "SIGN_UP.OR" | translate }}</p>
+				<div class="sign-up-page__divider"></div>
+			</div>
+			<form [formGroup]="signUpFormGroup" (ngSubmit)="submit()" class="sign-up-page__form">
+                <div class="sign-up-page__inputs-name-container">
+                    <div class="sign-up-page__input-first-name-container">
+                        <app-input class="sign-up-page__input-first-name" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'First Name'" [placeholder]="'First Name'" formControlName="firstName"></app-input>
+                    </div>
+                    <div class="sign-up-page__input-last-name-container">
+                        <app-input class="sign-up-page__input-last-name" [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Last Name'" [placeholder]="'Last Name'" formControlName="secondName"></app-input>
+                    </div>
+                </div>
+				<div class="sign-up-page__container-input-big">
+					<app-input [inputValidators]="emailValidators" [theme]="darkTheme"
+						[label]="'SIGN_UP.EMAIL' | translate" [type]="'email'" [placeholder]="'pat@example.com'"
+						formControlName="email" class="sign-up-page__input-email"></app-input>
+				</div>
 
-  </form>
+				<div>
+					<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'"
+						[label]="'SIGN_UP.PASSWORD' | translate" [secured]="false" formControlName="password"
+						class="sign-up-page__input-password">
+					</app-input>
+                </div>                
+                <div>
+                    <app-input
+                        class="input_big"
+                        [theme]="darkTheme"
+                        [inputValidators]="textSyncValidators"
+                        [type]="'text'"
+                        [label]="'Mobile phone (optional)'"
+                        [placeholder]="'Mobile phone (optional)'"
+                        formControlName="mobilePhone"
+                        [prefix]="'+375'"
+                        [mask]="'(00)-000-00-00'"
+                        class="sign-up-page__input-mobile"></app-input>
+                </div>
 
-  <mat-error *ngIf="authError">{{ authError }}</mat-error>
+				<div class="sign-up-page__btn">
+					<app-button type="flat" [theme]="darkTheme">{{
+            "SIGN_UP.SIGN_UP_BTN" | translate
+          }}</app-button>
+				</div>
+			</form>
+			<mat-error *ngIf="authError">{{ authError }}</mat-error>
+		</div>
+	</div>
 </div>

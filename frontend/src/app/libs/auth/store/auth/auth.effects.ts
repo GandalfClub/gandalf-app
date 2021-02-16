@@ -17,7 +17,7 @@ import {
 	UpdateUserInfoSuccess,
 	LoadUser,
 	LoadUserSuccess,
-	LoadUserFail } from './auth.actions';
+	LoadUserFail} from './auth.actions';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap, exhaustMap, catchError } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -72,13 +72,14 @@ export class AuthEffects {
 	public SignUp: Observable<Action> = this.actions.pipe(
 		ofType<SignUp>(AuthActionTypes.SignUp),
 		exhaustMap((action: SignUp) => {
-			return from(this.fireAuthService.auth.createUserWithEmailAndPassword(action.payload.email, action.payload.password));
+			return from(this.fireAuthService.auth.createUserWithEmailAndPassword(action.payload.email, action.payload.password))
+				.pipe(map(() => action.payload));
 		}),
-		map((userModel: auth.UserCredential) => userModel.user),
-		switchMap((firebaseUser: firebase.User) => {
-			return this.authRepository.signUp(firebaseUser.email, firebaseUser.uid).pipe(
-				map((authResponse: AuthResponse) => {
-					return new SignUpSuccess(this.authConverter.convertFromDto(authResponse.user));
+		map((userModel: User) => userModel),
+		switchMap((user: User) => {
+			return this.authRepository.signUp(user).pipe(
+				map((userResponse: User) => {
+					return new SignUpSuccess(userResponse);
 				})
 			);
 		}),

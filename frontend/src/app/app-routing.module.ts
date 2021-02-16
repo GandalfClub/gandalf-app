@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPanelGuard } from './libs/guards/admin-panel/admin-panel.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 export const routes: Routes = [
 	{
@@ -64,6 +65,6 @@ export const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule],
+	exports: [RouterModule, TranslateModule],
 })
 export class AppRoutingModule {}

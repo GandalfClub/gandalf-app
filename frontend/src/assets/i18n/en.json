@@ -15,6 +15,10 @@
 		"SAVE_AS_DRAFT": "SAVE AS DRAFT",
 		"PUBLISH": "PUBLISH"
 	},
+	"ERROR_MESSAGE": {
+		"EMAIL_ERROR_MESSAGE": "Your email has invalid format",
+		"PASSWORD_ERROR_MESSAGE": "Password must have length 6-18 symbols, includes digits, symbols, uppercase and lowercase letters"
+	},
 	"LABEL": {
 		"USER_NAME": "User name",
 		"EVENT_NAME": "Event name",
@@ -77,5 +81,25 @@
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",
 		"FOR_IS_PRIVATE": "Info about the action"
+	},
+	"SIGN_IN": {
+		"NO_ACCOUNT": "Don't have an account?",
+		"SIGN_UP_BTN": "Sign up",
+		"WELCOME_BACK": "Welcome Back",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_IN_BTN": "Sign in",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
+	},
+	"SIGN_UP": {
+		"HAS_ACCOUNT": "Already have an account?",
+		"SIGN_IN_BTN": "Sign in",
+		"CREATE_ACCOUNT": "Create Account",
+		"OR": "OR",
+		"FORGOT_PASSWORD": "Forgot your password?",
+		"SIGN_UP_BTN": "Sign up",
+		"PASSWORD": "Password",
+		"EMAIL": "Email"
 	}
 }

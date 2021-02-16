@@ -1,32 +1,32 @@
 <div>
-  <form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
-        <mat-error *ngIf="emailInputErrorMessage">{{ emailInputErrorMessage }}</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
-        <mat-error *ngIf="passwordInputErrorMessage">{{ passwordInputErrorMessage }}</mat-error>
-        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-          <mat-icon>{{ passwordIconVisibility }}</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-
-    <div>
-      <button mat-raised-button [disabled]="!signInFormGroup.valid || isLoading">Sign in</button>
-    </div>
-  </form>
-
-  <div>
-    <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
+	<form [formGroup]="signInFormGroup" (ngSubmit)="submit()">
+	  <div>
+		<mat-form-field appearance="fill">
+		  <mat-label>Enter your email</mat-label>
+		  <input matInput placeholder="pat@example.com" type="email" formControlName="email" />
+		  <mat-error *ngIf="emailInputErrorMessage">{{ emailInputErrorMessage }}</mat-error>
+		</mat-form-field>
+	  </div>
+  
+	  <div>
+		<mat-form-field appearance="fill">
+		  <mat-label>Enter your password</mat-label>
+		  <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="on" />
+		  <mat-error *ngIf="passwordInputErrorMessage">{{ passwordInputErrorMessage }}</mat-error>
+		  <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+			<mat-icon>{{ passwordIconVisibility }}</mat-icon>
+		  </button>
+		</mat-form-field>
+	  </div>
+  
+	  <div>
+		<button mat-raised-button [disabled]="!signInFormGroup.valid || isLoading">Sign in</button>
+	  </div>
+	</form>
+  
+	<div>
+	  <button mat-raised-button [disabled]="isLoading" (click)="signInByGithub()">Sign in by GitHub</button>
+	</div>
+  
+	<mat-error *ngIf="authError">{{ authError }}</mat-error>
   </div>
-
-  <mat-error *ngIf="authError">{{ authError }}</mat-error>
-</div>

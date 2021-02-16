@@ -70,13 +70,13 @@
 			<form [formGroup]="inputTextDemoForm">
 				<app-demo-state [title]="'Text'" [isDark]="true">
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text1"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text4"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [inputValidatorsAsync]="textAsyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text2"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [inputValidatorsAsync]="textAsyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text5"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text3"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="textSyncValidators" [type]="'text'" [label]="'Your text'" [placeholder]="'Your placeholder'" formControlName="text6"></app-input>
 					</div>
 					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputTextDemoForm.status)" [disabled]="inputTextDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
@@ -85,13 +85,13 @@
 			<form class="input-demo__row" [formGroup]="inputEmailDemoForm">
 				<app-demo-state [title]="'Email'" [isDark]="true">
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email1"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email4"></app-input>
 					</div>	
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email2"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email5"></app-input>
 					</div>	
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email3"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="emailValidators" [type]="'email'" [label]="'Your email'" [placeholder]="'Your placeholder'" formControlName="email6"></app-input>
 					</div>
 					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputEmailDemoForm.status)" [disabled]="inputEmailDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
@@ -100,13 +100,13 @@
 			<form class="input-demo__row" [formGroup]="inputPasswordDemoForm">
 				<app-demo-state [title]="'Password'" [isDark]="true">
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'text'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password1"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'text'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password4"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password2"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" formControlName="password5"></app-input>
 					</div>
 					<div class="wrapper">
-						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [secured]="false" formControlName="password3"></app-input>
+						<app-input [theme]="darkTheme" [inputValidators]="passwordValidators" [type]="'password'" [label]="'Your password'" [placeholder]="'Your placeholder'" [secured]="false" formControlName="password6"></app-input>
 					</div>
 					<app-button type="flat" [theme]="darkTheme" (click)="submit(inputPasswordDemoForm.status)" [disabled]="inputPasswordDemoForm.status==='INVALID'">Click</app-button>
 				</app-demo-state>
