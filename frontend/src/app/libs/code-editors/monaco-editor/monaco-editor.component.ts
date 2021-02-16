@@ -9,19 +9,28 @@ import {
 	EventEmitter,
 	SimpleChanges,
 	OnDestroy,
+  forwardRef,
 } from '@angular/core';
 import { Subject, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { editor } from 'monaco-editor';
 import { Language } from '../shared/enum/languages.enum';
 import { Theme } from '../shared/enum/themes.enum';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'app-monaco-editor',
 	templateUrl: './monaco-editor.component.html',
 	styleUrls: ['./monaco-editor.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MonacoEditorComponent),
+      multi: true
+    }
+  ]
 })
-export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
 	@ViewChild('editorContainer') public editorElementReference: ElementRef;
 
 	@Input() public code: string;
@@ -35,6 +44,10 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 	public codeEditor: editor.IStandaloneCodeEditor;
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
+
+  public onChange = (_) => {};
+
+  public onBlur = () => {};
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (changes.code && this.codeEditor) {
@@ -63,6 +76,7 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 			.subscribe(() => {
 				const codeChanges: string = this.codeEditor.getValue();
 				this.codeChange.emit(codeChanges);
+				this.writeValue(codeChanges);
 			});
 	}
 
@@ -70,4 +84,18 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 		this.destroy$.next(true);
 		this.codeEditor.dispose();
 	}
+
+  public registerOnChange(fn: any): void {
+	  this.onChange = fn;
+  }
+
+  public registerOnTouched(fn: any): void {
+    this.onBlur = fn;
+  }
+
+  public writeValue(code: string): void {
+	  this.code = code;
+	  this.onChange(this.code);
+	  this.onBlur();
+  }
 }

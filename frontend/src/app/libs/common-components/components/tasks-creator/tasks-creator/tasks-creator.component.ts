@@ -10,6 +10,7 @@ interface ICreatedTaskControls {
   mentorCheckControl: boolean;
   textEditorControl: string;
   answersArrayControl: IAnswer[];
+  codeEditorControl: string;
 }
 
 @Component({
@@ -35,6 +36,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   public selectedTaskType: TasksTypes;
   public taskCreatorControl: FormGroup;
   public isTaskNameEditMode: boolean = true;
+  public code: string;
+
+  private enteredCode: string;
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -67,6 +71,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         mentorCheckControl: new FormControl(),
         textEditorControl: new FormControl(),
         answersArrayControl: this.formBuilder.array([]),
+        codeEditorControl: new FormControl(),
       }
     );
 
@@ -77,7 +82,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
          maxScoreControl,
          mentorCheckControl,
          textEditorControl,
-         answersArrayControl
+         answersArrayControl,
+         codeEditorControl,
        }: ICreatedTaskControls) => {
         this.taskName = taskNameControl;
         this.selectedTaskType = selectedTaskTypeControl;
@@ -85,6 +91,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         this.isMentorCheckSelected = (selectedTaskTypeControl === TasksTypes.coding)
           ? true
           : this.isMentorCheckSelected = mentorCheckControl;
+        console.log(codeEditorControl);
+        console.log('changed')
       }
     );
 
@@ -120,6 +128,10 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
     this.taskCreatorControl.controls['taskNameControl'].setValue('');
   }
 
+  public updateCode(code: string): void {
+    this.enteredCode = code;
+  }
+
   private submitTask(): void {
   }
 
@@ -134,6 +146,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
       task.answers.forEach((answer: IAnswer) => {
         this.addSingleAnswer(answer);
       });
+    }
+    if (task.code) {
+      this.taskCreatorControl.controls['codeEditorControl'].setValue(task.code);
     }
   }
 }
