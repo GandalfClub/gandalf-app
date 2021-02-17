@@ -44,7 +44,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   }
 
   get isMentorCheckSelected(): boolean {
-    return this.taskCreatorControl.get('isMentorCheckSelected')?.value as boolean ?? false;
+    return this.taskCreatorControl.get('mentorCheckControl')?.value ?? false;
   }
 
   get answerControl(): FormArray {
@@ -52,7 +52,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   }
 
   set isMentorCheckSelected(value: boolean) {
-    this.taskCreatorControl.get('isMentorCheckSelected')?.setValue(value);
+    this.taskCreatorControl.get('mentorCheckControl')?.setValue(value);
   }
 
   public onOpenTaskTypesSelector(isOpen: boolean): void {
@@ -88,9 +88,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         this.taskName = taskNameControl;
         this.selectedTaskType = selectedTaskTypeControl;
         this.maxScore = maxScoreControl;
-        this.isMentorCheckSelected = (selectedTaskTypeControl === TasksTypes.coding)
-          ? true
-          : this.isMentorCheckSelected = mentorCheckControl;
+        if (this.selectedTaskType === TasksTypes.coding && this.isMentorCheckSelected === false) {
+          this.isMentorCheckSelected = true;
+        }
       }
     );
 
@@ -136,7 +136,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   private setSelectedTaskValues(task: ITask): void {
     this.taskCreatorControl.controls['taskNameControl'].setValue(task.taskName);
     this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(task.taskType);
-    this.taskCreatorControl.controls['maxScoreControl'].setValue(task.maxScore);
+    console.log(task.maxScore)
+    this.taskCreatorControl.controls['maxScoreControl'].setValue(task.maxScore ?? 0);
     this.isMentorCheckSelected = task.mentorCheck;
     this.taskCreatorControl.controls['textEditorControl'].setValue(task.question);
     if (task.answers) {
