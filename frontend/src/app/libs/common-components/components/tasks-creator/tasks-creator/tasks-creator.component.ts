@@ -136,7 +136,6 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   private setSelectedTaskValues(task: ITask): void {
     this.taskCreatorControl.controls['taskNameControl'].setValue(task.taskName);
     this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(task.taskType);
-    console.log(task.maxScore)
     this.taskCreatorControl.controls['maxScoreControl'].setValue(task.maxScore ?? 0);
     this.isMentorCheckSelected = task.mentorCheck;
     this.taskCreatorControl.controls['textEditorControl'].setValue(task.question);
