@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ITask } from '../models/task';
-import { TasksTypes } from '../models/tasks-creator';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IAnswer, ITask} from '../models/task';
+import {TasksTypes} from '../models/tasks-creator';
 
 @Component({
   selector: 'app-tasks-list',
@@ -22,15 +22,15 @@ export class TasksListComponent implements OnInit {
         mentorCheck: false,
         maxScore: 100,
         question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
-        answers: new Map([
-          [0, {
+        answers: new Set([
+          {
             label: 'label',
             isCorrect: false,
-          }],
-          [1, {
+          },
+          {
             label: 'Some label12',
             isCorrect: true,
-          }],
+          },
         ]),
       },
       {
@@ -45,17 +45,17 @@ export class TasksListComponent implements OnInit {
         taskName: 'task 3',
         taskType: TasksTypes.multiple,
         mentorCheck: false,
-        maxScore: 100,
+        maxScore: 60,
         question: '<p>Question text3</p>',
-        answers: new Map([
-          [0, {
+        answers: new Set([
+          {
             label: 'Some label31',
             isCorrect: false,
-          }],
-          [1, {
+          },
+          {
             label: 'Some label32',
             isCorrect: true,
-          }],
+          },
         ]),
       }
     ];
@@ -67,5 +67,28 @@ export class TasksListComponent implements OnInit {
 
   public showTask(index: number): void {
     this.selectedTask.emit(this.taskList[index]);
+  }
+
+  public addNewTask(): void {
+    const defaultTask: ITask = {
+      taskName: 'Task name',
+      taskType: TasksTypes.single,
+      mentorCheck: false,
+      maxScore: null,
+      question: null,
+      answers: new Set<IAnswer>([
+       {
+          label: '',
+          isCorrect: false,
+        },
+        {
+          label: '',
+          isCorrect: false,
+        },
+      ]),
+    };
+
+    this.taskList.unshift(defaultTask);
+    this.showTask(0);
   }
 }

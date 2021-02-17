@@ -44,7 +44,6 @@
           <app-slide-toggle
             [labelPosition]="'before'"
             [disabled]="isMentorCheckDisabled()"
-            [value]="isMentorCheckSelected"
             formControlName="mentorCheckControl"
             [title]="('TASK-CREATION.MENTOR_CHECK_TOGGLE' | translate)">
           </app-slide-toggle>
@@ -67,26 +66,24 @@
         <ng-container *ngSwitchCase="taskTypesEnum.single">
           <div formArrayName="answersArrayControl">
             <mat-radio-group formControlName="isCorrect">
-              <ng-container *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
+              <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
 
                 <mat-radio-button value="{{ i }}"></mat-radio-button>
 
-                <mat-form-field appearance="outline">
-                  <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
-                  <input matInput type="text" formControlName="label">
-                </mat-form-field>
+                <app-input formControlName="label"
+                           [label]="( 'TASK-CREATION.TASK_TYPE_LABEL' | translate )"></app-input>
 
                 <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeSingleAnswer(i)">
                   <app-icon [icon]="'delete'"></app-icon>
                 </button>
-              </ng-container>
+              </div>
             </mat-radio-group>
           </div>
 
-          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addSingleAnswer()">
-            <app-icon [icon]="'add'"></app-icon>
+          <app-button>
+            <app-icon [icon]="'add'" (click)="addSingleAnswer()"></app-icon>
             {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
-          </button>
+          </app-button>
 
         </ng-container>
 

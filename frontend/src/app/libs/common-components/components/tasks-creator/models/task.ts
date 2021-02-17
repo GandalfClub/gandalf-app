@@ -12,5 +12,5 @@ export interface ITask {
   maxScore: number;
   question: string;
   code?: string;
-  answers?: Map<number, IAnswer>;
+  answers?: Set<IAnswer>;
 }
