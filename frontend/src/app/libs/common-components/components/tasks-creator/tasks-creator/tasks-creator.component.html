@@ -11,7 +11,8 @@
 
       <div *ngIf="isTaskNameEditMode">
 
-        <app-input [formControlName]="'taskNameControl'" [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
+        <app-input [formControlName]="'taskNameControl'"
+                   [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
 
         <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = false">
           <app-icon [icon]="'done'"></app-icon>
@@ -62,15 +63,13 @@
 
       <ng-container [ngSwitch]="getSelectedTaskType()">
 
+
         <ng-container *ngSwitchCase="taskTypesEnum.single">
-          <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group">
+          <div formArrayName="answersArrayControl">
+            <mat-radio-group formControlName="isCorrect">
+              <ng-container *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
 
-            <div formArrayName="answersArrayControl">
-              <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
-
-                <mat-radio-button formControlName="isCorrect"></mat-radio-button>
+                <mat-radio-button value="{{ i }}"></mat-radio-button>
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
@@ -80,10 +79,9 @@
                 <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeSingleAnswer(i)">
                   <app-icon [icon]="'delete'"></app-icon>
                 </button>
-              </div>
-            </div>
-
-          </mat-radio-group>
+              </ng-container>
+            </mat-radio-group>
+          </div>
 
           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addSingleAnswer()">
             <app-icon [icon]="'add'"></app-icon>

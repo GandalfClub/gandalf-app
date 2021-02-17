@@ -60,7 +60,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   }
 
   public get isListEmpty(): boolean {
-    return !Boolean(this.selectedTask) ?? true;
+    return !Boolean(this.selectedTask);
   }
 
   public ngOnInit(): void {
@@ -104,8 +104,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
 
   public addSingleAnswer(value?: IAnswer): void {
     this.answerControl.push(this.formBuilder.group({
-        label: value?.label ?? '',
-        isCorrect: value?.isCorrect ?? '',
+        label: new FormControl(value?.label ?? ''),
+        isCorrect: new FormControl(value?.isCorrect ?? ''),
       }
     ));
   }
