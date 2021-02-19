@@ -17,7 +17,6 @@
 		</app-button>
 	</div>
 	<div class="header__common-buttons">
-		<app-localization class="header__localization"></app-localization>
 		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme"
 			[type]="flatButtonType">
 			{{"BUTTON.CREATE_EVENT" | translate}}
