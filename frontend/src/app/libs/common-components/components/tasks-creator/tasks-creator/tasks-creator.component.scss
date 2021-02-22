@@ -26,6 +26,7 @@
     align-items: center;
     padding: $main-grid-unit;
     color: $color-white;
+    border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
   }
 
   &__body {
@@ -37,6 +38,13 @@
     justify-content: space-between;
   }
 
-  &__max-score {
+  &__mentor-check {
+    margin: 0.25em $main-grid-unit * 4 0.25em 0;
+    padding-bottom: 1.34375em;
+  }
+
+  &__mentor-score-container {
+    display: flex;
+    align-items: center;
   }
 }

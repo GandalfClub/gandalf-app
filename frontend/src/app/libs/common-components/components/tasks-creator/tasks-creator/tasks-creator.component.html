@@ -4,9 +4,12 @@
 
       <div *ngIf="!isTaskNameEditMode">
         <span class="tasks-creator__task-name">{{ taskName }}</span>
-        <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = true">
-          <app-icon [icon]="'mode'"></app-icon>
-        </button>
+        <app-icon-button
+          (click)="isTaskNameEditMode = true"
+          [type]="'basic'"
+          [startIcon]="'mode'"
+          [iconSize]="'small'">
+        </app-icon-button>
       </div>
 
       <div *ngIf="isTaskNameEditMode">
@@ -50,8 +53,9 @@
           </mat-select>
         </mat-form-field>
 
-        <div>
+        <div class="tasks-creator__mentor-score-container">
           <app-slide-toggle
+            class="tasks-creator__mentor-check"
             [labelPosition]="'before'"
             [disabled]="isMentorCheckDisabled()"
             formControlName="mentorCheckControl"
@@ -71,7 +75,6 @@
                     [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
 
       <ng-container [ngSwitch]="getSelectedTaskType()">
-
 
         <ng-container *ngSwitchCase="taskTypesEnum.single">
           <mat-radio-group formControlName="correctSingleAnswerControl">
