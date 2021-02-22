@@ -11,6 +11,9 @@ import { IconVisibility } from '../models/icon-visibility';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
+import { Recaptcha } from '../../recaptcha/models/recaptcha';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { RecaptchaFacadeService } from 'src/app/libs/recaptcha/store/recaptcha/recaptcha.facade';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -30,8 +33,14 @@ export class SignInComponent implements OnInit, OnDestroy {
 	public isLoading: boolean = false;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private translate: TranslateService, private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder,
-		private router: Router, private containerFacadService: ContainerFacadeService) { }
+	constructor(
+		private translate: TranslateService,
+		private authFacadeService: AuthFacadeService,
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private containerFacadService: ContainerFacadeService,
+		private recaptchaFacadeService: RecaptchaFacadeService,
+		private recaptchaV3Service: ReCaptchaV3Service, ) { }
 
 	public ngOnInit(): void {
 		this.containerFacadService.hideElementsOnSignIn();
@@ -52,7 +61,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public emailValidator(control: FormControl): ValidationErrors | null {
+	public emailValidator(control: AbstractControl): ValidationErrors | null {
 		const maxLength: number = 128;
 		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (control && Boolean(control.value) && control.value.length >= maxLength ||
@@ -63,7 +72,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		return null;
 	}
 
-	public passwordValidator(control: FormControl): ValidationErrors | null {
+	public passwordValidator(control: AbstractControl): ValidationErrors | null {
 		const passwordPattern: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,17}$/;
 		if (control && Boolean(control.value) && !passwordPattern.test(control.value) ||
 			!Boolean(control.value)) {
@@ -81,6 +90,20 @@ export class SignInComponent implements OnInit, OnDestroy {
 	}
 
 	public submit(): void {
+		this.recaptchaV3Service.execute('signUpUser')
+			.subscribe((token: string) => this.handleToken(token));
+	}
+
+	public handleToken(token: string): void {
+		this.recaptchaFacadeService.getRecaptchaStatus(token);
+		this.recaptchaFacadeService.isRecaptchaPassed$.pipe(takeUntil(this.destroy$)).subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
+			if (recaptcha.status === EntityStatus.Success) {
+				this.signInUser();
+			}
+		});
+	}
+
+	public signInUser(): void {
 		this.submitted = true;
 		this.userCredential = this.signInFormGroup.value;
 		if (this.signInFormGroup.valid) {
