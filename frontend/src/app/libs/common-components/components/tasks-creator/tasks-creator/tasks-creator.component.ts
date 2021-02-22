@@ -232,7 +232,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   }
 
   private clearAnswersControl(formArray: FormArray): void {
-    while (formArray.length) {
+    while (formArray.length > 0) {
       formArray.removeAt(0);
     }
   }
