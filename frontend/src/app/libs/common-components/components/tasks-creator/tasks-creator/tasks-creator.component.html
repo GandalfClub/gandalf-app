@@ -1,9 +1,9 @@
 <form [formGroup]="taskCreatorControl" class="tasks-creator">
   <ng-container *ngIf="!isListEmpty; else emptyList">
-    <div class="tasks-creator__header event-gradient">
+    <div class="tasks-creator__header event-gradient" style="color: white">
 
       <div *ngIf="!isTaskNameEditMode">
-        {{ taskName }}
+        <span class="tasks-creator__task-name">{{ taskName }}</span>
         <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = true">
           <app-icon [icon]="'mode'"></app-icon>
         </button>
@@ -12,19 +12,29 @@
       <div *ngIf="isTaskNameEditMode">
 
         <app-input [formControlName]="'taskNameControl'"
+                   [noPaddings]="true"
                    [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
 
-        <button mat-button matSuffix mat-icon-button (click)="isTaskNameEditMode = false">
-          <app-icon [icon]="'done'"></app-icon>
-        </button>
-        <button mat-button matSuffix mat-icon-button (click)="clearTaskName()">
-          <app-icon [icon]="'close'"></app-icon>
-        </button>
+        <app-icon-button
+          (click)="isTaskNameEditMode = false"
+          [type]="'basic'"
+          [startIcon]="'done'"
+          [iconSize]="'small'">
+        </app-icon-button>
+        <app-icon-button
+          (click)="clearTaskName()"
+          [type]="'basic'"
+          [startIcon]="'close'"
+          [iconSize]="'small'">
+        </app-icon-button>
+
       </div>
 
-      <button mat-button matSuffix mat-icon-button>
-        <app-icon [icon]="'delete'"></app-icon>
-      </button>
+      <app-icon-button
+        [type]="'basic'"
+        [startIcon]="'delete'"
+        [iconSize]="'small'">
+      </app-icon-button>
     </div>
     <div class="tasks-creator__body">
 
@@ -64,24 +74,21 @@
 
 
         <ng-container *ngSwitchCase="taskTypesEnum.single">
-          <div formArrayName="answersArrayControl">
-            <mat-radio-group formControlName="isCorrect">
-              <div *ngFor="let answer of answerControl.controls; let i = index" [formGroupName]="i">
-
-                <mat-radio-button value="{{ i }}"></mat-radio-button>
-
+          <mat-radio-group formControlName="correctSingleAnswerControl">
+            <div formArrayName="answersArrayControl">
+              <div *ngFor="let answer of singleAnswersControl.controls; let i = index" [formGroupName]="i">
+                <mat-radio-button value="{{ i.toString() }}"></mat-radio-button>
                 <app-input formControlName="label"
                            [label]="( 'TASK-CREATION.TASK_TYPE_LABEL' | translate )"></app-input>
-
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeSingleAnswer(i)">
+                <app-button (click)="removeSingleAnswer(i)">
                   <app-icon [icon]="'delete'"></app-icon>
-                </button>
+                </app-button>
               </div>
-            </mat-radio-group>
-          </div>
+            </div>
+          </mat-radio-group>
 
-          <app-button>
-            <app-icon [icon]="'add'" (click)="addSingleAnswer()"></app-icon>
+          <app-button (click)="addSingleAnswer()">
+            <app-icon [icon]="'add'"></app-icon>
             {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
           </app-button>
 
@@ -98,15 +105,33 @@
           </div>
         </ng-container>
 
-        <ng-container *ngSwitchCase="taskTypesEnum.multiple">multip</ng-container>
+        <ng-container *ngSwitchCase="taskTypesEnum.multiple">
+          <div formArrayName="multiAnswersArrayControl">
+            <div *ngFor="let answer of multiAnswerControl.controls; let i = index" [formGroupName]="i">
+              <mat-checkbox [value]="i.toString()" formControlName="isCorrect"></mat-checkbox>
+              <app-input formControlName="value"
+                         [label]="( 'TASK-CREATION.TASK_TYPE_LABEL' | translate )"></app-input>
+              <app-button (click)="removeMultiAnswer(i)">
+                <app-icon [icon]="'delete'"></app-icon>
+              </app-button>
+            </div>
+          </div>
+
+          <app-icon-button [startIcon]="'add'">
+            {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
+          </app-icon-button>
+
+        </ng-container>
 
       </ng-container>
     </div>
   </ng-container>
 </form>
 
+<button (click)="submitTask()" style="display: block; margin-bottom: 400px;">====================</button>
+
 <ng-template #emptyList>
   <div class="tasks-creator__empty">
-    <span>EMPTY</span>
+    <span>{{ 'TASK-CREATION.EMPTY_TASKS_LIST' | translate }}</span>
   </div>
 </ng-template>

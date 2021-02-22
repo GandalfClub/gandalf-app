@@ -5,14 +5,17 @@
                 [type]="'basic'"
                 (click)="addNewTask()"
                 [color]="'white'">
-      <app-icon class="icon-button__icon"
+      <app-icon class="tasks-list__add-btn-icon"
                 [icon]="'add'"
                 [size]="'s'"
       ></app-icon>
     </app-button>
   </div>
   <div class="tasks-list__content">
-    <div class="tasks-list__item" *ngFor="let task of taskList; let i = index" (click)="showTask(i)">
+    <div class="tasks-list__item"
+         [ngClass]="{ 'tasks-list__item_active' : i === selectedTaskIndex }"
+         *ngFor="let task of taskList; let i = index"
+         (click)="showTask(i)">
       {{ task.taskName }}
     </div>
   </div>

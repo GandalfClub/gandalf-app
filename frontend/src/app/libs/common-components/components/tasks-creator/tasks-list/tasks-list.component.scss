@@ -11,6 +11,7 @@
     align-items: center;
     flex-shrink: 0;
     padding: $main-grid-unit;
+    border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
   }
 
   &__title {
@@ -30,6 +31,7 @@
   }
 
   &__item {
+    position: relative;
     padding: $secondary-grid-unit * 3 $secondary-grid-unit * 4;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -41,6 +43,16 @@
 
     &:not(:last-child) {
       margin-bottom: $main-grid-unit;
+    }
+
+    &_active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: $secondary-grid-unit;
+      background-color: $color-primary;
     }
   }
 

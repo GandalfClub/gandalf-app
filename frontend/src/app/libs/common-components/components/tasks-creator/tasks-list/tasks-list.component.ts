@@ -14,6 +14,8 @@ export class TasksListComponent implements OnInit {
   @Output()
   public selectedTask: EventEmitter<ITask> = new EventEmitter<ITask>();
 
+  public selectedTaskIndex: number = 0;
+
   public ngOnInit(): void {
     this.taskList = [
       {
@@ -59,6 +61,8 @@ export class TasksListComponent implements OnInit {
         ]),
       }
     ];
+
+    this.showTask(0);
   }
 
   get tasksLength(): number {
@@ -67,6 +71,7 @@ export class TasksListComponent implements OnInit {
 
   public showTask(index: number): void {
     this.selectedTask.emit(this.taskList[index]);
+    this.selectedTaskIndex = index;
   }
 
   public addNewTask(): void {
@@ -77,7 +82,7 @@ export class TasksListComponent implements OnInit {
       maxScore: null,
       question: null,
       answers: new Set<IAnswer>([
-       {
+        {
           label: '',
           isCorrect: false,
         },

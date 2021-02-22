@@ -80,7 +80,8 @@
     "LIST_HEADER_TITLE": "Tasks",
     "ADD_NEW_OPTION_TITLE": "add new option",
     "MENTOR_CHECK_TOGGLE": "Mentor check",
-    "TASK_NAME_PLACEHOLDER": "Task name"
+    "TASK_NAME_PLACEHOLDER": "Task name",
+    "EMPTY_TASKS_LIST": "You don’t have any tasks yet."
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",

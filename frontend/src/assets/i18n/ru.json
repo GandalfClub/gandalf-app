@@ -78,7 +78,8 @@
     "LIST_HEADER_TITLE": "Задачи",
     "ADD_NEW_OPTION_TITLE": "добавить опцию",
     "MENTOR_CHECK_TOGGLE": "Проверка ментором",
-    "TASK_NAME_PLACEHOLDER": "Название задачи"
+    "TASK_NAME_PLACEHOLDER": "Название задачи",
+    "EMPTY_TASKS_LIST": "Список задач пуст."
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
