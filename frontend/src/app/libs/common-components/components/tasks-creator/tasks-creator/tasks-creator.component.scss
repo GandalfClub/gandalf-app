@@ -3,6 +3,7 @@
 .tasks-creator {
   height: 100%;
   background-color: $color-white;
+  border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
 
   &__empty {
     display: flex;
@@ -11,10 +12,20 @@
     height: 100%;
   }
 
+  &__task-name {
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: $main-grid-unit;
+    color: $color-white;
   }
 
   &__body {

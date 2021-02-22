@@ -1,6 +1,7 @@
 <mat-form-field
 	appearance="outline"
 	[style.width] = "widthInput"
+  [ngClass]="{ 'no-paddings' : noPaddings }"
 	[class.input--dark]="isDarkTheme">
 
 	<mat-icon matPrefix *ngIf="preIcon" class="input__pre-icon">{{preIcon}}</mat-icon>

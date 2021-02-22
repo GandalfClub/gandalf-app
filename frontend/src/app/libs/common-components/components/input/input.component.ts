@@ -60,6 +60,8 @@ export class InputComponent implements ControlValueAccessor, OnInit, OnDestroy, 
 
 	@Input() public mask: string;
 
+	@Input() public noPaddings: boolean = false;
+
 	public inlineSyncValidators: ValidatorFn[] = null;
 	public inlineAsyncValidators: AsyncValidatorFn[] = null;
 

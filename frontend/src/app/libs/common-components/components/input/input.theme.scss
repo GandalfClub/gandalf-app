@@ -14,12 +14,19 @@
 	}
 }
 
-.mat-form-field-appearance-outline .mat-form-field-infix {
-	padding: .7rem 0;
-}
+.mat-form-field-appearance-outline {
+  .mat-form-field-infix {
+    padding: .7rem 0;
+  }
 
-.mat-form-field-appearance-outline.input--dark .mat-form-field-outline {
-	color: $color-white-30;
+  &.no-paddings  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  &.input--dark .mat-form-field-outline {
+    color: $color-white-30;
+  }
 }
 
 .input--dark {
