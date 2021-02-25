@@ -21,7 +21,7 @@ export class NewEventFacadeService {
 		this.store.dispatch(new SetTitleAction(title));
 	}
 
-	public createNewEvent(event: NewEvent): void {
+	public createGeneralEvent(event: NewEvent): void {
 		this.store.dispatch(new CreateEventAction(event));
 	}
 }

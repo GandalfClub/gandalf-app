@@ -51,11 +51,14 @@ $color-black-5: rgba($color-black, 0.05);
 $color-black-3: rgba($color-black, 0.03);
 // whites
 $color-white-100: rgba($color-white, 100);
-$color-white-75: rgba($color-white, 0.75);
-$color-white-50: rgba($color-white, 0.5);
-$color-white-30: rgba($color-white, 0.3);
-$color-white-10: rgba($color-white, 0.1);
-$color-white-5: rgba($color-white, 0.05);
+$color-white-75: rgba($color-white, .75);
+$color-white-50: rgba($color-white, .50);
+$color-white-30: rgba($color-white, .30);
+$color-white-10: rgba($color-white, .10);
+$color-white-5: rgba($color-white, .05);
+
+$color-gray-01: rgba(33, 33, 33, 0.1);
+$color-gray-05: rgba(33, 33, 33, 0.5);
 // typography
 $font-main-bold: "Roboto Bold", sans-serif;
 $font-main-regular: "Roboto Regular", sans-serif;

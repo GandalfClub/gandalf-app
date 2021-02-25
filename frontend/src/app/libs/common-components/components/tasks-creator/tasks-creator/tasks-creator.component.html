@@ -1,6 +1,6 @@
 <form [formGroup]="taskCreatorControl" class="tasks-creator">
   <ng-container *ngIf="!isListEmpty; else emptyList">
-    <div class="tasks-creator__header event-gradient" style="color: white">
+    <div class="tasks-creator__header event-gradient">
 
       <div *ngIf="!isTaskNameEditMode">
         <span class="tasks-creator__task-name">{{ taskName }}</span>
@@ -12,7 +12,7 @@
         </app-icon-button>
       </div>
 
-      <div *ngIf="isTaskNameEditMode">
+      <div *ngIf="isTaskNameEditMode" class="tasks-creator__name-editor">
 
         <app-input [formControlName]="'taskNameControl'"
                    [noPaddings]="true"
@@ -70,7 +70,8 @@
 
       </div>
 
-      <app-ckeditor formControlName="textEditorControl"
+      <app-ckeditor class="tasks-creator__text-editor"
+                    formControlName="textEditorControl"
                     theme=lightTheme
                     [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
 
@@ -98,14 +99,14 @@
         </ng-container>
 
         <ng-container *ngSwitchCase="taskTypesEnum.coding">
-          <div style="height: 500px; display:block;">
-            <app-monaco-editor
-              [language]="'javascript'"
-              [code]="code"
-              formControlName="codeEditorControl"
-              (codeChange)="updateCode($event)">
-            </app-monaco-editor>
-          </div>
+          <app-monaco-editor
+            class="tasks-creator__code-editor"
+            [language]="'javascript'"
+            [code]="code"
+            [theme]="'hc-black'"
+            formControlName="codeEditorControl"
+            (codeChange)="updateCode($event)">
+          </app-monaco-editor>
         </ng-container>
 
         <ng-container *ngSwitchCase="taskTypesEnum.multiple">
@@ -130,8 +131,6 @@
     </div>
   </ng-container>
 </form>
-
-<button (click)="submitTask()" style="display: block; margin-bottom: 400px;">====================</button>
 
 <ng-template #emptyList>
   <div class="tasks-creator__empty">
