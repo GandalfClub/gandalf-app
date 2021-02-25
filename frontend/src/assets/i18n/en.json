@@ -81,7 +81,8 @@
     "ADD_NEW_OPTION_TITLE": "add new option",
     "MENTOR_CHECK_TOGGLE": "Mentor check",
     "TASK_NAME_PLACEHOLDER": "Task name",
-    "EMPTY_TASKS_LIST": "You don’t have any tasks yet."
+    "EMPTY_TASKS_LIST": "You don’t have any tasks yet.",
+    "CODE_EDITOR_LABEL": "Unit tests area"
   },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",

@@ -20,6 +20,11 @@
     overflow: hidden;
   }
 
+  &__name-editor {
+    display: flex;
+    align-items: center;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -36,6 +41,15 @@
   &__basic-settings {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__text-editor {
+    display: block;
+    margin-bottom: $main-grid-unit * 3;
+  }
+
+  &__code-editor {
+    display: block;
   }
 
   &__mentor-check {

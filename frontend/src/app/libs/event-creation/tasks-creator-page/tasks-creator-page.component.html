@@ -1,4 +1,4 @@
 <div class="tasks-creator-tab">
   <app-tasks-list class="tasks-creator-tab__list" (selectedTask)="showSelectedTask($event)"></app-tasks-list>
-  <app-tasks-creator class="tasks-creator-tab__creator" [selectedTask]="selectedTask"></app-tasks-creator>
+  <app-tasks-creator (passForm)="passForm.emit($event)" class="tasks-creator-tab__creator" [selectedTask]="selectedTask"></app-tasks-creator>
 </div>

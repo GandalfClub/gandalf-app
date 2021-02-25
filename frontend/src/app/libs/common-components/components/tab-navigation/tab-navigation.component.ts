@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
+import {Tabs} from './models/tabs';
 
 @Component({
 	selector: 'app-tab-navigation',
@@ -8,25 +9,27 @@ import { ComponentTheme } from '../../shared/component-theme.enum';
 })
 export class TabNavigationComponent {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
-	@Output() changeTab: EventEmitter<string> = new EventEmitter<string>();
+	@Output() changeTab: EventEmitter<Tabs> = new EventEmitter<Tabs>();
 
-	public currentTab: string = 'generalTab';
+  public tabsEnum: typeof Tabs = Tabs;
 
-	public changePage(tab: string): void {
+	public currentTab: Tabs = Tabs.generalTab;
+
+	public changePage(tab: Tabs): void {
 		this.currentTab = tab;
 		this.changeTab.emit(tab);
 	}
 
 	public get generalTab(): boolean {
-		return this.currentTab === 'generalTab';
+		return this.currentTab === Tabs.generalTab;
 	}
 
 	public get tasksTab(): boolean {
-		return this.currentTab === 'tasksTab';
+		return this.currentTab === Tabs.tasksTab;
 	}
 
 	public get invitationsTab(): boolean {
-		return this.currentTab === 'invitationsTab';
+		return this.currentTab === Tabs.invitationsTab;
 	}
 
 }

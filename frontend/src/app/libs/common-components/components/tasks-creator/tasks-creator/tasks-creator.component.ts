@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { TasksTypes } from '../models/tasks-creator';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IAnswer, ITask } from '../models/task';
@@ -27,6 +27,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
 
   @Input()
   public selectedTask: ITask;
+
+  @Output()
+  public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
 
   public isTaskTypesSelectorOpened: boolean;
   public maxScore: number;
@@ -103,6 +106,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
           this.isMentorCheckSelected = true;
         }
         this.taskName = val.taskNameControl;
+
+        this.emitForm();
       }
     );
 
@@ -154,7 +159,7 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
     this.enteredCode = code;
   }
 
-  public submitTask(): void {
+  private emitForm(): void {
     const task: ITask = {
       taskName: this.taskName,
       taskType: this.selectedTaskType,
@@ -175,6 +180,8 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
         break;
       default:
     }
+
+    this.passForm.emit(task);
   }
 
   private getAnswers(): Set<IAnswer> {

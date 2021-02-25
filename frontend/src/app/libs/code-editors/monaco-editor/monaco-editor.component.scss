@@ -1,3 +1,21 @@
+@import "variables";
+
 .editor-container {
+  position: relative;
 	height: 100%;
+  padding: $main-grid-unit * 2 $main-grid-unit * 3 $main-grid-unit * 3;
+  margin-top: 10px;
+  border: 1px solid $color-gray-01;
+  border-radius: 4px;
+
+  &__label {
+    position: absolute;
+    left: $main-grid-unit * 2;
+    top: -6px;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 12px;
+    color: $color-gray-05;
+    background-color: $color-white;
+  }
 }

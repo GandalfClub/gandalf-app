@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
 
 @Component({
@@ -8,6 +8,9 @@ import { ITask } from '../../common-components/components/tasks-creator/models/t
 })
 export class TasksCreatorPageComponent {
   public selectedTask: ITask;
+
+  @Output()
+  public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
 
   public showSelectedTask(task: ITask): void {
     this.selectedTask = task;

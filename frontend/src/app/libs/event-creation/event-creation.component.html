@@ -2,15 +2,20 @@
   <app-breadcrumb>
     <app-tab-navigation (changeTab)="changeTab($event)"></app-tab-navigation>
   </app-breadcrumb>
-  <app-general-info
-    class="event-creation__tab-content"
-    *ngIf="generalTab"
-    (passForm)="getFormFromGeneralComponent($event)">
-  </app-general-info>
-  <app-tasks-creator-page
-    class="event-creation__tab-content"
-    *ngIf="tasksTab">
-  </app-tasks-creator-page>
+
+  <ng-container [ngSwitch]="currentTab">
+    <app-general-info
+      *ngSwitchCase="tabsEnum.generalTab"
+      class="event-creation__tab-content"
+      (passForm)="getFormFromGeneralComponent($event)">
+    </app-general-info>
+    <app-tasks-creator-page
+      *ngSwitchCase="tabsEnum.tasksTab"
+      class="event-creation__tab-content"
+      (passForm)="getTaskCreationForm($event)">
+    </app-tasks-creator-page>
+  </ng-container>
+
   <div class="event-creation__bottom-bar">
     <div>
       <app-icon-button
