@@ -6,6 +6,7 @@ export interface IAnswer {
 }
 
 export interface ITask {
+  isDraft?: boolean;
   taskName: string;
   taskType: TasksTypes;
   mentorCheck: boolean;

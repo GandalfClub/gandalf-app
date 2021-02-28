@@ -9,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AvatarComponent } from './components/header/components/avatar/avatar.component';
 import { NotificationsComponent } from './components/header/components/notifications/notifications.component';
 import { LocalizationModule } from './components/localization/localization.module';
-import { NewEventStoreModule } from '../event-creation/store/store.module';
+import { EventStoreModule } from '../event-creation/store/store.module';
 
 @NgModule({
 	declarations: [
@@ -25,7 +25,7 @@ import { NewEventStoreModule } from '../event-creation/store/store.module';
 		ContainerStoreModule,
 		RouterModule,
 		LocalizationModule,
-		NewEventStoreModule
+		EventStoreModule
 	],
 	exports: [
 		ContainerComponent

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { NewEvent } from '../store/model/model';
+import { GeneralEvent } from '../store/model/model';
+import { ITask } from '../../common-components/components/tasks-creator/models/task';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,9 +14,13 @@ export class EventsRepositoryService {
 		private http: HttpClient,
 	) { }
 
-	public createEvent(event: NewEvent): Observable<NewEvent> {
+	public createGeneralEvent(generalEvent: GeneralEvent): Observable<GeneralEvent> {
 		const url: string = this.API_URL + '/events';
-		return this.http.post<NewEvent>(url, event);
+		return this.http.post<GeneralEvent>(url, generalEvent);
 	}
 
+  public createTaskEvent(task: ITask): Observable<ITask> {
+    const url: string = this.API_URL + '/tasks'; // todo backend url
+    return this.http.post<ITask>(url, task);
+  }
 }

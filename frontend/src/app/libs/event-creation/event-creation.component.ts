@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { FormGroup } from '@angular/forms';
-import { NewEventFacadeService } from './store/newEvent.facade';
+import { NewEventFacadeService } from './store/event.facade';
 import { Tabs } from '../common-components/components/tab-navigation/models/tabs';
 import { ITask } from '../common-components/components/tasks-creator/models/task';
 
@@ -15,7 +15,7 @@ export class EventCreationComponent implements OnInit {
   public tabsEnum: typeof Tabs = Tabs;
 
 	private formFromGeneralComponent: FormGroup;
-	private taskForm: ITask;
+	private task: ITask;
 
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService, public newEventsFacadeService: NewEventFacadeService) {
 	}
@@ -28,25 +28,32 @@ export class EventCreationComponent implements OnInit {
 		this.currentTab = tab;
 	}
 
-	public saveAsDraft(): void {
-		this.formFromGeneralComponent.patchValue({
-			isDraft: true
-		});
-		this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
-	}
+  public send(isDraft: boolean): void {
+    switch (this.currentTab) {
+      case Tabs.generalTab:
+        this.formFromGeneralComponent.patchValue({
+          isDraft,
+        });
+        this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
+        break;
 
-	public send(): void {
-		this.formFromGeneralComponent.patchValue({
-			isDraft: false
-		});
-		this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
-	}
+      case Tabs.tasksTab:
+        this.task.isDraft = isDraft;
+        this.newEventsFacadeService.createTask(this.task);
+        break;
+
+      case Tabs.invitationsTab:
+        break;
+
+      default:
+    }
+  }
 
 	public getFormFromGeneralComponent(data: FormGroup): void {
 		this.formFromGeneralComponent = data;
 	}
 
   public getTaskCreationForm(task: ITask): void {
-    this.taskForm = task;
+    this.task = task;
   }
 }
