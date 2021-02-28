@@ -31,11 +31,13 @@
         class="event-creation__btn"
         [type]="'outlined'"
         [color]="'primary'"
-        (click)="saveAsDraft()"
-      >
+        (click)="send(true)">
         {{ "BUTTON.SAVE_AS_DRAFT" | translate }}
       </app-button>
-      <app-button [type]="'flat'" [color]="'primary'" (click)="send()">
+      <app-button
+        [type]="'flat'"
+        [color]="'primary'"
+        (click)="send(false)">
         {{ "BUTTON.PUBLISH" | translate }}
       </app-button>
     </div>

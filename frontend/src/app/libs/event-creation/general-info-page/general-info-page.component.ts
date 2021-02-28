@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { NewEventFacadeService } from '../store/newEvent.facade';
+import { NewEventFacadeService } from '../store/event.facade';
 
 @Component({
 	selector: 'app-general-info',
@@ -17,7 +17,7 @@ export class GeneralInfoPageComponent implements OnInit {
 	public isContinuous: boolean;
 
 	constructor(private formBuilder: FormBuilder, private titleForNewEvent: NewEventFacadeService) {
-		this.titleForNewEvent.title$.subscribe((item: string) => {
+		this.titleForNewEvent.generalTitle$.subscribe((item: string) => {
 			this.title = item;
 		});
 	}

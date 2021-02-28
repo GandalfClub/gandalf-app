@@ -1,4 +1,4 @@
-export interface NewEvent {
+export interface GeneralEvent {
 	title: string;
 	shortSummary: string;
 	startDate: Date;

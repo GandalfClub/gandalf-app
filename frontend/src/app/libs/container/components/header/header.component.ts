@@ -5,9 +5,8 @@ import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { NewEventFacadeService } from 'src/app/libs/event-creation/store/newEvent.facade';
+import { NewEventFacadeService } from 'src/app/libs/event-creation/store/event.facade';
 import { PopoverComponent } from 'src/app/libs/common-components/components/popover/popover.component';
-import { ContainerFacadeService } from '../../services/container-facade.service';
 
 @Component({
 	selector: 'app-header',
