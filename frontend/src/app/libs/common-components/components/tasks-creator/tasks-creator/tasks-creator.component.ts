@@ -32,8 +32,6 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
 
   public isTaskTypesSelectorOpened: boolean;
-  public maxScore: number;
-  public taskName: string;
   public taskTypesEnum: typeof TasksTypes = TasksTypes;
   public tasksTypes: Set<TasksTypes> = new Set([
     TasksTypes.text,
@@ -52,6 +50,14 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
 
   get selectedTaskType(): TasksTypes {
     return this.taskCreatorControl.get('selectedTaskTypeControl')?.value ?? TasksTypes.single;
+  }
+
+  get taskName(): string {
+    return this.taskCreatorControl.get('taskNameControl')?.value ?? '';
+  }
+
+  get maxScore(): number {
+    return this.taskCreatorControl.get('maxScoreControl')?.value ?? 0;
   }
 
   get isMentorCheckSelected(): boolean {
@@ -74,16 +80,28 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
     return this.taskCreatorControl.get('multiAnswersArrayControl') as FormArray;
   }
 
+  get isListEmpty(): boolean {
+    return !Boolean(this.selectedTask);
+  }
+
   set isMentorCheckSelected(value: boolean) {
     this.taskCreatorControl.get('mentorCheckControl')?.setValue(value);
   }
 
-  public onOpenTaskTypesSelector(isOpen: boolean): void {
-    this.isTaskTypesSelectorOpened = isOpen;
+  set maxScore(value: number) {
+    this.taskCreatorControl.get('maxScoreControl')?.setValue(value);
   }
 
-  public get isListEmpty(): boolean {
-    return !Boolean(this.selectedTask);
+  set taskName(value: string) {
+    this.taskCreatorControl.get('taskNameControl')?.setValue(value ?? '');
+  }
+
+  set textEditorQuestion(value: string) {
+    this.taskCreatorControl.get('textEditorControl')?.setValue(value ?? '');
+  }
+
+  public onOpenTaskTypesSelector(isOpen: boolean): void {
+    this.isTaskTypesSelectorOpened = isOpen;
   }
 
   public ngOnInit(): void {
@@ -101,12 +119,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
 
     this.taskCreatorControl.valueChanges.subscribe(
       (val: ICreatedTaskControls) => {
-        this.maxScore = val.maxScoreControl;
         if (this.selectedTaskType === TasksTypes.coding && this.isMentorCheckSelected === false) {
           this.isMentorCheckSelected = true;
         }
-        this.taskName = val.taskNameControl;
-
         this.emitForm();
       }
     );
@@ -217,9 +232,9 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
 
     this.taskName = taskName;
     this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(taskType);
-    this.taskCreatorControl.controls['maxScoreControl'].setValue(maxScore ?? 0);
+    this.maxScore = maxScore;
     this.isMentorCheckSelected = mentorCheck;
-    this.taskCreatorControl.controls['textEditorControl'].setValue(question);
+    this.textEditorQuestion = question;
     if (answers) {
       this.clearAnswersControl(this.singleAnswersControl);
       this.clearAnswersControl(this.multiAnswerControl);
