@@ -1,32 +1,58 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
-import { Tab } from './models/tab.model';
-import { Tabs } from './models/tabs.enum';
+import { Tabs } from './models/tabs';
+import { NewEventFacadeService } from '../../../event-creation/store/event.facade';
+import { AutoCloseable } from '../../../utils/auto-closable';
+import { takeUntil } from 'rxjs/operators';
+import { ITask } from '../tasks-creator/models/task';
 
 @Component({
 	selector: 'app-tab-navigation',
 	templateUrl: './tab-navigation.component.html',
 	styleUrls: ['./tab-navigation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabNavigationComponent implements OnInit {
-	@Input() tabs: Tab[] = [
-		{ title: Tabs.General, amount: null },
-		{ title: Tabs.Tasks, amount: 0 },
-		{ title: Tabs.Invitations, amount: 0 },
-		{ title: Tabs.Members, amount: 0 }
-	];
-
-	@Output() changeTab: EventEmitter<Tab> = new EventEmitter<Tab>();
-
-	public currentTab: Tab;
+export class TabNavigationComponent extends AutoCloseable implements OnInit {
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
+	@Output() changeTab: EventEmitter<Tabs> = new EventEmitter<Tabs>();
 
-	public changePage(tab: Tab): void {
+  public tabsEnum: typeof Tabs = Tabs;
+
+  public tasksNumber: number;
+
+	public currentTab: Tabs = Tabs.generalTab;
+
+  constructor(private eventFacadeService: NewEventFacadeService) {
+    super();
+  }
+
+  public changePage(tab: Tabs): void {
 		this.currentTab = tab;
 		this.changeTab.emit(tab);
 	}
 
-	public ngOnInit(): void {
-		this.currentTab = this.tabs[0];
+	public get generalTab(): boolean {
+		return this.currentTab === Tabs.generalTab;
 	}
+
+	public get tasksTab(): boolean {
+		return this.currentTab === Tabs.tasksTab;
+	}
+
+	public get invitationsTab(): boolean {
+		return this.currentTab === Tabs.invitationsTab;
+	}
+
+  public ngOnInit(): void {
+    this.eventFacadeService.tasks$
+    .pipe(
+      takeUntil(this.destroyedSource$),
+    )
+    .subscribe(
+      (tasks: Set<ITask>): void => {
+        this.tasksNumber = tasks.size;
+      },
+    );
+  }
+
 }

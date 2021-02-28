@@ -14,7 +14,7 @@
 
       <div *ngIf="isTaskNameEditMode" class="tasks-creator__name-editor">
 
-        <app-input [formControlName]="'taskNameControl'"
+        <app-input formControlName="taskNameControl"
                    [noPaddings]="true"
                    [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
 
@@ -63,7 +63,7 @@
           </app-slide-toggle>
           <app-input
             [type]="'number'"
-            [formControlName]="'maxScoreControl'"
+            formControlName="maxScoreControl"
             [placeholder]="('TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate)">
           </app-input>
         </div>
@@ -121,7 +121,7 @@
             </div>
           </div>
 
-          <app-icon-button [startIcon]="'add'">
+          <app-icon-button [startIcon]="'add'" (click)="addMultiAnswer()">
             {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
           </app-icon-button>
 

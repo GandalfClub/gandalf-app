@@ -16,18 +16,22 @@
 				<app-datepicker formControlName="startDate"
 								class="app-general-info__date"
 								[label]="'LABEL.START_DATE' | translate"></app-datepicker>
-				<app-select formControlName="startTime"
-							class="app-general-info__time"
-							[label]="'LABEL.START_TIME' | translate"></app-select>
+        <app-select
+          formControlName="startTime"
+          [eventTimeType]="true"
+          class="app-general-info__time"
+          [label]="'LABEL.START_TIME' | translate"></app-select>
 				<img class="app-general-info__arrow"
 					 src="assets/images/icons/icon-arrow-forward.svg"
 					 alt="arrow-forward">
 				<app-datepicker formControlName="endDate"
 								class="app-general-info__date"
 								[label]="'LABEL.END_DATE' | translate"></app-datepicker>
-				<app-select formControlName="endTime"
-							class="app-general-info__time"
-							[label]="'LABEL.END_TIME' | translate"></app-select>
+        <app-select
+          formControlName="endTime"
+          [eventTimeType]="true"
+          class="app-general-info__time"
+          [label]="'LABEL.END_TIME' | translate"></app-select>
 				<app-slide-toggle formControlName="isContinuous"
 								  [value]="false"
 								  theme=lightTheme
