@@ -6,7 +6,7 @@ export enum EventUserRoles {
     HR = 'hr',
     EventManager = 'event manager',
     Participator = 'participator',
-  }
+}
 export interface IEventParticipationModel extends Document {
     created: Date;
     userId: string;

@@ -81,10 +81,6 @@ export class EventParticipationControlComponent {
 	}
 
 	private eventHasStarted(startDate: Date): boolean {
-		if (!startDate) {
-			return false;
-		}
-
 		return new Date().getTime() >= new Date(startDate).getTime();
 	}
 }
