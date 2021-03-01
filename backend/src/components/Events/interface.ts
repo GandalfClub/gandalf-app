@@ -1,5 +1,4 @@
-import { IEventsnModel, IEventTaskUpdate, IEventsnModelUpdate, } from './model';
-import { Types } from 'mongoose';
+import { IEventsnModel, IEventTaskUpdate, IEventsnModelUpdate, IEventParticipationModel, } from './model';
 
 export interface IEventsService {
     createEvent(eventInfo: IEventsnModel): Promise<IEventsnModel>;
@@ -7,4 +6,5 @@ export interface IEventsService {
     getAllEvents(): Promise<IEventsnModel[]>;
     updateTaskInEvent(body: IEventTaskUpdate): Promise<IEventsnModel>;
     deleteEvent(body: any): Promise<void>;
+    addNewEventParticipation(participation: IEventParticipationModel): Promise<IEventParticipationModel>;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { NewEventsActionTypes, CreateEventAction, CreateEventActionSuccess, CreateEventActionFail } from './newEvent.actions';
 import { EventsRepositoryService } from '../services/events-repository.service';
 import { switchMap, map, catchError } from 'rxjs/operators';

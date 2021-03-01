@@ -9,9 +9,10 @@ import { EventDescriptionPanelComponent } from './components/event-description-p
 import { SafeHtmlPipe } from '../pipes/sanitizer.pipe';
 import { BreadcrumbStoreModule } from '../common-components/components/breadcrumb/store/store.module';
 import { BreadcrumbModule } from '../common-components/components/breadcrumb/breadcrumb.module';
+import { EventParticipationControlComponent } from './components/event-participation-control/event-participation-control.component';
 
 @NgModule({
-	declarations: [EventComponent, EventDescriptionPanelComponent, SafeHtmlPipe],
+	declarations: [EventComponent, EventDescriptionPanelComponent, SafeHtmlPipe, EventParticipationControlComponent],
 	imports: [CommonModule, CommonComponentsModule, EventDescriptionRoutingModule, EventStoreModule, BreadcrumbStoreModule, BreadcrumbModule],
 })
 export class EventDescriptionModule {}

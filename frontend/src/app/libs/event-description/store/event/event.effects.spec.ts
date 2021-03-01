@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { EventEffects } from './event.effects';
 import { EventRepository } from '../../services/event-repository.service';
 import { Event } from '../../../landing/models/event';
-import { LoadEvent, LoadEventSuccess, LoadEventFail } from './event.actions';
+import { LoadEvent, LoadEventSuccess, LoadEventFail, RegForEvent, RegForEventFail, RegForEventSuccess } from './event.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
 import { EventDto } from 'src/app/libs/landing/models/event-dto';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
+import { EventParticipation } from 'src/app/libs/landing/models/event-participation.class';
 
 describe('Events Effects', () => {
 	let mockEventRepository: jasmine.SpyObj<EventRepository>;
@@ -21,6 +22,7 @@ describe('Events Effects', () => {
 	let actions: Observable<Action>;
 	let expected: Observable<Action>;
 	let id: string;
+	let mockParticipation: EventParticipation;
 
 	function createEffects(source: Observable<Action>): EventEffects {
 		return new EventEffects(new Actions(source), mockEventRepository, eventConverter);
@@ -39,6 +41,8 @@ describe('Events Effects', () => {
 		});
 		mockEventRepository = TestBed.inject(EventRepository) as jasmine.SpyObj<EventRepository>;
 		eventConverter = TestBed.inject(EventConverter) as jasmine.SpyObj<EventConverter>;
+		mockParticipation = new EventParticipation('uId', 'evId');
+		error = new Error('test');
 	}));
 
 	describe('getEvent', () => {
@@ -54,7 +58,9 @@ describe('Events Effects', () => {
 					endDate: null,
 					endTime: null,
 					users: [],
-					size: EventCardSize.S
+					size: EventCardSize.S,
+					eventParticipations: [],
+					roles: []
 				};
 				eventDto = {
 					_id: 'test',
@@ -65,13 +71,14 @@ describe('Events Effects', () => {
 					startTime: null,
 					endDate: null,
 					endTime: null,
-					participations: null,
 					users: null,
 					tasks: null,
 					isActive: null,
 					maxScore: null,
-					size: EventCardSize.S
-
+					size: EventCardSize.S,
+					eventParticipations: [],
+					roles: [],
+					participations: []
 				};
 				id = '1';
 				mockEventRepository.getEvent.and.returnValue(of(eventDto));
@@ -95,6 +102,30 @@ describe('Events Effects', () => {
 
 			it('should emit getEventsFail action', () => {
 				expect(createEffects(actions).GetEvent).toBeObservable(expected);
+			});
+		});
+
+		describe('RegForEvent:', () => {
+			beforeEach(() => {
+				mockEventRepository.regForEvent.and.throwError(error);
+				actions = hot('-a|', { a: new RegForEvent(mockParticipation) });
+				expected = cold('-(s|)', { s: new RegForEventFail(error) });
+			});
+
+			it('should emit RegForEventFail action', () => {
+				expect(createEffects(actions).RegForEvent).toBeObservable(expected);
+			});
+		});
+
+		describe('RegForEvent:', () => {
+			beforeEach(() => {
+				mockEventRepository.regForEvent.and.returnValue(of(mockParticipation));
+				actions = hot('-a-|', { a: new RegForEvent(mockParticipation) });
+				expected = cold('-s-|)', { s: new RegForEventSuccess(mockParticipation) });
+			});
+
+			it('should emit RegForEventSuccess action', () => {
+				expect(createEffects(actions).RegForEvent).toBeObservable(expected);
 			});
 		});
 	});
