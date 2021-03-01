@@ -43,12 +43,13 @@
 	}
 
 	&__input-first-name-container {
-		width: calc(50% - 24px);
-		padding-right: 24px;
+		width: calc(50% - 12px);
+		padding-right: 12px;
 	}
 
 	&__input-last-name-container {
-		width: 50%;
+		width: calc(50% - 12px);
+		padding-left: 12px;
 	}
 
 	&__input-first-name {
