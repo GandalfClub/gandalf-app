@@ -64,9 +64,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 	public emailValidator(control: AbstractControl): ValidationErrors | null {
 		const maxLength: number = 128;
 		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (control && Boolean(control.value) && control.value.length >= maxLength ||
-			control && Boolean(control.value) && !emailPattern.test(control.value) ||
-			!Boolean(control.value)) {
+		if (control && Boolean(control.value) && control.value.length >= maxLength || !emailPattern.test(control.value)) {
 			return { message: this.translate.instant('ERROR_MESSAGE.EMAIL_ERROR_MESSAGE') };
 		}
 		return null;
@@ -90,16 +88,19 @@ export class SignInComponent implements OnInit, OnDestroy {
 	}
 
 	public submit(): void {
-		this.recaptchaV3Service.execute('signUpUser')
+		this.recaptchaV3Service.execute('signInUser')
+			.pipe(takeUntil(this.destroy$))
 			.subscribe((token: string) => this.handleToken(token));
 	}
 
 	public handleToken(token: string): void {
 		this.recaptchaFacadeService.getRecaptchaStatus(token);
-		this.recaptchaFacadeService.isRecaptchaPassed$.pipe(takeUntil(this.destroy$)).subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
-			if (recaptcha.status === EntityStatus.Success) {
-				this.signInUser();
-			}
+		this.recaptchaFacadeService.isRecaptchaPassed$
+			.pipe(takeUntil(this.destroy$))
+			.subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
+				if (recaptcha.status === EntityStatus.Success) {
+					this.signInUser();
+				}
 		});
 	}
 
