@@ -12,6 +12,16 @@
     height: 100%;
   }
 
+  &__header-button {
+    padding: 0 6px;
+  }
+
+  &__header-border {
+    width: 1px;
+    height: 24px;
+    background-color: $color-white;
+  }
+
   &__task-name {
     font-weight: bold;
     font-size: 18px;
@@ -50,6 +60,11 @@
 
   &__code-editor {
     display: block;
+  }
+
+  &__radio-answer {
+    display: flex;
+    align-items: center;
   }
 
   &__mentor-check {

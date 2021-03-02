@@ -1,5 +1,6 @@
 <mat-icon
 	*ngIf="icon"
-	class="icon icon--{{size}}">
+	class="icon icon--{{size}}"
+  [ngStyle]="{ 'color' : color }">
 		{{icon}}
 </mat-icon>

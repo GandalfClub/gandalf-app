@@ -31,6 +31,9 @@ export class ButtonComponent {
 	@Input()
 	public disableHover: boolean = false;
 
+	@Input()
+  public iconButton: boolean = false;
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}

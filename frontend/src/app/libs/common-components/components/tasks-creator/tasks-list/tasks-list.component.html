@@ -1,15 +1,13 @@
 <div class="tasks-list">
   <div class="tasks-list__header event-gradient">
     <span class="tasks-list__title">{{ 'TASK-CREATION.LIST_HEADER_TITLE' | translate }} ({{ tasksLength }})</span>
-    <app-button class="tasks-list__add-btn"
-                [type]="'basic'"
-                (click)="addNewTask()"
-                [color]="'white'">
-      <app-icon class="tasks-list__add-btn-icon"
-                [icon]="'add'"
-                [size]="'s'"
-      ></app-icon>
-    </app-button>
+    <app-icon-button
+      class="tasks-list__add-btn"
+      (click)="addNewTask()"
+      [startIcon]="'add'"
+      [iconColor]="'#367FF6'"
+      [iconSize]="'s'">
+    </app-icon-button>
   </div>
   <div class="tasks-list__content">
     <div class="tasks-list__item"

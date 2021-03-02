@@ -57,14 +57,6 @@
   }
 
   &__add-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-shrink: 0;
-    width: $main-grid-unit * 5;
-    height: $main-grid-unit * 5;
-    border-radius: 50%;
-    border: 0;
-    cursor: pointer;
   }
 }

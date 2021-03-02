@@ -25,4 +25,7 @@ export class IconButtonComponent {
   @Input()
   public iconSize: IconSize;
 
+  @Input()
+  public iconColor: string;
+
 }
