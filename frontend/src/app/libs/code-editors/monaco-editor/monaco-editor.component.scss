@@ -1,12 +1,18 @@
 @import "variables";
 
-.editor-container {
+.editor-wrapper {
   position: relative;
-	height: 100%;
+  height: calc(100% - #{$main-grid-unit} * 5);
   padding: $main-grid-unit * 2 $main-grid-unit * 3 $main-grid-unit * 3;
   margin-top: 10px;
   border: 1px solid $color-gray-01;
   border-radius: 4px;
+}
+
+.editor-container {
+  display: block;
+  width: 100%;
+  height: 100%;
 
   &__label {
     position: absolute;

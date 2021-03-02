@@ -60,11 +60,17 @@
 
   &__code-editor {
     display: block;
+    height: 432px;
   }
 
-  &__radio-answer {
+  &__radio-answer,
+  &__checkbox-answer {
     display: flex;
     align-items: center;
+  }
+
+  &__checkbox {
+    margin-right: 10px;
   }
 
   &__mentor-check {
