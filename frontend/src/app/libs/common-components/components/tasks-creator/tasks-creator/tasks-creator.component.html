@@ -74,10 +74,12 @@
 
       </div>
 
-      <app-ckeditor class="tasks-creator__text-editor"
-                    formControlName="textEditorControl"
-                    theme=lightTheme
-                    [title]="'LABEL.PRIVATE_EVENT' | translate"></app-ckeditor>
+      <app-ckeditor
+        class="tasks-creator__text-editor"
+        formControlName="textEditorControl"
+        theme=lightTheme
+        [title]="'LABEL.PRIVATE_EVENT' | translate">
+      </app-ckeditor>
 
       <ng-container [ngSwitch]="getSelectedTaskType()">
 
@@ -85,12 +87,12 @@
 
           <mat-radio-group formControlName="correctSingleAnswerControl">
             <div formArrayName="answersArrayControl">
-              <div *ngFor="let answer of singleAnswersControl.controls; let i = index"
-                   [formGroupName]="i"
-                   class="tasks-creator__radio-answer">
+              <div class="tasks-creator__radio-answer"
+                   *ngFor="let answer of singleAnswersControl.controls; let i = index"
+                   [formGroupName]="i">
                 <mat-radio-button class="mat-form-field-wrapper" value="{{ i.toString() }}"></mat-radio-button>
                 <app-input formControlName="label"
-                           [label]="( 'TASK-CREATION.TASK_TYPE_LABEL' | translate )"></app-input>
+                           [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
                 <app-icon-button
                   class="mat-form-field-wrapper"
                   (click)="removeSingleAnswer(i)"
@@ -115,7 +117,6 @@
             class="tasks-creator__code-editor"
             [language]="'javascript'"
             [code]="code"
-            [theme]="'hc-black'"
             formControlName="codeEditorControl"
             (codeChange)="updateCode($event)">
           </app-monaco-editor>
@@ -123,11 +124,17 @@
 
         <ng-container *ngSwitchCase="taskTypesEnum.multiple">
           <div formArrayName="multiAnswersArrayControl">
-            <div *ngFor="let answer of multiAnswerControl.controls; let i = index" [formGroupName]="i">
-              <mat-checkbox [value]="i.toString()" formControlName="isCorrect"></mat-checkbox>
+            <div class="tasks-creator__checkbox-answer"
+                 *ngFor="let answer of multiAnswerControl.controls; let i = index"
+                 [formGroupName]="i">
+              <mat-checkbox
+                class="tasks-creator__checkbox mat-form-field-wrapper"
+                [value]="i.toString()"
+                formControlName="isCorrect"></mat-checkbox>
               <app-input formControlName="value"
-                         [label]="( 'TASK-CREATION.TASK_TYPE_LABEL' | translate )"></app-input>
+                         [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
               <app-icon-button
+                class="mat-form-field-wrapper"
                 (click)="removeMultiAnswer(i)"
                 [startIcon]="'delete'"
                 [iconSize]="'small'">
