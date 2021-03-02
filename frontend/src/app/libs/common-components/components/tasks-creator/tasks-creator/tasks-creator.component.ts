@@ -3,17 +3,6 @@ import { TasksTypes } from '../models/tasks-creator';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IAnswer, ITask } from '../models/task';
 
-interface ICreatedTaskControls {
-  taskNameControl: string;
-  selectedTaskTypeControl: TasksTypes;
-  maxScoreControl: number;
-  mentorCheckControl: boolean;
-  textEditorControl: string;
-  answersArrayControl: IAnswer[];
-  codeEditorControl: string;
-  correctSingleAnswerControl: number;
-}
-
 interface SingleAnswer {
   label: string;
 }
@@ -46,6 +35,17 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   private enteredCode: string;
 
   constructor(private formBuilder: FormBuilder) {
+    this.taskCreatorControl = this.formBuilder.group({
+      taskNameControl: new FormControl(),
+      selectedTaskTypeControl: new FormControl(),
+      maxScoreControl: new FormControl(),
+      mentorCheckControl: new FormControl(),
+      textEditorControl: new FormControl(),
+      codeEditorControl: new FormControl(),
+      correctSingleAnswerControl: new FormControl(),
+      answersArrayControl: this.formBuilder.array([]),
+      multiAnswersArrayControl: this.formBuilder.array([]),
+    });
   }
 
   get selectedTaskType(): TasksTypes {
@@ -105,27 +105,14 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit(): void {
-    this.taskCreatorControl = this.formBuilder.group({
-      taskNameControl: new FormControl(),
-      selectedTaskTypeControl: new FormControl(),
-      maxScoreControl: new FormControl(),
-      mentorCheckControl: new FormControl(),
-      textEditorControl: new FormControl(),
-      codeEditorControl: new FormControl(),
-      correctSingleAnswerControl: new FormControl(),
-      answersArrayControl: this.formBuilder.array([]),
-      multiAnswersArrayControl: this.formBuilder.array([]),
-    });
-
     this.taskCreatorControl.valueChanges.subscribe(
-      (val: ICreatedTaskControls) => {
+      () => {
         if (this.selectedTaskType === TasksTypes.coding && this.isMentorCheckSelected === false) {
           this.isMentorCheckSelected = true;
         }
         this.emitForm();
       }
     );
-
   }
 
   public ngOnChanges(): void {
