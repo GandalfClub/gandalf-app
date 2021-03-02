@@ -1,8 +1,7 @@
-import { IEventsnModel } from './model';
+import { IEventParticipationModel, IEventsnModel } from './model';
 import EventsService from './service';
 import HttpError from '../../config/error';
 import { Request, Response, NextFunction } from 'express';
-import * as AccessGuard from '../../config/middleware/access-guard';
 
 export async function getAllEvents(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -49,6 +48,16 @@ export async function deleteEvent(req: Request, res: Response, next: NextFunctio
         await EventsService.deleteEvent(req.body);
 
         res.status(201).json({});
+    } catch (error) {
+        next(new HttpError(error.message.status, error.message));
+    }
+}
+
+export async function addNewEventParticipation(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const participation: IEventParticipationModel = await EventsService.addNewEventParticipation(req.body);
+
+        res.status(201).json(participation);
     } catch (error) {
         next(new HttpError(error.message.status, error.message));
     }

@@ -6,6 +6,8 @@ const router: Router = Router();
 
 router.get('/', EventsComponent.getAllEvents);
 
+router.post('/', EventsComponent.addNewEventParticipation);
+
 router.post('/', AccessGuard.isAdmin, EventsComponent.createEvent);
 
 router.post('/update-event', AccessGuard.isAdmin, EventsComponent.updateEvent);

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
@@ -9,6 +9,12 @@ import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
 import { IconVisibility } from '../models/icon-visibility';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
+import { ComponentTheme } from '../../common-components/shared/component-theme.enum';
+import { Recaptcha } from '../../recaptcha/models/recaptcha';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { RecaptchaFacadeService } from 'src/app/libs/recaptcha/store/recaptcha/recaptcha.facade';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-sign-in',
@@ -16,18 +22,28 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 	styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit, OnDestroy {
+	public darkTheme: ComponentTheme = ComponentTheme.Dark;
+	public emailValidators: ValidatorFn[] = [this.emailValidator.bind(this)];
+	public passwordValidators: ValidatorFn[] = [this.passwordValidator.bind(this)];
 	public signInFormGroup: FormGroup;
 	public submitted: boolean = false;
 	public hidePassword: boolean = true;
 	public userCredential: UserCredentials;
 	public authError: string;
 	public isLoading: boolean = false;
-	private passwordMinLenth: number = 6;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-	constructor(private authFacadeService: AuthFacadeService, private formBuilder: FormBuilder, private router: Router) {}
+	constructor(
+		private translate: TranslateService,
+		private authFacadeService: AuthFacadeService,
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private containerFacadService: ContainerFacadeService,
+		private recaptchaFacadeService: RecaptchaFacadeService,
+		private recaptchaV3Service: ReCaptchaV3Service, ) { }
 
 	public ngOnInit(): void {
+		this.containerFacadService.hideElementsOnSignIn();
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$)).subscribe((user: EntityWrapper<User>) => {
 			this.isLoading = user.status === EntityStatus.Pending;
 			if (user.status === EntityStatus.Success) {
@@ -39,25 +55,28 @@ export class SignInComponent implements OnInit, OnDestroy {
 		});
 
 		this.signInFormGroup = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', [Validators.required, Validators.minLength(this.passwordMinLenth)]],
+			email: '',
+			password: '',
+			token: ''
 		});
 	}
 
-	public get emailInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.email.touched || this.submitted) && !this.signInFormGroupControl.email.valid) {
-			const emailInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.email.errors);
-			return emailInputErrorMessage[0];
+	public emailValidator(control: AbstractControl): ValidationErrors | null {
+		const maxLength: number = 128;
+		const emailPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (control && Boolean(control.value) && control.value.length >= maxLength || !emailPattern.test(control.value)) {
+			return { message: this.translate.instant('ERROR_MESSAGE.EMAIL_ERROR_MESSAGE') };
 		}
-		return;
+		return null;
 	}
 
-	public get passwordInputErrorMessage(): string {
-		if ((this.signInFormGroupControl.password.touched || this.submitted) && !this.signInFormGroupControl.password.valid) {
-			const passwordInputErrorMessage: string[] = Object.keys(this.signInFormGroupControl.password.errors);
-			return passwordInputErrorMessage[0];
+	public passwordValidator(control: AbstractControl): ValidationErrors | null {
+		const passwordPattern: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{6,17}$/;
+		if (control && Boolean(control.value) && !passwordPattern.test(control.value) ||
+			!Boolean(control.value)) {
+			return { message: this.translate.instant('ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE') };
 		}
-		return;
+		return null;
 	}
 
 	public get signInFormGroupControl(): { [key: string]: AbstractControl } {
@@ -69,6 +88,23 @@ export class SignInComponent implements OnInit, OnDestroy {
 	}
 
 	public submit(): void {
+		this.recaptchaV3Service.execute('signInUser')
+			.pipe(takeUntil(this.destroy$))
+			.subscribe((token: string) => this.handleToken(token));
+	}
+
+	public handleToken(token: string): void {
+		this.recaptchaFacadeService.getRecaptchaStatus(token);
+		this.recaptchaFacadeService.isRecaptchaPassed$
+			.pipe(takeUntil(this.destroy$))
+			.subscribe((recaptcha: EntityWrapper<Recaptcha>) => {
+				if (recaptcha.status === EntityStatus.Success) {
+					this.signInUser();
+				}
+		});
+	}
+
+	public signInUser(): void {
 		this.submitted = true;
 		this.userCredential = this.signInFormGroup.value;
 		if (this.signInFormGroup.valid) {
@@ -80,7 +116,16 @@ export class SignInComponent implements OnInit, OnDestroy {
 		this.authFacadeService.signInByGithub();
 	}
 
+	public onSinUp(): void {
+		this.router.navigateByUrl('/signup');
+	}
+
+	public onPageBack(): void {
+		this.router.navigateByUrl('/');
+	}
+
 	public ngOnDestroy(): void {
+		this.containerFacadService.showElementsOnSignIn();
 		this.destroy$.next(true);
 		this.destroy$.complete();
 	}

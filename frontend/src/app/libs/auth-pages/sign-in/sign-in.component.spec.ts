@@ -11,7 +11,14 @@ import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
 import { CommonModule } from '@angular/common';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
+import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Recaptcha } from '../../recaptcha/models/recaptcha';
+import { RecaptchaFacadeService } from '../../recaptcha/store/recaptcha/recaptcha.facade';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SignInComponent', () => {
 	let component: SignInComponent;
@@ -40,11 +47,42 @@ describe('SignInComponent', () => {
 		},
 	};
 
+	const containerFacadeService: any = {
+		hideElementsOnSignIn(): void {
+		},
+		showElementsOnSignIn(): void {
+		}
+	};
+
+	const recaptcha: EntityWrapper<Recaptcha> = {
+		status: EntityStatus.Success,
+	};
+
+	const mockRecaptchaFacadeService: any = {
+		get isRecaptchaPassed$(): Observable<EntityWrapper<Recaptcha>> {
+			return of(recaptcha);
+		},
+		getRecaptchaStatus(): void {
+			recaptcha.status = EntityStatus.Pending;
+		}
+	};
+
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [SignInComponent],
-			imports: [RouterTestingModule, ReactiveFormsModule, CommonComponentsModule, BrowserAnimationsModule],
-			providers: [{ provide: AuthFacadeService, useValue: mockAuthFacadeService }],
+			imports: [
+				RouterTestingModule,
+				ReactiveFormsModule,
+				CommonComponentsModule,
+				RecaptchaV3Module,
+				BrowserAnimationsModule,
+				TranslateModule.forRoot(),
+			],
+			providers: [
+				{ provide: AuthFacadeService, useValue: mockAuthFacadeService },
+				{ provide: ContainerFacadeService, useValue: containerFacadeService },
+				{ provide: RecaptchaFacadeService, useValue: mockRecaptchaFacadeService },
+				{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcHvukZAAAAAL5zRwijNVtgSAE4nUqkFKZ7h1Qa' }],
 		}).compileComponents();
 	}));
 
@@ -118,13 +156,13 @@ describe('SignInComponent', () => {
 		describe('with valid signIn form group', () => {
 			beforeEach(() => {
 				emailInput.setValue('test@test.by');
-				passwordInput.setValue('123456');
+				passwordInput.setValue('Qq1$ddddd');
 				component.submitted = true;
-				component.submit();
+				component.signInUser();
 			});
 
 			it('should call signIn ', () => {
-				expect(mockAuthFacadeService.signIn).toHaveBeenCalledWith('test@test.by', '123456');
+				expect(mockAuthFacadeService.signIn).toHaveBeenCalledWith('test@test.by', 'Qq1$ddddd');
 			});
 		});
 
@@ -133,7 +171,7 @@ describe('SignInComponent', () => {
 				emailInput.setValue('test');
 				passwordInput.setValue('123');
 				component.submitted = true;
-				component.submit();
+				component.signInUser();
 			});
 
 			it('should not call signIn', () => {
@@ -166,7 +204,7 @@ describe('SignInComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.emailInputErrorMessage).toBe('email');
+				expect(component.emailValidator(emailInput)).toEqual({message: 'ERROR_MESSAGE.EMAIL_ERROR_MESSAGE'});
 			});
 		});
 
@@ -177,13 +215,13 @@ describe('SignInComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.emailInputErrorMessage).toBe('required');
+				expect(component.emailValidator(emailInput)).toEqual({message: 'ERROR_MESSAGE.EMAIL_ERROR_MESSAGE'});
 			});
 		});
 
 		describe('with valid password', () => {
 			beforeEach(() => {
-				passwordInput.setValue('123456');
+				passwordInput.setValue('Qq1$ddddd');
 			});
 
 			it('the form should be valid', () => {
@@ -198,7 +236,7 @@ describe('SignInComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.passwordInputErrorMessage).toBe('minlength');
+				expect(component.passwordValidator(passwordInput)).toEqual({message: 'ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE'});
 			});
 		});
 
@@ -209,7 +247,7 @@ describe('SignInComponent', () => {
 			});
 
 			it('the form should be invalid', () => {
-				expect(component.passwordInputErrorMessage).toBe('required');
+				expect(component.passwordValidator(passwordInput)).toEqual({message: 'ERROR_MESSAGE.PASSWORD_ERROR_MESSAGE'});
 			});
 		});
 	});

@@ -52,7 +52,9 @@ describe('Events Effects', () => {
 					endDate: null,
 					endTime: null,
 					users: [],
-					size: EventCardSize.S
+					size: EventCardSize.S,
+					eventParticipations: [],
+					roles: []
 				};
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));

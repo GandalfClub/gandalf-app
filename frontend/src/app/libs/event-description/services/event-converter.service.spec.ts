@@ -22,7 +22,9 @@ describe('EventConverterService', () => {
 		tasks: null,
 		isActive: null,
 		maxScore: null,
-		size: EventCardSize.S
+		size: EventCardSize.S,
+		eventParticipations: [],
+		roles: []
 	};
 	beforeEach(() => {
 		TestBed.configureTestingModule({});

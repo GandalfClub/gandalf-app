@@ -38,10 +38,6 @@ $appear-bottom-panel: $main-grid-unit * 25;
 		margin-bottom: $layout-gutter;
 	}
 
-	&__take-part-button {
-		@include text-h4();
-	}
-
 	&__time-events {
 		margin-bottom: $layout-gutter;
 	}

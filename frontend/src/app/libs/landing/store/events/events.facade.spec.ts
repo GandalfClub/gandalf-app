@@ -35,7 +35,9 @@ describe('Events FacadeService', () => {
 			endDate: null,
 			endTime: null,
 			users: [],
-			size: EventCardSize.S
+			size: EventCardSize.S,
+			eventParticipations: [],
+			roles: []
 		};
 		events = {
 			status: EntityStatus.Success,

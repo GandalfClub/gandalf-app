@@ -8,9 +8,10 @@ import { EventCardSize } from 'src/app/libs/common-components/components/event-c
 import { ButtonComponent } from 'src/app/libs/common-components/components/button/button.component';
 import { SafeHtmlPipe } from 'src/app/libs/pipes/sanitizer.pipe';
 import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
-import { provideMockStore } from '@ngrx/store/testing';
 import { BreadcrumbComponent } from 'src/app/libs/common-components/components/breadcrumb/breadcrumb.component';
 import { of } from 'rxjs';
+import { EventFacadeService } from '../../store/event/event.facade';
+import { EventParticipation } from 'src/app/libs/landing/models/event-participation.class';
 
 const event: Event = {
 	id: '',
@@ -23,10 +24,18 @@ const event: Event = {
 	endTime: null,
 	users: [],
 	size: EventCardSize.S,
+	eventParticipations: [],
+	roles: []
 };
 
 const user: EntityWrapper<User> = {
 	status: EntityStatus.Init,
+	value: {
+		id: '1',
+		email: 'test@test',
+		isAdmin: false,
+		claims: []
+	}
 };
 
 const breadcrumbFacadeService: any = {
@@ -38,6 +47,8 @@ describe('EventComponent', () => {
 	let component: EventDescriptionPanelComponent;
 	let fixture: ComponentFixture<EventDescriptionPanelComponent>;
 	let compiledElement: typeof fixture.nativeElement;
+	let mockParticipation: EventParticipation;
+	const mockEventFacadeService: EventFacadeService = jasmine.createSpyObj<EventFacadeService>('EventFacadeService', ['regForEvent']);
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -49,6 +60,7 @@ describe('EventComponent', () => {
 			],
 			providers: [
 				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
+				{ provide: EventFacadeService, useValue: mockEventFacadeService }
 			]
 		}).compileComponents();
 		fixture = TestBed.createComponent(EventDescriptionPanelComponent);
@@ -57,6 +69,8 @@ describe('EventComponent', () => {
 		component.user = user;
 		compiledElement = fixture.nativeElement;
 		fixture.detectChanges();
+
+		mockParticipation = new EventParticipation(user.value.id, event.id);
 	});
 
 	it('should create', () => {
@@ -72,33 +86,10 @@ describe('EventComponent', () => {
 		});
 	});
 
-	describe('when @Input get not loged in user value', () => {
-		beforeEach(() => {
-			user.status = EntityStatus.Init;
-			fixture.detectChanges();
-		});
-
-		it('should disable button take event', () => {
-			expect(
-				compiledElement.querySelector(
-					'.app-event-description-panel__take-part-button button'
-				).disabled
-			).toBeTrue();
-		});
-	});
-
-	describe('when @Input get loged in user value', () => {
-		beforeEach(() => {
-			user.status = EntityStatus.Success;
-			fixture.detectChanges();
-		});
-
-		it('should enable button take event', () => {
-			expect(
-				compiledElement.querySelector(
-					'.app-event-description-panel__take-part-button button'
-				).disabled
-			).toBeFalse();
+	describe('onTakePartInEvent:', () => {
+		it('should call regForEvent in EventFacadeService', () => {
+			component.onTakePartInEvent(mockParticipation);
+			expect(mockEventFacadeService.regForEvent).toHaveBeenCalledWith(mockParticipation);
 		});
 	});
 });

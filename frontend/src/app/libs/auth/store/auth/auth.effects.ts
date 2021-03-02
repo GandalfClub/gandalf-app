@@ -73,7 +73,12 @@ export class AuthEffects {
 		ofType<SignUp>(AuthActionTypes.SignUp),
 		exhaustMap((action: SignUp) => {
 			return from(this.fireAuthService.auth.createUserWithEmailAndPassword(action.payload.email, action.payload.password))
-				.pipe(map(() => action.payload));
+				.pipe(map((userModel: auth.UserCredential) => {
+					return {
+						...action.payload,
+						password: userModel.user.uid
+					};
+				}));
 		}),
 		map((userModel: User) => userModel),
 		switchMap((user: User) => {

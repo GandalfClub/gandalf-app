@@ -1,9 +1,7 @@
 import { IEventsService } from './interface';
-import EventsModel, { IEventsnModel, IEventTaskUpdate, IEventsnModelUpdate } from './model';
-import { Types } from 'mongoose';
+import EventsModel, { IEventsnModel, IEventTaskUpdate, IEventsnModelUpdate, IEventParticipationModel } from './model';
 import * as Joi from 'joi';
 import EventValidation from './validation';
-import { deleteEvent } from '.';
 
 const EventsService: IEventsService = {
     async createEvent(eventInfo: IEventsnModel): Promise<IEventsnModel> {
@@ -75,6 +73,37 @@ const EventsService: IEventsService = {
             throw new Error(err.message);
         }
     },
+
+    async addNewEventParticipation(participation: IEventParticipationModel): Promise<IEventParticipationModel> {
+        try {
+            const validate: Joi.ValidationResult<IEventParticipationModel> =
+                EventValidation.addNewParticipation(participation);
+
+            if (validate.error) {
+                throw new Error(validate.error.message);
+            }
+
+            const userId: string = participation.userId;
+            const eventId: string = participation.eventId;
+            const event: IEventsnModel = await EventsModel.findById(eventId);
+
+            const alreadyExists: IEventParticipationModel = event
+                .eventParticipations
+                .find((value: IEventParticipationModel) => value.userId === userId);
+
+            if (alreadyExists) {
+                throw new Error('Already participated');
+            }
+
+            event.eventParticipations.push(participation);
+            await event.save();
+
+            return participation;
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
 };
 
 

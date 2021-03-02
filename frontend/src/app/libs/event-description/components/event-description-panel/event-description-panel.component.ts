@@ -4,6 +4,8 @@ import { User } from 'src/app/libs/auth/models/user';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
+import { EventFacadeService } from '../../store/event/event.facade';
+import { EventParticipation } from 'src/app/libs/landing/models/event-participation.class';
 
 @Component({
 	selector: 'app-event-description-panel',
@@ -16,8 +18,9 @@ export class EventDescriptionPanelComponent implements OnInit {
 
 	@Input() public user: EntityWrapper<User>;
 
-	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService) {
-	}
+	constructor(
+		private breadcrumbFacadeService: BreadcrumbFacadeService,
+		private eventFacadeService: EventFacadeService) { }
 
 	public ngOnInit(): void {
 		this.breadcrumbFacadeService.loadBreadcrumb(this.event.title);
@@ -25,5 +28,9 @@ export class EventDescriptionPanelComponent implements OnInit {
 
 	public get userLoginStatus(): boolean {
 		return this.user.status === EntityStatus.Success;
+	}
+
+	public onTakePartInEvent(participation: EventParticipation): void {
+		this.eventFacadeService.regForEvent(participation);
 	}
 }
