@@ -9,14 +9,11 @@ import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
-import { CommonModule } from '@angular/common';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Recaptcha } from '../../recaptcha/models/recaptcha';
 import { RecaptchaFacadeService } from '../../recaptcha/store/recaptcha/recaptcha.facade';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -135,7 +132,11 @@ describe('SignInComponent', () => {
 			beforeEach(() => {
 				user.status = EntityStatus.Error;
 				mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
-					user.error = 'error';
+					user.error = {
+						message: {
+							statusText: 'error'
+						}
+					};
 				});
 				component.ngOnInit();
 			});

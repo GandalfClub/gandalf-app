@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators, FormBuilder, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormBuilder, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
@@ -14,7 +14,6 @@ import { ComponentTheme } from 'src/app/libs/common-components/shared/component-
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { RecaptchaFacadeService } from 'src/app/libs/recaptcha/store/recaptcha/recaptcha.facade';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-sign-up',
@@ -33,7 +32,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
 	public passwordValidators: ValidatorFn[] = [this.passwordValidator, this.requiredValidator];
 	public emailValidators: ValidatorFn[] = [this.emailValidator, this.requiredValidator];
 	public textSyncValidators: ValidatorFn[] = [this.lengthValidator, this.requiredValidator];
-	private passwordMinLenth: number = 6;
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
 	constructor(
@@ -42,9 +40,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private recaptchaFacadeService: RecaptchaFacadeService,
-		private recaptchaV3Service: ReCaptchaV3Service,
-		private translate: TranslateService,
-		) {}
+		private recaptchaV3Service: ReCaptchaV3Service) { }
 
 	public ngOnInit(): void {
 		this.containerFacadeService.hideElementsOnSignIn();
@@ -54,7 +50,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 				this.router.navigate(['/']);
 			}
 			if (user.status === EntityStatus.Error) {
-				this.authError = user.error;
+				this.authError = user.error?.message?.statusText;
 			}
 		});
 

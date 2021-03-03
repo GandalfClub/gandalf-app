@@ -6,8 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { ContainerFacadeService } from '../../container/services/container-facade.service';
 import { RecaptchaFacadeService } from '../../recaptcha/store/recaptcha/recaptcha.facade';
-import { ReactiveFormsModule, FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { ReactiveFormsModule, FormGroup, AbstractControl } from '@angular/forms';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { User } from '../../auth/models/user';
 import { Recaptcha } from '../../recaptcha/models/recaptcha';
@@ -15,8 +14,6 @@ import { takeUntil } from 'rxjs/operators';
 import { EntityStatus } from '../../auth/models/entity-status';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { RecaptchaModule } from '../../recaptcha/recaptcha.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
@@ -132,7 +129,11 @@ describe('SignUpComponent', () => {
 			beforeEach(() => {
 				user.status = EntityStatus.Error;
 				mockAuthFacadeService.user$.pipe(takeUntil(destroy$)).subscribe((_: EntityWrapper<User>) => {
-					user.error = 'error';
+					user.error = {
+						message: {
+							statusText: 'error'
+						}
+					};
 				});
 				component.ngOnInit();
 			});
