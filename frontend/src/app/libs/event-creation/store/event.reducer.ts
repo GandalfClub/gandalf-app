@@ -97,6 +97,16 @@ export function newEventReducer(state: EventsCreationState = initialState, actio
 			};
 		}
 
+    case EventsActionTypes.CreateTaskEvent: {
+      return {
+        ...state,
+        tasks: new Set<ITask>([
+          action.payload as ITask,
+          ...state.tasks.values(),
+        ]),
+      };
+    }
+
 		case EventsActionTypes.CreateEventSuccess: {
 			return {
 				...state,

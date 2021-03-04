@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { TasksTypes } from '../models/tasks-creator';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { IAnswer, ITask } from '../models/task';
+import { ISelectOption } from '../../select/models/select-option';
+import { TranslateService } from '@ngx-translate/core';
+import { AutoCloseable } from '../../../../utils/auto-closable';
+import { takeUntil } from 'rxjs/operators';
 
 interface SingleAnswer {
   label: string;
@@ -12,7 +16,7 @@ interface SingleAnswer {
   templateUrl: './tasks-creator.component.html',
   styleUrls: ['./tasks-creator.component.scss'],
 })
-export class TasksCreatorComponent implements OnInit, OnChanges {
+export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnChanges {
 
   @Input()
   public selectedTask: ITask;
@@ -31,10 +35,14 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
   public taskCreatorControl: FormGroup;
   public isTaskNameEditMode: boolean = true;
   public code: string;
+  public taskTypeOptions: ISelectOption[] = [];
 
   private enteredCode: string;
+  private readonly langTaskTypesKey: string = 'TASK-CREATION.TASKS_TYPES';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private translateService: TranslateService) {
+    super();
     this.taskCreatorControl = this.formBuilder.group({
       taskNameControl: new FormControl(),
       selectedTaskTypeControl: new FormControl(),
@@ -46,6 +54,20 @@ export class TasksCreatorComponent implements OnInit, OnChanges {
       answersArrayControl: this.formBuilder.array([]),
       multiAnswersArrayControl: this.formBuilder.array([]),
     });
+
+    this.translateService.get([this.langTaskTypesKey])
+    .pipe(takeUntil(this.destroyedSource$))
+    .subscribe(
+      (labels: object) => {
+        this.taskTypeOptions.length = 0;
+        this.tasksTypes.forEach((taskType: TasksTypes) => {
+          this.taskTypeOptions.push({
+            label: labels[this.langTaskTypesKey][taskType],
+            value: taskType,
+          });
+        });
+      }
+    );
   }
 
   get selectedTaskType(): TasksTypes {

@@ -1,15 +1,9 @@
 @import "variables";
 
-.mat-form-field {
-	width: 120px;
-}
 .app-select {
 	position: relative;
 	display: inline-block;
 
-	&__field {
-		width: $main-grid-unit * 15;
-	}
 	&__arrow--gray.material-icons {
 		color: #909090;
 	}
