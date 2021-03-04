@@ -47,15 +47,13 @@
 
       <div class="tasks-creator__basic-settings">
 
-        <mat-form-field appearance="outline">
-          <mat-label>{{ 'TASK-CREATION.TASK_TYPE_LABEL' | translate }}</mat-label>
-          <mat-select disableOptionCentering formControlName="selectedTaskTypeControl"
-                      (openedChange)="onOpenTaskTypesSelector($event)" [value]="taskTypesEnum.single">
-            <mat-option *ngFor="let taskType of tasksTypes;" [value]="taskType">
-              {{ 'TASK-CREATION.TASKS_TYPES.' + taskType | translate }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <app-select
+          [label]="('TASK-CREATION.TASK_TYPE_LABEL' | translate)"
+          (openedChangeEmitter)="onOpenTaskTypesSelector($event)"
+          [value]="taskTypesEnum.single"
+          formControlName="selectedTaskTypeControl"
+          [options]="taskTypeOptions"
+        ></app-select>
 
         <div class="tasks-creator__mentor-score-container">
           <app-slide-toggle
