@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { UserCredentials } from '../../auth/models/user-credentials';
 import { AuthFacadeService } from '../../auth/store/auth/auth.facade';
 import { Router } from '@angular/router';
@@ -50,7 +50,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 				this.router.navigate(['/']);
 			}
 			if (user.status === EntityStatus.Error) {
-				this.authError = user.error;
+				this.authError = user.error?.message?.statusText;
 			}
 		});
 
