@@ -28,8 +28,8 @@ export class TasksListComponent extends AutoCloseable implements OnInit {
       takeUntil(this.destroyedSource$),
     )
     .subscribe(
-      (tasks: Set<ITask>): void => {
-        this.taskList = [...tasks];
+      (tasks: Map<Symbol, ITask>): void => {
+        this.taskList = [...tasks.values()];
         if (!Boolean(this.selectedTaskIndex)) {
           this.selectedTaskIndex = 0;
           this.showTask(this.selectedTaskIndex);
@@ -51,6 +51,7 @@ export class TasksListComponent extends AutoCloseable implements OnInit {
 
   public addNewTask(): void {
     const defaultTask: ITask = {
+      id: Symbol('id'),
       taskName: 'Task name',
       taskType: TasksTypes.single,
       mentorCheck: false,
@@ -68,7 +69,7 @@ export class TasksListComponent extends AutoCloseable implements OnInit {
       ]),
     };
 
-    this.taskList.unshift(defaultTask);
-    this.showTask(0);
+    this.taskList.push(defaultTask);
+    this.showTask(this.taskList.length - 1);
   }
 }

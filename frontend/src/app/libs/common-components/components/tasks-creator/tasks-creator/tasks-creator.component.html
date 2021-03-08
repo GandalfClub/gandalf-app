@@ -38,6 +38,7 @@
       </div>
 
       <app-icon-button
+        (click)="deleteTask()"
         [startIcon]="'delete'"
         [iconColor]="'white'"
         [iconSize]="'small'">
@@ -129,7 +130,7 @@
                 class="tasks-creator__checkbox mat-form-field-wrapper"
                 [value]="i.toString()"
                 formControlName="isCorrect"></mat-checkbox>
-              <app-input formControlName="value"
+              <app-input formControlName="label"
                          [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
               <app-icon-button
                 class="mat-form-field-wrapper"

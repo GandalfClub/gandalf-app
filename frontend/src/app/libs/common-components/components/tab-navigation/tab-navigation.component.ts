@@ -49,7 +49,7 @@ export class TabNavigationComponent extends AutoCloseable implements OnInit {
       takeUntil(this.destroyedSource$),
     )
     .subscribe(
-      (tasks: Set<ITask>): void => {
+      (tasks: Map<Symbol, ITask>): void => {
         this.tasksNumber = tasks.size;
       },
     );

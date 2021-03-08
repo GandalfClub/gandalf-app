@@ -12,6 +12,9 @@ export class TasksCreatorPageComponent {
   @Output()
   public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
 
+  @Output()
+  public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
+
   public showSelectedTask(task: ITask): void {
     this.selectedTask = task;
   }

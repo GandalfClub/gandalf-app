@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GeneralEventState } from './event.reducer';
-import { SetTitleAction, CreateGeneralEventAction, CreateTaskEventAction } from './event.actions';
-import {selectTasksEvent, selectTitleForGeneralEvent} from './event.selectors';
+import { SetTitleAction, CreateGeneralEventAction, CreateTaskEventAction, DeleteTaskEventAction } from './event.actions';
+import { selectTasksEvent, selectTitleForGeneralEvent } from './event.selectors';
 import { GeneralEvent } from './model/model';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
 
@@ -18,7 +18,7 @@ export class NewEventFacadeService {
 		return this.store.pipe(select(selectTitleForGeneralEvent));
 	}
 
-	get tasks$(): Observable<Set<ITask>> {
+	get tasks$(): Observable<Map<Symbol, ITask>> {
 	  return this.store.pipe(select(selectTasksEvent));
   }
 
@@ -32,5 +32,9 @@ export class NewEventFacadeService {
 
   public createTask(task: ITask): void {
     this.store.dispatch(new CreateTaskEventAction(task));
+  }
+
+  public deleteTask(taskId: Symbol): void {
+    this.store.dispatch(new DeleteTaskEventAction(taskId));
   }
 }

@@ -24,6 +24,9 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   @Output()
   public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
 
+  @Output()
+  public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
+
   public isTaskTypesSelectorOpened: boolean;
   public taskTypesEnum: typeof TasksTypes = TasksTypes;
   public tasksTypes: Set<TasksTypes> = new Set([
@@ -38,6 +41,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   public taskTypeOptions: ISelectOption[] = [];
 
   private enteredCode: string;
+  private taskId: Symbol;
   private readonly langTaskTypesKey: string = 'TASK-CREATION.TASKS_TYPES';
 
   constructor(private formBuilder: FormBuilder,
@@ -154,7 +158,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.multiAnswerControl.push(
       new FormGroup({
         isCorrect: new FormControl(answer?.isCorrect ?? ''),
-        value: new FormControl(answer?.label ?? ''),
+        label: new FormControl(answer?.label ?? ''),
       })
     );
   }
@@ -183,8 +187,13 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.enteredCode = code;
   }
 
+  public deleteTask(): void {
+    this.removeTask.emit(this.taskId);
+  }
+
   private emitForm(): void {
     const task: ITask = {
+      id: this.taskId ?? Symbol('id'),
       taskName: this.taskName,
       taskType: this.selectedTaskType,
       mentorCheck: this.isMentorCheckSelected,
@@ -230,6 +239,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
 
   private setSelectedTaskValues(task: ITask): void {
     const {
+      id,
       taskName,
       taskType,
       mentorCheck,
@@ -239,6 +249,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
       answers,
     }: ITask = task;
 
+    this.taskId = id;
     this.taskName = taskName;
     this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(taskType);
     this.maxScore = maxScore;
