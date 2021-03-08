@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GeneralEventState } from './event.reducer';
-import { SetTitleAction, CreateGeneralEventAction, CreateTaskEventAction, DeleteTaskEventAction } from './event.actions';
+import {
+  SetTitleAction,
+  CreateGeneralEventAction,
+  CreateTaskEventAction,
+  DeleteTaskEventAction,
+  LoadTasksEventAction
+} from './event.actions';
 import { selectTasksEvent, selectTitleForGeneralEvent } from './event.selectors';
 import { GeneralEvent } from './model/model';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
@@ -25,6 +31,10 @@ export class NewEventFacadeService {
 	public setTitleForNewEvent(title: string): void {
 		this.store.dispatch(new SetTitleAction(title));
 	}
+
+	public loadTasks(): void {
+	  this.store.dispatch(new LoadTasksEventAction());
+  }
 
 	public createGeneralEvent(event: GeneralEvent): void {
 		this.store.dispatch(new CreateGeneralEventAction(event));

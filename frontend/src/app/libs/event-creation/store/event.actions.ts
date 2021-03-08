@@ -37,9 +37,9 @@ export class CreateTaskEventAction implements Action {
   constructor(public payload: ITask) { }
 }
 
-export class GetTasksFromBackendEventAction implements Action {
+export class LoadTasksEventAction implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.LoadTasks;
-  constructor(public payload: Map<Symbol, ITask>) { }
+  constructor() { }
 }
 
 export class DeleteTaskEventAction implements Action {
@@ -77,7 +77,6 @@ export type NewEventsActions = SetTitleAction
   | CreateTaskEventAction
   | LoadTasksActionFail
   | LoadTasksActionSuccess
-  | GetTasksFromBackendEventAction
   | CreateGeneralEventActionSuccess
   | DeleteTaskEventAction
   | CreateTaskActionSuccess

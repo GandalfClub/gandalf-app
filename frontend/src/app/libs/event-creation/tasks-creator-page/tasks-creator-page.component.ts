@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { NewEventFacadeService } from '../store/event.facade';
 
 @Component({
   selector: 'app-tasks-creator-page',
@@ -14,6 +15,10 @@ export class TasksCreatorPageComponent {
 
   @Output()
   public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
+
+  constructor(private newEventFacadeService: NewEventFacadeService) {
+    this.newEventFacadeService.loadTasks();
+  }
 
   public showSelectedTask(task: ITask): void {
     this.selectedTask = task;
