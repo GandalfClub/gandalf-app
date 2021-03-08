@@ -56,4 +56,8 @@ export class EventCreationComponent implements OnInit {
   public getTaskCreationForm(task: ITask): void {
     this.task = task;
   }
+
+  public removeTask(id: Symbol): void {
+	  this.newEventsFacadeService.deleteTask(id);
+  }
 }

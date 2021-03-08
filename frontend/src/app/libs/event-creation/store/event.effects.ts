@@ -5,10 +5,12 @@ import { Action } from '@ngrx/store';
 import {
   EventsActionTypes,
   CreateGeneralEventAction,
-  CreateEventActionSuccess,
-  CreateEventActionFail,
+  CreateGeneralEventActionSuccess,
+  CreateGeneralEventActionFail,
   CreateTaskEventAction,
   CreateTaskActionSuccess,
+  CreateTaskActionFail,
+  LoadTasksActionSuccess,
 } from './event.actions';
 import { EventsRepositoryService } from '../services/events-repository.service';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -23,8 +25,8 @@ export class EventsEffects {
 		ofType(EventsActionTypes.CreateGeneralEvent),
 		switchMap((action: CreateGeneralEventAction) => {
 			return this.eventsRepository.createGeneralEvent(action.payload).pipe(
-				map((event: GeneralEvent) => new CreateEventActionSuccess(event)),
-				catchError((error: Error) => of(new CreateEventActionFail(error)))
+				map((event: GeneralEvent) => new CreateGeneralEventActionSuccess(event)),
+				catchError((error: Error) => of(new CreateGeneralEventActionFail(error)))
 			);
 		}),
 	);
@@ -35,7 +37,18 @@ export class EventsEffects {
     switchMap((action: CreateTaskEventAction) => {
       return this.eventsRepository.createTaskEvent(action.payload).pipe(
         map((task: ITask) => new CreateTaskActionSuccess(task)),
-        catchError((error: Error) => of(new CreateEventActionFail(error)))
+        catchError((error: Error) => of(new CreateTaskActionFail(error)))
+      );
+    }),
+  );
+
+  @Effect()
+  public LoadTasksEffect$: Observable<Action> = this.actions$.pipe(
+    ofType(EventsActionTypes.LoadTasks),
+    switchMap(() => {
+      return this.eventsRepository.loadTasks().pipe(
+        map((tasks: Map<Symbol, ITask>) => new LoadTasksActionSuccess(tasks)),
+        catchError((error: Error) => of(new CreateTaskActionFail(error)))
       );
     }),
   );

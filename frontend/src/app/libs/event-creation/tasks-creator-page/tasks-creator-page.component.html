@@ -6,6 +6,7 @@
   <app-tasks-creator
     class="tasks-creator-tab__creator"
     (passForm)="passForm.emit($event)"
+    (removeTask)="removeTask.emit($event)"
     [selectedTask]="selectedTask">
   </app-tasks-creator>
 </div>

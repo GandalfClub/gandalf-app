@@ -3,7 +3,6 @@ import { GeneralEvent } from './model/model';
 import { EntityWrapper } from './model/entity-wrapper';
 import { EntityStatus } from './model/entity-status';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
-import { TasksTypes } from '../../common-components/components/tasks-creator/models/tasks-creator';
 
 export interface GeneralEventState {
 	title: string;
@@ -12,7 +11,7 @@ export interface GeneralEventState {
 
 export interface EventsCreationState {
   general: GeneralEventState;
-  tasks: Set<ITask>;
+  tasks: EntityWrapper<Map<Symbol, ITask>>;
 }
 
 export const initialState: EventsCreationState = {
@@ -24,57 +23,17 @@ export const initialState: EventsCreationState = {
       error: null,
     }
   },
-  tasks: new Set<ITask>(// todo example, remove and set empty "Set" after backend implementation
-    [
-      {
-        taskName: 'task 1',
-        taskType: TasksTypes.single,
-        mentorCheck: false,
-        maxScore: 100,
-        question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
-        answers: new Set([
-          {
-            label: 'label',
-            isCorrect: false,
-          },
-          {
-            label: 'Some label12',
-            isCorrect: true,
-          },
-        ]),
-      },
-      {
-        taskName: 'task 2',
-        taskType: TasksTypes.coding,
-        mentorCheck: true,
-        maxScore: 300,
-        question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
-        code: `function a() {\n console.log(\'Hello world\');\n}`,
-      },
-      {
-        taskName: 'task 3',
-        taskType: TasksTypes.multiple,
-        mentorCheck: false,
-        maxScore: 60,
-        question: '<p>Question text3</p>',
-        answers: new Set([
-          {
-            label: 'Some label31',
-            isCorrect: false,
-          },
-          {
-            label: 'Some label32',
-            isCorrect: true,
-          },
-        ]),
-      }
-    ]),
+  tasks: {
+    value: new Map<Symbol, ITask>(),
+    status: EntityStatus.Init,
+    error: null,
+  },
 };
 
 export function newEventReducer(state: EventsCreationState = initialState, action: NewEventsActions): EventsCreationState {
 	switch (action.type) {
 
-    case EventsActionTypes.SetTitleForEvent: {
+    case EventsActionTypes.SetTitleForGeneralEvent: {
 			return {
 				...state,
 				general: {
@@ -100,14 +59,42 @@ export function newEventReducer(state: EventsCreationState = initialState, actio
     case EventsActionTypes.CreateTaskEvent: {
       return {
         ...state,
-        tasks: new Set<ITask>([
-          action.payload as ITask,
-          ...state.tasks.values(),
-        ]),
+        tasks: {
+          ...state.tasks,
+          status: EntityStatus.Pending,
+          error: null,
+        },
       };
     }
 
-		case EventsActionTypes.CreateEventSuccess: {
+    case EventsActionTypes.CreateTaskSuccess: {
+      const updatedTask: ITask = action.payload as ITask;
+      const tasks: Map<Symbol, ITask> = state.tasks.value;
+      tasks.set(updatedTask.id, updatedTask);
+
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          value: new Map<Symbol, ITask>([
+            ...tasks,
+          ]),
+        }
+      };
+    }
+
+    case EventsActionTypes.CreateTaskFail: {
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          status: EntityStatus.Error,
+          error: action.payload as Error,
+        },
+      };
+    }
+
+		case EventsActionTypes.CreateGeneralEventSuccess: {
 			return {
 				...state,
 				general: {
@@ -121,7 +108,29 @@ export function newEventReducer(state: EventsCreationState = initialState, actio
 			};
 		}
 
-		case EventsActionTypes.CreateEventFail: {
+    case EventsActionTypes.LoadTasksSuccess: {
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          value: new Map<Symbol, ITask>([
+            ...action.payload as Map<Symbol, ITask>,
+          ]),
+        }
+      };
+    }
+
+    case EventsActionTypes.LoadTasksFail: {
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          error: action.payload as Error,
+        }
+      };
+    }
+
+		case EventsActionTypes.CreateGeneralEventFail: {
 			return {
 				...state,
         general: {

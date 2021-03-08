@@ -8,5 +8,5 @@ export const selectNewEvent: MemoizedSelector<{}, EventsCreationState> = createF
 export const selectTitleForGeneralEvent: MemoizedSelector<{}, string> = createSelector(selectNewEvent,
 	(state: EventsCreationState) => state.general.title);
 
-export const selectTasksEvent: MemoizedSelector<{}, Set<ITask>> = createSelector(selectNewEvent,
-  (state: EventsCreationState) => state.tasks);
+export const selectTasksEvent: MemoizedSelector<{}, Map<Symbol, ITask>> = createSelector(selectNewEvent,
+  (state: EventsCreationState) => state.tasks.value);

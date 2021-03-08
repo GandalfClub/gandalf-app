@@ -58,5 +58,7 @@
 
   &__add-btn {
     flex-shrink: 0;
+    background-color: $color_white;
+    border-radius: 50%;
   }
 }

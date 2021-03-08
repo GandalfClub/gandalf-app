@@ -3,17 +3,22 @@ import { GeneralEvent } from './model/model';
 import { ITask } from '../../common-components/components/tasks-creator/models/task';
 
 export enum EventsActionTypes {
-	SetTitleForEvent = '[NewEvent] set title for new event',
+  LoadTasks = '[NewEvent] get tasks from backend',
+  LoadTasksSuccess = '[NewEvent] get tasks from backend successfully',
+  LoadTasksFail = '[NewEvent] get tasks from backend failed',
+	SetTitleForGeneralEvent = '[NewEvent] set title for new event',
 	CreateGeneralEvent = '[NewEvent] create new general event',
-	CreateTaskEvent = '[NewEvent] create new task',
-	CreateEventSuccess = '[NewEvent] send general event to server successfully',
-	CreateTaskSuccess = '[NewEvent] send task to server successfully',
-	CreateEventFail = '[NewEvent] send event to server failed',
+  CreateGeneralEventSuccess = '[NewEvent] send general event to server successfully',
+  CreateGeneralEventFail = '[NewEvent] send event to server failed',
+  CreateTaskEvent = '[NewEvent] create new task',
+  CreateTaskSuccess = '[NewEvent] send task to server successfully',
+  CreateTaskFail = '[NewEvent] send task to server failed',
+  DeleteTaskEvent = '[NewEvent] delete task',
 
 }
 
 export class SetTitleAction implements Action {
-	public readonly type: EventsActionTypes = EventsActionTypes.SetTitleForEvent;
+	public readonly type: EventsActionTypes = EventsActionTypes.SetTitleForGeneralEvent;
 	constructor(public payload: string) { }
 }
 
@@ -22,8 +27,8 @@ export class CreateGeneralEventAction implements Action {
 	constructor(public payload: GeneralEvent) { }
 }
 
-export class CreateEventActionSuccess implements Action {
-	public readonly type: EventsActionTypes = EventsActionTypes.CreateEventSuccess;
+export class CreateGeneralEventActionSuccess implements Action {
+	public readonly type: EventsActionTypes = EventsActionTypes.CreateGeneralEventSuccess;
 	constructor(public payload: GeneralEvent) { }
 }
 
@@ -32,19 +37,49 @@ export class CreateTaskEventAction implements Action {
   constructor(public payload: ITask) { }
 }
 
+export class GetTasksFromBackendEventAction implements Action {
+  public readonly type: EventsActionTypes = EventsActionTypes.LoadTasks;
+  constructor(public payload: Map<Symbol, ITask>) { }
+}
+
+export class DeleteTaskEventAction implements Action {
+  public readonly type: EventsActionTypes = EventsActionTypes.DeleteTaskEvent;
+  constructor(public payload: Symbol) { }
+}
+
 export class CreateTaskActionSuccess implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.CreateTaskSuccess;
   constructor(public payload: ITask) { }
 }
 
-export class CreateEventActionFail implements Action {
-	public readonly type: EventsActionTypes = EventsActionTypes.CreateEventFail;
+export class LoadTasksActionSuccess implements Action {
+  public readonly type: EventsActionTypes = EventsActionTypes.LoadTasksSuccess;
+  constructor(public payload: Map<Symbol, ITask>) { }
+}
+
+export class LoadTasksActionFail implements Action {
+  public readonly type: EventsActionTypes = EventsActionTypes.LoadTasksFail;
+  constructor(public payload: Error) { }
+}
+
+export class CreateGeneralEventActionFail implements Action {
+	public readonly type: EventsActionTypes = EventsActionTypes.CreateGeneralEventFail;
 	constructor(public payload: Error) { }
+}
+
+export class CreateTaskActionFail implements Action {
+  public readonly type: EventsActionTypes = EventsActionTypes.CreateTaskFail;
+  constructor(public payload: Error) { }
 }
 
 export type NewEventsActions = SetTitleAction
   | CreateGeneralEventAction
   | CreateTaskEventAction
-  | CreateEventActionSuccess
+  | LoadTasksActionFail
+  | LoadTasksActionSuccess
+  | GetTasksFromBackendEventAction
+  | CreateGeneralEventActionSuccess
+  | DeleteTaskEventAction
   | CreateTaskActionSuccess
-  | CreateEventActionFail;
+  | CreateTaskActionFail
+  | CreateGeneralEventActionFail;

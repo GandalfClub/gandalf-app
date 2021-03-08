@@ -12,6 +12,7 @@
     <app-tasks-creator-page
       *ngSwitchCase="tabsEnum.tasksTab"
       class="event-creation__tab-content"
+      (removeTask)="removeTask($event)"
       (passForm)="getTaskCreationForm($event)">
     </app-tasks-creator-page>
   </ng-container>
