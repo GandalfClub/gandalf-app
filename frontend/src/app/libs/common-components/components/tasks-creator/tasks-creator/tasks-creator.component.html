@@ -6,10 +6,10 @@
         <span class="tasks-creator__task-name">{{ taskName }}</span>
         <app-icon-button
           class="tasks-creator__header-button"
-          (click)="isTaskNameEditMode = true"
-          [startIcon]="'mode'"
-          [iconColor]="'white'"
-          [iconSize]="'small'">
+          (click)="enableTaskNameEditMode()"
+          startIcon="mode"
+          iconColor="white"
+          iconSize="small">
         </app-icon-button>
       </div>
 
@@ -21,18 +21,18 @@
 
         <app-icon-button
           class="tasks-creator__header-button"
-          (click)="isTaskNameEditMode = false"
-          [startIcon]="'done'"
-          [iconColor]="'white'"
-          [iconSize]="'small'">
+          (click)="disableTaskNameEditMode()"
+          startIcon="done"
+          iconColor="white"
+          iconSize="small">
         </app-icon-button>
         <span class="tasks-creator__header-border"></span>
         <app-icon-button
           class="tasks-creator__header-button"
           (click)="clearTaskName()"
-          [startIcon]="'close'"
-          [iconColor]="'white'"
-          [iconSize]="'small'">
+          startIcon="close"
+          iconColor="white"
+          iconSize="small">
         </app-icon-button>
 
       </div>
