@@ -27,6 +27,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   @Output()
   public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
 
+  public taskName: string;
   public isTaskTypesSelectorOpened: boolean;
   public taskTypesEnum: typeof TasksTypes = TasksTypes;
   public tasksTypes: Set<TasksTypes> = new Set([
@@ -36,7 +37,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     TasksTypes.coding,
   ]);
   public taskCreatorControl: FormGroup;
-  public isTaskNameEditMode: boolean = true;
+  public isTaskNameEditMode: boolean = false;
   public code: string;
   public taskTypeOptions: ISelectOption[] = [];
 
@@ -48,7 +49,6 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
               private translateService: TranslateService) {
     super();
     this.taskCreatorControl = this.formBuilder.group({
-      taskNameControl: new FormControl(),
       selectedTaskTypeControl: new FormControl(),
       maxScoreControl: new FormControl(),
       mentorCheckControl: new FormControl(),
@@ -78,7 +78,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     return this.taskCreatorControl.get('selectedTaskTypeControl')?.value ?? TasksTypes.single;
   }
 
-  get taskName(): string {
+  get taskNameFromControl(): string {
     return this.taskCreatorControl.get('taskNameControl')?.value ?? '';
   }
 
@@ -118,7 +118,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.taskCreatorControl.get('maxScoreControl')?.setValue(value);
   }
 
-  set taskName(value: string) {
+  set taskNameControl(value: string) {
     this.taskCreatorControl.get('taskNameControl')?.setValue(value ?? '');
   }
 
@@ -128,6 +128,18 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
 
   public onOpenTaskTypesSelector(isOpen: boolean): void {
     this.isTaskTypesSelectorOpened = isOpen;
+  }
+
+  public enableTaskNameEditMode(): void {
+    this.taskCreatorControl.addControl('taskNameControl', new FormControl());
+    this.taskNameControl = this.taskName;
+    this.isTaskNameEditMode = true;
+  }
+
+  public disableTaskNameEditMode(): void {
+    this.taskName = this.taskNameFromControl;
+    this.taskCreatorControl.removeControl('taskNameControl');
+    this.isTaskNameEditMode = false;
   }
 
   public ngOnInit(): void {
@@ -180,6 +192,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   }
 
   public clearTaskName(): void {
+    this.taskName = '';
     this.taskCreatorControl.get('taskNameControl')?.setValue('');
   }
 
