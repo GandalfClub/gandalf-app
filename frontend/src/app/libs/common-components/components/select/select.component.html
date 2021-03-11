@@ -6,6 +6,7 @@
 		</mat-icon>
 		<mat-label>{{label}}</mat-label>
 		<mat-select [formControl]="formControl"
+                (selectionChange)="selectionChanged.emit($event)"
 					disableOptionCentering
 					(openedChange)="openedChange($event)">
         <mat-option *ngFor="let option of options"
