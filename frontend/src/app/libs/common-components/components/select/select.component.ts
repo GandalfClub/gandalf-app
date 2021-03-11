@@ -29,6 +29,8 @@ export class SelectComponent extends FormControlCommonDirective implements OnCha
 
 	@Output()
   public openedChangeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output()
+  public selectionChanged: EventEmitter<any> = new EventEmitter<any>();
 
 	public openedChange(opened: boolean): void {
 		this.opened = opened;

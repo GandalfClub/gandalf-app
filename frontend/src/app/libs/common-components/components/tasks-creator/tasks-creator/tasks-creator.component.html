@@ -39,9 +39,9 @@
 
       <app-icon-button
         (click)="deleteTask()"
-        [startIcon]="'delete'"
-        [iconColor]="'white'"
-        [iconSize]="'small'">
+        startIcon="delete"
+        iconColor="white"
+        iconSize="small">
       </app-icon-button>
     </div>
     <div class="tasks-creator__body">
@@ -52,6 +52,7 @@
           [label]="('TASK-CREATION.TASK_TYPE_LABEL' | translate)"
           (openedChangeEmitter)="onOpenTaskTypesSelector($event)"
           [value]="taskTypesEnum.single"
+          (selectionChanged)="rebuildFormControls($event.value)"
           formControlName="selectedTaskTypeControl"
           [options]="taskTypeOptions"
         ></app-select>
@@ -95,8 +96,8 @@
                 <app-icon-button
                   class="mat-form-field-wrapper"
                   (click)="removeSingleAnswer(i)"
-                  [startIcon]="'delete'"
-                  [iconSize]="'small'">
+                  startIcon="delete"
+                  iconSize="small">
                 </app-icon-button>
               </div>
             </div>
@@ -104,8 +105,8 @@
 
           <app-icon-button
             (click)="addSingleAnswer()"
-            [startIcon]="'add'"
-            [iconSize]="'small'">
+            startIcon="add"
+            iconSize="small">
             {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
           </app-icon-button>
 
@@ -135,13 +136,13 @@
               <app-icon-button
                 class="mat-form-field-wrapper"
                 (click)="removeMultiAnswer(i)"
-                [startIcon]="'delete'"
-                [iconSize]="'small'">
+                startIcon="delete"
+                iconSize="small">
               </app-icon-button>
             </div>
           </div>
 
-          <app-icon-button [startIcon]="'add'" (click)="addMultiAnswer()">
+          <app-icon-button startIcon="add" (click)="addMultiAnswer()">
             {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
           </app-icon-button>
 

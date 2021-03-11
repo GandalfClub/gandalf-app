@@ -39,6 +39,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   public taskCreatorControl: FormGroup;
   public isTaskNameEditMode: boolean = false;
   public code: string;
+  public taskType: TasksTypes;
   public taskTypeOptions: ISelectOption[] = [];
 
   private enteredCode: string;
@@ -53,10 +54,6 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
       maxScoreControl: new FormControl(),
       mentorCheckControl: new FormControl(),
       textEditorControl: new FormControl(),
-      codeEditorControl: new FormControl(),
-      correctSingleAnswerControl: new FormControl(),
-      answersArrayControl: this.formBuilder.array([]),
-      multiAnswersArrayControl: this.formBuilder.array([]),
     });
 
     this.translateService.get([this.langTaskTypesKey])
@@ -103,7 +100,7 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   }
 
   get multiAnswerControl(): FormArray {
-    return this.taskCreatorControl.get('multiAnswersArrayControl') as FormArray;
+    return this.taskCreatorControl.get('multiAnswersArrayControl') as FormArray ?? null;
   }
 
   get isListEmpty(): boolean {
@@ -126,6 +123,10 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.taskCreatorControl.get('textEditorControl')?.setValue(value ?? '');
   }
 
+  set selectedTaskType(value: TasksTypes) {
+    this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(value);
+  }
+
   public onOpenTaskTypesSelector(isOpen: boolean): void {
     this.isTaskTypesSelectorOpened = isOpen;
   }
@@ -136,6 +137,32 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.isTaskNameEditMode = true;
   }
 
+  public rebuildFormControls(tasksTypes: TasksTypes): void {
+    switch (tasksTypes) {
+      case TasksTypes.single:
+        this.removeControlsOfTaskType(TasksTypes.single);
+        this.taskCreatorControl.addControl('correctSingleAnswerControl', new FormControl());
+        this.taskCreatorControl.addControl('answersArrayControl', this.formBuilder.array([]));
+        break;
+
+      case TasksTypes.multiple:
+        this.removeControlsOfTaskType(TasksTypes.multiple);
+        this.taskCreatorControl.addControl('multiAnswersArrayControl', this.formBuilder.array([]));
+        break;
+
+      case TasksTypes.coding:
+        this.removeControlsOfTaskType(TasksTypes.coding);
+        this.taskCreatorControl.addControl('codeEditorControl', new FormControl());
+        break;
+
+      case TasksTypes.text:
+        this.removeControlsOfTaskType(TasksTypes.text);
+        break;
+
+      default:
+    }
+  }
+
   public disableTaskNameEditMode(): void {
     this.taskName = this.taskNameFromControl;
     this.taskCreatorControl.removeControl('taskNameControl');
@@ -143,11 +170,14 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   }
 
   public ngOnInit(): void {
+    this.rebuildFormControls(this.selectedTaskType);
+
     this.taskCreatorControl.valueChanges.subscribe(
       () => {
         if (this.selectedTaskType === TasksTypes.coding && this.isMentorCheckSelected === false) {
           this.isMentorCheckSelected = true;
         }
+        this.taskType = this.selectedTaskType;
         this.emitForm();
       }
     );
@@ -160,19 +190,23 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   }
 
   public addSingleAnswer(answer?: IAnswer): void {
-    this.singleAnswersControl.push(this.formBuilder.group({
-        label: new FormControl(answer?.label ?? ''),
-      }
-    ));
+    if (this.singleAnswersControl) {
+      this.singleAnswersControl.push(this.formBuilder.group({
+          label: new FormControl(answer?.label ?? ''),
+        }
+      ));
+    }
   }
 
   public addMultiAnswer(answer?: IAnswer): void {
-    this.multiAnswerControl.push(
-      new FormGroup({
-        isCorrect: new FormControl(answer?.isCorrect ?? ''),
-        label: new FormControl(answer?.label ?? ''),
-      })
-    );
+    if (this.multiAnswerControl) {
+      this.multiAnswerControl.push(
+        new FormGroup({
+          isCorrect: new FormControl(answer?.isCorrect ?? ''),
+          label: new FormControl(answer?.label ?? ''),
+        })
+      );
+    }
   }
 
   public removeSingleAnswer(index: number): void {
@@ -204,6 +238,24 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
     this.removeTask.emit(this.taskId);
   }
 
+  private removeControlsOfTaskType(taskType: TasksTypes): void {
+    if (taskType !== TasksTypes.single
+      && this.taskCreatorControl.contains('correctSingleAnswerControl')
+      && this.taskCreatorControl.contains('answersArrayControl')) {
+
+      this.taskCreatorControl.removeControl('correctSingleAnswerControl');
+      this.taskCreatorControl.removeControl('answersArrayControl');
+    }
+
+    if (taskType !== TasksTypes.coding && this.taskCreatorControl.contains('codeEditorControl')) {
+      this.taskCreatorControl.removeControl('codeEditorControl');
+    }
+
+    if (taskType !== TasksTypes.multiple && this.taskCreatorControl.contains('multiAnswersArrayControl')) {
+      this.taskCreatorControl.removeControl('multiAnswersArrayControl');
+    }
+  }
+
   private emitForm(): void {
     const task: ITask = {
       id: this.taskId ?? Symbol('id'),
@@ -233,14 +285,14 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
   private getAnswers(): Set<IAnswer> {
     const answers: Set<IAnswer> = new Set<IAnswer>();
     if (this.selectedTaskType === TasksTypes.single) {
-      this.singleAnswersControl.value.forEach(({ label }: SingleAnswer, index: number) => {
+      this.singleAnswersControl?.value?.forEach(({ label }: SingleAnswer, index: number) => {
         answers.add({
           label,
           isCorrect: index === this.correctSingleAnswer,
         });
       });
     } else if (this.selectedTaskType === TasksTypes.multiple) {
-      this.multiAnswerControl.value.forEach(({ label, isCorrect }: IAnswer) => {
+      this.multiAnswerControl?.value?.forEach(({ label, isCorrect }: IAnswer) => {
         answers.add({
           label,
           isCorrect,
@@ -264,25 +316,31 @@ export class TasksCreatorComponent extends AutoCloseable implements OnInit, OnCh
 
     this.taskId = id;
     this.taskName = taskName;
-    this.taskCreatorControl.controls['selectedTaskTypeControl'].setValue(taskType);
+    this.selectedTaskType = taskType;
+    this.rebuildFormControls(taskType);
     this.maxScore = maxScore;
     this.isMentorCheckSelected = mentorCheck;
     this.textEditorQuestion = question;
     if (answers) {
-      this.clearAnswersControl(this.singleAnswersControl);
-      this.clearAnswersControl(this.multiAnswerControl);
+      if (this.singleAnswersControl) {
+        this.clearAnswersControl(this.singleAnswersControl);
+      }
+      if (this.multiAnswerControl) {
+        this.clearAnswersControl(this.multiAnswerControl);
+      }
       let index: number = 0;
       answers.forEach((answer: IAnswer) => {
         this.addMultiAnswer(answer);
         this.addSingleAnswer(answer);
         if (answer.isCorrect) {
-          this.taskCreatorControl.controls['correctSingleAnswerControl'].setValue(index.toString());
+          this.taskCreatorControl?.controls['correctSingleAnswerControl']?.setValue(index.toString());
           index++;
         }
       });
     }
     if (Boolean(code)) {
-      this.taskCreatorControl.controls['codeEditorControl'].setValue(code);
+      this.enteredCode = code;
+      this.taskCreatorControl?.controls['codeEditorControl']?.setValue(code);
     }
   }
 
