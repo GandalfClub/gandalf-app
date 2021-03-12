@@ -1,11 +1,11 @@
 import { OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs/internal/observable/of';
+import { Subject } from 'rxjs';
 
 export class AutoCloseable implements OnDestroy {
-  protected destroyedSource$: Observable<boolean> = new Observable<boolean>();
+  protected destroyedSource$: Subject<boolean> = new Subject<boolean>();
 
   public ngOnDestroy(): void {
-    this.destroyedSource$ = of(true);
+    this.destroyedSource$.next(true);
+    this.destroyedSource$.complete();
   }
 }
