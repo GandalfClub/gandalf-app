@@ -25,13 +25,13 @@ class AuthValidation extends Validation {
         params: IUserModel
     ): Joi.ValidationResult < IUserModel > {
         const schema: Joi.Schema = Joi.object().keys({
-            firstName: Joi.string().required(),
-            secondName: Joi.string().required(),
+            firstName: Joi.string(),
+            secondName: Joi.string(),
             email: Joi.string().email({
                 minDomainAtoms: 2
             }).required(),
             password: Joi.string().required(),
-            mobilePhone: Joi.string().required(),
+            mobilePhone: Joi.string(),
         });
 
         return Joi.validate(params, schema);
