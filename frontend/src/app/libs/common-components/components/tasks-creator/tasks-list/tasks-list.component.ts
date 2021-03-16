@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IAnswer, ITask } from '../models/task';
+import { Answer, Task } from '../models/task';
 import { TasksTypes } from '../models/tasks-creator';
 import { takeUntil } from 'rxjs/operators';
 import { NewEventFacadeService } from '../../../../event-creation/store/event.facade';
@@ -11,12 +11,12 @@ import { AutoCloseable } from '../../../../utils/auto-closable';
   styleUrls: ['./tasks-list.component.scss'],
 })
 export class TasksListComponent extends AutoCloseable implements OnInit {
-  public taskList: ITask[];
+  public taskList: Task[];
 
   public selectedTaskIndex: number;
 
   @Output()
-  public selectedTask: EventEmitter<ITask> = new EventEmitter<ITask>();
+  public selectedTask: EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor(private eventFacadeService: NewEventFacadeService) {
     super();
@@ -28,7 +28,7 @@ export class TasksListComponent extends AutoCloseable implements OnInit {
       takeUntil(this.destroyedSource$),
     )
     .subscribe(
-      (tasks: Map<Symbol, ITask>): void => {
+      (tasks: Map<Symbol, Task>): void => {
         this.taskList = [...tasks.values()];
         if (!Boolean(this.selectedTaskIndex)) {
           this.selectedTaskIndex = 0;
@@ -50,14 +50,14 @@ export class TasksListComponent extends AutoCloseable implements OnInit {
   }
 
   public addNewTask(): void {
-    const defaultTask: ITask = {
+    const defaultTask: Task = {
       id: Symbol('id'),
       taskName: 'Task name',
-      taskType: TasksTypes.single,
+      taskType: TasksTypes.Single,
       mentorCheck: false,
       maxScore: null,
       question: null,
-      answers: new Set<IAnswer>([
+      answers: new Set<Answer>([
         {
           label: '',
           isCorrect: false,

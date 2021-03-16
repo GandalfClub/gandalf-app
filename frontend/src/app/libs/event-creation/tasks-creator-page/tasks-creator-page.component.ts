@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { Task } from '../../common-components/components/tasks-creator/models/task';
 import { NewEventFacadeService } from '../store/event.facade';
 
 @Component({
@@ -8,10 +8,10 @@ import { NewEventFacadeService } from '../store/event.facade';
   styleUrls: ['./tasks-creator-page.component.scss'],
 })
 export class TasksCreatorPageComponent {
-  public selectedTask: ITask;
+  public selectedTask: Task;
 
   @Output()
-  public passForm: EventEmitter<ITask> = new EventEmitter<ITask>();
+  public passForm: EventEmitter<Task> = new EventEmitter<Task>();
 
   @Output()
   public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
@@ -20,7 +20,7 @@ export class TasksCreatorPageComponent {
     this.newEventFacadeService.loadTasks();
   }
 
-  public showSelectedTask(task: ITask): void {
+  public showSelectedTask(task: Task): void {
     this.selectedTask = task;
   }
 }

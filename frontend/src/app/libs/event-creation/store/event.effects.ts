@@ -15,7 +15,7 @@ import {
 import { EventsRepositoryService } from '../services/events-repository.service';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { GeneralEvent } from './model/model';
-import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { Task } from '../../common-components/components/tasks-creator/models/task';
 
 @Injectable()
 export class EventsEffects {
@@ -36,7 +36,7 @@ export class EventsEffects {
     ofType(EventsActionTypes.CreateTaskEvent),
     switchMap((action: CreateTaskEventAction) => {
       return this.eventsRepository.createTaskEvent(action.payload).pipe(
-        map((task: ITask) => new CreateTaskActionSuccess(task)),
+        map((task: Task) => new CreateTaskActionSuccess(task)),
         catchError((error: Error) => of(new CreateTaskActionFail(error)))
       );
     }),
@@ -47,7 +47,7 @@ export class EventsEffects {
     ofType(EventsActionTypes.LoadTasks),
     switchMap(() => {
       return this.eventsRepository.loadTasks().pipe(
-        map((tasks: Map<Symbol, ITask>) => new LoadTasksActionSuccess(tasks)),
+        map((tasks: Map<Symbol, Task>) => new LoadTasksActionSuccess(tasks)),
         catchError((error: Error) => of(new CreateTaskActionFail(error)))
       );
     }),

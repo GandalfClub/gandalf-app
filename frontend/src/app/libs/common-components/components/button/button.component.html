@@ -5,7 +5,7 @@
 			class="button button--basic button--color-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
-			[class.button_icon]="iconButton"
+			[class.button--icon]="iconButton"
 			[disabled]="disabled"
 			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
@@ -16,7 +16,7 @@
 			class="button button--outlined button--color-outlined-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
-      [class.button_icon]="iconButton"
+      [class.button--icon]="iconButton"
 			[disabled]="disabled"
 			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
@@ -27,7 +27,7 @@
 			class="button button--flat button--color-{{color}}"
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
-      [class.button_icon]="iconButton"
+      [class.button--icon]="iconButton"
 			[disabled]="disabled"
 			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>

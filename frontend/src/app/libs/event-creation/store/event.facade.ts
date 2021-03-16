@@ -11,7 +11,7 @@ import {
 } from './event.actions';
 import { selectTasksEvent, selectTitleForGeneralEvent } from './event.selectors';
 import { GeneralEvent } from './model/model';
-import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { Task } from '../../common-components/components/tasks-creator/models/task';
 
 @Injectable({
 	providedIn: 'root',
@@ -20,11 +20,11 @@ export class NewEventFacadeService {
 
 	constructor(private store: Store<GeneralEventState>) { }
 
-	get generalTitle$(): Observable<string> {
+	public get generalTitle$(): Observable<string> {
 		return this.store.pipe(select(selectTitleForGeneralEvent));
 	}
 
-	get tasks$(): Observable<Map<Symbol, ITask>> {
+	public get tasks$(): Observable<Map<Symbol, Task>> {
 	  return this.store.pipe(select(selectTasksEvent));
   }
 
@@ -40,7 +40,7 @@ export class NewEventFacadeService {
 		this.store.dispatch(new CreateGeneralEventAction(event));
 	}
 
-  public createTask(task: ITask): void {
+  public createTask(task: Task): void {
     this.store.dispatch(new CreateTaskEventAction(task));
   }
 

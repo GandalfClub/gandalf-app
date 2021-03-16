@@ -45,9 +45,9 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public onChange = (_: string) => {};
+  public onChange: Function = (_: string): void => {};
 
-  public onBlur = () => {};
+  public onBlur: Function = (): void => {};
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (changes.code && this.codeEditor) {

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { GeneralEvent } from './model/model';
-import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { Task } from '../../common-components/components/tasks-creator/models/task';
 
 export enum EventsActionTypes {
   LoadTasks = '[NewEvent] get tasks from backend',
@@ -34,7 +34,7 @@ export class CreateGeneralEventActionSuccess implements Action {
 
 export class CreateTaskEventAction implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.CreateTaskEvent;
-  constructor(public payload: ITask) { }
+  constructor(public payload: Task) { }
 }
 
 export class LoadTasksEventAction implements Action {
@@ -49,12 +49,12 @@ export class DeleteTaskEventAction implements Action {
 
 export class CreateTaskActionSuccess implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.CreateTaskSuccess;
-  constructor(public payload: ITask) { }
+  constructor(public payload: Task) { }
 }
 
 export class LoadTasksActionSuccess implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.LoadTasksSuccess;
-  constructor(public payload: Map<Symbol, ITask>) { }
+  constructor(public payload: Map<Symbol, Task>) { }
 }
 
 export class LoadTasksActionFail implements Action {

@@ -3,7 +3,7 @@ import { BreadcrumbFacadeService } from '../common-components/components/breadcr
 import { FormGroup } from '@angular/forms';
 import { NewEventFacadeService } from './store/event.facade';
 import { Tabs } from '../common-components/components/tab-navigation/models/tabs';
-import { ITask } from '../common-components/components/tasks-creator/models/task';
+import { Task } from '../common-components/components/tasks-creator/models/task';
 
 @Component({
 	selector: 'app-event-creation',
@@ -11,11 +11,11 @@ import { ITask } from '../common-components/components/tasks-creator/models/task
 	styleUrls: ['./event-creation.component.scss'],
 })
 export class EventCreationComponent implements OnInit {
-	public currentTab: Tabs = Tabs.generalTab;
+	public currentTab: Tabs = Tabs.General;
   public tabsEnum: typeof Tabs = Tabs;
 
 	private formFromGeneralComponent: FormGroup;
-	private task: ITask;
+	private task: Task;
 
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService, public newEventsFacadeService: NewEventFacadeService) {
 	}
@@ -30,30 +30,30 @@ export class EventCreationComponent implements OnInit {
 
   public send(isDraft: boolean): void {
     switch (this.currentTab) {
-      case Tabs.generalTab:
+      case Tabs.General:
         this.formFromGeneralComponent.patchValue({
           isDraft,
         });
         this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
         break;
 
-      case Tabs.tasksTab:
+      case Tabs.Tasks:
         this.task.isDraft = isDraft;
         this.newEventsFacadeService.createTask(this.task);
         break;
 
-      case Tabs.invitationsTab:
+      case Tabs.Invitations:
         break;
 
       default:
     }
   }
 
-	public getFormFromGeneralComponent(data: FormGroup): void {
+	public setFormFromGeneralComponent(data: FormGroup): void {
 		this.formFromGeneralComponent = data;
 	}
 
-  public getTaskCreationForm(task: ITask): void {
+  public setTaskCreationForm(task: Task): void {
     this.task = task;
   }
 

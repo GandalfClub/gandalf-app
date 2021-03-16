@@ -1,5 +1,5 @@
 export enum Tabs {
-  'generalTab',
-  'tasksTab',
-  'invitationsTab',
+  'General' = 'general',
+  'Tasks' = 'tasks',
+  'Invitations' = 'invitations',
 }
