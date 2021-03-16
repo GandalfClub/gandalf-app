@@ -2,7 +2,7 @@
   <ng-container *ngIf="!isListEmpty; else emptyList">
     <div class="tasks-creator__header event-gradient">
 
-      <div *ngIf="!isTaskNameEditMode" class="tasks-creator__name-editor">
+      <div class="tasks-creator__name-editor" *ngIf="!isTaskNameEditMode">
         <span class="tasks-creator__task-name">{{ taskName }}</span>
         <app-icon-button
           class="tasks-creator__header-button"
@@ -13,12 +13,13 @@
         </app-icon-button>
       </div>
 
-      <div *ngIf="isTaskNameEditMode" class="tasks-creator__name-editor">
+      <div class="tasks-creator__name-editor" *ngIf="isTaskNameEditMode">
 
-        <app-input formControlName="taskNameControl"
-                   [noPaddings]="true"
-                   [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
-
+        <app-input
+          class="tasks-creator__task-name-input"
+          formControlName="taskNameControl"
+          noPaddings="true"
+          [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
         <app-icon-button
           class="tasks-creator__header-button"
           (click)="disableTaskNameEditMode()"
@@ -49,9 +50,10 @@
       <div class="tasks-creator__basic-settings">
 
         <app-select
+          class="tasks-creator__task-type-select"
           [label]="('TASK-CREATION.TASK_TYPE_LABEL' | translate)"
           (openedChangeEmitter)="onOpenTaskTypesSelector($event)"
-          [value]="taskTypesEnum.single"
+          [value]="taskTypesEnum.Single"
           (selectionChanged)="rebuildFormControls($event.value)"
           formControlName="selectedTaskTypeControl"
           [options]="taskTypeOptions"
@@ -60,13 +62,13 @@
         <div class="tasks-creator__mentor-score-container">
           <app-slide-toggle
             class="tasks-creator__mentor-check"
-            [labelPosition]="'before'"
             [disabled]="isMentorCheckDisabled()"
             formControlName="mentorCheckControl"
             [title]="('TASK-CREATION.MENTOR_CHECK_TOGGLE' | translate)">
           </app-slide-toggle>
           <app-input
-            [type]="'number'"
+            class="tasks-creator__score-input"
+            type="number"
             formControlName="maxScoreControl"
             [placeholder]="('TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate)">
           </app-input>
@@ -83,16 +85,18 @@
 
       <ng-container [ngSwitch]="getSelectedTaskType()">
 
-        <ng-container *ngSwitchCase="taskTypesEnum.single">
+        <ng-container *ngSwitchCase="taskTypesEnum.Single">
 
           <mat-radio-group formControlName="correctSingleAnswerControl">
             <div formArrayName="answersArrayControl">
               <div class="tasks-creator__radio-answer"
                    *ngFor="let answer of singleAnswersControl.controls; let i = index"
                    [formGroupName]="i">
-                <mat-radio-button class="mat-form-field-wrapper" value="{{ i.toString() }}"></mat-radio-button>
-                <app-input formControlName="label"
-                           [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
+                <mat-radio-button class="mat-form-field-wrapper" value="{{ i }}"></mat-radio-button>
+                <app-input
+                  class="tasks-creator__answer-input"
+                  formControlName="label"
+                  [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
                 <app-icon-button
                   class="mat-form-field-wrapper"
                   (click)="removeSingleAnswer(i)"
@@ -112,7 +116,7 @@
 
         </ng-container>
 
-        <ng-container *ngSwitchCase="taskTypesEnum.coding">
+        <ng-container *ngSwitchCase="taskTypesEnum.Coding">
           <app-monaco-editor
             class="tasks-creator__code-editor"
             [language]="'javascript'"
@@ -122,7 +126,7 @@
           </app-monaco-editor>
         </ng-container>
 
-        <ng-container *ngSwitchCase="taskTypesEnum.multiple">
+        <ng-container *ngSwitchCase="taskTypesEnum.Multiple">
           <div formArrayName="multiAnswersArrayControl">
             <div class="tasks-creator__checkbox-answer"
                  *ngFor="let answer of multiAnswerControl.controls; let i = index"
@@ -131,8 +135,10 @@
                 class="tasks-creator__checkbox mat-form-field-wrapper"
                 [value]="i.toString()"
                 formControlName="isCorrect"></mat-checkbox>
-              <app-input formControlName="label"
-                         [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
+              <app-input
+                class="tasks-creator__answer-input"
+                formControlName="label"
+                [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
               <app-icon-button
                 class="mat-form-field-wrapper"
                 (click)="removeMultiAnswer(i)"

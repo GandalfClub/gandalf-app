@@ -1,7 +1,9 @@
-import { Component, Input, Output, ChangeDetectionStrategy, EventEmitter, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
+
+type LabelPosition = 'before' | 'after';
 
 @Component({
 	selector: 'app-slide-toggle',
@@ -31,7 +33,7 @@ export class SlideToggleComponent extends FormControlCommonDirective {
 	public value: boolean;
 
 	@Input()
-  public labelPosition: 'before' | 'after';
+  public labelPosition: LabelPosition = 'after';
 
 	@Input() public formControlName: string;
 

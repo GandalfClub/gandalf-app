@@ -5,24 +5,24 @@
 
   <ng-container [ngSwitch]="currentTab">
     <app-general-info
-      *ngSwitchCase="tabsEnum.generalTab"
       class="event-creation__tab-content"
-      (passForm)="getFormFromGeneralComponent($event)">
+      *ngSwitchCase="tabsEnum.General"
+      (passForm)="setFormFromGeneralComponent($event)">
     </app-general-info>
     <app-tasks-creator-page
-      *ngSwitchCase="tabsEnum.tasksTab"
       class="event-creation__tab-content"
+      *ngSwitchCase="tabsEnum.Tasks"
       (removeTask)="removeTask($event)"
-      (passForm)="getTaskCreationForm($event)">
+      (passForm)="setTaskCreationForm($event)">
     </app-tasks-creator-page>
   </ng-container>
 
   <div class="event-creation__bottom-bar">
     <div>
       <app-icon-button
-        [type]="'outlined'"
-        [startIcon]="'delete'"
-        [iconSize]="'small'"
+        type="outlined"
+        startIcon="delete"
+        iconSize="small"
       >
         {{ "BUTTON.DELETE_EVENT" | translate }}
       </app-icon-button>
@@ -30,14 +30,14 @@
     <div>
       <app-button
         class="event-creation__btn"
-        [type]="'outlined'"
-        [color]="'primary'"
+        type="outlined"
+        color="primary"
         (click)="send(true)">
         {{ "BUTTON.SAVE_AS_DRAFT" | translate }}
       </app-button>
       <app-button
-        [type]="'flat'"
-        [color]="'primary'"
+        type="flat"
+        color="primary"
         (click)="send(false)">
         {{ "BUTTON.PUBLISH" | translate }}
       </app-button>

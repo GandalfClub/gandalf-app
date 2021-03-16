@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, forwardRef, Output, EventEmitter, OnChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
-import { ISelectOption } from './models/select-option';
+import { SelectOption } from './models/select-option';
 
 @Component({
 	selector: 'app-select',
@@ -25,7 +25,7 @@ export class SelectComponent extends FormControlCommonDirective implements OnCha
 	@Input() public formControl: FormControl;
 	@Input() public value: number | string | null | undefined;
 	@Input() public eventTimeType: boolean = false;
-	@Input() public options: ISelectOption[];
+	@Input() public options: SelectOption[];
 
 	@Output()
   public openedChangeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -44,24 +44,27 @@ export class SelectComponent extends FormControlCommonDirective implements OnCha
     }
   }
 
-  private generateEventTime(): ISelectOption[] {
+  private generateEventTime(): SelectOption[] {
     const MAX_HOUR: number = 23;
     const TEN_HOURS: number = 10;
-    const arrayTime: ISelectOption[] = [];
+    let arrayTime: SelectOption[] = [];
 
     for (let i: number = 0; i <= MAX_HOUR; i++) {
       let hour: string = i.toString();
       if (i < TEN_HOURS) {
         hour = '0' + hour;
       }
-      arrayTime.push({
-        value: `${hour}:00`,
-        label: `${hour}:00`,
-      });
-      arrayTime.push({
-        value: `${hour}:30`,
-        label: `${hour}:30`,
-      });
+      arrayTime = [
+        ...arrayTime,
+        {
+          value: `${hour}:00`,
+          label: `${hour}:00`,
+        },
+        {
+          value: `${hour}:30`,
+          label: `${hour}:30`,
+        }
+      ];
     }
     return arrayTime;
   }

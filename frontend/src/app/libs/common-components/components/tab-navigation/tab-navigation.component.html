@@ -1,6 +1,6 @@
-<div class="app-tab-navigation__block" [class.app-tab-navigation__block--active]="generalTab"
-	 (click)="changePage(tabsEnum.generalTab)">GENERAL</div>
+<div class="app-tab-navigation__block" [class.app-tab-navigation__block--active]="isGeneralTabActive()"
+	 (click)="switchToGeneral()">GENERAL</div>
 <div class="app-tab-navigation__block"
-	 (click)="changePage(tabsEnum.tasksTab)" [class.app-tab-navigation__block--active]="tasksTab">TASKS ({{ tasksNumber }})</div>
+	 (click)="switchToTasks()" [class.app-tab-navigation__block--active]="isTaskTabActive()">TASKS ({{ tasksNumber }})</div>
 <div class="app-tab-navigation__block"
-	 (click)="changePage(tabsEnum.invitationsTab)" [class.app-tab-navigation__block--active]="invitationsTab">INVITATIONS (0)</div>
+	 (click)="switchToInvitations()" [class.app-tab-navigation__block--active]="isInvitationsTabActive()">INVITATIONS (0)</div>

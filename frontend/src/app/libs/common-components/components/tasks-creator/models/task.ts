@@ -1,11 +1,11 @@
-import {TasksTypes} from './tasks-creator';
+import { TasksTypes } from './tasks-creator';
 
-export interface IAnswer {
+export interface Answer {
   label: string;
   isCorrect: boolean;
 }
 
-export interface ITask {
+export interface Task {
   id: Symbol;
   isDraft?: boolean;
   taskName: string;
@@ -14,5 +14,5 @@ export interface ITask {
   maxScore: number;
   question: string;
   code?: string;
-  answers?: Set<IAnswer>;
+  answers?: Set<Answer>;
 }

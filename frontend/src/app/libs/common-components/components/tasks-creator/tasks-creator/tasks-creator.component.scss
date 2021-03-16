@@ -30,9 +30,28 @@
     overflow: hidden;
   }
 
+  &__task-name-input {
+    width: 100%;
+  }
+
+  &__answer-input {
+    width: 100%;
+    max-width: $main-grid-unit * 50;
+  }
+
+  &__task-type-select {
+    width: $main-grid-unit * 26;
+  }
+
   &__name-editor {
     display: flex;
     align-items: center;
+    flex-grow: 1;
+    max-width: $main-grid-unit * 82;
+  }
+
+  &__score-input {
+    width: $main-grid-unit * 16;
   }
 
   &__header {

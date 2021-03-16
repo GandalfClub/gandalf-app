@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GeneralEvent } from '../store/model/model';
-import { ITask } from '../../common-components/components/tasks-creator/models/task';
+import { Task } from '../../common-components/components/tasks-creator/models/task';
 import { TasksTypes } from '../../common-components/components/tasks-creator/models/tasks-creator';
 import { of } from 'rxjs/internal/observable/of';
 
@@ -21,12 +21,12 @@ export class EventsRepositoryService {
 		return this.http.post<GeneralEvent>(url, generalEvent);
 	}
 
-  public createTaskEvent(task: ITask): Observable<ITask> {
+  public createTaskEvent(task: Task): Observable<Task> {
     const url: string = this.API_URL + '/tasks'; // todo backend url
-    return this.http.post<ITask>(url, task);
+    return this.http.post<Task>(url, task);
   }
 
-  public loadTasks(): Observable<Map<Symbol, ITask>> {
+  public loadTasks(): Observable<Map<Symbol, Task>> {
 
 // todo remove after backend implementation
     const key1: Symbol = Symbol('id');
@@ -34,13 +34,13 @@ export class EventsRepositoryService {
     const key3: Symbol = Symbol('id');
 
 // todo remove after backend implementation
-    const testTasksState: Map<Symbol, ITask> = new Map<Symbol, ITask>([
+    const testTasksState: Map<Symbol, Task> = new Map<Symbol, Task>([
       [
         key1,
         {
           id: key1,
           taskName: 'task 1',
-          taskType: TasksTypes.single,
+          taskType: TasksTypes.Single,
           mentorCheck: false,
           maxScore: 100,
           question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
@@ -61,7 +61,7 @@ export class EventsRepositoryService {
         {
           id: key2,
           taskName: 'task 2',
-          taskType: TasksTypes.coding,
+          taskType: TasksTypes.Coding,
           mentorCheck: true,
           maxScore: 300,
           question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
@@ -73,7 +73,7 @@ export class EventsRepositoryService {
         {
           id: key3,
           taskName: 'task 3',
-          taskType: TasksTypes.multiple,
+          taskType: TasksTypes.Multiple,
           mentorCheck: false,
           maxScore: 60,
           question: '<p>Question text3</p>',

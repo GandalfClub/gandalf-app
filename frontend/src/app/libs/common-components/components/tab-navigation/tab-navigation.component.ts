@@ -4,7 +4,7 @@ import { Tabs } from './models/tabs';
 import { NewEventFacadeService } from '../../../event-creation/store/event.facade';
 import { AutoCloseable } from '../../../utils/auto-closable';
 import { takeUntil } from 'rxjs/operators';
-import { ITask } from '../tasks-creator/models/task';
+import { Task } from '../tasks-creator/models/task';
 
 @Component({
 	selector: 'app-tab-navigation',
@@ -20,36 +20,44 @@ export class TabNavigationComponent extends AutoCloseable implements OnInit {
 
   public tasksNumber: number;
 
-	public currentTab: Tabs = Tabs.generalTab;
+	public currentTab: Tabs = Tabs.General;
 
   constructor(private eventFacadeService: NewEventFacadeService) {
     super();
   }
 
-  public changePage(tab: Tabs): void {
-		this.currentTab = tab;
-		this.changeTab.emit(tab);
+	public isGeneralTabActive(): boolean {
+		return this.currentTab === Tabs.General;
 	}
 
-	public get generalTab(): boolean {
-		return this.currentTab === Tabs.generalTab;
+	public isTaskTabActive(): boolean {
+		return this.currentTab === Tabs.Tasks;
 	}
 
-	public get tasksTab(): boolean {
-		return this.currentTab === Tabs.tasksTab;
+	public isInvitationsTabActive(): boolean {
+		return this.currentTab === Tabs.Invitations;
 	}
 
-	public get invitationsTab(): boolean {
-		return this.currentTab === Tabs.invitationsTab;
-	}
+	public switchToGeneral(): void {
+    this.currentTab = Tabs.General;
+    this.changeTab.emit(Tabs.General);
+  }
+
+  public switchToTasks(): void {
+    this.currentTab = Tabs.Tasks;
+    this.changeTab.emit(Tabs.Tasks);
+  }
+
+  public switchToInvitations(): void {
+    this.currentTab = Tabs.Invitations;
+    this.changeTab.emit(Tabs.Invitations);
+  }
 
   public ngOnInit(): void {
     this.eventFacadeService.tasks$
-    .pipe(
-      takeUntil(this.destroyedSource$),
-    )
+    .pipe(takeUntil(this.destroyedSource$))
     .subscribe(
-      (tasks: Map<Symbol, ITask>): void => {
+      (tasks: Map<Symbol, Task>): void => {
         this.tasksNumber = tasks.size;
       },
     );
