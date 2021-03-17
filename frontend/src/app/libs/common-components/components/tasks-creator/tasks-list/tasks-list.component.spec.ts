@@ -1,22 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
 import { TasksListComponent } from './tasks-list.component';
 import { NewEventFacadeService } from '../../../../event-creation/store/event.facade';
 import { Observable } from 'rxjs';
+import { Injector } from '@angular/core';
 import { of } from 'rxjs/internal/observable/of';
-import {Task} from '../models/task';
-import {TasksTypes} from '../models/tasks-creator';
+import { Task } from '../models/task';
+import { TasksTypes } from '../models/tasks-creator';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+
+const translations: any = { 'TASK-CREATION.LIST_HEADER_TITLE' : 'This is a test' };
+
+class FakeLoader implements TranslateLoader {
+  getTranslation(lang: string): Observable<any> {
+    return of(translations);
+  }
+}
 
 describe('TasksListComponent', () => {
   let component: TasksListComponent;
   let fixture: ComponentFixture<TasksListComponent>;
   let mockEventFacadeService: Partial<NewEventFacadeService>;
+  let mockTranslateService: TranslateService;
+  let injector: Injector;
 
   const key1: Symbol = Symbol('id');
   const key2: Symbol = Symbol('id');
   const key3: Symbol = Symbol('id');
 
-  const testTasksState: Map<Symbol, Task> = new Map<Symbol, Task>([
+  const mockTasks: Map<Symbol, Task> = new Map<Symbol, Task>([
     [
       key1,
       {
@@ -74,16 +86,27 @@ describe('TasksListComponent', () => {
   ]);
 
   beforeEach(async(() => {
-    mockEventFacadeService = 	{
+    mockEventFacadeService = {
       get tasks$(): Observable<Map<Symbol, Task>> {
-        return of(testTasksState);
+        return of(mockTasks);
       }
     };
 
     TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot({
+          loader: {provide: TranslateLoader, useClass: FakeLoader},
+        })
+      ],
       declarations: [TasksListComponent],
-      providers: [{provide: NewEventFacadeService, useValue: mockEventFacadeService}]
+      providers: [
+        {provide: NewEventFacadeService, useValue: mockEventFacadeService},
+      ]
     }).compileComponents();
+
+    injector = getTestBed();
+    mockTranslateService = injector.get(TranslateService);
+    mockTranslateService.use('en');
   }));
 
   beforeEach(() => {
