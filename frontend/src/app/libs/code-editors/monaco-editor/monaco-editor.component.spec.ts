@@ -1,14 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { MonacoEditorComponent } from './monaco-editor.component';
-import { DebugElement, SimpleChange, SimpleChanges } from '@angular/core';
+import { DebugElement, Injector, SimpleChange, SimpleChanges } from '@angular/core';
 import { editor } from 'monaco-editor';
 import { Theme } from '../shared/enum/themes.enum';
 import { Language } from '../shared/enum/languages.enum';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
+
+const translations: any = { 'TASK-CREATION.LIST_HEADER_TITLE' : 'This is a test' };
+
+class FakeLoader implements TranslateLoader {
+  getTranslation(lang: string): Observable<any> {
+    return of(translations);
+  }
+}
 
 describe('MonacoEditorComponent', () => {
 	let component: MonacoEditorComponent;
 	let fixture: ComponentFixture<MonacoEditorComponent>;
 	let debugElement: DebugElement;
+  let mockTranslateService: TranslateService;
+  let injector: Injector;
 	const previousValue: string = 'previous';
 	const currentValue: string = 'current';
 	const codeEditorMock: any = {
@@ -22,8 +35,17 @@ describe('MonacoEditorComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot({
+          loader: {provide: TranslateLoader, useClass: FakeLoader},
+        })
+      ],
 			declarations: [MonacoEditorComponent],
 		});
+
+    injector = getTestBed();
+    mockTranslateService = injector.get(TranslateService);
+    mockTranslateService.use('en');
 	}));
 
 	beforeEach(() => {
