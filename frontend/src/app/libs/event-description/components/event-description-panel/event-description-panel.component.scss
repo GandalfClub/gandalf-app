@@ -3,6 +3,11 @@
 $appear-bottom-panel: $main-grid-unit * 25;
 
 .app-event-description-panel {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	//height: calc(100% - 120px);
+	min-height: calc(100vh - 120px);
 	background-color: #f8f8f8;
 
 	&__breadcrumb {
@@ -66,7 +71,6 @@ $appear-bottom-panel: $main-grid-unit * 25;
 	&__bottom-panel {
 		@include text-p();
 		position: sticky;
-		width: 100vw;
 		bottom: 0;
 		padding: 0 $layout-outer-margin;
 		height: $main-grid-unit * 10;
@@ -90,16 +94,23 @@ $appear-bottom-panel: $main-grid-unit * 25;
 	}
 
 	&__content-wrapper {
-		display: inline-block;
-		margin-top: calc(100vh - #{$appear-bottom-panel});
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-grow: 1;
+	
+		height: 100%;
+		width: 100%;
+		//margin-top: calc(100vh - #{$appear-bottom-panel});
 	}
 
 	&__content {
 		@include text-p();
-		min-height: 100vh;
+		//min-height: 100vh;
 		color: $color-black-100;
-		margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
-			$main-grid-unit * 22;
+		margin: $main-grid-unit * 2 $main-grid-unit * 22;
+		//margin: calc(-100vh + #{$appear-bottom-panel} + #{$main-grid-unit * 5}) $main-grid-unit * 22 $main-grid-unit * 5
+		//	$main-grid-unit * 22;
 	}
 }
 
