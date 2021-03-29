@@ -17,7 +17,8 @@
 	</ng-container>
 	<ng-container *ngIf="events.status === successStatus">
 		
-		<app-belonged-to-user-events *ngIf="user?.value"
+		<app-belonged-to-user-events 
+			*ngIf="user?.value"
 			[events]="userEvents$ | async">
 		</app-belonged-to-user-events>
 
