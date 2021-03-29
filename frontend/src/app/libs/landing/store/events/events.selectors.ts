@@ -23,7 +23,7 @@ export const selectEventsBelongedToUser: MemoizedSelectorWithProps<{}, User, Eve
 	(events: Event[], user: User) => events?.filter((event: Event) => {
 		const participation: EventParticipation = event
 			.eventParticipations
-			.find((ev: EventParticipation) => ev.userId === user.id);
+			.find((ev: EventParticipation) => ev?.userId === user.id);
 		return Boolean(participation);
 	})
 );
