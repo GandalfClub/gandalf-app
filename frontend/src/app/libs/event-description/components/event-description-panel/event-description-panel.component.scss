@@ -63,7 +63,7 @@ $appear-bottom-panel: $main-grid-unit * 25;
 	&__time-bottom,
 	&__date-bottom,
 	&__participants-numbers-bottom {
-		color: $color-black-100;
+		color: $color-black;
 		vertical-align: middle;
 	}
 
@@ -104,7 +104,7 @@ $appear-bottom-panel: $main-grid-unit * 25;
 
 	&__content {
 		@include text-p();
-		color: $color-black-100;
+		color: $color-black;
 		margin: $main-grid-unit * 2 $main-grid-unit * 22;
 	}
 }

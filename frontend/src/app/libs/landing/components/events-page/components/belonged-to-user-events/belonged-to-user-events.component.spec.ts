@@ -7,19 +7,19 @@ describe('BelongedToUserEventsComponent', () => {
   let fixture: ComponentFixture<BelongedToUserEventsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BelongedToUserEventsComponent ]
-    })
-    .compileComponents();
+	TestBed.configureTestingModule({
+		declarations: [BelongedToUserEventsComponent]
+	})
+		.compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BelongedToUserEventsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+	  fixture = TestBed.createComponent(BelongedToUserEventsComponent);
+	  component = fixture.componentInstance;
+	  fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+	  expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventListLabelColors } from 'src/app/libs/landing/models/event-list-label-colors.enum';
 import { Event } from '../../../../models/event';
 import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
@@ -8,7 +8,7 @@ import { EventQuantityLabel } from '../../Models/event-quantity-label.enum';
   templateUrl: './belonged-to-user-events.component.html',
   styleUrls: ['./belonged-to-user-events.component.scss']
 })
-export class BelongedToUserEventsComponent implements OnInit {
+export class BelongedToUserEventsComponent {
 	@Input()
 	public events: Event[] = [];
 
@@ -16,8 +16,4 @@ export class BelongedToUserEventsComponent implements OnInit {
   public labelColor: EventListLabelColors = EventListLabelColors.Dark;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

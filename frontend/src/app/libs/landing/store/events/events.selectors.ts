@@ -21,7 +21,9 @@ export const selectEventsValue: MemoizedSelector<{}, Event[]> = createSelector(
 export const selectEventsBelongedToUser: MemoizedSelectorWithProps<{}, User, Event[]> = createSelector(
 	selectEventsValue,
 	(events: Event[], user: User) => events?.filter((event: Event) => {
-		const participation: EventParticipation = event.eventParticipations.find((ev: EventParticipation) => ev.userId === user.id);
+		const participation: EventParticipation = event
+			.eventParticipations
+			.find((ev: EventParticipation) => ev.userId === user.id);
 		return Boolean(participation);
 	})
 );

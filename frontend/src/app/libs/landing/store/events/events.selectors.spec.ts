@@ -70,11 +70,13 @@ describe('Events Selectors', () => {
 
 	describe('selectEventsBelongedToUser', () => {
 		it('should return events belonged to user', () => {
-			const userEvents = events.value.filter((event: Event) => {
-				const participation: EventParticipation = event.eventParticipations.find((ev: EventParticipation) => ev?.userId === user.id);
+			const userEvents: Event[] = events.value.filter((ev: Event) => {
+				const participation: EventParticipation = ev
+					.eventParticipations
+					.find((evParticipation: EventParticipation) => evParticipation?.userId === user.id);
 				return Boolean(participation);
 			});
-			const result = selectEventsBelongedToUser.projector(state.events.value, user);
+			const result: Event[] = selectEventsBelongedToUser.projector(state.events.value, user);
 			expect(JSON.stringify(result)).toEqual(JSON.stringify(userEvents));
 		});
 	});
