@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 import { Event } from '../../models/event';
+import { EventListLabelColors } from '../../models/event-list-label-colors.enum';
 
 @Component({
 	selector: 'app-event-list',
@@ -15,6 +16,12 @@ export class EventListComponent {
 
 	@Input()
 	public quantityLabel: Event[] = [];
+
+	@Input()
+	public labelColor: EventListLabelColors = EventListLabelColors.Light;
+
+	public labelColorDark: EventListLabelColors = EventListLabelColors.Dark;
+	public labelColorLight: EventListLabelColors = EventListLabelColors.Light;
 
 	public constructor(private router: Router) {}
 
