@@ -1,6 +1,9 @@
 <div class="app-event-list"
 	 *ngIf="events.length">
-	<p class="app-event-list__quantity">
+	<p class="app-event-list__quantity" 
+		[ngClass]="labelColor === labelColorDark 
+								? 'app-event-list__quantity--font-dark' 
+								: 'app-event-list__quantity--font-light'">
 		{{quantityLabel}} events ({{events.length}})
 	</p>
 

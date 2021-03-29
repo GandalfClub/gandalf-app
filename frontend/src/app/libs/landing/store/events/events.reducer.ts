@@ -5,7 +5,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 export const initialState: EventsState = {
 	events: {
 		status: EntityStatus.Init,
-		value: null,
+		value: [],
 		error: null,
 	},
 };

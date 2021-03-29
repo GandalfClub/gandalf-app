@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { UsersFacadeService } from 'src/app/libs/admin-role-management/store/users/users.facade';
+import { Observable, Subject } from 'rxjs';
+import { pluck, switchMap, takeUntil } from 'rxjs/operators';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { User } from 'src/app/libs/auth/models/user';
@@ -23,11 +22,12 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 	public events: EntityWrapper<Event[]>;
 
 	public user: EntityWrapper<User>;
+	public userEvents$: Observable<Event[]>;
 
 	public pendingStatus: EntityStatus = EntityStatus.Pending;
 	public successStatus: EntityStatus = EntityStatus.Success;
 
-	private destroy$: Subject<any> = new Subject();
+	private destroy$: Subject<void> = new Subject();
 
 	constructor(
 		private eventsFacadeService: EventsFacadeService,
@@ -47,6 +47,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 			.subscribe((user: EntityWrapper<User>) => {
 				this.user = user;
 			});
+
+		this.userEvents$ = this.authFacadeService.user$.pipe(
+			pluck('value'),
+			switchMap((user: User) => this.eventsFacadeService.getUserEvents$(user)));
 	}
 
 	public goToSignUp(): void {

@@ -13,10 +13,16 @@ $quantity-font: 16px;
 		margin-bottom: calc((#{-$quantity-font} / 2)  + (#{$top-padding} / 2));
 		padding-left: 12px;
 
-		color: $color-white;
-
 		font-size: $quantity-font;
 		text-transform: uppercase;
+	}
+
+	&__quantity--font-light {
+		color: $color-white;
+	}
+
+	&__quantity--font-dark {
+		color: $color-black;
 	}
 
 	&__list {
