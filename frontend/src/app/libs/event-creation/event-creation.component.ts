@@ -12,7 +12,7 @@ import { Task } from '../common-components/components/tasks-creator/models/task'
 })
 export class EventCreationComponent implements OnInit {
 	public currentTab: Tabs = Tabs.General;
-  public tabsEnum: typeof Tabs = Tabs;
+	public tabsEnum: typeof Tabs = Tabs;
 
 	private formFromGeneralComponent: FormGroup;
 	private task: Task;
@@ -28,36 +28,36 @@ export class EventCreationComponent implements OnInit {
 		this.currentTab = tab;
 	}
 
-  public send(isDraft: boolean): void {
-    switch (this.currentTab) {
-      case Tabs.General:
-        this.formFromGeneralComponent.patchValue({
-          isDraft,
-        });
-        this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
-        break;
+	public send(isDraft: boolean): void {
+		switch (this.currentTab) {
+			case Tabs.General:
+				this.formFromGeneralComponent.patchValue({
+					isDraft,
+				});
+				this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
+				break;
 
-      case Tabs.Tasks:
-        this.task.isDraft = isDraft;
-        this.newEventsFacadeService.createTask(this.task);
-        break;
+			case Tabs.Tasks:
+				this.task.isDraft = isDraft;
+				this.newEventsFacadeService.createTask(this.task);
+				break;
 
-      case Tabs.Invitations:
-        break;
+			case Tabs.Invitations:
+				break;
 
-      default:
-    }
-  }
+			default:
+		}
+	}
 
 	public setFormFromGeneralComponent(data: FormGroup): void {
 		this.formFromGeneralComponent = data;
 	}
 
-  public setTaskCreationForm(task: Task): void {
-    this.task = task;
-  }
+	public setTaskCreationForm(task: Task): void {
+		this.task = task;
+	}
 
-  public removeTask(id: Symbol): void {
-	  this.newEventsFacadeService.deleteTask(id);
-  }
+	public removeTask(id: Symbol): void {
+		this.newEventsFacadeService.deleteTask(id);
+	}
 }

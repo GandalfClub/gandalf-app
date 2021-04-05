@@ -12,20 +12,21 @@ import { TasksCreatorPageComponent } from './tasks-creator-page/tasks-creator-pa
 import { TasksCreatorModule } from '../common-components/components/tasks-creator/tasks-creator.module';
 
 @NgModule({
-  declarations: [
-    EventCreationComponent,
-    GeneralInfoPageComponent,
-    TasksCreatorPageComponent,
-  ],
-  imports: [
-    RouterModule,
-    TranslateModule,
-    CommonModule,
-    CommonComponentsModule,
-    BreadcrumbStoreModule,
-    BreadcrumbModule,
-    TasksCreatorModule,
-  ],
-  exports: [EventCreationRoutingModule],
+	declarations: [
+		EventCreationComponent,
+		GeneralInfoPageComponent,
+		TasksCreatorPageComponent,
+	],
+	imports: [
+		RouterModule,
+		TranslateModule,
+		CommonModule,
+		CommonComponentsModule,
+		BreadcrumbStoreModule,
+		BreadcrumbModule,
+		TasksCreatorModule,
+	],
+	exports: [EventCreationRoutingModule],
 })
-export class EventCreationModule {}
+export class EventCreationModule {
+}

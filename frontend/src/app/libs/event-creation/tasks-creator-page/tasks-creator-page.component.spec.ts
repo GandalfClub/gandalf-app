@@ -4,30 +4,31 @@ import { TasksCreatorPageComponent } from './tasks-creator-page.component';
 import { NewEventFacadeService } from '../store/event.facade';
 
 describe('TasksCreatorPageComponent', () => {
-  let component: TasksCreatorPageComponent;
-  let fixture: ComponentFixture<TasksCreatorPageComponent>;
-  let mockEventFacadeService: Partial<NewEventFacadeService>;
+	let component: TasksCreatorPageComponent;
+	let fixture: ComponentFixture<TasksCreatorPageComponent>;
+	let mockEventFacadeService: Partial<NewEventFacadeService>;
 
-  beforeEach(async(() => {
-    mockEventFacadeService = {
-      loadTasks(): void {}
-    };
+	beforeEach(async(() => {
+		mockEventFacadeService = {
+			loadTasks(): void {
+			}
+		};
 
-    TestBed.configureTestingModule({
-      declarations: [TasksCreatorPageComponent],
-      providers: [
-        {provide: NewEventFacadeService, useValue: mockEventFacadeService},
-      ]
-    }).compileComponents();
-  }));
+		TestBed.configureTestingModule({
+			declarations: [TasksCreatorPageComponent],
+			providers: [
+				{provide: NewEventFacadeService, useValue: mockEventFacadeService},
+			]
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TasksCreatorPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TasksCreatorPageComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

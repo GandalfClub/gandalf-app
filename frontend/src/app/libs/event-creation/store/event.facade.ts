@@ -40,11 +40,11 @@ export class NewEventFacadeService {
 		this.store.dispatch(new CreateGeneralEventAction(event));
 	}
 
-  public createTask(task: Task): void {
-    this.store.dispatch(new CreateTaskEventAction(task));
-  }
+	public createTask(task: Task): void {
+		this.store.dispatch(new CreateTaskEventAction(task));
+	}
 
-  public deleteTask(taskId: Symbol): void {
-    this.store.dispatch(new DeleteTaskEventAction(taskId));
-  }
+	public deleteTask(taskId: Symbol): void {
+		this.store.dispatch(new DeleteTaskEventAction(taskId));
+	}
 }

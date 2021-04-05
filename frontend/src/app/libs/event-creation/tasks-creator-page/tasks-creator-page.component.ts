@@ -3,24 +3,24 @@ import { Task } from '../../common-components/components/tasks-creator/models/ta
 import { NewEventFacadeService } from '../store/event.facade';
 
 @Component({
-  selector: 'app-tasks-creator-page',
-  templateUrl: './tasks-creator-page.component.html',
-  styleUrls: ['./tasks-creator-page.component.scss'],
+	selector: 'app-tasks-creator-page',
+	templateUrl: './tasks-creator-page.component.html',
+	styleUrls: ['./tasks-creator-page.component.scss'],
 })
 export class TasksCreatorPageComponent {
-  public selectedTask: Task;
+	public selectedTask: Task;
 
-  @Output()
-  public passForm: EventEmitter<Task> = new EventEmitter<Task>();
+	@Output()
+	public passForm: EventEmitter<Task> = new EventEmitter<Task>();
 
-  @Output()
-  public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
+	@Output()
+	public removeTask: EventEmitter<Symbol> = new EventEmitter<Symbol>();
 
-  constructor(private newEventFacadeService: NewEventFacadeService) {
-    this.newEventFacadeService.loadTasks();
-  }
+	constructor(private newEventFacadeService: NewEventFacadeService) {
+		this.newEventFacadeService.loadTasks();
+	}
 
-  public showSelectedTask(task: Task): void {
-    this.selectedTask = task;
-  }
+	public showSelectedTask(task: Task): void {
+		this.selectedTask = task;
+	}
 }
