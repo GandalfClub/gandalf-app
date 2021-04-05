@@ -54,7 +54,7 @@
 	&--outlined {
 		@include button-hover();
 
-		border-color: $color-black-10;
+		border-color: $color-black-5;
 
 		&.button--dark-theme {
 			border-color: $color-white-100;

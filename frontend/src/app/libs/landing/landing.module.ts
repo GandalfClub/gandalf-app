@@ -12,9 +12,17 @@ import { EventComponent } from './components/event/event.component';
 import { UserEventsListComponent } from './components/events-page/components/user-events-list/user-events-list.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { BelongedToUserEventsComponent } from './components/events-page/components/belonged-to-user-events/belonged-to-user-events.component';
 
 @NgModule({
-	declarations: [PublicEventsListComponent, EventComponent, LandingPageComponent, UserEventsListComponent, EventListComponent],
+	declarations: [
+		PublicEventsListComponent,
+		EventComponent,
+		LandingPageComponent,
+		UserEventsListComponent,
+		EventListComponent,
+		BelongedToUserEventsComponent
+	],
 	imports: [CommonComponentsModule, CommonModule, EventsStoreModule, TranslateModule],
 	exports: [LandingRoutingModule],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

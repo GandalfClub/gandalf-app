@@ -16,11 +16,14 @@ $events-creator-padding: $main-grid-unit * 5;
 // primary
 $color-primary: #367FF6;
 $color-primary-dark: #2B508B;
-$color-primary-light: #5E99F7;
+$color-primary-light: #5AA6FF;
 // secondary
-$color-error: #EF5350;
-$color-yellow: #FFD600;
+$color-error: #ED5151;
+$color-warning: #FCA600;
 // additional
+$color-black: #212121;
+$color-white: #FFFFFF;
+$color-green: #1BC47D;
 $color-mint: #74E3D2;
 $color-purple: #7457E6;
 $color-coral: #FF7B52;
@@ -28,6 +31,7 @@ $color-black: #212121;
 $color-white: #ffffff;
 $color-alabaster: #f8f8f8;
 $color-mercury: #e9e9e9;
+$color-yellow: #FFD600;
 // gradients
 $gradient-primary: linear-gradient(
     180deg,
@@ -66,18 +70,14 @@ $gradient-tasks-list: linear-gradient(
 );
 // blacks
 $color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
-$color-black-100: rgba($color-black, 100);
-$color-black-95: rgba($color-black, .95);
-$color-black-90: rgba($color-black, .90);
-$color-black-85: rgba($color-black, .85);
-$color-black-75: rgba($color-black, .75);
-$color-black-70: rgba($color-black, .70);
-$color-black-60: rgba($color-black, .60);
-$color-black-50: rgba($color-black, .50);
-$color-black-30: rgba($color-black, .30);
-$color-black-10: rgba($color-black, .10);
-$color-black-5: rgba($color-black, .05);
-$color-black-3: rgba($color-black, .03);
+$color-black-95: #2C2C2C;
+$color-black-85: #424242;
+$color-black-70: #646464;
+$color-black-50: #909090;
+$color-black-30: #BCBCBC;
+$color-black-20: #D3D3D3;
+$color-black-5: #F4F4F4;
+$color-black-3: #F8F8F8;
 // whites
 $color-white-100: rgba($color-white, 100);
 $color-white-75: rgba($color-white, .75);
@@ -118,14 +118,14 @@ $font-main-medium: 'Roboto Medium', sans-serif;
     font-family: $font-main-medium;
     font-size: 14px;
     line-height: 16px;
-	  letter-spacing: 1px;
+	letter-spacing: 1px;
 }
 
 @mixin text-h4-bold() {
     font-family: $font-main-bold;
     font-size: 18px;
-	  line-height: 28px;
-	  letter-spacing: 0px;
+	line-height: 28px;
+	letter-spacing: 0px;
 }
 
 @mixin text-p() {
