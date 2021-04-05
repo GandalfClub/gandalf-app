@@ -28,9 +28,9 @@ export class SelectComponent extends FormControlCommonDirective implements OnCha
 	@Input() public options: SelectOption[];
 
 	@Output()
-  public openedChangeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+	public openedChangeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 	@Output()
-  public selectionChanged: EventEmitter<any> = new EventEmitter<any>();
+	public selectionChanged: EventEmitter<any> = new EventEmitter<any>();
 
 	public openedChange(opened: boolean): void {
 		this.opened = opened;
@@ -38,35 +38,35 @@ export class SelectComponent extends FormControlCommonDirective implements OnCha
 		this.openedChangeEmitter.emit(opened);
 	}
 
-  public ngOnChanges(): void {
-	  if (this.eventTimeType) {
-	    this.options = this.generateEventTime();
-    }
-  }
+	public ngOnChanges(): void {
+		if (this.eventTimeType) {
+			this.options = this.generateEventTime();
+		}
+	}
 
-  private generateEventTime(): SelectOption[] {
-    const MAX_HOUR: number = 23;
-    const TEN_HOURS: number = 10;
-    let arrayTime: SelectOption[] = [];
+	private generateEventTime(): SelectOption[] {
+		const MAX_HOUR: number = 23;
+		const TEN_HOURS: number = 10;
+		let arrayTime: SelectOption[] = [];
 
-    for (let i: number = 0; i <= MAX_HOUR; i++) {
-      let hour: string = i.toString();
-      if (i < TEN_HOURS) {
-        hour = '0' + hour;
-      }
-      arrayTime = [
-        ...arrayTime,
-        {
-          value: `${hour}:00`,
-          label: `${hour}:00`,
-        },
-        {
-          value: `${hour}:30`,
-          label: `${hour}:30`,
-        }
-      ];
-    }
-    return arrayTime;
-  }
+		for (let i: number = 0; i <= MAX_HOUR; i++) {
+			let hour: string = i.toString();
+			if (i < TEN_HOURS) {
+				hour = '0' + hour;
+			}
+			arrayTime = [
+				...arrayTime,
+				{
+					value: `${hour}:00`,
+					label: `${hour}:00`,
+				},
+				{
+					value: `${hour}:30`,
+					label: `${hour}:30`,
+				}
+			];
+		}
+		return arrayTime;
+	}
 
 }

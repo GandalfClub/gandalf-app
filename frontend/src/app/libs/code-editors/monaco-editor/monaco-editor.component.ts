@@ -22,13 +22,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 	selector: 'app-monaco-editor',
 	templateUrl: './monaco-editor.component.html',
 	styleUrls: ['./monaco-editor.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MonacoEditorComponent),
-      multi: true
-    }
-  ]
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => MonacoEditorComponent),
+			multi: true
+		}
+	]
 })
 export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
 	@ViewChild('editorContainer') public editorElementReference: ElementRef;
@@ -45,9 +45,11 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public onChange: Function = (_: string): void => {};
+	public onChange: Function = (_: string): void => {
+	};
 
-  public onBlur: Function = (): void => {};
+	public onBlur: Function = (): void => {
+	};
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (changes.code && this.codeEditor) {
@@ -85,17 +87,17 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges, OnDestro
 		this.codeEditor.dispose();
 	}
 
-  public registerOnChange(fn: any): void {
-	  this.onChange = fn;
-  }
+	public registerOnChange(fn: any): void {
+		this.onChange = fn;
+	}
 
-  public registerOnTouched(fn: any): void {
-    this.onBlur = fn;
-  }
+	public registerOnTouched(fn: any): void {
+		this.onBlur = fn;
+	}
 
-  public writeValue(code: string): void {
-	  this.code = code;
-	  this.onChange(this.code);
-	  this.onBlur();
-  }
+	public writeValue(code: string): void {
+		this.code = code;
+		this.onChange(this.code);
+		this.onBlur();
+	}
 }
