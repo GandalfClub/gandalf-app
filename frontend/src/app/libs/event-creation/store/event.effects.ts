@@ -31,27 +31,27 @@ export class EventsEffects {
 		}),
 	);
 
-  @Effect()
-  public CreateTaskEventEffect$: Observable<Action> = this.actions$.pipe(
-    ofType(EventsActionTypes.CreateTaskEvent),
-    switchMap((action: CreateTaskEventAction) => {
-      return this.eventsRepository.createTaskEvent(action.payload).pipe(
-        map((task: Task) => new CreateTaskActionSuccess(task)),
-        catchError((error: Error) => of(new CreateTaskActionFail(error)))
-      );
-    }),
-  );
+	@Effect()
+	public CreateTaskEventEffect$: Observable<Action> = this.actions$.pipe(
+		ofType(EventsActionTypes.CreateTaskEvent),
+		switchMap((action: CreateTaskEventAction) => {
+			return this.eventsRepository.createTaskEvent(action.payload).pipe(
+				map((task: Task) => new CreateTaskActionSuccess(task)),
+				catchError((error: Error) => of(new CreateTaskActionFail(error)))
+			);
+		}),
+	);
 
-  @Effect()
-  public LoadTasksEffect$: Observable<Action> = this.actions$.pipe(
-    ofType(EventsActionTypes.LoadTasks),
-    switchMap(() => {
-      return this.eventsRepository.loadTasks().pipe(
-        map((tasks: Map<Symbol, Task>) => new LoadTasksActionSuccess(tasks)),
-        catchError((error: Error) => of(new CreateTaskActionFail(error)))
-      );
-    }),
-  );
+	@Effect()
+	public LoadTasksEffect$: Observable<Action> = this.actions$.pipe(
+		ofType(EventsActionTypes.LoadTasks),
+		switchMap(() => {
+			return this.eventsRepository.loadTasks().pipe(
+				map((tasks: Map<Symbol, Task>) => new LoadTasksActionSuccess(tasks)),
+				catchError((error: Error) => of(new CreateTaskActionFail(error)))
+			);
+		}),
+	);
 
 	constructor(
 		private actions$: Actions,
