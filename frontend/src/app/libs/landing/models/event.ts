@@ -17,4 +17,5 @@ export interface Event {
 	size: EventCardSize;
 	roles: EventUserRoles[];
 	eventParticipations: EventParticipation[];
+	tasks: string[];
 }

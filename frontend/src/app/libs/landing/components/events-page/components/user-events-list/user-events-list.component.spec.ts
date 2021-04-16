@@ -36,7 +36,8 @@ describe('UserEventsListComponent', () => {
 			],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		}
 	];
 

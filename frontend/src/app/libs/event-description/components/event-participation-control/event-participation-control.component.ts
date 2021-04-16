@@ -3,7 +3,7 @@ import { EventParticipationControlTypes } from '../../models/participation-contr
 import { Event } from '../../../landing/models/event';
 import { User } from 'src/app/libs/auth/models/user';
 import { EventParticipation } from 'src/app/libs/landing/models/event-participation.class';
-import { EventUserRoles } from 'src/app/libs/landing/models/event-user-roles.enum';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-event-participation-control',
@@ -30,7 +30,14 @@ export class EventParticipationControlComponent {
 	public waiting: EventParticipationControlTypes = EventParticipationControlTypes.Waiting;
 	public noUser: EventParticipationControlTypes = EventParticipationControlTypes.NoUser;
 
-	constructor() { }
+	constructor(
+		private router: Router,
+		private activatedRoute: ActivatedRoute
+	) { }
+
+	public onOpenEvent(): void {
+		this.router.navigate(['info'], { relativeTo: this.activatedRoute });
+	}
 
 	public onTakePart(event: Event, user: User): void {
 		if (!user || !event) {

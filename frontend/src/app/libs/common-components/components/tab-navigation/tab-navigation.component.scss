@@ -1,13 +1,13 @@
 @import "variables";
 
 .app-tab-navigation__block {
-	@include text-h4();
+	@include text-cta();
 	display: inline-block;
 	text-align: center;
 	width: 144px;
 	color: $color-black-70;
 	cursor: pointer;
-	padding-bottom: 15px;
+	padding: 16px;
 
 	&--active {
 		color: $color-primary;

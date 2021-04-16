@@ -28,7 +28,8 @@ describe('Events Selectors', () => {
 			users: [user],
 			size: EventCardSize.S,
 			eventParticipations: [eventParticipation],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 
 		events = {

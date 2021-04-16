@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/libs/auth/models/user';
 import { Event } from '../../../landing/models/event';
 import { EventParticipationControlComponent } from './event-participation-control.component';
@@ -12,10 +13,16 @@ describe('EventParticipationControlComponent', () => {
 	let mockUser: User;
 	let mockEvent: Event;
 	let mockparticipation: EventParticipation;
+	let router: Router;
+	let activatedRoute: ActivatedRoute;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventParticipationControlComponent]
+			declarations: [EventParticipationControlComponent],
+			providers: [
+				{ provide: Router, useValue: router },
+				{ provide: ActivatedRoute, useValue: activatedRoute },
+			]
 		})
 			.compileComponents();
 	}));
@@ -24,6 +31,8 @@ describe('EventParticipationControlComponent', () => {
 		fixture = TestBed.createComponent(EventParticipationControlComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
+		router = TestBed.inject(Router);
+		activatedRoute = TestBed.inject(ActivatedRoute);
 
 		mockUser = {
 			id: '1',
@@ -44,7 +53,8 @@ describe('EventParticipationControlComponent', () => {
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 
 		component.user = mockUser;
