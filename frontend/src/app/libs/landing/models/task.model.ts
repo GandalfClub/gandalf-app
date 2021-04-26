@@ -7,11 +7,11 @@ export enum TasksTypes {
 
 export interface Answer {
   label: string;
-  isCorrect: boolean;
 }
 
 export interface Task {
   id: string;
+  text: string;
   isDraft?: boolean;
   taskName: string;
   taskType: TasksTypes;

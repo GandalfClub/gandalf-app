@@ -12,11 +12,11 @@ export class EventInfoFacadeService {
 
 	constructor(private store: Store) { }
 
-	get tasks$(): Observable<Task[]> {
+	public get tasks$(): Observable<Task[]> {
 		return this.store.select(getTasks);
 	}
 
-	get selectedTask$(): Observable<Task> {
+	public get selectedTask$(): Observable<Task> {
 		return this.store.select(getSelectedTask);
 	}
 

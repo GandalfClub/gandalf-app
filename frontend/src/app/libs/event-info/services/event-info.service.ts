@@ -17,15 +17,14 @@ export class EventInfoService {
 			taskType: TasksTypes.Single,
 			mentorCheck: false,
 			maxScore: 100,
+			text: '',
 			question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
 			answers: new Set([
 				{
 					label: 'label',
-					isCorrect: false,
 				},
 				{
 					label: 'Some label12',
-					isCorrect: true,
 				},
 			]),
 		},
@@ -35,6 +34,7 @@ export class EventInfoService {
 			taskType: TasksTypes.Coding,
 			mentorCheck: true,
 			maxScore: 300,
+			text: '',
 			question: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda esse iure laboriosam natus non porro quam rem sed similique?</p>',
 			code: `function a() {\n console.log(\'Hello world\');\n}`,
 		},
@@ -44,15 +44,14 @@ export class EventInfoService {
 			taskType: TasksTypes.Multiple,
 			mentorCheck: false,
 			maxScore: 60,
+			text: '',
 			question: '<p>Question text3</p>',
 			answers: new Set([
 				{
 					label: 'Some label31',
-					isCorrect: false,
 				},
 				{
 					label: 'Some label32',
-					isCorrect: true,
 				},
 			]),
 		}

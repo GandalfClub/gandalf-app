@@ -38,10 +38,10 @@ describe('TasksViewerComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('onTaskSelected', () => {
+	describe('taskSelected', () => {
 		it('should call selectTask', () => {
 			const spy: jasmine.Spy  = spyOn(eventInfoFacadeService, 'selectTask');
-			component.onTaskSelected(tasksMock[0]);
+			component.taskSelected(tasksMock[0]);
 			expect(spy).toHaveBeenCalledWith(tasksMock[0]);
 		});
 	});

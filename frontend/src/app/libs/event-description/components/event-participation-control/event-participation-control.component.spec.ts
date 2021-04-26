@@ -66,12 +66,12 @@ describe('EventParticipationControlComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('onTakePart: ', () => {
+	describe('registeredForEvent: ', () => {
 		let emitterSpy: jasmine.Spy;
 
 		beforeEach(() => {
 			emitterSpy = spyOn(component.registered, 'emit');
-			component.onTakePart(component.event, component.user);
+			component.registeredForEvent(component.event, component.user);
 		});
 
 		it('should call registered emitter', () => {

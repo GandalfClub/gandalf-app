@@ -35,11 +35,11 @@ export class EventParticipationControlComponent {
 		private activatedRoute: ActivatedRoute
 	) { }
 
-	public onOpenEvent(): void {
+	public eventOpened(): void {
 		this.router.navigate(['info'], { relativeTo: this.activatedRoute });
 	}
 
-	public onTakePart(event: Event, user: User): void {
+	public registeredForEvent(event: Event, user: User): void {
 		if (!user || !event) {
 			return;
 		}

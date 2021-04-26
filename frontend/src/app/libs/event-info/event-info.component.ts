@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
 import { Tab } from '../common-components/components/tab-navigation/models/tab.model';
 import { Tabs } from '../common-components/components/tab-navigation/models/tabs.enum';
@@ -16,7 +17,7 @@ export class EventInfoComponent implements OnInit, OnDestroy {
 	public tabs: Tab[] = [];
 	public currentTab: Tab;
 
-	private subs: Subscription = new Subscription();
+	private destroy$: Subject<void> = new Subject<void>();
 
 	constructor(
 		private eventFacadeService: EventFacadeService,
@@ -26,7 +27,8 @@ export class EventInfoComponent implements OnInit, OnDestroy {
 	) { }
 
 	public ngOnInit(): void {
-		const eventSub: Subscription = this.eventFacadeService.eventValue$
+		this.eventFacadeService.eventValue$
+			.pipe(takeUntil(this.destroy$))
 			.subscribe((event: Event) => {
 				if (!event) {
 					return;
@@ -36,12 +38,11 @@ export class EventInfoComponent implements OnInit, OnDestroy {
 				this.breadcrumbFacadeService.loadBreadcrumb(event.title);
 				this.router.navigate([this.currentTab.title], { relativeTo: this.aciveRoute });
 			});
-
-		this.subs.add(eventSub);
 	}
 
 	public ngOnDestroy(): void {
-		this.subs.unsubscribe();
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 	public changeTab(tab: Tab): void {

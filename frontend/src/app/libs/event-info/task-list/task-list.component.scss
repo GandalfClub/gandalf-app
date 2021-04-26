@@ -48,7 +48,7 @@
       margin-bottom: $main-grid-unit;
     }
 
-    &_active::before {
+    &--active::before {
       content: '';
       position: absolute;
       left: 0;

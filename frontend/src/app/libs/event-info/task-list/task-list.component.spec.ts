@@ -36,20 +36,20 @@ describe('TaskListComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('onOpenTask', () => {
+	describe('taskOpened', () => {
 		it('should call navigate method', () => {
-			component.onOpenTask(0);
+			component.taskOpened(0);
 			expect(router.navigate).toHaveBeenCalledWith([0], { relativeTo: activatedRoute });
 		});
 
 		it('should call selected emitter', () => {
 			const spy: jasmine.Spy = spyOn(component.selected, 'emit');
-			component.onOpenTask(0);
+			component.taskOpened(0);
 			expect(spy).toHaveBeenCalledWith(component.tasks[0]);
 		});
 
 		it('should set selectedTask field', () => {
-			component.onOpenTask(0);
+			component.taskOpened(0);
 			expect(component.selectedTaskIndex).toBe(0);
 		});
 	});

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Task } from '../../landing/models/task.model';
 import { EventInfoFacadeService } from '../store/event-info-facade.service';
 
@@ -16,24 +17,25 @@ export class TasksViewerComponent implements OnInit, OnDestroy {
 		return this.tasks?.length ?? 0;
 	}
 
-	private subs: Subscription = new Subscription();
+	private destroy$: Subject<void> = new Subject<void>();
 
 	constructor(private eventInfoFacadeService: EventInfoFacadeService) { }
 
 	public ngOnInit(): void {
 		this.eventInfoFacadeService.fetchTasks();
-		const tasksSub: Subscription = this.eventInfoFacadeService
+		this.eventInfoFacadeService
 			.tasks$
+			.pipe(takeUntil(this.destroy$))
 			.subscribe((tasks: Task[]) => this.tasks = tasks);
 
-		this.subs.add(tasksSub);
 	}
 
 	public ngOnDestroy(): void {
-		this.subs.unsubscribe();
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
-	public onTaskSelected(task: Task): void {
+	public taskSelected(task: Task): void {
 		this.eventInfoFacadeService.selectTask(task);
 	}
 }

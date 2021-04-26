@@ -17,7 +17,7 @@ export class TaskListComponent implements OnInit {
 
 	public selectedTaskIndex: number = 0;
 
-	get tasksLength(): number {
+	public get tasksLength(): number {
 		return this.tasks?.length ?? 0;
 	}
 
@@ -29,11 +29,11 @@ export class TaskListComponent implements OnInit {
 	public ngOnInit(): void {
 		const task: Task = this.tasks[0];
 		if (task) {
-			this.onOpenTask(0);
+			this.taskOpened(0);
 		}
 	}
 
-	public onOpenTask(index: number): void {
+	public taskOpened(index: number): void {
 		this.router.navigate([index], { relativeTo: this.activeRoute });
 		this.selected.emit(this.tasks[index]);
 		this.selectedTaskIndex = index;

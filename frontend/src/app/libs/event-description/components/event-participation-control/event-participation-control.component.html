@@ -3,7 +3,7 @@
     *ngSwitchCase="takePart"
     class="app-event-participation-control__container"
   >
-    <app-button type="flat" color="accept" (click)="onTakePart(event, user)">
+    <app-button type="flat" color="accept" (click)="registeredForEvent(event, user)">
       TAKE PART
     </app-button>
   </div>
@@ -37,7 +37,7 @@
     *ngSwitchCase="openEvent"
     class="app-event-participation-control__container"
   >
-    <app-button type="flat" color="accept" (click)="onOpenEvent()">
+    <app-button type="flat" color="accept" (click)="eventOpened()">
       OPEN EVENT
     </app-button>
   </div>

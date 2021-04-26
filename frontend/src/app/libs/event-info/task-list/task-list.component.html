@@ -3,8 +3,8 @@
     <span class="app-task-list__title">Tasks ({{ tasksLength }})</span>
   </div>
   <div class="app-task-list__content">
-    <div class="app-task-list__item" [ngClass]="{ 'app-task-list__item_active' : i === selectedTaskIndex }"
-      *ngFor="let task of tasks; let i = index" (click)="onOpenTask(i)">
+    <div class="app-task-list__item" [ngClass]="{ 'app-task-list__item--active' : i === selectedTaskIndex }"
+      *ngFor="let task of tasks; let i = index" (click)="taskOpened(i)">
       {{ task.taskName }}
     </div>
   </div>
