@@ -1,7 +1,7 @@
 @mixin drop-down-menu-theme() {
 	&.mat-menu-panel {
 		min-width: 64px;
-		background: $color-black-95;
+		background: #2C2C2C;
 	}
 	& .mat-menu-content:not(:empty) {
 		padding: 0;
