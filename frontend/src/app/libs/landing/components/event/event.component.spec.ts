@@ -15,7 +15,8 @@ const event: Event = {
 	users: [],
 	size: EventCardSize.S,
 	eventParticipations: [],
-	roles: []
+	roles: [],
+	tasks: []
 };
 
 describe('EventComponent', () => {

@@ -54,7 +54,8 @@ describe('Events Effects', () => {
 					users: [],
 					size: EventCardSize.S,
 					eventParticipations: [],
-					roles: []
+					roles: [],
+					tasks: []
 				};
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));

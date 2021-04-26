@@ -34,7 +34,8 @@ describe('Event actions', () => {
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 		beforeEach(() => {
 			action = new EventActions.LoadEventSuccess(payload);

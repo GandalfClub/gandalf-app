@@ -1,0 +1,9 @@
+<div class="app-event-info">
+  <app-breadcrumb>
+    <app-tab-navigation (changeTab)="changeTab($event)" [tabs]="tabs"></app-tab-navigation>
+  </app-breadcrumb>
+  
+  <main class="app-event-info__main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -6,7 +6,11 @@ $layout-outer-margin: 9 * $main-grid-unit;
 $layout-gutter: 3 * $main-grid-unit;
 $layout-columns-quantity: 12;
 $layout-column-width: 10 * $main-grid-unit;
-$layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
+$layout-total-width: 153 * $main-grid-unit + 2 * $layout-outer-margin;
+$layout-sidebar-width: 36 * $main-grid-unit;
+$header-height: 80px;
+$breadcrumb-height: 48px;
+$footer-height: 40px;
 // colors
 // primary
 $color-primary: #367FF6;
@@ -23,11 +27,7 @@ $color-mint: #74E3D2;
 $color-purple: #7457E6;
 $color-coral: #FF7B52;
 $color-yellow: #FFD600;
-// gradients
-$gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), #367FF6;
-$gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #7457E6;
-$gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), #FF7B52;
-$gradient-important-role: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #212121;
+$color-mercury: #e9e9e9;
 // blacks
 $color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
 $color-black-95: #2C2C2C;
@@ -45,70 +45,84 @@ $color-white-50: rgba($color-white, .50);
 $color-white-30: rgba($color-white, .30);
 $color-white-10: rgba($color-white, .10);
 $color-white-5: rgba($color-white, .05);
+// gradients
+$gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), $color-primary;
+$gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), $color-purple;
+$gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), $color-coral;
+$gradient-important-role: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), $color-black;
+$gradient-tasks-list: linear-gradient(180deg, $color-mercury 0%, $color-black-3 100%);
+$gradient-events: linear-gradient(270deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), $color-coral;
 // typography
 $font-main-bold: 'Roboto Bold', sans-serif;
 $font-main-regular: 'Roboto Regular', sans-serif;
 $font-main-medium: 'Roboto Medium', sans-serif;
 // typography styles
 @mixin text-h1() {
-    font-family: $font-main-bold;
-    font-size: 48px;
-    line-height: 56px;
-    letter-spacing: 0;
+  font-family: $font-main-bold;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0;
 }
 
 @mixin text-h2() {
-    font-family: $font-main-bold;
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: 0;
+  font-family: $font-main-bold;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0;
 }
 
 @mixin text-h3() {
-    font-family: $font-main-bold;
-    font-size: 24px;
-    line-height: 28px;
-    letter-spacing: 0;
+  font-family: $font-main-bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0;
 }
 
 @mixin text-h4() {
-    font-family: $font-main-medium;
-    font-size: 14px;
-    line-height: 16px;
+  font-family: $font-main-regular;
+  font-size: 18px;
+  line-height: 28px;
+	letter-spacing: 1px;
+}
+
+@mixin text-cta {
+  font-family: $font-main-medium;
+  font-size: 14px;
+  line-height: 16px;
 	letter-spacing: 1px;
 }
 
 @mixin text-h4-bold() {
-    font-family: $font-main-bold;
-    font-size: 18px;
+  font-family: $font-main-bold;
+  font-size: 18px;
 	line-height: 28px;
 	letter-spacing: 0px;
 }
 
 @mixin text-p() {
-    font-family: $font-main-regular;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0;
+  font-family: $font-main-regular;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
 }
 
 @mixin text-p-bold() {
-    font-family: $font-main-bold;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0;
+  font-family: $font-main-bold;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
 }
 
 @mixin text-small() {
-    font-family: $font-main-regular;
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0;
+  font-family: $font-main-regular;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
 }
 
 @mixin text-small-bold() {
-    font-family: $font-main-bold;
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0;
+  font-family: $font-main-bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
 }

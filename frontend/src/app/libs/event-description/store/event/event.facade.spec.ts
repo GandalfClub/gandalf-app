@@ -38,7 +38,8 @@ describe('Events FacadeService', () => {
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 		eventState = {
 			status: EntityStatus.Success,

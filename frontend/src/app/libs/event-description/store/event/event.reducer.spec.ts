@@ -27,7 +27,8 @@ describe('Events Reducer', () => {
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 	});
 

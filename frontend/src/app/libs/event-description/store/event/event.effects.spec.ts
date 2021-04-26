@@ -60,7 +60,8 @@ describe('Events Effects', () => {
 					users: [],
 					size: EventCardSize.S,
 					eventParticipations: [],
-					roles: []
+					roles: [],
+					tasks: []
 				};
 				eventDto = {
 					_id: 'test',
