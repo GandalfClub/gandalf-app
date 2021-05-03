@@ -13,8 +13,7 @@ const routes: Routes = [
 	},
 	{
 		path: '**',
-		loadChildren: () =>
-			import('../landing/landing.module').then((m: typeof import('../landing/landing.module')) => m.LandingModule),
+		redirectTo: '/landing'
 	},
 ];
 
