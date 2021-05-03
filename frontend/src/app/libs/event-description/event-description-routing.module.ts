@@ -10,7 +10,12 @@ const routes: Routes = [
 		loadChildren: () => import('../event-info/event-info.module')
 			.then((m: typeof import('../event-info/event-info.module')) => m.EventInfoModule),
 		canActivateChild: [EventInfoGuard]
-	}
+	},
+	{
+		path: '**',
+		loadChildren: () =>
+			import('../landing/landing.module').then((m: typeof import('../landing/landing.module')) => m.LandingModule),
+	},
 ];
 
 @NgModule({
