@@ -31,6 +31,7 @@
     }
     &::-webkit-scrollbar-thumb {
       border-radius: $secondary-grid-unit / 2;
+      background: $color-black-50;
     }
 
     &--light-theme::-webkit-scrollbar-thumb {
