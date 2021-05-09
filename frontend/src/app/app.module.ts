@@ -10,19 +10,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CodejarComponent } from './libs/code-editors/codejar-editor/codejar.component';
 import { AuthModule } from './libs/auth/auth.module';
+import {CommonComponentsModule} from './libs/common-components/common-components.module';
 
 @NgModule({
 	declarations: [AppComponent, CodejarComponent],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		AuthModule,
-		ContainerModule,
-		StoreModule.forRoot({}),
-		EffectsModule.forRoot([]),
-		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
-	],
+  imports: [
+	BrowserModule,
+	AppRoutingModule,
+	BrowserAnimationsModule,
+	AuthModule,
+	ContainerModule,
+	StoreModule.forRoot({}),
+	EffectsModule.forRoot([]),
+	StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+	CommonComponentsModule
+  ],
 	providers: [],
 	bootstrap: [AppComponent],
 })
