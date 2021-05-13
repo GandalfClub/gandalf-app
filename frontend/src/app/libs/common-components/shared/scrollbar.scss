@@ -1,17 +1,16 @@
 @import "variables";
 
-body{
+body {
   overflow-y: hidden;
 }
+
 @supports (scrollbar-width: thin) {
   .scrollbar {
 		overflow: auto;
     scrollbar-width: thin;
-
     &--light {
       scrollbar-color: $color-black-50 rgba(0, 0, 0, 0);
     }
-
     &--dark {
       scrollbar-color: $color-white-50 rgba(0, 0, 0, 0);
     }
@@ -21,7 +20,6 @@ body{
 @supports (-webkit-appearance: auto) {
   .scrollbar {
 		overflow: auto;
-
     &::-webkit-scrollbar-track {
       display: none;
     }
@@ -34,13 +32,10 @@ body{
     }
     &::-webkit-scrollbar-thumb {
       border-radius: $secondary-grid-unit / 2;
-
     }
-
     &--light-theme::-webkit-scrollbar-thumb {
       background: $color-black-50;
     }
-
     &--dark-theme::-webkit-scrollbar-thumb {
       background: $color-white-50;
     }

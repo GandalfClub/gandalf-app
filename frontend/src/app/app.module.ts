@@ -15,15 +15,15 @@ import {CommonComponentsModule} from './libs/common-components/common-components
 @NgModule({
 	declarations: [AppComponent, CodejarComponent],
   imports: [
-	BrowserModule,
-	AppRoutingModule,
-	BrowserAnimationsModule,
-	AuthModule,
-	ContainerModule,
-	StoreModule.forRoot({}),
-	EffectsModule.forRoot([]),
-	StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-	CommonComponentsModule
+	  BrowserModule,
+	  AppRoutingModule,
+	  BrowserAnimationsModule,
+	  AuthModule,
+	  ContainerModule,
+	  StoreModule.forRoot({}),
+	  EffectsModule.forRoot([]),
+	  StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+	  CommonComponentsModule
   ],
 	providers: [],
 	bootstrap: [AppComponent],
