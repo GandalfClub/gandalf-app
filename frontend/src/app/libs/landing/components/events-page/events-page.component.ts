@@ -26,6 +26,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 	public pendingStatus: EntityStatus = EntityStatus.Pending;
 	public successStatus: EntityStatus = EntityStatus.Success;
+	public myEvents: Event[];
+	public allEvents: Event[];
+	public otherEvents: Event[] = [];
 
 	private destroy$: Subject<void> = new Subject();
 
@@ -33,7 +36,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 		private eventsFacadeService: EventsFacadeService,
 		private authFacadeService: AuthFacadeService,
 		public router: Router
-	) { }
+	) {
+	}
 
 	public ngOnInit(): void {
 		this.eventsFacadeService.getEvents();
@@ -41,6 +45,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 		this.eventsFacadeService.events$.pipe(takeUntil(this.destroy$))
 			.subscribe((events: EntityWrapper<Event[]>) => {
 				this.events = events;
+				this.allEvents = this.events.value;
 			});
 
 		this.authFacadeService.user$.pipe(takeUntil(this.destroy$))
@@ -51,6 +56,12 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 		this.userEvents$ = this.authFacadeService.user$.pipe(
 			pluck('value'),
 			switchMap((user: User) => this.eventsFacadeService.getUserEvents$(user)));
+		this.userEvents$.subscribe((allEvents: Event[]) => {
+			this.myEvents = allEvents;
+			if (this.myEvents !== undefined) {
+				this.otherEvents = this.allEvents.filter((i: Event) => !this.myEvents.includes((i)));
+			}
+		});
 	}
 
 	public goToSignUp(): void {
