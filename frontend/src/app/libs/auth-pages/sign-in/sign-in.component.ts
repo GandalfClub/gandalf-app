@@ -116,7 +116,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 		this.authFacadeService.signInByGithub();
 	}
 
-	public onSinUp(): void {
+	public onSingUp(): void {
 		this.router.navigateByUrl('/signup');
 	}
 
