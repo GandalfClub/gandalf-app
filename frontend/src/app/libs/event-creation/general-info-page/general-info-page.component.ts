@@ -34,6 +34,7 @@ export class GeneralInfoPageComponent implements OnInit {
 			isPrivate: false,
 			isContinuous: false,
 			isDraft: '',
+			isActive: ''
 		});
 
 		this.eventFormGroup.valueChanges.subscribe(() => {

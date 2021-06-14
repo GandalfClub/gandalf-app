@@ -4,17 +4,22 @@ import * as Joi from 'joi';
 import EventValidation from './validation';
 
 const EventsService: IEventsService = {
-    async createEvent(eventInfo: IEventsnModel): Promise<IEventsnModel> {
+    async createEvent(reqBody: IEventsnModel): Promise<IEventsnModel> {
         try {
-            const validate: Joi.ValidationResult<IEventsnModel> = EventValidation.createEvent(eventInfo);
+            const createEventInfo: any = {
+                title: reqBody.title,
+                description: reqBody.description,
+                isActive: reqBody.isActive
+            };
+            const validate: Joi.ValidationResult<IEventsnModel> = EventValidation.createEvent(createEventInfo);
 
             if (validate.error) {
                 throw new Error(validate.error.message);
             }
 
-            eventInfo.created = new Date(Date.now());
+            createEventInfo.created = new Date(Date.now());
 
-            const event: IEventsnModel = await EventsModel.create(eventInfo);
+            const event: IEventsnModel = await EventsModel.create(createEventInfo);
 
             return event;
         } catch (err) {

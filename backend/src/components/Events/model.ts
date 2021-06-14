@@ -24,9 +24,9 @@ export interface IEventsnModel extends Document {
     endDate: Date;
     maxScore: number;
     tasks: Types.ObjectId[];
-    users: Types.ObjectId[];
-    participations: Types.ObjectId[];
-    eventParticipations: [IEventParticipationModel];
+    users?: Types.ObjectId[];
+    participations?: Types.ObjectId[];
+    eventParticipations?: [IEventParticipationModel];
     isDraft: boolean;
 }
 

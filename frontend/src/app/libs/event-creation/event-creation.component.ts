@@ -36,7 +36,8 @@ export class EventCreationComponent implements OnInit {
 	}
 	public saveAsDraft(): void {
 		this.formFromGeneralComponent.patchValue({
-			isDraft: true
+			isDraft: true,
+			isActive: true
 		});
 		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
 		console.log(this.formFromGeneralComponent.value);
@@ -44,10 +45,10 @@ export class EventCreationComponent implements OnInit {
 
 	public send(): void {
 		this.formFromGeneralComponent.patchValue({
-			isDraft: false
+			isDraft: false,
+			isActive: true
 		});
 		this.newEventsFacadeService.createNewEvent(this.formFromGeneralComponent.value);
-		console.log(this.formFromGeneralComponent.value);
 	}
 
 	public getFormFromGeneralComponent(data: FormGroup): void {

@@ -9,4 +9,5 @@ export interface NewEvent {
 	isPrivate: boolean;
 	isContinuous: boolean;
 	isDraft: boolean;
+	isActive: boolean;
 }
