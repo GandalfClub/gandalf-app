@@ -49,6 +49,8 @@ import { TabNavigationComponent } from './components/tab-navigation/tab-navigati
 import { CKEditorModule } from 'ckeditor4-angular';
 import { CkeditorComponent } from './components/ckeditor/ckeditor.component';
 import { FormControlCommonDirective } from './directives/formControl/form-control-common.directive';
+import { SafeHtmlPipe } from '../pipes/sanitizer.pipe';
+import { CodejarComponent } from '../code-editors/codejar-editor/codejar.component';
 
 @NgModule({
 	declarations: [
@@ -75,7 +77,9 @@ import { FormControlCommonDirective } from './directives/formControl/form-contro
 		TextareaComponent,
 		TabNavigationComponent,
 		CkeditorComponent,
-		FormControlCommonDirective
+		FormControlCommonDirective,
+		SafeHtmlPipe,
+		CodejarComponent
 	],
 	imports: [
 		ReactiveFormsModule,
@@ -146,7 +150,9 @@ import { FormControlCommonDirective } from './directives/formControl/form-contro
 		TextareaComponent,
 		TabNavigationComponent,
 		CkeditorComponent,
-		FormControlCommonDirective
+		FormControlCommonDirective,
+		SafeHtmlPipe,
+		CodejarComponent
 	],
 	providers: [
 		{
