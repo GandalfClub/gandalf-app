@@ -1,1 +1,52 @@
-<h3 *ngIf="task">{{ task.taskName }}</h3>
+<section class="app-task">
+    <h3 class="app-task__header" *ngIf="task">{{ task.taskName }}</h3>
+    <div class="app-task__question" [innerHTML]="task.question | safeHtml"></div>
+    <form
+        class="app-task__form"
+        action=""
+        [formGroup]="eventFormGroup">
+        <ng-container [ngSwitch]="task.taskType">
+            <ng-template *ngSwitchCase="'TEXT'" [ngTemplateOutlet]="textAnswer"></ng-template>
+            <ng-template *ngSwitchCase="'CODING'" [ngTemplateOutlet]="codeAnswer"></ng-template>
+            <ng-template *ngSwitchCase="'SINGLE'" [ngTemplateOutlet]="singleAnswer"></ng-template>
+            <ng-template *ngSwitchCase="'MULTIPLE'" [ngTemplateOutlet]="multipleAnswer"></ng-template>
+            <ng-template *ngSwitchDefault [ngTemplateOutlet]="textAnswer"></ng-template>
+        </ng-container>
+        <app-button
+            class="app-task__form-submit"
+            type="flat"
+            color="primary"
+            (click)="submitSolution()">
+            {{ "BUTTON.PUBLISH" | translate }}
+        </app-button>
+    </form>
+</section>
+
+<ng-template #textAnswer [formGroup]="eventFormGroup">
+    <app-ckeditor 
+        class="app-task__form-answer app-task__form-answer--text"
+        formControlName="answer"
+    ></app-ckeditor>
+</ng-template>
+
+<ng-template #singleAnswer [formGroup]="eventFormGroup">
+    <app-radio-group
+        [options]="task.answers"
+        labelField="label"
+    ></app-radio-group>
+</ng-template>
+
+<ng-template #codeAnswer [formGroup]="eventFormGroup">
+    <app-codejar
+        language="javascript"
+        [code]="task.code"
+        (changedCode)="setCodeAnswer($event)"
+    ></app-codejar>
+</ng-template>
+
+<ng-template #multipleAnswer [formGroup]="eventFormGroup">
+    <app-checkbox-group
+        [options]="task.answers"
+        labelField="label"
+    ></app-checkbox-group>
+</ng-template>

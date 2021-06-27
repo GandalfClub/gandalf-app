@@ -9,6 +9,7 @@
 
   &__aside {
     width: $layout-sidebar-width;
+    flex-shrink: 0;
   }
 
   &__main {
