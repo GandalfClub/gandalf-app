@@ -50,7 +50,7 @@ export class CkeditorComponent extends FormControlCommonDirective implements Aft
 		return event.editor.getData();
 	}
 
-	ngAfterViewInit() {
+	ngAfterViewInit(): void {
 		if (this.placeHolder !== undefined) {
 			this.config.editorplaceholder = this.placeHolder;
 		}
