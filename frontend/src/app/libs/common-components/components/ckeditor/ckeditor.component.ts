@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CKEditor4 } from 'ckeditor4-angular';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
@@ -16,9 +16,13 @@ import { FormControlCommonDirective } from '../../directives/formControl/form-co
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CkeditorComponent extends FormControlCommonDirective {
+export class CkeditorComponent extends FormControlCommonDirective implements OnInit {
 
 	@Input() public value: boolean;
+
+	@Input() public placeHolder: string;
+
+	@Input() public readonly: boolean;
 
 	@Input() public formControlName: string;
 
@@ -38,11 +42,17 @@ export class CkeditorComponent extends FormControlCommonDirective {
 			{ name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
 			{ name: 'colors', items: ['TextColor', 'BGColor'] },
 			{ name: 'tools', items: ['Maximize', 'ShowBlocks'] }
-		]
+		],
+		readonly: true
 	};
 
 	public getDataCkeditor(event: any): any {
 		return event.editor.getData();
 	}
 
+	ngAfterViewInit() {
+		if (this.placeHolder) {
+			this.config.editorplaceholder = this.placeHolder
+		}
+	}
 }
