@@ -32,7 +32,7 @@ export function eventInfoReducer(state: EventInfoState = initialState, action: E
 				tasks: {
 					status: EntityStatus.Success,
 					error: null,
-					value: state.tasks.value.map(task => task.id === action.payload.id ? action.payload : task)
+					value: state.tasks.value.map((task: Task) => task.id === action.payload.id ? action.payload : task)
 				},
 				selectedTask: action.payload
 			};

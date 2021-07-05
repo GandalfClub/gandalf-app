@@ -1,6 +1,3 @@
-import { MatSlideToggleDefaultOptions } from "@angular/material/slide-toggle";
-import { User } from "../../auth/models/user";
-
 export enum TasksTypes {
   Coding = 'CODING',
   Single = 'SINGLE',

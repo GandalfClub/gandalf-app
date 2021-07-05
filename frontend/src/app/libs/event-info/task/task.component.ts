@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { User } from '../../auth/models/user';
-import { SolutionStatus, Task } from '../../landing/models/task.model';
+import { Answer, SolutionStatus, Task } from '../../landing/models/task.model';
 import { EventInfoFacadeService } from '../store/event-info-facade.service';
 
 @Component({
@@ -32,22 +32,22 @@ export class TaskComponent implements OnInit, OnDestroy {
 			.selectedTask$
 			.pipe(takeUntil(this.destroy$))
 			.subscribe((task: Task) => {
-				this.task = task
+				this.task = task;
 			});
 
-		this.eventFormGroup.valueChanges
+		this.eventFormGroup.get('answer').valueChanges
 		.pipe(takeUntil(this.destroy$))
 		.subscribe(
-			formData => {
+			(answer: string) => {
 				this.eventInfoFacadeService.setSolution({
 					...this.task,
 					solution: {
 						status: SolutionStatus.Draft,
-						value: formData.answer
+						value: answer
 					}
-				})
+				});
 			}
-		)
+		);
 	}
 
 	public ngOnDestroy(): void {
@@ -62,6 +62,6 @@ export class TaskComponent implements OnInit, OnDestroy {
 				status: SolutionStatus.Pending,
 				value: this.eventFormGroup.value.answer
 			}
-		})
+		});
 	}
 }

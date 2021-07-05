@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { CKEditor4 } from 'ckeditor4-angular';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
@@ -16,7 +16,7 @@ import { FormControlCommonDirective } from '../../directives/formControl/form-co
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CkeditorComponent extends FormControlCommonDirective implements OnInit {
+export class CkeditorComponent extends FormControlCommonDirective implements AfterViewInit {
 
 	@Input() public value: boolean;
 
@@ -51,8 +51,8 @@ export class CkeditorComponent extends FormControlCommonDirective implements OnI
 	}
 
 	ngAfterViewInit() {
-		if (this.placeHolder) {
-			this.config.editorplaceholder = this.placeHolder
+		if (this.placeHolder !== undefined) {
+			this.config.editorplaceholder = this.placeHolder;
 		}
 	}
 }
