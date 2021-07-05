@@ -15,38 +15,35 @@
         <app-button
             class="app-task__form-submit"
             type="flat"
-            color="primary"
+            [color]="task.solution.status == 'DRAFT' ? 'primary' : 'accept'"
             (click)="submitSolution()">
-            {{ "BUTTON.PUBLISH" | translate }}
+            <ng-container [ngSwitch]="task.solution.status">
+                <ng-container *ngSwitchCase="'PENDING'">
+                    {{ "BUTTON.SENDED" | translate }}
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    {{ "BUTTON.SEND" | translate }}
+                </ng-container>
+            </ng-container>
         </app-button>
     </form>
 </section>
 
 <ng-template #textAnswer [formGroup]="eventFormGroup">
-    <app-ckeditor 
+    <app-ckeditor
         class="app-task__form-answer app-task__form-answer--text"
         formControlName="answer"
+        placeHolder="{{ 'PLACEHOLDER.EVENT_TEXT_SOLUTION' | translate }}"
+        [value]="task.solution.status !== 'PENDING'"
+        [readonly]="task.solution.status === 'PENDING'"
     ></app-ckeditor>
 </ng-template>
 
 <ng-template #singleAnswer [formGroup]="eventFormGroup">
-    <app-radio-group
-        [options]="task.answers"
-        labelField="label"
-    ></app-radio-group>
 </ng-template>
 
 <ng-template #codeAnswer [formGroup]="eventFormGroup">
-    <app-codejar
-        language="javascript"
-        [code]="task.code"
-        (changedCode)="setCodeAnswer($event)"
-    ></app-codejar>
 </ng-template>
 
 <ng-template #multipleAnswer [formGroup]="eventFormGroup">
-    <app-checkbox-group
-        [options]="task.answers"
-        labelField="label"
-    ></app-checkbox-group>
 </ng-template>
