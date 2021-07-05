@@ -1,11 +1,12 @@
 import { Action } from '@ngrx/store';
-import { Task } from '../../landing/models/task.model';
+import { Solution, Task } from '../../landing/models/task.model';
 
 export enum ActionTypes {
   TaskSelected = '[Events Info] Task Selected',
   FetchTasks = '[Events Info] Fetch Tasks',
   FetchTasksSuccess = '[Events Info] Fetch Tasks Success',
   FetchTasksError = '[Events Info] Fetch Tasks Error',
+  SetSolution = '[Events Info] Set Solution'
 }
 
 export class TaskSelected implements Action {
@@ -27,8 +28,14 @@ export class FetchTasksError implements Action {
   constructor(public payload: Error) { }
 }
 
+export class SetSolution implements Action {
+  public readonly type: ActionTypes.SetSolution = ActionTypes.SetSolution;
+  constructor(public payload: Task) { }
+}
+
 export type EventInfoAction =
   TaskSelected
   | FetchTasks
   | FetchTasksSuccess
-  | FetchTasksError;
+  | FetchTasksError
+  | SetSolution;
