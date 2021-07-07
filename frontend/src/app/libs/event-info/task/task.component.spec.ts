@@ -1,8 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
+import { CommonComponentsModule } from '../../common-components/common-components.module';
 import { Task } from '../../landing/models/task.model';
 import { EventInfoFacadeService } from '../store/event-info-facade.service';
-
+import { EventInfoStoreModule } from '../store/store.module';
 import { TaskComponent } from './task.component';
 
 describe('TaskComponent', () => {
@@ -17,7 +22,18 @@ describe('TaskComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [TaskComponent],
+			declarations: [
+				TaskComponent
+			],
+			imports: [
+				StoreModule.forRoot({}),
+				EffectsModule.forRoot([]),
+				CommonComponentsModule,
+				TranslateModule.forRoot(),
+				EventInfoStoreModule,
+				FormsModule,
+				ReactiveFormsModule,
+			],
 			providers: [
 				{ provide: EventInfoFacadeService, useValue: eventInfoFacadeService }
 			]
