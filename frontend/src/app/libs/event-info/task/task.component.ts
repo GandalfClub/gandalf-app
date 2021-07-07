@@ -39,7 +39,7 @@ export class TaskComponent implements OnInit, OnDestroy {
 			.subscribe((task: Task) => {
 				this.task = task;
 				if (this.task.hasOwnProperty('solution')) {
-					this.solution = this.task.solution
+					this.solution = this.task.solution;
 				}
 			});
 
