@@ -78,10 +78,6 @@ export class EventInfoService {
 			maxScore: 60,
 			text: '',
 			question: '<p>Text question ...</p><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque magnam molestias qui assumenda quia animi iste odio ipsam debitis, corrupti dolorum id dicta sapiente eos! Minima porro ex iure omnis?</p>',
-			solution: {
-				status: SolutionStatus.Draft,
-				value: 'Write your answer ...'
-			}
 		}
 		]);
 	}

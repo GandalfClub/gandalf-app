@@ -1,10 +1,8 @@
-import { Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CKEditorComponent } from 'ckeditor4-angular';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { User } from '../../auth/models/user';
-import { Solution, SolutionStatus, Task } from '../../landing/models/task.model';
+import { Solution, SolutionStatus, Task, TasksTypes } from '../../landing/models/task.model';
 import { EventInfoFacadeService } from '../store/event-info-facade.service';
 
 @Component({
@@ -13,14 +11,20 @@ import { EventInfoFacadeService } from '../store/event-info-facade.service';
 	styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit, OnDestroy {
+	public taskFormGroup: FormGroup;
+	public taskTypes: typeof TasksTypes = TasksTypes;
+	public solutionStatus: typeof SolutionStatus = SolutionStatus;
 	public task: Task;
 	public solution: Solution = {
 		status: SolutionStatus.Draft,
 		value: null
 	};
-	public user: User;
-	public eventFormGroup: FormGroup;
-
+	public get isTaskPending(): boolean {
+		if (this.solution.status === this.solutionStatus.Pending) {
+			return true;
+		}
+		return false;
+	}
 	private destroy$: Subject<void> = new Subject<void>();
 
 	constructor(
@@ -29,7 +33,7 @@ export class TaskComponent implements OnInit, OnDestroy {
 	) { }
 
 	public ngOnInit(): void {
-		this.eventFormGroup = this.formBuilder.group({
+		this.taskFormGroup = this.formBuilder.group({
 			answer: ''
 		});
 
@@ -43,7 +47,7 @@ export class TaskComponent implements OnInit, OnDestroy {
 				}
 			});
 
-		this.eventFormGroup.get('answer').valueChanges
+		this.taskFormGroup.get('answer').valueChanges
 		.pipe(takeUntil(this.destroy$))
 		.subscribe(
 			(answer: string) => {
@@ -68,7 +72,7 @@ export class TaskComponent implements OnInit, OnDestroy {
 			...this.task,
 			solution: {
 				status: SolutionStatus.Pending,
-				value: this.eventFormGroup.value.answer
+				value: this.taskFormGroup.value.answer
 			}
 		});
 	}

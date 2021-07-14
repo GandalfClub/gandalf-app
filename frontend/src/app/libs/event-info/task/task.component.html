@@ -4,12 +4,12 @@
     <form
         class="app-task__form"
         action=""
-        [formGroup]="eventFormGroup">
+        [formGroup]="taskFormGroup">
         <ng-container [ngSwitch]="task.taskType">
-            <ng-template *ngSwitchCase="'TEXT'" [ngTemplateOutlet]="textAnswer"></ng-template>
-            <ng-template *ngSwitchCase="'CODING'" [ngTemplateOutlet]="codeAnswer"></ng-template>
-            <ng-template *ngSwitchCase="'SINGLE'" [ngTemplateOutlet]="singleAnswer"></ng-template>
-            <ng-template *ngSwitchCase="'MULTIPLE'" [ngTemplateOutlet]="multipleAnswer"></ng-template>
+            <ng-template *ngSwitchCase="taskTypes.Text" [ngTemplateOutlet]="textAnswer"></ng-template>
+            <ng-template *ngSwitchCase="taskTypes.Coding" [ngTemplateOutlet]="codeAnswer"></ng-template>
+            <ng-template *ngSwitchCase="taskTypes.Single" [ngTemplateOutlet]="singleAnswer"></ng-template>
+            <ng-template *ngSwitchCase="taskTypes.Multiple" [ngTemplateOutlet]="multipleAnswer"></ng-template>
             <ng-template *ngSwitchDefault [ngTemplateOutlet]="textAnswer"></ng-template>
         </ng-container>
         <app-button
@@ -18,7 +18,7 @@
             [color]="solution.status == 'DRAFT' ? 'primary' : 'accept'"
             (click)="submitSolution()">
             <ng-container [ngSwitch]="solution.status">
-                <ng-container *ngSwitchCase="'PENDING'">
+                <ng-container *ngSwitchCase="solutionStatus.Pending">
                     {{ "BUTTON.SENDED" | translate }}
                 </ng-container>
                 <ng-container *ngSwitchDefault>
@@ -29,21 +29,21 @@
     </form>
 </section>
 
-<ng-template #textAnswer [formGroup]="eventFormGroup">
+<ng-template #textAnswer [formGroup]="taskFormGroup">
     <app-ckeditor
         class="app-task__form-answer app-task__form-answer--text"
         formControlName="answer"
         placeHolder="{{ 'PLACEHOLDER.EVENT_TEXT_SOLUTION' | translate }}"
-        [value]="solution.status !== 'PENDING'"
-        [readonly]="solution.status === 'PENDING'"
+        [value]="isTaskPending"
+        [readonly]="isTaskPending"
     ></app-ckeditor>
 </ng-template>
 
-<ng-template #singleAnswer [formGroup]="eventFormGroup">
+<ng-template #singleAnswer [formGroup]="taskFormGroup">
 </ng-template>
 
-<ng-template #codeAnswer [formGroup]="eventFormGroup">
+<ng-template #codeAnswer [formGroup]="taskFormGroup">
 </ng-template>
 
-<ng-template #multipleAnswer [formGroup]="eventFormGroup">
+<ng-template #multipleAnswer [formGroup]="taskFormGroup">
 </ng-template>
