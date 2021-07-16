@@ -1,0 +1,23 @@
+@import "variables";
+
+.app-task {
+    background: $color-white;
+	margin: $layout-gutter $layout-outer-margin 0 $layout-outer-margin;
+
+	&__header {
+		display: flex;
+		align-items: center;
+	}
+	&__form {
+        display: flex;
+        flex-direction: column;
+
+        &-answer {
+            
+        }
+        &-submit {
+            margin-top: $main-grid-unit * 2;
+            align-self: flex-end;
+        }
+	}
+}

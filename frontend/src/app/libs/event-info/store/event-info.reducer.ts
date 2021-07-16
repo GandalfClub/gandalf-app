@@ -1,5 +1,5 @@
 import { ActionTypes, EventInfoAction } from './event-info.actions';
-import { Task } from '../../landing/models/task.model';
+import { SolutionStatus, Task } from '../../landing/models/task.model';
 import { EntityWrapper } from '../../auth/models/entity-wraper';
 import { EntityStatus } from '../../auth/models/entity-status';
 
@@ -22,6 +22,18 @@ export function eventInfoReducer(state: EventInfoState = initialState, action: E
 		case ActionTypes.TaskSelected: {
 			return {
 				...state,
+				selectedTask: action.payload
+			};
+		}
+
+		case ActionTypes.SetSolution: {
+			return {
+				...state,
+				tasks: {
+					status: EntityStatus.Success,
+					error: null,
+					value: state.tasks.value.map((task: Task) => task.id === action.payload.id ? action.payload : task)
+				},
 				selectedTask: action.payload
 			};
 		}

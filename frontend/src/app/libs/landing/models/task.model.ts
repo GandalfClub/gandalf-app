@@ -5,8 +5,20 @@ export enum TasksTypes {
   Text = 'TEXT',
 }
 
+export enum SolutionStatus {
+  Draft = 'DRAFT',
+  Solved = 'SOLVED',
+  Incorrect = 'INCORRECT',
+  Pending = 'PENDING'
+}
+
 export interface Answer {
   label: string;
+}
+
+export interface Solution {
+  status: SolutionStatus;
+  value: string;
 }
 
 export interface Task {
@@ -20,4 +32,5 @@ export interface Task {
   question: string;
   code?: string;
   answers?: Set<Answer>;
+  solution?: Solution;
 }

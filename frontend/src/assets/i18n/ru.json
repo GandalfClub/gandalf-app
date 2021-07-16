@@ -11,7 +11,9 @@
 		"LANGUAGE-EN": "Английский",
 		"DELETE_EVENT": "УДАЛИТЬ МЕТРОПРИЯТИЕ",
 		"SAVE_AS_DRAFT": "СОХРАНИТЬ В ЧЕРНОВИКИ",
-		"PUBLISH": "ОПУБЛИКОВАТЬ"
+		"PUBLISH": "ОПУБЛИКОВАТЬ",
+		"SEND": "ОТПРАВИТЬ",
+		"SENDED": "ОТПРАВЛЕНО"
 	},
 	"ERROR_MESSAGE":{
 		"EMAIL_ERROR_MESSAGE": "Aдрес электронной почты имеет неверный формат",
@@ -31,7 +33,8 @@
 		"CKEDITOR": "Введите детали для нового мероприятия"
 	},
 	"PLACEHOLDER": {
-		"EVENT_NAME": "например, Моё событие"
+		"EVENT_NAME": "например, Моё событие",
+		"EVENT_TEXT_SOLUTION": "Напишите ваш ответ ..."
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "Все права защищены."

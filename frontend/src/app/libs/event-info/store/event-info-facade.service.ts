@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Task } from '../../landing/models/task.model';
-import { FetchTasks, TaskSelected } from './event-info.actions';
+import { Solution, Task } from '../../landing/models/task.model';
+import { FetchTasks, SetSolution, TaskSelected } from './event-info.actions';
 import { getSelectedTask, getTasks } from './event-info.selectors';
 
 @Injectable({
@@ -26,5 +26,9 @@ export class EventInfoFacadeService {
 
 	public selectTask(task: Task): void {
 		this.store.dispatch(new TaskSelected(task));
+	}
+
+	public setSolution(solution: Task): void {
+		this.store.dispatch(new SetSolution(solution));
 	}
 }

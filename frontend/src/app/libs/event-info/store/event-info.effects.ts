@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { Task } from '../../landing/models/task.model';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { SolutionStatus, Task } from '../../landing/models/task.model';
 import { EventInfoService } from '../services/event-info.service';
-import { ActionTypes, FetchTasks, FetchTasksError, FetchTasksSuccess } from './event-info.actions';
+import { EventInfoFacadeService } from './event-info-facade.service';
+import { ActionTypes, FetchTasks, FetchTasksError, FetchTasksSuccess, SetSolution } from './event-info.actions';
 
 @Injectable()
 export class EventInfoEffects {
@@ -21,6 +22,6 @@ export class EventInfoEffects {
 
 	constructor(
 		private actions$: Actions,
-		private eventInfoService: EventInfoService
+		private eventInfoService: EventInfoService,
 	) { }
 }

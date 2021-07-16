@@ -13,7 +13,9 @@
 		"CANCEL": "CANCEL",
 		"DELETE_EVENT": "DELETE EVENT",
 		"SAVE_AS_DRAFT": "SAVE AS DRAFT",
-		"PUBLISH": "PUBLISH"
+		"PUBLISH": "PUBLISH",
+		"SEND": "SEND",
+		"SENDED": "SENDED"
 	},
 	"ERROR_MESSAGE": {
 		"EMAIL_ERROR_MESSAGE": "Your email has invalid format",
@@ -33,7 +35,8 @@
 		"CKEDITOR": "Type details for this new event"
 	},
 	"PLACEHOLDER": {
-		"EVENT_NAME": "e.g. My event"
+		"EVENT_NAME": "e.g. My event",
+		"EVENT_TEXT_SOLUTION": "Write your answer ..."
 	},
 	"FOOTER": {
 		"ALL_RIGHTS_RESERVED": "All rights reserved."
