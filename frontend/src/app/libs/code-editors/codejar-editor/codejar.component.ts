@@ -77,7 +77,7 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 		if (changes.code) {
 			this.editor.updateCode(changes.code.currentValue);
 		}
-		if (changes.readonly.currentValue === true) {
+		if (changes.readonly?.currentValue === true) {
 			this.destroy$.next(true);
 			this.editor.destroy();
 		}

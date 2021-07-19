@@ -42,7 +42,7 @@ export class TaskComponent implements OnInit, OnDestroy {
 					this.solution = {
 						status: SolutionStatus.Draft,
 						value: null
-					}
+					};
 				}
 				this.taskFormGroup = this.formBuilder.group({
 					answer: this.isTaskPending ? this.solution.value : ''
@@ -70,8 +70,9 @@ export class TaskComponent implements OnInit, OnDestroy {
 	}
 
 	public submitSolution(): void {
-		if (this.isTaskPending) {return}
-		
+		if (this.isTaskPending) {
+			return;
+		}
 		this.eventInfoFacadeService.setSolution({
 			...this.task,
 			solution: {
@@ -81,8 +82,10 @@ export class TaskComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public setCodeAnswer(data: string) {
-		if (this.task.taskType !== this.taskTypes.Coding) {return}
-		this.taskFormGroup.setValue({answer: data})
+	public setCodeAnswer(data: string): void {
+		if (this.task.taskType !== this.taskTypes.Coding) {
+			return;
+		}
+		this.taskFormGroup.setValue({answer: data});
 	}
 }

@@ -84,6 +84,26 @@ describe('CodejarComponent', () => {
 		});
 	});
 
+	describe('when ngOnChanges called with updated readonly', () => {
+		beforeEach(() => {
+			spyOn(component['destroy$'], 'next');
+			spyOn(component.editor, 'destroy');
+			changes = {};
+			component.editor = mockCodeJar;
+			changes.readonly = new SimpleChange(false, true, true);
+			component.readonly = true;
+			component.ngOnChanges(changes);
+		});
+
+		it('calls destroy on ediitor', () => {
+			expect(component.editor.destroy).toHaveBeenCalled();
+		});
+
+		it('calls next on destroy$', () => {
+			expect(component['destroy$'].next).toHaveBeenCalled();
+		});
+	});
+
 	describe('when ngOnDestroy called', () => {
 		beforeEach(() => {
 			spyOn(component['destroy$'], 'next');
