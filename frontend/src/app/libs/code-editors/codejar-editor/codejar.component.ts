@@ -6,7 +6,6 @@ import {
 	Input,
 	OnChanges,
 	OnDestroy,
-	OnInit,
 	Output,
 	SimpleChanges,
 	ViewChild,
@@ -32,6 +31,9 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 	@Input()
 	public code: string;
 
+	@Input()
+	public readonly: boolean;
+
 	@Output()
 	public changedCode: EventEmitter<string> = new EventEmitter<string>();
 
@@ -54,7 +56,12 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 			.pipe(takeUntil(this.destroy$))
 			.subscribe(() => {
 				const newCode: string = this.editor.toString();
-				this.changedCode.emit(newCode);
+				if (this.readonly !== true) {
+					this.changedCode.emit(newCode);
+				} else {
+					this.editor.destroy();
+					this.destroy$.next(true);
+				}
 			});
 	}
 
@@ -69,6 +76,10 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 		}
 		if (changes.code) {
 			this.editor.updateCode(changes.code.currentValue);
+		}
+		if (changes.readonly.currentValue === true) {
+			this.destroy$.next(true);
+			this.editor.destroy();
 		}
 	}
 

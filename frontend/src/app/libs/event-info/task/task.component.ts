@@ -20,11 +20,9 @@ export class TaskComponent implements OnInit, OnDestroy {
 		value: null
 	};
 	public get isTaskPending(): boolean {
-		if (this.solution.status === this.solutionStatus.Pending) {
-			return true;
-		}
-		return false;
+		return this.solution.status === this.solutionStatus.Pending;
 	}
+
 	private destroy$: Subject<void> = new Subject<void>();
 
 	constructor(
@@ -33,10 +31,6 @@ export class TaskComponent implements OnInit, OnDestroy {
 	) { }
 
 	public ngOnInit(): void {
-		this.taskFormGroup = this.formBuilder.group({
-			answer: ''
-		});
-
 		this.eventInfoFacadeService
 			.selectedTask$
 			.pipe(takeUntil(this.destroy$))
@@ -44,22 +38,30 @@ export class TaskComponent implements OnInit, OnDestroy {
 				this.task = task;
 				if (this.task.hasOwnProperty('solution')) {
 					this.solution = this.task.solution;
+				} else {
+					this.solution = {
+						status: SolutionStatus.Draft,
+						value: null
+					}
 				}
+				this.taskFormGroup = this.formBuilder.group({
+					answer: this.isTaskPending ? this.solution.value : ''
+				});
 			});
 
 		this.taskFormGroup.get('answer').valueChanges
-		.pipe(takeUntil(this.destroy$))
-		.subscribe(
-			(answer: string) => {
-				this.eventInfoFacadeService.setSolution({
-					...this.task,
-					solution: {
-						status: SolutionStatus.Draft,
-						value: answer
-					}
-				});
-			}
-		);
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(
+				(answer: string) => {
+					this.eventInfoFacadeService.setSolution({
+						...this.task,
+						solution: {
+							status: SolutionStatus.Draft,
+							value: answer
+						}
+					});
+				}
+			);
 	}
 
 	public ngOnDestroy(): void {
@@ -68,6 +70,8 @@ export class TaskComponent implements OnInit, OnDestroy {
 	}
 
 	public submitSolution(): void {
+		if (this.isTaskPending) {return}
+		
 		this.eventInfoFacadeService.setSolution({
 			...this.task,
 			solution: {
@@ -75,5 +79,10 @@ export class TaskComponent implements OnInit, OnDestroy {
 				value: this.taskFormGroup.value.answer
 			}
 		});
+	}
+
+	public setCodeAnswer(data: string) {
+		if (this.task.taskType !== this.taskTypes.Coding) {return}
+		this.taskFormGroup.setValue({answer: data})
 	}
 }
