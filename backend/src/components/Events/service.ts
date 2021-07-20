@@ -1,28 +1,36 @@
 import { IEventsService } from './interface';
-import EventsModel, { IEventsnModel, IEventTaskUpdate, IEventsnModelUpdate, IEventParticipationModel } from './model';
+import EventsModel, {
+    IEventsModel,
+    IEventTaskUpdate,
+    IEventParticipationModel,
+    IGeneralEventInfo,
+} from './model';
 import * as Joi from 'joi';
 import EventValidation from './validation';
 
 const EventsService: IEventsService = {
-    async createEvent(eventInfo: IEventsnModel): Promise<IEventsnModel> {
+    async createEvent(eventInfo: { title: string }): Promise<IEventsModel> {
         try {
-            const validate: Joi.ValidationResult<IEventsnModel> = EventValidation.createEvent(eventInfo);
+            const validate: Joi.ValidationResult<{ title: string }> = EventValidation.createEvent(eventInfo);
 
             if (validate.error) {
                 throw new Error(validate.error.message);
             }
 
-            eventInfo.created = new Date(Date.now());
+            const event = {
+                created: new Date(Date.now()),
+                generalInfo: {
+                    title: eventInfo.title,
+                },
+            };
 
-            const event: IEventsnModel = await EventsModel.create(eventInfo);
-
-            return event;
+            return await EventsModel.create(event);
         } catch (err) {
             throw new Error(err.message);
         }
     },
 
-    async getAllEvents(): Promise<IEventsnModel[]> {
+    async getAllEvents(): Promise<IEventsModel[]> {
         try {
             return await EventsModel.find({});
         } catch (error) {
@@ -30,9 +38,17 @@ const EventsService: IEventsService = {
         }
     },
 
-    async updateTaskInEvent(body: IEventTaskUpdate): Promise<IEventsnModel> {
+    async getEventById(id: string): Promise<IEventsModel> {
         try {
-            const event: IEventsnModel = await EventsModel.findById(body.eventId);
+            return await EventsModel.findById(id);
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    },
+
+    async updateTaskInEvent(body: IEventTaskUpdate): Promise<IEventsModel> {
+        try {
+            const event: IEventsModel = await EventsModel.findById(body.eventId);
 
             event.tasks = body.tasksId;
             await EventsModel.findByIdAndUpdate(body.eventId, event);
@@ -44,23 +60,22 @@ const EventsService: IEventsService = {
         }
     },
 
-    async updateEvent(body: IEventsnModelUpdate): Promise<IEventsnModel> {
+    async updateEvent(body: IGeneralEventInfo, id: string): Promise<IEventsModel> {
         try {
-            const validate: Joi.ValidationResult<IEventsnModelUpdate> = EventValidation.updateEvent(body);
+            const validate: Joi.ValidationResult<IGeneralEventInfo> = EventValidation.updateGeneralInfoEvent(body);
 
             if (validate.error) {
                 throw new Error(validate.error.message);
             }
 
-            const event: IEventsnModel = await EventsModel.findById(body._id);
-            event.title = body.title;
-            event.description = body.description;
-            event.isActive = body.isActive;
-            event.created = new Date(Date.now());
+            const event = {
+                created: new Date(Date.now()),
+                generalInfo: {
+                    ...body,
+                },
+            };
 
-            await EventsModel.findByIdAndUpdate(body._id, event);
-
-            return event;
+            return EventsModel.findByIdAndUpdate(id, event);
         } catch (err) {
             throw new Error(err.message);
         }
@@ -85,7 +100,7 @@ const EventsService: IEventsService = {
 
             const userId: string = participation.userId;
             const eventId: string = participation.eventId;
-            const event: IEventsnModel = await EventsModel.findById(eventId);
+            const event: IEventsModel = await EventsModel.findById(eventId);
 
             const alreadyExists: IEventParticipationModel = event
                 .eventParticipations

@@ -15,22 +15,31 @@ export interface IEventParticipationModel extends Document {
     approved: boolean;
 }
 
-export interface IEventsnModel extends Document {
+export interface IEventsModel extends Document {
+    generalInfo: IGeneralEventInfo;
+    isActive?: boolean;
+    created?: Date;
+    maxScore?: number;
+    tasks?: Types.ObjectId[];
+    users?: Types.ObjectId[];
+    participations?: Types.ObjectId[];
+    eventParticipations?: [IEventParticipationModel];
+}
+
+export interface IGeneralEventInfo {
     title: string;
+    shortSummary?: string;
     description: string;
-    isActive: boolean;
-    created: Date;
     startDate: Date;
     endDate: Date;
-    maxScore: number;
-    tasks: Types.ObjectId[];
-    users: Types.ObjectId[];
-    participations: Types.ObjectId[];
-    eventParticipations: [IEventParticipationModel];
+    startTime: string;
+    endTime: string;
+    isPrivate: boolean;
+    isContinuous: boolean;
     isDraft: boolean;
 }
 
-export interface IEventsnModelUpdate {
+export interface IEventsModelUpdate {
     _id: Types.ObjectId;
     title: string;
     description: string;
@@ -56,15 +65,50 @@ export const eventParticipationSubSchema: Schema = new Schema({
     approved: Schema.Types.Boolean
 });
 
-const eventsSchema: Schema = new Schema({
+const generalInfoEventSchema: Schema = new Schema({
     title: {
         type: Schema.Types.String,
-        default: null
+        default: null,
+    },
+    shortSummary: {
+        type: Schema.Types.String,
+        default: null,
     },
     description: {
         type: Schema.Types.String,
-        default: null
+        default: null,
     },
+    startDate: {
+        type: Schema.Types.Date,
+        default: null,
+    },
+    endDate: {
+        type: Schema.Types.Date,
+        default: null,
+    },
+    startTime: {
+        type: Schema.Types.String,
+        default: null,
+    },
+    endTime: {
+        type: Schema.Types.String,
+        default: null,
+    },
+    isPrivate: {
+        type: Schema.Types.Boolean,
+        default: false,
+    },
+    isContinuous: {
+        type: Schema.Types.Boolean,
+        default: false,
+    },
+    isDraft: {
+        type: Schema.Types.Boolean,
+        default: true,
+    },
+});
+
+const eventsSchema: Schema = new Schema({
     isActive: {
         type: Schema.Types.Boolean,
         default: null
@@ -73,13 +117,9 @@ const eventsSchema: Schema = new Schema({
         type: Schema.Types.Date,
         default: null
     },
-    startDate: {
-        type: Schema.Types.Date,
-        default: null
-    },
-    endDate: {
-        type: Schema.Types.Date,
-        default: null
+    generalInfo: {
+        type: generalInfoEventSchema,
+        default: {},
     },
     maxScore: {
         type: Schema.Types.Number,
@@ -101,12 +141,8 @@ const eventsSchema: Schema = new Schema({
         type: [eventParticipationSubSchema],
         default: []
     },
-    isDraft: {
-        type: Schema.Types.Boolean,
-        default: null
-    },
 }, {
     collection: 'events'
 });
 
-export default mainDBConnection.model<IEventsnModel>('EventsModel', eventsSchema);
+export default mainDBConnection.model<IEventsModel>('EventsModel', eventsSchema);
