@@ -19,13 +19,18 @@ describe('UserEventsListComponent', () => {
 	const events: Partial<Event[]> = [
 		{
 			id: 't1',
-			title: 'test1',
-			description: 'test',
+			generalInfo: {
+				title: 'test',
+				description: 'test',
+				startDate: null,
+				startTime: null,
+				endDate: null,
+				endTime: null,
+				isContinuous: true,
+				isDraft: true,
+				isPrivate: true,
+			},
 			created: new Date ('Wed Dec 15 2020 03:00:00 GMT+0300 (Moscow Standard Time)'),
-			startDate: new Date ('Wed Dec 15 2020 03:00:00 GMT+0300 (Moscow Standard Time)'),
-			endDate: new Date ('Wed Dec 16 2020 03:00:00 GMT+0300 (Moscow Standard Time)'),
-			startTime: new Date ('Wed Dec 15 2020 03:00:00 GMT+0300 (Moscow Standard Time)'),
-			endTime: new Date ('Wed Dec 15 2020 03:00:00 GMT+0300 (Moscow Standard Time)'),
 			users: [
 				{
 				id: '111',
