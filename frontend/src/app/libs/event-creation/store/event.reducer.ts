@@ -1,145 +1,125 @@
 import { NewEventsActions, EventsActionTypes } from './event.actions';
-import { GeneralEvent } from './model/model';
+import { Event } from '../../landing/models/event';
 import { EntityWrapper } from './model/entity-wrapper';
 import { EntityStatus } from './model/entity-status';
 import { Task } from '../../common-components/components/tasks-creator/models/task';
 
 export interface GeneralEventState {
-	title: string;
-	event: EntityWrapper<GeneralEvent>;
+	event: EntityWrapper<Event>;
 }
 
 export interface EventsCreationState {
-  general: GeneralEventState;
-  tasks: EntityWrapper<Map<Symbol, Task>>;
+	event: EntityWrapper<Event>;
+	tasks: EntityWrapper<Map<Symbol, Task>>;
 }
 
 export const initialState: EventsCreationState = {
-  general: {
-	title: '',
 	event: {
 		status: EntityStatus.Init,
 		value: null,
 		error: null,
-	}
-  },
-  tasks: {
-	value: new Map<Symbol, Task>(),
-	status: EntityStatus.Init,
-	error: null,
-  },
+	},
+	tasks: {
+		value: new Map<Symbol, Task>(),
+		status: EntityStatus.Init,
+		error: null,
+	},
 };
 
 export function newEventReducer(state: EventsCreationState = initialState, action: NewEventsActions): EventsCreationState {
 	switch (action.type) {
-
-  	case EventsActionTypes.SetTitleForGeneralEvent: {
+		case EventsActionTypes.CreateEvent: {
 			return {
 				...state,
-				general: {
-				  ...state.general,
-				  title: action.payload as string
+				event: {
+					...state.event,
+					status: EntityStatus.Pending,
+					error: null,
+				}
+			};
+		}
+
+		case EventsActionTypes.CreateEventTask: {
+			return {
+				...state,
+				tasks: {
+					...state.tasks,
+					status: EntityStatus.Pending,
+					error: null,
 				},
 			};
 		}
 
-		case EventsActionTypes.CreateGeneralEvent: {
+		case EventsActionTypes.CreateEventTaskSuccess: {
+			const updatedTask: Task = action.payload as Task;
+			const tasks: Map<Symbol, Task> = state.tasks.value;
+			tasks.set(updatedTask.id, updatedTask);
+
 			return {
 				...state,
-				general: {
-				  ...state.general,
-  			event: {
-			status: EntityStatus.Pending,
-			error: null,
-			},
-		}
+				tasks: {
+					...state.tasks,
+					value: new Map<Symbol, Task>([
+						...tasks,
+					]),
+				}
 			};
 		}
 
-	case EventsActionTypes.CreateTaskEvent: {
-		return {
-		...state,
-		tasks: {
-			...state.tasks,
-			status: EntityStatus.Pending,
-			error: null,
-		},
-		};
-	}
-
-	case EventsActionTypes.CreateTaskSuccess: {
-		const updatedTask: Task = action.payload as Task;
-		const tasks: Map<Symbol, Task> = state.tasks.value;
-		tasks.set(updatedTask.id, updatedTask);
-
-		return {
-		...state,
-		tasks: {
-			...state.tasks,
-			value: new Map<Symbol, Task>([
-			...tasks,
-			]),
-		}
-		};
-	}
-
-	  case EventsActionTypes.CreateTaskFail: {
-		return {
-		...state,
-		tasks: {
-			...state.tasks,
-			status: EntityStatus.Error,
-			error: action.payload as Error,
-		},
-		};
-	}
-
-		case EventsActionTypes.CreateGeneralEventSuccess: {
+		case EventsActionTypes.CreateEventTaskFail: {
 			return {
 				...state,
-				general: {
-				  ...state.general,
-			event: {
-			value: action.payload as GeneralEvent,
-			status: EntityStatus.Success,
-			error: null,
-			},
-		}
+				tasks: {
+					...state.tasks,
+					status: EntityStatus.Error,
+					error: action.payload as Error,
+				},
 			};
 		}
 
-	case EventsActionTypes.LoadTasksSuccess: {
-		return {
-		...state,
-		tasks: {
-			...state.tasks,
-			value: new Map<Symbol, Task>([
-			...action.payload as Map<Symbol, Task>,
-			]),
-		}
-		};
-	}
-
-	case EventsActionTypes.LoadTasksFail: {
-		return {
-		...state,
-		tasks: {
-			...state.tasks,
-			error: action.payload as Error,
-		}
-		};
-	}
-
-		case EventsActionTypes.CreateGeneralEventFail: {
+		case EventsActionTypes.CreateEventSuccess:
+		case EventsActionTypes.UpdateEventSuccess:
+		case EventsActionTypes.LoadEventSuccess: {
 			return {
 				...state,
-		general: {
-				  ...state.general,
-			event: {
-			status: EntityStatus.Error,
-			error: action.payload as Error,
-			},
+				event: {
+					value: action.payload as Event,
+					status: EntityStatus.Success,
+					error: null,
+				}
+			};
 		}
+
+		case EventsActionTypes.LoadEventTasksSuccess: {
+			return {
+				...state,
+				tasks: {
+					...state.tasks,
+					value: new Map<Symbol, Task>([
+						...action.payload as Map<Symbol, Task>,
+					]),
+				}
+			};
+		}
+
+		case EventsActionTypes.LoadEventTasksFail: {
+			return {
+				...state,
+				tasks: {
+					...state.tasks,
+					error: action.payload as Error,
+				}
+			};
+		}
+
+		case EventsActionTypes.CreateEventFail: {
+			return {
+				...state,
+				event: {
+					...state.event,
+					status: EntityStatus.Error,
+					error: action.payload as Error,
+				}
 			};
 		}
 

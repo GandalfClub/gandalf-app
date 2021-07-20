@@ -1,6 +1,6 @@
-export interface GeneralEvent {
+export interface GeneralEventInfo {
 	title: string;
-	shortSummary: string;
+	shortSummary?: string;
 	startDate: Date;
 	endDate: Date;
 	startTime: Date;

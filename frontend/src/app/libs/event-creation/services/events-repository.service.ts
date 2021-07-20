@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GeneralEvent } from '../store/model/model';
 import { Task } from '../../common-components/components/tasks-creator/models/task';
 import { TasksTypes } from '../../common-components/components/tasks-creator/models/tasks-creator';
 import { of } from 'rxjs/internal/observable/of';
+import { EventDto } from '../../landing/models/event-dto';
+import { Event } from '../../landing/models/event';
+import { GeneralEventInfo } from '../store/model/model';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,9 +18,21 @@ export class EventsRepositoryService {
 		private http: HttpClient,
 	) { }
 
-	public createGeneralEvent(generalEvent: GeneralEvent): Observable<GeneralEvent> {
-		const url: string = this.API_URL + '/events';
-		return this.http.post<GeneralEvent>(url, generalEvent);
+	public createEvent(title: string): Observable<EventDto> {
+		const url = `${this.API_URL}/events`;
+		return this.http.post<EventDto>(url, { title });
+	}
+
+	public updateEvent(event: GeneralEventInfo, id: string): Observable<Event> {
+		const url = `${this.API_URL}/events/update-event`;
+		const params = { id };
+		return this.http.post<Event>(url, event, { params });
+	}
+
+	public loadEvent(id: string): Observable<Event> {
+		const url = `${this.API_URL}/events/event/`;
+		const params = { id };
+		return this.http.get<Event>(url, { params });
 	}
 
 	public createTaskEvent(task: Task): Observable<Task> {
@@ -28,12 +42,12 @@ export class EventsRepositoryService {
 
 	public loadTasks(): Observable<Map<Symbol, Task>> {
 
-// todo remove after backend implementation
+		// todo remove after backend implementation
 		const key1: Symbol = Symbol('id');
 		const key2: Symbol = Symbol('id');
 		const key3: Symbol = Symbol('id');
 
-// todo remove after backend implementation
+		// todo remove after backend implementation
 		const testTasksState: Map<Symbol, Task> = new Map<Symbol, Task>([
 			[
 				key1,

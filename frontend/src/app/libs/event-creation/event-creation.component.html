@@ -7,7 +7,8 @@
     <app-general-info
       class="event-creation__tab-content"
       *ngSwitchCase="tabsEnum.General"
-      (passForm)="setFormFromGeneralComponent($event)">
+      (passForm)="setFormFromGeneralComponent($event)"
+      (passEventId)="setEventId($event)">
     </app-general-info>
     <app-tasks-creator-page
       class="event-creation__tab-content"

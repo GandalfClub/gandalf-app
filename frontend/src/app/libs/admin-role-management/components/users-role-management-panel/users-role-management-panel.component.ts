@@ -1,13 +1,12 @@
-import { Component, SimpleChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UsersFacadeService } from '../../store/users/users.facade';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { User } from 'src/app/libs/auth/models/user';
 import { UserClaim } from '../../models/user-claims.enum';
 import { EntityWrapper } from 'src/app/libs/auth/models/entity-wraper';
 import { AuthFacadeService } from 'src/app/libs/auth/store/auth/auth.facade';
 import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { takeUntil } from 'rxjs/operators';
-import { UserSearchService } from '../../services/user-search.service';
 import { ColumnConfig, TableColumnType } from 'src/app/libs/common-components/components/table/models/row-config.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { RowToggleOutput } from 'src/app/libs/common-components/components/table/models/row-toggle-output.enum';
