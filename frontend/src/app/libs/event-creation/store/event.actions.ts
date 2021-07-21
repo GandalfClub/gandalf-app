@@ -107,9 +107,7 @@ export class LoadEventTasksSuccess implements Action {
   constructor(public payload: Map<Symbol, Task>) { }
 }
 
-
-export type NewEventsActions =
-  CreateEvent
+export type NewEventsActions = CreateEvent
   | CreateEventSuccess
   | CreateEventFail
 

@@ -35,7 +35,7 @@ export class EventsEffects {
 		switchMap((action: CreateEvent) => {
 			return this.eventsRepository.createEvent(action.payload).pipe(
 				map((eventDto: EventDto) => {
-					const [event] = this.eventConverter.convertFromDto([eventDto]);
+					const [event]: Event[] = this.eventConverter.convertFromDto([eventDto]);
 					this.router.navigateByUrl(`/create-event/${event.id}`);
 					return new CreateEventSuccess(event);
 				}),

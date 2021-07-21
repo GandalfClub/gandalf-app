@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms'
 import { NewEventFacadeService } from '../store/event.facade';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from '../../landing/models/event';
+import { GeneralEventInfo } from '../store/model/model';
 
 @Component({
 	selector: 'app-general-info',
@@ -24,7 +25,7 @@ export class GeneralInfoPageComponent implements OnInit {
 	) { }
 
 	public ngOnInit(): void {
-		const eventId = this.activatedRouter.snapshot.paramMap.get('id');
+		const eventId: string = this.activatedRouter.snapshot.paramMap.get('id');
 		this.eventFacadeService.loadEvent(eventId);
 		this.passEventId.emit(eventId);
 		this.createForm();
@@ -52,7 +53,7 @@ export class GeneralInfoPageComponent implements OnInit {
 
 	private prepopulateForm(): void {
 		this.eventFacadeService.event$.subscribe((event: Event) => {
-			const generalInfo = event?.generalInfo;
+			const generalInfo: GeneralEventInfo = event?.generalInfo;
 			this.eventFormGroup.patchValue({ ...generalInfo });
 		});
 	}

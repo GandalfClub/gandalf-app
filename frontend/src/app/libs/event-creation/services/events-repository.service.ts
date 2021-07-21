@@ -19,19 +19,19 @@ export class EventsRepositoryService {
 	) { }
 
 	public createEvent(title: string): Observable<EventDto> {
-		const url = `${this.API_URL}/events`;
+		const url: string = `${this.API_URL}/events`;
 		return this.http.post<EventDto>(url, { title });
 	}
 
 	public updateEvent(event: GeneralEventInfo, id: string): Observable<Event> {
-		const url = `${this.API_URL}/events/update-event`;
-		const params = { id };
+		const url: string = `${this.API_URL}/events/update-event`;
+		const params: { id: string } = { id };
 		return this.http.post<Event>(url, event, { params });
 	}
 
 	public loadEvent(id: string): Observable<Event> {
-		const url = `${this.API_URL}/events/event/`;
-		const params = { id };
+		const url: string = `${this.API_URL}/events/event/`;
+		const params: { id: string } = { id };
 		return this.http.get<Event>(url, { params });
 	}
 

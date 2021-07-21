@@ -3,8 +3,8 @@ export interface GeneralEventInfo {
 	shortSummary?: string;
 	startDate: Date;
 	endDate: Date;
-	startTime: Date;
-	endTime: Date;
+	startTime: string;
+	endTime: string;
 	description: string;
 	isPrivate: boolean;
 	isContinuous: boolean;

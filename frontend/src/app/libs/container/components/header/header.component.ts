@@ -45,7 +45,7 @@ export class HeaderComponent {
 		public newEventFacadeService: NewEventFacadeService) { }
 
 	public createEvent(): void {
-		if (!this.eventTitle.length) return;
+		if (!Boolean(this.eventTitle.length)) { return; }
 
 		this.popoverTemplate.close();
 		this.newEventFacadeService.createEvent(this.eventTitle);
