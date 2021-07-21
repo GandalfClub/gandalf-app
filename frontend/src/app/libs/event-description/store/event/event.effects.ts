@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import { catchError, map, exhaustMap, switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
@@ -26,7 +27,10 @@ export class EventEffects {
 		exhaustMap((id: string) =>
 			this.eventRepository.getEvent(id).pipe(map((event: EventDto) => new LoadEventSuccess(this.eventConverter.convertFromDto(event))))
 		),
-		catchError((error: Error) => of(new LoadEventFail(error)))
+		catchError((error: Error) => {
+			this.router.navigate([`/`]);
+			return of(new LoadEventFail(error));
+		})
 	);
 
 	@Effect()
@@ -42,5 +46,6 @@ export class EventEffects {
 	constructor(
 		private actions$: Actions,
 		private eventRepository: EventRepository,
-		private eventConverter: EventConverter) { }
+		private eventConverter: EventConverter,
+		private router: Router) { }
 }

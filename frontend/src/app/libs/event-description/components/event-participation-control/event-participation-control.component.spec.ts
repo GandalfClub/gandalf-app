@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/libs/auth/models/user';
 import { Event } from '../../../landing/models/event';
 import { EventParticipationControlComponent } from './event-participation-control.component';
@@ -12,10 +13,16 @@ describe('EventParticipationControlComponent', () => {
 	let mockUser: User;
 	let mockEvent: Event;
 	let mockparticipation: EventParticipation;
+	let router: Router;
+	let activatedRoute: ActivatedRoute;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [EventParticipationControlComponent]
+			declarations: [EventParticipationControlComponent],
+			providers: [
+				{ provide: Router, useValue: router },
+				{ provide: ActivatedRoute, useValue: activatedRoute },
+			]
 		})
 			.compileComponents();
 	}));
@@ -24,6 +31,8 @@ describe('EventParticipationControlComponent', () => {
 		fixture = TestBed.createComponent(EventParticipationControlComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
+		router = TestBed.inject(Router);
+		activatedRoute = TestBed.inject(ActivatedRoute);
 
 		mockUser = {
 			id: '1',
@@ -34,17 +43,23 @@ describe('EventParticipationControlComponent', () => {
 
 		mockEvent = {
 			id: 'test',
-			title: 'test',
-			description: 'test',
+			generalInfo: {
+				title: 'test',
+				description: 'test',
+				startDate: null,
+				startTime: null,
+				endDate: null,
+				endTime: null,
+				isContinuous: true,
+				isDraft: true,
+				isPrivate: true,
+			},
 			created: null,
-			startDate: null,
-			startTime: null,
-			endDate: null,
-			endTime: null,
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 
 		component.user = mockUser;
@@ -56,12 +71,12 @@ describe('EventParticipationControlComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('onTakePart: ', () => {
+	describe('registeredForEvent: ', () => {
 		let emitterSpy: jasmine.Spy;
 
 		beforeEach(() => {
 			emitterSpy = spyOn(component.registered, 'emit');
-			component.onTakePart(component.event, component.user);
+			component.registeredForEvent(component.event, component.user);
 		});
 
 		it('should call registered emitter', () => {
@@ -86,8 +101,8 @@ describe('EventParticipationControlComponent', () => {
 			mockparticipation.approved = true;
 			const startDate: number = new Date().getTime() + startTime;
 			const endDate: number = new Date().getTime() + endTime;
-			component.event.startDate = new Date(startDate);
-			component.event.endDate = new Date(endDate);
+			component.event.generalInfo.startDate = new Date(startDate);
+			component.event.generalInfo.endDate = new Date(endDate);
 			component.event.eventParticipations.push(mockparticipation);
 			const type: EventParticipationControlTypes = component.getControlType(component.event, component.user);
 			expect(type).toEqual(EventParticipationControlTypes.Approved);
@@ -103,8 +118,8 @@ describe('EventParticipationControlComponent', () => {
 			mockparticipation.approved = true;
 			const startDate: number = new Date().getTime() - startTime;
 			const endDate: number = new Date().getTime() + endTime;
-			component.event.startDate = new Date(startDate);
-			component.event.endDate = new Date(endDate);
+			component.event.generalInfo.startDate = new Date(startDate);
+			component.event.generalInfo.endDate = new Date(endDate);
 			component.event.eventParticipations.push(mockparticipation);
 			const type: EventParticipationControlTypes = component.getControlType(component.event, component.user);
 			expect(type).toEqual(EventParticipationControlTypes.OpenEvent);

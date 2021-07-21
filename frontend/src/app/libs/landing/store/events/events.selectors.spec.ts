@@ -18,17 +18,23 @@ describe('Events Selectors', () => {
 	beforeEach(async(() => {
 		event = {
 			id: 'test',
-			title: 'test',
-			description: 'test',
+			generalInfo: {
+				title: 'test',
+				description: 'test',
+				startDate: null,
+				startTime: null,
+				endDate: null,
+				endTime: null,
+				isContinuous: true,
+				isDraft: true,
+				isPrivate: true,
+			},
 			created: null,
-			startDate: null,
-			startTime: null,
-			endDate: null,
-			endTime: null,
 			users: [user],
 			size: EventCardSize.S,
 			eventParticipations: [eventParticipation],
-			roles: []
+			roles: [],
+			tasks: []
 		};
 
 		events = {

@@ -1,59 +1,70 @@
 <div class="app-general-info">
 	<div class="app-general-info__header">
-		<span class="app-general-info__title">{{ "EVENT-CREATION.TITLE_GENERAL" | translate }}</span>
+		<span class="app-general-info__title">
+			{{ "EVENT-CREATION.TITLE_GENERAL" | translate }}
+		</span>
 	</div>
+
 	<div class="app-general-info__form">
-		<form action=""
-			  [formGroup]="eventFormGroup">
+		<form [formGroup]="eventFormGroup">
 			<app-input formControlName="title"
-					   [(ngModel)]="title"
-					   widthInput="872px"
-					   theme="lightTheme"
-					   type="text"
-					   [label]="'LABEL.EVENT_TITLE' | translate">
+									[inputValidators]="requiredValidator"
+									widthInput="872px"
+									[theme]="lightTheme"
+									type="text"
+									[label]="'LABEL.EVENT_TITLE' | translate">
 			</app-input>
 			<div>
 				<app-datepicker formControlName="startDate"
-								class="app-general-info__date"
-								[label]="'LABEL.START_DATE' | translate"></app-datepicker>
-        <app-select
-          formControlName="startTime"
-          [eventTimeType]="true"
-          class="app-general-info__time"
-          [label]="'LABEL.START_TIME' | translate"></app-select>
+												class="app-general-info__date"
+												[label]="'LABEL.START_DATE' | translate">
+				</app-datepicker>
+
+				<app-select formControlName="startTime"
+										[eventTimeType]="true"
+										class="app-general-info__time"
+										[label]="'LABEL.START_TIME' | translate">
+				</app-select>
 				<img class="app-general-info__arrow"
-					 src="assets/images/icons/icon-arrow-forward.svg"
-					 alt="arrow-forward">
+							src="assets/images/icons/icon-arrow-forward.svg"
+							alt="arrow-forward" />
+
 				<app-datepicker formControlName="endDate"
-								class="app-general-info__date"
-								[label]="'LABEL.END_DATE' | translate"></app-datepicker>
-        <app-select
-          formControlName="endTime"
-          [eventTimeType]="true"
-          class="app-general-info__time"
-          [label]="'LABEL.END_TIME' | translate"></app-select>
+												class="app-general-info__date"
+												[label]="'LABEL.END_DATE' | translate">
+				</app-datepicker>
+
+				<app-select formControlName="endTime"
+										[eventTimeType]="true"
+										class="app-general-info__time"
+										[label]="'LABEL.END_TIME' | translate">
+				</app-select>
 				<app-slide-toggle formControlName="isContinuous"
-								  [value]="false"
-								  theme=lightTheme
-								  [title]="'LABEL.CONTINUOUS_EVENT' | translate">
+													[value]="false"
+													[theme]=lightTheme
+													[title]="'LABEL.CONTINUOUS_EVENT' | translate">
 				</app-slide-toggle>
+
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
-						 src="assets/images/icons/icon-info.svg">
+								src="assets/images/icons/icon-info.svg" />
 				</span>
 			</div>
+
 			<app-textarea formControlName="shortSummary"
-						  [label]="'LABEL.SHORT_SUMMARY' | translate"
-						  widthTextarea="872px"></app-textarea>
+										[label]="'LABEL.SHORT_SUMMARY' | translate"
+										widthTextarea="872px">
+			</app-textarea>
+
 			<div>
 				<app-slide-toggle formControlName="isPrivate"
-								  [value]="false"
-								  theme=lightTheme
-								  [title]="'LABEL.PRIVATE_EVENT' | translate">
+													[value]="false"
+													[theme]=lightTheme
+													[title]="'LABEL.PRIVATE_EVENT' | translate">
 				</app-slide-toggle>
 				<span matTooltip="Info about the action">
 					<img class="app-general-info__info"
-						 src="assets/images/icons/icon-info.svg">
+								src="assets/images/icons/icon-info.svg">
 				</span>
 			</div>
 			<div class="app-general-info__ckeditor">

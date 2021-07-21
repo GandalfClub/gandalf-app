@@ -3,15 +3,22 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GeneralEventState } from './event.reducer';
 import {
-  SetTitleAction,
-  CreateGeneralEventAction,
+  CreateEvent,
   CreateTaskEventAction,
   DeleteTaskEventAction,
-  LoadTasksEventAction
+  LoadEventTasks,
+	UpdateEvent,
+	LoadEvent,
 } from './event.actions';
-import { selectTasksEvent, selectTitleForGeneralEvent } from './event.selectors';
-import { GeneralEvent } from './model/model';
+import {
+	selectEvent,
+	getLoadingEventStatus,
+	selectTasksEvent,
+	selectTitleForGeneralEvent,
+} from './event.selectors';
 import { Task } from '../../common-components/components/tasks-creator/models/task';
+import { Event } from '../../landing/models/event';
+import { GeneralEventInfo } from './model/model';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,20 +31,32 @@ export class NewEventFacadeService {
 		return this.store.pipe(select(selectTitleForGeneralEvent));
 	}
 
+	public get event$(): Observable<Event> {
+		return this.store.pipe(select(selectEvent));
+	}
+
+	public get isEventLoading$(): Observable<boolean> {
+		return this.store.pipe(select(getLoadingEventStatus));
+	}
+
 	public get tasks$(): Observable<Map<Symbol, Task>> {
 	  return this.store.pipe(select(selectTasksEvent));
   }
 
-	public setTitleForNewEvent(title: string): void {
-		this.store.dispatch(new SetTitleAction(title));
-	}
-
 	public loadTasks(): void {
-	  this.store.dispatch(new LoadTasksEventAction());
+	  this.store.dispatch(new LoadEventTasks());
   }
 
-	public createGeneralEvent(event: GeneralEvent): void {
-		this.store.dispatch(new CreateGeneralEventAction(event));
+	public createEvent(title: string): void {
+		this.store.dispatch(new CreateEvent(title));
+	}
+
+	public updateEvent(event: GeneralEventInfo, id: string): void {
+		this.store.dispatch(new UpdateEvent(event, id));
+	}
+
+	public loadEvent(id: string): void {
+		this.store.dispatch(new LoadEvent(id));
 	}
 
 	public createTask(task: Task): void {

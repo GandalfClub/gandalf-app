@@ -1,12 +1,11 @@
 import { ISolutionService } from './interface';
 import SolutionModel, { ISolutionModel } from './model';
 import TaskModel, { ITaskModel } from '../Task/model';
-import EventsModel, { IEventsnModel } from '../Events/model';
+import EventsModel, { IEventsModel } from '../Events/model';
 import CheckerService, { ISolutionResult, ICheckSolutionArgs } from './checker';
 import { Types } from 'mongoose';
 import ParticipationModel, { IParticipationModel } from '../Participation/model';
 import ParticipationService from '../Participation/service';
-import EventsService from '../Events/service';
 
 CheckerService.setOnCheckSuccessCallback(updateSolutionAndParticipation);
 
@@ -23,7 +22,7 @@ const SolutionService: ISolutionService = {
                 eventId: body.eventId
             });
             let participation: IParticipationModel = await ParticipationService.getUserParticipation(userId, body.eventId);
-            const event: IEventsnModel = await EventsModel.findOne({ _id: body.eventId });
+            const event: IEventsModel = await EventsModel.findOne({ _id: body.eventId });
             const task: ITaskModel = await TaskModel.findOne({ _id: body.taskId });
 
             if (!event.users.find((user) => { return user.equals(userId); })) {
@@ -78,7 +77,7 @@ const SolutionService: ISolutionService = {
                 eventId: body.eventId
             });
             let participation: IParticipationModel = await ParticipationService.getUserParticipation(userId, body.eventId);
-            const event: IEventsnModel = await EventsModel.findOne({ _id: body.eventId });
+            const event: IEventsModel = await EventsModel.findOne({ _id: body.eventId });
             const task: ITaskModel = await TaskModel.findOne({ _id: body.taskId });
 
             if (!event.users.find((user) => { return user.equals(userId); })) {
@@ -165,7 +164,7 @@ const SolutionService: ISolutionService = {
     }
 };
 
-async function recalculateTotalScore(userId: any, body: ISolutionModel, event: IEventsnModel): Promise<void> {
+async function recalculateTotalScore(userId: any, body: ISolutionModel, event: IEventsModel): Promise<void> {
     const userEventSolutions: ISolutionModel[] = await SolutionModel.find({
         userId,
         eventId: body.eventId

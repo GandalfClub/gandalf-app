@@ -35,6 +35,7 @@ export class AuthRepository {
 
 	public updateUser(user: Partial<UserDto>): Observable<UserDto> {
 		const url: string = this.API_URL + '/users/update-user';
+		delete user.password;
 		return this.http.post<UserDto>(url, user);
 	}
 

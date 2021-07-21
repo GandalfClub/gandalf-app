@@ -1,0 +1,15 @@
+@import "variables";
+
+.app-event-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+  background: $color-black-3;
+
+  &__main {
+    flex-grow: 1;
+    height: 1px;
+    padding: 24px 72px 0 72px;
+  }
+}

@@ -61,6 +61,10 @@ export const routes: Routes = [
 				(m: typeof import('./libs/event-creation/event-creation.module')) => m.EventCreationModule
 			),
 	},
+	{
+		path: '**',
+		redirectTo: '/landing'
+	},
 ];
 
 @NgModule({

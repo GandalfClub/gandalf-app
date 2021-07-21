@@ -18,7 +18,7 @@ export class EventRepository {
 	}
 
 	public regForEvent(participation: EventParticipation): Observable<EventParticipation> {
-		const url: string = `${this.API_URL}/events/`;
+		const url: string = `${this.API_URL}/events/add-participant`;
 		return this.http.post<EventParticipation>(url, participation);
 	}
 }

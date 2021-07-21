@@ -1,0 +1,17 @@
+<div class="app-tasks-viewer">
+  <aside class="app-tasks-viewer__aside">
+    <app-task-list [tasks]="tasks" (selected)="taskSelected($event)"></app-task-list>
+  </aside>
+
+  <main class="app-tasks-viewer__main">
+    <ng-container *ngIf="tasksLength; else empty">
+      <router-outlet></router-outlet>
+    </ng-container>
+  </main>
+</div>
+
+<ng-template #empty>
+  <p class="app-tasks-viewer__empty-list">
+    You don’t have any tasks yet.
+  </p>
+</ng-template>

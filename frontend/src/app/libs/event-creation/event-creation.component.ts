@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbFacadeService } from '../common-components/components/breadcrumb/store/breadcrumb.facade';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { NewEventFacadeService } from './store/event.facade';
 import { Tabs } from '../common-components/components/tab-navigation/models/tabs';
 import { Task } from '../common-components/components/tasks-creator/models/task';
+import { setDateTime } from '../utils/set-date-time';
+import { GeneralEventInfo } from './store/model/model';
 
 @Component({
 	selector: 'app-event-creation',
@@ -16,6 +18,7 @@ export class EventCreationComponent implements OnInit {
 
 	private formFromGeneralComponent: FormGroup;
 	private task: Task;
+	private eventId: string;
 
 	constructor(public breadcrumbFacadeService: BreadcrumbFacadeService, public newEventsFacadeService: NewEventFacadeService) {
 	}
@@ -34,7 +37,8 @@ export class EventCreationComponent implements OnInit {
 				this.formFromGeneralComponent.patchValue({
 					isDraft,
 				});
-				this.newEventsFacadeService.createGeneralEvent(this.formFromGeneralComponent.value);
+				this.configureGeneralEventDate();
+				this.newEventsFacadeService.updateEvent(this.formFromGeneralComponent.value, this.eventId);
 				break;
 
 			case Tabs.Tasks:
@@ -57,7 +61,18 @@ export class EventCreationComponent implements OnInit {
 		this.task = task;
 	}
 
+	public setEventId(id: string): void {
+		this.eventId = id;
+	}
+
 	public removeTask(id: Symbol): void {
 		this.newEventsFacadeService.deleteTask(id);
+	}
+
+	private configureGeneralEventDate(): void {
+		const event: GeneralEventInfo = this.formFromGeneralComponent.value;
+		const controls: { [key: string]: AbstractControl } = this.formFromGeneralComponent.controls;
+		controls.startDate.setValue(setDateTime(event.startDate, event.startTime));
+		controls.endDate.setValue(setDateTime(event.endDate, event.endTime));
 	}
 }

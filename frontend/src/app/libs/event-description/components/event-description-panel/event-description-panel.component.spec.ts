@@ -15,17 +15,23 @@ import { EventParticipation } from 'src/app/libs/landing/models/event-participat
 
 const event: Event = {
 	id: '',
-	title: 'test',
-	description: '',
+	generalInfo: {
+		title: 'test',
+		description: '',
+		startDate: null,
+		startTime: null,
+		endDate: null,
+		endTime: null,
+		isContinuous: true,
+		isDraft: true,
+		isPrivate: true,
+	},
 	created: null,
-	startDate: null,
-	startTime: null,
-	endDate: null,
-	endTime: null,
 	users: [],
 	size: EventCardSize.S,
 	eventParticipations: [],
-	roles: []
+	roles: [],
+	tasks: []
 };
 
 const user: EntityWrapper<User> = {

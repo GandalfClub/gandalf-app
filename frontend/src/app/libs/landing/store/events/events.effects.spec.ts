@@ -44,17 +44,23 @@ describe('Events Effects', () => {
 			beforeEach(() => {
 				event = {
 					id: 'test',
-					title: 'test',
-					description: 'test',
+					generalInfo: {
+						title: 'test',
+						description: 'test',
+						startDate: null,
+						startTime: null,
+						endDate: null,
+						endTime: null,
+						isContinuous: true,
+						isDraft: true,
+						isPrivate: true,
+					},
 					created: null,
-					startDate: null,
-					startTime: null,
-					endDate: null,
-					endTime: null,
 					users: [],
 					size: EventCardSize.S,
 					eventParticipations: [],
-					roles: []
+					roles: [],
+					tasks: []
 				};
 
 				mockEventsRepository.getEvents.and.returnValue(of([event]));

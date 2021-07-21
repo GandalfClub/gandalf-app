@@ -1,0 +1,29 @@
+@import "variables";
+
+.app-tasks-viewer {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  gap: 24px;
+
+  &__aside {
+    width: $layout-sidebar-width;
+    flex-shrink: 0;
+  }
+
+  &__main {
+    flex: 1 1 auto;
+    border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
+    background: $color-white;
+  }
+
+  &__empty-list {
+    @include text-h4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: $color-black-50;
+  }
+}

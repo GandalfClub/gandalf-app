@@ -1,0 +1,61 @@
+@import "variables";
+
+.app-task-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: $gradient-tasks-list;
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    padding: $main-grid-unit * 2;
+    background: $gradient-events;
+    border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
+  }
+
+  &__title {
+    padding: 0 $main-grid-unit;
+    color: $color-white;
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: $main-grid-unit;
+    background: $gradient-tasks-list;
+  }
+
+  &__item {
+    position: relative;
+    padding: $secondary-grid-unit * 3 $secondary-grid-unit * 4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid $color-mercury;
+    border-radius: $secondary-grid-unit;
+    background: $color-white;
+
+    &:not(:last-child) {
+      margin-bottom: $main-grid-unit;
+    }
+
+    &--active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: $secondary-grid-unit;
+      background-color: $color-primary;
+    }
+  }
+}
