@@ -83,9 +83,8 @@ export class TaskComponent implements OnInit, OnDestroy {
 	}
 
 	public setCodeAnswer(data: string): void {
-		if (this.task.taskType !== this.taskTypes.Coding) {
-			return;
+		if (this.task.taskType === this.taskTypes.Coding) {
+			this.taskFormGroup.setValue({answer: data});
 		}
-		this.taskFormGroup.setValue({answer: data});
 	}
 }

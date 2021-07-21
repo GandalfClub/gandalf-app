@@ -56,7 +56,7 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 			.pipe(takeUntil(this.destroy$))
 			.subscribe(() => {
 				const newCode: string = this.editor.toString();
-				if (this.readonly !== true) {
+				if (!this.readonly) {
 					this.changedCode.emit(newCode);
 				} else {
 					this.editor.destroy();
@@ -77,7 +77,7 @@ export class CodejarComponent implements AfterViewInit, OnChanges, OnDestroy {
 		if (changes.code) {
 			this.editor.updateCode(changes.code.currentValue);
 		}
-		if (changes.readonly?.currentValue === true) {
+		if (changes.readonly?.currentValue) {
 			this.destroy$.next(true);
 			this.editor.destroy();
 		}
