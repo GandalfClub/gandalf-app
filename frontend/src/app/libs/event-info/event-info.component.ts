@@ -35,7 +35,7 @@ export class EventInfoComponent implements OnInit, OnDestroy {
 				}
 
 				this.initTabs(event.tasks.length);
-				this.breadcrumbFacadeService.loadBreadcrumb(event.title);
+				this.breadcrumbFacadeService.loadBreadcrumb(event.generalInfo.title);
 				this.router.navigate([this.currentTab.title], { relativeTo: this.aciveRoute });
 			});
 	}
