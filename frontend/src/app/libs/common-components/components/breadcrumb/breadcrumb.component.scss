@@ -1,38 +1,38 @@
 @import "variables";
 
 .app-breadcrumb {
-  display: flex;
-  justify-content: space-between;
-  background-color: $color-white-100;
-  height: $breadcrumb-height;
-  vertical-align: middle;
-  min-width: $layout-column-width * 5;
-  outline: none;
-  border-bottom: 1px solid #e9e9e9;
+	display: flex;
+	justify-content: space-between;
+	background-color: $color-white-100;
+	height: $breadcrumb-height;
+	vertical-align: middle;
+	min-width: $layout-column-width * 5;
+	outline: none;
+	border-bottom: 1px solid #e9e9e9;
 
-  &__link {
-    @include text-p();
-    line-height: $main-grid-unit * 6;
-    vertical-align: middle;
-  }
-  &__link:first-child {
-    color: $color-primary;
-    cursor: pointer;
-    margin-left: $layout-outer-margin;
-  }
-  &__link:last-child {
-    color: $color-black;
-  }
-  &__img {
-    vertical-align: middle;
-  }
-  &__body {
-    display: inline-block;
-  }
-  &__nav {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: $main-grid-unit * 6;
-    margin-right: $layout-outer-margin;
-  }
+	&__link {
+		@include text-p();
+		line-height: $main-grid-unit * 6;
+		vertical-align: middle;
+	}
+	&__link:first-child {
+		color: $color-primary;
+		cursor: pointer;
+		margin-left: $layout-outer-margin;
+	}
+	&__link:last-child {
+		color: $color-black;
+	}
+	&__img {
+		vertical-align: middle;
+	}
+	&__body {
+		display: inline-block;
+	}
+	&__nav {
+		display: inline-block;
+		vertical-align: middle;
+		line-height: $main-grid-unit * 6;
+		margin-right: $layout-outer-margin;
+	}
 }
