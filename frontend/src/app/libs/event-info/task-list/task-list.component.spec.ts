@@ -8,7 +8,8 @@ describe('TaskListComponent', () => {
 	let component: TaskListComponent;
 	let fixture: ComponentFixture<TaskListComponent>;
 	let router: Router;
-	let activatedRoute: ActivatedRoute;
+
+	const activatedRoute: ActivatedRoute = {} as ActivatedRoute;
 
 	beforeEach(async(() => {
 		router = jasmine.createSpyObj('Router', ['navigate']);

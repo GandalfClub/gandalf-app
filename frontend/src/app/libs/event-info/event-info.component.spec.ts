@@ -11,7 +11,6 @@ import { EventInfoComponent } from './event-info.component';
 describe('EventInfoComponent', () => {
 	let component: EventInfoComponent;
 	let fixture: ComponentFixture<EventInfoComponent>;
-	let activatedRoute: ActivatedRoute;
 	let eventFacadeService: EventFacadeService;
 	let breadcrumbFacadeService: BreadcrumbFacadeService;
 
@@ -23,6 +22,8 @@ describe('EventInfoComponent', () => {
 	} as Event;
 	const tabMock: Tab = { title: Tabs.Tasks, amount: 0 };
 
+	const activatedRoute: ActivatedRoute = {} as ActivatedRoute;
+
 	eventFacadeService = {
 		eventValue$: of(eventMock)
 	} as EventFacadeService;
@@ -31,9 +32,9 @@ describe('EventInfoComponent', () => {
 		loadBreadcrumb: (_: string) => { }
 	} as BreadcrumbFacadeService;
 
-	const router = {
+	const router: { navigate: jasmine.Func } = {
 		navigate: jasmine.createSpy('navigate'),
-	};
+	} as { navigate: jasmine.Func };
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
