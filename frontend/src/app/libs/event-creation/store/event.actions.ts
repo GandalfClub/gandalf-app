@@ -70,8 +70,7 @@ export class LoadEventSuccess implements Action {
 export class LoadEventFail implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.LoadEventFail;
   constructor(public payload: Error) { }
-
-
+}
 export class DeleteTaskEventAction implements Action {
   public readonly type: EventsActionTypes = EventsActionTypes.DeleteTaskEvent;
   constructor(public payload: Symbol) { }
