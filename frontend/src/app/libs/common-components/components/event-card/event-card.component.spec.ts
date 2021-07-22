@@ -16,7 +16,6 @@ const endDate: Date = new Date('2020-01-05');
 const progress: number = 69;
 const participants: number = 13;
 const roles: string[] = ['Mentor', 'HR', 'Manger'];
-const users: User[] = [];
 
 describe('EventCardComponent', () => {
 	let component: EventCardComponent;

@@ -10,9 +10,9 @@
 	<div class="app-event-list__list">
 		<app-event-card class="app-event-list__event"
 						*ngFor="let event of events"
-						[title]="event.title"
-						[startDate]="event.startDate"
-						[endDate]="event.endDate"
+						[title]="event.generalInfo?.title"
+						[startDate]="event.generalInfo?.startDate"
+						[endDate]="event.generalInfo?.endDate"
 						[progress]="event.progress"
 						[participants]="event.users.length"
 						[roundedCorner]="event.roundedCorner"

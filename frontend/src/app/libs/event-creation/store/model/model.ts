@@ -1,10 +1,10 @@
-export interface NewEvent {
+export interface GeneralEventInfo {
 	title: string;
-	shortSummary: string;
+	shortSummary?: string;
 	startDate: Date;
 	endDate: Date;
-	startTime: Date;
-	endTime: Date;
+	startTime: string;
+	endTime: string;
 	description: string;
 	isPrivate: boolean;
 	isContinuous: boolean;

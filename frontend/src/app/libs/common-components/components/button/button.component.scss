@@ -28,6 +28,10 @@
 
 	border-radius: 20px;
 
+  &--icon {
+    padding: 8px;
+  }
+
 	&__content {
 		display: flex;
 		align-items: center;

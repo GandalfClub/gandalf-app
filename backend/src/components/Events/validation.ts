@@ -1,28 +1,32 @@
 import * as Joi from 'joi';
 import Validation from '../validation';
-import { IEventParticipationModel, IEventsnModel, IEventsnModelUpdate } from './model';
+import { IEventParticipationModel, IGeneralEventInfo } from './model';
 
 class EventValidation extends Validation {
     constructor() {
         super();
     }
 
-    createEvent(params: IEventsnModel): Joi.ValidationResult<IEventsnModel> {
+    createEvent(params: { title: string }): Joi.ValidationResult<{ title: string }> {
         const schema: Joi.Schema = Joi.object().keys({
             title: Joi.string().required(),
-            description: Joi.string().required(),
-            isActive: Joi.boolean().required()
         });
 
         return Joi.validate(params, schema);
     }
 
-    updateEvent(params: IEventsnModelUpdate): Joi.ValidationResult<IEventsnModelUpdate> {
+    updateGeneralInfoEvent(params: IGeneralEventInfo): Joi.ValidationResult<IGeneralEventInfo> {
         const schema: Joi.Schema = Joi.object().keys({
-            _id: Joi.string().required(),
             title: Joi.string().required(),
+            shortSummary: Joi.string(),
             description: Joi.string().required(),
-            isActive: Joi.boolean().required()
+            startDate: Joi.date().required(),
+            endDate: Joi.date().required(),
+            startTime: Joi.string().required(),
+            endTime: Joi.string().required(),
+            isPrivate: Joi.boolean().required(),
+            isContinuous: Joi.boolean().required(),
+            isDraft: Joi.boolean().required(),
         });
 
         return Joi.validate(params, schema);

@@ -17,8 +17,11 @@
 		</app-button>
 	</div>
 	<div class="header__common-buttons">
-		<app-button class="header__button" *ngIf="userService.isEventManagerUser" [theme]="darkTheme"
-			[type]="flatButtonType">
+		<app-button class="header__button"
+								*ngIf="userService.isEventManagerUser"
+								[theme]="darkTheme"
+								[type]="flatButtonType"
+								(click)="onCreateEvent()">
 			{{"BUTTON.CREATE_EVENT" | translate}}
 		</app-button>
 		<app-popover [theme]="lightTheme"
@@ -28,11 +31,11 @@
 			</div>
 			<div class="popover-content">
 				<app-input type="text"
-						   [(ngModel)]="eventTitle"
-						   widthInput="416px"
-						   [theme]="lightTheme"
-						   [label]="'LABEL.EVENT_NAME' | translate"
-						   [placeholder]="'PLACEHOLDER.EVENT_NAME' | translate">
+										[(ngModel)]="eventTitle"
+										widthInput="416px"
+										[theme]="lightTheme"
+										[label]="'LABEL.EVENT_NAME' | translate"
+										[placeholder]="'PLACEHOLDER.EVENT_NAME' | translate">
 				</app-input>
 			</div>
 			<div class="popover-actions">
@@ -70,4 +73,8 @@
 			<app-avatar class="header__avatar"></app-avatar>
 		</ng-container>
 	</div>
+	<app-progress-bar *ngIf="(isLoading$ | async)"
+										[mode]="progressBarMode"
+										[theme]="lightTheme">
+</app-progress-bar>
 </header>

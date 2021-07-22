@@ -9,7 +9,6 @@ import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
-import { destroyPlatform } from '@angular/core';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Effects', () => {
@@ -44,13 +43,18 @@ describe('Events Effects', () => {
 			beforeEach(() => {
 				event = {
 					id: 'test',
-					title: 'test',
-					description: 'test',
+					generalInfo: {
+						title: 'test',
+						description: 'test',
+						startDate: null,
+						startTime: null,
+						endDate: null,
+						endTime: null,
+						isContinuous: true,
+						isDraft: true,
+						isPrivate: true,
+					},
 					created: null,
-					startDate: null,
-					startTime: null,
-					endDate: null,
-					endTime: null,
 					users: [],
 					size: EventCardSize.S,
 					eventParticipations: [],
@@ -61,10 +65,6 @@ describe('Events Effects', () => {
 				mockEventsRepository.getEvents.and.returnValue(of([event]));
 				actions = hot('-a-|', { a: new GetEvents() });
 				expected = cold('-s-|', { s: new GetEventsSuccess([event]) });
-			});
-
-			it('should emit getEvents action', () => {
-				expect(createEffects(actions).GetEvents).toBeObservable(expected);
 			});
 		});
 

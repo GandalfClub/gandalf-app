@@ -1,9 +1,6 @@
-<div *ngFor="let tab of tabs" 
-			class="app-tab-navigation__block"
-			[class.app-tab-navigation__block--active]="currentTab?.title === tab.title"
-			(click)="changePage(tab)">
-	{{ tab.title | uppercase }}
-	<span *ngIf="tab.amount !== null">
-		({{tab?.amount}})
-	</span>
-</div>
+<div class="app-tab-navigation__block" [class.app-tab-navigation__block--active]="isGeneralTabActive()"
+	 (click)="switchToGeneral()">GENERAL</div>
+<div class="app-tab-navigation__block"
+	 (click)="switchToTasks()" [class.app-tab-navigation__block--active]="isTaskTabActive()">TASKS ({{ tasksNumber }})</div>
+<div class="app-tab-navigation__block"
+	 (click)="switchToInvitations()" [class.app-tab-navigation__block--active]="isInvitationsTabActive()">INVITATIONS (0)</div>

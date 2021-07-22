@@ -1,0 +1,166 @@
+<form [formGroup]="taskCreatorControl" class="tasks-creator">
+  <ng-container *ngIf="!isListEmpty; else emptyList">
+    <div class="tasks-creator__header event-gradient">
+
+      <div class="tasks-creator__name-editor" *ngIf="!isTaskNameEditMode">
+        <span class="tasks-creator__task-name">{{ taskName }}</span>
+        <app-icon-button
+          class="tasks-creator__header-button"
+          (click)="enableTaskNameEditMode()"
+          startIcon="mode"
+          iconColor="white"
+          iconSize="small">
+        </app-icon-button>
+      </div>
+
+      <div class="tasks-creator__name-editor" *ngIf="isTaskNameEditMode">
+
+        <app-input
+          class="tasks-creator__task-name-input"
+          formControlName="taskNameControl"
+          noPaddings="true"
+          [placeholder]="('TASK-CREATION.TASK_NAME_PLACEHOLDER' | translate)"></app-input>
+        <app-icon-button
+          class="tasks-creator__header-button"
+          (click)="disableTaskNameEditMode()"
+          startIcon="done"
+          iconColor="white"
+          iconSize="small">
+        </app-icon-button>
+        <span class="tasks-creator__header-border"></span>
+        <app-icon-button
+          class="tasks-creator__header-button"
+          (click)="clearTaskName()"
+          startIcon="close"
+          iconColor="white"
+          iconSize="small">
+        </app-icon-button>
+
+      </div>
+
+      <app-icon-button
+        (click)="deleteTask()"
+        startIcon="delete"
+        iconColor="white"
+        iconSize="small">
+      </app-icon-button>
+    </div>
+    <div class="tasks-creator__body">
+
+      <div class="tasks-creator__basic-settings">
+
+        <app-select
+          class="tasks-creator__task-type-select"
+          [label]="('TASK-CREATION.TASK_TYPE_LABEL' | translate)"
+          (openedChangeEmitter)="onOpenTaskTypesSelector($event)"
+          [value]="taskTypesEnum.Single"
+          (selectionChanged)="rebuildFormControls($event.value)"
+          formControlName="selectedTaskTypeControl"
+          [options]="taskTypeOptions"
+        ></app-select>
+
+        <div class="tasks-creator__mentor-score-container">
+          <app-slide-toggle
+            class="tasks-creator__mentor-check"
+            [disabled]="isMentorCheckDisabled()"
+            formControlName="mentorCheckControl"
+            [title]="('TASK-CREATION.MENTOR_CHECK_TOGGLE' | translate)">
+          </app-slide-toggle>
+          <app-input
+            class="tasks-creator__score-input"
+            type="number"
+            formControlName="maxScoreControl"
+            [placeholder]="('TASK-CREATION.MAX_SCORE_PLACEHOLDER' | translate)">
+          </app-input>
+        </div>
+
+      </div>
+
+      <app-ckeditor
+        class="tasks-creator__text-editor"
+        formControlName="textEditorControl"
+        theme=lightTheme
+        [title]="'LABEL.PRIVATE_EVENT' | translate">
+      </app-ckeditor>
+
+      <ng-container [ngSwitch]="getSelectedTaskType()">
+
+        <ng-container *ngSwitchCase="taskTypesEnum.Single">
+
+          <mat-radio-group formControlName="correctSingleAnswerControl">
+            <div formArrayName="answersArrayControl">
+              <div class="tasks-creator__radio-answer"
+                   *ngFor="let answer of singleAnswersControl.controls; let i = index"
+                   [formGroupName]="i">
+                <mat-radio-button class="mat-form-field-wrapper" value="{{ i }}"></mat-radio-button>
+                <app-input
+                  class="tasks-creator__answer-input"
+                  formControlName="label"
+                  [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
+                <app-icon-button
+                  class="mat-form-field-wrapper"
+                  (click)="removeSingleAnswer(i)"
+                  startIcon="delete"
+                  iconSize="small">
+                </app-icon-button>
+              </div>
+            </div>
+          </mat-radio-group>
+
+          <app-icon-button
+            (click)="addSingleAnswer()"
+            startIcon="add"
+            iconSize="small">
+            {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
+          </app-icon-button>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="taskTypesEnum.Coding">
+          <app-monaco-editor
+            class="tasks-creator__code-editor"
+            [language]="'javascript'"
+            [code]="code"
+            formControlName="codeEditorControl"
+            (codeChange)="updateCode($event)">
+          </app-monaco-editor>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="taskTypesEnum.Multiple">
+          <div formArrayName="multiAnswersArrayControl">
+            <div class="tasks-creator__checkbox-answer"
+                 *ngFor="let answer of multiAnswerControl.controls; let i = index"
+                 [formGroupName]="i">
+              <mat-checkbox
+                class="tasks-creator__checkbox mat-form-field-wrapper"
+                [value]="i.toString()"
+                formControlName="isCorrect"></mat-checkbox>
+              <app-input
+                class="tasks-creator__answer-input"
+                formControlName="label"
+                [label]="( 'TASK-CREATION.OPTIONS_LABEL' | translate ) + ' ' + (i + 1)"></app-input>
+              <app-icon-button
+                class="mat-form-field-wrapper"
+                (click)="removeMultiAnswer(i)"
+                startIcon="delete"
+                iconSize="small">
+              </app-icon-button>
+            </div>
+          </div>
+
+          <app-icon-button startIcon="add" (click)="addMultiAnswer()">
+            {{ 'TASK-CREATION.ADD_NEW_OPTION_TITLE' | translate }}
+          </app-icon-button>
+
+        </ng-container>
+
+      </ng-container>
+    </div>
+  </ng-container>
+</form>
+
+<ng-template #emptyList>
+  <div class="tasks-creator__empty">
+    <span>{{ 'TASK-CREATION.EMPTY_TASKS_LIST' | translate }}</span>
+  </div>
+</ng-template>

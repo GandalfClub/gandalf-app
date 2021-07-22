@@ -1,6 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, forwardRef, Output, EventEmitter, OnChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 import { FormControlCommonDirective } from '../../directives/formControl/form-control-common.directive';
+import { SelectOption } from './models/select-option';
 
 @Component({
 	selector: 'app-select',
@@ -15,35 +16,55 @@ import { FormControlCommonDirective } from '../../directives/formControl/form-co
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent extends FormControlCommonDirective {
+export class SelectComponent extends FormControlCommonDirective implements OnChanges {
 	public icon: string = 'keyboard_arrow_down';
 	public opened: boolean = false;
+
 	@Input() public label: string;
 	@Input() public formControlName: string;
 	@Input() public formControl: FormControl;
 	@Input() public value: number | string | null | undefined;
+	@Input() public eventTimeType: boolean = false;
+	@Input() public options: SelectOption[];
+
+	@Output()
+	public openedChangeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output()
+	public selectionChanged: EventEmitter<any> = new EventEmitter<any>();
 
 	public openedChange(opened: boolean): void {
 		this.opened = opened;
 		this.icon = opened ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+		this.openedChangeEmitter.emit(opened);
 	}
 
-	public generateTime(): string[] {
-		const maxhour: number = 23;
-		const zero: number = 0;
-		const one: number = 1;
-		const tenhours: number = 10;
-		const arrayTime: string[] = [];
+	public ngOnChanges(): void {
+		if (this.eventTimeType) {
+			this.options = this.generateEventTime();
+		}
+	}
 
-		for (let i: number = zero; i <= maxhour; i++) {
-			let hour: number | string = i;
-			if (i < tenhours) {
+	private generateEventTime(): SelectOption[] {
+		const MAX_HOUR: number = 23;
+		const TEN_HOURS: number = 10;
+		let arrayTime: SelectOption[] = [];
+
+		for (let i: number = 0; i <= MAX_HOUR; i++) {
+			let hour: string = i.toString();
+			if (i < TEN_HOURS) {
 				hour = '0' + hour;
 			}
-			for (let j: number = zero; j <= one; j++) {
-				const min: string = j === 1 ? '30' : '00';
-				arrayTime.push(`${hour}:${min}`);
-			}
+			arrayTime = [
+				...arrayTime,
+				{
+					value: `${hour}:00`,
+					label: `${hour}:00`,
+				},
+				{
+					value: `${hour}:30`,
+					label: `${hour}:30`,
+				}
+			];
 		}
 		return arrayTime;
 	}

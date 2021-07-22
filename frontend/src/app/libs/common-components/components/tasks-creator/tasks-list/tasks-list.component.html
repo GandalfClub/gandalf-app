@@ -1,0 +1,20 @@
+<div class="tasks-list">
+  <div class="tasks-list__header event-gradient">
+    <span class="tasks-list__title">{{ 'TASK-CREATION.LIST_HEADER_TITLE' | translate }} ({{ tasksLength }})</span>
+    <app-icon-button
+      class="tasks-list__add-btn"
+      (click)="addNewTask()"
+      startIcon="add"
+      iconColor="#367FF6"
+      iconSize="s">
+    </app-icon-button>
+  </div>
+  <div class="tasks-list__content">
+    <div class="tasks-list__item"
+         [ngClass]="{ 'tasks-list__item_active' : i === selectedTaskIndex }"
+         *ngFor="let task of taskList; let i = index"
+         (click)="showTask(i)">
+      {{ task.taskName }}
+    </div>
+  </div>
+</div>

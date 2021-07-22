@@ -11,12 +11,18 @@ import { EventInfoComponent } from './event-info.component';
 describe('EventInfoComponent', () => {
 	let component: EventInfoComponent;
 	let fixture: ComponentFixture<EventInfoComponent>;
-	let router: Router;
-	let activatedRoute: ActivatedRoute;
 	let eventFacadeService: EventFacadeService;
 	let breadcrumbFacadeService: BreadcrumbFacadeService;
-	const eventMock: Event = { tasks: ['1', '2'] } as Event;
-	const tabMock: Tab = { title: Tabs.Tasks, amount: 0 } as Tab;
+
+	const eventMock: Event = {
+		tasks: ['1', '2'],
+		generalInfo: {
+			title: 'someTitle',
+		},
+	} as Event;
+	const tabMock: Tab = { title: Tabs.Tasks, amount: 0 };
+
+	const activatedRoute: ActivatedRoute = {} as ActivatedRoute;
 
 	eventFacadeService = {
 		eventValue$: of(eventMock)
@@ -26,7 +32,9 @@ describe('EventInfoComponent', () => {
 		loadBreadcrumb: (_: string) => { }
 	} as BreadcrumbFacadeService;
 
-	router = jasmine.createSpyObj('Router', ['navigate']);
+	const router: { navigate: jasmine.Func } = {
+		navigate: jasmine.createSpy('navigate'),
+	} as { navigate: jasmine.Func };
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -36,34 +44,32 @@ describe('EventInfoComponent', () => {
 				{ provide: ActivatedRoute, useValue: activatedRoute },
 				{ provide: EventFacadeService, useValue: eventFacadeService },
 				{ provide: BreadcrumbFacadeService, useValue: breadcrumbFacadeService },
-			]
-		})
-			.compileComponents();
+			],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(EventInfoComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
-		router = TestBed.inject(Router);
-		activatedRoute = TestBed.inject(ActivatedRoute);
-		eventFacadeService = TestBed.inject(EventFacadeService);
-		breadcrumbFacadeService = TestBed.inject(BreadcrumbFacadeService);
+		component.currentTab = {} as any;
 	});
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('changeTab', () => {
-		it('should set currentTab field', () => {
+	describe('#changeTab', () => {
+		beforeEach(() => {
 			component.changeTab(tabMock);
+		});
+
+		it('should set currentTab field', () => {
 			expect(component.currentTab).toEqual(tabMock);
 		});
 
-		it('should navigate using tab title', () => {
-			component.changeTab(tabMock);
-			expect(router.navigate).toHaveBeenCalledWith([tabMock.title], { relativeTo: activatedRoute });
+		it('should call navigate', () => {
+			expect(router.navigate).toHaveBeenCalled();
 		});
 	});
 });

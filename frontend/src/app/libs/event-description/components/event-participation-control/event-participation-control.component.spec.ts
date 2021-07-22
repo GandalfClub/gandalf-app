@@ -43,13 +43,18 @@ describe('EventParticipationControlComponent', () => {
 
 		mockEvent = {
 			id: 'test',
-			title: 'test',
-			description: 'test',
+			generalInfo: {
+				title: 'test',
+				description: 'test',
+				startDate: null,
+				startTime: null,
+				endDate: null,
+				endTime: null,
+				isContinuous: true,
+				isDraft: true,
+				isPrivate: true,
+			},
 			created: null,
-			startDate: null,
-			startTime: null,
-			endDate: null,
-			endTime: null,
 			users: [],
 			size: EventCardSize.S,
 			eventParticipations: [],
@@ -96,8 +101,8 @@ describe('EventParticipationControlComponent', () => {
 			mockparticipation.approved = true;
 			const startDate: number = new Date().getTime() + startTime;
 			const endDate: number = new Date().getTime() + endTime;
-			component.event.startDate = new Date(startDate);
-			component.event.endDate = new Date(endDate);
+			component.event.generalInfo.startDate = new Date(startDate);
+			component.event.generalInfo.endDate = new Date(endDate);
 			component.event.eventParticipations.push(mockparticipation);
 			const type: EventParticipationControlTypes = component.getControlType(component.event, component.user);
 			expect(type).toEqual(EventParticipationControlTypes.Approved);
@@ -113,8 +118,8 @@ describe('EventParticipationControlComponent', () => {
 			mockparticipation.approved = true;
 			const startDate: number = new Date().getTime() - startTime;
 			const endDate: number = new Date().getTime() + endTime;
-			component.event.startDate = new Date(startDate);
-			component.event.endDate = new Date(endDate);
+			component.event.generalInfo.startDate = new Date(startDate);
+			component.event.generalInfo.endDate = new Date(endDate);
 			component.event.eventParticipations.push(mockparticipation);
 			const type: EventParticipationControlTypes = component.getControlType(component.event, component.user);
 			expect(type).toEqual(EventParticipationControlTypes.OpenEvent);

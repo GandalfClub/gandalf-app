@@ -8,11 +8,14 @@ import { BreadcrumbStoreModule } from '../common-components/components/breadcrum
 import { EventCreationRoutingModule } from './event-creation-routing.module';
 import { GeneralInfoPageComponent } from './general-info-page/general-info-page.component';
 import { BreadcrumbModule } from '../common-components/components/breadcrumb/breadcrumb.module';
+import { TasksCreatorPageComponent } from './tasks-creator-page/tasks-creator-page.component';
+import { TasksCreatorModule } from '../common-components/components/tasks-creator/tasks-creator.module';
 
 @NgModule({
 	declarations: [
 		EventCreationComponent,
 		GeneralInfoPageComponent,
+		TasksCreatorPageComponent,
 	],
 	imports: [
 		RouterModule,
@@ -21,7 +24,9 @@ import { BreadcrumbModule } from '../common-components/components/breadcrumb/bre
 		CommonComponentsModule,
 		BreadcrumbStoreModule,
 		BreadcrumbModule,
+		TasksCreatorModule,
 	],
-	exports: [EventCreationRoutingModule]
+	exports: [EventCreationRoutingModule],
 })
-export class EventCreationModule { }
+export class EventCreationModule {
+}

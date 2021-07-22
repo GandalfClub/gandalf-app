@@ -63,7 +63,7 @@ export class EventParticipationControlComponent {
 			return EventParticipationControlTypes.TakePart;
 		}
 
-		if (participation.approved && this.eventHasStarted(event.startDate)) {
+		if (participation.approved && this.eventHasStarted(event?.generalInfo.startDate)) {
 			return EventParticipationControlTypes.OpenEvent;
 		}
 

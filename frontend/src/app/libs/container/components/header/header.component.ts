@@ -3,10 +3,10 @@ import { ButtonType } from 'src/app/libs/common-components/components/button/mod
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
-import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { NewEventFacadeService } from 'src/app/libs/event-creation/store/newEvent.facade';
+import { NewEventFacadeService } from 'src/app/libs/event-creation/store/event.facade';
 import { PopoverComponent } from 'src/app/libs/common-components/components/popover/popover.component';
+import { ProgressBarMode } from 'src/app/libs/common-components/shared/progress-bar-mode.enum';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-header',
@@ -14,13 +14,14 @@ import { PopoverComponent } from 'src/app/libs/common-components/components/popo
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	@ViewChild('templatepopoverlight')
-	public popoverTemplate: PopoverComponent;
+	@ViewChild('templatepopoverlight') public popoverTemplate: PopoverComponent;
 	public outlinedButtonType: ButtonType = ButtonType.Outlined;
 	public flatButtonType: ButtonType = ButtonType.Flat;
 	public darkTheme: ComponentTheme = ComponentTheme.Dark;
-	public eventTitle: string;
+	public eventTitle: string = '';
 	public lightTheme: ComponentTheme = ComponentTheme.Light;
+	public progressBarMode: string = ProgressBarMode.Indeterminate;
+	public isLoading$: Observable<boolean> = this.newEventFacadeService.isEventLoading$;
 
 	public adminLinksActivation: Map<AdminLink, boolean> = new Map([
 		[AdminLink.Events, true],
@@ -36,15 +37,14 @@ export class HeaderComponent {
 	}
 
 	constructor(
-		public translateService: TranslateService,
 		public userService: UserService,
-		public router: Router,
 		public newEventFacadeService: NewEventFacadeService) { }
 
 	public createEvent(): void {
+		if (!Boolean(this.eventTitle.length)) { return; }
+
 		this.popoverTemplate.close();
-		this.newEventFacadeService.setTitleForNewEvent(this.eventTitle);
-		this.router.navigateByUrl('/create-event');
+		this.newEventFacadeService.createEvent(this.eventTitle);
 	}
 
 	public onEventsClick(): void {
@@ -61,5 +61,9 @@ export class HeaderComponent {
 		this.adminLinksActivation.forEach((activationState: boolean, linkKey: AdminLink) => {
 			this.adminLinksActivation.set(linkKey, false);
 		});
+	}
+
+	public onCreateEvent(): void {
+		this.popoverTemplate.open();
 	}
 }

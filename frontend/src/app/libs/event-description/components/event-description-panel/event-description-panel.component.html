@@ -6,10 +6,10 @@
 	<div class="app-event-description-panel__container {{event?.color}}">
 		<div class="app-event-description-panel__box-left">
 			<div class="app-event-description-panel__title">
-				{{event.title}}
+				{{generalEventInfo?.title}}
 			</div>
 			<div class="app-event-description-panel__description"
-				 [innerHTML]="event.description | safeHtml">
+				 [innerHTML]="generalEventInfo?.shortSummary | safeHtml">
 			</div>
 			<app-event-participation-control
 				[event]="event"
@@ -23,18 +23,18 @@
 				<img class="app-event-description-panel__calendar"
 					 src="assets/images/icons/icon-calendar-b.svg"
 					 alt="icon-calendar">
-				<ng-container *ngIf="event.endDate else withoutEndDateTemplate">
+				<ng-container *ngIf="generalEventInfo?.endDate else withoutEndDateTemplate">
 					<span class="app-event-description-panel__date">
-						{{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}
+						{{ generalEventInfo?.startDate | date:'d MMM yy' }} - {{ generalEventInfo?.endDate | date:'d MMM yy' }}
 					</span>
 					<span class="app-event-description-panel__time"
-						  *ngIf="event.startTime && event.endTime">
-						{{ event.startTime | date:'h a' }} - {{ event.endTime | date:'h a' }}
+						  *ngIf="generalEventInfo?.startTime && generalEventInfo?.endTime">
+						{{ generalEventInfo?.startDate | date:'H:mm' }} - {{ generalEventInfo?.endDate | date:'H:mm' }}
 					</span>
 				</ng-container>
 				<ng-template #withoutEndDateTemplate>
 					<span class="app-event-description-panel__date">
-						{{ event.startDate | date:'d MMM yy' }}
+						{{ generalEventInfo?.startDate | date:'d MMM yy' }}
 					</span>
 					<span class="app-event-description-panel__time">
 						<span>In Progress</span>
@@ -54,7 +54,7 @@
 	</div>
 	<div class="app-event-description-panel__content-wrapper">
 		<div class="app-event-description-panel__content"
-			 [innerHTML]="event.description | safeHtml">
+			 [innerHTML]="generalEventInfo?.description | safeHtml">
 		</div>
 		<div class="app-event-description-panel__bottom-panel">
 			<div class="app-event-description-panel__box-bottom">
@@ -63,18 +63,18 @@
 						<img class="app-event-description-panel__calendar"
 							 src="assets/images/icons/icon-calendar.svg"
 							 alt="icon-calendar">
-						<ng-container *ngIf="event.endDate else withoutEndDateTemplate">
+						<ng-container *ngIf="generalEventInfo?.endDate else withoutEndDateTemplate">
 							<span class="app-event-description-panel__date-bottom">
-								{{ event.startDate | date:'d MMM yy' }} - {{ event.endDate | date:'d MMM yy' }}
+								{{ generalEventInfo?.startDate | date:'d MMM yy' }} - {{ generalEventInfo?.endDate | date:'d MMM yy' }}
 							</span>
 							<span class="app-event-description-panel__time-bottom"
-								  *ngIf="event.startTime && event.endTime">
-								{{ event.startTime | date:'h a' }} - {{ event.endTime | date:'h a' }}
+								  *ngIf="generalEventInfo?.startTime && generalEventInfo?.endTime">
+								{{ generalEventInfo?.startDate | date:'H:mm' }} - {{ generalEventInfo?.endDate | date:'H:mm' }}
 							</span>
 						</ng-container>
 						<ng-template #withoutEndDateTemplate>
 							<span class="app-event-description-panel__date">
-								{{ event.startDate | date:'d MMM yy' }}
+								{{ generalEventInfo?.startDate | date:'d MMM yy' }}
 							</span>
 							<span class="app-event-description-panel__time-bottom">
 								<span>In Progress</span>

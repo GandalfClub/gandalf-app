@@ -1,8 +1,8 @@
 @import "variables";
 
 .app-general-info {
-	background: $color-white;
-	margin: $layout-gutter $layout-outer-margin 0 $layout-outer-margin;
+  flex-grow: 1;
+  background: $color-white;
 
 	&__header {
 		display: flex;

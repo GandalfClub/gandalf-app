@@ -1,30 +1,47 @@
 <div class="event-creation">
-	<app-breadcrumb>
-		<app-tab-navigation (changeTab)="changeTab($event)"></app-tab-navigation>
-	</app-breadcrumb>
-	<ng-container *ngIf="generalTab">
-		<app-general-info (passForm)="getFormFromGeneralComponent($event)"></app-general-info>
-	</ng-container>
-	<div class="event-creation__bottom-bar">
-		<div>
-			<app-icon-button type="outlined"
-							 startIcon="delete"
-							 iconSize="small">
-				{{ "BUTTON.DELETE_EVENT" | translate }}
-			</app-icon-button>
-		</div>
-		<div>
-			<app-button class="event-creation__btn"
-						type="outlined"
-						color="primary"
-						(click)="saveAsDraft()">
-				{{ "BUTTON.SAVE_AS_DRAFT" | translate }}
-			</app-button>
-			<app-button type="flat"
-						color="primary"
-						(click)="send()">
-				{{ "BUTTON.PUBLISH" | translate }}
-			</app-button>
-		</div>
-	</div>
+  <app-breadcrumb>
+    <app-tab-navigation (changeTab)="changeTab($event)"></app-tab-navigation>
+  </app-breadcrumb>
+
+  <ng-container [ngSwitch]="currentTab">
+    <app-general-info
+      class="event-creation__tab-content"
+      *ngSwitchCase="tabsEnum.General"
+      (passForm)="setFormFromGeneralComponent($event)"
+      (passEventId)="setEventId($event)">
+    </app-general-info>
+    <app-tasks-creator-page
+      class="event-creation__tab-content"
+      *ngSwitchCase="tabsEnum.Tasks"
+      (removeTask)="removeTask($event)"
+      (passForm)="setTaskCreationForm($event)">
+    </app-tasks-creator-page>
+  </ng-container>
+
+  <div class="event-creation__bottom-bar">
+    <div>
+      <app-icon-button
+        type="outlined"
+        startIcon="delete"
+        iconSize="small"
+      >
+        {{ "BUTTON.DELETE_EVENT" | translate }}
+      </app-icon-button>
+    </div>
+    <div>
+      <app-button
+        class="event-creation__btn"
+        type="outlined"
+        color="primary"
+        (click)="send(true)">
+        {{ "BUTTON.SAVE_AS_DRAFT" | translate }}
+      </app-button>
+      <app-button
+        type="flat"
+        color="primary"
+        (click)="send(false)">
+        {{ "BUTTON.PUBLISH" | translate }}
+      </app-button>
+    </div>
+  </div>
 </div>

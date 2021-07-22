@@ -6,6 +6,7 @@ import { EntityStatus } from 'src/app/libs/auth/models/entity-status';
 import { BreadcrumbFacadeService } from 'src/app/libs/common-components/components/breadcrumb/store/breadcrumb.facade';
 import { EventFacadeService } from '../../store/event/event.facade';
 import { EventParticipation } from 'src/app/libs/landing/models/event-participation.class';
+import { GeneralEventInfo } from 'src/app/libs/event-creation/store/model/model';
 
 @Component({
 	selector: 'app-event-description-panel',
@@ -15,15 +16,16 @@ import { EventParticipation } from 'src/app/libs/landing/models/event-participat
 export class EventDescriptionPanelComponent implements OnInit {
 
 	@Input() public event: Event;
-
 	@Input() public user: EntityWrapper<User>;
+	public generalEventInfo: GeneralEventInfo;
 
 	constructor(
 		private breadcrumbFacadeService: BreadcrumbFacadeService,
 		private eventFacadeService: EventFacadeService) { }
 
 	public ngOnInit(): void {
-		this.breadcrumbFacadeService.loadBreadcrumb(this.event.title);
+		this.generalEventInfo = this.event.generalInfo;
+		this.breadcrumbFacadeService.loadBreadcrumb(this.generalEventInfo?.title);
 	}
 
 	public get userLoginStatus(): boolean {

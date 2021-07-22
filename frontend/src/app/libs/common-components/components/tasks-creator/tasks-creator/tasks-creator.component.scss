@@ -1,0 +1,104 @@
+@import "variables";
+
+.tasks-creator {
+  height: 100%;
+  background-color: $color-white;
+  border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__header-button {
+    padding: 0 6px;
+  }
+
+  &__header-border {
+    width: 1px;
+    height: 24px;
+    background-color: $color-white;
+  }
+
+  &__task-name {
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__task-name-input {
+    width: 100%;
+  }
+
+  &__answer-input {
+    width: 100%;
+    max-width: $main-grid-unit * 50;
+  }
+
+  &__task-type-select {
+    width: $main-grid-unit * 26;
+  }
+
+  &__name-editor {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: $main-grid-unit * 82;
+  }
+
+  &__score-input {
+    width: $main-grid-unit * 16;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $main-grid-unit;
+    color: $color-white;
+    border-radius: $secondary-grid-unit $secondary-grid-unit 0 0;
+  }
+
+  &__body {
+    padding: $events-creator-padding;
+  }
+
+  &__basic-settings {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__text-editor {
+    display: block;
+    margin-bottom: $main-grid-unit * 3;
+  }
+
+  &__code-editor {
+    display: block;
+    height: 432px;
+  }
+
+  &__radio-answer,
+  &__checkbox-answer {
+    display: flex;
+    align-items: center;
+  }
+
+  &__checkbox {
+    margin-right: 10px;
+  }
+
+  &__mentor-check {
+    margin: 0.25em $main-grid-unit * 4 0.25em 0;
+    padding-bottom: 1.34375em;
+  }
+
+  &__mentor-score-container {
+    display: flex;
+    align-items: center;
+  }
+}

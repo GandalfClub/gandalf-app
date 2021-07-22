@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
@@ -58,13 +57,18 @@ describe('Events Effects', () => {
 			beforeEach(() => {
 				event = {
 					id: 'test',
-					title: 'test',
-					description: 'test',
+					generalInfo: {
+						title: 'test',
+						description: 'test',
+						startDate: null,
+						startTime: null,
+						endDate: null,
+						endTime: null,
+						isContinuous: true,
+						isDraft: true,
+						isPrivate: true,
+					},
 					created: null,
-					startDate: null,
-					startTime: null,
-					endDate: null,
-					endTime: null,
 					users: [],
 					size: EventCardSize.S,
 					eventParticipations: [],
@@ -73,13 +77,18 @@ describe('Events Effects', () => {
 				};
 				eventDto = {
 					_id: 'test',
-					title: 'test',
-					description: 'test',
+					generalInfo: {
+						title: 'test',
+						description: 'test',
+						startDate: null,
+						startTime: null,
+						endDate: null,
+						endTime: null,
+						isContinuous: true,
+						isDraft: true,
+						isPrivate: true,
+					},
 					created: null,
-					startDate: null,
-					startTime: null,
-					endDate: null,
-					endTime: null,
 					users: null,
 					tasks: null,
 					isActive: null,

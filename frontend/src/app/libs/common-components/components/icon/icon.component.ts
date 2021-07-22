@@ -14,4 +14,6 @@ export class IconComponent {
 	@Input()
 	public size: IconSize = IconSize.S;
 
+	@Input()
+  public color: string;
 }

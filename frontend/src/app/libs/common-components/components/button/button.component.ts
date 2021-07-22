@@ -3,9 +3,9 @@ import { ButtonType } from './models/button-type.enum';
 import { ComponentTheme } from '../../shared/component-theme.enum';
 import { ButtonColor } from './models/button-color.enum';
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+	selector: 'app-button',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
 
@@ -30,6 +30,9 @@ export class ButtonComponent {
 
 	@Input()
 	public disableHover: boolean = false;
+
+	@Input()
+	public iconButton: boolean = false;
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;

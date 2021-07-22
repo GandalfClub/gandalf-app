@@ -69,6 +69,25 @@
 		"INVITATIONS_TABS": "INVITATIONS",
 		"TITLE_GENERAL": "General Information"
 	},
+  "TASK-CREATION": {
+    "TASK_TYPE_LABEL": "Task type",
+    "TASKS_TYPES": {
+         "CODING": "Coding task",
+         "SINGLE": "Single answer",
+         "MULTIPLE": "Multiple answers",
+         "TEXT": "Text answer"
+    },
+    "MENTOR_CHECK_LABEL": "Mentor check",
+    "MAX_SCORE_PLACEHOLDER": "Max score",
+    "TEXT_EDITOR_PLACEHOLDER": "Enter question here",
+    "LIST_HEADER_TITLE": "Tasks",
+    "ADD_NEW_OPTION_TITLE": "add new option",
+    "OPTIONS_LABEL": "Option",
+    "MENTOR_CHECK_TOGGLE": "Mentor check",
+    "TASK_NAME_PLACEHOLDER": "Task name",
+    "EMPTY_TASKS_LIST": "You don’t have any tasks yet.",
+    "CODE_EDITOR_LABEL": "Unit tests area"
+  },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Info about the action",
 		"FOR_IS_PRIVATE": "Info about the action"

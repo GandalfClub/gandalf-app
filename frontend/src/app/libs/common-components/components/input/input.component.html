@@ -1,6 +1,7 @@
 <mat-form-field
 	appearance="outline"
-	[style.width] = "widthInput"
+	[style.width]="widthInput"
+  [class.no-paddings]="noPaddings"
 	[class.input--dark]="isDarkTheme">
 
 	<mat-icon matPrefix *ngIf="preIcon" class="input__pre-icon">{{preIcon}}</mat-icon>
@@ -13,7 +14,9 @@
 		[type]="inputType"
 		(change)="onValueChange($event.target.value)"
 		(blur)="onTouched()"
-		placeholder={{placeholder}} prefix={{prefix}} mask={{mask}}>
+		placeholder="{{ placeholder }}"
+    prefix="{{ prefix }}"
+    mask="{{ mask }}">
 
 	<mat-error *ngFor="let error of errorsArray">
 		{{error}}

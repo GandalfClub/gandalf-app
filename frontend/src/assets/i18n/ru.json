@@ -77,6 +77,25 @@
 		"INVITATIONS_TABS": "ПРИГЛАШЕНИЯ",
 		"TITLE_GENERAL": "Основная информация"
 	},
+  "TASK-CREATION": {
+    "TASK_TYPE_LABEL": "Тип задачи",
+    "TASKS_TYPES": {
+      "CODING": "Код",
+      "SINGLE": "Одиночный ответ",
+      "MULTIPLE": "Множественный выбор",
+      "TEXT": "Текстовый ответ"
+    },
+    "MENTOR_CHECK_LABEL": "Проверка ментором",
+    "MAX_SCORE_PLACEHOLDER": "Максимальная оценка",
+    "TEXT_EDITOR_PLACEHOLDER": "Введите вопрос",
+    "LIST_HEADER_TITLE": "Задачи",
+    "ADD_NEW_OPTION_TITLE": "добавить опцию",
+    "OPTIONS_LABEL": "Ответ",
+    "MENTOR_CHECK_TOGGLE": "Проверка ментором",
+    "TASK_NAME_PLACEHOLDER": "Название задачи",
+    "EMPTY_TASKS_LIST": "Список задач пуст.",
+    "CODE_EDITOR_LABEL": "Раздел юнит тестов"
+  },
 	"TOOLTIP": {
 		"FOR_IS_CONTINUOUS": "Информация о мероприятии",
 		"FOR_IS_PRIVATE": "Информация о мероприятии"

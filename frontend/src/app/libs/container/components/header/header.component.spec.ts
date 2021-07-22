@@ -9,6 +9,8 @@ import { HeaderComponent } from './header.component';
 import { Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonComponentsDemoComponent } from 'src/app/libs/common-components-demo/common-components-demo.component';
+import { Observable, of } from 'rxjs';
+import { NewEventFacadeService } from 'src/app/libs/event-creation/store/event.facade';
 
 describe('HeaderComponent', () => {
 	let component: HeaderComponent;
@@ -19,6 +21,12 @@ describe('HeaderComponent', () => {
 			component: CommonComponentsDemoComponent
 		}
 	];
+
+	const newEventFacadeServiceStub: { isEventLoading$: Observable<boolean>; createEvent: jasmine.Func } = {
+		isEventLoading$: of(false),
+		createEvent: jasmine.createSpy('createEvent'),
+	} as { isEventLoading$: Observable<boolean>; createEvent: jasmine.Func };
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
@@ -28,10 +36,12 @@ describe('HeaderComponent', () => {
 				LocalizationModule,
 				RouterTestingModule.withRoutes(mockRoutes)
 			],
-			declarations: [ HeaderComponent ],
-			providers: [ ContainerFacadeService ]
-		})
-		.compileComponents();
+			declarations: [HeaderComponent],
+			providers: [
+				ContainerFacadeService,
+				{ provide: NewEventFacadeService, useValue: newEventFacadeServiceStub },
+			],
+		}).compileComponents();
 
 		fixture = TestBed.createComponent(HeaderComponent);
 		component = fixture.componentInstance;

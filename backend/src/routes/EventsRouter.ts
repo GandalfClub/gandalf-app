@@ -6,7 +6,9 @@ const router: Router = Router();
 
 router.get('/', EventsComponent.getAllEvents);
 
-router.post('/', EventsComponent.addNewEventParticipation);
+router.get('/event', EventsComponent.getEventById);
+
+router.post('/add-participant', EventsComponent.addNewEventParticipation);
 
 router.post('/', AccessGuard.isAdmin, EventsComponent.createEvent);
 
