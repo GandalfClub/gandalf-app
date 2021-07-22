@@ -3,8 +3,6 @@ import { ButtonType } from 'src/app/libs/common-components/components/button/mod
 import { ComponentTheme } from 'src/app/libs/common-components/shared/component-theme.enum';
 import { AdminLink } from '../../models/admin-link';
 import { UserService } from '../../services/user.service';
-import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 import { NewEventFacadeService } from 'src/app/libs/event-creation/store/event.facade';
 import { PopoverComponent } from 'src/app/libs/common-components/components/popover/popover.component';
 import { ProgressBarMode } from 'src/app/libs/common-components/shared/progress-bar-mode.enum';
@@ -39,9 +37,7 @@ export class HeaderComponent {
 	}
 
 	constructor(
-		public translateService: TranslateService,
 		public userService: UserService,
-		public router: Router,
 		public newEventFacadeService: NewEventFacadeService) { }
 
 	public createEvent(): void {

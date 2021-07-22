@@ -28,8 +28,6 @@ describe('TaskListComponent', () => {
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		component.tasks = [{} as Task, {} as Task];
-		router = TestBed.inject(Router);
-		activatedRoute = TestBed.inject(ActivatedRoute);
 	});
 
 	it('should create', () => {

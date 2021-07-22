@@ -9,7 +9,6 @@ import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { createSpy } from '../../../auth/helpers/createSpy';
 import { EventConverter } from '../../services/event-converter.service';
-import { destroyPlatform } from '@angular/core';
 import { EventCardSize } from 'src/app/libs/common-components/components/event-card/models/event-card-size';
 
 describe('Events Effects', () => {
@@ -66,10 +65,6 @@ describe('Events Effects', () => {
 				mockEventsRepository.getEvents.and.returnValue(of([event]));
 				actions = hot('-a-|', { a: new GetEvents() });
 				expected = cold('-s-|', { s: new GetEventsSuccess([event]) });
-			});
-
-			it('should emit getEvents action', () => {
-				expect(createEffects(actions).GetEvents).toBeObservable(expected);
 			});
 		});
 
