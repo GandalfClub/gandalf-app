@@ -43,6 +43,12 @@
 </ng-template>
 
 <ng-template #codeAnswer [formGroup]="taskFormGroup">
+    <app-codejar
+        [readonly]="isTaskPending"
+        language="javascript"
+        [code]="isTaskPending ? solution.value : task.code"
+        (changedCode)="setCodeAnswer($event)"
+    ></app-codejar>
 </ng-template>
 
 <ng-template #multipleAnswer [formGroup]="taskFormGroup">
